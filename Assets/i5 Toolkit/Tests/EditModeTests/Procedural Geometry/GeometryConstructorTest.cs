@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using i5.Toolkit.ProceduralGeometry;
 using NUnit.Framework;
@@ -75,7 +76,7 @@ namespace Tests
             int v0 = gc.AddVertex(vertices[0]);
             int v1 = gc.AddVertex(vertices[1]);
             int v2 = gc.AddVertex(vertices[2]);
-            int v3 = gc.AddVertex(vertices[3]);            
+            int v3 = gc.AddVertex(vertices[3]);
             gc.AddQuad(v0, v1, v2, v3);
             Mesh mesh = gc.ConstructMesh();
 
@@ -85,7 +86,42 @@ namespace Tests
             Assert.AreEqual(v2, 2);
             Assert.AreEqual(v3, 3);
             Assert.AreEqual(gc.Vertices.ToArray(), vertices);
-            Assert.AreEqual(gc.Triangles.ToArray(), expectedTriangles);            
+            Assert.AreEqual(gc.Triangles.ToArray(), expectedTriangles);
+            Assert.AreEqual(mesh.vertices, vertices);
+            Assert.AreEqual(mesh.triangles, expectedTriangles);
+        }
+
+        [Test]
+        public void GC_TriangleFan()
+        {
+            GeometryConstructor gc = new GeometryConstructor();
+            Vector3[] vertices = new Vector3[]
+            {
+                Vector3.zero,
+                new Vector3(-1, -1, 0),
+                new Vector3(-1, 1, 0),
+                new Vector3(1 , 1, 0),
+                new Vector3(1, -1, 0)
+            };
+            int[] indices = new int[vertices.Length];
+            for (int i = 0; i < vertices.Length; i++)
+            {
+                indices[i] = gc.AddVertex(vertices[i]);
+            }
+            int[] outerVertexIndices = new int[indices.Length - 1];
+            Array.Copy(indices, 1, outerVertexIndices, 0, indices.Length - 1);
+            gc.AddTriangleFan(indices[0], outerVertexIndices);
+            Mesh mesh = gc.ConstructMesh();
+
+            // check
+            Assert.AreEqual(gc.Vertices.ToArray(), vertices);
+            int[] expectedTriangles = new int[]
+            {
+                0, 1, 2,
+                0, 2, 3,
+                0, 3, 4,
+            };
+            Assert.AreEqual(gc.Triangles.ToArray(), expectedTriangles);
             Assert.AreEqual(mesh.vertices, vertices);
             Assert.AreEqual(mesh.triangles, expectedTriangles);
         }

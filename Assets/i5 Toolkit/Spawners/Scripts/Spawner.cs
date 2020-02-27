@@ -23,7 +23,14 @@ namespace i5.Toolkit.Spawners
         /// <summary>
         /// The instance which was created by this spawner
         /// </summary>
-        public GameObject[] SpawnedInstances { get => spawnedInstanceQueue.ToArray(); }
+        public GameObject[] SpawnedInstances
+        {
+            get
+            {
+                GarbageCollect();
+                return spawnedInstanceQueue.ToArray();
+            }
+        }
 
         /// <summary>
         /// Returns the most recently spawned object
@@ -76,6 +83,9 @@ namespace i5.Toolkit.Spawners
                 return false;
             }
 
+            // garbage collect to delete destroyed instances
+            GarbageCollect();
+
             // if the spawn limit has been set and is reached
             if (maxNumberOfInstances > 0 && spawnedInstanceQueue.Count >= maxNumberOfInstances)
             {
@@ -86,7 +96,7 @@ namespace i5.Toolkit.Spawners
                 }
 
                 // remove instances until we have a free slot
-                while (spawnedInstanceQueue.Count >= maxNumberOfInstances - 1)
+                while (spawnedInstanceQueue.Count >= maxNumberOfInstances - 1 && spawnedInstanceQueue.Count > 0)
                 {
                     GameObject removedInstance = spawnedInstanceQueue.Dequeue();
                     if (removedInstance != null) // could be null if another script already destroyed it
@@ -121,6 +131,20 @@ namespace i5.Toolkit.Spawners
                     }
                 }
             }
+        }
+
+        private void GarbageCollect()
+        {
+            Queue<GameObject> tempQueue = new Queue<GameObject>();
+            while (spawnedInstanceQueue.Count > 0)
+            {
+                GameObject go = spawnedInstanceQueue.Dequeue();
+                if (go != null)
+                {
+                    tempQueue.Enqueue(go);
+                }
+            }
+            spawnedInstanceQueue = tempQueue;
         }
     }
 }

@@ -196,5 +196,49 @@ namespace Tests
 
             PostTestCleanUp(spawner);
         }
+
+        [UnityTest]
+        public IEnumerator TestDestroyWithSpawner()
+        {
+            // create a spawner where the option "Destroy with Spawner" is enabled
+            Spawner spawner = PreTestSetup("OverwriteSpawner1");
+
+            Assert.AreEqual(0, spawner.SpawnedInstances.Length);
+            // spawn an object
+            bool res = spawner.Spawn();
+            Assert.IsTrue(res);
+
+            Assert.AreEqual(1, spawner.SpawnedInstances.Length);
+            Assert.IsTrue(spawner.SpawnedInstances[0].name.Contains(prefabName));
+            GameObject firstSpawned = spawner.SpawnedInstances[0];
+            Assert.IsTrue(firstSpawned != null);
+
+            // destroy the spanwer and check if the object was also destroyed
+            GameObject.Destroy(spawner.gameObject);
+            yield return null;
+            Assert.IsTrue(firstSpawned == null);
+        }
+        
+        [UnityTest]
+        public IEnumerator TestSurviveSpawnerDestroy()
+        {
+            // create a spawner where the option "Destroy with Spawner" is disabled
+            Spawner spawner = PreTestSetup("NoDestroySpawner");
+
+            Assert.AreEqual(0, spawner.SpawnedInstances.Length);
+            // spawn an object
+            bool res = spawner.Spawn();
+            Assert.IsTrue(res);
+
+            Assert.AreEqual(1, spawner.SpawnedInstances.Length);
+            Assert.IsTrue(spawner.SpawnedInstances[0].name.Contains(prefabName));
+            GameObject firstSpawned = spawner.SpawnedInstances[0];
+            Assert.IsTrue(firstSpawned != null);
+
+            // destroy the spawner and check that the object has not been destroyed
+            GameObject.Destroy(spawner.gameObject);
+            yield return null;
+            Assert.IsTrue(firstSpawned != null);
+        }
     }
 }

@@ -96,7 +96,7 @@ namespace i5.Toolkit.Spawners
                 }
 
                 // remove instances until we have a free slot
-                while (spawnedInstanceQueue.Count >= maxNumberOfInstances - 1 && spawnedInstanceQueue.Count > 0)
+                while (spawnedInstanceQueue.Count >= maxNumberOfInstances && spawnedInstanceQueue.Count > 0)
                 {
                     GameObject removedInstance = spawnedInstanceQueue.Dequeue();
                     if (removedInstance != null) // could be null if another script already destroyed it

@@ -62,6 +62,37 @@ namespace Tests
         }
 
         /// <summary>
+        /// Checks if multiple successive spawns work
+        /// This test only spawns two objects and the spawner has a limit of 3, i.e. no spawn limitations or overwrites are met in this test
+        /// </summary>
+        [Test]
+        public void TestMultiSpawn()
+        {
+            // create the spawner
+            Spawner spawner = PreTestSetup("OverwriteSpawner3");
+            Assert.AreEqual(0, spawner.SpawnedInstances.Length);
+
+            bool res = spawner.Spawn();
+            // spawning must be successful
+            Assert.IsTrue(res);
+
+            // the created object must have been added to the spawned instances and it must be based on the prefab
+            Assert.AreEqual(1, spawner.SpawnedInstances.Length);
+            Assert.IsTrue(spawner.SpawnedInstances[0].name.Contains(prefabName));
+
+            res = spawner.Spawn();
+            // spawning must be successful
+            Assert.IsTrue(res);
+
+            // the created object must have been added to the spawned instances and it must be based on the prefab
+            Assert.AreEqual(2, spawner.SpawnedInstances.Length);
+            Assert.IsTrue(spawner.SpawnedInstances[1].name.Contains(prefabName));
+
+
+            PostTestCleanUp(spawner);
+        }
+
+        /// <summary>
         /// Checks if the spawned object can be overwritten if this option is enabled
         /// </summary>
         [UnityTest]
@@ -82,7 +113,7 @@ namespace Tests
             GameObject firstSpawned = spawner.SpawnedInstances[0];
             firstSpawned.name = "First Spawned";
 
-            // spaawn another object, this should be successful and should overwrite the first object
+            // spawn another object, this should be successful and should overwrite the first object
             res = spawner.Spawn();
             Assert.IsTrue(res);
 
@@ -93,6 +124,51 @@ namespace Tests
             // we must wait for one frame so that the object is cleaned up
             yield return null;
             Assert.IsTrue(firstSpawned == null);
+
+            PostTestCleanUp(spawner);
+        }
+
+        /// <summary>
+        /// Checks that overwrite spawns with a limit higher than 1 work
+        /// </summary>
+        /// <returns></returns>
+        [Test]
+        public void TestOverwriteSpawnLimitedTo3()
+        {
+            // create a spawner that allows overwriting with a limit of 3
+            Spawner spawner = PreTestSetup("OverwriteSpawner3");
+
+            Assert.AreEqual(0, spawner.SpawnedInstances.Length);
+
+            GameObject firstSpawned = null;
+
+            // spawn three objects to fill the object buffer
+            for (int i=0;i<3;i++)
+            {
+                // spawn an object, spawning should have been successful
+                bool res = spawner.Spawn();
+                Assert.IsTrue(res);
+
+                Assert.AreEqual(i+1, spawner.SpawnedInstances.Length);
+                Assert.IsTrue(spawner.SpawnedInstances[i].name.Contains(prefabName));
+
+                // modify the name of the spawned object so that we can later identify if it was overwritten
+                GameObject spawned = spawner.SpawnedInstances[i];
+                spawned.name = "Spawned[" + i + "]";
+                if (i == 0)
+                {
+                    firstSpawned = spawned;
+                    Assert.IsTrue(firstSpawned != null);
+                }
+            }
+
+            // spawn another object, this should be successful and should overwrite the first object
+            bool overwriteRes = spawner.Spawn();
+            Assert.IsTrue(overwriteRes);
+
+            // make sure that there are still only three objects
+            Assert.AreEqual(3, spawner.SpawnedInstances.Length);
+            Assert.IsTrue(spawner.MostRecentlySpawnedObject.name.Contains(prefabName));
 
             PostTestCleanUp(spawner);
         }
@@ -161,6 +237,47 @@ namespace Tests
             Assert.AreEqual(1, spawner.SpawnedInstances.Length);
             Assert.AreEqual(firstSpawned, spawner.SpawnedInstances[0]);
             Assert.IsFalse(spawner.SpawnedInstances[0].name.Contains(prefabName));
+
+            PostTestCleanUp(spawner);
+        }
+
+        [Test]
+        public void TestNoOverwriteLimitedTo3()
+        {
+            // create a spawner that allows overwriting with a limit of 3
+            Spawner spawner = PreTestSetup("NoOverwriteSpawner3");
+
+            Assert.AreEqual(0, spawner.SpawnedInstances.Length);
+
+            GameObject firstSpawned = null;
+
+            // spawn three objects to fill the object buffer
+            for (int i = 0; i < 3; i++)
+            {
+                // spawn an object, spawning should have been successful
+                bool res = spawner.Spawn();
+                Assert.IsTrue(res);
+
+                Assert.AreEqual(i + 1, spawner.SpawnedInstances.Length);
+                Assert.IsTrue(spawner.SpawnedInstances[i].name.Contains(prefabName));
+
+                // modify the name of the spawned object so that we can later identify if it was overwritten
+                GameObject spawned = spawner.SpawnedInstances[i];
+                spawned.name = "Spawned[" + i + "]";
+                if (i == 0)
+                {
+                    firstSpawned = spawned;
+                    Assert.IsTrue(firstSpawned != null);
+                }
+            }
+
+            // spawn another object, this should fail
+            bool overwriteRes = spawner.Spawn();
+            Assert.IsFalse(overwriteRes);
+
+            // make sure that there are still only three objects
+            Assert.AreEqual(3, spawner.SpawnedInstances.Length);
+            Assert.IsTrue(spawner.MostRecentlySpawnedObject.name == "Spawned[2]");
 
             PostTestCleanUp(spawner);
         }

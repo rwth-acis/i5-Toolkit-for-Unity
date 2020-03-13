@@ -10,7 +10,7 @@ namespace i5.Toolkit.UIElements3D
     /// <summary>
     /// Constructs a rounded 3D rectangle with depth
     /// </summary>
-    [RequireComponent(typeof(MeshFilter), typeof(BoxCollider))]
+    [RequireComponent(typeof(MeshFilter), typeof(BoxCollider), typeof(MeshCollider))]
     public class RoundedBackground : MonoBehaviour
     {
         [Tooltip("The width of the element")]
@@ -23,51 +23,18 @@ namespace i5.Toolkit.UIElements3D
         public float cornerRadius = 0.1f;
         [Tooltip("Number of subdivisions for the rounded corners")]
         public int subdivisions = 3;
+        [Tooltip("Uses an exact mesh collider instead of the box collider. Should only be used if really necessary.")]
+        public bool exactColliders = false;
 
         private MeshFilter meshFilter;
         private BoxCollider boxCollider;
+        private MeshCollider meshCollider;
 
         /// <summary>
         /// The corner radius which is actually used
         /// Equal to cornerRadius whenever possible
         /// </summary>
         private float realCornerRadius;
-
-        /// <summary>
-        /// Safe way to get the mesh filter
-        /// This property should always return the mesh filter
-        /// If the component does not exist, it will be added
-        /// </summary>
-        private MeshFilter MeshFilter
-        {
-            get
-            {
-                // if the meshFilter was not set yet => try to get or add it
-                if (meshFilter == null)
-                {
-                    meshFilter = ComponentUtilities.GetOrAddComponent<MeshFilter>(gameObject);
-                }
-                return meshFilter;
-            }
-        }
-
-        /// <summary>
-        /// Safe way to get the box collider
-        /// This poroperty should always return the box collider
-        /// If the component does not exist, it will be added
-        /// </summary>
-        private BoxCollider BoxCollider
-        {
-            get
-            {
-                // if the boxCollider was not set yet => try to get or add it
-                if (boxCollider == null)
-                {
-                    boxCollider = ComponentUtilities.GetOrAddComponent<BoxCollider>(gameObject);
-                }
-                return boxCollider;
-            }
-        }
 
         /// <summary>
         /// Generates the mesh based on the settings of the menu
@@ -268,10 +235,32 @@ namespace i5.Toolkit.UIElements3D
             constructor.AddQuad(backCornerVertices[subdivisions - 1], endpoints2[1], endpoints2[0], frontCornerVertices[subdivisions - 1]);
         }
 
-        private void AdaptBoxCollider()
+        private void AdaptCollider()
         {
-            BoxCollider.size = new Vector3(width, height, depth);
-            BoxCollider.center = new Vector3(0, 0, depth / 2f);
+            if (exactColliders)
+            {
+                ComponentUtilities.EnsureComponentReference(gameObject, ref meshCollider, true);
+                meshCollider.convex = true;
+                meshCollider.enabled = true;
+                if (boxCollider != null)
+                {
+                    boxCollider.enabled = false;
+                    boxCollider.center = Vector3.zero;
+                    boxCollider.size = 0.00001f * Vector3.one;
+                }
+                meshCollider.sharedMesh = meshFilter.sharedMesh;
+            }
+            else
+            {
+                ComponentUtilities.EnsureComponentReference(gameObject, ref boxCollider, true);
+                boxCollider.enabled = true;
+                if (meshCollider != null)
+                {
+                    meshCollider.enabled = false;
+                }
+                boxCollider.size = new Vector3(width, height, depth);
+                boxCollider.center = new Vector3(0, 0, depth / 2f);
+            }
         }
 
         /// <summary>
@@ -297,8 +286,9 @@ namespace i5.Toolkit.UIElements3D
             if (gameObject.activeInHierarchy)
             {
                 CheckValues();
-                MeshFilter.mesh = GenerateMesh();
-                AdaptBoxCollider();
+                ComponentUtilities.EnsureComponentReference(gameObject, ref meshFilter, true);
+                meshFilter.sharedMesh = GenerateMesh();
+                AdaptCollider();
             }
         }
     }

@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
-    path: Assets/i5 Toolkit/Tests/PlayModeTests/SpawnerTest/SpawnerTestScene.unity
-    guid: 990f620c8b2b4a8499c29058788d1be2
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   m_configObjects: {}

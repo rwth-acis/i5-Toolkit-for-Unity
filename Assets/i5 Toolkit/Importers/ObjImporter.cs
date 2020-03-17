@@ -8,6 +8,9 @@ namespace i5.Toolkit.ModelImporters
 {
     public static class ObjImporter
     {
+        public static bool ExtendedLogging { get; set; } = false;
+
+
         /// <summary>
         /// Parses the content of an obj file
         /// </summary>
@@ -15,6 +18,8 @@ namespace i5.Toolkit.ModelImporters
         public static GeometryConstructor ParseObjText(string[] contentLines)
         {
             GeometryConstructor geometryConstructor = new GeometryConstructor();
+            // count the errors in the parsing process
+            int numberOfErrors = 0;
 
             // go through each line
             foreach (string line in contentLines)
@@ -42,7 +47,11 @@ namespace i5.Toolkit.ModelImporters
 
                     if (!success)
                     {
-                        Debug.LogError("[ObjImporter] Could not parse vertex definition line: " + line);
+                        if (ExtendedLogging)
+                        {
+                            Debug.LogError("[ObjImporter] Could not parse vertex definition: " + line);
+                        }
+                        numberOfErrors++;
                     }
                 }
                 // vertex texture coordinates are defined with a "vt" at the beginning
@@ -60,9 +69,10 @@ namespace i5.Toolkit.ModelImporters
                 {
                     // remove the f and split by spaces to get the individual indices of the face
                     string[] vertexData = line.Substring(1).Trim().Split(' ');
-                    if (vertexData.Length != 3)
+                    if (vertexData.Length != 3 && vertexData.Length != 4)
                     {
-                        Debug.LogError("[ObjImporter] ObjImporter only supports triangular faces. If you use polygons, triangulate the mesh before importing");
+                        Debug.LogError("[ObjImporter] ObjImporter only supports triangles or quad faces. If you use other polygons, triangulate the mesh before importing");
+                        numberOfErrors++;
                         continue;
                     }
 
@@ -106,17 +116,43 @@ namespace i5.Toolkit.ModelImporters
 
                         if (!parseSuccess)
                         {
-                            Debug.LogError("[ObjImporter] Unable to parse indices: " + vertexData[i]);
+                            if (ExtendedLogging)
+                            {
+                                Debug.LogError("[ObjImporter] Unable to parse indices: " + vertexData[i]);
+                            }
+                            numberOfErrors++;
                         }
                     }
 
-                    geometryConstructor.AddTriangle(vertexIndices[0], vertexIndices[1], vertexIndices[2]);
+                    if (vertexData.Length == 3)
+                    {
+                        geometryConstructor.AddTriangle(vertexIndices[0], vertexIndices[1], vertexIndices[2]);
+                    }
+                    else // it is a quad
+                    {
+                        geometryConstructor.AddQuad(vertexIndices[0], vertexIndices[1], vertexIndices[2], vertexIndices[3]);
+                    }
                     // TODO: add UV and normals to geometryConstructor
                 }
                 else if (line.StartsWith("#"))
                 {
-                    Debug.Log("[ObjImporter] Found a comment: " + line.Substring(1));
+                    if (ExtendedLogging)
+                    {
+                        Debug.Log("[ObjImporter] Found a comment: " + line.Substring(1));
+                    }
                 }
+            }
+
+            // check if any errors occured and print an error message
+            if (numberOfErrors > 0)
+            {
+                string errorMsg = "[ObjImporter] The process finished with " + numberOfErrors + ". A partial mesh may still have been generated.";
+                // if no extended logging was used, notify the developer that extended logging gives more info
+                if (!ExtendedLogging)
+                {
+                    errorMsg += " To see more details, activate extended logging";
+                }
+                Debug.LogError(errorMsg);
             }
 
             return geometryConstructor;

@@ -15,6 +15,10 @@ namespace i5.Toolkit.ProceduralGeometry
         /// </summary>
         public List<Vector3> Vertices { get; private set; }
         /// <summary>
+        /// Manually set normals
+        /// </summary>
+        public List<Vector3> Normals { get; private set; }
+        /// <summary>
         /// The triangles/faces of the geometry object
         /// </summary>
         public List<int> Triangles { get; private set; }
@@ -31,6 +35,7 @@ namespace i5.Toolkit.ProceduralGeometry
         public GeometryConstructor()
         {
             Vertices = new List<Vector3>();
+            Normals = new List<Vector3>();
             Triangles = new List<int>();
             NamedVertices = new Dictionary<string, int>();
         }
@@ -44,6 +49,19 @@ namespace i5.Toolkit.ProceduralGeometry
         {
             Vertices.Add(coordinates);
             return Vertices.Count - 1;
+        }
+
+        /// <summary>
+        /// Adds a disconnected, unnamed vertex to the geometry with a given normal vector
+        /// The normal vector is only used if a normal vector is supplied for every vertex
+        /// </summary>
+        /// <param name="coordinates">The coordinates of the vertex</param>
+        /// <param name="normalVector">The normal vector which should be used</param>
+        /// <returns>The index of the created vertex</returns>
+        public int AddVertex(Vector3 coordinates, Vector3 normalVector)
+        {
+            Normals.Add(normalVector);
+            return AddVertex(coordinates);
         }
 
         /// <summary>
@@ -160,7 +178,20 @@ namespace i5.Toolkit.ProceduralGeometry
             Mesh mesh = new Mesh();
             mesh.vertices = Vertices.ToArray();
             mesh.triangles = Triangles.ToArray();
-            mesh.RecalculateNormals();
+            if (Vertices.Count == Normals.Count)
+            {
+                mesh.normals = Normals.ToArray();
+            }
+            else
+            {
+                if (Normals.Count > 0)
+                {
+                    Debug.LogWarning("[GeometryConstructor] Some normals were supplied but there are vertices without normals." +
+                        " The mesh will use calculated normals instead." +
+                        " To avoid this, supply normal vectors for every vertex that is added to the geometry constructor.");
+                }
+                mesh.RecalculateNormals();
+            }
             return mesh;
         }
 

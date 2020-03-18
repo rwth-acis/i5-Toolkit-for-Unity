@@ -108,7 +108,7 @@ namespace i5.Toolkit.ModelImporters
                         else
                         {
                             // TODO: give normal and uv to geometry constructor
-                            int geometryVertexIndex = geometryConstructor.AddVertex(vertices[vertexData.vertexIndex]);
+                            int geometryVertexIndex = geometryConstructor.AddVertex(vertices[vertexData.vertexIndex], normals[vertexData.normalVectorIndex]);
                             vertexDataToIndex.Add(vertexData, geometryVertexIndex);
                             vertexIndices[i] = geometryVertexIndex;
                         }

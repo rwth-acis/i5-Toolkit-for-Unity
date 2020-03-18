@@ -23,9 +23,9 @@ namespace i5.Toolkit.ModelImporters
             List<Vector3> vertices = new List<Vector3>();
             // list of normal vectors which is used to look up the correct normals
             List<Vector3> normals = new List<Vector3>();
-            // dictionary which collects all vertices with the same index but with different normals in the face definitions
+            // dictionary which maps unique vertices (with the same combination of vertex position, uv position and normal vector) to the index in the geometry constructor
             // they will later need to be separated into different  
-            Dictionary<int, List<VertexData>> verticesToNormals = new Dictionary<int, List<VertexData>>();
+            Dictionary<VertexData, int> vertexDataToIndex = new Dictionary<VertexData, int>();
 
 
             GeometryConstructor geometryConstructor = new GeometryConstructor();
@@ -92,9 +92,7 @@ namespace i5.Toolkit.ModelImporters
                         continue;
                     }
 
-                    //int[] vertexIndices = new int[strFaceIndices.Length];
-                    //int[] vertexUVIndices = new int[strFaceIndices.Length];
-                    //int[] vertexNormalIndices = new int[strFaceIndices.Length];
+                    int[] vertexIndices = new int[strFaceIndices.Length];
 
                     // go over all vertex data
                     for (int i = 0; i < strFaceIndices.Length; i++)
@@ -102,7 +100,18 @@ namespace i5.Toolkit.ModelImporters
                         VertexData vertexData;
                         bool parseSuccess = TryParseVertexData(strFaceIndices[i], out vertexData);
 
-                        // TODO: construct face and register vertices
+                        // register vertex or get index if vertex already exists
+                        if (vertexDataToIndex.ContainsKey(vertexData))
+                        {
+                            vertexIndices[i] = vertexDataToIndex[vertexData];
+                        }
+                        else
+                        {
+                            // TODO: give normal and uv to geometry constructor
+                            int geometryVertexIndex = geometryConstructor.AddVertex(vertices[vertexData.vertexIndex]);
+                            vertexDataToIndex.Add(vertexData, geometryVertexIndex);
+                            vertexIndices[i] = geometryVertexIndex;
+                        }
 
                         if (!parseSuccess)
                         {
@@ -111,6 +120,7 @@ namespace i5.Toolkit.ModelImporters
                                 Debug.LogError("[ObjImporter] Unable to parse indices: " + strFaceIndices[i]);
                             }
                             numberOfErrors++;
+                            break;
                         }
                     }
 
@@ -122,7 +132,6 @@ namespace i5.Toolkit.ModelImporters
                     {
                         geometryConstructor.AddQuad(vertexIndices[0], vertexIndices[1], vertexIndices[2], vertexIndices[3]);
                     }
-                    // TODO: add UV and normals to geometryConstructor
                 }
                 else if (line.StartsWith("#"))
                 {
@@ -143,6 +152,10 @@ namespace i5.Toolkit.ModelImporters
                     errorMsg += " To see more details, activate extended logging";
                 }
                 Debug.LogError(errorMsg);
+            }
+            else
+            {
+                Debug.Log("[ObjImporter] Successfully imported obj file.");
             }
 
             return geometryConstructor;

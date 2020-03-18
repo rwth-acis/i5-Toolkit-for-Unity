@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,33 +9,42 @@ public struct VertexData
     public int uvIndex;
     public int normalVectorIndex;
 
-    public bool UseUvIndex { get; private set; }
-    public bool UseNormalVectorIndex { get; private set; }
+    public bool UseUvIndex { get => uvIndex < 0; }
+    public bool UseNormalVectorIndex { get => normalVectorIndex < 0; }
 
     public VertexData(int vertexIndex)
     {
         this.vertexIndex = vertexIndex;
-        UseUvIndex = false;
-        UseNormalVectorIndex = false;
-        uvIndex = default;
-        normalVectorIndex = default;
+        uvIndex = -1;
+        normalVectorIndex = -1;
     }
 
     public VertexData(int vertexIndex, int normalVectorIndex)
     {
         this.vertexIndex = vertexIndex;
-        UseNormalVectorIndex = true;
         this.normalVectorIndex = normalVectorIndex;
-        UseUvIndex = false;
-        uvIndex = default;
+        uvIndex = -1;
     }
 
     public VertexData(int vertexIndex, int uvIndex, int normalVectorIndex)
     {
         this.vertexIndex = vertexIndex;
-        UseUvIndex = true;
         this.uvIndex = uvIndex;
-        UseNormalVectorIndex = true;
         this.normalVectorIndex = normalVectorIndex;
+    }
+
+    public override bool Equals(object obj)
+    {
+        if (!(obj is VertexData)) return false;
+        VertexData vd = (VertexData)obj;
+
+        return vertexIndex == vd.vertexIndex
+            && uvIndex == vd.uvIndex
+            && normalVectorIndex == vd.normalVectorIndex;
+    }
+
+    public override int GetHashCode()
+    {
+        return Tuple.Create(vertexIndex, uvIndex, normalVectorIndex).GetHashCode();
     }
 }

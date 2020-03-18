@@ -9,8 +9,8 @@ public struct VertexData
     public int uvIndex;
     public int normalVectorIndex;
 
-    public bool UseUvIndex { get => uvIndex < 0; }
-    public bool UseNormalVectorIndex { get => normalVectorIndex < 0; }
+    public bool UseUvIndex { get => uvIndex >= 0; }
+    public bool UseNormalVectorIndex { get => normalVectorIndex >= 0; }
 
     public VertexData(int vertexIndex)
     {

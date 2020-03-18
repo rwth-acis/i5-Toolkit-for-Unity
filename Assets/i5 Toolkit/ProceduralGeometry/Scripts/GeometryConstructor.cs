@@ -19,6 +19,10 @@ namespace i5.Toolkit.ProceduralGeometry
         /// </summary>
         public List<Vector3> Normals { get; private set; }
         /// <summary>
+        /// Manually set UV coords
+        /// </summary>
+        public List<Vector2> UVCoords { get; private set; }
+        /// <summary>
         /// The triangles/faces of the geometry object
         /// </summary>
         public List<int> Triangles { get; private set; }
@@ -36,6 +40,7 @@ namespace i5.Toolkit.ProceduralGeometry
         {
             Vertices = new List<Vector3>();
             Normals = new List<Vector3>();
+            UVCoords = new List<Vector2>();
             Triangles = new List<int>();
             NamedVertices = new Dictionary<string, int>();
         }
@@ -61,6 +66,18 @@ namespace i5.Toolkit.ProceduralGeometry
         public int AddVertex(Vector3 coordinates, Vector3 normalVector)
         {
             Normals.Add(normalVector);
+            return AddVertex(coordinates);
+        }
+
+        public int AddVertex(Vector3 coordinates, Vector2 uvCoordinates, Vector3 normalVector)
+        {
+            UVCoords.Add(uvCoordinates);
+            return AddVertex(coordinates, normalVector);
+        }
+
+        public int AddVertex(Vector3 coordinates, Vector2 uvCoordinates)
+        {
+            UVCoords.Add(uvCoordinates);
             return AddVertex(coordinates);
         }
 
@@ -178,12 +195,14 @@ namespace i5.Toolkit.ProceduralGeometry
             Mesh mesh = new Mesh();
             mesh.vertices = Vertices.ToArray();
             mesh.triangles = Triangles.ToArray();
+            // assign the normals: use the ones supplied if there is one for every vertex or recalculate them otherwise
             if (Vertices.Count == Normals.Count)
             {
                 mesh.normals = Normals.ToArray();
             }
             else
             {
+                // if some normals were added: create warning so that developer is not confused that recalculated normals are used instead
                 if (Normals.Count > 0)
                 {
                     Debug.LogWarning("[GeometryConstructor] Some normals were supplied but there are vertices without normals." +
@@ -191,6 +210,20 @@ namespace i5.Toolkit.ProceduralGeometry
                         " To avoid this, supply normal vectors for every vertex that is added to the geometry constructor.");
                 }
                 mesh.RecalculateNormals();
+            }
+            // assign the UV coordinates: use the ones supplied if there is one for every vertex or use none otherwise
+            if (Vertices.Count == UVCoords.Count)
+            {
+                mesh.uv = UVCoords.ToArray();
+            }
+            else
+            {
+                // if some UV coordinates were added: create a warning that they are not used
+                if (UVCoords.Count > 0)
+                {
+                    Debug.LogWarning("[GeometryConstructor] Some UV coordinates were set but there are vertices without UV coordinates." +
+                        "Therefore, no UV coordinates will be used.");
+                }
             }
             return mesh;
         }

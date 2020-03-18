@@ -21,6 +21,7 @@ namespace i5.Toolkit.ModelImporters
             // the list of vertices, sorted by the original indices
             // this list is used to look up the correct vertices when the faces are defined
             List<Vector3> vertices = new List<Vector3>();
+            List<Vector2> uvCoordinates = new List<Vector2>();
             // list of normal vectors which is used to look up the correct normals
             List<Vector3> normals = new List<Vector3>();
             // dictionary which maps unique vertices (with the same combination of vertex position, uv position and normal vector) to the index in the geometry constructor
@@ -57,7 +58,21 @@ namespace i5.Toolkit.ModelImporters
                 // vertex texture coordinates are defined with a "vt" at the beginning
                 else if (line.StartsWith("vt "))
                 {
-                    // TODO: implement UV support for geometry constructor
+                    // TODO: handle Vector3 (there could be 3 coordinates in UV)
+                    Vector2 res;
+                    // remove the vt at the beginning and then parse to Vector2
+                    bool success = ParserUtils.TryParseSpaceSeparatedVector2(line.Substring(2), out res);
+                    // we must add the uv coordinates to the list, even if the conversion failed; otherwise the indices will not work
+                    uvCoordinates.Add(res);
+
+                    if (!success)
+                    {
+                        if (ExtendedLogging)
+                        {
+                            Debug.LogError("[ObjImporter] Could not parse UV coordinate definition: " + line);
+                            numberOfErrors++;
+                        }
+                    }
                 }
                 // vertex normals are defined with a "vn" at the beginning
                 else if (line.StartsWith("vn "))
@@ -92,7 +107,7 @@ namespace i5.Toolkit.ModelImporters
                         continue;
                     }
 
-                    int[] vertexIndices = new int[strFaceIndices.Length];
+                    int[] faceIndices = new int[strFaceIndices.Length];
 
                     // go over all vertex data
                     for (int i = 0; i < strFaceIndices.Length; i++)
@@ -103,14 +118,37 @@ namespace i5.Toolkit.ModelImporters
                         // register vertex or get index if vertex already exists
                         if (vertexDataToIndex.ContainsKey(vertexData))
                         {
-                            vertexIndices[i] = vertexDataToIndex[vertexData];
+                            faceIndices[i] = vertexDataToIndex[vertexData];
                         }
                         else
                         {
-                            // TODO: give normal and uv to geometry constructor
-                            int geometryVertexIndex = geometryConstructor.AddVertex(vertices[vertexData.vertexIndex], normals[vertexData.normalVectorIndex]);
+                            int geometryVertexIndex;
+                            // add the vertex in the geometry constructor
+                            // if UV index and normal index are defined:
+                            if (vertexData.UseUvIndex && vertexData.UseNormalVectorIndex)
+                            {
+                                geometryVertexIndex = geometryConstructor.AddVertex(
+                                vertices[vertexData.vertexIndex],
+                                uvCoordinates[vertexData.uvIndex],
+                                normals[vertexData.normalVectorIndex]);
+                            }
+                            // another option is that only the normal vector is defined
+                            else if (vertexData.UseNormalVectorIndex)
+                            {
+                                geometryVertexIndex = geometryConstructor.AddVertex(
+                                    vertices[vertexData.vertexIndex],
+                                    normals[vertexData.normalVectorIndex]
+                                    );
+                            }
+                            // nothing apart from the vertex coordinates is defined
+                            else
+                            {
+                                geometryVertexIndex = geometryConstructor.AddVertex(
+                                    vertices[vertexData.vertexIndex]
+                                    );
+                            }
                             vertexDataToIndex.Add(vertexData, geometryVertexIndex);
-                            vertexIndices[i] = geometryVertexIndex;
+                            faceIndices[i] = geometryVertexIndex;
                         }
 
                         if (!parseSuccess)
@@ -126,11 +164,11 @@ namespace i5.Toolkit.ModelImporters
 
                     if (strFaceIndices.Length == 3)
                     {
-                        geometryConstructor.AddTriangle(vertexIndices[0], vertexIndices[1], vertexIndices[2]);
+                        geometryConstructor.AddTriangle(faceIndices[0], faceIndices[1], faceIndices[2]);
                     }
                     else // it is a quad
                     {
-                        geometryConstructor.AddQuad(vertexIndices[0], vertexIndices[1], vertexIndices[2], vertexIndices[3]);
+                        geometryConstructor.AddQuad(faceIndices[0], faceIndices[1], faceIndices[2], faceIndices[3]);
                     }
                 }
                 else if (line.StartsWith("#"))

@@ -63,6 +63,8 @@ namespace i5.Toolkit.ModelImporters
                     // remove the vt at the beginning and then parse to Vector2
                     bool success = ParserUtils.TryParseSpaceSeparatedVector2(line.Substring(2), out res);
                     // we must add the uv coordinates to the list, even if the conversion failed; otherwise the indices will not work
+                    // the UV coordinates need to be mirrored on the X axis to show the texture the right way around
+                    res = new Vector2(1 - res.x, res.y);
                     uvCoordinates.Add(res);
 
                     if (!success)

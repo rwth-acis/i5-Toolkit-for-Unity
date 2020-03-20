@@ -1,23 +1,34 @@
 ﻿using i5.Toolkit.ProceduralGeometry;
+using i5.Toolkit.ServiceCore;
 using i5.Toolkit.Utilities;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Threading;
 using UnityEngine;
 
 namespace i5.Toolkit.ModelImporters
 {
-    public static class ObjImporter
+    public class ObjImporter : IUpdateableService
     {
-        public static bool ExtendedLogging { get; set; } = false;
+        public bool ExtendedLogging { get; set; } = false;
+        public bool Enabled { get; set; } = true;
 
+        public void ParseAsync(string[] contentLines, Action<GeometryConstructor> callback)
+        {
+            ImportOperation op = new ImportOperation() { contentLines = contentLines, callback = callback };
+            ThreadPool.QueueUserWorkItem(new WaitCallback(ParseObjText), op);
+        }
 
         /// <summary>
         /// Parses the content of an obj file
         /// </summary>
         /// <param name="contentLines">The content of the obj file, sorted into lines</param>
-        public static GeometryConstructor ParseObjText(string[] contentLines)
+        private void ParseObjText(object obj)
         {
+            ImportOperation op = (ImportOperation)obj;
+            string[] contentLines = op.contentLines;
             // the list of vertices, sorted by the original indices
             // this list is used to look up the correct vertices when the faces are defined
             List<Vector3> vertices = new List<Vector3>();
@@ -198,7 +209,7 @@ namespace i5.Toolkit.ModelImporters
                 Debug.Log("[ObjImporter] Successfully imported obj file.");
             }
 
-            return geometryConstructor;
+            op.callback(geometryConstructor);
         }
 
         /// <summary>
@@ -207,7 +218,7 @@ namespace i5.Toolkit.ModelImporters
         /// <param name="input">The string input which should be parsed</param>
         /// <param name="vertexData">The vertex data result; if conversion failed, this will have default values</param>
         /// <returns>True if the conversion was successful, otherwise false</returns>
-        private static bool TryParseVertexData(string input, out VertexData vertexData)
+        private bool TryParseVertexData(string input, out VertexData vertexData)
         {
             bool parseSuccess = true;
             string[] strIndices = input.Split(new char[] { '/' }, System.StringSplitOptions.None);
@@ -260,5 +271,28 @@ namespace i5.Toolkit.ModelImporters
                 return parseSuccess;
             }
         }
+
+        public void Cleanup()
+        {
+        }
+
+        public void Initialize()
+        {
+        }
+
+        public void Update()
+        {
+        }
+    }
+
+    public struct ImportOperation
+    {
+        public string[] contentLines;
+        public Action<GeometryConstructor> callback;
+    }
+
+    public enum OperationStatus
+    {
+        QUEUED, IN_PROGRESS, FINISHED
     }
 }

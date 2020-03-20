@@ -28,8 +28,9 @@ public class ObjImporterDemo : MonoBehaviour
             }
 
             string[] lines = objData.Split('\n');
-            GeometryConstructor gc = ObjImporter.ParseObjText(lines);
-            meshFilter.sharedMesh = gc.ConstructMesh();
+            //GeometryConstructor gc = ObjImporter.ParseObjText(lines);
+            //meshFilter.sharedMesh = gc.ConstructMesh();
+
         }
         else if (Input.GetKeyDown(KeyCode.Delete))
         {

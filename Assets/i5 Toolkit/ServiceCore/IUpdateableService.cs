@@ -6,6 +6,8 @@ namespace i5.Toolkit.ServiceCore
 {
     public interface IUpdateableService : IService
     {
+        bool Enabled { get; set; }
+
         void Update();
     }
 }

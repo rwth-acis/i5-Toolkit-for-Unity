@@ -6,54 +6,73 @@ using UnityEngine;
 
 namespace i5.Toolkit.ServiceCore
 {
+    /// <summary>
+    /// Manager which administers registered services
+    /// These services need to implement the IService interface and do not need to inherit from MonoBehaviour
+    /// </summary>
     public class ServiceManager : MonoBehaviour
     {
-        private static Dictionary<object, IService> registeredServices = new Dictionary<object, IService>();
+        private Dictionary<object, IService> registeredServices = new Dictionary<object, IService>();
 
-        private static List<IUpdateableService> updateableServices = new List<IUpdateableService>();
+        private List<IUpdateableService> updateableServices = new List<IUpdateableService>();
 
         private static ServiceManager instance;
 
-        public static ServiceManager Instance
+        private static void EnsureInstance()
         {
-            get
+            if (instance == null)
             {
-                if (instance == null)
-                {
-                    GameObject serviceManagerObj = ObjectPool<GameObject>.RequestResource(() => { return new GameObject(); });
-                    serviceManagerObj.name = "Service Manager";
-                    instance = serviceManagerObj.AddComponent<ServiceManager>();
-                }
-                return instance;
+                GameObject serviceManagerObj = ObjectPool<GameObject>.RequestResource(() => { return new GameObject(); });
+                serviceManagerObj.name = "Service Manager";
+                instance = serviceManagerObj.AddComponent<ServiceManager>();
             }
+        }
+
+        private void Awake()
+        {
+            instance = this;
         }
 
         public static void RegisterService<T>(T service) where T : IService
         {
-            registeredServices.Add(typeof(T), service);
+            EnsureInstance();
+            instance.registeredServices.Add(typeof(T), service);
 
-            if (service.GetType() == typeof(IUpdateableService))
+            if (service is IUpdateableService)
             {
-                updateableServices.Add((IUpdateableService)service);
+                instance.updateableServices.Add((IUpdateableService)service);
             }
         }
 
         public static void RemoveService<T>(T service) where T : IService
         {
-            registeredServices.Remove(service);
-            if (service.GetType() == typeof(IUpdateableService))
+            EnsureInstance();
+            instance.registeredServices.Remove(service);
+            if (service is IUpdateableService)
             {
-                updateableServices.Remove((IUpdateableService)service);
+                instance.updateableServices.Remove((IUpdateableService)service);
             }
         }
 
-        public static T GetService<T>(T service) where T : IService
+        public static T GetService<T>() where T : IService
         {
-            if (!registeredServices.ContainsKey(typeof(T)))
+            EnsureInstance();
+            if (!instance.registeredServices.ContainsKey(typeof(T)))
             {
                 throw new InvalidOperationException("Tried to get unregistered service");
             }
-            return (T)registeredServices[typeof(T)];
+            return (T)instance.registeredServices[typeof(T)];
+        }
+
+        private void Update()
+        {
+            for (int i = 0; i < instance.updateableServices.Count; i++)
+            {
+                if (instance.updateableServices[i].Enabled)
+                {
+                    instance.updateableServices[i].Update();
+                }
+            }
         }
     }
 }

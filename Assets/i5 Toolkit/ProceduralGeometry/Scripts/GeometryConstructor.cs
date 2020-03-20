@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using i5.Toolkit.Utilities;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -192,13 +193,13 @@ namespace i5.Toolkit.ProceduralGeometry
         /// <returns>The constructed mesh which is described by these geometry data</returns>
         public Mesh ConstructMesh()
         {
-            Mesh mesh = new Mesh();
-            mesh.vertices = Vertices.ToArray();
-            mesh.triangles = Triangles.ToArray();
+            Mesh mesh = ObjectPool<Mesh>.RequestResource(() => { return new Mesh(); });
+            mesh.SetVertices(Vertices);
+            mesh.SetTriangles(Triangles, 0);
             // assign the normals: use the ones supplied if there is one for every vertex or recalculate them otherwise
             if (Vertices.Count == Normals.Count)
             {
-                mesh.normals = Normals.ToArray();
+                mesh.SetNormals(Normals);
             }
             else
             {
@@ -214,7 +215,7 @@ namespace i5.Toolkit.ProceduralGeometry
             // assign the UV coordinates: use the ones supplied if there is one for every vertex or use none otherwise
             if (Vertices.Count == UVCoords.Count)
             {
-                mesh.uv = UVCoords.ToArray();
+                mesh.SetUVs(0, UVCoords);
             }
             else
             {

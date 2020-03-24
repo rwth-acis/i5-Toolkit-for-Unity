@@ -10,25 +10,41 @@ using UnityEngine;
 
 namespace i5.Toolkit.ModelImporters
 {
-    public class ObjImporter : IUpdateableService
+    public class ObjImporter : AsyncWorkerService<ImportOperation>
     {
         public bool ExtendedLogging { get; set; } = false;
-        public bool Enabled { get; set; } = true;
 
-        public void ParseAsync(string[] contentLines, Action<GeometryConstructor> callback)
+        protected override void AsyncOperation(ImportOperation operation)
         {
-            ImportOperation op = new ImportOperation() { contentLines = contentLines, callback = callback };
-            ThreadPool.QueueUserWorkItem(new WaitCallback(ParseObjText), op);
+            base.AsyncOperation(operation);
+            int numberOfErrors = ParseObj(operation.contentLines, out GeometryConstructor geometryConstructor);
+            // check if any errors occured and print an error message
+            if (numberOfErrors > 0)
+            {
+                string errorMsg = "[ObjImporter] The process finished with " + numberOfErrors + ". A partial mesh may still have been generated.";
+                // if no extended logging was used, notify the developer that extended logging gives more info
+                if (!ExtendedLogging)
+                {
+                    errorMsg += " To see more details, activate extended logging";
+                }
+                Debug.LogError(errorMsg);
+                operation.status = OperationStatus.ERROR;
+            }
+            else
+            {
+                Debug.Log("[ObjImporter] Successfully imported obj file.");
+                operation.status = OperationStatus.SUCCESS;
+            }
+            // write the result even in case of error since some geometry might have been created
+            operation.result = geometryConstructor;
         }
 
         /// <summary>
         /// Parses the content of an obj file
         /// </summary>
         /// <param name="contentLines">The content of the obj file, sorted into lines</param>
-        private void ParseObjText(object obj)
+        private int ParseObj(string[] contentLines, out GeometryConstructor geometryConstructor)
         {
-            ImportOperation op = (ImportOperation)obj;
-            string[] contentLines = op.contentLines;
             // the list of vertices, sorted by the original indices
             // this list is used to look up the correct vertices when the faces are defined
             List<Vector3> vertices = new List<Vector3>();
@@ -40,7 +56,7 @@ namespace i5.Toolkit.ModelImporters
             Dictionary<VertexData, int> vertexDataToIndex = new Dictionary<VertexData, int>();
 
 
-            GeometryConstructor geometryConstructor = new GeometryConstructor();
+            geometryConstructor = new GeometryConstructor();
             // count the errors in the parsing process
             int numberOfErrors = 0;
 
@@ -193,23 +209,7 @@ namespace i5.Toolkit.ModelImporters
                 }
             }
 
-            // check if any errors occured and print an error message
-            if (numberOfErrors > 0)
-            {
-                string errorMsg = "[ObjImporter] The process finished with " + numberOfErrors + ". A partial mesh may still have been generated.";
-                // if no extended logging was used, notify the developer that extended logging gives more info
-                if (!ExtendedLogging)
-                {
-                    errorMsg += " To see more details, activate extended logging";
-                }
-                Debug.LogError(errorMsg);
-            }
-            else
-            {
-                Debug.Log("[ObjImporter] Successfully imported obj file.");
-            }
-
-            op.callback(geometryConstructor);
+            return numberOfErrors;
         }
 
         /// <summary>
@@ -271,28 +271,15 @@ namespace i5.Toolkit.ModelImporters
                 return parseSuccess;
             }
         }
-
-        public void Cleanup()
-        {
-        }
-
-        public void Initialize()
-        {
-        }
-
-        public void Update()
-        {
-        }
     }
 
-    public struct ImportOperation
+    public class ImportOperation : Operation<GeometryConstructor>
     {
         public string[] contentLines;
-        public Action<GeometryConstructor> callback;
-    }
 
-    public enum OperationStatus
-    {
-        QUEUED, IN_PROGRESS, FINISHED
+        public ImportOperation(string[] contentLines, Action<Operation<GeometryConstructor>> callback) : base(callback)
+        {
+            this.contentLines = contentLines;
+        }
     }
 }

@@ -11,6 +11,16 @@ public class DemoServiceClient : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F5))
         {
             Debug.Log(ServiceManager.GetService<DemoService>().GetDemoMessage());
+            Operation<float> op = new Operation<float>(CallbackResult);
+            ServiceManager.GetService<DemoAsyncService>().AddOperation(op);
+        }
+    }
+
+    private void CallbackResult(Operation<float> finishedOperation)
+    {
+        if (finishedOperation.status == OperationStatus.SUCCESS)
+        {
+            Debug.Log("Result of operation: " + finishedOperation.result);
         }
     }
 }

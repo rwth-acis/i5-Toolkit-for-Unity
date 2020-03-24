@@ -11,5 +11,7 @@ public class DemoBootstrapper : MonoBehaviour
         ServiceManager.RegisterService(ds);
         DemoUpdateService dus = new DemoUpdateService(1f);
         ServiceManager.RegisterService(dus);
+        DemoAsyncService das = new DemoAsyncService();
+        ServiceManager.RegisterService(das);
     }
 }

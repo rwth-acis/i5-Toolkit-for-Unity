@@ -1,5 +1,6 @@
 ﻿using i5.Toolkit.ModelImporters;
 using i5.Toolkit.ProceduralGeometry;
+using i5.Toolkit.ServiceCore;
 using i5.Toolkit.Utilities;
 using System.Collections;
 using System.Collections.Generic;
@@ -20,7 +21,7 @@ public class ObjImporterDemo : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.F5))
         {
             if (meshFilter.sharedMesh != null)
             {
@@ -28,18 +29,11 @@ public class ObjImporterDemo : MonoBehaviour
             }
 
             string[] lines = objData.Split('\n');
-            //GeometryConstructor gc = ObjImporter.ParseObjText(lines);
-            //meshFilter.sharedMesh = gc.ConstructMesh();
-
-        }
-        else if (Input.GetKeyDown(KeyCode.Delete))
-        {
-            if (meshFilter.sharedMesh != null)
+            ImportOperation op = new ImportOperation(lines, (res) =>
             {
-                ObjectPool<Mesh>.ReturnResource(meshFilter.sharedMesh);
-            }
-
-            Destroy(gameObject);
+                meshFilter.sharedMesh = res.result.ConstructMesh();
+            });
+            ServiceManager.GetService<ObjImporter>().AddOperation(op);
         }
     }
 }

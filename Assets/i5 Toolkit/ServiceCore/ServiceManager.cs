@@ -74,5 +74,13 @@ namespace i5.Toolkit.ServiceCore
                 }
             }
         }
+
+        private void OnDestroy()
+        {
+            foreach(KeyValuePair<object, IService> service in registeredServices)
+            {
+                service.Value.Cleanup();
+            }
+        }
     }
 }

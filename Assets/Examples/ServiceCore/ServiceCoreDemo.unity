@@ -261,7 +261,7 @@ GameObject:
   - component: {fileID: 1752858257}
   - component: {fileID: 1752858256}
   m_Layer: 0
-  m_Name: Service Cleint
+  m_Name: Service Client
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

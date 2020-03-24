@@ -33,6 +33,19 @@ namespace i5.Toolkit.ServiceCore
             instance = this;
         }
 
+        private void Start()
+        {
+            IServiceManagerBootstrapper bootstrapper = GetComponent<IServiceManagerBootstrapper>();
+            if (bootstrapper == null)
+            {
+                Debug.LogWarning("Service Manager does not have a bootstrapper.", gameObject);
+            }
+            else
+            {
+                bootstrapper.InitializeServiceManager();
+            }
+        }
+
         public static void RegisterService<T>(T service) where T : IService
         {
             EnsureInstance();

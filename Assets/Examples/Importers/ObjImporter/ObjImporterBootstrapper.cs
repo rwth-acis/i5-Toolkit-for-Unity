@@ -4,9 +4,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjImporterBootstrapper : MonoBehaviour
+public class ObjImporterBootstrapper : MonoBehaviour, IServiceManagerBootstrapper
 {
-    private void Start()
+    public void InitializeServiceManager()
     {
         ObjImporter objImporter = new ObjImporter();
         ServiceManager.RegisterService(objImporter);

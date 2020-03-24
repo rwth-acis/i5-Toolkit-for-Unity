@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DemoBootstrapper : MonoBehaviour
+public class DemoBootstrapper : MonoBehaviour, IServiceManagerBootstrapper
 {
-    private void Start()
+    public void InitializeServiceManager()
     {
         DemoService ds = new DemoService("This is a demo message.");
         ServiceManager.RegisterService(ds);

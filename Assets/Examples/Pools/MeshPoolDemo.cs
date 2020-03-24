@@ -16,25 +16,25 @@ public class MeshPoolDemo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Return))
+        if (Input.GetKeyDown(KeyCode.F5))
         {
             if (stored)
             {
-                Debug.Log("Get from pool");
+                i5Debug.Log("Get from pool", this);
                 mesh = ObjectPool<Mesh>.RequestResource(() => { Mesh mesh = new Mesh(); mesh.name = "Created"; return mesh; });
                 mesh.name = "Mesh " + Random.Range(1, 100);
                 stored = false;
             }
             else
             {
-                Debug.Log("Return to pool");
+                i5Debug.Log("Return to pool", this);
                 ObjectPool<Mesh>.ReturnResource(mesh);
                 stored = true;
             }
         }
-        else if (Input.GetKeyDown(KeyCode.Escape))
+        else if (Input.GetKeyDown(KeyCode.F6))
         {
-            Debug.Log(mesh.name);
+            i5Debug.Log(mesh.name, this);
         }
     }
 }

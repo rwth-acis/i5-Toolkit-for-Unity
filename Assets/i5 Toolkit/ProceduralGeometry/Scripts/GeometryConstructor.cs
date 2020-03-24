@@ -98,7 +98,7 @@ namespace i5.Toolkit.ProceduralGeometry
                 }
                 else
                 {
-                    Debug.LogError("The vertex name already exists and has another coordinate");
+                    i5Debug.LogError("The vertex name already exists and has another coordinate", this);
                     return -1;
                 }
             }
@@ -206,9 +206,9 @@ namespace i5.Toolkit.ProceduralGeometry
                 // if some normals were added: create warning so that developer is not confused that recalculated normals are used instead
                 if (Normals.Count > 0)
                 {
-                    Debug.LogWarning("[GeometryConstructor] Some normals were supplied but there are vertices without normals." +
+                    i5Debug.LogWarning("Some normals were supplied but there are vertices without normals." +
                         " The mesh will use calculated normals instead." +
-                        " To avoid this, supply normal vectors for every vertex that is added to the geometry constructor.");
+                        " To avoid this, supply normal vectors for every vertex that is added to the geometry constructor.", this);
                 }
                 mesh.RecalculateNormals();
             }
@@ -222,8 +222,8 @@ namespace i5.Toolkit.ProceduralGeometry
                 // if some UV coordinates were added: create a warning that they are not used
                 if (UVCoords.Count > 0)
                 {
-                    Debug.LogWarning("[GeometryConstructor] Some UV coordinates were set but there are vertices without UV coordinates." +
-                        "Therefore, no UV coordinates will be used.");
+                    i5Debug.LogWarning("Some UV coordinates were set but there are vertices without UV coordinates." +
+                        "Therefore, no UV coordinates will be used.", this);
                 }
             }
             return mesh;
@@ -238,7 +238,7 @@ namespace i5.Toolkit.ProceduralGeometry
         {
             if (vertexIndex < 0 || vertexIndex >= Vertices.Count)
             {
-                Debug.LogError("Geometry Construction Error: Referenced index is out of mesh vertices bounds: " + vertexIndex);
+                i5Debug.LogError("Geometry Construction Error: Referenced index is out of mesh vertices bounds: " + vertexIndex, this);
                 return false;
             }
             return true;

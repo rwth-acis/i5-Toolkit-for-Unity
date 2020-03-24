@@ -1,4 +1,5 @@
 ﻿using i5.Toolkit.ServiceCore;
+using i5.Toolkit.Utilities;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
@@ -9,9 +10,9 @@ public class DemoAsyncService : AsyncWorkerService<Operation<float>>
     protected override void AsyncOperation(Operation<float> operation)
     {
         base.AsyncOperation(operation);
-        Debug.Log("Async Op started");
+        i5Debug.Log("Async Op started", this);
         Thread.Sleep(5000);
-        Debug.Log("5 seconds elapsed");
+        i5Debug.Log("5 seconds elapsed", this);
         operation.status = OperationStatus.SUCCESS;
     }
 }

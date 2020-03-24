@@ -1,4 +1,5 @@
 ﻿using i5.Toolkit.ServiceCore;
+using i5.Toolkit.Utilities;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,7 +11,7 @@ public class DemoServiceClient : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F5))
         {
-            Debug.Log(ServiceManager.GetService<DemoService>().GetDemoMessage());
+            i5Debug.Log(ServiceManager.GetService<DemoService>().GetDemoMessage(), this);
             Operation<float> op = new Operation<float>(CallbackResult);
             ServiceManager.GetService<DemoAsyncService>().AddOperation(op);
         }
@@ -20,7 +21,7 @@ public class DemoServiceClient : MonoBehaviour
     {
         if (finishedOperation.status == OperationStatus.SUCCESS)
         {
-            Debug.Log("Result of operation: " + finishedOperation.result);
+            i5Debug.Log("Result of operation: " + finishedOperation.result, this);
         }
     }
 }

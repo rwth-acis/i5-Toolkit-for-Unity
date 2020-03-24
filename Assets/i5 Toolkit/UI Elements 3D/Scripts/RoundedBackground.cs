@@ -210,7 +210,7 @@ namespace i5.Toolkit.UIElements3D
         {
             if (endpoints1.Length != 2 || endpoints2.Length != 2)
             {
-                Debug.LogError("[RoundedMenu]: Expected endpoints array size of 2 but got " + endpoints1.Length + " and " + endpoints2.Length, gameObject);
+                i5Debug.LogError("Expected endpoints array size of 2 but got " + endpoints1.Length + " and " + endpoints2.Length, this);
                 return;
             }
 

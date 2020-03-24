@@ -38,7 +38,7 @@ namespace i5.Toolkit.ServiceCore
             IServiceManagerBootstrapper bootstrapper = GetComponent<IServiceManagerBootstrapper>();
             if (bootstrapper == null)
             {
-                Debug.LogWarning("Service Manager does not have a bootstrapper.", gameObject);
+                i5Debug.LogWarning("Service Manager does not have a bootstrapper.", this);
             }
             else
             {
@@ -49,6 +49,10 @@ namespace i5.Toolkit.ServiceCore
         public static void RegisterService<T>(T service) where T : IService
         {
             EnsureInstance();
+            if (instance.registeredServices.ContainsKey(typeof(T)))
+            {
+                i5Debug.LogError("An instance of this service is already registered", instance);
+            }
             instance.registeredServices.Add(typeof(T), service);
 
             if (service is IUpdateableService)

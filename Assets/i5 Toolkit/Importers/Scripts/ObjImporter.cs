@@ -21,18 +21,18 @@ namespace i5.Toolkit.ModelImporters
             // check if any errors occured and print an error message
             if (numberOfErrors > 0)
             {
-                string errorMsg = "[ObjImporter] The process finished with " + numberOfErrors + ". A partial mesh may still have been generated.";
+                string errorMsg = "The process finished with " + numberOfErrors + ". A partial mesh may still have been generated.";
                 // if no extended logging was used, notify the developer that extended logging gives more info
                 if (!ExtendedLogging)
                 {
                     errorMsg += " To see more details, activate extended logging";
                 }
-                Debug.LogError(errorMsg);
+                i5Debug.LogError(errorMsg, this);
                 operation.status = OperationStatus.ERROR;
             }
             else
             {
-                Debug.Log("[ObjImporter] Successfully imported obj file.");
+                i5Debug.Log("Successfully imported obj file.", this);
                 operation.status = OperationStatus.SUCCESS;
             }
             // write the result even in case of error since some geometry might have been created
@@ -77,7 +77,7 @@ namespace i5.Toolkit.ModelImporters
                     {
                         if (ExtendedLogging)
                         {
-                            Debug.LogError("[ObjImporter] Could not parse vertex definition: " + line);
+                            i5Debug.LogError("Could not parse vertex definition: " + line, this);
                         }
                         numberOfErrors++;
                     }
@@ -98,7 +98,7 @@ namespace i5.Toolkit.ModelImporters
                     {
                         if (ExtendedLogging)
                         {
-                            Debug.LogError("[ObjImporter] Could not parse UV coordinate definition: " + line);
+                            i5Debug.LogError("Could not parse UV coordinate definition: " + line, this);
                             numberOfErrors++;
                         }
                     }
@@ -117,7 +117,7 @@ namespace i5.Toolkit.ModelImporters
                     {
                         if (ExtendedLogging)
                         {
-                            Debug.LogError("[ObjImporter] Could not parse normal vector definition: " + line);
+                            i5Debug.LogError("Could not parse normal vector definition: " + line, this);
                         }
                         numberOfErrors++;
                     }
@@ -131,7 +131,7 @@ namespace i5.Toolkit.ModelImporters
                     // there should be three or four of these indices to define triangles and quads
                     if (strFaceIndices.Length != 3 && strFaceIndices.Length != 4)
                     {
-                        Debug.LogError("[ObjImporter] ObjImporter only supports triangles or quad faces. If you use other polygons, triangulate the mesh before importing");
+                        i5Debug.LogError("ObjImporter only supports triangles or quad faces. If you use other polygons, triangulate the mesh before importing", this);
                         numberOfErrors++;
                         continue;
                     }
@@ -184,7 +184,7 @@ namespace i5.Toolkit.ModelImporters
                         {
                             if (ExtendedLogging)
                             {
-                                Debug.LogError("[ObjImporter] Unable to parse indices: " + strFaceIndices[i]);
+                                i5Debug.LogError("Unable to parse indices: " + strFaceIndices[i], this);
                             }
                             numberOfErrors++;
                             break;
@@ -204,7 +204,7 @@ namespace i5.Toolkit.ModelImporters
                 {
                     if (ExtendedLogging)
                     {
-                        Debug.Log("[ObjImporter] Found a comment: " + line.Substring(1));
+                        i5Debug.Log("Found a comment: " + line.Substring(1), this);
                     }
                 }
             }

@@ -28,12 +28,19 @@ public class ObjImporterDemo : MonoBehaviour
                 ObjectPool<Mesh>.ReturnResource(meshFilter.sharedMesh);
             }
 
-            string[] lines = objData.Split('\n');
-            ImportOperation op = new ImportOperation(lines, (res) =>
+            ObjImportOperation op = new ObjImportOperation("https://raw.githubusercontent.com/rwth-acis/Unity-Toolkit/features/objImporter/Assets/Examples/Importers/ObjImporter/Obj%20Models/Monkey_quads.obj",
+                (res) =>
             {
-                meshFilter.sharedMesh = res.result.ConstructMesh();
+                i5Debug.Log(res.result, this);
             });
-            ServiceManager.GetService<ObjImporter>().AddOperation(op);
+            ServiceManager.GetService<ObjImporter>().Import(op);
+
+            //string[] lines = objData.Split('\n');
+            //ParseOperation op = new ParseOperation(lines, (res) =>
+            //{
+            //    meshFilter.sharedMesh = res.result.ConstructMesh();
+            //});
+            //ServiceManager.GetService<ObjParser>().AddOperation(op);
         }
     }
 }

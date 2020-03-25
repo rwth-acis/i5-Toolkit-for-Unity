@@ -59,11 +59,14 @@ namespace i5.Toolkit.ServiceCore
             {
                 instance.updateableServices.Add((IUpdateableService)service);
             }
+
+            service.Initialize(instance);
         }
 
         public static void RemoveService<T>(T service) where T : IService
         {
             EnsureInstance();
+            service.Cleanup();
             instance.registeredServices.Remove(service);
             if (service is IUpdateableService)
             {
@@ -79,6 +82,12 @@ namespace i5.Toolkit.ServiceCore
                 throw new InvalidOperationException("Tried to get unregistered service");
             }
             return (T)instance.registeredServices[typeof(T)];
+        }
+
+        public static bool ServiceExists<T>() where T : IService
+        {
+            EnsureInstance();
+            return instance.registeredServices.ContainsKey(typeof(T));
         }
 
         private void Update()

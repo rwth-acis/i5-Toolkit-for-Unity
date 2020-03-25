@@ -6,7 +6,7 @@ namespace i5.Toolkit.ServiceCore
 {
     public interface IService
     {
-        void Initialize();
+        void Initialize(ServiceManager owner);
         void Cleanup();
     }
 }

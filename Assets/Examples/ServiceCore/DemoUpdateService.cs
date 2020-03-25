@@ -20,7 +20,7 @@ public class DemoUpdateService : IUpdateableService
     {
     }
 
-    public void Initialize()
+    public void Initialize(ServiceManager owner)
     {
     }
 

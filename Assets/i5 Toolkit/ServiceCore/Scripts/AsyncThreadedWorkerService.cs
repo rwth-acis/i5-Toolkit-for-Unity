@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace i5.Toolkit.ServiceCore
 {
-    public class AsyncWorkerService<OperationType>
+    public class AsyncThreadedWorkerService<OperationType>
         : IUpdateableService where OperationType : IOperation
     {
         private ConcurrentQueue<OperationType> queuedOperations = new ConcurrentQueue<OperationType>();
@@ -20,7 +20,7 @@ namespace i5.Toolkit.ServiceCore
         {
         }
 
-        public void Initialize()
+        public void Initialize(ServiceManager owner)
         {
         }
 
@@ -41,14 +41,7 @@ namespace i5.Toolkit.ServiceCore
 
         public void AddOperation(OperationType operation)
         {
-            if (queuedOperations.Count == 0)
-            {
-                StartOperation(operation);
-            }
-            else
-            {
-                queuedOperations.Enqueue(operation);
-            }
+            queuedOperations.Enqueue(operation);
         }
 
         private void StartOperation(OperationType operation)

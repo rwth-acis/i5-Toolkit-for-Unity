@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 
-public class DemoAsyncService : AsyncWorkerService<Operation<float>>
+public class DemoAsyncService : AsyncThreadedWorkerService<Operation<float>>
 {
     protected override void AsyncOperation(Operation<float> operation)
     {

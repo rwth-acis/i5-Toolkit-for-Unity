@@ -19,7 +19,7 @@ public class DemoService : IService
     {
     }
 
-    public void Initialize()
+    public void Initialize(ServiceManager owner)
     {
     }
 

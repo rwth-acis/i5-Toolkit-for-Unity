@@ -35,7 +35,6 @@ namespace i5.Toolkit.ModelImporters
             if (resp.Successful)
             {
                 GameObject parentObject = ObjectPool<GameObject>.RequestResource(1, () => { return new GameObject(); });
-                parentObject.name = "Imported Object";
                 MeshFilter meshFilter = ComponentUtilities.GetOrAddComponent<MeshFilter>(parentObject);
                 MeshRenderer meshRenderer = ComponentUtilities.GetOrAddComponent<MeshRenderer>(parentObject);
                 if (meshRenderer.material == null)
@@ -45,6 +44,7 @@ namespace i5.Toolkit.ModelImporters
 
                 string[] contentLines = resp.ResponseBody.Split('\n');
                 GeometryConstructor geometryConstructor = await Task.Run(() => { return ParseObj(contentLines); });
+                parentObject.name = geometryConstructor.Name;
                 Mesh mesh = geometryConstructor.ConstructMesh();
                 meshFilter.sharedMesh = mesh;
                 return parentObject;
@@ -208,6 +208,10 @@ namespace i5.Toolkit.ModelImporters
                     {
                         geometryConstructor.AddQuad(faceIndices[0], faceIndices[1], faceIndices[2], faceIndices[3]);
                     }
+                }
+                else if (line.StartsWith("o "))
+                {
+                    geometryConstructor.Name = line.Substring(1).Trim();
                 }
                 else if (line.StartsWith("#"))
                 {

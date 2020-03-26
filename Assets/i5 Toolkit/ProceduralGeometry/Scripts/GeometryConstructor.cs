@@ -34,6 +34,11 @@ namespace i5.Toolkit.ProceduralGeometry
         public Dictionary<string, int> NamedVertices { get; private set; }
 
         /// <summary>
+        /// The name of the produced mesh
+        /// </summary>
+        public string Name { get; set; }
+
+        /// <summary>
         /// Creates the geometry constructor to buid the mesh data
         /// You can only add geometry, not remove it
         /// </summary>
@@ -44,6 +49,7 @@ namespace i5.Toolkit.ProceduralGeometry
             UVCoords = new List<Vector2>();
             Triangles = new List<int>();
             NamedVertices = new Dictionary<string, int>();
+            Name = "New Mesh";
         }
 
         /// <summary>
@@ -194,6 +200,7 @@ namespace i5.Toolkit.ProceduralGeometry
         public Mesh ConstructMesh()
         {
             Mesh mesh = ObjectPool<Mesh>.RequestResource(() => { return new Mesh(); });
+            mesh.name = Name;
             mesh.SetVertices(Vertices);
             mesh.SetTriangles(Triangles, 0);
             // assign the normals: use the ones supplied if there is one for every vertex or recalculate them otherwise

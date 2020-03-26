@@ -8,7 +8,7 @@ public class ObjImporterBootstrapper : MonoBehaviour, IServiceManagerBootstrappe
 {
     public void InitializeServiceManager()
     {
-        ObjImporter2 importer = new ObjImporter2();
+        ObjImporter importer = new ObjImporter();
         ServiceManager.RegisterService(importer);
     }
 }

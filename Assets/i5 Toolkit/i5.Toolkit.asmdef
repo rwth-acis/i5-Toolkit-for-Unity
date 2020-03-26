@@ -1,3 +1,14 @@
-﻿{
-	"name": "i5.Toolkit"
+{
+    "name": "i5.Toolkit",
+    "references": [
+        "Microsoft.MixedReality.Toolkit"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": []
 }

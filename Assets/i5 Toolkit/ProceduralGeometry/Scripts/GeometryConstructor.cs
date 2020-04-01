@@ -200,6 +200,14 @@ namespace i5.Toolkit.ProceduralGeometry
         public Mesh ConstructMesh()
         {
             Mesh mesh = ObjectPool<Mesh>.RequestResource(() => { return new Mesh(); });
+            if (Vertices.Count > 65535)
+            {
+                mesh.indexFormat = UnityEngine.Rendering.IndexFormat.UInt32;
+            }
+            else
+            {
+                mesh.indexFormat = UnityEngine.Rendering.IndexFormat.UInt16;
+            }
             mesh.name = Name;
             mesh.SetVertices(Vertices);
             mesh.SetTriangles(Triangles, 0);

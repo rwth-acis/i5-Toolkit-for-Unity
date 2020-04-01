@@ -14,6 +14,8 @@ namespace i5.Toolkit.ModelImporters
 
     public class ObjImporter : IService
     {
+        private char[] splitter = new char[] { ' ' };
+
         private int gameObjectPoolId;
 
         public bool ExtendedLogging { get; set; }
@@ -42,8 +44,11 @@ namespace i5.Toolkit.ModelImporters
                     meshRenderer.material = new Material(Shader.Find("Standard"));
                 }
 
-                string[] contentLines = resp.ResponseBody.Split('\n');
-                GeometryConstructor geometryConstructor = await Task.Run(() => { return ParseObj(contentLines); });
+                GeometryConstructor geometryConstructor = await Task.Run(() =>
+                {
+                    string[] contentLines = resp.ResponseBody.Split('\n');
+                    return ParseObj(contentLines);
+                });
                 parentObject.name = geometryConstructor.Name;
                 Mesh mesh = geometryConstructor.ConstructMesh();
                 meshFilter.sharedMesh = mesh;
@@ -75,10 +80,9 @@ namespace i5.Toolkit.ModelImporters
                 // vertex coordinates are defined with a v (and only a v) at the beginning
                 if (line.StartsWith("v "))
                 {
-                    // TODO: handle Vector4 (there could be 4 coordinates in the obj)
                     Vector3 res;
                     // remove the v at the beginning and then parse to Vector3
-                    bool success = ParserUtils.TryParseSpaceSeparatedVector3(line.Substring(1), out res);
+                    bool success = ParserUtils.TryParseSpaceSeparatedVector3(line.Substring(1).Trim(), out res);
                     // we must add the vertex to the list, even if the conversion failed; otherwise the indices will not work
                     vertices.Add(res);
 
@@ -94,10 +98,9 @@ namespace i5.Toolkit.ModelImporters
                 // vertex texture coordinates are defined with a "vt" at the beginning
                 else if (line.StartsWith("vt "))
                 {
-                    // TODO: handle Vector3 (there could be 3 coordinates in UV)
                     Vector2 res;
                     // remove the vt at the beginning and then parse to Vector2
-                    bool success = ParserUtils.TryParseSpaceSeparatedVector2(line.Substring(2), out res);
+                    bool success = ParserUtils.TryParseSpaceSeparatedVector2(line.Substring(2).Trim(), out res);
                     // we must add the uv coordinates to the list, even if the conversion failed; otherwise the indices will not work
                     // the UV coordinates need to be mirrored on the X axis to show the texture the right way around
                     res = new Vector2(1 - res.x, res.y);
@@ -115,10 +118,9 @@ namespace i5.Toolkit.ModelImporters
                 // vertex normals are defined with a "vn" at the beginning
                 else if (line.StartsWith("vn "))
                 {
-                    // TODO: implement normal support for geometry constructor
                     Vector3 res;
                     // remove the vn at the beginning and then parse to Vector3
-                    bool success = ParserUtils.TryParseSpaceSeparatedVector3(line.Substring(2), out res);
+                    bool success = ParserUtils.TryParseSpaceSeparatedVector3(line.Substring(2).Trim(), out res);
                     // we must add the normal to the list, even if the conversion failed; otherwise the indices will not work
                     normals.Add(res);
 
@@ -135,19 +137,12 @@ namespace i5.Toolkit.ModelImporters
                 else if (line.StartsWith("f "))
                 {
                     // remove the f and split by spaces to get the individual indices of the face
-                    string[] strFaceIndices = line.Substring(1).Trim().Split(' ');
+                    string[] strFaceIndices = line.Substring(1).Trim().Split(splitter, StringSplitOptions.RemoveEmptyEntries);
                     // each of the strFaceIndices should contain either a number or the format "1/2/3".
-                    // there should be three or four of these indices to define triangles and quads
-                    if (strFaceIndices.Length != 3 && strFaceIndices.Length != 4)
-                    {
-                        i5Debug.LogError("ObjImporter only supports triangles or quad faces. If you use other polygons, triangulate the mesh before importing", this);
-                        numberOfErrors++;
-                        continue;
-                    }
 
                     int[] faceIndices = new int[strFaceIndices.Length];
 
-                    // go over all vertex data
+                    // parse all string vertex indices
                     for (int i = 0; i < strFaceIndices.Length; i++)
                     {
                         VertexData vertexData;
@@ -200,13 +195,19 @@ namespace i5.Toolkit.ModelImporters
                         }
                     }
 
-                    if (strFaceIndices.Length == 3)
+                    if (strFaceIndices.Length == 3) // it is a triangle
                     {
                         geometryConstructor.AddTriangle(faceIndices[0], faceIndices[1], faceIndices[2]);
                     }
-                    else // it is a quad
+                    else if (strFaceIndices.Length == 4) // it is a quad
                     {
                         geometryConstructor.AddQuad(faceIndices[0], faceIndices[1], faceIndices[2], faceIndices[3]);
+                    }
+                    else
+                    {
+                        int[] fanIndices = new int[faceIndices.Length - 1];
+                        Array.Copy(faceIndices, 1, fanIndices, 0, fanIndices.Length);
+                        geometryConstructor.AddTriangleFan(faceIndices[0], fanIndices);
                     }
                 }
                 else if (line.StartsWith("o "))
@@ -225,13 +226,13 @@ namespace i5.Toolkit.ModelImporters
             // check if any errors occured and print an error message
             if (numberOfErrors > 0)
             {
-                string errorMsg = "The process finished with " + numberOfErrors + ". A partial mesh may still have been generated.";
+                string warningMsg = "The process finished with " + numberOfErrors + " errors. A partial mesh may still have been generated.";
                 // if no extended logging was used, notify the developer that extended logging gives more info
                 if (!ExtendedLogging)
                 {
-                    errorMsg += " To see more details, activate extended logging";
+                    warningMsg += " To see more details, activate extended logging";
                 }
-                i5Debug.LogError(errorMsg, this);
+                i5Debug.LogWarning(warningMsg, this);
             }
             else
             {

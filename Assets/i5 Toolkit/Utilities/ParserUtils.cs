@@ -7,10 +7,26 @@ namespace i5.Toolkit.Utilities
 {
     public static class ParserUtils
     {
+        private static char[] splitter = new char[] { ' ' };
+
         public static bool TryParseSpaceSeparatedVector2(string input, out Vector2 result)
         {
-            string[] strValues = input.Trim().Split(' ');
-            return TryParseStringArrayToVector2(strValues, out result);
+            string[] strValues = input.Trim().Split(splitter, System.StringSplitOptions.RemoveEmptyEntries);
+            if (strValues.Length == 2)
+            {
+                return TryParseStringArrayToVector2(strValues, out result);
+            }
+            else if (strValues.Length == 3)
+            {
+                bool res = TryParseStringArrayToVector3(strValues, out Vector3 v3);
+                result = v3;
+                return res;
+            }
+            else
+            {
+                result = default;
+                return false;
+            }
         }
 
         public static bool TryParseStringArrayToVector2(string[] strValues, out Vector2 result)
@@ -40,8 +56,22 @@ namespace i5.Toolkit.Utilities
         /// <returns>True if the string could be parsed, otherwise false</returns>
         public static bool TryParseSpaceSeparatedVector3(string input, out Vector3 result)
         {
-            string[] strValues = input.Trim().Split(' ');
-            return TryParseStringArrayToVector3(strValues, out result);
+            string[] strValues = input.Trim().Split(splitter, System.StringSplitOptions.RemoveEmptyEntries);
+            if (strValues.Length == 3)
+            {
+                return TryParseStringArrayToVector3(strValues, out result);
+            }
+            else if (strValues.Length == 4)
+            {
+                bool res = TryParseStringArrayToVector4(strValues, out Vector4 v4);
+                result = v4;
+                return res;
+            }
+            else
+            {
+                result = default;
+                return false;
+            }
         }
 
         public static bool TryParseStringArrayToVector3(string[] strValues, out Vector3 result)
@@ -56,6 +86,26 @@ namespace i5.Toolkit.Utilities
                     && float.TryParse(strValues[2], NumberStyles.Any, CultureInfo.InvariantCulture, out vCoord3))
                 {
                     result = new Vector3(firstTwoComponents.x, firstTwoComponents.y, vCoord3);
+                    return true;
+                }
+            }
+
+            result = default;
+            return false;
+        }
+
+        public static bool TryParseStringArrayToVector4(string[] strValues, out Vector4 result)
+        {
+            // there should be four coordinates
+            if (strValues.Length == 4)
+            {
+                Vector3 firstThreeComponents;
+                float vCoord4;
+                // prase the first four coordinates
+                if (TryParseStringArrayToVector3(new string[] { strValues[0], strValues[1], strValues[2] }, out firstThreeComponents)
+                    && float.TryParse(strValues[3], NumberStyles.Any, CultureInfo.InvariantCulture, out vCoord4))
+                {
+                    result = new Vector4(firstThreeComponents.x, firstThreeComponents.y, firstThreeComponents.z, vCoord4);
                     return true;
                 }
             }

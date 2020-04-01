@@ -246,7 +246,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7029beacb3badff45a9008600e5a2ec7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  url: https://raw.githubusercontent.com/rwth-acis/Unity-Toolkit/features/objImporter/Assets/Examples/Importers/ObjImporter/Obj%20Models/Monkey_smooth.obj
+  extendedLogging: 1
+  url: 
 --- !u!4 &1294683387
 Transform:
   m_ObjectHideFlags: 0

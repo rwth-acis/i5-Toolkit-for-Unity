@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 51097026}
   - component: {fileID: 51097025}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: FPS Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

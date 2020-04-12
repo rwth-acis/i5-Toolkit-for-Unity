@@ -36,29 +36,35 @@ namespace i5.Toolkit.ModelImporters
             Response resp = await Rest.GetAsync(url);
             if (resp.Successful)
             {
-                GameObject parentObject = ObjectPool<GameObject>.RequestResource(1, () => { return new GameObject(); });
-                MeshFilter meshFilter = ComponentUtilities.GetOrAddComponent<MeshFilter>(parentObject);
-                MeshRenderer meshRenderer = ComponentUtilities.GetOrAddComponent<MeshRenderer>(parentObject);
-                if (meshRenderer.material == null)
-                {
-                    meshRenderer.material = new Material(Shader.Find("Standard"));
-                }
-
-                GeometryConstructor geometryConstructor = await Task.Run(() =>
+                GameObject parentObject = ObjectPool<GameObject>.RequestResource(0, () => { return new GameObject(); });
+                parentObject.name = "Imported Object";
+                List<GeometryConstructor> constructedObjects = await Task.Run(() =>
                 {
                     string[] contentLines = resp.ResponseBody.Split('\n');
                     return ParseObj(contentLines);
                 });
-                parentObject.name = geometryConstructor.Name;
-                Mesh mesh = geometryConstructor.ConstructMesh();
-                meshFilter.sharedMesh = mesh;
+                foreach (GeometryConstructor geometryConstructor in constructedObjects)
+                {
+                    GameObject childObj = ObjectPool<GameObject>.RequestResource(1, () => { return new GameObject(); });
+                    childObj.transform.parent = parentObject.transform;
+                    childObj.name = geometryConstructor.Name;
+                    MeshFilter meshFilter = ComponentUtilities.GetOrAddComponent<MeshFilter>(childObj);
+                    MeshRenderer meshRenderer = ComponentUtilities.GetOrAddComponent<MeshRenderer>(childObj);
+                    if (meshRenderer.material == null)
+                    {
+                        meshRenderer.material = new Material(Shader.Find("Standard"));
+                    }
+                    Mesh mesh = geometryConstructor.ConstructMesh();
+                    meshFilter.sharedMesh = mesh;
+                }
                 return parentObject;
             }
             return null;
         }
 
-        private GeometryConstructor ParseObj(string[] contentLines)
+        private List<GeometryConstructor> ParseObj(string[] contentLines)
         {
+            List<GeometryConstructor> constructedObjects = new List<GeometryConstructor>();
             // the list of vertices, sorted by the original indices
             // this list is used to look up the correct vertices when the faces are defined
             List<Vector3> vertices = new List<Vector3>();
@@ -212,6 +218,11 @@ namespace i5.Toolkit.ModelImporters
                 }
                 else if (line.StartsWith("o "))
                 {
+                    if (geometryConstructor.Vertices.Count > 0)
+                    {
+                        constructedObjects.Add(geometryConstructor);
+                        geometryConstructor = new GeometryConstructor();
+                    }                    
                     geometryConstructor.Name = line.Substring(1).Trim();
                 }
                 else if (line.StartsWith("#"))
@@ -221,6 +232,11 @@ namespace i5.Toolkit.ModelImporters
                         i5Debug.Log("Found a comment: " + line.Substring(1), this);
                     }
                 }
+            }
+
+            if (geometryConstructor.Vertices.Count > 0)
+            {
+                constructedObjects.Add(geometryConstructor);
             }
 
             // check if any errors occured and print an error message
@@ -239,7 +255,7 @@ namespace i5.Toolkit.ModelImporters
                 i5Debug.Log("Successfully imported obj file.", this);
             }
 
-            return geometryConstructor;
+            return constructedObjects;
         }
 
         /// <summary>

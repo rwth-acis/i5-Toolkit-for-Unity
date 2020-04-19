@@ -32,19 +32,36 @@ namespace i5.Toolkit.ModelImporters
 
         public async Task<GameObject> ImportAsync(string url)
         {
+            Uri uri = new Uri(url);
+            if (!System.IO.Path.GetExtension(uri.LocalPath).Equals(".obj"))
+            {
+                i5Debug.LogWarning("The given url does not seem to be a .obj file", this);
+            }
             i5Debug.Log("Starting import", this);
             Response resp = await Rest.GetAsync(url);
             if (resp.Successful)
             {
                 GameObject parentObject = ObjectPool<GameObject>.RequestResource(0, () => { return new GameObject(); });
-                parentObject.name = "Imported Object";
+                parentObject.name = System.IO.Path.GetFileNameWithoutExtension(uri.LocalPath);
+                //parentObject.name = "Imported Object";
                 List<GeometryConstructor> constructedObjects = await Task.Run(() =>
                 {
                     string[] contentLines = resp.ResponseBody.Split('\n');
                     return ParseObj(contentLines);
                 });
+
+                // check if there are objects to construct
+                if (constructedObjects.Count == 0)
+                {
+                    i5Debug.LogError("No objects to construct were found.\nCheck if the given URL really resembled a .obj file", this);
+                }
+
                 foreach (GeometryConstructor geometryConstructor in constructedObjects)
                 {
+                    if (geometryConstructor.Vertices.Count == 0)
+                    {
+                        i5Debug.LogWarning("Object " + geometryConstructor.Name + " has empty geometry.", this);
+                    }
                     GameObject childObj = ObjectPool<GameObject>.RequestResource(1, () => { return new GameObject(); });
                     childObj.transform.parent = parentObject.transform;
                     childObj.name = geometryConstructor.Name;
@@ -222,7 +239,7 @@ namespace i5.Toolkit.ModelImporters
                     {
                         constructedObjects.Add(geometryConstructor);
                         geometryConstructor = new GeometryConstructor();
-                    }                    
+                    }
                     geometryConstructor.Name = line.Substring(1).Trim();
                 }
                 else if (line.StartsWith("#"))

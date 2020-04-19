@@ -59,8 +59,15 @@ namespace i5.Toolkit.ModelImporters
                 foreach(string materialRequest in parseRes.MaterialRequests)
                 {
                     // TODO: implement material fetching and parsing
-                    string objFileName = System.IO.Path.GetFileName(uri.LocalPath);
-                    i5Debug.Log(uri.AbsoluteUri.Replace(objFileName, materialRequest), this);
+                    string materialUrl = uri.GetLeftPart(UriPartial.Authority);
+                    // add all segments except of the last one which is the file name
+                    for(int i=0;i<uri.Segments.Length-1;i++)
+                    {
+                        materialUrl += uri.Segments[i];
+                    }
+                    materialUrl += materialRequest;
+                    materialUrl += uri.Query;
+                    Debug.Log(materialUrl);
                 }
 
                 // construct the geometry

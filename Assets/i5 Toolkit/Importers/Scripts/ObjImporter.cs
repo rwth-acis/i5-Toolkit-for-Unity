@@ -50,18 +50,8 @@ namespace i5.Toolkit.ModelImporters
                     return ParseObj(contentLines);
                 });
 
-                // check if there are objects to construct
-                if (constructedObjects.Count == 0)
-                {
-                    i5Debug.LogError("No objects to construct were found.\nCheck if the given URL really resembled a .obj file", this);
-                }
-
                 foreach (GeometryConstructor geometryConstructor in constructedObjects)
                 {
-                    if (geometryConstructor.Vertices.Count == 0)
-                    {
-                        i5Debug.LogWarning("Object " + geometryConstructor.Name + " has empty geometry.", this);
-                    }
                     GameObject childObj = ObjectPool<GameObject>.RequestResource(1, () => { return new GameObject(); });
                     childObj.transform.parent = parentObject.transform;
                     childObj.name = geometryConstructor.Name;
@@ -235,8 +225,10 @@ namespace i5.Toolkit.ModelImporters
                 }
                 else if (line.StartsWith("o "))
                 {
+                    // object names introduce new objects in Blender exports
                     if (geometryConstructor.Vertices.Count > 0)
                     {
+                        // if the existing geometryConstructor already has content: add it to the list and start a new one
                         constructedObjects.Add(geometryConstructor);
                         geometryConstructor = new GeometryConstructor();
                     }
@@ -255,11 +247,28 @@ namespace i5.Toolkit.ModelImporters
             {
                 constructedObjects.Add(geometryConstructor);
             }
+            else
+            {
+                numberOfErrors++;
+                i5Debug.LogError("There is an object without parsed vertices", this);
+            }
+
+            // check if objects could be constructed, if not: write an error message
+            if (constructedObjects.Count == 0)
+            {
+                numberOfErrors++;
+                i5Debug.LogError("No objects could be constructed. Please check if the given file has the right format.", this);
+            }
 
             // check if any errors occured and print an error message
             if (numberOfErrors > 0)
             {
-                string warningMsg = "The process finished with " + numberOfErrors + " errors. A partial mesh may still have been generated.";
+                string warningMsg = "The process finished with " + numberOfErrors + " errors.";
+                // if something was created, tell this
+                if (constructedObjects.Count > 0)
+                {
+                    warningMsg += " A partial mesh may still have been generated.";
+                }
                 // if no extended logging was used, notify the developer that extended logging gives more info
                 if (!ExtendedLogging)
                 {
@@ -269,7 +278,7 @@ namespace i5.Toolkit.ModelImporters
             }
             else
             {
-                i5Debug.Log("Successfully imported obj file.", this);
+                i5Debug.Log("Successfully parsed obj file.", this);
             }
 
             return constructedObjects;

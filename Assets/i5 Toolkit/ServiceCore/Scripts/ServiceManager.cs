@@ -12,9 +12,13 @@ namespace i5.Toolkit.ServiceCore
     /// </summary>
     public class ServiceManager : MonoBehaviour
     {
-        private Dictionary<object, IService> registeredServices = new Dictionary<object, IService>();
+        private Dictionary<Type, IService> registeredServices = new Dictionary<Type, IService>();
 
         private List<IUpdateableService> updateableServices = new List<IUpdateableService>();
+
+        // keep track of a list of services that should be removed and remove them at the end of the frame
+        // this way, we are not modifying the list of services in the global cleanup at the end
+        private List<Type> serviceTypesToRemove = new List<Type>();
 
         private static ServiceManager instance;
 
@@ -68,13 +72,11 @@ namespace i5.Toolkit.ServiceCore
             EnsureInstance();
             if (instance.registeredServices.ContainsKey(typeof(T)))
             {
-                IService service = instance.registeredServices[typeof(T)];
-                service.Cleanup();
-                instance.registeredServices.Remove(typeof(T));
-                if (service is IUpdateableService)
-                {
-                    instance.updateableServices.Remove((IUpdateableService)service);
-                }
+                instance.serviceTypesToRemove.Add(typeof(T));
+            }
+            else
+            {
+                throw new InvalidOperationException("Tried to remove unregistered service");
             }
         }
 
@@ -96,18 +98,27 @@ namespace i5.Toolkit.ServiceCore
 
         private void Update()
         {
-            for (int i = 0; i < instance.updateableServices.Count; i++)
+            for (int i = 0; i < updateableServices.Count; i++)
             {
-                if (instance.updateableServices[i].Enabled)
+                if (updateableServices[i].Enabled)
                 {
-                    instance.updateableServices[i].Update();
+                    updateableServices[i].Update();
                 }
+            }
+
+            if (serviceTypesToRemove.Count > 0)
+            {
+                for (int i = 0; i < serviceTypesToRemove.Count; i++)
+                {
+                    registeredServices.Remove(serviceTypesToRemove[i]);
+                }
+                serviceTypesToRemove.Clear();
             }
         }
 
         private void OnDestroy()
         {
-            foreach(KeyValuePair<object, IService> service in registeredServices)
+            foreach (KeyValuePair<Type, IService> service in registeredServices)
             {
                 service.Value.Cleanup();
             }

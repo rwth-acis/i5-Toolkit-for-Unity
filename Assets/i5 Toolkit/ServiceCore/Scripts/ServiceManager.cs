@@ -63,14 +63,18 @@ namespace i5.Toolkit.ServiceCore
             service.Initialize(instance);
         }
 
-        public static void RemoveService<T>(T service) where T : IService
+        public static void RemoveService<T>() where T : IService
         {
             EnsureInstance();
-            service.Cleanup();
-            instance.registeredServices.Remove(service);
-            if (service is IUpdateableService)
+            if (instance.registeredServices.ContainsKey(typeof(T)))
             {
-                instance.updateableServices.Remove((IUpdateableService)service);
+                IService service = instance.registeredServices[typeof(T)];
+                service.Cleanup();
+                instance.registeredServices.Remove(typeof(T));
+                if (service is IUpdateableService)
+                {
+                    instance.updateableServices.Remove((IUpdateableService)service);
+                }
             }
         }
 

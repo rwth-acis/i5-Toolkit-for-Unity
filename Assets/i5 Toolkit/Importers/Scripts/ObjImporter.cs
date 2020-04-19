@@ -16,18 +16,19 @@ namespace i5.Toolkit.ModelImporters
     {
         private char[] splitter = new char[] { ' ' };
 
-        private int gameObjectPoolId;
+        // the id of the pool with GameObjects that are set up with a MeshFilter and Renderer
+        private int meshObjectPoolId;
 
         public bool ExtendedLogging { get; set; }
 
         public void Cleanup()
         {
-            ObjectPool<GameObject>.RemovePool(gameObjectPoolId, (go) => { GameObject.Destroy(go); });
+            ObjectPool<GameObject>.RemovePool(meshObjectPoolId, (go) => { GameObject.Destroy(go); });
         }
 
         public void Initialize(ServiceManager owner)
         {
-            gameObjectPoolId = ObjectPool<GameObject>.CreateNewPool();
+            meshObjectPoolId = ObjectPool<GameObject>.CreateNewPool();
         }
 
         public async Task<GameObject> ImportAsync(string url)
@@ -41,9 +42,8 @@ namespace i5.Toolkit.ModelImporters
             Response resp = await Rest.GetAsync(url);
             if (resp.Successful)
             {
-                GameObject parentObject = ObjectPool<GameObject>.RequestResource(0, () => { return new GameObject(); });
+                GameObject parentObject = ObjectPool<GameObject>.RequestResource(() => { return new GameObject(); });
                 parentObject.name = System.IO.Path.GetFileNameWithoutExtension(uri.LocalPath);
-                //parentObject.name = "Imported Object";
                 List<GeometryConstructor> constructedObjects = await Task.Run(() =>
                 {
                     string[] contentLines = resp.ResponseBody.Split('\n');
@@ -52,7 +52,7 @@ namespace i5.Toolkit.ModelImporters
 
                 foreach (GeometryConstructor geometryConstructor in constructedObjects)
                 {
-                    GameObject childObj = ObjectPool<GameObject>.RequestResource(1, () => { return new GameObject(); });
+                    GameObject childObj = ObjectPool<GameObject>.RequestResource(meshObjectPoolId, () => { return new GameObject(); });
                     childObj.transform.parent = parentObject.transform;
                     childObj.name = geometryConstructor.Name;
                     MeshFilter meshFilter = ComponentUtilities.GetOrAddComponent<MeshFilter>(childObj);

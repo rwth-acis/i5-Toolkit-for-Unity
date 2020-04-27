@@ -55,10 +55,13 @@ namespace i5.Toolkit.ModelImporters
                     return ParseObj(contentLines);
                 });
 
+                List<Material> materials = new List<Material>();
+
+                ServiceManager.GetService<MtlParser>().ExtendedLogging = ExtendedLogging;
+
                 // first get the material files
                 foreach(string materialRequest in parseRes.MaterialRequests)
                 {
-                    // TODO: implement material fetching and parsing
                     string materialUrl = uri.GetLeftPart(UriPartial.Authority);
                     // add all segments except of the last one which is the file name
                     for(int i=0;i<uri.Segments.Length-1;i++)
@@ -67,7 +70,16 @@ namespace i5.Toolkit.ModelImporters
                     }
                     materialUrl += materialRequest;
                     materialUrl += uri.Query;
-                    Debug.Log(materialUrl);
+                    Response matResponse = await Rest.GetAsync(materialUrl);
+                    if (matResponse.Successful)
+                    {
+                        Material mat = await ServiceManager.GetService<MtlParser>().CreateMaterial(matResponse.ResponseBody);
+                    }
+                    else
+                    {
+                        i5Debug.LogError(matResponse.ResponseBody, this);
+                        materials.Add(new Material(Shader.Find("Standard")));
+                    }
                 }
 
                 // construct the geometry

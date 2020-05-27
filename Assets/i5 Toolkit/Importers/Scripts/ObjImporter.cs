@@ -55,30 +55,30 @@ namespace i5.Toolkit.ModelImporters
                     return ParseObj(contentLines);
                 });
 
-                List<Material> materials = new List<Material>();
+                List<MtlParseResult> materials = new List<MtlParseResult>();
 
                 ServiceManager.GetService<MtlParser>().ExtendedLogging = ExtendedLogging;
 
                 // first get the material files
-                foreach(string materialRequest in parseRes.MaterialRequests)
+                foreach(string mtlLibName in parseRes.MtlLibs)
                 {
-                    string materialUrl = uri.GetLeftPart(UriPartial.Authority);
+                    string mtlLibUrl = uri.GetLeftPart(UriPartial.Authority);
                     // add all segments except of the last one which is the file name
                     for(int i=0;i<uri.Segments.Length-1;i++)
                     {
-                        materialUrl += uri.Segments[i];
+                        mtlLibUrl += uri.Segments[i];
                     }
-                    materialUrl += materialRequest;
-                    materialUrl += uri.Query;
-                    Response matResponse = await Rest.GetAsync(materialUrl);
+                    mtlLibUrl += mtlLibName;
+                    mtlLibUrl += uri.Query;
+                    Response matResponse = await Rest.GetAsync(mtlLibUrl);
                     if (matResponse.Successful)
                     {
-                        Material mat = await ServiceManager.GetService<MtlParser>().CreateMaterial(matResponse.ResponseBody);
+                        List<MtlParseResult> parsedMaterials = ServiceManager.GetService<MtlParser>().ParseMaterials(matResponse.ResponseBody, Shader.Find("Standard"));
                     }
                     else
                     {
                         i5Debug.LogError(matResponse.ResponseBody, this);
-                        materials.Add(new Material(Shader.Find("Standard")));
+                        materials.Add(new MtlParseResult(new Material(Shader.Find("Standard"))));
                     }
                 }
 
@@ -92,7 +92,8 @@ namespace i5.Toolkit.ModelImporters
                     MeshRenderer meshRenderer = ComponentUtilities.GetOrAddComponent<MeshRenderer>(childObj);
                     if (meshRenderer.material == null)
                     {
-                        meshRenderer.material = new Material(Shader.Find("Standard"));
+                        // TODO: load correct material
+                        meshRenderer.material = materials[0].material;
                     }
                     Mesh mesh = geometryConstructor.ConstructMesh();
                     meshFilter.sharedMesh = mesh;
@@ -270,7 +271,7 @@ namespace i5.Toolkit.ModelImporters
                 else if (line.StartsWith("mtllib "))
                 {
                     // reference to a material file; save this in the result so that we can query for this outside of the thread later
-                    parseRes.MaterialRequests.Add(line.Substring(6).Trim());
+                    parseRes.MtlLibs.Add(line.Substring(6).Trim());
                 }
                 else if (line.StartsWith("#"))
                 {

@@ -19,6 +19,8 @@ namespace i5.Toolkit.ModelImporters
         // the id of the pool with GameObjects that are set up with a MeshFilter and Renderer
         private int meshObjectPoolId;
 
+        private Material tempMaterial;
+
         public bool ExtendedLogging { get; set; }
 
         public void Cleanup()
@@ -34,71 +36,53 @@ namespace i5.Toolkit.ModelImporters
             ServiceManager.RegisterService(mtlParser);
 
             meshObjectPoolId = ObjectPool<GameObject>.CreateNewPool();
+
+            tempMaterial = new Material(Shader.Find("Standard"));
         }
 
         public async Task<GameObject> ImportAsync(string url)
         {
+            i5Debug.Log("Starting import", this);
             Uri uri = new Uri(url);
+            Response resp = await FetchModelAsync(uri);
+
+            if (!resp.Successful)
+            {
+                i5Debug.LogError("Error fetching obj. No object imported.\n" + resp.ResponseBody, this);
+                return null;
+            }
+
+            GameObject parentObject = ObjectPool<GameObject>.RequestResource(() => { return new GameObject(); });
+            parentObject.name = System.IO.Path.GetFileNameWithoutExtension(uri.LocalPath);
+
+            ObjParseResult parsedContent = await ParseModelAsync(resp.ResponseBody);
+
+            // TODO: return mapping how to apply materials
+            ConstructGeometries(parentObject, parsedContent);
+
+            // TODO: load material libraries
+            
+            return parentObject;
+        }
+
+        private async Task<Response> FetchModelAsync(Uri uri)
+        {
             if (!System.IO.Path.GetExtension(uri.LocalPath).Equals(".obj"))
             {
                 i5Debug.LogWarning("The given url does not seem to be a .obj file", this);
             }
-            i5Debug.Log("Starting import", this);
-            Response resp = await Rest.GetAsync(url);
-            if (resp.Successful)
+            Response resp = await Rest.GetAsync(uri.ToString());
+            return resp;
+        }
+
+        private async Task<ObjParseResult> ParseModelAsync(string objContent)
+        {
+            ObjParseResult parseRes = await Task.Run(() =>
             {
-                GameObject parentObject = ObjectPool<GameObject>.RequestResource(() => { return new GameObject(); });
-                parentObject.name = System.IO.Path.GetFileNameWithoutExtension(uri.LocalPath);
-                ObjParseResult parseRes = await Task.Run(() =>
-                {
-                    string[] contentLines = resp.ResponseBody.Split('\n');
-                    return ParseObj(contentLines);
-                });
-
-                List<MtlParseResult> materials = new List<MtlParseResult>();
-
-                ServiceManager.GetService<MtlParser>().ExtendedLogging = ExtendedLogging;
-
-                // first get the material files
-                foreach (string mtlLibName in parseRes.MtlLibs)
-                {
-                    string mtlLibUrl = uri.GetLeftPart(UriPartial.Authority);
-                    // add all segments except of the last one which is the file name
-                    for (int i = 0; i < uri.Segments.Length - 1; i++)
-                    {
-                        mtlLibUrl += uri.Segments[i];
-                    }
-                    mtlLibUrl += mtlLibName;
-                    mtlLibUrl += uri.Query;
-                    Response matResponse = await Rest.GetAsync(mtlLibUrl);
-                    if (matResponse.Successful)
-                    {
-                        List<MtlParseResult> parsedMaterials = ServiceManager.GetService<MtlParser>().ParseMaterials(matResponse.ResponseBody, Shader.Find("Standard"));
-                        materials.AddRange(parsedMaterials);
-                    }
-                    else
-                    {
-                        i5Debug.LogError(matResponse.ResponseBody, this);
-                        materials.Add(new MtlParseResult(new Material(Shader.Find("Standard"))));
-                    }
-                }
-
-                // construct the geometry
-                foreach (GeometryConstructor geometryConstructor in parseRes.ConstructedGeometries)
-                {
-                    GameObject childObj = ObjectPool<GameObject>.RequestResource(meshObjectPoolId, () => { return new GameObject(); });
-                    childObj.transform.parent = parentObject.transform;
-                    childObj.name = geometryConstructor.Name;
-                    MeshFilter meshFilter = ComponentUtilities.GetOrAddComponent<MeshFilter>(childObj);
-                    MeshRenderer meshRenderer = ComponentUtilities.GetOrAddComponent<MeshRenderer>(childObj);
-                    // TODO: load correct material
-                    meshRenderer.material = materials[0].material;
-                    Mesh mesh = geometryConstructor.ConstructMesh();
-                    meshFilter.sharedMesh = mesh;
-                }
-                return parentObject;
-            }
-            return null;
+                string[] contentLines = objContent.Split('\n');
+                return ParseObj(contentLines);
+            });
+            return parseRes;
         }
 
         private ObjParseResult ParseObj(string[] contentLines)
@@ -379,6 +363,55 @@ namespace i5.Toolkit.ModelImporters
                 vertexData = default;
                 return parseSuccess;
             }
+        }
+
+        private void ConstructGeometries(GameObject parentObject, ObjParseResult parsedContent)
+        {
+            // construct the geometry
+            foreach (GeometryConstructor geometryConstructor in parsedContent.ConstructedGeometries)
+            {
+                GameObject childObj = ObjectPool<GameObject>.RequestResource(meshObjectPoolId, () => { return new GameObject(); });
+                childObj.transform.parent = parentObject.transform;
+                childObj.name = geometryConstructor.Name;
+                MeshFilter meshFilter = ComponentUtilities.GetOrAddComponent<MeshFilter>(childObj);
+                MeshRenderer meshRenderer = ComponentUtilities.GetOrAddComponent<MeshRenderer>(childObj);
+                meshRenderer.material = tempMaterial;
+                Mesh mesh = geometryConstructor.ConstructMesh();
+                meshFilter.sharedMesh = mesh;
+            }
+        }
+
+        private async Task<List<MtlParseResult>> ParseMaterials(Uri uri, ObjParseResult parseRes)
+        {
+            List<MtlParseResult> materials = new List<MtlParseResult>();
+
+            ServiceManager.GetService<MtlParser>().ExtendedLogging = ExtendedLogging;
+
+            // first get the material files
+            foreach (string mtlLibName in parseRes.MtlLibs)
+            {
+                string mtlLibUrl = uri.GetLeftPart(UriPartial.Authority);
+                // add all segments except of the last one which is the file name
+                for (int i = 0; i < uri.Segments.Length - 1; i++)
+                {
+                    mtlLibUrl += uri.Segments[i];
+                }
+                mtlLibUrl += mtlLibName;
+                mtlLibUrl += uri.Query;
+                Response matResponse = await Rest.GetAsync(mtlLibUrl);
+                if (matResponse.Successful)
+                {
+                    List<MtlParseResult> parsedMaterials = ServiceManager.GetService<MtlParser>().ParseMaterials(matResponse.ResponseBody, Shader.Find("Standard"));
+                    materials.AddRange(parsedMaterials);
+                }
+                else
+                {
+                    i5Debug.LogError(matResponse.ResponseBody, this);
+                    materials.Add(new MtlParseResult(new Material(Shader.Find("Standard"))));
+                }
+            }
+
+            return materials;
         }
     }
 }

@@ -3,6 +3,7 @@ using i5.Toolkit.Utilities;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -33,7 +34,10 @@ public class MtlParser : IService
 
             if (trimmedLine.StartsWith("newmtl"))
             {
-                parsedMaterials.Add(currentMaterial);
+                if (currentMaterial != null)
+                {
+                    parsedMaterials.Add(currentMaterial);
+                }
                 currentMaterial = new MtlParseResult(new Material(shader));
                 currentMaterial.material.name = trimmedLine.Substring(6).TrimStart();
             }
@@ -88,7 +92,7 @@ public class MtlParser : IService
                             continue;
                         }
                         // we assume that all values are equal
-                        if (float.TryParse(strValues[0], out float smoothness))
+                        if (float.TryParse(strValues[0], NumberStyles.Any, CultureInfo.InvariantCulture, out float smoothness))
                         {
                             // could successfully parse smoothness
                             currentMaterial.material.SetFloat("_Glossiness", smoothness);

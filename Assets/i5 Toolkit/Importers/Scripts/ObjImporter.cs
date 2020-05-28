@@ -60,11 +60,11 @@ namespace i5.Toolkit.ModelImporters
                 ServiceManager.GetService<MtlParser>().ExtendedLogging = ExtendedLogging;
 
                 // first get the material files
-                foreach(string mtlLibName in parseRes.MtlLibs)
+                foreach (string mtlLibName in parseRes.MtlLibs)
                 {
                     string mtlLibUrl = uri.GetLeftPart(UriPartial.Authority);
                     // add all segments except of the last one which is the file name
-                    for(int i=0;i<uri.Segments.Length-1;i++)
+                    for (int i = 0; i < uri.Segments.Length - 1; i++)
                     {
                         mtlLibUrl += uri.Segments[i];
                     }
@@ -74,6 +74,7 @@ namespace i5.Toolkit.ModelImporters
                     if (matResponse.Successful)
                     {
                         List<MtlParseResult> parsedMaterials = ServiceManager.GetService<MtlParser>().ParseMaterials(matResponse.ResponseBody, Shader.Find("Standard"));
+                        materials.AddRange(parsedMaterials);
                     }
                     else
                     {
@@ -90,11 +91,8 @@ namespace i5.Toolkit.ModelImporters
                     childObj.name = geometryConstructor.Name;
                     MeshFilter meshFilter = ComponentUtilities.GetOrAddComponent<MeshFilter>(childObj);
                     MeshRenderer meshRenderer = ComponentUtilities.GetOrAddComponent<MeshRenderer>(childObj);
-                    if (meshRenderer.material == null)
-                    {
-                        // TODO: load correct material
-                        meshRenderer.material = materials[0].material;
-                    }
+                    // TODO: load correct material
+                    meshRenderer.material = materials[0].material;
                     Mesh mesh = geometryConstructor.ConstructMesh();
                     meshFilter.sharedMesh = mesh;
                 }

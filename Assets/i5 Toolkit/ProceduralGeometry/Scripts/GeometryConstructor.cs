@@ -29,11 +29,6 @@ namespace i5.Toolkit.ProceduralGeometry
         public List<int> Triangles { get; private set; }
 
         /// <summary>
-        /// A set of vertices which can be named and referenced by their name using this dictionary
-        /// </summary>
-        public Dictionary<string, int> NamedVertices { get; private set; }
-
-        /// <summary>
         /// The name of the produced mesh
         /// </summary>
         public string Name { get; set; }
@@ -48,7 +43,6 @@ namespace i5.Toolkit.ProceduralGeometry
             Normals = new List<Vector3>();
             UVCoords = new List<Vector2>();
             Triangles = new List<int>();
-            NamedVertices = new Dictionary<string, int>();
             Name = "New Mesh";
         }
 
@@ -86,34 +80,6 @@ namespace i5.Toolkit.ProceduralGeometry
         {
             UVCoords.Add(uvCoordinates);
             return AddVertex(coordinates);
-        }
-
-        /// <summary>
-        /// Adds a disconnected, named vertex to the geometry
-        /// </summary>
-        /// <param name="coordinates">The coordinates of the vertex position</param>
-        /// <param name="name">The unique name identified which should be assigned to the vertex</param>
-        /// <returns>The index of the created vertex</returns>
-        public int AddVertex(Vector3 coordinates, string name)
-        {
-            if (NamedVertices.ContainsKey(name))
-            {
-                if (Vertices[NamedVertices[name]].Equals(coordinates))
-                {
-                    return NamedVertices[name];
-                }
-                else
-                {
-                    i5Debug.LogError("The vertex name already exists and has another coordinate", this);
-                    return -1;
-                }
-            }
-            else
-            {
-                int index = AddVertex(coordinates);
-                NamedVertices.Add(name, index);
-                return index;
-            }
         }
 
         /// <summary>

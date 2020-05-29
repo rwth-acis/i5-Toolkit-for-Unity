@@ -27,18 +27,20 @@ namespace i5.Toolkit.ProceduralGeometry
             Material = material;
         }
 
-        public void ConstructObject()
+        public GameObject ConstructObject()
         {
-            GameObject go = ObjectPool<GameObject>.RequestResource(() => { return new GameObject("Object Constructor Result"); });
+            GameObject gameObject = ObjectPool<GameObject>.RequestResource(() => { return new GameObject("Object Constructor Result"); });
 
-            go.name = GeometryConstructor.Name;
+            gameObject.name = GeometryConstructor.Name;
 
-            MeshFilter meshFilter = ComponentUtilities.GetOrAddComponent<MeshFilter>(go);
-            MeshRenderer meshRenderer = ComponentUtilities.GetOrAddComponent<MeshRenderer>(go);
+            MeshFilter meshFilter = ComponentUtilities.GetOrAddComponent<MeshFilter>(gameObject);
+            MeshRenderer meshRenderer = ComponentUtilities.GetOrAddComponent<MeshRenderer>(gameObject);
 
             meshRenderer.material = Material.ConstructMaterial();
             Mesh mesh = GeometryConstructor.ConstructMesh();
             meshFilter.sharedMesh = mesh;
+
+            return gameObject;
         }
     }
 }

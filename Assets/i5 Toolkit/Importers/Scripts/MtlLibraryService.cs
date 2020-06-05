@@ -57,7 +57,7 @@ public class MtlLibraryService : IService
                 new[] { "\r\n", "\r", "\n" },
                 StringSplitOptions.None);
             // parse the lines to get a list of MaterialData which are described in the library
-            List<MaterialConstructor> materialsInLibrary = ParseMaterialLibrary(libraryContent);
+            List<MaterialConstructor> materialsInLibrary = ParseMaterialLibrary(uri, libraryContent);
             // create the entry for the material library
             libraries.Add(libraryName, new Dictionary<string, MaterialConstructor>());
             // create the material entries for each material in the library
@@ -74,7 +74,7 @@ public class MtlLibraryService : IService
         }
     }
 
-    private List<MaterialConstructor> ParseMaterialLibrary(string[] libraryContent)
+    private List<MaterialConstructor> ParseMaterialLibrary(Uri uri, string[] libraryContent)
     {
         List<MaterialConstructor> materials = new List<MaterialConstructor>();
         MaterialConstructor current = null;
@@ -171,7 +171,8 @@ public class MtlLibraryService : IService
                     else if (trimmedLine.StartsWith("map_Kd"))
                     {
                         string texturePath = trimmedLine.Substring(6).TrimStart();
-                        // TODO: store texture path in material
+                        string fullUri = UriUtils.RewriteUriPath(uri, texturePath);
+                        current.SetTexture("_MainTex", new TextureConstructor(fullUri));
                     }
                 }
                 else

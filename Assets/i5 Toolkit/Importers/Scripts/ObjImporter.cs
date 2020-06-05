@@ -66,7 +66,7 @@ namespace i5.Toolkit.ModelImporters
             {
                 if (!mtlLibraryService.LibraryLoaded(parseResult.LibraryPath))
                 {
-                    string mtlUri = RewriteUriPath(uri, parseResult.LibraryPath);
+                    string mtlUri = UriUtils.RewriteUriPath(uri, parseResult.LibraryPath);
                     string libraryName = System.IO.Path.GetFileNameWithoutExtension(uri.LocalPath);
                     bool successful = await mtlLibraryService.LoadLibraryAsyc(new Uri(mtlUri), libraryName);
                     if (!successful)
@@ -78,6 +78,8 @@ namespace i5.Toolkit.ModelImporters
                 MaterialConstructor mat = mtlLibraryService.GetMaterialConstructor(
                     System.IO.Path.GetFileNameWithoutExtension(uri.LocalPath),
                     parseResult.MaterialName);
+
+                await mat.FetchDependencies();
 
                 parseResult.ObjectConstructor.Material = mat;
 
@@ -394,51 +396,5 @@ namespace i5.Toolkit.ModelImporters
                 return parseSuccess;
             }
         }
-
-        private string RewriteUriPath(Uri uri, string relativeFilePath)
-        {
-            string mtlLibUrl = uri.GetLeftPart(UriPartial.Authority);
-            // add all segments except of the last one which is the file name
-            for (int i = 0; i < uri.Segments.Length - 1; i++)
-            {
-                mtlLibUrl += uri.Segments[i];
-            }
-            mtlLibUrl += relativeFilePath;
-            mtlLibUrl += uri.Query;
-            return mtlLibUrl;
-        }
-
-        //private async Task<List<MtlParseResult>> ParseMaterials(Uri uri, ObjParseResult parseRes)
-        //{
-        //    List<MtlParseResult> materials = new List<MtlParseResult>();
-
-        //    ServiceManager.GetService<MtlParser>().ExtendedLogging = ExtendedLogging;
-
-        //    // first get the material files
-        //    foreach (string mtlLibName in parseRes.MtlLibs)
-        //    {
-        //        string mtlLibUrl = uri.GetLeftPart(UriPartial.Authority);
-        //        // add all segments except of the last one which is the file name
-        //        for (int i = 0; i < uri.Segments.Length - 1; i++)
-        //        {
-        //            mtlLibUrl += uri.Segments[i];
-        //        }
-        //        mtlLibUrl += mtlLibName;
-        //        mtlLibUrl += uri.Query;
-        //        Response matResponse = await Rest.GetAsync(mtlLibUrl);
-        //        if (matResponse.Successful)
-        //        {
-        //            List<MtlParseResult> parsedMaterials = ServiceManager.GetService<MtlParser>().ParseMaterials(matResponse.ResponseBody, Shader.Find("Standard"));
-        //            materials.AddRange(parsedMaterials);
-        //        }
-        //        else
-        //        {
-        //            i5Debug.LogError(matResponse.ResponseBody, this);
-        //            materials.Add(new MtlParseResult(new Material(Shader.Find("Standard"))));
-        //        }
-        //    }
-
-        //    return materials;
-        //}
     }
 }

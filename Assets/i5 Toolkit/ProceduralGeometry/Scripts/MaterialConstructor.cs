@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class MaterialConstructor
@@ -12,6 +13,11 @@ public class MaterialConstructor
 
     private Dictionary<string, float> floatValues;
 
+    private Dictionary<string, TextureConstructor> textureConstructors;
+    private Dictionary<string, Texture2D> textures;
+
+
+
     public MaterialConstructor() : this("Standard")
     {
     }
@@ -21,6 +27,7 @@ public class MaterialConstructor
         ShaderName = shaderName;
         Name = "New Material";
         floatValues = new Dictionary<string, float>();
+        textureConstructors = new Dictionary<string, TextureConstructor>();
     }
 
     public void SetFloat(string name, float value)
@@ -35,6 +42,31 @@ public class MaterialConstructor
         }
     }
 
+    public void SetTexture(string name, TextureConstructor value)
+    {
+        if (textureConstructors.ContainsKey(name))
+        {
+            textureConstructors[name] = value;
+        }
+        else
+        {
+            textureConstructors.Add(name, value);
+        }
+    }
+
+    public async Task FetchDependencies()
+    {
+        textures = new Dictionary<string, Texture2D>();
+        foreach(KeyValuePair<string, TextureConstructor> tc in textureConstructors)
+        {
+            Texture2D tex = await tc.Value.FetchTextureAsync();
+            if (tex != null)
+            {
+                textures.Add(tc.Key, tex);
+            }
+        }
+    }
+
     public Material ConstructMaterial()
     {
         Material mat = new Material(Shader.Find(ShaderName));
@@ -43,6 +75,10 @@ public class MaterialConstructor
         foreach(KeyValuePair<string, float> setCommand in floatValues)
         {
             mat.SetFloat(setCommand.Key, setCommand.Value);
+        }
+        foreach(KeyValuePair<string, Texture2D> textureEntry in textures)
+        {
+            mat.SetTexture(textureEntry.Key, textureEntry.Value);
         }
         return mat;
     }

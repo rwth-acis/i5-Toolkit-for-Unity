@@ -15,8 +15,23 @@ public class TextureConstructor
         LoadPath = loadPath;
     }
 
-    public Texture2D ConstructTexture()
+    public async Task<Texture2D> FetchTextureAsync()
     {
-        return new Texture2D(2, 2);
+        i5Debug.Log(LoadPath,this);
+        using (UnityWebRequest req = UnityWebRequestTexture.GetTexture(LoadPath))
+        {
+            await req.SendWebRequest();
+
+            if (req.isNetworkError || req.isHttpError)
+            {
+                i5Debug.LogError("Error fetching texture: " + req.error, this);
+                return null;
+            }
+            else
+            {
+                Texture2D texture = DownloadHandlerTexture.GetContent(req);
+                return texture;
+            }
+        }
     }
 }

@@ -56,6 +56,7 @@ namespace i5.Toolkit.ServiceCore
             if (instance.registeredServices.ContainsKey(typeof(T)))
             {
                 i5Debug.LogError("An instance of this service is already registered", instance);
+                return;
             }
             instance.registeredServices.Add(typeof(T), service);
 

@@ -5,13 +5,14 @@ using UnityEngine;
 
 public class ObjParseResult
 {
-    public List<ObjectConstructor> ConstructedObjects { get; private set; }
+    public ObjectConstructor ObjectConstructor { get; private set; }
 
-    public List<string> MtlLibs { get; }
+    public string LibraryPath { get; set; }
+
+    public string MaterialName { get; set; }
 
     public ObjParseResult()
     {
-        ConstructedObjects = new List<ObjectConstructor>();
-        MtlLibs = new List<string>();
+        ObjectConstructor = new ObjectConstructor();
     }
 }

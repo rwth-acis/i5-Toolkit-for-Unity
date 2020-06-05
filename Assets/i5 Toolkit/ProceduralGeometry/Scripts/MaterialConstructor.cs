@@ -6,6 +6,8 @@ public class MaterialConstructor
 {
     public string ShaderName { get; set; }
 
+    public string Name { get; set; }
+
     public Color Color { get; set; } = Color.white;
 
     private Dictionary<string, float> floatValues;
@@ -17,6 +19,7 @@ public class MaterialConstructor
     public MaterialConstructor(string shaderName)
     {
         ShaderName = shaderName;
+        Name = "New Material";
         floatValues = new Dictionary<string, float>();
     }
 
@@ -35,6 +38,7 @@ public class MaterialConstructor
     public Material ConstructMaterial()
     {
         Material mat = new Material(Shader.Find(ShaderName));
+        mat.name = Name;
         mat.color = Color;
         foreach(KeyValuePair<string, float> setCommand in floatValues)
         {

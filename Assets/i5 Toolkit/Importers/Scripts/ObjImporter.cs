@@ -19,21 +19,30 @@ namespace i5.Toolkit.ModelImporters
         // the id of the pool with GameObjects that are set up with a MeshFilter and Renderer
         private int meshObjectPoolId;
 
+        private MtlLibraryService mtlLibraryService;
+
         public bool ExtendedLogging { get; set; }
+
+        public void Initialize(ServiceManager owner)
+        {
+            if (ServiceManager.ServiceExists<MtlLibraryService>())
+            {
+                mtlLibraryService = ServiceManager.GetService<MtlLibraryService>();
+            }
+            else
+            {
+                mtlLibraryService = new MtlLibraryService();
+                ServiceManager.RegisterService(mtlLibraryService);
+            }
+
+            meshObjectPoolId = ObjectPool<GameObject>.CreateNewPool();
+        }
 
         public void Cleanup()
         {
             ObjectPool<GameObject>.RemovePool(meshObjectPoolId, (go) => { GameObject.Destroy(go); });
 
-            ServiceManager.RemoveService<MtlParser>();
-        }
-
-        public void Initialize(ServiceManager owner)
-        {
-            MtlParser mtlParser = new MtlParser();
-            ServiceManager.RegisterService(mtlParser);
-
-            meshObjectPoolId = ObjectPool<GameObject>.CreateNewPool();
+            ServiceManager.RemoveService<MtlLibraryService>();
         }
 
         public async Task<GameObject> ImportAsync(string url)
@@ -51,11 +60,28 @@ namespace i5.Toolkit.ModelImporters
             GameObject parentObject = ObjectPool<GameObject>.RequestResource(() => { return new GameObject(); });
             parentObject.name = System.IO.Path.GetFileNameWithoutExtension(uri.LocalPath);
 
-            List<ObjectConstructor> constructedObjects = await ParseModelAsync(resp.ResponseBody);
+            List<ObjParseResult> parseResults = await ParseModelAsync(resp.ResponseBody);
 
-            foreach(ObjectConstructor objectConstructor in constructedObjects)
+            foreach(ObjParseResult parseResult in parseResults)
             {
-                objectConstructor.ConstructObject(parentObject.transform);
+                if (!mtlLibraryService.LibraryLoaded(parseResult.LibraryPath))
+                {
+                    string mtlUri = RewriteUriPath(uri, parseResult.LibraryPath);
+                    string libraryName = System.IO.Path.GetFileNameWithoutExtension(uri.LocalPath);
+                    bool successful = await mtlLibraryService.LoadLibraryAsyc(new Uri(mtlUri), libraryName);
+                    if (!successful)
+                    {
+                        i5Debug.LogError("Could not load .mtl file " + parseResult.LibraryPath, this);
+                    }
+                }
+
+                MaterialConstructor mat = mtlLibraryService.GetMaterialConstructor(
+                    System.IO.Path.GetFileNameWithoutExtension(uri.LocalPath),
+                    parseResult.MaterialName);
+
+                parseResult.ObjectConstructor.Material = mat;
+
+                parseResult.ObjectConstructor.ConstructObject(parentObject.transform);
             }
             
             return parentObject;
@@ -71,9 +97,9 @@ namespace i5.Toolkit.ModelImporters
             return resp;
         }
 
-        private async Task<List<ObjectConstructor>> ParseModelAsync(string objContent)
+        private async Task<List<ObjParseResult>> ParseModelAsync(string objContent)
         {
-            List<ObjectConstructor> res = await Task.Run(() =>
+            List<ObjParseResult> res = await Task.Run(() =>
             {
                 string[] contentLines = objContent.Split('\n');
                 return ParseObj(contentLines);
@@ -81,9 +107,9 @@ namespace i5.Toolkit.ModelImporters
             return res;
         }
 
-        private List<ObjectConstructor> ParseObj(string[] contentLines)
+        private List<ObjParseResult> ParseObj(string[] contentLines)
         {
-            List<ObjectConstructor> constructedObjects = new List<ObjectConstructor>();
+            List<ObjParseResult> constructedObjects = new List<ObjParseResult>();
             // the list of vertices, sorted by the original indices
             // this list is used to look up the correct vertices when the faces are defined
             List<Vector3> vertices = new List<Vector3>();
@@ -95,7 +121,7 @@ namespace i5.Toolkit.ModelImporters
             Dictionary<VertexData, int> vertexDataToIndex = new Dictionary<VertexData, int>();
 
 
-            ObjectConstructor objConstructor = new ObjectConstructor();
+            ObjParseResult current = new ObjParseResult();
             string materialLibrary = "";
             // count the errors in the parsing process
             int numberOfErrors = 0;
@@ -186,7 +212,7 @@ namespace i5.Toolkit.ModelImporters
                             // if UV index and normal index are defined:
                             if (vertexData.UseUvIndex && vertexData.UseNormalVectorIndex)
                             {
-                                geometryVertexIndex = objConstructor.GeometryConstructor.AddVertex(
+                                geometryVertexIndex = current.ObjectConstructor.GeometryConstructor.AddVertex(
                                 vertices[vertexData.vertexIndex],
                                 uvCoordinates[vertexData.uvIndex],
                                 normals[vertexData.normalVectorIndex]);
@@ -194,7 +220,7 @@ namespace i5.Toolkit.ModelImporters
                             // another option is that only the normal vector is defined
                             else if (vertexData.UseNormalVectorIndex)
                             {
-                                geometryVertexIndex = objConstructor.GeometryConstructor.AddVertex(
+                                geometryVertexIndex = current.ObjectConstructor.GeometryConstructor.AddVertex(
                                     vertices[vertexData.vertexIndex],
                                     normals[vertexData.normalVectorIndex]
                                     );
@@ -202,7 +228,7 @@ namespace i5.Toolkit.ModelImporters
                             // nothing apart from the vertex coordinates is defined
                             else
                             {
-                                geometryVertexIndex = objConstructor.GeometryConstructor.AddVertex(
+                                geometryVertexIndex = current.ObjectConstructor.GeometryConstructor.AddVertex(
                                     vertices[vertexData.vertexIndex]
                                     );
                             }
@@ -223,38 +249,41 @@ namespace i5.Toolkit.ModelImporters
 
                     if (strFaceIndices.Length == 3) // it is a triangle
                     {
-                        objConstructor.GeometryConstructor.AddTriangle(faceIndices[0], faceIndices[1], faceIndices[2]);
+                        current.ObjectConstructor.GeometryConstructor.AddTriangle(faceIndices[0], faceIndices[1], faceIndices[2]);
                     }
                     else if (strFaceIndices.Length == 4) // it is a quad
                     {
-                        objConstructor.GeometryConstructor.AddQuad(faceIndices[0], faceIndices[1], faceIndices[2], faceIndices[3]);
+                        current.ObjectConstructor.GeometryConstructor.AddQuad(faceIndices[0], faceIndices[1], faceIndices[2], faceIndices[3]);
                     }
                     else
                     {
                         int[] fanIndices = new int[faceIndices.Length - 1];
                         Array.Copy(faceIndices, 1, fanIndices, 0, fanIndices.Length);
-                        objConstructor.GeometryConstructor.AddTriangleFan(faceIndices[0], fanIndices);
+                        current.ObjectConstructor.GeometryConstructor.AddTriangleFan(faceIndices[0], fanIndices);
                     }
                 }
                 else if (line.StartsWith("o "))
                 {
                     // object names introduce new objects in Blender exports
-                    if (objConstructor.GeometryConstructor.Vertices.Count > 0)
+                    if (current.ObjectConstructor.GeometryConstructor.Vertices.Count > 0)
                     {
-                        // if the existing geometryConstructor already has content: add it to the list and start a new one
-                        constructedObjects.Add(objConstructor);
-                        objConstructor = new ObjectConstructor();
+                        // if the existing parse result already has content: add it to the list and start a new one
+                        constructedObjects.Add(current);
+                        current = new ObjParseResult();
                     }
-                    objConstructor.GeometryConstructor.Name = line.Substring(1).Trim();
+                    current.ObjectConstructor.GeometryConstructor.Name = line.Substring(1).Trim();
                 }
                 else if (line.StartsWith("mtllib "))
                 {
                     // reference to a material file; save this in the result so that we can query for this outside of the thread later
                     materialLibrary = line.Substring(6).Trim();
                 }
-                else if (line.StartsWith("usemtl"))
+                else if (line.StartsWith("usemtl "))
                 {
-                    // TODO: store material somewhere; also handle the case that an object has multiple materials
+                    // use the last seen library path to find the material
+                    current.LibraryPath = materialLibrary;
+                    // store the material name
+                    current.MaterialName = line.Substring(6).Trim();
                 }
                 else if (line.StartsWith("#"))
                 {
@@ -265,9 +294,9 @@ namespace i5.Toolkit.ModelImporters
                 }
             }
 
-            if (objConstructor.GeometryConstructor.Vertices.Count > 0)
+            if (current.ObjectConstructor.GeometryConstructor.Vertices.Count > 0)
             {
-                constructedObjects.Add(objConstructor);
+                constructedObjects.Add(current);
             }
             else
             {
@@ -366,37 +395,50 @@ namespace i5.Toolkit.ModelImporters
             }
         }
 
-        private async Task<List<MtlParseResult>> ParseMaterials(Uri uri, ObjParseResult parseRes)
+        private string RewriteUriPath(Uri uri, string relativeFilePath)
         {
-            List<MtlParseResult> materials = new List<MtlParseResult>();
-
-            ServiceManager.GetService<MtlParser>().ExtendedLogging = ExtendedLogging;
-
-            // first get the material files
-            foreach (string mtlLibName in parseRes.MtlLibs)
+            string mtlLibUrl = uri.GetLeftPart(UriPartial.Authority);
+            // add all segments except of the last one which is the file name
+            for (int i = 0; i < uri.Segments.Length - 1; i++)
             {
-                string mtlLibUrl = uri.GetLeftPart(UriPartial.Authority);
-                // add all segments except of the last one which is the file name
-                for (int i = 0; i < uri.Segments.Length - 1; i++)
-                {
-                    mtlLibUrl += uri.Segments[i];
-                }
-                mtlLibUrl += mtlLibName;
-                mtlLibUrl += uri.Query;
-                Response matResponse = await Rest.GetAsync(mtlLibUrl);
-                if (matResponse.Successful)
-                {
-                    List<MtlParseResult> parsedMaterials = ServiceManager.GetService<MtlParser>().ParseMaterials(matResponse.ResponseBody, Shader.Find("Standard"));
-                    materials.AddRange(parsedMaterials);
-                }
-                else
-                {
-                    i5Debug.LogError(matResponse.ResponseBody, this);
-                    materials.Add(new MtlParseResult(new Material(Shader.Find("Standard"))));
-                }
+                mtlLibUrl += uri.Segments[i];
             }
-
-            return materials;
+            mtlLibUrl += relativeFilePath;
+            mtlLibUrl += uri.Query;
+            return mtlLibUrl;
         }
+
+        //private async Task<List<MtlParseResult>> ParseMaterials(Uri uri, ObjParseResult parseRes)
+        //{
+        //    List<MtlParseResult> materials = new List<MtlParseResult>();
+
+        //    ServiceManager.GetService<MtlParser>().ExtendedLogging = ExtendedLogging;
+
+        //    // first get the material files
+        //    foreach (string mtlLibName in parseRes.MtlLibs)
+        //    {
+        //        string mtlLibUrl = uri.GetLeftPart(UriPartial.Authority);
+        //        // add all segments except of the last one which is the file name
+        //        for (int i = 0; i < uri.Segments.Length - 1; i++)
+        //        {
+        //            mtlLibUrl += uri.Segments[i];
+        //        }
+        //        mtlLibUrl += mtlLibName;
+        //        mtlLibUrl += uri.Query;
+        //        Response matResponse = await Rest.GetAsync(mtlLibUrl);
+        //        if (matResponse.Successful)
+        //        {
+        //            List<MtlParseResult> parsedMaterials = ServiceManager.GetService<MtlParser>().ParseMaterials(matResponse.ResponseBody, Shader.Find("Standard"));
+        //            materials.AddRange(parsedMaterials);
+        //        }
+        //        else
+        //        {
+        //            i5Debug.LogError(matResponse.ResponseBody, this);
+        //            materials.Add(new MtlParseResult(new Material(Shader.Find("Standard"))));
+        //        }
+        //    }
+
+        //    return materials;
+        //}
     }
 }

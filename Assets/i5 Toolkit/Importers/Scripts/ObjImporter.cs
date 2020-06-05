@@ -19,8 +19,6 @@ namespace i5.Toolkit.ModelImporters
         // the id of the pool with GameObjects that are set up with a MeshFilter and Renderer
         private int meshObjectPoolId;
 
-        private Material tempMaterial;
-
         public bool ExtendedLogging { get; set; }
 
         public void Cleanup()
@@ -36,8 +34,6 @@ namespace i5.Toolkit.ModelImporters
             ServiceManager.RegisterService(mtlParser);
 
             meshObjectPoolId = ObjectPool<GameObject>.CreateNewPool();
-
-            tempMaterial = new Material(Shader.Find("Standard"));
         }
 
         public async Task<GameObject> ImportAsync(string url)
@@ -55,14 +51,12 @@ namespace i5.Toolkit.ModelImporters
             GameObject parentObject = ObjectPool<GameObject>.RequestResource(() => { return new GameObject(); });
             parentObject.name = System.IO.Path.GetFileNameWithoutExtension(uri.LocalPath);
 
-            ObjParseResult parsedContent = await ParseModelAsync(resp.ResponseBody);
+            List<ObjectConstructor> constructedObjects = await ParseModelAsync(resp.ResponseBody);
 
-            foreach(ObjectConstructor objectConstructor in parsedContent.ConstructedObjects)
+            foreach(ObjectConstructor objectConstructor in constructedObjects)
             {
                 objectConstructor.ConstructObject(parentObject.transform);
             }
-
-            // TODO: load material libraries
             
             return parentObject;
         }
@@ -77,19 +71,19 @@ namespace i5.Toolkit.ModelImporters
             return resp;
         }
 
-        private async Task<ObjParseResult> ParseModelAsync(string objContent)
+        private async Task<List<ObjectConstructor>> ParseModelAsync(string objContent)
         {
-            ObjParseResult parseRes = await Task.Run(() =>
+            List<ObjectConstructor> res = await Task.Run(() =>
             {
                 string[] contentLines = objContent.Split('\n');
                 return ParseObj(contentLines);
             });
-            return parseRes;
+            return res;
         }
 
-        private ObjParseResult ParseObj(string[] contentLines)
+        private List<ObjectConstructor> ParseObj(string[] contentLines)
         {
-            ObjParseResult parseRes = new ObjParseResult();
+            List<ObjectConstructor> constructedObjects = new List<ObjectConstructor>();
             // the list of vertices, sorted by the original indices
             // this list is used to look up the correct vertices when the faces are defined
             List<Vector3> vertices = new List<Vector3>();
@@ -102,6 +96,7 @@ namespace i5.Toolkit.ModelImporters
 
 
             ObjectConstructor objConstructor = new ObjectConstructor();
+            string materialLibrary = "";
             // count the errors in the parsing process
             int numberOfErrors = 0;
 
@@ -247,7 +242,7 @@ namespace i5.Toolkit.ModelImporters
                     if (objConstructor.GeometryConstructor.Vertices.Count > 0)
                     {
                         // if the existing geometryConstructor already has content: add it to the list and start a new one
-                        parseRes.ConstructedObjects.Add(objConstructor);
+                        constructedObjects.Add(objConstructor);
                         objConstructor = new ObjectConstructor();
                     }
                     objConstructor.GeometryConstructor.Name = line.Substring(1).Trim();
@@ -255,7 +250,11 @@ namespace i5.Toolkit.ModelImporters
                 else if (line.StartsWith("mtllib "))
                 {
                     // reference to a material file; save this in the result so that we can query for this outside of the thread later
-                    parseRes.MtlLibs.Add(line.Substring(6).Trim());
+                    materialLibrary = line.Substring(6).Trim();
+                }
+                else if (line.StartsWith("usemtl"))
+                {
+                    // TODO: store material somewhere; also handle the case that an object has multiple materials
                 }
                 else if (line.StartsWith("#"))
                 {
@@ -268,7 +267,7 @@ namespace i5.Toolkit.ModelImporters
 
             if (objConstructor.GeometryConstructor.Vertices.Count > 0)
             {
-                parseRes.ConstructedObjects.Add(objConstructor);
+                constructedObjects.Add(objConstructor);
             }
             else
             {
@@ -277,7 +276,7 @@ namespace i5.Toolkit.ModelImporters
             }
 
             // check if objects could be constructed, if not: write an error message
-            if (parseRes.ConstructedObjects.Count == 0)
+            if (constructedObjects.Count == 0)
             {
                 numberOfErrors++;
                 i5Debug.LogError("No objects could be constructed. Please check if the given file has the right format.", this);
@@ -288,7 +287,7 @@ namespace i5.Toolkit.ModelImporters
             {
                 string warningMsg = "The process finished with " + numberOfErrors + " errors.";
                 // if something was created, tell this
-                if (parseRes.ConstructedObjects.Count > 0)
+                if (constructedObjects.Count > 0)
                 {
                     warningMsg += " A partial mesh may still have been generated.";
                 }
@@ -304,7 +303,7 @@ namespace i5.Toolkit.ModelImporters
                 i5Debug.Log("Successfully parsed obj file.", this);
             }
 
-            return parseRes;
+            return constructedObjects;
         }
 
         /// <summary>

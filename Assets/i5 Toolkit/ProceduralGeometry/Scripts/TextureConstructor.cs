@@ -17,7 +17,6 @@ public class TextureConstructor
 
     public async Task<Texture2D> FetchTextureAsync()
     {
-        i5Debug.Log(LoadPath,this);
         using (UnityWebRequest req = UnityWebRequestTexture.GetTexture(LoadPath))
         {
             await req.SendWebRequest();

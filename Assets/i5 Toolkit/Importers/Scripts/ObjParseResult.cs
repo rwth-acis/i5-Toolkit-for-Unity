@@ -3,15 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjParseResult : MonoBehaviour
+public class ObjParseResult
 {
-    public List<GeometryConstructor> ConstructedGeometries { get; private set; }
+    public List<ObjectConstructor> ConstructedObjects { get; private set; }
 
     public List<string> MtlLibs { get; }
 
     public ObjParseResult()
     {
-        ConstructedGeometries = new List<GeometryConstructor>();
+        ConstructedObjects = new List<ObjectConstructor>();
         MtlLibs = new List<string>();
     }
 }

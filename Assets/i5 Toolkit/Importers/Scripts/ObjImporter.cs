@@ -57,8 +57,10 @@ namespace i5.Toolkit.ModelImporters
 
             ObjParseResult parsedContent = await ParseModelAsync(resp.ResponseBody);
 
-            // TODO: return mapping how to apply materials
-            ConstructGeometries(parentObject, parsedContent);
+            foreach(ObjectConstructor objectConstructor in parsedContent.ConstructedObjects)
+            {
+                objectConstructor.ConstructObject(parentObject.transform);
+            }
 
             // TODO: load material libraries
             
@@ -99,7 +101,7 @@ namespace i5.Toolkit.ModelImporters
             Dictionary<VertexData, int> vertexDataToIndex = new Dictionary<VertexData, int>();
 
 
-            GeometryConstructor geometryConstructor = new GeometryConstructor();
+            ObjectConstructor objConstructor = new ObjectConstructor();
             // count the errors in the parsing process
             int numberOfErrors = 0;
 
@@ -189,7 +191,7 @@ namespace i5.Toolkit.ModelImporters
                             // if UV index and normal index are defined:
                             if (vertexData.UseUvIndex && vertexData.UseNormalVectorIndex)
                             {
-                                geometryVertexIndex = geometryConstructor.AddVertex(
+                                geometryVertexIndex = objConstructor.GeometryConstructor.AddVertex(
                                 vertices[vertexData.vertexIndex],
                                 uvCoordinates[vertexData.uvIndex],
                                 normals[vertexData.normalVectorIndex]);
@@ -197,7 +199,7 @@ namespace i5.Toolkit.ModelImporters
                             // another option is that only the normal vector is defined
                             else if (vertexData.UseNormalVectorIndex)
                             {
-                                geometryVertexIndex = geometryConstructor.AddVertex(
+                                geometryVertexIndex = objConstructor.GeometryConstructor.AddVertex(
                                     vertices[vertexData.vertexIndex],
                                     normals[vertexData.normalVectorIndex]
                                     );
@@ -205,7 +207,7 @@ namespace i5.Toolkit.ModelImporters
                             // nothing apart from the vertex coordinates is defined
                             else
                             {
-                                geometryVertexIndex = geometryConstructor.AddVertex(
+                                geometryVertexIndex = objConstructor.GeometryConstructor.AddVertex(
                                     vertices[vertexData.vertexIndex]
                                     );
                             }
@@ -226,29 +228,29 @@ namespace i5.Toolkit.ModelImporters
 
                     if (strFaceIndices.Length == 3) // it is a triangle
                     {
-                        geometryConstructor.AddTriangle(faceIndices[0], faceIndices[1], faceIndices[2]);
+                        objConstructor.GeometryConstructor.AddTriangle(faceIndices[0], faceIndices[1], faceIndices[2]);
                     }
                     else if (strFaceIndices.Length == 4) // it is a quad
                     {
-                        geometryConstructor.AddQuad(faceIndices[0], faceIndices[1], faceIndices[2], faceIndices[3]);
+                        objConstructor.GeometryConstructor.AddQuad(faceIndices[0], faceIndices[1], faceIndices[2], faceIndices[3]);
                     }
                     else
                     {
                         int[] fanIndices = new int[faceIndices.Length - 1];
                         Array.Copy(faceIndices, 1, fanIndices, 0, fanIndices.Length);
-                        geometryConstructor.AddTriangleFan(faceIndices[0], fanIndices);
+                        objConstructor.GeometryConstructor.AddTriangleFan(faceIndices[0], fanIndices);
                     }
                 }
                 else if (line.StartsWith("o "))
                 {
                     // object names introduce new objects in Blender exports
-                    if (geometryConstructor.Vertices.Count > 0)
+                    if (objConstructor.GeometryConstructor.Vertices.Count > 0)
                     {
                         // if the existing geometryConstructor already has content: add it to the list and start a new one
-                        parseRes.ConstructedGeometries.Add(geometryConstructor);
-                        geometryConstructor = new GeometryConstructor();
+                        parseRes.ConstructedObjects.Add(objConstructor);
+                        objConstructor = new ObjectConstructor();
                     }
-                    geometryConstructor.Name = line.Substring(1).Trim();
+                    objConstructor.GeometryConstructor.Name = line.Substring(1).Trim();
                 }
                 else if (line.StartsWith("mtllib "))
                 {
@@ -264,9 +266,9 @@ namespace i5.Toolkit.ModelImporters
                 }
             }
 
-            if (geometryConstructor.Vertices.Count > 0)
+            if (objConstructor.GeometryConstructor.Vertices.Count > 0)
             {
-                parseRes.ConstructedGeometries.Add(geometryConstructor);
+                parseRes.ConstructedObjects.Add(objConstructor);
             }
             else
             {
@@ -275,7 +277,7 @@ namespace i5.Toolkit.ModelImporters
             }
 
             // check if objects could be constructed, if not: write an error message
-            if (parseRes.ConstructedGeometries.Count == 0)
+            if (parseRes.ConstructedObjects.Count == 0)
             {
                 numberOfErrors++;
                 i5Debug.LogError("No objects could be constructed. Please check if the given file has the right format.", this);
@@ -286,7 +288,7 @@ namespace i5.Toolkit.ModelImporters
             {
                 string warningMsg = "The process finished with " + numberOfErrors + " errors.";
                 // if something was created, tell this
-                if (parseRes.ConstructedGeometries.Count > 0)
+                if (parseRes.ConstructedObjects.Count > 0)
                 {
                     warningMsg += " A partial mesh may still have been generated.";
                 }
@@ -362,22 +364,6 @@ namespace i5.Toolkit.ModelImporters
                 parseSuccess = false;
                 vertexData = default;
                 return parseSuccess;
-            }
-        }
-
-        private void ConstructGeometries(GameObject parentObject, ObjParseResult parsedContent)
-        {
-            // construct the geometry
-            foreach (GeometryConstructor geometryConstructor in parsedContent.ConstructedGeometries)
-            {
-                GameObject childObj = ObjectPool<GameObject>.RequestResource(meshObjectPoolId, () => { return new GameObject(); });
-                childObj.transform.parent = parentObject.transform;
-                childObj.name = geometryConstructor.Name;
-                MeshFilter meshFilter = ComponentUtilities.GetOrAddComponent<MeshFilter>(childObj);
-                MeshRenderer meshRenderer = ComponentUtilities.GetOrAddComponent<MeshRenderer>(childObj);
-                meshRenderer.material = tempMaterial;
-                Mesh mesh = geometryConstructor.ConstructMesh();
-                meshFilter.sharedMesh = mesh;
             }
         }
 

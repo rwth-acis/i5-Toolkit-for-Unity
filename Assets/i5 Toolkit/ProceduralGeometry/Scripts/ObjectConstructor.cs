@@ -27,16 +27,27 @@ namespace i5.Toolkit.ProceduralGeometry
             Material = material;
         }
 
-        public GameObject ConstructObject()
+        public GameObject ConstructObject(Transform parent = null)
         {
             GameObject gameObject = ObjectPool<GameObject>.RequestResource(() => { return new GameObject("Object Constructor Result"); });
 
             gameObject.name = GeometryConstructor.Name;
+            if (parent != null)
+            {
+                gameObject.transform.parent = parent;
+            }
 
             MeshFilter meshFilter = ComponentUtilities.GetOrAddComponent<MeshFilter>(gameObject);
             MeshRenderer meshRenderer = ComponentUtilities.GetOrAddComponent<MeshRenderer>(gameObject);
 
-            meshRenderer.material = Material.ConstructMaterial();
+            if (Material != null)
+            {
+                meshRenderer.material = Material.ConstructMaterial();
+            }
+            else
+            {
+                meshRenderer.material = new Material(Shader.Find("Standard"));
+            }
             Mesh mesh = GeometryConstructor.ConstructMesh();
             meshFilter.sharedMesh = mesh;
 

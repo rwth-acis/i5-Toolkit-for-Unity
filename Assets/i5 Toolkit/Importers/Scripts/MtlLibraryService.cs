@@ -111,8 +111,8 @@ public class MtlLibraryService : IService
             {
                 if (current != null)
                 {
-                    // Ka sets the albedo color
-                    if (trimmedLine.StartsWith("Ka"))
+                    // Kd sets the diffuse color
+                    if (trimmedLine.StartsWith("Kd"))
                     {
                         string[] strValues = trimmedLine.Substring(2).TrimStart().Split(' ');
                         if (strValues.Length != 3)

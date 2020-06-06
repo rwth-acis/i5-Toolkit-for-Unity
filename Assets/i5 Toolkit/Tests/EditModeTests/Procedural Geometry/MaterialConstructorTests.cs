@@ -9,7 +9,7 @@ using UnityEngine.TestTools;
 
 namespace i5.Toolkit.Tests.ProceduralGeometry
 {
-    public class MaterialConstructorTest
+    public class MaterialConstructorTests
     {
         [SetUp]
         public void ResetScene()
@@ -18,7 +18,7 @@ namespace i5.Toolkit.Tests.ProceduralGeometry
         }
 
         [Test]
-        public void CreateMaterial_DefaultSettings()
+        public void ConstructMaterial_DefaultSettings_GeneratesStandardMaterial()
         {
             MaterialConstructor materialConstructor = new MaterialConstructor();
             Material mat = materialConstructor.ConstructMaterial();
@@ -28,7 +28,7 @@ namespace i5.Toolkit.Tests.ProceduralGeometry
         }
 
         [Test]
-        public void CreateMaterial_NameChanged()
+        public void ConstructMaterial_NameSet_MaterialHasName()
         {
             MaterialConstructor materialConstructor = new MaterialConstructor();
             string materialName = "My Material " + Random.Range(0, 10000);
@@ -40,7 +40,7 @@ namespace i5.Toolkit.Tests.ProceduralGeometry
         }
 
         [Test]
-        public void CreateMaterial_ColorChanged()
+        public void ConstructMaterial_ColorSet_MaterialHasColor()
         {
             MaterialConstructor materialConstructor = new MaterialConstructor();
             Color color = Random.ColorHSV();
@@ -52,7 +52,7 @@ namespace i5.Toolkit.Tests.ProceduralGeometry
         }
 
         [Test]
-        public void CreateMaterial_ShaderChanged()
+        public void ConstructMaterial_ShaderSet_MaterialHasShader()
         {
             MaterialConstructor materialConstructor = new MaterialConstructor();
             string shaderName = "Unlit/Color";
@@ -63,21 +63,19 @@ namespace i5.Toolkit.Tests.ProceduralGeometry
         }
 
         [Test]
-        public async void FetchDependencies_NoTexturesProvided()
+        public async void FetchDependencies_NoTexturesProvided_NoError()
         {
             MaterialConstructor materialConstructor = new MaterialConstructor();
             await materialConstructor.FetchDependencies();
         }
 
         [Test]
-        public void CreateMaterial_TexturesNotFetched()
+        public void ConstructMaterial_TexturesNotFetched_GivesWarning()
         {
             MaterialConstructor materialConstructor = new MaterialConstructor();
             materialConstructor.SetTexture("_MainTex", new TextureConstructor(""));
             Material mat = materialConstructor.ConstructMaterial();
             LogAssert.Expect(LogType.Warning, new Regex(@"\w*Constructed material which has unfetched textures.\w*"));
-            Assert.IsNotNull(mat);
-            Assert.AreEqual(Shader.Find("Standard"), mat.shader);
         }
     }
 }

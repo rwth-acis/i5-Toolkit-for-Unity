@@ -8,10 +8,10 @@ using UnityEngine.TestTools;
 
 namespace i5.Toolkit.Tests.ProceduralGeometry
 {
-    public class GeometryConstructorTest
+    public class GeometryConstructorTests
     {
         [Test]
-        public void GC_EmptyMesh()
+        public void ConstructMesh_NoInput_GeneratesEmptyMesh()
         {
             GeometryConstructor gc = new GeometryConstructor();
             Mesh mesh = gc.ConstructMesh();
@@ -21,7 +21,7 @@ namespace i5.Toolkit.Tests.ProceduralGeometry
         }
 
         [Test]
-        public void GC_AddVertex()
+        public void AddVertex_OneVertexAdded_VertexStored()
         {
             GeometryConstructor gc = new GeometryConstructor();
             int index = gc.AddVertex(Vector3.one);
@@ -31,7 +31,7 @@ namespace i5.Toolkit.Tests.ProceduralGeometry
         }
 
         [Test]
-        public void GC_Triangle()
+        public void AddTriangle_TriangleAdded_TriangleInMesh()
         {
             GeometryConstructor gc = new GeometryConstructor();
             Vector3[] vertices = new Vector3[]
@@ -60,7 +60,7 @@ namespace i5.Toolkit.Tests.ProceduralGeometry
         }
 
         [Test]
-        public void GC_Quad()
+        public void AddQuad_QuadAdded_QuadInMesh()
         {
             GeometryConstructor gc = new GeometryConstructor();
             Vector3[] vertices = new Vector3[]
@@ -92,7 +92,7 @@ namespace i5.Toolkit.Tests.ProceduralGeometry
         }
 
         [Test]
-        public void GC_TriangleFan()
+        public void AddTriangleFan_FanAdded_FanInMesh()
         {
             GeometryConstructor gc = new GeometryConstructor();
             Vector3[] vertices = new Vector3[]

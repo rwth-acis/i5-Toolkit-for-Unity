@@ -9,7 +9,7 @@ using UnityEngine.TestTools;
 
 namespace i5.Toolkit.Tests.ProceduralGeometry
 {
-    public class ObjectConstructorTest
+    public class ObjectConstructorTests
     {
         [SetUp]
         public void ResetScene()
@@ -21,7 +21,7 @@ namespace i5.Toolkit.Tests.ProceduralGeometry
         /// Test that should not produce 
         /// </summary>
         [Test]
-        public void CreateObjWithoutGeometry()
+        public void ConstructObject_EmptyGeometry_CreatesEmptyGOWithWarning()
         {
             ObjectConstructor objConstructor = new ObjectConstructor();
             GameObject result = objConstructor.ConstructObject();
@@ -30,7 +30,7 @@ namespace i5.Toolkit.Tests.ProceduralGeometry
         }
 
         [Test]
-        public void CreateObjWithNullGeometry()
+        public void ConstructObject_GeometryConstructorNull_CreatesEmptyGOWithWarning()
         {
             ObjectConstructor objConstructor = new ObjectConstructor();
             objConstructor.GeometryConstructor = null;
@@ -53,7 +53,7 @@ namespace i5.Toolkit.Tests.ProceduralGeometry
         }
 
         [Test]
-        public void CreateObj_WithGeometry_NullMaterial()
+        public void ConstructObject_WithGeometryNullMaterial_GOWithMeshDefaultMat()
         {
             ObjectConstructor objConstructor = new ObjectConstructor();
             GeometryConstructor geometryConstructor = CreateSimpleGeometry();
@@ -65,7 +65,7 @@ namespace i5.Toolkit.Tests.ProceduralGeometry
         }
 
         [Test]
-        public void CreateObj_WithGeometry_DefaultMaterial()
+        public void CreateObj_WithGeometryDefaultMaterial_GOWithMeshDefaultMat()
         {
             ObjectConstructor objConstructor = new ObjectConstructor();
             GeometryConstructor geometryConstructor = CreateSimpleGeometry();

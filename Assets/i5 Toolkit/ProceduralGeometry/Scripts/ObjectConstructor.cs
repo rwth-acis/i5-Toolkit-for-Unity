@@ -7,12 +7,12 @@ namespace i5.Toolkit.ProceduralGeometry
     {
         public GeometryConstructor GeometryConstructor { get; set; }
         
-        public MaterialConstructor Material { get; set; }
+        public MaterialConstructor MaterialConstructor { get; set; }
 
         public ObjectConstructor()
         {
             GeometryConstructor = new GeometryConstructor();
-            Material = new MaterialConstructor();
+            MaterialConstructor = new MaterialConstructor();
         }
 
         public ObjectConstructor(GeometryConstructor geometryConstructor)
@@ -22,32 +22,42 @@ namespace i5.Toolkit.ProceduralGeometry
 
         public ObjectConstructor(GeometryConstructor geometryConstructor, MaterialConstructor material) : this(geometryConstructor)
         {
-            Material = material;
+            MaterialConstructor = material;
         }
 
         public GameObject ConstructObject(Transform parent = null)
         {
             GameObject gameObject = ObjectPool<GameObject>.RequestResource(() => { return new GameObject("Object Constructor Result"); });
 
-            gameObject.name = GeometryConstructor.Name;
             if (parent != null)
             {
                 gameObject.transform.parent = parent;
             }
 
-            MeshFilter meshFilter = ComponentUtilities.GetOrAddComponent<MeshFilter>(gameObject);
-            MeshRenderer meshRenderer = ComponentUtilities.GetOrAddComponent<MeshRenderer>(gameObject);
-
-            if (Material != null)
+            if (GeometryConstructor == null || GeometryConstructor.Vertices.Count == 0)
             {
-                meshRenderer.material = Material.ConstructMaterial();
+                Debug.LogWarning("Created object with empty geometry."
+                + "This might not be intended since you can just use Instantiate oder the ObjectPool.");
+                gameObject.name = "New GameObject";
             }
             else
             {
-                meshRenderer.material = new Material(Shader.Find("Standard"));
+                gameObject.name = GeometryConstructor.Name;
+
+                MeshFilter meshFilter = ComponentUtilities.GetOrAddComponent<MeshFilter>(gameObject);
+                MeshRenderer meshRenderer = ComponentUtilities.GetOrAddComponent<MeshRenderer>(gameObject);
+
+                if (MaterialConstructor != null)
+                {
+                    meshRenderer.material = MaterialConstructor.ConstructMaterial();
+                }
+                else
+                {
+                    meshRenderer.material = new Material(Shader.Find("Standard"));
+                }
+                Mesh mesh = GeometryConstructor.ConstructMesh();
+                meshFilter.sharedMesh = mesh;
             }
-            Mesh mesh = GeometryConstructor.ConstructMesh();
-            meshFilter.sharedMesh = mesh;
 
             return gameObject;
         }

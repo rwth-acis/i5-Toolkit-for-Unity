@@ -77,9 +77,12 @@ namespace i5.Toolkit.ProceduralGeometry
             {
                 mat.SetFloat(setCommand.Key, setCommand.Value);
             }
-            foreach (KeyValuePair<string, Texture2D> textureEntry in textures)
+            if (textures != null)
             {
-                mat.SetTexture(textureEntry.Key, textureEntry.Value);
+                foreach (KeyValuePair<string, Texture2D> textureEntry in textures)
+                {
+                    mat.SetTexture(textureEntry.Key, textureEntry.Value);
+                }
             }
             return mat;
         }

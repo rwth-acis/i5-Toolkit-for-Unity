@@ -79,7 +79,7 @@ namespace i5.Toolkit.ModelImporters
 
                 await mat.FetchDependencies();
 
-                parseResult.ObjectConstructor.Material = mat;
+                parseResult.ObjectConstructor.MaterialConstructor = mat;
 
                 parseResult.ObjectConstructor.ConstructObject(parentObject.transform);
             }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using i5.Toolkit.Utilities;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 
@@ -60,10 +61,13 @@ namespace i5.Toolkit.ProceduralGeometry
             textures = new Dictionary<string, Texture2D>();
             foreach (KeyValuePair<string, TextureConstructor> tc in textureConstructors)
             {
-                Texture2D tex = await tc.Value.FetchTextureAsync();
-                if (tex != null)
+                if (!textures.ContainsKey(tc.Key))
                 {
-                    textures.Add(tc.Key, tex);
+                    Texture2D tex = await tc.Value.FetchTextureAsync();
+                    if (tex != null)
+                    {
+                        textures.Add(tc.Key, tex);
+                    }
                 }
             }
         }
@@ -83,6 +87,11 @@ namespace i5.Toolkit.ProceduralGeometry
                 {
                     mat.SetTexture(textureEntry.Key, textureEntry.Value);
                 }
+            }
+            if (textures == null && textureConstructors.Count > 0)
+            {
+                i5Debug.LogWarning("Constructed material which has unfetched textures." + 
+                    " Call FetchDependencies() to turn all TextureConstructors into Textures", this);
             }
             return mat;
         }

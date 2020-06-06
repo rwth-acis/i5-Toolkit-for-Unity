@@ -6,7 +6,7 @@ using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
 
-namespace Tests
+namespace i5.Toolkit.Tests.ProceduralGeometry
 {
     public class GeometryConstructorTest
     {

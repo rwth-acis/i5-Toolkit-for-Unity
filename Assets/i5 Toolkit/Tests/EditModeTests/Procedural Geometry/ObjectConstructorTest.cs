@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using i5.Toolkit.ProceduralGeometry;
 using NUnit.Framework;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.TestTools;
 
-namespace Tests
+namespace i5.Toolkit.Tests.ProceduralGeometry
 {
     public class ObjectConstructorTest
     {
@@ -24,15 +25,8 @@ namespace Tests
         {
             ObjectConstructor objConstructor = new ObjectConstructor();
             GameObject result = objConstructor.ConstructObject();
-            LogAssert.Expect(LogType.Warning, "Created object with empty geometry."
-                + "This might not be intended since you can just use Instantiate oder the ObjectPool.");
-            Assert.IsNotNull(result);
-            Assert.AreEqual("New GameObject", result.name);
 
-            MeshFilter meshFilter = result.GetComponent<MeshFilter>();
-            Assert.IsNull(meshFilter);
-            MeshRenderer meshRenderer = result.GetComponent<MeshRenderer>();
-            Assert.IsNull(meshRenderer);
+            AssertEmptyGameObjectCreated(result, "New GameObject");
         }
 
         [Test]
@@ -41,8 +35,14 @@ namespace Tests
             ObjectConstructor objConstructor = new ObjectConstructor();
             objConstructor.GeometryConstructor = null;
             GameObject result = objConstructor.ConstructObject();
-            LogAssert.Expect(LogType.Warning, "Created object with empty geometry."
-                + "This might not be intended since you can just use Instantiate oder the ObjectPool.");
+
+            AssertEmptyGameObjectCreated(result, "New GameObject");
+        }
+
+        private void AssertEmptyGameObjectCreated(GameObject result, string name)
+        {
+            LogAssert.Expect(LogType.Warning, new Regex(@"\w*Created object with empty geometry."
+                + @"This might not be intended since you can just use Instantiate oder the ObjectPool.\w*"));
             Assert.IsNotNull(result);
             Assert.AreEqual("New GameObject", result.name);
 
@@ -61,15 +61,7 @@ namespace Tests
             objConstructor.MaterialConstructor = null;
             GameObject result = objConstructor.ConstructObject();
 
-            Assert.IsNotNull(result);
-            Assert.AreEqual(geometryConstructor.Name, result.name);
-
-            MeshFilter meshFilter = result.GetComponent<MeshFilter>();
-            Assert.IsNotNull(meshFilter);
-            MeshRenderer meshRenderer = result.GetComponent<MeshRenderer>();
-            Assert.IsNotNull(meshRenderer);
-
-            Assert.AreEqual(Shader.Find("Standard"), meshRenderer.sharedMaterial.shader);
+            AssertGameObjectWithGeometry(result, geometryConstructor, out MeshRenderer meshRenderer);
         }
 
         [Test]
@@ -80,15 +72,7 @@ namespace Tests
             objConstructor.GeometryConstructor = geometryConstructor;
             GameObject result = objConstructor.ConstructObject();
 
-            Assert.IsNotNull(result);
-            Assert.AreEqual(geometryConstructor.Name, result.name);
-
-            MeshFilter meshFilter = result.GetComponent<MeshFilter>();
-            Assert.IsNotNull(meshFilter);
-            MeshRenderer meshRenderer = result.GetComponent<MeshRenderer>();
-            Assert.IsNotNull(meshRenderer);
-
-            Assert.AreEqual(Shader.Find("Standard"), meshRenderer.sharedMaterial.shader);
+            AssertGameObjectWithGeometry(result, geometryConstructor, out MeshRenderer meshRenderer);
         }
 
         [Test]
@@ -103,17 +87,24 @@ namespace Tests
             objConstructor.MaterialConstructor = materialConstructor;
             GameObject result = objConstructor.ConstructObject();
 
+            AssertGameObjectWithGeometry(result, geometryConstructor, out MeshRenderer meshRenderer);
+
+            Assert.AreEqual(Color.red, meshRenderer.sharedMaterial.color);
+            Assert.AreEqual(materialConstructor.Name, meshRenderer.sharedMaterial.name);
+        }
+
+        private void AssertGameObjectWithGeometry(GameObject result, GeometryConstructor geometryConstructor,
+            out MeshRenderer meshRenderer)
+        {
             Assert.IsNotNull(result);
             Assert.AreEqual(geometryConstructor.Name, result.name);
 
             MeshFilter meshFilter = result.GetComponent<MeshFilter>();
             Assert.IsNotNull(meshFilter);
-            MeshRenderer meshRenderer = result.GetComponent<MeshRenderer>();
+            meshRenderer = result.GetComponent<MeshRenderer>();
             Assert.IsNotNull(meshRenderer);
 
             Assert.AreEqual(Shader.Find("Standard"), meshRenderer.sharedMaterial.shader);
-            Assert.AreEqual(Color.red, meshRenderer.sharedMaterial.color);
-            Assert.AreEqual(materialConstructor.Name, meshRenderer.sharedMaterial.name);
         }
 
         private GeometryConstructor CreateSimpleGeometry()

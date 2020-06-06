@@ -1,7 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using i5.Toolkit.Spawners;
+﻿using i5.Toolkit.Spawners;
 using NUnit.Framework;
+using System.Collections;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.TestTools;

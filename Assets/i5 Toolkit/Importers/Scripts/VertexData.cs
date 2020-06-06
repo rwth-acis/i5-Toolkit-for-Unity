@@ -1,50 +1,50 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
-public struct VertexData
+namespace i5.Toolkit.ModelImporters
 {
-    public int vertexIndex;
-    public int uvIndex;
-    public int normalVectorIndex;
-
-    public bool UseUvIndex { get => uvIndex >= 0; }
-    public bool UseNormalVectorIndex { get => normalVectorIndex >= 0; }
-
-    public VertexData(int vertexIndex)
+    public struct VertexData
     {
-        this.vertexIndex = vertexIndex;
-        uvIndex = -1;
-        normalVectorIndex = -1;
-    }
+        public int vertexIndex;
+        public int uvIndex;
+        public int normalVectorIndex;
 
-    public VertexData(int vertexIndex, int normalVectorIndex)
-    {
-        this.vertexIndex = vertexIndex;
-        this.normalVectorIndex = normalVectorIndex;
-        uvIndex = -1;
-    }
+        public bool UseUvIndex { get => uvIndex >= 0; }
+        public bool UseNormalVectorIndex { get => normalVectorIndex >= 0; }
 
-    public VertexData(int vertexIndex, int uvIndex, int normalVectorIndex)
-    {
-        this.vertexIndex = vertexIndex;
-        this.uvIndex = uvIndex;
-        this.normalVectorIndex = normalVectorIndex;
-    }
+        public VertexData(int vertexIndex)
+        {
+            this.vertexIndex = vertexIndex;
+            uvIndex = -1;
+            normalVectorIndex = -1;
+        }
 
-    public override bool Equals(object obj)
-    {
-        if (!(obj is VertexData)) return false;
-        VertexData vd = (VertexData)obj;
+        public VertexData(int vertexIndex, int normalVectorIndex)
+        {
+            this.vertexIndex = vertexIndex;
+            this.normalVectorIndex = normalVectorIndex;
+            uvIndex = -1;
+        }
 
-        return vertexIndex == vd.vertexIndex
-            && uvIndex == vd.uvIndex
-            && normalVectorIndex == vd.normalVectorIndex;
-    }
+        public VertexData(int vertexIndex, int uvIndex, int normalVectorIndex)
+        {
+            this.vertexIndex = vertexIndex;
+            this.uvIndex = uvIndex;
+            this.normalVectorIndex = normalVectorIndex;
+        }
 
-    public override int GetHashCode()
-    {
-        return Tuple.Create(vertexIndex, uvIndex, normalVectorIndex).GetHashCode();
+        public override bool Equals(object obj)
+        {
+            if (!(obj is VertexData)) return false;
+            VertexData vd = (VertexData)obj;
+
+            return vertexIndex == vd.vertexIndex
+                && uvIndex == vd.uvIndex
+                && normalVectorIndex == vd.normalVectorIndex;
+        }
+
+        public override int GetHashCode()
+        {
+            return Tuple.Create(vertexIndex, uvIndex, normalVectorIndex).GetHashCode();
+        }
     }
 }

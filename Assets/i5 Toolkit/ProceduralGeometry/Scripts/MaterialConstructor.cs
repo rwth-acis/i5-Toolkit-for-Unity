@@ -1,85 +1,87 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 
-public class MaterialConstructor
+namespace i5.Toolkit.ProceduralGeometry
 {
-    public string ShaderName { get; set; }
-
-    public string Name { get; set; }
-
-    public Color Color { get; set; } = Color.white;
-
-    private Dictionary<string, float> floatValues;
-
-    private Dictionary<string, TextureConstructor> textureConstructors;
-    private Dictionary<string, Texture2D> textures;
-
-
-
-    public MaterialConstructor() : this("Standard")
+    public class MaterialConstructor
     {
-    }
+        public string ShaderName { get; set; }
 
-    public MaterialConstructor(string shaderName)
-    {
-        ShaderName = shaderName;
-        Name = "New Material";
-        floatValues = new Dictionary<string, float>();
-        textureConstructors = new Dictionary<string, TextureConstructor>();
-    }
+        public string Name { get; set; }
 
-    public void SetFloat(string name, float value)
-    {
-        if (floatValues.ContainsKey(name))
+        public Color Color { get; set; } = Color.white;
+
+        private Dictionary<string, float> floatValues;
+
+        private Dictionary<string, TextureConstructor> textureConstructors;
+        private Dictionary<string, Texture2D> textures;
+
+
+
+        public MaterialConstructor() : this("Standard")
         {
-            floatValues[name] = value;
         }
-        else
-        {
-            floatValues.Add(name, value);
-        }
-    }
 
-    public void SetTexture(string name, TextureConstructor value)
-    {
-        if (textureConstructors.ContainsKey(name))
+        public MaterialConstructor(string shaderName)
         {
-            textureConstructors[name] = value;
+            ShaderName = shaderName;
+            Name = "New Material";
+            floatValues = new Dictionary<string, float>();
+            textureConstructors = new Dictionary<string, TextureConstructor>();
         }
-        else
-        {
-            textureConstructors.Add(name, value);
-        }
-    }
 
-    public async Task FetchDependencies()
-    {
-        textures = new Dictionary<string, Texture2D>();
-        foreach(KeyValuePair<string, TextureConstructor> tc in textureConstructors)
+        public void SetFloat(string name, float value)
         {
-            Texture2D tex = await tc.Value.FetchTextureAsync();
-            if (tex != null)
+            if (floatValues.ContainsKey(name))
             {
-                textures.Add(tc.Key, tex);
+                floatValues[name] = value;
+            }
+            else
+            {
+                floatValues.Add(name, value);
             }
         }
-    }
 
-    public Material ConstructMaterial()
-    {
-        Material mat = new Material(Shader.Find(ShaderName));
-        mat.name = Name;
-        mat.color = Color;
-        foreach(KeyValuePair<string, float> setCommand in floatValues)
+        public void SetTexture(string name, TextureConstructor value)
         {
-            mat.SetFloat(setCommand.Key, setCommand.Value);
+            if (textureConstructors.ContainsKey(name))
+            {
+                textureConstructors[name] = value;
+            }
+            else
+            {
+                textureConstructors.Add(name, value);
+            }
         }
-        foreach(KeyValuePair<string, Texture2D> textureEntry in textures)
+
+        public async Task FetchDependencies()
         {
-            mat.SetTexture(textureEntry.Key, textureEntry.Value);
+            textures = new Dictionary<string, Texture2D>();
+            foreach (KeyValuePair<string, TextureConstructor> tc in textureConstructors)
+            {
+                Texture2D tex = await tc.Value.FetchTextureAsync();
+                if (tex != null)
+                {
+                    textures.Add(tc.Key, tex);
+                }
+            }
         }
-        return mat;
+
+        public Material ConstructMaterial()
+        {
+            Material mat = new Material(Shader.Find(ShaderName));
+            mat.name = Name;
+            mat.color = Color;
+            foreach (KeyValuePair<string, float> setCommand in floatValues)
+            {
+                mat.SetFloat(setCommand.Key, setCommand.Value);
+            }
+            foreach (KeyValuePair<string, Texture2D> textureEntry in textures)
+            {
+                mat.SetTexture(textureEntry.Key, textureEntry.Value);
+            }
+            return mat;
+        }
     }
 }

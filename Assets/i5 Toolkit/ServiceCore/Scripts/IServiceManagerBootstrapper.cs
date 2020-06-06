@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IServiceManagerBootstrapper
+namespace i5.Toolkit.ServiceCore
 {
-    void InitializeServiceManager();
+    public interface IServiceManagerBootstrapper
+    {
+        void InitializeServiceManager();
+    }
 }

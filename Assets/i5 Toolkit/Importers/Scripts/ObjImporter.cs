@@ -3,11 +3,9 @@ using i5.Toolkit.ServiceCore;
 using i5.Toolkit.Utilities;
 using Microsoft.MixedReality.Toolkit.Utilities;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.Networking;
 
 namespace i5.Toolkit.ModelImporters
 {

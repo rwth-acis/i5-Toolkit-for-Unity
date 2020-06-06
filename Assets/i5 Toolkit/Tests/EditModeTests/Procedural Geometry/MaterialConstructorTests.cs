@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Text.RegularExpressions;
-using i5.Toolkit.ProceduralGeometry;
+﻿using i5.Toolkit.ProceduralGeometry;
 using NUnit.Framework;
+using System.Text.RegularExpressions;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.TestTools;
@@ -63,19 +61,19 @@ namespace i5.Toolkit.Tests.ProceduralGeometry
         }
 
         [Test]
-        public async void FetchDependencies_NoTexturesProvided_NoError()
-        {
-            MaterialConstructor materialConstructor = new MaterialConstructor();
-            await materialConstructor.FetchDependencies();
-        }
-
-        [Test]
         public void ConstructMaterial_TexturesNotFetched_GivesWarning()
         {
             MaterialConstructor materialConstructor = new MaterialConstructor();
             materialConstructor.SetTexture("_MainTex", new TextureConstructor(""));
             Material mat = materialConstructor.ConstructMaterial();
             LogAssert.Expect(LogType.Warning, new Regex(@"\w*Constructed material which has unfetched textures.\w*"));
+        }
+
+        [Test]
+        public async void FetchDependencies_NoTexturesProvided_NoError()
+        {
+            MaterialConstructor materialConstructor = new MaterialConstructor();
+            await materialConstructor.FetchDependencies();
         }
     }
 }

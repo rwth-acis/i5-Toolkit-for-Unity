@@ -1,6 +1,7 @@
 ﻿using i5.Toolkit.ProceduralGeometry;
 using i5.Toolkit.ServiceCore;
 using i5.Toolkit.Utilities;
+using i5.Toolkit.Utilities.ContentLoaders;
 using Microsoft.MixedReality.Toolkit.Utilities;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,8 @@ namespace i5.Toolkit.ModelImporters
 
         public bool ExtendedLogging { get; set; }
 
+        public IContentLoader ContentLoader { get; set; }
+
         public void Cleanup()
         {
         }
@@ -23,6 +26,7 @@ namespace i5.Toolkit.ModelImporters
         public void Initialize(ServiceManager owner)
         {
             libraries = new Dictionary<string, Dictionary<string, MaterialConstructor>>();
+            ContentLoader = new MRTKRestLoader();
         }
 
         public MaterialConstructor GetMaterialConstructor(string materialLibrary, string materialName)
@@ -48,10 +52,11 @@ namespace i5.Toolkit.ModelImporters
             // if we have already cached the library, do not load it again
             if (libraries.ContainsKey(libraryName))
             {
+                i5Debug.LogWarning("Library " + libraryName + " was already loaded", this);
                 return true;
             }
 
-            Response matLibResponse = await Rest.GetAsync(uri.ToString());
+            Response matLibResponse = await ContentLoader.LoadAsync(uri.ToString());
             if (matLibResponse.Successful)
             {
                 // we now have the entire content of the library

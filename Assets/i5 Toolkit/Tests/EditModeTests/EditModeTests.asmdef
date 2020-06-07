@@ -1,7 +1,8 @@
 {
     "name": "EditModeTests",
     "references": [
-        "i5.Toolkit"
+        "i5.Toolkit",
+        "Microsoft.MixedReality.Toolkit"
     ],
     "optionalUnityReferences": [
         "TestAssemblies"

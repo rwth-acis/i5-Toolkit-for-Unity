@@ -1,6 +1,7 @@
 ﻿using i5.Toolkit.ProceduralGeometry;
 using i5.Toolkit.ServiceCore;
 using i5.Toolkit.Utilities;
+using i5.Toolkit.Utilities.ContentLoaders;
 using Microsoft.MixedReality.Toolkit.Utilities;
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,8 @@ namespace i5.Toolkit.ModelImporters
 
         public bool ExtendedLogging { get; set; }
 
+        public IContentLoader ContentLoader { get; set; }
+
         public void Initialize(ServiceManager owner)
         {
             if (ServiceManager.ServiceExists<MtlLibraryService>())
@@ -32,6 +35,8 @@ namespace i5.Toolkit.ModelImporters
                 mtlLibraryService = new MtlLibraryService();
                 ServiceManager.RegisterService(mtlLibraryService);
             }
+
+            ContentLoader = new MRTKRestLoader();
 
             meshObjectPoolId = ObjectPool<GameObject>.CreateNewPool();
         }
@@ -47,18 +52,18 @@ namespace i5.Toolkit.ModelImporters
         {
             i5Debug.Log("Starting import", this);
             Uri uri = new Uri(url);
-            Response resp = await FetchModelAsync(uri);
+            WebResponse<string> resp = await FetchModelAsync(uri);
 
             if (!resp.Successful)
             {
-                i5Debug.LogError("Error fetching obj. No object imported.\n" + resp.ResponseBody, this);
+                i5Debug.LogError("Error fetching obj. No object imported.\n" + resp.ErrorMessage, this);
                 return null;
             }
 
             GameObject parentObject = ObjectPool<GameObject>.RequestResource(() => { return new GameObject(); });
             parentObject.name = System.IO.Path.GetFileNameWithoutExtension(uri.LocalPath);
 
-            List<ObjParseResult> parseResults = await ParseModelAsync(resp.ResponseBody);
+            List<ObjParseResult> parseResults = await ParseModelAsync(resp.Content);
 
             foreach(ObjParseResult parseResult in parseResults)
             {
@@ -87,13 +92,13 @@ namespace i5.Toolkit.ModelImporters
             return parentObject;
         }
 
-        private async Task<Response> FetchModelAsync(Uri uri)
+        private async Task<WebResponse<string>> FetchModelAsync(Uri uri)
         {
             if (!System.IO.Path.GetExtension(uri.LocalPath).Equals(".obj"))
             {
                 i5Debug.LogWarning("The given url does not seem to be a .obj file", this);
             }
-            Response resp = await Rest.GetAsync(uri.ToString());
+            WebResponse<string> resp = await ContentLoader.LoadAsync(uri.ToString());
             return resp;
         }
 

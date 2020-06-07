@@ -22,6 +22,15 @@ namespace i5.Toolkit.ServiceCore
 
         private static ServiceManager instance;
 
+        public static ServiceManager Instance
+        {
+            get
+            {
+                EnsureInstance();
+                return instance;
+            }
+        }
+
         private static void EnsureInstance()
         {
             if (instance == null)

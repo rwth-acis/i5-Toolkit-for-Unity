@@ -8,6 +8,6 @@ namespace i5.Toolkit.Utilities.ContentLoaders
 {
     public interface IContentLoader
     {
-        Task<Response> LoadAsync(string uri);
+        Task<WebResponse<string>> LoadAsync(string uri);
     }
 }

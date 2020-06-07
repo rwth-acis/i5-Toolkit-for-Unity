@@ -20,20 +20,15 @@ namespace i5.Toolkit.ProceduralGeometry
 
         public async Task<Texture2D> FetchTextureAsync()
         {
-            using (UnityWebRequest req = UnityWebRequestTexture.GetTexture(LoadPath))
+            WebResponse<Texture2D> resp = await TextureLoader.LoadTextureAsync(LoadPath);
+            if (resp.Successful)
             {
-                await req.SendWebRequest();
-
-                if (req.isNetworkError || req.isHttpError)
-                {
-                    i5Debug.LogError("Error fetching texture: " + req.error, this);
-                    return null;
-                }
-                else
-                {
-                    Texture2D texture = DownloadHandlerTexture.GetContent(req);
-                    return texture;
-                }
+                return resp.Content;
+            }
+            else
+            {
+                i5Debug.LogError(resp.ErrorMessage, this);
+                return null;
             }
         }
     }

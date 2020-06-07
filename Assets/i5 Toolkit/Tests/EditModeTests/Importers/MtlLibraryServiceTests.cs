@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using i5.Toolkit.ModelImporters;
 using i5.Toolkit.ProceduralGeometry;
 using i5.Toolkit.ServiceCore;
+using i5.Toolkit.Utilities;
 using i5.Toolkit.Utilities.ContentLoaders;
 using Microsoft.MixedReality.Toolkit.Utilities;
 using NUnit.Framework;
@@ -144,19 +145,19 @@ namespace i5.Toolkit.Tests.ModelImporters
             this.content = content;
         }
 
-        public Task<Response> LoadAsync(string uri)
+        public Task<WebResponse<string>> LoadAsync(string uri)
         {
-            Response resp = new Response(true, content, new byte[0], 200);
-            return new Task<Response>(() => { return resp; });
+            WebResponse<string> resp = new WebResponse<string>(content, new byte[0], 200);
+            return new Task<WebResponse<string>>(() => { return resp; });
         }
     }
 
     class FakeContentFailLoader : IContentLoader
     {
-        public Task<Response> LoadAsync(string uri)
+        public Task<WebResponse<string>> LoadAsync(string uri)
         {
-            Response resp = new Response(false, "This is a simulated fail", new byte[0], 404);
-            return new Task<Response>(() => { return resp; });
+            WebResponse<string> resp = new WebResponse<string>("This is a simulated fail", 404);
+            return new Task<WebResponse<string>>(() => { return resp; });
         }
     }
 }

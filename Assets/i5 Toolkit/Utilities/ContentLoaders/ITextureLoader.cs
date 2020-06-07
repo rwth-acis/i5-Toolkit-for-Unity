@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 
-public interface ITextureLoader
+namespace i5.Toolkit.Utilities
 {
-    Task<WebResponse<Texture2D>> LoadTextureAsync(string uri);
+    public interface ITextureLoader
+    {
+        Task<WebResponse<Texture2D>> LoadTextureAsync(string uri);
+    }
 }

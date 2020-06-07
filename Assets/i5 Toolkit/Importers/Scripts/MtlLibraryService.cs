@@ -56,11 +56,11 @@ namespace i5.Toolkit.ModelImporters
                 return true;
             }
 
-            Response matLibResponse = await ContentLoader.LoadAsync(uri.ToString());
+            WebResponse<string> matLibResponse = await ContentLoader.LoadAsync(uri.ToString());
             if (matLibResponse.Successful)
             {
                 // we now have the entire content of the library
-                string[] libraryContent = matLibResponse.ResponseBody.Split(
+                string[] libraryContent = matLibResponse.Content.Split(
                     new[] { "\r\n", "\r", "\n" },
                     StringSplitOptions.None);
                 // parse the lines to get a list of MaterialData which are described in the library
@@ -76,7 +76,7 @@ namespace i5.Toolkit.ModelImporters
             }
             else
             {
-                i5Debug.LogError(matLibResponse.ResponseBody, this);
+                i5Debug.LogError(matLibResponse.ErrorMessage, this);
                 return false;
             }
         }

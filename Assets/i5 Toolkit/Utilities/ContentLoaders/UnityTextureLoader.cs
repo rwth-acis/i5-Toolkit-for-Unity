@@ -4,24 +4,26 @@ using UnityEngine;
 using UnityEngine.Networking;
 using Microsoft.MixedReality.Toolkit.Utilities;
 
-
-public class UnityTextureLoader : ITextureLoader
+namespace i5.Toolkit.Utilities
 {
-    public async Task<WebResponse<Texture2D>> LoadTextureAsync(string uri)
+    public class UnityTextureLoader : ITextureLoader
     {
-        using (UnityWebRequest req = UnityWebRequestTexture.GetTexture(uri))
+        public async Task<WebResponse<Texture2D>> LoadTextureAsync(string uri)
         {
-            await req.SendWebRequest();
+            using (UnityWebRequest req = UnityWebRequestTexture.GetTexture(uri))
+            {
+                await req.SendWebRequest();
 
-            if (req.isNetworkError || req.isHttpError)
-            {
-                i5Debug.LogError("Error fetching texture: " + req.error, this);
-                return new WebResponse<Texture2D>(req.error, req.responseCode);
-            }
-            else
-            {
-                Texture2D texture = DownloadHandlerTexture.GetContent(req);
-                return new WebResponse<Texture2D>(texture, req.downloadHandler.data, req.responseCode);
+                if (req.isNetworkError || req.isHttpError)
+                {
+                    i5Debug.LogError("Error fetching texture: " + req.error, this);
+                    return new WebResponse<Texture2D>(req.error, req.responseCode);
+                }
+                else
+                {
+                    Texture2D texture = DownloadHandlerTexture.GetContent(req);
+                    return new WebResponse<Texture2D>(texture, req.downloadHandler.data, req.responseCode);
+                }
             }
         }
     }

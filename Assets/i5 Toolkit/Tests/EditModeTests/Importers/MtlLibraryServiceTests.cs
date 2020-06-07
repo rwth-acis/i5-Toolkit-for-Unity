@@ -121,6 +121,14 @@ namespace i5.Toolkit.Tests.ModelImporters
             Assert.AreEqual("BlueMat", res.Name);
         }
 
+        [Test]
+        public async void ExtendedLogging_Enabled_CommentsLogged()
+        {
+            mtlLibraryService.ContentLoader = fakeContentLoader;
+            await LoadLibrary();
+            LogAssert.Expect(LogType.Log, new Regex(@"\w*Comment found\w*"));
+        }
+
         private async Task LoadLibrary()
         {
             Uri testUri = new Uri("http://www.test.org/MatLib.mtl");

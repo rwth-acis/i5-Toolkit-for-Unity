@@ -10,9 +10,12 @@ namespace i5.Toolkit.ProceduralGeometry
     {
         public string LoadPath { get; set; }
 
+        public ITextureLoader TextureLoader { get; set; }
+
         public TextureConstructor(string loadPath)
         {
             LoadPath = loadPath;
+            TextureLoader = new UnityTextureLoader();
         }
 
         public async Task<Texture2D> FetchTextureAsync()

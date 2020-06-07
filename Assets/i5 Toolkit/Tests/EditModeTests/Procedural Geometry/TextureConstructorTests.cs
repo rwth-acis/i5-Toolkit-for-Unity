@@ -38,11 +38,12 @@ namespace i5.Toolkit.Tests.ProceduralGeometry
         public async void FetchTextureAsync_WebRequestSuccessful_ReturnsTexture()
         {
             TextureConstructor textureConstructor = new TextureConstructor(loadPath);
-            textureConstructor.TextureLoader = new FakeTextureLoader();
+            FakeTextureLoader fakeTextureLoader = new FakeTextureLoader();
+            textureConstructor.TextureLoader = fakeTextureLoader;
             Texture2D res = await textureConstructor.FetchTextureAsync();
+            WebResponse<Texture2D> expectedResp = await fakeTextureLoader.LoadTextureAsync("");
             Assert.NotNull(res);
-            Assert.AreEqual(2, res.width);
-            Assert.AreEqual(2, res.height);
+            Assert.AreEqual(expectedResp.Content, res);
         }
 
         [Test]

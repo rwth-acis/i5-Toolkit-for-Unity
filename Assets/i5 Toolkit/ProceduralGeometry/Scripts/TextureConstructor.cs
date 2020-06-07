@@ -6,7 +6,7 @@ using UnityEngine.Networking;
 
 namespace i5.Toolkit.ProceduralGeometry
 {
-    public class TextureConstructor
+    public class TextureConstructor : ITextureConstructor
     {
         public string LoadPath { get; set; }
 

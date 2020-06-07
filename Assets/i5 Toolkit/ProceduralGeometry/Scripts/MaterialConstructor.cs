@@ -15,7 +15,7 @@ namespace i5.Toolkit.ProceduralGeometry
 
         private Dictionary<string, float> floatValues;
 
-        private Dictionary<string, TextureConstructor> textureConstructors;
+        private Dictionary<string, ITextureConstructor> textureConstructors;
         private Dictionary<string, Texture2D> textures;
 
 
@@ -29,7 +29,7 @@ namespace i5.Toolkit.ProceduralGeometry
             ShaderName = shaderName;
             Name = "New Material";
             floatValues = new Dictionary<string, float>();
-            textureConstructors = new Dictionary<string, TextureConstructor>();
+            textureConstructors = new Dictionary<string, ITextureConstructor>();
         }
 
         public void SetFloat(string name, float value)
@@ -44,7 +44,7 @@ namespace i5.Toolkit.ProceduralGeometry
             }
         }
 
-        public void SetTexture(string name, TextureConstructor value)
+        public void SetTexture(string name, ITextureConstructor value)
         {
             if (textureConstructors.ContainsKey(name))
             {
@@ -56,10 +56,11 @@ namespace i5.Toolkit.ProceduralGeometry
             }
         }
 
-        public async Task FetchDependencies()
+        public async Task<bool> FetchDependencies()
         {
             textures = new Dictionary<string, Texture2D>();
-            foreach (KeyValuePair<string, TextureConstructor> tc in textureConstructors)
+            bool success = true;
+            foreach (KeyValuePair<string, ITextureConstructor> tc in textureConstructors)
             {
                 if (!textures.ContainsKey(tc.Key))
                 {
@@ -68,8 +69,13 @@ namespace i5.Toolkit.ProceduralGeometry
                     {
                         textures.Add(tc.Key, tex);
                     }
+                    else
+                    {
+                        success = false;
+                    }
                 }
             }
+            return success;
         }
 
         public Material ConstructMaterial()

@@ -1,6 +1,7 @@
 ﻿using i5.Toolkit.ProceduralGeometry;
 using NUnit.Framework;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.TestTools;
@@ -9,10 +10,15 @@ namespace i5.Toolkit.Tests.ProceduralGeometry
 {
     public class MaterialConstructorTests
     {
+        private FakeTextureConstructor fakeTextureConstructor;
+        private FakeTextureConstructorFail fakeTextureConstructorFail;
+
         [SetUp]
         public void ResetScene()
         {
             EditorSceneManager.OpenScene("Assets/i5 Toolkit/Tests/TestResources/SetupTestScene.unity");
+            fakeTextureConstructor = new FakeTextureConstructor();
+            fakeTextureConstructorFail = new FakeTextureConstructorFail();
         }
 
         [Test]
@@ -64,16 +70,66 @@ namespace i5.Toolkit.Tests.ProceduralGeometry
         public void ConstructMaterial_TexturesNotFetched_GivesWarning()
         {
             MaterialConstructor materialConstructor = new MaterialConstructor();
-            materialConstructor.SetTexture("_MainTex", new TextureConstructor(""));
+            materialConstructor.SetTexture("_MainTex", fakeTextureConstructor);
             Material mat = materialConstructor.ConstructMaterial();
             LogAssert.Expect(LogType.Warning, new Regex(@"\w*Constructed material which has unfetched textures.\w*"));
         }
 
         [Test]
-        public async void FetchDependencies_NoTexturesProvided_NoError()
+        public async void FetchDependencies_NoTexturesProvided_ReturnsTrue()
         {
             MaterialConstructor materialConstructor = new MaterialConstructor();
-            await materialConstructor.FetchDependencies();
+            bool success = await materialConstructor.FetchDependencies();
+            Assert.True(success);
+        }
+
+        [Test]
+        public async void FetchDependencies_TextureFetchSuccess_ReturnsTrue()
+        {
+            MaterialConstructor materialConstructor = new MaterialConstructor();
+            materialConstructor.SetTexture("tex", fakeTextureConstructor);
+            bool success = await materialConstructor.FetchDependencies();
+            Assert.True(success);
+        }
+
+        [Test]
+        public async void FetchDependencies_TextureFetchFail_ReturnsFalse()
+        {
+            MaterialConstructor materialConstructor = new MaterialConstructor();
+            materialConstructor.SetTexture("tex", fakeTextureConstructorFail);
+            bool success = await materialConstructor.FetchDependencies();
+            Assert.False(success);
+        }
+
+        [Test]
+        public async void ConstructMaterial_FetchedTexture_TextureSetInMaterial()
+        {
+            MaterialConstructor materialConstructor = new MaterialConstructor();
+            materialConstructor.SetTexture("_MainTex", fakeTextureConstructor);
+            bool success = await materialConstructor.FetchDependencies();
+            Assert.True(success);
+
+            Texture2D expectedTexture = await fakeTextureConstructor.FetchTextureAsync();
+
+            Material mat = materialConstructor.ConstructMaterial();
+            Assert.NotNull(mat.mainTexture);
+            Assert.AreEqual(fakeTextureConstructor.FetchTextureAsync(), mat.mainTexture);
+        }
+    }
+
+    class FakeTextureConstructor : ITextureConstructor
+    {
+        public Task<Texture2D> FetchTextureAsync()
+        {
+            return new Task<Texture2D>(() => { return new Texture2D(2, 2); });
+        }
+    }
+
+    class FakeTextureConstructorFail : ITextureConstructor
+    {
+        public Task<Texture2D> FetchTextureAsync()
+        {
+            return new Task<Texture2D>(() => { return null; });
         }
     }
 }

@@ -16,6 +16,8 @@ namespace i5.Toolkit.ServiceCore
 
         private List<IUpdateableService> updateableServices = new List<IUpdateableService>();
 
+        private bool inDestroyMode = false;
+
         // keep track of a list of services that should be removed and remove them at the end of the frame
         // this way, we are not modifying the list of services in the global cleanup at the end
         private List<Type> serviceTypesToRemove = new List<Type>();
@@ -80,13 +82,16 @@ namespace i5.Toolkit.ServiceCore
         public static void RemoveService<T>() where T : IService
         {
             EnsureInstance();
-            if (instance.registeredServices.ContainsKey(typeof(T)))
+            if (!instance.inDestroyMode)
             {
-                instance.registeredServices.Remove(typeof(T));
-            }
-            else
-            {
-                throw new InvalidOperationException("Tried to remove unregistered service");
+                if (instance.registeredServices.ContainsKey(typeof(T)))
+                {
+                    instance.registeredServices.Remove(typeof(T));
+                }
+                else
+                {
+                    throw new InvalidOperationException("Tried to remove unregistered service");
+                }
             }
         }
 
@@ -119,6 +124,7 @@ namespace i5.Toolkit.ServiceCore
 
         private void OnDestroy()
         {
+            inDestroyMode = true;
             foreach (KeyValuePair<Type, IService> service in registeredServices)
             {
                 service.Value.Cleanup();

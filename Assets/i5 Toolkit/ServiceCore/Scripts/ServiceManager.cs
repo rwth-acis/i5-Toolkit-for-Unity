@@ -82,7 +82,7 @@ namespace i5.Toolkit.ServiceCore
             EnsureInstance();
             if (instance.registeredServices.ContainsKey(typeof(T)))
             {
-                instance.serviceTypesToRemove.Add(typeof(T));
+                instance.registeredServices.Remove(typeof(T));
             }
             else
             {
@@ -114,15 +114,6 @@ namespace i5.Toolkit.ServiceCore
                 {
                     updateableServices[i].Update();
                 }
-            }
-
-            if (serviceTypesToRemove.Count > 0)
-            {
-                for (int i = 0; i < serviceTypesToRemove.Count; i++)
-                {
-                    registeredServices.Remove(serviceTypesToRemove[i]);
-                }
-                serviceTypesToRemove.Clear();
             }
         }
 

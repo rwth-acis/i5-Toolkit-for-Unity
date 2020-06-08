@@ -26,5 +26,26 @@ namespace i5.Toolkit.Tests.ModelImporters
             Assert.NotNull(objImporter.ContentLoader);
             Assert.True(objImporter.ContentLoader.GetType() == typeof(MRTKRestLoader));
         }
+
+        [Test]
+        public void Initialize_Initialized_MtlLibraryServiceRegistered()
+        {
+            ObjImporter objImporter = new ObjImporter();
+            objImporter.Initialize(ServiceManager.Instance);
+            bool exists = ServiceManager.ServiceExists<MtlLibraryService>();
+            Assert.True(exists);
+        }
+
+        [Test]
+        public void Cleaup_AfterCleanup_MtlLibraryServiceUnregistered()
+        {
+            ObjImporter objImporter = new ObjImporter();
+            objImporter.Initialize(ServiceManager.Instance);
+            bool exists = ServiceManager.ServiceExists<MtlLibraryService>();
+            Assert.True(exists);
+            objImporter.Cleanup();
+            exists = ServiceManager.ServiceExists<MtlLibraryService>();
+            Assert.False(exists);
+        }
     }
 }

@@ -2,7 +2,8 @@
     "name": "EditModeTests",
     "references": [
         "i5.Toolkit",
-        "Microsoft.MixedReality.Toolkit"
+        "Microsoft.MixedReality.Toolkit",
+        "i5.Toolkit.TestUtilities"
     ],
     "optionalUnityReferences": [
         "TestAssemblies"

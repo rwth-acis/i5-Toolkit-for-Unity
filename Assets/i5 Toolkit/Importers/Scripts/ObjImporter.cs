@@ -36,7 +36,10 @@ namespace i5.Toolkit.ModelImporters
                 ServiceManager.RegisterService(mtlLibraryService);
             }
 
-            ContentLoader = new MRTKRestLoader();
+            if (ContentLoader == null)
+            {
+                ContentLoader = new MRTKRestLoader();
+            }
 
             meshObjectPoolId = ObjectPool<GameObject>.CreateNewPool();
         }
@@ -82,9 +85,12 @@ namespace i5.Toolkit.ModelImporters
                     System.IO.Path.GetFileNameWithoutExtension(uri.LocalPath),
                     parseResult.MaterialName);
 
-                await mat.FetchDependencies();
+                if (mat != null)
+                {
+                    await mat.FetchDependencies();
 
-                parseResult.ObjectConstructor.MaterialConstructor = mat;
+                    parseResult.ObjectConstructor.MaterialConstructor = mat;
+                }
 
                 parseResult.ObjectConstructor.ConstructObject(parentObject.transform);
             }

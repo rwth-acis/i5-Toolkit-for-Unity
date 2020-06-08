@@ -9,6 +9,7 @@ using i5.Toolkit.ProceduralGeometry;
 using i5.Toolkit.ServiceCore;
 using i5.Toolkit.Utilities;
 using i5.Toolkit.Utilities.ContentLoaders;
+using i5.Toolkit.TestUtilities;
 using Microsoft.MixedReality.Toolkit.Utilities;
 using NUnit.Framework;
 using UnityEditor.SceneManagement;
@@ -134,30 +135,6 @@ namespace i5.Toolkit.Tests.ModelImporters
         {
             Uri testUri = new Uri("http://www.test.org/MatLib.mtl");
             await mtlLibraryService.LoadLibraryAsyc(testUri, libraryName);
-        }
-    }
-
-    class FakeContentLoader : IContentLoader
-    {
-        private string content;
-        public FakeContentLoader(string content)
-        {
-            this.content = content;
-        }
-
-        public Task<WebResponse<string>> LoadAsync(string uri)
-        {
-            WebResponse<string> resp = new WebResponse<string>(content, new byte[0], 200);
-            return new Task<WebResponse<string>>(() => { return resp; });
-        }
-    }
-
-    class FakeContentFailLoader : IContentLoader
-    {
-        public Task<WebResponse<string>> LoadAsync(string uri)
-        {
-            WebResponse<string> resp = new WebResponse<string>("This is a simulated fail", 404);
-            return new Task<WebResponse<string>>(() => { return resp; });
         }
     }
 }

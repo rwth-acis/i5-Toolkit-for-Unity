@@ -1,13 +1,9 @@
 {
-    "name": "PlayModeTests",
+    "name": "i5.Toolkit.TestUtilities",
     "references": [
-        "i5.Toolkit",
-        "Microsoft.MixedReality.Toolkit",
-        "i5.Toolkit.TestUtilities"
+        "i5.Toolkit"
     ],
-    "optionalUnityReferences": [
-        "TestAssemblies"
-    ],
+    "optionalUnityReferences": [],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

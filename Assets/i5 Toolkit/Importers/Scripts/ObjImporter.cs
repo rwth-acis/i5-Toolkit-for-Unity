@@ -312,7 +312,7 @@ namespace i5.Toolkit.ModelImporters
             else
             {
                 numberOfErrors++;
-                i5Debug.LogError("There is an object without parsed vertices", this);
+                i5Debug.LogWarning("There is an object without parsed vertices", this);
             }
 
             // check if objects could be constructed, if not: write an error message

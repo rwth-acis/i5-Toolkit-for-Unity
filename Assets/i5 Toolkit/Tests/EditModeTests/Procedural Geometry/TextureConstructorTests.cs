@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using i5.Toolkit.ProceduralGeometry;
+using i5.Toolkit.TestUtilities;
 using i5.Toolkit.Utilities;
 using NUnit.Framework;
 using UnityEditor.SceneManagement;
@@ -34,44 +36,37 @@ namespace i5.Toolkit.Tests.ProceduralGeometry
             Assert.AreEqual(loadPath, textureConstructor.LoadPath);
         }
 
-        [Test]
-        public async void FetchTextureAsync_WebRequestSuccessful_ReturnsTexture()
+        [UnityTest]
+        public IEnumerator FetchTextureAsync_WebRequestSuccessful_ReturnsTexture()
         {
             TextureConstructor textureConstructor = new TextureConstructor(loadPath);
             FakeTextureLoader fakeTextureLoader = new FakeTextureLoader();
             textureConstructor.TextureLoader = fakeTextureLoader;
-            Texture2D res = await textureConstructor.FetchTextureAsync();
-            WebResponse<Texture2D> expectedResp = await fakeTextureLoader.LoadTextureAsync("");
+            Task<Texture2D> task = textureConstructor.FetchTextureAsync();
+
+            yield return AsyncTest.WaitForTask(task);
+            Texture2D res = task.Result;
+
+            Task<WebResponse<Texture2D>> taskExpectedRes = fakeTextureLoader.LoadTextureAsync("");
+            yield return AsyncTest.WaitForTask(taskExpectedRes);
+            WebResponse<Texture2D> expectedResp = taskExpectedRes.Result;
+
             Assert.NotNull(res);
-            Assert.AreEqual(expectedResp.Content, res);
+            Assert.AreEqual(expectedResp.Content.imageContentsHash, res.imageContentsHash);
         }
 
-        [Test]
-        public async void FetchTextureAsync_WebRequestFailed_ReturnsNull()
+        [UnityTest]
+        public IEnumerator FetchTextureAsync_WebRequestFailed_ReturnsNull()
         {
             TextureConstructor textureConstructor = new TextureConstructor(loadPath);
             textureConstructor.TextureLoader = new FakeTextureFailLoader();
-            Texture2D res = await textureConstructor.FetchTextureAsync();
+            Task<Texture2D> task = textureConstructor.FetchTextureAsync();
+
+            yield return AsyncTest.WaitForTask(task);
+            Texture2D res = task.Result;
+
+            LogAssert.Expect(LogType.Error, new Regex(@"\w*This is a simulated fail\w*"));
             Assert.Null(res);
-        }
-    }
-
-    class FakeTextureLoader : ITextureLoader
-    {
-        public Task<WebResponse<Texture2D>> LoadTextureAsync(string uri)
-        {
-            Texture2D tex = new Texture2D(2, 2);
-            WebResponse<Texture2D> resp = new WebResponse<Texture2D>(tex, new byte[0], 200);
-            return new Task<WebResponse<Texture2D>>(() => { return resp; });
-        }
-    }
-
-    class FakeTextureFailLoader : ITextureLoader
-    {
-        public Task<WebResponse<Texture2D>> LoadTextureAsync(string uri)
-        {
-            WebResponse<Texture2D> resp = new WebResponse<Texture2D>("This is a simulated fail", 404);
-            return new Task<WebResponse<Texture2D>>(() => { return resp; });
         }
     }
 }

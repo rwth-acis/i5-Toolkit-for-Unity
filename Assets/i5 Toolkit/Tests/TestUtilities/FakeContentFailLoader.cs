@@ -5,8 +5,16 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 
+/// <summary>
+/// Fake content loader that simulates a Web request which fails
+/// </summary>
 public class FakeContentFailLoader : IContentLoader
 {
+    /// <summary>
+    /// Simulates a Web request that fails
+    /// </summary>
+    /// <param name="uri">A URi (is ignored by the method)</param>
+    /// <returns>A failed WebReponse answer</returns>
     public async Task<WebResponse<string>> LoadAsync(string uri)
     {
         WebResponse<string> resp = new WebResponse<string>("This is a simulated fail", 404);

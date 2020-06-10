@@ -6,8 +6,16 @@ using UnityEngine;
 
 namespace i5.Toolkit.TestUtilities
 {
+    /// <summary>
+    /// Fake texture loader which returns a 2x2 texture
+    /// </summary>
     public class FakeTextureLoader : ITextureLoader
     {
+        /// <summary>
+        /// Simulates texture loading
+        /// </summary>
+        /// <param name="uri">An Uri (is ignored by the method)</param>
+        /// <returns>Returns a WebResponse with the created 2x2 texture</returns>
         public async Task<WebResponse<Texture2D>> LoadTextureAsync(string uri)
         {
             await Task.Delay(1);

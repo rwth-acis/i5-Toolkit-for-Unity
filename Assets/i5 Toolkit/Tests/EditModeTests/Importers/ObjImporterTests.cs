@@ -13,11 +13,25 @@ using UnityEngine.TestTools;
 
 namespace i5.Toolkit.Tests.ModelImporters
 {
+    /// <summary>
+    /// Tests for the ObjImporter class
+    /// </summary>
     public class ObjImporterTests
     {
+        /// <summary>
+        /// Contents of the .obj files
+        /// There is a file with no object, one object and three objects
+        /// </summary>
         private static string emptyObj, cubeObj, threeObj;
+        /// <summary>
+        /// Contents of the .mtl files
+        /// There is a file with no material, one material and three materials
+        /// </summary>
         private static string emptyMtl, cubeMtl, threeMtl;
 
+        /// <summary>
+        /// Called one time to load the contents of the .obj and .mtl files
+        /// </summary>
         [OneTimeSetUp]
         public void LoadData()
         {
@@ -29,12 +43,21 @@ namespace i5.Toolkit.Tests.ModelImporters
             threeMtl = File.ReadAllText("Assets/i5 Toolkit/Tests/EditModeTests/Importers/Data/ThreeObj.mtl");
         }
 
+        /// <summary>
+        /// Resets the scene to the standard test scene before executed each test
+        /// </summary>
         [SetUp]
         public void ResetScene()
         {
             EditorSceneManager.OpenScene("Assets/i5 Toolkit/Tests/TestResources/SetupTestScene.unity");
         }
 
+        /// <summary>
+        /// Reusable function to set up the ObjImporter service and to register it at the service manager
+        /// </summary>
+        /// <param name="objContent">The .obj that the fake loader of the obj importer should load</param>
+        /// <param name="mtlContent">The .mtl that the fake loader of the obj importer should load</param>
+        /// <returns></returns>
         private ObjImporter SetUpObjImporter(string objContent, string mtlContent)
         {
             ObjImporter objImporter = new ObjImporter();
@@ -44,6 +67,9 @@ namespace i5.Toolkit.Tests.ModelImporters
             return objImporter;
         }
 
+        /// <summary>
+        /// Checks that the ContentLoader is initialized with the MRTKRestLoader by default
+        /// </summary>
         [Test]
         public void ContentLoader_Initialized_InitWithMRTKRestLoader()
         {
@@ -53,6 +79,9 @@ namespace i5.Toolkit.Tests.ModelImporters
             Assert.True(objImporter.ContentLoader.GetType() == typeof(MRTKRestLoader));
         }
 
+        /// <summary>
+        /// Checks that the service initialization automatically registers an instance of the MtlLibraryService
+        /// </summary>
         [Test]
         public void Initialize_Initialized_MtlLibraryServiceRegistered()
         {
@@ -62,6 +91,9 @@ namespace i5.Toolkit.Tests.ModelImporters
             Assert.True(exists);
         }
 
+        /// <summary>
+        /// Checks that hte service cleanup automatically unregisters the MtlLibraryService
+        /// </summary>
         [Test]
         public void Cleaup_AfterCleanup_MtlLibraryServiceUnregistered()
         {
@@ -74,6 +106,10 @@ namespace i5.Toolkit.Tests.ModelImporters
             Assert.False(exists);
         }
 
+        /// <summary>
+        /// Checks that ImportAsync returns null if the web request failed
+        /// </summary>
+        /// <returns></returns>
         [UnityTest]
         public IEnumerator ImportAsync_WebRequestFailed_ReturnNull()
         {
@@ -90,6 +126,10 @@ namespace i5.Toolkit.Tests.ModelImporters
             Assert.Null(res);
         }
 
+        /// <summary>
+        /// Checks that ImportAsync sets the name of the GameObject correctly based on the name of the .obj file
+        /// </summary>
+        /// <returns></returns>
         [UnityTest]
         public IEnumerator ImportAsync_WebRequestSuccess_SetName()
         {
@@ -103,6 +143,11 @@ namespace i5.Toolkit.Tests.ModelImporters
             Assert.AreEqual("test", res.name);
         }
 
+        /// <summary>
+        /// Checks that a GameObject is returned if an empty .obj is loaded
+        /// and that the corresponding warnings and errors are given
+        /// </summary>
+        /// <returns></returns>
         [UnityTest]
         public IEnumerator ImportAsync_EmptyObj_ReturnGameObject()
         {
@@ -120,6 +165,10 @@ namespace i5.Toolkit.Tests.ModelImporters
             Assert.AreEqual(0, res.transform.childCount);
         }
 
+        /// <summary>
+        /// Checks that a child object was created if the cube .obj file is imported
+        /// </summary>
+        /// <returns></returns>
         [UnityTest]
         public IEnumerator ImportAsync_CubeObj_HasChild()
         {
@@ -135,6 +184,11 @@ namespace i5.Toolkit.Tests.ModelImporters
             Assert.AreEqual(1, res.transform.childCount);
         }
 
+        /// <summary>
+        /// Checks that ImportAsync generates a child object with MeshFilter and MeshRenderer components
+        /// when importing the cube .obj file
+        /// </summary>
+        /// <returns></returns>
         [UnityTest]
         public IEnumerator ImportAsync_CubeObj_ChildHasComponents()
         {
@@ -152,6 +206,10 @@ namespace i5.Toolkit.Tests.ModelImporters
             Assert.NotNull(mr);
         }
 
+        /// <summary>
+        /// Checks that ImportAsync assigns the correct mesh to the created child GameObject
+        /// </summary>
+        /// <returns></returns>
         [UnityTest]
         public IEnumerator ImportAsync_CubeObj_ChildHasCorrectMesh()
         {
@@ -168,6 +226,10 @@ namespace i5.Toolkit.Tests.ModelImporters
             Assert.AreEqual(36, mf.sharedMesh.triangles.Length); // 12 *3 = 36
         }
 
+        /// <summary>
+        /// Checks that ImportAsync assigns the correct material to the generated child GameObject
+        /// </summary>
+        /// <returns></returns>
         [UnityTest]
         public IEnumerator ImportAsync_CubeObj_ChildHasCorrectMaterial()
         {
@@ -181,8 +243,12 @@ namespace i5.Toolkit.Tests.ModelImporters
             Assert.AreEqual("TestMaterial", mr.sharedMaterial.name);
         }
 
+        /// <summary>
+        /// Checks that ImportAsync creates three child objects for the three objects in ThreeObj.obj
+        /// </summary>
+        /// <returns></returns>
         [UnityTest]
-        public IEnumerator ImportAsync_CubeObj_HasThreeChildren()
+        public IEnumerator ImportAsync_ThreeObj_HasThreeChildren()
         {
             ObjImporter objImporter = SetUpObjImporter(threeObj, threeMtl);
 
@@ -193,6 +259,11 @@ namespace i5.Toolkit.Tests.ModelImporters
             Assert.AreEqual(3, res.transform.childCount);
         }
 
+        /// <summary>
+        /// Checks that ImportAsync creates an object wtih a default material if the .obj file could be loaded
+        /// but the .mtl file could not be loaded
+        /// </summary>
+        /// <returns></returns>
         [UnityTest]
         public IEnumerator ImportAsync_ObjFetchSuccessMtlFetchFail_CreateObjectWithDefaultMat()
         {

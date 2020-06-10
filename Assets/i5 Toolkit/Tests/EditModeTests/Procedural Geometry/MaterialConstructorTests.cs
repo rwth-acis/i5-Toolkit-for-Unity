@@ -10,11 +10,17 @@ using UnityEngine.TestTools;
 
 namespace i5.Toolkit.Tests.ProceduralGeometry
 {
+    /// <summary>
+    /// Tests for the MaterialConstructor class
+    /// </summary>
     public class MaterialConstructorTests
     {
         private FakeTextureConstructor fakeTextureConstructor;
         private FakeTextureConstructorFail fakeTextureConstructorFail;
 
+        /// <summary>
+        /// Loads the test scene before each test and resets the texture constructors
+        /// </summary>
         [SetUp]
         public void ResetScene()
         {
@@ -23,6 +29,9 @@ namespace i5.Toolkit.Tests.ProceduralGeometry
             fakeTextureConstructorFail = new FakeTextureConstructorFail();
         }
 
+        /// <summary>
+        /// Checks that the material constructor with default settings creates a standard material
+        /// </summary>
         [Test]
         public void ConstructMaterial_DefaultSettings_GeneratesStandardMaterial()
         {
@@ -33,6 +42,9 @@ namespace i5.Toolkit.Tests.ProceduralGeometry
             Assert.AreEqual(materialConstructor.Name, mat.name);
         }
 
+        /// <summary>
+        /// Checks that the given name of the material constructor is set in the generated material
+        /// </summary>
         [Test]
         public void ConstructMaterial_NameSet_MaterialHasName()
         {
@@ -45,6 +57,9 @@ namespace i5.Toolkit.Tests.ProceduralGeometry
             Assert.AreEqual(materialName, mat.name);
         }
 
+        /// <summary>
+        /// Checks that the given color of the material constructor is set in the generated material
+        /// </summary>
         [Test]
         public void ConstructMaterial_ColorSet_MaterialHasColor()
         {
@@ -57,6 +72,9 @@ namespace i5.Toolkit.Tests.ProceduralGeometry
             Assert.AreEqual(color, mat.color);
         }
 
+        /// <summary>
+        /// Checks that the given shader of the material constructor is set in the generated material
+        /// </summary>
         [Test]
         public void ConstructMaterial_ShaderSet_MaterialHasShader()
         {
@@ -68,6 +86,9 @@ namespace i5.Toolkit.Tests.ProceduralGeometry
             Assert.AreEqual(Shader.Find(shaderName), mat.shader);
         }
 
+        /// <summary>
+        /// Checks that a warning is logged if a material is constructed without fetching specified textures
+        /// </summary>
         [Test]
         public void ConstructMaterial_TexturesNotFetched_GivesWarning()
         {
@@ -77,6 +98,10 @@ namespace i5.Toolkit.Tests.ProceduralGeometry
             LogAssert.Expect(LogType.Warning, new Regex(@"\w*Constructed material which has unfetched textures.\w*"));
         }
 
+        /// <summary>
+        /// Checks that FetchDependencies() returns true if there is nothing to fetch
+        /// </summary>
+        /// <returns></returns>
         [UnityTest]
         public IEnumerator FetchDependencies_NoTexturesProvided_ReturnsTrue()
         {
@@ -90,6 +115,10 @@ namespace i5.Toolkit.Tests.ProceduralGeometry
             Assert.True(success);
         }
 
+        /// <summary>
+        /// Checks that FetchDependencies() returns ture if the textures could be fetched
+        /// </summary>
+        /// <returns></returns>
         [UnityTest]
         public IEnumerator FetchDependencies_TextureFetchSuccess_ReturnsTrue()
         {
@@ -104,6 +133,10 @@ namespace i5.Toolkit.Tests.ProceduralGeometry
             Assert.True(success);
         }
 
+        /// <summary>
+        /// Checks that FetchDependencies() returns false if the textures could not be fetched
+        /// </summary>
+        /// <returns></returns>
         [UnityTest]
         public IEnumerator FetchDependencies_TextureFetchFail_ReturnsFalse()
         {
@@ -118,6 +151,10 @@ namespace i5.Toolkit.Tests.ProceduralGeometry
             Assert.False(success);
         }
 
+        /// <summary>
+        /// Checks that fetched textures are set in the generated material
+        /// </summary>
+        /// <returns></returns>
         [UnityTest]
         public IEnumerator ConstructMaterial_FetchedTexture_TextureSetInMaterial()
         {

@@ -1,15 +1,18 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using i5.Toolkit.ProceduralGeometry;
+﻿using i5.Toolkit.ProceduralGeometry;
 using NUnit.Framework;
+using System;
 using UnityEngine;
-using UnityEngine.TestTools;
 
 namespace i5.Toolkit.Tests.ProceduralGeometry
 {
+    /// <summary>
+    /// Tests for the GeometryConstructor class
+    /// </summary>
     public class GeometryConstructorTests
     {
+        /// <summary>
+        /// Checks that an empty mesh is generated if no input is provided to the geometry constructor
+        /// </summary>
         [Test]
         public void ConstructMesh_NoInput_GeneratesEmptyMesh()
         {
@@ -20,6 +23,9 @@ namespace i5.Toolkit.Tests.ProceduralGeometry
             Assert.IsEmpty(mesh.triangles);
         }
 
+        /// <summary>
+        /// Checks that an added vertex exists in the generated mesh
+        /// </summary>
         [Test]
         public void AddVertex_OneVertexAdded_VertexStored()
         {
@@ -30,6 +36,9 @@ namespace i5.Toolkit.Tests.ProceduralGeometry
             Assert.AreEqual(index, 0);
         }
 
+        /// <summary>
+        /// Checks that an added triangle exists in the generated mesh
+        /// </summary>
         [Test]
         public void AddTriangle_TriangleAdded_TriangleInMesh()
         {
@@ -59,6 +68,9 @@ namespace i5.Toolkit.Tests.ProceduralGeometry
             Assert.AreEqual(mesh.triangles, expectedTriangles);
         }
 
+        /// <summary>
+        /// Checks that an added quad exists in the generated mesh
+        /// </summary>
         [Test]
         public void AddQuad_QuadAdded_QuadInMesh()
         {
@@ -91,6 +103,9 @@ namespace i5.Toolkit.Tests.ProceduralGeometry
             Assert.AreEqual(mesh.triangles, expectedTriangles);
         }
 
+        /// <summary>
+        /// Checks that an added triangle fan exists in the generated mesh
+        /// </summary>
         [Test]
         public void AddTriangleFan_FanAdded_FanInMesh()
         {

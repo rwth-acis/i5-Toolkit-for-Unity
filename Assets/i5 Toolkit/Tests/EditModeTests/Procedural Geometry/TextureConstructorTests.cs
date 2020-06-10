@@ -1,27 +1,38 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using i5.Toolkit.ProceduralGeometry;
+﻿using i5.Toolkit.ProceduralGeometry;
 using i5.Toolkit.TestUtilities;
 using i5.Toolkit.Utilities;
 using NUnit.Framework;
+using System.Collections;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.TestTools;
 
 namespace i5.Toolkit.Tests.ProceduralGeometry
 {
+    /// <summary>
+    /// Tests for the TextureConstructor class
+    /// </summary>
     public class TextureConstructorTests
     {
+        /// <summary>
+        /// Fake load path for the TextureLoader
+        /// </summary>
         private const string loadPath = "loadPath";
 
+        /// <summary>
+        /// Loads the SetupTestScene before every test
+        /// </summary>
         [SetUp]
         public void ResetScene()
         {
             EditorSceneManager.OpenScene("Assets/i5 Toolkit/Tests/TestResources/SetupTestScene.unity");
         }
 
+        /// <summary>
+        /// Checks that the TextureLoader is always initialized with a default object
+        /// </summary>
         [Test]
         public void TextureConstructor_ConstructorCalled_TextureLoaderInitialized()
         {
@@ -29,6 +40,9 @@ namespace i5.Toolkit.Tests.ProceduralGeometry
             Assert.IsNotNull(textureConstructor.TextureLoader);
         }
 
+        /// <summary>
+        /// Checks that the LoadPath is initialized with the value specified in the constructor
+        /// </summary>
         [Test]
         public void TextureConstructor_ConstructorCalled_LoadPathInitialized()
         {
@@ -36,6 +50,10 @@ namespace i5.Toolkit.Tests.ProceduralGeometry
             Assert.AreEqual(loadPath, textureConstructor.LoadPath);
         }
 
+        /// <summary>
+        /// Checks that the texture constructor returns the correct texture
+        /// </summary>
+        /// <returns></returns>
         [UnityTest]
         public IEnumerator FetchTextureAsync_WebRequestSuccessful_ReturnsTexture()
         {
@@ -55,6 +73,10 @@ namespace i5.Toolkit.Tests.ProceduralGeometry
             Assert.AreEqual(expectedResp.Content.imageContentsHash, res.imageContentsHash);
         }
 
+        /// <summary>
+        /// Checks that the texture constructor returns null if the web request failed
+        /// </summary>
+        /// <returns></returns>
         [UnityTest]
         public IEnumerator FetchTextureAsync_WebRequestFailed_ReturnsNull()
         {

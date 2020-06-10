@@ -57,10 +57,12 @@ namespace i5.Toolkit.Tests.ModelImporters
         [UnityTest]
         public IEnumerator LoadLibraryAsync_LoadFailed_LibraryLoadedReturnsFalse()
         {
-            mtlLibraryService.ContentLoader = fakeContentLoader;
+            mtlLibraryService.ContentLoader = new FakeContentFailLoader();
             Task task = LoadLibrary();
 
             yield return AsyncTest.WaitForTask(task);
+
+            LogAssert.Expect(LogType.Error, new Regex(@"\w*This is a simulated fail\w*"));
 
             bool loaded = mtlLibraryService.LibraryLoaded(libraryName);
             Assert.IsFalse(loaded, "The import should have aborted but apparently, the library is shown as imported");

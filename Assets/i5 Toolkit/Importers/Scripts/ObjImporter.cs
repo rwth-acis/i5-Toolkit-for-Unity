@@ -10,7 +10,9 @@ using UnityEngine;
 
 namespace i5.Toolkit.ModelImporters
 {
-
+    /// <summary>
+    /// Service for importing and parsing .obj files
+    /// </summary>
     public class ObjImporter : IService
     {
         private char[] splitter = new char[] { ' ' };
@@ -18,14 +20,28 @@ namespace i5.Toolkit.ModelImporters
         // the id of the pool with GameObjects that are set up with a MeshFilter and Renderer
         private int meshObjectPoolId;
 
+        /// <summary>
+        /// instance of the mtl library service
+        /// </summary>
         private MtlLibraryService mtlLibraryService;
 
+        /// <summary>
+        /// If set to true, additional information, e.g. comments in the .obj file, are logged
+        /// </summary>
         public bool ExtendedLogging { get; set; }
 
+        /// <summary>
+        /// Module that should be used for fetching the .obj file's content
+        /// </summary>
         public IContentLoader ContentLoader { get; set; }
 
+        /// <summary>
+        /// Called by the service manager to initialize the service if it is started
+        /// </summary>
+        /// <param name="owner">The service manager that owns this service</param>
         public void Initialize(ServiceManager owner)
         {
+            // create a mtl library service if none exists yet
             if (ServiceManager.ServiceExists<MtlLibraryService>())
             {
                 mtlLibraryService = ServiceManager.GetService<MtlLibraryService>();
@@ -36,40 +52,60 @@ namespace i5.Toolkit.ModelImporters
                 ServiceManager.RegisterService(mtlLibraryService);
             }
 
+            // initialize the content loader
             if (ContentLoader == null)
             {
                 ContentLoader = new MRTKRestLoader();
             }
 
+            // reserve a mesh object pool id
             meshObjectPoolId = ObjectPool<GameObject>.CreateNewPool();
         }
 
+        /// <summary>
+        /// Called by the service manager to clean up the service if it is stopped
+        /// </summary>
         public void Cleanup()
         {
+            // give back the pool
             ObjectPool<GameObject>.RemovePool(meshObjectPoolId, (go) => { GameObject.Destroy(go); });
 
+            // unregister the mtl library service
+            // we assume that the mtl library service is exclusive to the obj importer and no other script needs it
             ServiceManager.RemoveService<MtlLibraryService>();
         }
 
+        /// <summary>
+        /// Asynchronously imports the given .obj file from the specified url
+        /// </summary>
+        /// <param name="url">The url to the .obj file</param>
+        /// <returns>The GameObject that was created for the imported .obj</returns>
         public async Task<GameObject> ImportAsync(string url)
         {
             i5Debug.Log("Starting import", this);
             Uri uri = new Uri(url);
+            // fetch the model
             WebResponse<string> resp = await FetchModelAsync(uri);
 
+            // if there was an error, we cannot create anything
             if (!resp.Successful)
             {
                 i5Debug.LogError("Error fetching obj. No object imported.\n" + resp.ErrorMessage, this);
                 return null;
             }
 
+            // create the parent object
+            // it is a standard GameObject; its only purpose is to bundle the child objects
             GameObject parentObject = ObjectPool<GameObject>.RequestResource(() => { return new GameObject(); });
             parentObject.name = System.IO.Path.GetFileNameWithoutExtension(uri.LocalPath);
 
+            // parse the .obj file
             List<ObjParseResult> parseResults = await ParseModelAsync(resp.Content);
 
+            // for each sub-object in the .obj file, an own parse result was created
             foreach(ObjParseResult parseResult in parseResults)
             {
+                // check that the referenced mtl library is already loaded; if not: load it
                 if (!mtlLibraryService.LibraryLoaded(parseResult.LibraryPath))
                 {
                     string mtlUri = UriUtils.RewriteUriPath(uri, parseResult.LibraryPath);
@@ -81,23 +117,31 @@ namespace i5.Toolkit.ModelImporters
                     }
                 }
 
+                // get the material constructor of the sub-object
                 MaterialConstructor mat = mtlLibraryService.GetMaterialConstructor(
                     System.IO.Path.GetFileNameWithoutExtension(uri.LocalPath),
                     parseResult.MaterialName);
 
                 if (mat != null)
                 {
+                    // first get dependencies; this will e.g. fetch referenced textures
                     await mat.FetchDependencies();
 
                     parseResult.ObjectConstructor.MaterialConstructor = mat;
                 }
 
+                // construct the object and make it a child of the parentObject
                 parseResult.ObjectConstructor.ConstructObject(parentObject.transform);
             }
             
             return parentObject;
         }
 
+        /// <summary>
+        /// Fetches .obj model
+        /// </summary>
+        /// <param name="uri">The uri where the .obj file is stored</param>
+        /// <returns>Returns a Web Response which contains the contents of the .obj file</returns>
         private async Task<WebResponse<string>> FetchModelAsync(Uri uri)
         {
             if (!System.IO.Path.GetExtension(uri.LocalPath).Equals(".obj"))
@@ -108,8 +152,15 @@ namespace i5.Toolkit.ModelImporters
             return resp;
         }
 
+        /// <summary>
+        /// Parses the model's content
+        /// </summary>
+        /// <param name="objContent">The content of the .obj file</param>
+        /// <returns>Returns a list of parse results; one parse result for each object specified in the file</returns>
         private async Task<List<ObjParseResult>> ParseModelAsync(string objContent)
         {
+            // split the content into lines and then parse them
+            // do this on a separate thread so that we do not block the main thread
             List<ObjParseResult> res = await Task.Run(() =>
             {
                 string[] contentLines = objContent.Split('\n');
@@ -118,6 +169,11 @@ namespace i5.Toolkit.ModelImporters
             return res;
         }
 
+        /// <summary>
+        /// Parses the lines of the .obj file
+        /// </summary>
+        /// <param name="contentLines">The content of the .obj file, separated into lines</param>
+        /// <returns>Returns a list of parse results - one parse result for each sub-object specified in the content</returns>
         private List<ObjParseResult> ParseObj(string[] contentLines)
         {
             List<ObjParseResult> constructedObjects = new List<ObjParseResult>();
@@ -305,6 +361,7 @@ namespace i5.Toolkit.ModelImporters
                 }
             }
 
+            // add the currently edited object if it has content
             if (current.ObjectConstructor.GeometryConstructor.Vertices.Count > 0)
             {
                 constructedObjects.Add(current);

@@ -11,24 +11,50 @@ using UnityEngine;
 
 namespace i5.Toolkit.ModelImporters
 {
+    /// <summary>
+    /// Service for parsing and storing material libraries from .mtl files
+    /// </summary>
     public class MtlLibraryService : IService
     {
+        /// <summary>
+        /// Dictionary of loaded material libraries
+        /// </summary>
         private Dictionary<string, Dictionary<string, MaterialConstructor>> libraries;
 
+        /// <summary>
+        /// If set to true, the service will log additional information, e.g. comments in the .mtl file
+        /// </summary>
         public bool ExtendedLogging { get; set; }
 
+        /// <summary>
+        /// Gets or sets the module which loads the .mtl files
+        /// </summary>
         public IContentLoader ContentLoader { get; set; }
 
+        /// <summary>
+        /// Called by the service manager to clean up the service once it is stopped
+        /// </summary>
         public void Cleanup()
         {
         }
 
+        /// <summary>
+        /// Called by the service manager to initialize the service once it is started
+        /// </summary>
+        /// <param name="owner">The calling service manager</param>
         public void Initialize(ServiceManager owner)
         {
             libraries = new Dictionary<string, Dictionary<string, MaterialConstructor>>();
             ContentLoader = new MRTKRestLoader();
         }
 
+        /// <summary>
+        /// Returns a material from a library as a material constructor instance
+        /// </summary>
+        /// <param name="materialLibrary">The library name which contains the material</param>
+        /// <param name="materialName">The name of the material in the library</param>
+        /// <returns>Returns a material constructor that resembles the material;
+        /// returns null if the libarary or material does not exist</returns>
         public MaterialConstructor GetMaterialConstructor(string materialLibrary, string materialName)
         {
             // if either the library or the material in the library does not exist: return null
@@ -42,11 +68,22 @@ namespace i5.Toolkit.ModelImporters
             }
         }
 
+        /// <summary>
+        /// Returns true if the library with the given name was loaded
+        /// </summary>
+        /// <param name="name">The name of the library</param>
+        /// <returns>Returns true if the library was loaded</returns>
         public bool LibraryLoaded(string name)
         {
             return libraries.ContainsKey(name);
         }
 
+        /// <summary>
+        /// Asynchronously loads a material library from the specified URI
+        /// </summary>
+        /// <param name="uri">Full uri to the .mtl file</param>
+        /// <param name="libraryName">The name of the library</param>
+        /// <returns>Returns true if the library could be loaded</returns>
         public async Task<bool> LoadLibraryAsyc(Uri uri, string libraryName)
         {
             // if we have already cached the library, do not load it again
@@ -81,6 +118,12 @@ namespace i5.Toolkit.ModelImporters
             }
         }
 
+        /// <summary>
+        /// Parses the contents of a .mtl file
+        /// </summary>
+        /// <param name="uri">The full URI where the .mtl file is stored</param>
+        /// <param name="libraryContent">The line array of the file's content</param>
+        /// <returns>A list a material constructor for each material in the library</returns>
         private List<MaterialConstructor> ParseMaterialLibrary(Uri uri, string[] libraryContent)
         {
             List<MaterialConstructor> materials = new List<MaterialConstructor>();
@@ -92,6 +135,7 @@ namespace i5.Toolkit.ModelImporters
                 string trimmedLine = libraryContent[i].Trim();
 
                 // newmtl and # (comment) can be executed also if there is no current material set
+                // skip empty lines
                 if (string.IsNullOrEmpty(trimmedLine))
                 {
                     continue;
@@ -178,6 +222,7 @@ namespace i5.Toolkit.ModelImporters
                         else if (trimmedLine.StartsWith("map_Kd"))
                         {
                             string texturePath = trimmedLine.Substring(6).TrimStart();
+                            // rewrite the URI to the texture's path and then add a texture constructor to the material
                             string fullUri = UriUtils.RewriteUriPath(uri, texturePath);
                             current.SetTexture("_MainTex", new TextureConstructor(fullUri));
                         }
@@ -194,6 +239,7 @@ namespace i5.Toolkit.ModelImporters
                 materials.Add(current);
             }
 
+            // check if materials were created
             if (materials.Count == 0)
             {
                 i5Debug.LogWarning(".mtl-file was read but no materials were parsed.", this);

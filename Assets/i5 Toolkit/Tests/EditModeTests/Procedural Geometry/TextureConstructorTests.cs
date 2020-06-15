@@ -65,7 +65,7 @@ namespace i5.Toolkit.Tests.ProceduralGeometry
             yield return AsyncTest.WaitForTask(task);
             Texture2D res = task.Result;
 
-            Task<WebResponse<Texture2D>> taskExpectedRes = fakeTextureLoader.LoadTextureAsync("");
+            Task<WebResponse<Texture2D>> taskExpectedRes = fakeTextureLoader.LoadAsync("");
             yield return AsyncTest.WaitForTask(taskExpectedRes);
             WebResponse<Texture2D> expectedResp = taskExpectedRes.Result;
 

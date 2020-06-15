@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace i5.Toolkit.Utilities.ContentLoaders
 {
-    public class MRTKRestLoader : IContentLoader
+    public class MRTKRestLoader : IContentLoader<string>
     {
         public async Task<WebResponse<string>> LoadAsync(string uri)
         {

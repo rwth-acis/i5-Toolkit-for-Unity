@@ -10,7 +10,7 @@ namespace i5.Toolkit.TestUtilities
     /// <summary>
     /// Fake content loader that simulates a Web request and returns pre-set content
     /// </summary>
-    public class FakeContentLoader : IContentLoader
+    public class FakeContentLoader : IContentLoader<string>
     {
         /// <summary>
         /// The content which should be returned by the simulated loading call

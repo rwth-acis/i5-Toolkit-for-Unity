@@ -8,7 +8,7 @@ using UnityEngine;
 /// <summary>
 /// Fake content loader that simulates a Web request which fails
 /// </summary>
-public class FakeContentFailLoader : IContentLoader
+public class FakeContentFailLoader : IContentLoader<string>
 {
     /// <summary>
     /// Simulates a Web request that fails

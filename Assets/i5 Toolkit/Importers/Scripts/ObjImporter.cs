@@ -33,7 +33,7 @@ namespace i5.Toolkit.ModelImporters
         /// <summary>
         /// Module that should be used for fetching the .obj file's content
         /// </summary>
-        public IContentLoader ContentLoader { get; set; }
+        public IContentLoader<string> ContentLoader { get; set; }
 
         /// <summary>
         /// Called by the service manager to initialize the service if it is started

@@ -1,4 +1,5 @@
 ﻿using i5.Toolkit.Utilities;
+using i5.Toolkit.Utilities.ContentLoaders;
 using Microsoft.MixedReality.Toolkit.Utilities;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -19,7 +20,7 @@ namespace i5.Toolkit.ProceduralGeometry
         /// <summary>
         /// Module which loads the object
         /// </summary>
-        public ITextureLoader TextureLoader { get; set; }
+        public IContentLoader<Texture2D> TextureLoader { get; set; }
 
         /// <summary>
         /// Creates a texture constructor with the given load path
@@ -37,7 +38,7 @@ namespace i5.Toolkit.ProceduralGeometry
         /// <returns>Returns the fetched texture or null if something went wrong</returns>
         public async Task<Texture2D> FetchTextureAsync()
         {
-            WebResponse<Texture2D> resp = await TextureLoader.LoadTextureAsync(LoadPath);
+            WebResponse<Texture2D> resp = await TextureLoader.LoadAsync(LoadPath);
             if (resp.Successful)
             {
                 return resp.Content;

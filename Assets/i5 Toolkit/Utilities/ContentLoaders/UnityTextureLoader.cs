@@ -4,11 +4,11 @@ using UnityEngine;
 using UnityEngine.Networking;
 using Microsoft.MixedReality.Toolkit.Utilities;
 
-namespace i5.Toolkit.Utilities
+namespace i5.Toolkit.Utilities.ContentLoaders
 {
-    public class UnityTextureLoader : ITextureLoader
+    public class UnityTextureLoader : IContentLoader<Texture2D>
     {
-        public async Task<WebResponse<Texture2D>> LoadTextureAsync(string uri)
+        public async Task<WebResponse<Texture2D>> LoadAsync(string uri)
         {
             using (UnityWebRequest req = UnityWebRequestTexture.GetTexture(uri))
             {

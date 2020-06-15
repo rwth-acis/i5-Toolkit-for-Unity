@@ -29,7 +29,7 @@ namespace i5.Toolkit.ModelImporters
         /// <summary>
         /// Gets or sets the module which loads the .mtl files
         /// </summary>
-        public IContentLoader ContentLoader { get; set; }
+        public IContentLoader<string> ContentLoader { get; set; }
 
         /// <summary>
         /// Called by the service manager to clean up the service once it is stopped

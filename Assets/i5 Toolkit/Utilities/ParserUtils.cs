@@ -5,23 +5,38 @@ using UnityEngine;
 
 namespace i5.Toolkit.Utilities
 {
+    /// <summary>
+    /// Parser utils for parsing vectors from strings
+    /// </summary>
     public static class ParserUtils
     {
+        /// <summary>
+        /// defines that values are separated by spaces in the string
+        /// </summary>
         private static char[] splitter = new char[] { ' ' };
 
+        /// <summary>
+        /// Tries to convert a space separated string to a Vector2
+        /// </summary>
+        /// <param name="input">The string which should be converted</param>
+        /// <param name="result">The result of the conversion; if the conversion failed, it has the default value</param>
+        /// <returns>Returns true if the conversion was successful</returns>
         public static bool TryParseSpaceSeparatedVector2(string input, out Vector2 result)
         {
             string[] strValues = input.Trim().Split(splitter, System.StringSplitOptions.RemoveEmptyEntries);
+            // if the string has two values, we can parse them directly
             if (strValues.Length == 2)
             {
                 return TryParseStringArrayToVector2(strValues, out result);
             }
+            // if the string has three values, we try to parse to Vector3 first and then convert to Vector2
             else if (strValues.Length == 3)
             {
                 bool res = TryParseStringArrayToVector3(strValues, out Vector3 v3);
                 result = v3;
                 return res;
             }
+            // if we have more or less values, the parsing failed
             else
             {
                 result = default;
@@ -29,6 +44,13 @@ namespace i5.Toolkit.Utilities
             }
         }
 
+        /// <summary>
+        /// Parses an array of strings to Vector2
+        /// The array must have exactly two entries so that the conversion succeeds
+        /// </summary>
+        /// <param name="strValues">The string array which should be parsed to a Vector2</param>
+        /// <param name="result">The result of the conversion; if the conversion failed, it has the default value</param>
+        /// <returns>Returns true if parsing was successful</returns>
         public static bool TryParseStringArrayToVector2(string[] strValues, out Vector2 result)
         {
             // there should be two coordinates
@@ -44,6 +66,7 @@ namespace i5.Toolkit.Utilities
                 }
             }
 
+            // if parsing did not work:
             result = default;
             return false;
         }
@@ -53,7 +76,7 @@ namespace i5.Toolkit.Utilities
         /// </summary>
         /// <param name="input">The string which should be converted to a Vector3</param>
         /// <param name="result">The result of the conversion; if the conversion failed, it has the default value</param>
-        /// <returns>True if the string could be parsed, otherwise false</returns>
+        /// <returns>Returns true if the string could be parsed, otherwise false</returns>
         public static bool TryParseSpaceSeparatedVector3(string input, out Vector3 result)
         {
             string[] strValues = input.Trim().Split(splitter, System.StringSplitOptions.RemoveEmptyEntries);
@@ -74,6 +97,13 @@ namespace i5.Toolkit.Utilities
             }
         }
 
+        /// <summary>
+        /// Tries to parse a string array to a Vector3
+        /// The array must have exactly three entries so that the conversion succeeds
+        /// </summary>
+        /// <param name="strValues">The string array to parse</param>
+        /// <param name="result">The result of the conversion; if the conversion failed, it has the default value</param>
+        /// <returns>Returns true if the string array could be parsed, otherwise false</returns>
         public static bool TryParseStringArrayToVector3(string[] strValues, out Vector3 result)
         {
             // there should be three coordinates
@@ -94,6 +124,13 @@ namespace i5.Toolkit.Utilities
             return false;
         }
 
+        /// <summary>
+        /// Tries to parse a string array to a Vector3
+        /// The array must have exactly four entries so that the conversion succeeds
+        /// </summary>
+        /// <param name="strValues">The string array to parse</param>
+        /// <param name="result">The result of the conversion; if the conversion failed, it has the default value</param>
+        /// <returns>Returns true if the string array could be parsed, otherwise false</returns>
         public static bool TryParseStringArrayToVector4(string[] strValues, out Vector4 result)
         {
             // there should be four coordinates

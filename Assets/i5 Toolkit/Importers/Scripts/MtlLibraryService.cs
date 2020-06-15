@@ -223,7 +223,7 @@ namespace i5.Toolkit.ModelImporters
                         {
                             string texturePath = trimmedLine.Substring(6).TrimStart();
                             // rewrite the URI to the texture's path and then add a texture constructor to the material
-                            string fullUri = UriUtils.RewriteUriPath(uri, texturePath);
+                            string fullUri = UriUtils.RewriteFileUriPath(uri, texturePath);
                             current.SetTexture("_MainTex", new TextureConstructor(fullUri));
                         }
                     }

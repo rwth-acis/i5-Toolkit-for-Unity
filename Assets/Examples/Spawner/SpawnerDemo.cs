@@ -13,7 +13,7 @@ namespace i5.Toolkit.Spawners.Demo
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Return))
+            if (Input.GetKeyDown(KeyCode.F5))
             {
                 spawner.Spawn();
                 spawner.MostRecentlySpawnedObject.transform.position = new Vector3(0, spawnCount, 0);

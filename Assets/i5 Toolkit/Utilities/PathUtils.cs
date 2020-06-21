@@ -15,6 +15,8 @@ namespace i5.Toolkit.Utilities
         /// </summary>
         private const string packageName = "i5 Toolkit";
 
+        private static string cachedPath;
+
         /// <summary>
         /// Returns the path where the toolkit is located
         /// Use this if you want to address files inside of the toolkit
@@ -24,15 +26,22 @@ namespace i5.Toolkit.Utilities
         /// <returns>Returns the path where the toolkit is located</returns>
         public static string GetPackagePath()
         {
+            if (!string.IsNullOrEmpty(cachedPath))
+            {
+                return cachedPath;
+            }
+
             // for development or unitypackages, the toolkit is located under "Assets/i5 Toolkit"
             if (Directory.Exists("Assets/" + packageName))
             {
-                return "Assets/" + packageName + "/";
+                cachedPath = "Assets/" + packageName + "/";
+                return cachedPath;
             }
             // for packages, the package is located in a Packages folder outside of the Assets folder
             else
             {
-                return "Packages/" + packageName + "/";
+                cachedPath = "Packages/" + packageName + "/";
+                return cachedPath;
             }
         }
     }

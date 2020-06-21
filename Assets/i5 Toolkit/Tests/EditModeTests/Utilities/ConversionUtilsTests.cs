@@ -19,7 +19,7 @@ namespace i5.Toolkit.Tests.Utilities
         [SetUp]
         public void ResetScene()
         {
-            EditorSceneManager.OpenScene("Assets/i5 Toolkit/Tests/TestResources/SetupTestScene.unity");
+            EditorSceneManager.OpenScene(PathUtils.GetPackagePath() + "Tests/TestResources/SetupTestScene.unity");
         }
 
         /// <summary>

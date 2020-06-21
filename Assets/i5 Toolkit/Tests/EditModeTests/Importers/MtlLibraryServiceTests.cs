@@ -2,6 +2,7 @@
 using i5.Toolkit.ProceduralGeometry;
 using i5.Toolkit.ServiceCore;
 using i5.Toolkit.TestUtilities;
+using i5.Toolkit.Utilities;
 using NUnit.Framework;
 using System;
 using System.Collections;
@@ -44,7 +45,7 @@ namespace i5.Toolkit.Tests.ModelImporters
         [OneTimeSetUp]
         public void Initialize()
         {
-            content = File.ReadAllText("Assets/i5 Toolkit/Tests/EditModeTests/Importers/Data/MatLib.mtl");
+            content = File.ReadAllText(PathUtils.GetPackagePath() + "Tests/EditModeTests/Importers/Data/MatLib.mtl");
             fakeContentLoader = new FakeContentLoader(content);
         }
 
@@ -54,7 +55,7 @@ namespace i5.Toolkit.Tests.ModelImporters
         [SetUp]
         public void ResetScene()
         {
-            EditorSceneManager.OpenScene("Assets/i5 Toolkit/Tests/TestResources/SetupTestScene.unity");
+            EditorSceneManager.OpenScene(PathUtils.GetPackagePath() + "Tests/TestResources/SetupTestScene.unity");
             ServiceManager.RegisterService(new MtlLibraryService());
             mtlLibraryService = ServiceManager.GetService<MtlLibraryService>();
         }

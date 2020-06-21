@@ -1,6 +1,7 @@
 ﻿using i5.Toolkit.ModelImporters;
 using i5.Toolkit.ServiceCore;
 using i5.Toolkit.TestUtilities;
+using i5.Toolkit.Utilities;
 using i5.Toolkit.Utilities.ContentLoaders;
 using NUnit.Framework;
 using System.Collections;
@@ -35,12 +36,12 @@ namespace i5.Toolkit.Tests.ModelImporters
         [OneTimeSetUp]
         public void LoadData()
         {
-            cubeObj = File.ReadAllText("Assets/i5 Toolkit/Tests/EditModeTests/Importers/Data/Cube.obj");
-            emptyObj = File.ReadAllText("Assets/i5 Toolkit/Tests/EditModeTests/Importers/Data/EmptyObj.obj");
-            threeObj = File.ReadAllText("Assets/i5 Toolkit/Tests/EditModeTests/Importers/Data/ThreeObj.obj");
-            cubeMtl = File.ReadAllText("Assets/i5 Toolkit/Tests/EditModeTests/Importers/Data/Cube.mtl");
-            emptyMtl = File.ReadAllText("Assets/i5 Toolkit/Tests/EditModeTests/Importers/Data/EmptyObj.mtl");
-            threeMtl = File.ReadAllText("Assets/i5 Toolkit/Tests/EditModeTests/Importers/Data/ThreeObj.mtl");
+            cubeObj = File.ReadAllText(PathUtils.GetPackagePath() + "Tests/EditModeTests/Importers/Data/Cube.obj");
+            emptyObj = File.ReadAllText(PathUtils.GetPackagePath() + "Tests/EditModeTests/Importers/Data/EmptyObj.obj");
+            threeObj = File.ReadAllText(PathUtils.GetPackagePath() + "Tests/EditModeTests/Importers/Data/ThreeObj.obj");
+            cubeMtl = File.ReadAllText(PathUtils.GetPackagePath() + "Tests/EditModeTests/Importers/Data/Cube.mtl");
+            emptyMtl = File.ReadAllText(PathUtils.GetPackagePath() + "Tests/EditModeTests/Importers/Data/EmptyObj.mtl");
+            threeMtl = File.ReadAllText(PathUtils.GetPackagePath() + "Tests/EditModeTests/Importers/Data/ThreeObj.mtl");
         }
 
         /// <summary>
@@ -49,7 +50,7 @@ namespace i5.Toolkit.Tests.ModelImporters
         [SetUp]
         public void ResetScene()
         {
-            EditorSceneManager.OpenScene("Assets/i5 Toolkit/Tests/TestResources/SetupTestScene.unity");
+            EditorSceneManager.OpenScene(PathUtils.GetPackagePath() +  "Tests/TestResources/SetupTestScene.unity");
         }
 
         /// <summary>

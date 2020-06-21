@@ -1,5 +1,6 @@
 ﻿using i5.Toolkit.ProceduralGeometry;
 using i5.Toolkit.TestUtilities;
+using i5.Toolkit.Utilities;
 using NUnit.Framework;
 using System.Collections;
 using System.Text.RegularExpressions;
@@ -24,7 +25,7 @@ namespace i5.Toolkit.Tests.ProceduralGeometry
         [SetUp]
         public void ResetScene()
         {
-            EditorSceneManager.OpenScene("Assets/i5 Toolkit/Tests/TestResources/SetupTestScene.unity");
+            EditorSceneManager.OpenScene(PathUtils.GetPackagePath() + "Tests/TestResources/SetupTestScene.unity");
             fakeTextureConstructor = new FakeTextureConstructor();
             fakeTextureConstructorFail = new FakeTextureConstructorFail();
         }

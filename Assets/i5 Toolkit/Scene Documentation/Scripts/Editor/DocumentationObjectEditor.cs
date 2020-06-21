@@ -16,7 +16,10 @@ namespace i5.Toolkit.SceneDocumentation
 
             if (GUILayout.Button("Open Documentation URL"))
             {
-                Application.OpenURL(documentationObject.url);
+                if (!string.IsNullOrEmpty(documentationObject.url))
+                {
+                    Application.OpenURL(documentationObject.url);
+                }
             }
         }
     }

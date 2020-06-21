@@ -16,7 +16,7 @@ namespace i5.Toolkit.SceneDocumentation
         /// <summary>
         /// A description of the documented highlight
         /// </summary>
-        [TextArea]
+        [TextArea(3, 15)]
         public string description;
         /// <summary>
         /// The type of documentation (e.g. information, todo mark or bug mark)

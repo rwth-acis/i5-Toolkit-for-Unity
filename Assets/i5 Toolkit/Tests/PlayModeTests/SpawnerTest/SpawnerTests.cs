@@ -1,4 +1,5 @@
 ﻿using i5.Toolkit.Spawners;
+using i5.Toolkit.Utilities;
 using NUnit.Framework;
 using System.Collections;
 using UnityEditor;
@@ -9,7 +10,6 @@ namespace i5.Toolkit.Tests.Spawners
 {
     public class SpawnerTests
     {
-        private const string testBasePath = "Assets/i5 Toolkit/Tests/PlayModeTests/SpawnerTest";
         private const string prefabName = "SpawnedObject";
 
         /// <summary>
@@ -20,6 +20,7 @@ namespace i5.Toolkit.Tests.Spawners
         /// <returns>The spawner component which has been created in the scene</returns>
         private Spawner PreTestSetup(string spawnerName)
         {
+            string testBasePath = PathUtils.GetPackagePath() + "Tests/PlayModeTests/SpawnerTest";
             GameObject spawnerPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(testBasePath + "/" + spawnerName + ".prefab");
             Spawner spawner = GameObject.Instantiate(spawnerPrefab).GetComponent<Spawner>();
             return spawner;

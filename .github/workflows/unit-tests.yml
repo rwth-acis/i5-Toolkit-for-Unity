@@ -1,0 +1,35 @@
+name: Unit Test Workflow
+
+on:
+  [push, pull_request]
+
+env:
+  UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+
+jobs:
+  test:
+    name: Test my project ✨
+    runs-on: ubuntu-latest
+    steps:
+    
+      # Checkout
+      - name: Checkout repository
+        uses: actions/checkout@v2
+    
+      # Cache
+      - uses: actions/cache@v1.1.0
+        with:
+          path: Library
+          key: Library
+
+      # Test
+      - name: Run tests
+        uses: webbertakken/unity-test-runner@v1.6
+        with:
+          unityVersion: 2018.4.15f1
+          
+          
+      - uses: actions/upload-artifact@v1
+        with:
+          name: Test results
+          path: artifacts

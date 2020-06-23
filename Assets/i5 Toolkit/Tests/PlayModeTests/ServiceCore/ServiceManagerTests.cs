@@ -15,19 +15,13 @@ namespace i5.Toolkit.Tests.ServiceCore
         [SetUp]
         public void LoadScene()
         {
-            Scene playScene = SceneManager.CreateScene("PlayTest Scene");
-            SceneManager.SetActiveScene(playScene);
+            PlayModeTestUtilities.LoadEmptyTestScene();
         }
 
         [TearDown]
         public void TearDownScene()
         {
-            SceneManager.UnloadSceneAsync("PlayTest Scene");
-            //Scene testScene = SceneManager.GetSceneByName("PlayTest Scene");
-            //foreach(GameObject go in testScene.GetRootGameObjects())
-            //{
-            //    GameObject.Destroy(go);
-            //}
+            PlayModeTestUtilities.UnloadTestScene();
         }
 
         [Test]

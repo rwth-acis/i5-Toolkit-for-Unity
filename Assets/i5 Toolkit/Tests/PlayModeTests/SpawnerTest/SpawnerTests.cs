@@ -1,4 +1,5 @@
 ﻿using i5.Toolkit.Spawners;
+using i5.Toolkit.TestUtilities;
 using i5.Toolkit.Utilities;
 using NUnit.Framework;
 using System.Collections;
@@ -11,6 +12,18 @@ namespace i5.Toolkit.Tests.Spawners
     public class SpawnerTests
     {
         private const string prefabName = "SpawnedObject";
+
+        [SetUp]
+        public void LoadTestScene()
+        {
+            PlayModeTestUtilities.LoadEmptyTestScene();
+        }
+
+        [TearDown]
+        public void UnloadTestScene()
+        {
+            PlayModeTestUtilities.UnloadTestScene();
+        }
 
         /// <summary>
         /// Creates the spawner in the scene based on a prefab name

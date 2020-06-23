@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using i5.Toolkit.TestUtilities;
 using i5.Toolkit.Utilities;
 using NUnit.Framework;
 using UnityEditor.SceneManagement;
@@ -13,7 +14,7 @@ namespace i5.Toolkit.Tests.Utilities
         [SetUp]
         public void ResetScene()
         {
-            EditorSceneManager.OpenScene(PathUtils.GetPackagePath() + "Tests/TestResources/SetupTestScene.unity");
+            EditModeTestUtilities.ResetScene();
         }
 
         [Test]

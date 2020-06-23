@@ -1,4 +1,5 @@
 ﻿using i5.Toolkit.ProceduralGeometry;
+using i5.Toolkit.TestUtilities;
 using NUnit.Framework;
 using System;
 using UnityEngine;
@@ -10,6 +11,12 @@ namespace i5.Toolkit.Tests.ProceduralGeometry
     /// </summary>
     public class GeometryConstructorTests
     {
+        [SetUp]
+        public void ResetScene()
+        {
+            EditModeTestUtilities.ResetScene();
+        }
+
         /// <summary>
         /// Checks that an empty mesh is generated if no input is provided to the geometry constructor
         /// </summary>

@@ -25,7 +25,7 @@ namespace i5.Toolkit.Tests.ProceduralGeometry
         [SetUp]
         public void ResetScene()
         {
-            EditorSceneManager.OpenScene(PathUtils.GetPackagePath() + "Tests/TestResources/SetupTestScene.unity");
+            EditModeTestUtilities.ResetScene();
             fakeTextureConstructor = new FakeTextureConstructor();
             fakeTextureConstructorFail = new FakeTextureConstructorFail();
         }

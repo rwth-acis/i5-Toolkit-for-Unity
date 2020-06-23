@@ -20,7 +20,7 @@ namespace i5.Toolkit.Tests.ServiceCore
         [SetUp]
         public void ResetScene()
         {
-            EditorSceneManager.OpenScene(PathUtils.GetPackagePath() + "Tests/TestResources/SetupTestScene.unity");
+            EditModeTestUtilities.ResetScene();
         }
 
         [Test]

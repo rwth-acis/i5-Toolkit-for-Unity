@@ -50,7 +50,7 @@ namespace i5.Toolkit.Tests.ModelImporters
         [SetUp]
         public void ResetScene()
         {
-            EditorSceneManager.OpenScene(PathUtils.GetPackagePath() +  "Tests/TestResources/SetupTestScene.unity");
+            EditModeTestUtilities.ResetScene();
         }
 
         /// <summary>

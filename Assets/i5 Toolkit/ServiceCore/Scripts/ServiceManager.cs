@@ -45,7 +45,14 @@ namespace i5.Toolkit.ServiceCore
 
         private void Awake()
         {
-            instance = this;
+            if (instance == null)
+            {
+                instance = this;
+            }
+            else
+            {
+                i5Debug.LogError("There are multiple Service Managers", this);
+            }
         }
 
         private void Start()

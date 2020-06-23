@@ -51,11 +51,7 @@ namespace i5.Toolkit.ServiceCore
         private void Start()
         {
             IServiceManagerBootstrapper bootstrapper = GetComponent<IServiceManagerBootstrapper>();
-            if (bootstrapper == null)
-            {
-                i5Debug.LogWarning("Service Manager does not have a bootstrapper.", this);
-            }
-            else
+            if (bootstrapper != null)
             {
                 bootstrapper.InitializeServiceManager();
             }
@@ -86,6 +82,7 @@ namespace i5.Toolkit.ServiceCore
             {
                 if (instance.registeredServices.ContainsKey(typeof(T)))
                 {
+                    instance.registeredServices[typeof(T)].Cleanup();
                     instance.registeredServices.Remove(typeof(T));
                 }
                 else

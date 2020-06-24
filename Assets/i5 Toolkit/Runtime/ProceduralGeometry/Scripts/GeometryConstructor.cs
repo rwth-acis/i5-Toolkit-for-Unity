@@ -1,8 +1,8 @@
-﻿using i5.Toolkit.Utilities;
+﻿using i5.Toolkit.Core.Utilities;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace i5.Toolkit.ProceduralGeometry
+namespace i5.Toolkit.Core.ProceduralGeometry
 {
     /// <summary>
     /// Utility class which guides the construction of meshes

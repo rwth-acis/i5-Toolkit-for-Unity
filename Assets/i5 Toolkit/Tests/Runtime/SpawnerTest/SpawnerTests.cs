@@ -1,13 +1,13 @@
-﻿using i5.Toolkit.Spawners;
-using i5.Toolkit.TestUtilities;
-using i5.Toolkit.Utilities;
+﻿using i5.Toolkit.Core.Spawners;
+using i5.Toolkit.Core.TestUtilities;
+using i5.Toolkit.Core.Utilities;
 using NUnit.Framework;
 using System.Collections;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.TestTools;
 
-namespace i5.Toolkit.Tests.Spawners
+namespace i5.Toolkit.Core.Tests.Spawners
 {
     public class SpawnerTests
     {

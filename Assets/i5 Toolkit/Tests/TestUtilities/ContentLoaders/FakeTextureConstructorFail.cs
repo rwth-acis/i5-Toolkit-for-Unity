@@ -1,10 +1,10 @@
-﻿using i5.Toolkit.ProceduralGeometry;
+﻿using i5.Toolkit.Core.ProceduralGeometry;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace i5.Toolkit.TestUtilities
+namespace i5.Toolkit.Core.TestUtilities
 {
     /// <summary>
     /// Simulates a texture constructor where texture fetching fails

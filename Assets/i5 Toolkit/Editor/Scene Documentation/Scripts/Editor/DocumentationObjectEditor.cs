@@ -1,9 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
+﻿using UnityEditor;
 using UnityEngine;
 
-namespace i5.Toolkit.SceneDocumentation
+namespace i5.Toolkit.Core.SceneDocumentation
 {
     /// <summary>
     /// Editor script which defines the inspector view for the DocumentationObject component

@@ -1,6 +1,6 @@
-﻿using i5.Toolkit.ProceduralGeometry;
-using i5.Toolkit.TestUtilities;
-using i5.Toolkit.Utilities;
+﻿using i5.Toolkit.Core.ProceduralGeometry;
+using i5.Toolkit.Core.TestUtilities;
+using i5.Toolkit.Core.Utilities;
 using NUnit.Framework;
 using System.Collections;
 using System.Text.RegularExpressions;
@@ -9,7 +9,7 @@ using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.TestTools;
 
-namespace i5.Toolkit.Tests.ProceduralGeometry
+namespace i5.Toolkit.Core.Tests.ProceduralGeometry
 {
     /// <summary>
     /// Tests for the TextureConstructor class

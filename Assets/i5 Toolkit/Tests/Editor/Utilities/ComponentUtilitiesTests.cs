@@ -1,9 +1,9 @@
-﻿using i5.Toolkit.TestUtilities;
-using i5.Toolkit.Utilities;
+﻿using i5.Toolkit.Core.TestUtilities;
+using i5.Toolkit.Core.Utilities;
 using NUnit.Framework;
 using UnityEngine;
 
-namespace i5.Toolkit.Tests.Utilities
+namespace i5.Toolkit.Core.Tests.Utilities
 {
     /// <summary>
     /// Tests for the Component Utilities

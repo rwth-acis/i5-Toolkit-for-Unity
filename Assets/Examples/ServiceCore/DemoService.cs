@@ -1,4 +1,4 @@
-﻿using i5.Toolkit.ServiceCore;
+﻿using i5.Toolkit.Core.ServiceCore;
 using System;
 using System.Collections;
 using System.Collections.Generic;

@@ -1,6 +1,6 @@
-﻿using i5.Toolkit.ProceduralGeometry;
+﻿using i5.Toolkit.Core.ProceduralGeometry;
 
-namespace i5.Toolkit.ModelImporters
+namespace i5.Toolkit.Core.ModelImporters
 {
     /// <summary>
     /// Result of one sub-object of a parsing operation for a .obj file

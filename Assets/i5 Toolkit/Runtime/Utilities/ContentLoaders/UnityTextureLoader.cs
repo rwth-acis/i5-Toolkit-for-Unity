@@ -1,9 +1,9 @@
 ﻿using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Networking;
-using i5.Toolkit.Utilities.Async;
+using i5.Toolkit.Core.Utilities.Async;
 
-namespace i5.Toolkit.Utilities.ContentLoaders
+namespace i5.Toolkit.Core.Utilities.ContentLoaders
 {
     /// <summary>
     /// Wrapper class which loads textures using Unity's WebRequestsTexture

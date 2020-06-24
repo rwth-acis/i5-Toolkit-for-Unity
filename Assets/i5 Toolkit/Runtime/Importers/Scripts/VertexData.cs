@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace i5.Toolkit.ModelImporters
+namespace i5.Toolkit.Core.ModelImporters
 {
     /// <summary>
     /// Stores data for one vertex

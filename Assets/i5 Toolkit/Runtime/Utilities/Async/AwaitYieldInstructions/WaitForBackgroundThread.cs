@@ -23,7 +23,7 @@
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
-namespace i5.Toolkit.Utilities.Async
+namespace i5.Toolkit.Core.Utilities.Async
 {
     public class WaitForBackgroundThread
     {

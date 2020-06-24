@@ -1,8 +1,8 @@
-﻿using i5.Toolkit.Utilities;
+﻿using i5.Toolkit.Core.Utilities;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace i5.Toolkit.Spawners
+namespace i5.Toolkit.Core.Spawners
 {
     /// <summary>
     /// Spawner which can instantiate one prefab object in the scene

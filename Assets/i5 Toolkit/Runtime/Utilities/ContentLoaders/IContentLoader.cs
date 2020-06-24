@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace i5.Toolkit.Utilities.ContentLoaders
+namespace i5.Toolkit.Core.Utilities.ContentLoaders
 {
     /// <summary>
     /// /// Interface for modules which load content from the Web

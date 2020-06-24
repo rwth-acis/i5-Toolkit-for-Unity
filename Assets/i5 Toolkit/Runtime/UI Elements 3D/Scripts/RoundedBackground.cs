@@ -1,11 +1,11 @@
-﻿using i5.Toolkit.ProceduralGeometry;
-using i5.Toolkit.Utilities;
+﻿using i5.Toolkit.Core.ProceduralGeometry;
+using i5.Toolkit.Core.Utilities;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace i5.Toolkit.UIElements3D
+namespace i5.Toolkit.Core.UIElements3D
 {
     /// <summary>
     /// Constructs a rounded 3D rectangle with depth

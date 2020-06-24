@@ -23,7 +23,7 @@
 using System.Threading;
 using UnityEngine;
 
-namespace i5.Toolkit.Utilities.Async
+namespace i5.Toolkit.Core.Utilities.Async
 {
     /// <summary>
     /// Utility class to assist in thread and context synchronization.

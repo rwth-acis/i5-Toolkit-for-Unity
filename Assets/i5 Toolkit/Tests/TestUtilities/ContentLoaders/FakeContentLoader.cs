@@ -1,11 +1,11 @@
-﻿using i5.Toolkit.Utilities;
-using i5.Toolkit.Utilities.ContentLoaders;
+﻿using i5.Toolkit.Core.Utilities;
+using i5.Toolkit.Core.Utilities.ContentLoaders;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace i5.Toolkit.TestUtilities
+namespace i5.Toolkit.Core.TestUtilities
 {
     /// <summary>
     /// Fake content loader that simulates a Web request and returns pre-set content

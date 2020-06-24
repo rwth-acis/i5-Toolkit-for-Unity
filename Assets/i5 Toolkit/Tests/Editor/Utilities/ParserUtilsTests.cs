@@ -1,13 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using i5.Toolkit.TestUtilities;
-using i5.Toolkit.Utilities;
+using i5.Toolkit.Core.TestUtilities;
+using i5.Toolkit.Core.Utilities;
 using NUnit.Framework;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.TestTools;
 
-namespace i5.Toolkit.Tests.Utilities
+namespace i5.Toolkit.Core.Tests.Utilities
 {
     /// <summary>
     /// Tests for the parser utils tests

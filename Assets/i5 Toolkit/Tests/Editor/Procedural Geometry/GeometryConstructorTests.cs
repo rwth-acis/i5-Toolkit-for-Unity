@@ -1,10 +1,10 @@
-﻿using i5.Toolkit.ProceduralGeometry;
-using i5.Toolkit.TestUtilities;
+﻿using i5.Toolkit.Core.ProceduralGeometry;
+using i5.Toolkit.Core.TestUtilities;
 using NUnit.Framework;
 using System;
 using UnityEngine;
 
-namespace i5.Toolkit.Tests.ProceduralGeometry
+namespace i5.Toolkit.Core.Tests.ProceduralGeometry
 {
     /// <summary>
     /// Tests for the GeometryConstructor class

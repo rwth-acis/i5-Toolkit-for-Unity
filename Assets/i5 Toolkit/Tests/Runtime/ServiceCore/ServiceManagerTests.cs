@@ -1,14 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using i5.Toolkit.ServiceCore;
-using i5.Toolkit.TestUtilities;
+using i5.Toolkit.Core.ServiceCore;
+using i5.Toolkit.Core.TestUtilities;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
 
-namespace i5.Toolkit.Tests.ServiceCore
+namespace i5.Toolkit.Core.Tests.ServiceCore
 {
     public class ServiceManagerTests
     {

@@ -1,9 +1,9 @@
-﻿using i5.Toolkit.Utilities;
+﻿using i5.Toolkit.Core.Utilities;
 using NUnit.Framework;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 
-namespace i5.Toolkit.TestUtilities
+namespace i5.Toolkit.Core.TestUtilities
 {
     public static class EditModeTestUtilities
     {

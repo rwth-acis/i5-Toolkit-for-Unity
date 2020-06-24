@@ -26,7 +26,7 @@ using System.Runtime.CompilerServices;
 using UnityEngine;
 
 [assembly: InternalsVisibleTo("Microsoft.MixedReality.Toolkit.Tests.PlayModeTests")]
-namespace i5.Toolkit.Utilities.Async
+namespace i5.Toolkit.Core.Utilities.Async
 {
     /// <summary>
     /// This Async Coroutine Runner is just an object to

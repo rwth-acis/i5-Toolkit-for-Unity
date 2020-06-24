@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace i5.Toolkit.ServiceCore
+namespace i5.Toolkit.Core.ServiceCore
 {
     public interface IUpdateableService : IService
     {

@@ -1,10 +1,9 @@
-﻿using i5.Toolkit.Utilities;
+﻿using i5.Toolkit.Core.Utilities;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace i5.Toolkit.ServiceCore
+namespace i5.Toolkit.Core.ServiceCore
 {
     /// <summary>
     /// Manager which administers registered services

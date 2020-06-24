@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using UnityEngine;
 
-namespace i5.Toolkit.Utilities
+namespace i5.Toolkit.Core.Utilities
 {
     /// <summary>
     /// Parser utils for parsing vectors from strings

@@ -1,4 +1,4 @@
-﻿namespace i5.Toolkit.Utilities
+﻿namespace i5.Toolkit.Core.Utilities
 {
     /// <summary>
     /// Container object which is produced by IContentLoader classes after they fetched content from the Web

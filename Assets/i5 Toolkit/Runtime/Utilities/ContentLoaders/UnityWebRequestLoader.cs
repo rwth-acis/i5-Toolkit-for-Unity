@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
 using UnityEngine.Networking;
-using i5.Toolkit.Utilities.Async;
+using i5.Toolkit.Core.Utilities.Async;
 
-namespace i5.Toolkit.Utilities.ContentLoaders
+namespace i5.Toolkit.Core.Utilities.ContentLoaders
 {
     public class UnityWebRequestLoader : IContentLoader<string>
     {

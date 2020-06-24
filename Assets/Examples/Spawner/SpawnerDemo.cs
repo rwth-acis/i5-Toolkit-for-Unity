@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace i5.Toolkit.Spawners.Demo
+namespace i5.Toolkit.Core.Spawners.Demo
 {
 
     public class SpawnerDemo : MonoBehaviour

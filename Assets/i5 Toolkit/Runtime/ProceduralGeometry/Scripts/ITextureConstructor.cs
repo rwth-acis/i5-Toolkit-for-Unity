@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace i5.Toolkit.ProceduralGeometry
+namespace i5.Toolkit.Core.ProceduralGeometry
 {
     /// <summary>
     /// Interface for texture constructors

@@ -1,7 +1,7 @@
-﻿using i5.Toolkit.Utilities;
+﻿using i5.Toolkit.Core.Utilities;
 using UnityEngine;
 
-namespace i5.Toolkit.ProceduralGeometry
+namespace i5.Toolkit.Core.ProceduralGeometry
 {
     /// <summary>
     /// Class for constructing objects on demand

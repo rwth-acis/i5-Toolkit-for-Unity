@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-namespace i5.Toolkit.Utilities
+namespace i5.Toolkit.Core.Utilities
 {
     /// <summary>
     /// Utilities for paths

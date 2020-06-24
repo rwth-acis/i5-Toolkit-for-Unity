@@ -1,9 +1,9 @@
-﻿using i5.Toolkit.Utilities;
+﻿using i5.Toolkit.Core.Utilities;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace i5.Toolkit.ProceduralGeometry
+namespace i5.Toolkit.Core.ProceduralGeometry
 {
     /// <summary>
     /// Construction object to store properties of materials to create them later

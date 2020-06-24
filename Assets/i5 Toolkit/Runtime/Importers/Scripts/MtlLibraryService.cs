@@ -1,14 +1,14 @@
-﻿using i5.Toolkit.ProceduralGeometry;
-using i5.Toolkit.ServiceCore;
-using i5.Toolkit.Utilities;
-using i5.Toolkit.Utilities.ContentLoaders;
+﻿using i5.Toolkit.Core.ProceduralGeometry;
+using i5.Toolkit.Core.ServiceCore;
+using i5.Toolkit.Core.Utilities;
+using i5.Toolkit.Core.Utilities.ContentLoaders;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace i5.Toolkit.ModelImporters
+namespace i5.Toolkit.Core.ModelImporters
 {
     /// <summary>
     /// Service for parsing and storing material libraries from .mtl files

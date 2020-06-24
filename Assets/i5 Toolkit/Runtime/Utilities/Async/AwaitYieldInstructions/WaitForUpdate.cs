@@ -22,7 +22,7 @@
 
 using UnityEngine;
 
-namespace i5.Toolkit.Utilities.Async
+namespace i5.Toolkit.Core.Utilities.Async
 {
     /// <summary>
     /// This can be used as a way to return to the main unity thread 

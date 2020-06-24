@@ -1,18 +1,17 @@
-﻿using i5.Toolkit.ModelImporters;
-using i5.Toolkit.ServiceCore;
-using i5.Toolkit.TestUtilities;
-using i5.Toolkit.Utilities;
-using i5.Toolkit.Utilities.ContentLoaders;
+﻿using i5.Toolkit.Core.ModelImporters;
+using i5.Toolkit.Core.ServiceCore;
+using i5.Toolkit.Core.TestUtilities;
+using i5.Toolkit.Core.Utilities;
+using i5.Toolkit.Core.Utilities.ContentLoaders;
 using NUnit.Framework;
 using System.Collections;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.TestTools;
 
-namespace i5.Toolkit.Tests.ModelImporters
+namespace i5.Toolkit.Core.Tests.ModelImporters
 {
     /// <summary>
     /// Tests for the ObjImporter class

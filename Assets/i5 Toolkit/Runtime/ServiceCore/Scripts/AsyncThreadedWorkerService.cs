@@ -1,4 +1,4 @@
-﻿using i5.Toolkit.ServiceCore;
+﻿using i5.Toolkit.Core.ServiceCore;
 using System;
 using System.Collections;
 using System.Collections.Concurrent;
@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 
-namespace i5.Toolkit.ServiceCore
+namespace i5.Toolkit.Core.ServiceCore
 {
     public class AsyncThreadedWorkerService<OperationType>
         : IUpdateableService where OperationType : IOperation

@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace i5.Toolkit.SceneDocumentation
+namespace i5.Toolkit.Core.SceneDocumentation
 {
     /// <summary>
     /// A special component which provides documentation information in the editor

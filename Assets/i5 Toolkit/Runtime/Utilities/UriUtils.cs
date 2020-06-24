@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace i5.Toolkit.Utilities
+namespace i5.Toolkit.Core.Utilities
 {
     /// <summary>
     /// Utility functions for operating on Uris

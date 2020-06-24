@@ -32,7 +32,7 @@ using System.Threading;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace i5.Toolkit.Utilities.Async
+namespace i5.Toolkit.Core.Utilities.Async
 {
     /// <summary>
     /// We could just add a generic GetAwaiter to YieldInstruction and CustomYieldInstruction

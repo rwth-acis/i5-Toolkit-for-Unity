@@ -1,9 +1,9 @@
-﻿using i5.Toolkit.ServiceCore;
+﻿using i5.Toolkit.Core.ServiceCore;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace i5.Toolkit.TestUtilities
+namespace i5.Toolkit.Core.TestUtilities
 {
     public class TestBootstrapper : MonoBehaviour, IServiceManagerBootstrapper
     {

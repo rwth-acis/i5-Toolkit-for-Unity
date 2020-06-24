@@ -1,9 +1,9 @@
-﻿using i5.Toolkit.Utilities;
-using i5.Toolkit.Utilities.ContentLoaders;
+﻿using i5.Toolkit.Core.Utilities;
+using i5.Toolkit.Core.Utilities.ContentLoaders;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace i5.Toolkit.ProceduralGeometry
+namespace i5.Toolkit.Core.ProceduralGeometry
 {
     /// <summary>
     /// Constructs a texture by fetching it from the Web

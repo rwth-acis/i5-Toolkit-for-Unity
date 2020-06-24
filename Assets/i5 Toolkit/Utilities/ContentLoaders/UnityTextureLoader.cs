@@ -1,8 +1,7 @@
-﻿using i5.Toolkit.Utilities;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Networking;
-using Microsoft.MixedReality.Toolkit.Utilities;
+using i5.Toolkit.Utilities.Async;
 
 namespace i5.Toolkit.Utilities.ContentLoaders
 {

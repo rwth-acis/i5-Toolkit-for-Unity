@@ -2,7 +2,6 @@
 using i5.Toolkit.ServiceCore;
 using i5.Toolkit.Utilities;
 using i5.Toolkit.Utilities.ContentLoaders;
-using Microsoft.MixedReality.Toolkit.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -55,7 +54,7 @@ namespace i5.Toolkit.ModelImporters
             // initialize the content loader
             if (ContentLoader == null)
             {
-                ContentLoader = new MRTKRestLoader();
+                ContentLoader = new UnityWebRequestLoader();
             }
 
             // reserve a mesh object pool id

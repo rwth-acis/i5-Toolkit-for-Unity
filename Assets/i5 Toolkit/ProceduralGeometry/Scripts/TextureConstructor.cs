@@ -1,9 +1,7 @@
 ﻿using i5.Toolkit.Utilities;
 using i5.Toolkit.Utilities.ContentLoaders;
-using Microsoft.MixedReality.Toolkit.Utilities;
 using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.Networking;
 
 namespace i5.Toolkit.ProceduralGeometry
 {

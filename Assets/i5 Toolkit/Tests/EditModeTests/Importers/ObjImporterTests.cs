@@ -69,15 +69,15 @@ namespace i5.Toolkit.Tests.ModelImporters
         }
 
         /// <summary>
-        /// Checks that the ContentLoader is initialized with the MRTKRestLoader by default
+        /// Checks that the ContentLoader is initialized with the UnityWebRequestLoader by default
         /// </summary>
         [Test]
-        public void ContentLoader_Initialized_InitWithMRTKRestLoader()
+        public void ContentLoader_Initialized_InitWithUnityWebRequestLoader()
         {
             ObjImporter objImporter = new ObjImporter();
             objImporter.Initialize(ServiceManager.Instance);
             Assert.NotNull(objImporter.ContentLoader);
-            Assert.True(objImporter.ContentLoader.GetType() == typeof(MRTKRestLoader));
+            Assert.True(objImporter.ContentLoader.GetType() == typeof(UnityWebRequestLoader));
         }
 
         /// <summary>

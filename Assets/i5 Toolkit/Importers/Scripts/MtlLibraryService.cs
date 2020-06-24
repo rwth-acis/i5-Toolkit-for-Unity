@@ -2,7 +2,6 @@
 using i5.Toolkit.ServiceCore;
 using i5.Toolkit.Utilities;
 using i5.Toolkit.Utilities.ContentLoaders;
-using Microsoft.MixedReality.Toolkit.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -45,7 +44,7 @@ namespace i5.Toolkit.ModelImporters
         public void Initialize(ServiceManager owner)
         {
             libraries = new Dictionary<string, Dictionary<string, MaterialConstructor>>();
-            ContentLoader = new MRTKRestLoader();
+            ContentLoader = new UnityWebRequestLoader();
         }
 
         /// <summary>

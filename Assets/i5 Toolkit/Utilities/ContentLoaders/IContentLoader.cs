@@ -1,8 +1,4 @@
-﻿using Microsoft.MixedReality.Toolkit.Utilities;
-using System.Collections;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using UnityEngine;
+﻿using System.Threading.Tasks;
 
 namespace i5.Toolkit.Utilities.ContentLoaders
 {

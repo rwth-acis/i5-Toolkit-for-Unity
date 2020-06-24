@@ -1,6 +1,4 @@
-﻿using Microsoft.MixedReality.Toolkit.Utilities;
-
-namespace i5.Toolkit.Utilities
+﻿namespace i5.Toolkit.Utilities
 {
     /// <summary>
     /// Container object which is produced by IContentLoader classes after they fetched content from the Web
@@ -64,30 +62,30 @@ namespace i5.Toolkit.Utilities
         public WebResponse(string errorMessage, long code) : this(false, default, new byte[0], code, errorMessage)
         { }
 
-        /// <summary>
-        /// Converts MRTK's Response objects to a WebResponse object
-        /// </summary>
-        /// <param name="response">The MRTK Response object to convert</param>
-        /// <returns>A WebResponse object with the same contents as the response object</returns>
-        public static WebResponse<string> FromResponse(Response response)
-        {
-            // Response objects always return string values, so they are of type WebResponse<string>
-            if (response.Successful)
-            {
-                // return a successful response
-                return new WebResponse<string>(
-                response.ResponseBody,
-                response.ResponseData,
-                response.ResponseCode);
-            }
-            else
-            {
-                // construct a failed response
-                // the error message is in the response body
-                return new WebResponse<string>(
-                response.ResponseBody,
-                response.ResponseCode);
-            }
-        }
+        ///// <summary>
+        ///// Converts MRTK's Response objects to a WebResponse object
+        ///// </summary>
+        ///// <param name="response">The MRTK Response object to convert</param>
+        ///// <returns>A WebResponse object with the same contents as the response object</returns>
+        //public static WebResponse<string> FromResponse(Response response)
+        //{
+        //    // Response objects always return string values, so they are of type WebResponse<string>
+        //    if (response.Successful)
+        //    {
+        //        // return a successful response
+        //        return new WebResponse<string>(
+        //        response.ResponseBody,
+        //        response.ResponseData,
+        //        response.ResponseCode);
+        //    }
+        //    else
+        //    {
+        //        // construct a failed response
+        //        // the error message is in the response body
+        //        return new WebResponse<string>(
+        //        response.ResponseBody,
+        //        response.ResponseCode);
+        //    }
+        //}
     }
 }

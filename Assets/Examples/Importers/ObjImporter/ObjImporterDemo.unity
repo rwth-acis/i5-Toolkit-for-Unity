@@ -452,7 +452,7 @@ MonoBehaviour:
 
     The rotating cube is there to see if there are any lags during the import process.'
   type: 0
-  url: 
+  url: https://github.com/rwth-acis/i5-Toolkit-for-Unity/wiki/Obj-Importer
 --- !u!4 &1983270618
 Transform:
   m_ObjectHideFlags: 0

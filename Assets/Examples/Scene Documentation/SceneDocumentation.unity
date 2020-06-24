@@ -149,7 +149,7 @@ MonoBehaviour:
     To add any of these to a scene, create an empty GameObject and add a DocumentationObject
     component to them.'
   type: 0
-  url: 
+  url: https://github.com/rwth-acis/i5-Toolkit-for-Unity/wiki/Scene-Documentation
 --- !u!4 &440039212
 Transform:
   m_ObjectHideFlags: 0

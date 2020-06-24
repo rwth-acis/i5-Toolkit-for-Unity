@@ -409,7 +409,7 @@ MonoBehaviour:
     Pressing F5 also triggers a simulated async operation which waits for a couple
     of seconds before printing a statement to the console.'
   type: 0
-  url: 
+  url: https://github.com/rwth-acis/i5-Toolkit-for-Unity/wiki/Service-Core
 --- !u!4 &2084435602
 Transform:
   m_ObjectHideFlags: 0

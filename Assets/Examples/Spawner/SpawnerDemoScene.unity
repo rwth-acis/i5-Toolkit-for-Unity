@@ -148,7 +148,7 @@ MonoBehaviour:
 
     You can alter the settings on the Spawner object to get different results.'
   type: 0
-  url: 
+  url: https://github.com/rwth-acis/i5-Toolkit-for-Unity/wiki/Spawner
 --- !u!4 &489235335
 Transform:
   m_ObjectHideFlags: 0

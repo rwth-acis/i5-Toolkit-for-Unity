@@ -1,6 +1,8 @@
 {
-    "name": "i5.Toolkit.Utilities.Async",
-    "references": [],
+    "name": "i5.Toolkit.Core.Runtime",
+    "references": [
+        "i5.Toolkit.Core.Editor"
+    ],
     "optionalUnityReferences": [],
     "includePlatforms": [],
     "excludePlatforms": [],

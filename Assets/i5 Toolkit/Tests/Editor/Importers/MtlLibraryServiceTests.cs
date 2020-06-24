@@ -45,7 +45,7 @@ namespace i5.Toolkit.Tests.ModelImporters
         [OneTimeSetUp]
         public void Initialize()
         {
-            content = File.ReadAllText(PathUtils.GetPackagePath() + "Tests/EditModeTests/Importers/Data/MatLib.mtl");
+            content = File.ReadAllText(PathUtils.GetPackagePath() + "Tests/Editor/Importers/Data/MatLib.mtl");
             fakeContentLoader = new FakeContentLoader(content);
         }
 

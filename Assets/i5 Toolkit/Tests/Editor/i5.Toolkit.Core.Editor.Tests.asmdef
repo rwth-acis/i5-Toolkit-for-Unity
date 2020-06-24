@@ -1,12 +1,16 @@
 {
-    "name": "i5.Toolkit.TestUtilities",
+    "name": "i5.Toolkit.Core.Editor.Tests",
     "references": [
-        "i5.Toolkit"
+        "i5.Toolkit.Core.Editor",
+        "i5.Toolkit.Core.Runtime",
+        "i5.Toolkit.Core.TestUtilities"
     ],
     "optionalUnityReferences": [
         "TestAssemblies"
     ],
-    "includePlatforms": [],
+    "includePlatforms": [
+        "Editor"
+    ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,

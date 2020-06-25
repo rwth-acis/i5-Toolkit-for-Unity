@@ -1,0 +1,20 @@
+{
+  "name": "com.i5.toolkit.core",
+  "version": "1.0.0",
+  "displayName": "i5 Toolkit for Unity",
+  "description": "This package contains a collection of tools, features and assets for the development of Unity projects",
+  "unity": "2018.4",
+  "unityRelease": "15f1",
+  "dependencies": {},
+  "keywords": [
+    "Unity",
+    "Toolkit",
+    "rwth-acis",
+    "i5",
+    "RWTH"
+  ],
+  "author": {
+    "name": "Informatik 5, RWTH Aachen University",
+    "url": "http://dbis.rwth-aachen.de/cms"
+  }
+}

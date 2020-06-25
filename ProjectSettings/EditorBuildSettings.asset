@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/i5 Toolkit/Tests/TestResources/SetupTestScene.unity
+    guid: 63606ea475aa32a44b96a5c70f16b3d1
   m_configObjects: {}

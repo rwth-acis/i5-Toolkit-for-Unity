@@ -20,3 +20,4 @@ This document keeps track of the changes between versions of the toolkit.
   - Functions for getting the path of the package
 - Extensions for converting Vector2 and Vector3 to Color objects and vice versa
 - Unit tests and test scenes for importers and utilities
+- Logo

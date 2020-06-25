@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg width="100%" height="100%" viewBox="0 0 920 280" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
-    <g transform="matrix(0.765425,0,0,0.765425,272.098,-43.024)">
+<svg width="100%" height="100%" viewBox="0 0 3072 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g transform="matrix(2.79927,0,0,2.79927,825.232,-157.345)">
         <g transform="matrix(0.998123,0,0,0.998123,0.32116,0.583706)">
             <rect x="171.1" y="310.973" width="100.188" height="100.188" style="fill:rgb(31,144,244);"/>
         </g>
@@ -12,7 +12,7 @@
             <rect x="171.1" y="310.973" width="100.188" height="100.188" style="fill:rgb(65,161,246);"/>
         </g>
     </g>
-    <g transform="matrix(0.438526,0,0,0.438526,220.597,-57.9454)">
+    <g transform="matrix(1.60375,0,0,1.60375,636.887,-211.915)">
         <rect x="464.044" y="209.628" width="163.765" height="85.225" style="fill:rgb(31,144,244);"/>
         <g transform="matrix(0.924751,0,0,0.994456,43.0761,8.07563)">
             <ellipse cx="500.237" cy="189.391" rx="48.662" ry="45.251" style="fill:rgb(31,144,244);"/>
@@ -27,10 +27,10 @@
             <ellipse cx="500.237" cy="189.391" rx="48.662" ry="45.251" style="fill:rgb(31,144,244);"/>
         </g>
     </g>
-    <g transform="matrix(9.38955e-18,0.153343,-0.322134,1.9725e-17,599.187,121.643)">
+    <g transform="matrix(3.43389e-17,0.560797,-1.17809,7.21373e-17,2021.44,444.865)">
         <path d="M-264.562,448.775L-264.562,415.379L138.323,415.379L138.323,384.368L238.547,432.077L138.323,479.786L138.323,448.775L-264.562,448.775Z" style="fill:rgb(31,144,244);"/>
     </g>
-    <g transform="matrix(0.424379,0,0,0.424379,330.451,-128.124)">
+    <g transform="matrix(1.55201,0,0,1.55201,1038.64,-468.566)">
         <g transform="matrix(67,0,0,67,200.515,876.39)">
             <path d="M0.109,0.011C0.094,0.011 0.081,0.005 0.071,-0.005C0.06,-0.016 0.055,-0.029 0.055,-0.044C0.055,-0.059 0.06,-0.072 0.071,-0.083C0.081,-0.094 0.094,-0.099 0.109,-0.099C0.124,-0.099 0.137,-0.094 0.148,-0.083C0.159,-0.072 0.164,-0.059 0.164,-0.044C0.164,-0.029 0.159,-0.016 0.148,-0.005C0.137,0.005 0.124,0.011 0.109,0.011Z" style="fill:white;fill-rule:nonzero;"/>
         </g>

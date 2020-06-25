@@ -1,7 +1,16 @@
 # i5 Toolkit for Unity
 
+![i5 Toolkit for Unity](https://raw.githubusercontent.com/rwth-acis/i5-Toolkit-for-Unity/develop/Logos/Logo%20wide.svg)
+
 This toolkit contains a collection of features which can be reused in Unity projects.
-It acts as a foundation for new projects, kickstarting the development with already completed tools.
+It is a foundation for new projects, kickstarting the development with already completed tools.
+## Modules
+
+The i5 Toolkit provides a series of modules and features that can be used in projects.
+
+| &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<br/> [![Obj Importer](https://raw.githubusercontent.com/rwth-acis/i5-Toolkit-for-Unity/master/Logos/Obj%20Importer.svg)<br/>Obj Importer](https://github.com/rwth-acis/i5-Toolkit-for-Unity/wiki/Obj-Importer)<br/>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<br/> [![Procedural Geometry](https://raw.githubusercontent.com/rwth-acis/i5-Toolkit-for-Unity/master/Logos/Procedural%20Geometry.svg)<br/>Procedural Geometry](https://github.com/rwth-acis/i5-Toolkit-for-Unity/wiki/Procedural-Geometry)<br/>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<br/> [![Scene Documentation](https://raw.githubusercontent.com/rwth-acis/i5-Toolkit-for-Unity/master/Logos/Scene%20Documentation.svg)<br/>Scene Documentation](https://github.com/rwth-acis/i5-Toolkit-for-Unity/wiki/Scene-Documentation)<br/>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; |
+| :---: | :---: | :---: |
+| [![Service Core](https://raw.githubusercontent.com/rwth-acis/i5-Toolkit-for-Unity/master/Logos/ServiceCore.svg)<br/>**Service Core**](https://github.com/rwth-acis/i5-Toolkit-for-Unity/wiki/Service-Core) | [![Spawner](https://raw.githubusercontent.com/rwth-acis/i5-Toolkit-for-Unity/master/Logos/Spawner.svg)<br/>**Spawner**](https://github.com/rwth-acis/i5-Toolkit-for-Unity/wiki/Spawner) | |
 
 ## Setup
 

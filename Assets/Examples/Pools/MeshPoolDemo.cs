@@ -42,7 +42,7 @@ namespace i5.Toolkit.Core.Examples.MeshPoolExample
                 else
                 {
                     i5Debug.Log("Return to pool", this);
-                    ObjectPool<Mesh>.ReturnResource(mesh);
+                    ObjectPool<Mesh>.ReleaseResource(mesh);
                     stored = true;
                 }
             }

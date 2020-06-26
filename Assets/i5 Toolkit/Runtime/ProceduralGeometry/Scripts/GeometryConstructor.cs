@@ -86,25 +86,25 @@ namespace i5.Toolkit.Core.ProceduralGeometry
         /// List the three vertices in clockwise order as seen from the outside
         /// The indices must exist in the geometry, i.e. they first need to be added using AddVertex()
         /// </summary>
-        /// <param name="v1">Index of vertex 1</param>
-        /// <param name="v2">Index of vertex 2</param>
-        /// <param name="v3">Index of vertex 3</param>
+        /// <param name="v0">Index of vertex 1</param>
+        /// <param name="v1">Index of vertex 2</param>
+        /// <param name="v2">Index of vertex 3</param>
         /// <param name="flipNormal">If set to true, the triangle will face the other way</param>
-        public void AddTriangle(int v1, int v2, int v3, bool flipNormal = false)
+        public void AddTriangle(int v0, int v1, int v2, bool flipNormal = false)
         {
-            if (CheckVertexIndex(v1) && CheckVertexIndex(v2) && CheckVertexIndex(v3))
+            if (CheckVertexIndex(v0) && CheckVertexIndex(v1) && CheckVertexIndex(v2))
             {
                 if (flipNormal)
                 {
-                    Triangles.Add(v1);
-                    Triangles.Add(v3);
+                    Triangles.Add(v0);
                     Triangles.Add(v2);
+                    Triangles.Add(v1);
                 }
                 else
                 {
+                    Triangles.Add(v0);
                     Triangles.Add(v1);
                     Triangles.Add(v2);
-                    Triangles.Add(v3);
                 }
             }
         }
@@ -115,18 +115,18 @@ namespace i5.Toolkit.Core.ProceduralGeometry
         /// The diagonal will be created between the first and third vertex
         /// The indices must exist in the geometry, i.e. they first need to be added using AddVertex()
         /// </summary>
-        /// <param name="v1">Index of vertex 1</param>
-        /// <param name="v2">Index of vertex 2</param>
-        /// <param name="v3">Index of vertex 3</param>
-        /// <param name="v4">Index of vertex 4</param>
+        /// <param name="v0">Index of vertex 1</param>
+        /// <param name="v1">Index of vertex 2</param>
+        /// <param name="v2">Index of vertex 3</param>
+        /// <param name="v3">Index of vertex 4</param>
         /// /// <param name="flipNormals">If set to true, the quad will face the other way</param>
-        public void AddQuad(int v1, int v2, int v3, int v4, bool flipNormals = false)
+        public void AddQuad(int v0, int v1, int v2, int v3, bool flipNormals = false)
         {
-            if (CheckVertexIndex(v1) && CheckVertexIndex(v2) && CheckVertexIndex(v3) && CheckVertexIndex(v4))
+            if (CheckVertexIndex(v0) && CheckVertexIndex(v1) && CheckVertexIndex(v2) && CheckVertexIndex(v3))
             {
                 // add two triangles: top right triangle and bottom left triangle
-                AddTriangle(v1, v2, v3, flipNormals);
-                AddTriangle(v1, v3, v4, flipNormals);
+                AddTriangle(v0, v1, v2, flipNormals);
+                AddTriangle(v0, v2, v3, flipNormals);
             }
         }
 

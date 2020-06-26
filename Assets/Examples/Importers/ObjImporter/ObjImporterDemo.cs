@@ -6,17 +6,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjImporterDemo : MonoBehaviour
+namespace i5.Toolkit.Core.Examples.ObjImporterExample
 {
-    public bool extendedLogging = true;
-    public string url;
-
-    private async void Update()
+    /// <summary>
+    /// Demo client which allows the tester to import a obj file if F5 is pressed
+    /// </summary>
+    public class ObjImporterDemo : MonoBehaviour
     {
-        if (Input.GetKeyDown(KeyCode.F5))
+        public bool extendedLogging = true;
+        public string url;
+
+        private async void Update()
         {
-            ServiceManager.GetService<ObjImporter>().ExtendedLogging = extendedLogging;
-            GameObject obj = await ServiceManager.GetService<ObjImporter>().ImportAsync(url);
+            if (Input.GetKeyDown(KeyCode.F5))
+            {
+                ServiceManager.GetService<ObjImporter>().ExtendedLogging = extendedLogging;
+                GameObject obj = await ServiceManager.GetService<ObjImporter>().ImportAsync(url);
+            }
         }
     }
 }

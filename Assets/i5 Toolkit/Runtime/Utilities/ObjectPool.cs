@@ -44,11 +44,17 @@ namespace i5.Toolkit.Core.Utilities
         /// </summary>
         /// <param name="poolId"></param>
         /// <param name="destroyAction"></param>
-        public static void RemovePool(int poolId, Action<T> destroyAction)
+        public static void RemovePool(int poolId, Action<T> destroyAction = null)
         {
             if (poolId == 0)
             {
                 Debug.LogError("Cannot remove default pool");
+                return;
+            }
+
+            if (!pools.ContainsKey(poolId))
+            {
+                Debug.LogWarning("The pool with the given id could not be destroyed because it does not exist anymore.");
                 return;
             }
 
@@ -77,10 +83,8 @@ namespace i5.Toolkit.Core.Utilities
         /// <returns>An instance of the object from the pool</returns>
         public static T RequestResource(int poolId, Func<T> creationFactory)
         {
-            if (!pools.ContainsKey(poolId))
-            {
-                return creationFactory();
-            }
+            EnsurePoolIdValid(poolId);
+
             if (pools[poolId].Count > 0)
             {
                 return pools[poolId].Dequeue();
@@ -96,9 +100,9 @@ namespace i5.Toolkit.Core.Utilities
         /// This should return all control over this object back to the pool
         /// </summary>
         /// <param name="resource">The resource which is returned to the pool</param>
-        public static void ReturnResource(T resource)
+        public static void ReleaseResource(T resource)
         {
-            ReturnResource(0, resource);
+            ReleaseResource(0, resource);
         }
 
         /// <summary>
@@ -107,12 +111,9 @@ namespace i5.Toolkit.Core.Utilities
         /// </summary>
         /// <param name="poolId">The id of the pool</param>
         /// <param name="resource">The resource which is returned to the pool</param>
-        public static void ReturnResource(int poolId, T resource)
+        public static void ReleaseResource(int poolId, T resource)
         {
-            if (!pools.ContainsKey(poolId))
-            {
-                pools.Add(poolId, new Queue<T>());
-            }
+            EnsurePoolIdValid(poolId);
             pools[poolId].Enqueue(resource);
         }
 
@@ -122,7 +123,7 @@ namespace i5.Toolkit.Core.Utilities
         /// You probably want to use Destroy() inside the destroyAction
         /// </summary>
         /// <param name="destroyAction"></param>
-        public static void ClearPool(Action<T> destroyAction)
+        public static void ClearPool(Action<T> destroyAction = null)
         {
             ClearPool(0, destroyAction);
         }
@@ -134,12 +135,37 @@ namespace i5.Toolkit.Core.Utilities
         /// </summary>
         /// <param name="poolId">The id of the pool which should be cleared</param>
         /// <param name="destroyAction">The action which should be performed to destroy on object</param>
-        public static void ClearPool(int poolId, Action<T> destroyAction)
+        public static void ClearPool(int poolId, Action<T> destroyAction = null)
         {
+            EnsurePoolIdValid(poolId);
+
             while (pools[poolId].Count > 0)
             {
                 T obj = pools[poolId].Dequeue();
-                destroyAction(obj);
+                destroyAction?.Invoke(obj);
+            }
+        }
+
+        /// <summary>
+        /// Checks if the pool id is valid
+        /// If not, it throws a invalid operation exception
+        /// </summary>
+        /// <param name="poolId">The id of the pool which should be accessed</param>
+        private static void EnsurePoolIdValid(int poolId)
+        {
+            if (!pools.ContainsKey(poolId))
+            {
+                // the default pool should always exist
+                // if it is accessed for the first time, create it
+                if (poolId == 0)
+                {
+                    pools.Add(0, new Queue<T>());
+                }
+                // all other pools must be created explicitly; if they do not exist: throw exception
+                else
+                {
+                    throw new InvalidOperationException("You are trying to access an object pool which does not exist. Make sure to call CreateNewPool before accessing it.");
+                }
             }
         }
     }

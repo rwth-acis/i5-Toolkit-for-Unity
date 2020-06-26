@@ -4,33 +4,59 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DemoUpdateService : IUpdateableService
+namespace i5.Toolkit.Core.Examples.ServiceExample
 {
-    float updateInterval;
-    float time = 0;
-
-    public bool Enabled { get; set; } = true;
-
-    public DemoUpdateService(float updateInterval)
+    /// <summary>
+    /// Demo of an upadteable service
+    /// Logs the elapsed application's runtime in seconds in regular intervals
+    /// </summary>
+    public class DemoUpdateService : IUpdateableService
     {
-        this.updateInterval = updateInterval;
-    }
+        float updateInterval;
+        float time = 0;
 
-    public void Cleanup()
-    {
-    }
+        /// <summary>
+        /// Every updateable service has an Enabled property
+        /// It this property is set to false, the Update() method is not executed
+        /// It is recommended to set this to true by default
+        /// </summary>
+        public bool Enabled { get; set; } = true;
 
-    public void Initialize(ServiceManager owner)
-    {
-    }
-
-    public void Update()
-    {
-        time += Time.deltaTime;
-        if (time > updateInterval)
+        /// <summary>
+        /// Initializes the service before it is registered
+        /// </summary>
+        /// <param name="updateInterval">The interval in seconds in which the time should be logged</param>
+        public DemoUpdateService(float updateInterval)
         {
-            i5Debug.Log(Time.time.ToString(), this);
-            time %= updateInterval;
+            this.updateInterval = updateInterval;
+        }
+
+        /// <summary>
+        /// Called if the service is unregistered or if the service manager is destroyed
+        /// </summary>
+        public void Cleanup()
+        {
+        }
+
+        /// <summary>
+        /// Called if the service is registered at the service manager
+        /// </summary>
+        /// <param name="owner">The service manager where the service is registered</param>
+        public void Initialize(ServiceManager owner)
+        {
+        }
+
+        /// <summary>
+        /// Called every frame by the service manager if this service is registered and enabled
+        /// </summary>
+        public void Update()
+        {
+            time += Time.deltaTime;
+            if (time > updateInterval)
+            {
+                i5Debug.Log(Time.time.ToString(), this);
+                time %= updateInterval;
+            }
         }
     }
 }

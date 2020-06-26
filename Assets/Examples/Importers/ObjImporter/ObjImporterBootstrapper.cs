@@ -4,11 +4,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjImporterBootstrapper : MonoBehaviour, IServiceManagerBootstrapper
+namespace i5.Toolkit.Core.Examples.ObjImporterExample
 {
-    public void InitializeServiceManager()
+    /// <summary>
+    /// Bootstrapper which initializes the obj importer service
+    /// </summary>
+    public class ObjImporterBootstrapper : MonoBehaviour, IServiceManagerBootstrapper
     {
-        ObjImporter importer = new ObjImporter();
-        ServiceManager.RegisterService(importer);
+        /// <summary>
+        /// Initializes the obj importer in the service manager
+        /// </summary>
+        public void InitializeServiceManager()
+        {
+            ObjImporter importer = new ObjImporter();
+            ServiceManager.RegisterService(importer);
+        }
     }
 }

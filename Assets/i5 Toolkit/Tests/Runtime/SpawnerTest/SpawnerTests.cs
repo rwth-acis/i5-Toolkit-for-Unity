@@ -1,4 +1,5 @@
-﻿using i5.Toolkit.Core.Spawners;
+﻿#if UNITY_EDITOR
+using i5.Toolkit.Core.Spawners;
 using i5.Toolkit.Core.TestUtilities;
 using i5.Toolkit.Core.Utilities;
 using NUnit.Framework;
@@ -581,3 +582,4 @@ namespace i5.Toolkit.Core.Tests.Spawners
         }
     }
 }
+#endif

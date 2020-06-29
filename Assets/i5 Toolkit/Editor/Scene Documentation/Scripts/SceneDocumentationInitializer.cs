@@ -1,4 +1,5 @@
-﻿using i5.Toolkit.Core.Utilities;
+﻿#if UNITY_EDITOR
+using i5.Toolkit.Core.Utilities;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -45,3 +46,4 @@ public class SceneDocumentationInitializer
         }
     }
 }
+#endif

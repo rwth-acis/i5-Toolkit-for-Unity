@@ -283,6 +283,8 @@ namespace i5.Toolkit.Core.UIElements3D
             realCornerRadius = Mathf.Clamp(cornerRadius, 0, Mathf.Min(width, height) / 2f);
         }
 
+#if UNITY_EDITOR
+
         /// <summary>
         /// Called in the editor if a value in the inspector is changed
         /// </summary>
@@ -295,8 +297,14 @@ namespace i5.Toolkit.Core.UIElements3D
             }
         }
 
+#endif
+
+        /// <summary>
+        /// Called by Unity every frame and on every change in the Unity editor
+        /// </summary>
         private void Update()
         {
+            // if something was changed: updat the mesh and colliders
             if (settingsChanged)
             {
                 settingsChanged = false;

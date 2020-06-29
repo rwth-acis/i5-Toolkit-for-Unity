@@ -148,7 +148,7 @@ MonoBehaviour:
     is logged\r.\nOpen the performance profile and look at the memory statistics to
     see if a memory leak exists."
   type: 0
-  url: 
+  url: https://github.com/rwth-acis/i5-Toolkit-for-Unity/wiki/Object-Pool
 --- !u!4 &926143179
 Transform:
   m_ObjectHideFlags: 0

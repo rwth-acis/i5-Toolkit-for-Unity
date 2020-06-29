@@ -11,6 +11,7 @@ namespace i5.Toolkit.Core.UIElements3D
     /// Constructs a rounded 3D rectangle with depth
     /// </summary>
     [RequireComponent(typeof(MeshFilter), typeof(BoxCollider), typeof(MeshCollider))]
+    [ExecuteAlways]
     public class RoundedBackground : MonoBehaviour
     {
         [Tooltip("The width of the element")]
@@ -35,6 +36,11 @@ namespace i5.Toolkit.Core.UIElements3D
         /// Equal to cornerRadius whenever possible
         /// </summary>
         private float realCornerRadius;
+
+        /// <summary>
+        /// Flag which is set if the settings have been changed
+        /// </summary>
+        private bool settingsChanged;
 
         /// <summary>
         /// Generates the mesh based on the settings of the menu
@@ -285,6 +291,16 @@ namespace i5.Toolkit.Core.UIElements3D
             // only update object if it is in a scene, otherwise it will also update prefabs causing infinite loops
             if (gameObject.activeInHierarchy)
             {
+                settingsChanged = true;
+            }
+        }
+
+        private void Update()
+        {
+            if (settingsChanged)
+            {
+                settingsChanged = false;
+
                 CheckValues();
                 ComponentUtilities.EnsureComponentReference(gameObject, ref meshFilter, true);
                 meshFilter.sharedMesh = GenerateMesh();

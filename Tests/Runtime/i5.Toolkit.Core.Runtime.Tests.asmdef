@@ -1,0 +1,18 @@
+{
+    "name": "i5.Toolkit.Core.Runtime.Tests",
+    "references": [
+        "i5.Toolkit.Core.Editor",
+        "i5.Toolkit.Core.Runtime",
+        "i5.Toolkit.Core.TestUtilities"
+    ],
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": []
+}

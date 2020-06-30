@@ -1,0 +1,16 @@
+{
+    "name": "i5.Toolkit.Core.Editor",
+    "references": [
+        "i5.Toolkit.Core.Runtime"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": []
+}

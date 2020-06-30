@@ -5,14 +5,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace i5.Toolkit.Core.UIElements3D
+namespace i5.Toolkit.Core.Modified3DObjects
 {
     /// <summary>
     /// Constructs a rounded 3D rectangle with depth
     /// </summary>
     [RequireComponent(typeof(MeshFilter), typeof(BoxCollider), typeof(MeshCollider))]
     [ExecuteAlways]
-    public class RoundedBackground : MonoBehaviour
+    public class RoundedCorners : MonoBehaviour
     {
         [Tooltip("The width of the element")]
         public float width = 1f;

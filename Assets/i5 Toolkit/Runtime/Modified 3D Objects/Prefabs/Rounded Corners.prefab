@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8881108738986792354}
   - component: {fileID: 8268255222687749059}
   m_Layer: 0
-  m_Name: Rounded Background
+  m_Name: Rounded Corners
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -109,3 +109,4 @@ MonoBehaviour:
   depth: 0.32
   cornerRadius: 0.05
   subdivisions: 3
+  exactColliders: 0

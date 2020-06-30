@@ -36,4 +36,4 @@ jobs:
         run: |
           git subtree push --prefix "$PKG_ROOT" origin upm
         env:
-          PKG_ROOT: Assets/i5 Toolkit
+          PKG_ROOT: Assets/i5 Toolkit for Unity

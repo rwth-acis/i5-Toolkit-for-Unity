@@ -14,7 +14,7 @@ namespace i5.Toolkit.Core.Utilities
         /// <summary>
         /// The name of the package
         /// </summary>
-        private const string packageName = "i5 Toolkit";
+        private const string packageName = "i5 Toolkit for Unity";
 
         private static string cachedPath;
 

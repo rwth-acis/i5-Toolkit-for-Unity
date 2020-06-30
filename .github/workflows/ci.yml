@@ -34,6 +34,6 @@ jobs:
   
       - name: Push to UPM branch
         run: |
-          git subtree push -f --prefix "$PKG_ROOT" origin upm
+          git subtree push --prefix "$PKG_ROOT" origin upm
         env:
           PKG_ROOT: Assets/i5 Toolkit for Unity

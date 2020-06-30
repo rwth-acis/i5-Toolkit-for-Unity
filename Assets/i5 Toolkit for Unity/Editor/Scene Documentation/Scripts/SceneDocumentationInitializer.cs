@@ -41,7 +41,7 @@ public class SceneDocumentationInitializer
     {
         if (!File.Exists("Assets/Gizmos/" + filename))
         {
-            File.Copy(packageLocation + "Scene Documentation/Textures/" + filename, "Assets/Gizmos/" + filename);
+            File.Copy(packageLocation + "Editor/Scene Documentation/Textures/" + filename, "Assets/Gizmos/" + filename);
             Debug.Log("[SceneDocumentationInitializer] Copied " + filename + " to Gizmos folder");
         }
     }

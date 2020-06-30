@@ -4,13 +4,17 @@
 
 This toolkit contains a collection of features which can be reused in Unity projects.
 It is a foundation for new projects, kickstarting the development with already completed tools.
+
+![Continuous Integration](https://github.com/rwth-acis/i5-Toolkit-for-Unity/workflows/Continuous%20Integration/badge.svg)
+
 ## Modules
 
 The i5 Toolkit provides a series of modules and features that can be used in projects.
 
-| &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<br/> [![Object Pool](https://raw.githubusercontent.com/rwth-acis/i5-Toolkit-for-Unity/master/Logos/Object%20Pool.svg)<br/>Object Pool](https://github.com/rwth-acis/i5-Toolkit-for-Unity/wiki/Object-Pool)<br/>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<br/> [![Obj Importer](https://raw.githubusercontent.com/rwth-acis/i5-Toolkit-for-Unity/master/Logos/Obj%20Importer.svg)<br/>Obj Importer](https://github.com/rwth-acis/i5-Toolkit-for-Unity/wiki/Obj-Importer)<br/>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<br/> [![Procedural Geometry](https://raw.githubusercontent.com/rwth-acis/i5-Toolkit-for-Unity/master/Logos/Procedural%20Geometry.svg)<br/>Procedural Geometry](https://github.com/rwth-acis/i5-Toolkit-for-Unity/wiki/Procedural-Geometry)<br/>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; |
+| &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<br/> [![Modified 3D Objects](https://raw.githubusercontent.com/rwth-acis/i5-Toolkit-for-Unity/master/Logos/Rounded%20Corners.svg)<br/>Modified 3D Objects](https://github.com/rwth-acis/i5-Toolkit-for-Unity/wiki/Modified-3D-Objects)<br/>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  | &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<br/> [![Object Pool](https://raw.githubusercontent.com/rwth-acis/i5-Toolkit-for-Unity/master/Logos/Object%20Pool.svg)<br/>Object Pool](https://github.com/rwth-acis/i5-Toolkit-for-Unity/wiki/Object-Pool)<br/>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<br/> [![Obj Importer](https://raw.githubusercontent.com/rwth-acis/i5-Toolkit-for-Unity/master/Logos/Obj%20Importer.svg)<br/>Obj Importer](https://github.com/rwth-acis/i5-Toolkit-for-Unity/wiki/Obj-Importer)<br/>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; |
 | :---: | :---: | :---: |
-| [![Scene Documentation](https://raw.githubusercontent.com/rwth-acis/i5-Toolkit-for-Unity/master/Logos/Scene%20Documentation.svg)<br/>**Scene Documentation**](https://github.com/rwth-acis/i5-Toolkit-for-Unity/wiki/Scene-Documentation) |  [![Service Core](https://raw.githubusercontent.com/rwth-acis/i5-Toolkit-for-Unity/master/Logos/ServiceCore.svg)<br/>**Service Core**](https://github.com/rwth-acis/i5-Toolkit-for-Unity/wiki/Service-Core) | [![Spawner](https://raw.githubusercontent.com/rwth-acis/i5-Toolkit-for-Unity/master/Logos/Spawner.svg)<br/>**Spawner**](https://github.com/rwth-acis/i5-Toolkit-for-Unity/wiki/Spawner) |
+| [![Procedural Geometry](https://raw.githubusercontent.com/rwth-acis/i5-Toolkit-for-Unity/master/Logos/Procedural%20Geometry.svg)<br/>**Procedural Geometry**](https://github.com/rwth-acis/i5-Toolkit-for-Unity/wiki/Procedural-Geometry) | [![Scene Documentation](https://raw.githubusercontent.com/rwth-acis/i5-Toolkit-for-Unity/master/Logos/Scene%20Documentation.svg)<br/>**Scene Documentation**](https://github.com/rwth-acis/i5-Toolkit-for-Unity/wiki/Scene-Documentation) |  [![Service Core](https://raw.githubusercontent.com/rwth-acis/i5-Toolkit-for-Unity/master/Logos/ServiceCore.svg)<br/>**Service Core**](https://github.com/rwth-acis/i5-Toolkit-for-Unity/wiki/Service-Core)
+| [![Spawner](https://raw.githubusercontent.com/rwth-acis/i5-Toolkit-for-Unity/master/Logos/Spawner.svg)<br/>**Spawner**](https://github.com/rwth-acis/i5-Toolkit-for-Unity/wiki/Spawner) | |
 
 ## Setup
 
@@ -22,7 +26,10 @@ The tool is available as a package for the Unity Package Manager. It can be incl
 
 1. Open your project's root folder in a file explorer.
 2. Navigate to the Packages folder and open the file manifest.json. It contains a list of package dependencies which are loaded into the project.
-3. To add a specific version of the tool to the dependencies, add the following line inside of the "dependencies" object and replace [version] with the release number. To receive the latest version, replace [release] with upm. "com.i5.versiontool": "https://github.com/rwth-acis/Unity-VersionTool.git#[release]", After that, Unity will automatically download the package and it is immediately available.
+3. To add a specific version of the tool to the dependencies, add the following line inside of the "dependencies" object and replace [version] with the release number, e.g. "v1.0.0".
+   To receive the latest version, replace [version] with upm.
+   `"com.i5.versiontool": "https://github.com/rwth-acis/Unity-VersionTool.git#[version]"`
+   After that, Unity will automatically download and import the package.
 
 If you specify "upm" to get the latest version, be aware that the package is not automatically updated.
 This command just pulls the latest version which is available at that time.
@@ -34,7 +41,7 @@ The package can be downloaded from a git-repository in the package manager's UI.
 
 1. In Unity, go to Window > Package Manger.
 2. Click on the plus-button in the top left corner of the package manager and select "add".
-3. Enter https://github.com/rwth-acis/i5-Toolkit-for-Unity.git#[release] into the text field where [release] is replaced with the release number or upm for the latest version.
+3. Enter https://github.com/rwth-acis/i5-Toolkit-for-Unity.git#[version] into the text field where [version] is replaced with the release number, e.g. "v1.0.0" or upm for the latest version.
    Confirm the download by clicking on the "add" button.
 
 If you specify "upm" to get the latest version, be aware that the package is not automatically updated.
@@ -60,7 +67,7 @@ You can use the example scenes as an interactive documentation, an experimentati
 
 ## Unit Tests
 The project is tested using Unit tests.
-Continuous Integration using GitHub Actions has been set up to test and deploy new versions of the package.
+Continuous integration using GitHub Actions has been set up to test and deploy new versions of the package.
 
 ## Related Projects
 

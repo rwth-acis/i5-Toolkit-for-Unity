@@ -2,23 +2,28 @@
 
 This document keeps track of the changes between versions of the toolkit.
 
-## [Unreleased]
+## 1.0.0 (2020-06-30)
 
 ## Added
 - API for constructing procedural geometry, materials and fetching textures
 - ObjImporter for importing .obj files and .mtl files from the Web
-- Editor tool for creating rounded rectangles for UI elements
+- Tool for creating extruded rectangles with rounded edges, e.g. for UI elements
 - Object Pool for reusing resources
-- GameObject Spawners
-  - Spawning multilple objects
+- GameObject spawners that support
+  - Spawning multiple objects
   - Spawn limits
   - Managing spawned objects
-- Scene Documentation Objects
+- Scene documentation objects
 - Utilities
-  - Function for adding a component or getting an existing instance on a given gameobject
+  - Function for adding a component or getting an existing instance on a given GameObject
   - Functions for parsing space separated numbers to Vector2 or Vector3
-  - Functions for getting the path of the package
+  - Editor function for getting the path of the package
 - Extensions for converting Vector2 and Vector3 to Color objects and vice versa
-- Unit tests and test scenes for importers and utilities
-- Logo
-- Readme with Setup instructions
+- Unit tests for the added modules
+- Example scenes for the added modules
+- Package logo and icons for the added modules
+- Readme with setup instructions
+- Changelog
+- Package license
+- Assembly definition files to structure the package
+- JSON file for the package description

@@ -1,4 +1,5 @@
-﻿using UnityEditor;
+﻿#if UNITY_EDITOR
+using UnityEditor;
 using UnityEngine;
 
 namespace i5.Toolkit.Core.SceneDocumentation
@@ -33,3 +34,4 @@ namespace i5.Toolkit.Core.SceneDocumentation
         }
     }
 }
+#endif

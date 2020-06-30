@@ -5,13 +5,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace i5.Toolkit.Core.UIElements3D
+namespace i5.Toolkit.Core.Modified3DObjects
 {
     /// <summary>
     /// Constructs a rounded 3D rectangle with depth
     /// </summary>
     [RequireComponent(typeof(MeshFilter), typeof(BoxCollider), typeof(MeshCollider))]
-    public class RoundedBackground : MonoBehaviour
+    [ExecuteAlways]
+    public class RoundedCorners : MonoBehaviour
     {
         [Tooltip("The width of the element")]
         public float width = 1f;
@@ -35,6 +36,11 @@ namespace i5.Toolkit.Core.UIElements3D
         /// Equal to cornerRadius whenever possible
         /// </summary>
         private float realCornerRadius;
+
+        /// <summary>
+        /// Flag which is set if the settings have been changed
+        /// </summary>
+        private bool settingsChanged;
 
         /// <summary>
         /// Generates the mesh based on the settings of the menu
@@ -277,6 +283,8 @@ namespace i5.Toolkit.Core.UIElements3D
             realCornerRadius = Mathf.Clamp(cornerRadius, 0, Mathf.Min(width, height) / 2f);
         }
 
+#if UNITY_EDITOR
+
         /// <summary>
         /// Called in the editor if a value in the inspector is changed
         /// </summary>
@@ -285,6 +293,22 @@ namespace i5.Toolkit.Core.UIElements3D
             // only update object if it is in a scene, otherwise it will also update prefabs causing infinite loops
             if (gameObject.activeInHierarchy)
             {
+                settingsChanged = true;
+            }
+        }
+
+#endif
+
+        /// <summary>
+        /// Called by Unity every frame and on every change in the Unity editor
+        /// </summary>
+        private void Update()
+        {
+            // if something was changed: updat the mesh and colliders
+            if (settingsChanged)
+            {
+                settingsChanged = false;
+
                 CheckValues();
                 ComponentUtilities.EnsureComponentReference(gameObject, ref meshFilter, true);
                 meshFilter.sharedMesh = GenerateMesh();

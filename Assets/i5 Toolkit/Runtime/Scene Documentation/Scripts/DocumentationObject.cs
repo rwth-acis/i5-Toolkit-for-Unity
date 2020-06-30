@@ -26,6 +26,8 @@ namespace i5.Toolkit.Core.SceneDocumentation
         /// </summary>
         public string url;
 
+#if UNITY_EDITOR
+
         /// <summary>
         /// Called by the Unity Editor to draw gizmos
         /// Shows the corresponding icon at the position of the Transform
@@ -45,6 +47,7 @@ namespace i5.Toolkit.Core.SceneDocumentation
                     break;
             }
         }
+#endif
     }
 
     /// <summary>

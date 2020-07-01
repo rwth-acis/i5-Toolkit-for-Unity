@@ -1,7 +1,14 @@
 name: Unit Test Workflow
 
 on:
-  [push, pull_request]
+  push:
+    branches-ignore:
+      # do not execute this on the master branch - we have a CI action for that
+      - master
+  pull-request:
+    branches-ignore:
+      # do not execute this on the master branch - we have a CI action for that
+      - master
 
 env:
   UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}

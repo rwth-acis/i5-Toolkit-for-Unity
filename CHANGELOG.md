@@ -2,9 +2,14 @@
 
 This document keeps track of the changes between versions of the toolkit.
 
+## [Unreleased]
+
+### Fixed
+- Gizmo copy procedure now works on package installations
+
 ## 1.0.0 (2020-06-30)
 
-## Added
+### Added
 - API for constructing procedural geometry, materials and fetching textures
 - ObjImporter for importing .obj files and .mtl files from the Web
 - Tool for creating extruded rectangles with rounded edges, e.g. for UI elements

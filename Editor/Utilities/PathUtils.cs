@@ -15,6 +15,7 @@ namespace i5.Toolkit.Core.Utilities
         /// The name of the package
         /// </summary>
         private const string packageName = "i5 Toolkit for Unity";
+        private const string packageIdentifier = "com.i5.toolkit.core";
 
         private static string cachedPath;
 
@@ -41,7 +42,7 @@ namespace i5.Toolkit.Core.Utilities
             // for packages, the package is located in a Packages folder outside of the Assets folder
             else
             {
-                cachedPath = "Packages/" + packageName + "/";
+                cachedPath = "Packages/" + packageIdentifier + "/";
                 return cachedPath;
             }
         }

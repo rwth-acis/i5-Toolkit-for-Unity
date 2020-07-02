@@ -2,7 +2,7 @@
 
 This document keeps track of the changes between versions of the toolkit.
 
-## [Unreleased]
+## 1.0.1 (2020-07-02)
 
 ### Fixed
 - Gizmo copy procedure now works on package installations

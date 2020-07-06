@@ -66,27 +66,7 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
 
         private void StartedByProtocol(Uri uri)
         {
-            string[] parts = uri.ToString().Split('?');
-            if (parts.Length != 2)
-            {
-                i5Debug.LogError("Unexpected amount of parts of the uri. The uri seems to contain multiple '?'", this);
-                return;
-            }
-
-            string[] parameterArray = parts[1].Split('#');
-            Dictionary<string, string> parameters = new Dictionary<string, string>();
-
-            for (int i=0;i<parameterArray.Length;i++)
-            {
-                string[] splittedParameter = parameterArray[i].Split('=');
-                if (splittedParameter.Length != 2)
-                {
-                    i5Debug.LogWarning("Parameter could not be resolved into key and value: " + parameterArray[i], this);
-                    continue;
-                }
-
-                parameters.Add(splittedParameter[0], splittedParameter[1]);
-            }
+            Dictionary<string, string> parameters = UriUtils.GetUriParameters(uri);
 
             AccessToken = OidcProvider.RetrieveAccessToken(parameters);
             LoginCompleted?.Invoke(this, EventArgs.Empty);

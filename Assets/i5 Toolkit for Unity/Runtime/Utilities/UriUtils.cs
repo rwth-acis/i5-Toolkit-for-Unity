@@ -31,5 +31,40 @@ namespace i5.Toolkit.Core.Utilities
             resultUri += uri.Query;
             return resultUri;
         }
+
+        public static Dictionary<string, string> GetUriParameters(Uri uri)
+        {
+            string[] parts = uri.ToString().Split('?');
+            if (parts.Length < 2)
+            {
+                // return an empty dictionary since the uri apparently does not have parameters
+                return new Dictionary<string, string>();
+            }
+            else if (parts.Length > 2)
+            {
+                Debug.LogError("Unexpected amount of parts of the uri. The uri seems to contain multiple '?'");
+                return null;
+            }
+
+            // if the uri has two parts: we have the front part, e.g. http://www.google.de
+            // and the back part, e.g. param=example&number=1
+
+            string[] parameterArray = parts[1].Split('&');
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+
+            for (int i = 0; i < parameterArray.Length; i++)
+            {
+                string[] splittedParameter = parameterArray[i].Split('=');
+                if (splittedParameter.Length != 2)
+                {
+                    Debug.LogWarning("Parameter could not be resolved into key and value: " + parameterArray[i]);
+                    continue;
+                }
+
+                parameters.Add(splittedParameter[0], splittedParameter[1]);
+            }
+
+            return parameters;
+        }
     }
 }

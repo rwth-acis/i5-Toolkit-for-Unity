@@ -35,6 +35,7 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         public void Initialize(ServiceManager owner)
         {
             clientData = ClientData.LoadFromResources();
+            i5Debug.LogError("Could not load client data", this);
         }
 
         public void OpenLoginPage()

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -32,6 +31,11 @@ namespace i5.Toolkit.Core.Utilities
             return resultUri;
         }
 
+        /// <summary>
+        /// Extracts the parameters of a given uri and returns them
+        /// </summary>
+        /// <param name="uri">The uri which contains the parameters</param>
+        /// <returns>Returns the parameters of the uri</returns>
         public static Dictionary<string, string> GetUriParameters(Uri uri)
         {
             string[] parts = uri.ToString().Split('?');

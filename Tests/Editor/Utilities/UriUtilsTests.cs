@@ -1,15 +1,18 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using i5.Toolkit.Core.Utilities;
+﻿using i5.Toolkit.Core.Utilities;
 using NUnit.Framework;
-using UnityEngine;
-using UnityEngine.TestTools;
+using System;
+using System.Collections.Generic;
 
 namespace i5.Toolkit.Core.Tests.Utilities
 {
+    /// <summary>
+    /// Tests for the UriUtils class
+    /// </summary>
     public class UriUtilsTests
     {
+        /// <summary>
+        /// Checks if GetUriParameters returns any empty dictionary if the given Uri does not contain parameters
+        /// </summary>
         [Test]
         public void GetUriParameters_NoParameters_ReturnsEmptyDictionary()
         {
@@ -20,6 +23,9 @@ namespace i5.Toolkit.Core.Tests.Utilities
             Assert.AreEqual(0, parameters.Count);
         }
 
+        /// <summary>
+        /// Checks that GetUriParameters returns the parameter if one is given in a Uri
+        /// </summary>
         [Test]
         public void GetUriParameters_OneParameter_DictionaryContainsKeyValuePair()
         {
@@ -31,6 +37,9 @@ namespace i5.Toolkit.Core.Tests.Utilities
             Assert.AreEqual("test", retrieved);
         }
 
+        /// <summary>
+        /// Checks that all parameters are returned if a Uri contains multiple parameters
+        /// </summary>
         [Test]
         public void GetUriParameters_MultipleParameters_DictionaryContainsKeyValuePairs()
         {

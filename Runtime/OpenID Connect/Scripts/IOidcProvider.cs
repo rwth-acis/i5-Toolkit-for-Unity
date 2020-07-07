@@ -1,18 +1,20 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace i5.Toolkit.Core.OpenIDConnectClient
 {
     public interface IOidcProvider
     {
+        AuthorizationFlow AuthorzationFlow { get; }
+
         void OpenLoginPage(string clientId, string[] scopes, string redirectUri);
 
-        string RetrieveAccessToken(Dictionary<string, string> arguments);
+        Task<string> AccessTokenFromCodeAsync(Dictionary<string, string> redirectParameters);
+
+        string GetAccessToken(Dictionary<string, string> redirectParameters);
 
         bool IsAccessTokenValid(string accessToken);
 
-        IUserInfo GetUserInfo(string accessToken);
+        Task<IUserInfo> GetUserInfoAsync(string accessToken);
     }
 }

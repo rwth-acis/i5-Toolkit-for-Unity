@@ -14,6 +14,8 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
     {
         private ClientData clientData;
 
+        public IClientDataLoader ClientDataLoader { get; set; } = new ClientDataResourcesLoader();
+
         public string[] Scopes { get; set; } = new string[] { "openid", "profile", "email" };
 
         public string AccessToken { get; private set; }
@@ -39,10 +41,9 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
             }
         }
 
-        public void Initialize(ServiceManager owner)
+        public async void Initialize(ServiceManager owner)
         {
-            clientData = ClientData.LoadFromResources();
-            i5Debug.LogError("Could not load client data", this);
+            clientData = await ClientDataLoader.LoadClientDataAsync();
         }
 
         public void OpenLoginPage()

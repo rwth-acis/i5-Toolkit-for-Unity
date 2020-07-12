@@ -17,8 +17,6 @@ namespace i5.Toolkit.Core.ServiceCore
 
         private bool inDestroyMode = false;
 
-        private bool inBootstrapperRoutine = false;
-
         // keep track of a list of services that should be removed and remove them at the end of the frame
         // this way, we are not modifying the list of services in the global cleanup at the end
         private List<Type> serviceTypesToRemove = new List<Type>();
@@ -61,13 +59,7 @@ namespace i5.Toolkit.Core.ServiceCore
             IServiceManagerBootstrapper bootstrapper = GetComponent<IServiceManagerBootstrapper>();
             if (bootstrapper != null)
             {
-                inBootstrapperRoutine = true;
                 bootstrapper.InitializeServiceManager();
-                inBootstrapperRoutine = false;
-            }
-            foreach(KeyValuePair<Type, IService> service in registeredServices)
-            {
-                service.Value.Initialize(this);
             }
         }
 
@@ -91,11 +83,7 @@ namespace i5.Toolkit.Core.ServiceCore
                 updateableServices.Add((IUpdateableService)service);
             }
 
-            // only initialize if this is not part of the bootstrapping procedure
-            if (!inBootstrapperRoutine)
-            {
-                service.Initialize(this);
-            }
+            service.Initialize(this);
         }
 
         public static void RemoveService<T>() where T : IService

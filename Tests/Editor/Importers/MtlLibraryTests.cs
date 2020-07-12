@@ -18,12 +18,12 @@ namespace i5.Toolkit.Core.Tests.ModelImporters
     /// <summary>
     /// Tests for the MtlLibraryService class
     /// </summary>
-    public class MtlLibraryServiceTests
+    public class MtlLibraryTests
     {
         /// <summary>
         /// The instance of the MtlLibraryService
         /// </summary>
-        private MtlLibraryService mtlLibraryService;
+        private MtlLibrary mtlLibrary;
         /// <summary>
         /// Content from a material library which is loaded in a one-time initialization
         /// </summary>
@@ -56,8 +56,7 @@ namespace i5.Toolkit.Core.Tests.ModelImporters
         public void ResetScene()
         {
             EditModeTestUtilities.ResetScene();
-            ServiceManager.RegisterService(new MtlLibraryService());
-            mtlLibraryService = ServiceManager.GetService<MtlLibraryService>();
+            mtlLibrary = new MtlLibrary();
         }
 
         /// <summary>
@@ -67,12 +66,12 @@ namespace i5.Toolkit.Core.Tests.ModelImporters
         [UnityTest]
         public IEnumerator LoadLibraryAsync_NewLibrary_LibraryLoadedReturnsTrue()
         {
-            mtlLibraryService.ContentLoader = fakeContentLoader;
+            mtlLibrary.ContentLoader = fakeContentLoader;
             Task task = LoadLibrary();
 
             yield return AsyncTest.WaitForTask(task);
 
-            bool loaded = mtlLibraryService.LibraryLoaded(libraryName);
+            bool loaded = mtlLibrary.LibraryLoaded(libraryName);
             Assert.IsTrue(loaded, "The library should have been loaded but is not displayed as loaded");
         }
 
@@ -83,14 +82,14 @@ namespace i5.Toolkit.Core.Tests.ModelImporters
         [UnityTest]
         public IEnumerator LoadLibraryAsync_LoadFailed_LibraryLoadedReturnsFalse()
         {
-            mtlLibraryService.ContentLoader = new FakeContentFailLoader();
+            mtlLibrary.ContentLoader = new FakeContentFailLoader();
             Task task = LoadLibrary();
 
             yield return AsyncTest.WaitForTask(task);
 
             LogAssert.Expect(LogType.Error, new Regex(@"\w*This is a simulated fail\w*"));
 
-            bool loaded = mtlLibraryService.LibraryLoaded(libraryName);
+            bool loaded = mtlLibrary.LibraryLoaded(libraryName);
             Assert.IsFalse(loaded, "The import should have aborted but apparently, the library is shown as imported");
         }
 
@@ -101,12 +100,12 @@ namespace i5.Toolkit.Core.Tests.ModelImporters
         [UnityTest]
         public IEnumerator LoadLibraryAsync_LoadLibraryMultipleTimes_NoErrorsAndLibraryLoadedTrue()
         {
-            mtlLibraryService.ContentLoader = fakeContentLoader;
+            mtlLibrary.ContentLoader = fakeContentLoader;
             Task task = LoadLibrary();
 
             yield return AsyncTest.WaitForTask(task);
 
-            bool loaded = mtlLibraryService.LibraryLoaded(libraryName);
+            bool loaded = mtlLibrary.LibraryLoaded(libraryName);
             Assert.IsTrue(loaded, "The library should have been loaded but is not displayed as loaded");
 
             Task task2 = LoadLibrary();
@@ -114,7 +113,7 @@ namespace i5.Toolkit.Core.Tests.ModelImporters
             yield return AsyncTest.WaitForTask(task2);
 
             LogAssert.Expect(LogType.Warning, new Regex(@"\w*was already loaded\w*"));
-            loaded = mtlLibraryService.LibraryLoaded(libraryName);
+            loaded = mtlLibrary.LibraryLoaded(libraryName);
             Assert.IsTrue(loaded, "Loading the same library multiple times makes the library show up as unloaded");
         }
 
@@ -124,8 +123,8 @@ namespace i5.Toolkit.Core.Tests.ModelImporters
         [Test]
         public void GetMaterialConstructor_NonExistentMatLib_ReturnsNull()
         {
-            mtlLibraryService.ContentLoader = fakeContentLoader;
-            MaterialConstructor res = mtlLibraryService.GetMaterialConstructor("", "");
+            mtlLibrary.ContentLoader = fakeContentLoader;
+            MaterialConstructor res = mtlLibrary.GetMaterialConstructor("", "");
             Assert.IsNull(res);
         }
 
@@ -136,12 +135,12 @@ namespace i5.Toolkit.Core.Tests.ModelImporters
         [UnityTest]
         public IEnumerator GetMaterialConstructor_ExistentMatLibNonExistentMat_ReturnsNull()
         {
-            mtlLibraryService.ContentLoader = fakeContentLoader;
+            mtlLibrary.ContentLoader = fakeContentLoader;
             Task task = LoadLibrary();
 
             yield return AsyncTest.WaitForTask(task);
 
-            MaterialConstructor res = mtlLibraryService.GetMaterialConstructor(libraryName, "");
+            MaterialConstructor res = mtlLibrary.GetMaterialConstructor(libraryName, "");
             Assert.IsNull(res);
         }
 
@@ -152,12 +151,12 @@ namespace i5.Toolkit.Core.Tests.ModelImporters
         [UnityTest]
         public IEnumerator GetMaterialConstructor_ExistentMatLibExistentMat_ReturnsNotNull()
         {
-            mtlLibraryService.ContentLoader = fakeContentLoader;
+            mtlLibrary.ContentLoader = fakeContentLoader;
             Task task = LoadLibrary();
 
             yield return AsyncTest.WaitForTask(task);
 
-            MaterialConstructor res = mtlLibraryService.GetMaterialConstructor(libraryName, "BlueMat");
+            MaterialConstructor res = mtlLibrary.GetMaterialConstructor(libraryName, "BlueMat");
             Assert.IsNotNull(res);
         }
 
@@ -169,12 +168,12 @@ namespace i5.Toolkit.Core.Tests.ModelImporters
         [UnityTest]
         public IEnumerator GetMaterialConstructor_ExistentMatLibExistentMat_MatConstrColorSet()
         {
-            mtlLibraryService.ContentLoader = fakeContentLoader;
+            mtlLibrary.ContentLoader = fakeContentLoader;
             Task task = LoadLibrary();
 
             yield return AsyncTest.WaitForTask(task);
 
-            MaterialConstructor res = mtlLibraryService.GetMaterialConstructor(libraryName, "BlueMat");
+            MaterialConstructor res = mtlLibrary.GetMaterialConstructor(libraryName, "BlueMat");
             Assert.IsNotNull(res);
             Assert.AreEqual(new Color(0.185991f, 0.249956f, 0.800000f), res.Color);
         }
@@ -186,12 +185,12 @@ namespace i5.Toolkit.Core.Tests.ModelImporters
         [UnityTest]
         public IEnumerator GetMaterialConstructor_ExistentMatLibExistentMat_MatConstrNameSet()
         {
-            mtlLibraryService.ContentLoader = fakeContentLoader;
+            mtlLibrary.ContentLoader = fakeContentLoader;
             Task task = LoadLibrary();
 
             yield return AsyncTest.WaitForTask(task);
 
-            MaterialConstructor res = mtlLibraryService.GetMaterialConstructor(libraryName, "BlueMat");
+            MaterialConstructor res = mtlLibrary.GetMaterialConstructor(libraryName, "BlueMat");
             Assert.IsNotNull(res);
             Assert.AreEqual("BlueMat", res.Name);
         }
@@ -203,8 +202,8 @@ namespace i5.Toolkit.Core.Tests.ModelImporters
         [UnityTest]
         public IEnumerator ExtendedLogging_Enabled_CommentsLogged()
         {
-            mtlLibraryService.ContentLoader = fakeContentLoader;
-            mtlLibraryService.ExtendedLogging = true;
+            mtlLibrary.ContentLoader = fakeContentLoader;
+            mtlLibrary.ExtendedLogging = true;
             Task task = LoadLibrary();
 
             yield return AsyncTest.WaitForTask(task);
@@ -219,8 +218,8 @@ namespace i5.Toolkit.Core.Tests.ModelImporters
         [UnityTest]
         public IEnumerator ExtendedLogging_Disabled_CommentsNotLogged()
         {
-            mtlLibraryService.ContentLoader = fakeContentLoader;
-            mtlLibraryService.ExtendedLogging = false;
+            mtlLibrary.ContentLoader = fakeContentLoader;
+            mtlLibrary.ExtendedLogging = false;
             Task task = LoadLibrary();
 
             yield return AsyncTest.WaitForTask(task);
@@ -236,7 +235,7 @@ namespace i5.Toolkit.Core.Tests.ModelImporters
         private async Task LoadLibrary()
         {
             Uri testUri = new Uri("http://www.test.org/MatLib.mtl");
-            await mtlLibraryService.LoadLibraryAsyc(testUri, libraryName);
+            await mtlLibrary.LoadLibraryAsyc(testUri, libraryName);
         }
     }
 }

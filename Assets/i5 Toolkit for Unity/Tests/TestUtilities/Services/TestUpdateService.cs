@@ -17,7 +17,7 @@ namespace i5.Toolkit.Core.TestUtilities
             i5Debug.Log("Update Service cleaned up", this);
         }
 
-        public void Initialize(ServiceManager owner)
+        public void Initialize(BaseServiceManager owner)
         {
             TestCounter = 100;
         }

@@ -11,9 +11,9 @@ using UnityEngine;
 namespace i5.Toolkit.Core.ModelImporters
 {
     /// <summary>
-    /// Service for parsing and storing material libraries from .mtl files
+    /// Class for parsing and storing material libraries from .mtl files
     /// </summary>
-    public class MtlLibraryService : IService
+    public class MtlLibrary
     {
         /// <summary>
         /// Dictionary of loaded material libraries
@@ -31,17 +31,9 @@ namespace i5.Toolkit.Core.ModelImporters
         public IContentLoader<string> ContentLoader { get; set; }
 
         /// <summary>
-        /// Called by the service manager to clean up the service once it is stopped
+        /// Constructor
         /// </summary>
-        public void Cleanup()
-        {
-        }
-
-        /// <summary>
-        /// Called by the service manager to initialize the service once it is started
-        /// </summary>
-        /// <param name="owner">The calling service manager</param>
-        public void Initialize(ServiceManager owner)
+        public MtlLibrary()
         {
             libraries = new Dictionary<string, Dictionary<string, MaterialConstructor>>();
             ContentLoader = new UnityWebRequestLoader();

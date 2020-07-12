@@ -20,9 +20,9 @@ namespace i5.Toolkit.Core.ModelImporters
         private int meshObjectPoolId;
 
         /// <summary>
-        /// instance of the mtl library service
+        /// instance of the MtlLibrary
         /// </summary>
-        private MtlLibraryService mtlLibraryService;
+        public MtlLibrary MtlLibrary { get; private set; }
 
         /// <summary>
         /// If set to true, additional information, e.g. comments in the .obj file, are logged
@@ -38,18 +38,9 @@ namespace i5.Toolkit.Core.ModelImporters
         /// Called by the service manager to initialize the service if it is started
         /// </summary>
         /// <param name="owner">The service manager that owns this service</param>
-        public void Initialize(ServiceManager owner)
+        public void Initialize(BaseServiceManager owner)
         {
-            // create a mtl library service if none exists yet
-            if (ServiceManager.ServiceExists<MtlLibraryService>())
-            {
-                mtlLibraryService = ServiceManager.GetService<MtlLibraryService>();
-            }
-            else
-            {
-                mtlLibraryService = new MtlLibraryService();
-                ServiceManager.RegisterService(mtlLibraryService);
-            }
+            MtlLibrary = new MtlLibrary();
 
             // initialize the content loader
             if (ContentLoader == null)
@@ -68,10 +59,6 @@ namespace i5.Toolkit.Core.ModelImporters
         {
             // give back the pool
             ObjectPool<GameObject>.RemovePool(meshObjectPoolId, (go) => { GameObject.Destroy(go); });
-
-            // unregister the mtl library service
-            // we assume that the mtl library service is exclusive to the obj importer and no other script needs it
-            ServiceManager.RemoveService<MtlLibraryService>();
         }
 
         /// <summary>
@@ -102,14 +89,14 @@ namespace i5.Toolkit.Core.ModelImporters
             List<ObjParseResult> parseResults = await ParseModelAsync(resp.Content);
 
             // for each sub-object in the .obj file, an own parse result was created
-            foreach(ObjParseResult parseResult in parseResults)
+            foreach (ObjParseResult parseResult in parseResults)
             {
                 // check that the referenced mtl library is already loaded; if not: load it
-                if (!mtlLibraryService.LibraryLoaded(parseResult.LibraryPath))
+                if (!MtlLibrary.LibraryLoaded(parseResult.LibraryPath))
                 {
                     string mtlUri = UriUtils.RewriteFileUriPath(uri, parseResult.LibraryPath);
                     string libraryName = System.IO.Path.GetFileNameWithoutExtension(uri.LocalPath);
-                    bool successful = await mtlLibraryService.LoadLibraryAsyc(new Uri(mtlUri), libraryName);
+                    bool successful = await MtlLibrary.LoadLibraryAsyc(new Uri(mtlUri), libraryName);
                     if (!successful)
                     {
                         i5Debug.LogError("Could not load .mtl file " + parseResult.LibraryPath, this);
@@ -117,7 +104,7 @@ namespace i5.Toolkit.Core.ModelImporters
                 }
 
                 // get the material constructor of the sub-object
-                MaterialConstructor mat = mtlLibraryService.GetMaterialConstructor(
+                MaterialConstructor mat = MtlLibrary.GetMaterialConstructor(
                     System.IO.Path.GetFileNameWithoutExtension(uri.LocalPath),
                     parseResult.MaterialName);
 
@@ -132,7 +119,7 @@ namespace i5.Toolkit.Core.ModelImporters
                 // construct the object and make it a child of the parentObject
                 parseResult.ObjectConstructor.ConstructObject(parentObject.transform);
             }
-            
+
             return parentObject;
         }
 

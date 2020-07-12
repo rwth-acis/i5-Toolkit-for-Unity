@@ -9,13 +9,15 @@ namespace i5.Toolkit.Core.ServiceCore
     /// Manager which administers registered services
     /// These services need to implement the IService interface and do not need to inherit from MonoBehaviour
     /// </summary>
-    public class ServiceManager : MonoBehaviour
+    public class ServiceManager : BaseServiceManager
     {
         private Dictionary<Type, IService> registeredServices = new Dictionary<Type, IService>();
 
         private List<IUpdateableService> updateableServices = new List<IUpdateableService>();
 
         private bool inDestroyMode = false;
+
+        private bool inBootstrapperRoutine = false;
 
         // keep track of a list of services that should be removed and remove them at the end of the frame
         // this way, we are not modifying the list of services in the global cleanup at the end
@@ -59,37 +61,57 @@ namespace i5.Toolkit.Core.ServiceCore
             IServiceManagerBootstrapper bootstrapper = GetComponent<IServiceManagerBootstrapper>();
             if (bootstrapper != null)
             {
+                inBootstrapperRoutine = true;
                 bootstrapper.InitializeServiceManager();
+                inBootstrapperRoutine = false;
+            }
+            foreach(KeyValuePair<Type, IService> service in registeredServices)
+            {
+                service.Value.Initialize(this);
             }
         }
 
         public static void RegisterService<T>(T service) where T : IService
         {
             EnsureInstance();
-            if (instance.registeredServices.ContainsKey(typeof(T)))
+            instance.InstRegisterService(service);
+        }
+
+        public override void InstRegisterService<T>(T service)
+        {
+            if (registeredServices.ContainsKey(typeof(T)))
             {
-                i5Debug.LogError("An instance of this service is already registered", instance);
+                i5Debug.LogError("An instance of this service is already registered", this);
                 return;
             }
-            instance.registeredServices.Add(typeof(T), service);
+            registeredServices.Add(typeof(T), service);
 
             if (service is IUpdateableService)
             {
-                instance.updateableServices.Add((IUpdateableService)service);
+                updateableServices.Add((IUpdateableService)service);
             }
 
-            service.Initialize(instance);
+            // only initialize if this is not part of the bootstrapping procedure
+            if (!inBootstrapperRoutine)
+            {
+                service.Initialize(this);
+            }
         }
 
         public static void RemoveService<T>() where T : IService
         {
             EnsureInstance();
-            if (!instance.inDestroyMode)
+            instance.InstRemoveService<T>();
+        }
+
+        public override void InstRemoveService<T>()
+        {
+            if (!inDestroyMode)
             {
-                if (instance.registeredServices.ContainsKey(typeof(T)))
+                if (registeredServices.ContainsKey(typeof(T)))
                 {
-                    instance.registeredServices[typeof(T)].Cleanup();
-                    instance.registeredServices.Remove(typeof(T));
+                    registeredServices[typeof(T)].Cleanup();
+                    registeredServices.Remove(typeof(T));
                 }
                 else
                 {
@@ -101,17 +123,27 @@ namespace i5.Toolkit.Core.ServiceCore
         public static T GetService<T>() where T : IService
         {
             EnsureInstance();
-            if (!instance.registeredServices.ContainsKey(typeof(T)))
+            return instance.InstGetService<T>();
+        }
+
+        public override T InstGetService<T>()
+        {
+            if (!registeredServices.ContainsKey(typeof(T)))
             {
                 throw new InvalidOperationException("Tried to get unregistered service");
             }
-            return (T)instance.registeredServices[typeof(T)];
+            return (T)registeredServices[typeof(T)];
         }
 
         public static bool ServiceExists<T>() where T : IService
         {
             EnsureInstance();
-            return instance.registeredServices.ContainsKey(typeof(T));
+            return instance.InstServiceExists<T>();
+        }
+
+        public override bool InstServiceExists<T>()
+        {
+            return registeredServices.ContainsKey(typeof(T));
         }
 
         private void Update()

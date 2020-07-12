@@ -29,6 +29,8 @@ namespace i5.Toolkit.Core.Tests.ModelImporters
         /// </summary>
         private static string emptyMtl, cubeMtl, threeMtl;
 
+        private static FakeServiceManager serviceManager;
+
         /// <summary>
         /// Called one time to load the contents of the .obj and .mtl files
         /// </summary>
@@ -51,6 +53,8 @@ namespace i5.Toolkit.Core.Tests.ModelImporters
         public void ResetScene()
         {
             EditModeTestUtilities.ResetScene();
+            GameObject go = new GameObject("Fake Service Manager");
+            serviceManager = go.AddComponent<FakeServiceManager>();
         }
 
         /// <summary>
@@ -62,9 +66,9 @@ namespace i5.Toolkit.Core.Tests.ModelImporters
         private ObjImporter SetUpObjImporter(string objContent, string mtlContent)
         {
             ObjImporter objImporter = new ObjImporter();
+            objImporter.Initialize(serviceManager);
             objImporter.ContentLoader = new FakeContentLoader(objContent);
-            ServiceManager.RegisterService(objImporter);
-            ServiceManager.GetService<MtlLibraryService>().ContentLoader = new FakeContentLoader(mtlContent);
+            objImporter.MtlLibrary.ContentLoader = new FakeContentLoader(mtlContent);
             return objImporter;
         }
 
@@ -75,36 +79,20 @@ namespace i5.Toolkit.Core.Tests.ModelImporters
         public void ContentLoader_Initialized_InitWithUnityWebRequestLoader()
         {
             ObjImporter objImporter = new ObjImporter();
-            objImporter.Initialize(ServiceManager.Instance);
+            objImporter.Initialize(serviceManager);
             Assert.NotNull(objImporter.ContentLoader);
             Assert.True(objImporter.ContentLoader.GetType() == typeof(UnityWebRequestLoader));
         }
 
         /// <summary>
-        /// Checks that the service initialization automatically registers an instance of the MtlLibraryService
+        /// Checks that the service initialization automatically initializes the MtlLibrary
         /// </summary>
         [Test]
-        public void Initialize_Initialized_MtlLibraryServiceRegistered()
+        public void Initialize_Initialized_MtlLibrarySetUp()
         {
             ObjImporter objImporter = new ObjImporter();
-            objImporter.Initialize(ServiceManager.Instance);
-            bool exists = ServiceManager.ServiceExists<MtlLibraryService>();
-            Assert.True(exists);
-        }
-
-        /// <summary>
-        /// Checks that hte service cleanup automatically unregisters the MtlLibraryService
-        /// </summary>
-        [Test]
-        public void Cleaup_AfterCleanup_MtlLibraryServiceUnregistered()
-        {
-            ObjImporter objImporter = new ObjImporter();
-            objImporter.Initialize(ServiceManager.Instance);
-            bool exists = ServiceManager.ServiceExists<MtlLibraryService>();
-            Assert.True(exists);
-            objImporter.Cleanup();
-            exists = ServiceManager.ServiceExists<MtlLibraryService>();
-            Assert.False(exists);
+            objImporter.Initialize(serviceManager);
+            Assert.NotNull(objImporter.MtlLibrary);
         }
 
         /// <summary>
@@ -115,8 +103,8 @@ namespace i5.Toolkit.Core.Tests.ModelImporters
         public IEnumerator ImportAsync_WebRequestFailed_ReturnNull()
         {
             ObjImporter objImporter = new ObjImporter();
+            objImporter.Initialize(serviceManager);
             objImporter.ContentLoader = new FakeContentFailLoader();
-            ServiceManager.RegisterService(objImporter);
             Task<GameObject> task = objImporter.ImportAsync("http://test.org/test.obj");
 
             yield return AsyncTest.WaitForTask(task);
@@ -269,7 +257,7 @@ namespace i5.Toolkit.Core.Tests.ModelImporters
         public IEnumerator ImportAsync_ObjFetchSuccessMtlFetchFail_CreateObjectWithDefaultMat()
         {
             ObjImporter objImporter = SetUpObjImporter(cubeObj, "");
-            ServiceManager.GetService<MtlLibraryService>().ContentLoader = new FakeContentFailLoader();
+            objImporter.MtlLibrary.ContentLoader = new FakeContentFailLoader();
 
             Task<GameObject> task = objImporter.ImportAsync("http://test.org/test.obj");
             yield return AsyncTest.WaitForTask(task);

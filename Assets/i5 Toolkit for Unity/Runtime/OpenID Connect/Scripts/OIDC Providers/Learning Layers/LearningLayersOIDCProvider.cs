@@ -32,8 +32,14 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
             WebResponse<string> response = await ContentLoader.LoadAsync(uri);
             if (response.Successful)
             {
-                // TODO: parse authorization flow answer
-                return "";
+                LearningLayersAuthorizationFlowAnswer answer =
+                    JsonUtility.FromJson<LearningLayersAuthorizationFlowAnswer>(response.Content);
+                if (answer == null)
+                {
+                    i5Debug.LogError("Could not parse access token in code flow answer", this);
+                    return "";
+                }
+                return answer.access_token;
             }
             else
             {

@@ -8,6 +8,8 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
     {
         string Username { get; }
 
+        string FullName { get; }
+
         string Email { get; }
     }
 }

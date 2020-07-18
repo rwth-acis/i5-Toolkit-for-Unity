@@ -20,7 +20,7 @@ namespace i5.Toolkit.Core.ServiceCore
         {
         }
 
-        public void Initialize(ServiceManager owner)
+        public void Initialize(BaseServiceManager owner)
         {
         }
 

@@ -2,6 +2,12 @@
 
 This document keeps track of the changes between versions of the toolkit.
 
+## [Unreleased]
+
+### Breaking Changes
+- The IService interface now requires a BaseServiceManager in the Initialize method.
+  To update, just replace `Initialize(ServiceManager owner)` with `Initialize(BaseServiceManager owner)` in your services.
+
 ## 1.0.1 (2020-07-02)
 
 ### Fixed

@@ -41,7 +41,7 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
             }
         }
 
-        public async void Initialize(ServiceManager owner)
+        public async void Initialize(BaseServiceManager owner)
         {
             clientData = await ClientDataLoader.LoadClientDataAsync();
         }

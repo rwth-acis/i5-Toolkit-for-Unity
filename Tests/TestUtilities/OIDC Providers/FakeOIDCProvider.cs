@@ -1,4 +1,5 @@
 ﻿using i5.Toolkit.Core.OpenIDConnectClient;
+using i5.Toolkit.Core.Utilities.ContentLoaders;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -9,13 +10,27 @@ namespace i5.Toolkit.Core.TestUtilities
     public class FakeOIDCProvider : IOidcProvider
     {
         public const string accessToken = "abcd-efgh-ijkl-mnop";
+        public const string authorizationCode = "12345";
 
         public AuthorizationFlow AuthorzationFlow => throw new System.NotImplementedException();
 
-        public async Task<string> AccessTokenFromCodeAsync(Dictionary<string, string> redirectParameters)
+        public IContentLoader<string> ContentLoader
+        {
+            get; set;
+        }
+
+        public ClientData ClientData { get; set; }
+
+        public async Task<string> GetAccessTokenFromCodeAsync(string code, string redirectUri)
         {
             await Task.Delay(1);
             return accessToken;
+        }
+
+        public async Task<bool> CheckAccessTokenAsync(string accessToken)
+        {
+            await Task.Delay(1);
+            return true;
         }
 
         public string GetAccessToken(Dictionary<string, string> redirectParameters)
@@ -35,9 +50,14 @@ namespace i5.Toolkit.Core.TestUtilities
             return accessToken.Equals(FakeOIDCProvider.accessToken);
         }
 
-        public void OpenLoginPage(string clientId, string[] scopes, string redirectUri)
+        public void OpenLoginPage(string[] scopes, string redirectUri)
         {
             // do nothing
+        }
+
+        public string GetAuthorizationCode(Dictionary<string, string> redirectParameters)
+        {
+            return authorizationCode;
         }
     }
 }

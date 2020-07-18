@@ -1,19 +1,25 @@
-﻿using System.Collections.Generic;
+﻿using i5.Toolkit.Core.Utilities.ContentLoaders;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace i5.Toolkit.Core.OpenIDConnectClient
 {
     public interface IOidcProvider
     {
+        IContentLoader<string> ContentLoader { get; set; }
         AuthorizationFlow AuthorzationFlow { get; }
 
-        void OpenLoginPage(string clientId, string[] scopes, string redirectUri);
+        ClientData ClientData { get; set; }
 
-        Task<string> AccessTokenFromCodeAsync(Dictionary<string, string> redirectParameters);
+        void OpenLoginPage(string[] scopes, string redirectUri);
+
+        string GetAuthorizationCode(Dictionary<string, string> redirectParameters);
+
+        Task<string> GetAccessTokenFromCodeAsync(string code, string redirectUri);
 
         string GetAccessToken(Dictionary<string, string> redirectParameters);
 
-        bool IsAccessTokenValid(string accessToken);
+        Task<bool> CheckAccessTokenAsync(string accessToken);
 
         Task<IUserInfo> GetUserInfoAsync(string accessToken);
     }

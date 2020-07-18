@@ -9,6 +9,7 @@ namespace i5.Toolkit.Core.TestUtilities
     {
         public const string username = "Test User";
         public const string email = "test@user.com";
+        public const string fullname = "Full Name";
 
         public string Username
         {
@@ -23,6 +24,14 @@ namespace i5.Toolkit.Core.TestUtilities
             get
             {
                 return email;
+            }
+        }
+
+        public string FullName
+        {
+            get
+            {
+                return fullname;
             }
         }
     }

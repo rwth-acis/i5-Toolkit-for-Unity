@@ -70,5 +70,36 @@ namespace i5.Toolkit.Core.Utilities
 
             return parameters;
         }
+
+        public static string WordArrayToSpaceEscapedString(string[] array)
+        {
+            string concatArray = "";
+            for (int i = 0; i < array.Length; i++)
+            {
+                concatArray += array[i];
+                if (i < array.Length - 1)
+                {
+                    concatArray += "%20";
+                }
+            }
+            return concatArray;
+        }
+
+        public static string DictionaryToParameterString<T>(Dictionary<string, T> dictionary)
+        {
+            string parameters = "";
+            foreach(KeyValuePair<string, T> entry in dictionary)
+            {
+                parameters += entry.Key + "=" + entry.Value.ToString() + "&";
+            }
+            // remove the last &
+            if (parameters.Length > 0)
+            {
+                parameters = parameters.Substring(0, parameters.Length - 1);
+            }
+            // escape spaces
+            parameters.Replace(" ", "%20");
+            return parameters;
+        }
     }
 }

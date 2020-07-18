@@ -55,5 +55,56 @@ namespace i5.Toolkit.Core.Tests.Utilities
             retrieved = parameters["number"];
             Assert.AreEqual("1", retrieved);
         }
+
+        [Test]
+        public void WordArrayToSpaceEscapedString_EmptyArray_EmptyString()
+        {
+            string[] array = new string[0];
+            string result = UriUtils.WordArrayToSpaceEscapedString(array);
+            Assert.AreEqual("", result);
+        }
+
+        [Test]
+        public void WordArrayToSpaceEscapedString_OneWord_CreatesString()
+        {
+            string[] array = new string[] { "hello" };
+            string result = UriUtils.WordArrayToSpaceEscapedString(array);
+            Assert.AreEqual("hello", result);
+        }
+
+        [Test]
+        public void WordArrayToSpaceEscapedString_MultipleWords_CreatesString()
+        {
+            string[] array = new string[] { "hello", "world" };
+            string result = UriUtils.WordArrayToSpaceEscapedString(array);
+            Assert.AreEqual("hello%20world", result);
+        }
+
+        [Test]
+        public void DictionaryToParameterString_EmptyDictionary_EmptyString()
+        {
+            Dictionary<string, string> dict = new Dictionary<string, string>();
+            string result = UriUtils.DictionaryToParameterString(dict);
+            Assert.AreEqual("", result);
+        }
+
+        [Test]
+        public void DictionaryToParameterString_OneEntry_ReturnsKeyValue()
+        {
+            Dictionary<string, string> dict = new Dictionary<string, string>();
+            dict.Add("hello", "world");
+            string result = UriUtils.DictionaryToParameterString(dict);
+            Assert.AreEqual("hello=world", result);
+        }
+
+        [Test]
+        public void DictionaryToParameterString_MultipleEntries_SplitByAnd()
+        {
+            Dictionary<string, int> dict = new Dictionary<string, int>();
+            dict.Add("one", 1);
+            dict.Add("two", 2);
+            string result = UriUtils.DictionaryToParameterString(dict);
+            Assert.AreEqual("one=1&two=2", result);
+        }
     }
 }

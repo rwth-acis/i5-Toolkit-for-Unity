@@ -54,6 +54,8 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
                 return;
             }
 
+            OidcProvider.ClientData = clientData;
+
             if (string.IsNullOrEmpty(redirectUri))
             {
                 redirectUri = GenerateRedirectUri();
@@ -61,7 +63,7 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
 
             StartServer();
 
-            OidcProvider.OpenLoginPage(clientData.ClientId, Scopes, redirectUri);
+            OidcProvider.OpenLoginPage(Scopes, redirectUri);
         }
 
         public void Logout()
@@ -137,7 +139,8 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
 
                     if (OidcProvider.AuthorzationFlow == AuthorizationFlow.AUTHORIZATION_CODE)
                     {
-                        AccessToken = await OidcProvider.AccessTokenFromCodeAsync(context.Request.QueryString.ToDictionary());
+                        string authorizationCode = OidcProvider.GetAuthorizationCode(context.Request.QueryString.ToDictionary());
+                        AccessToken = await OidcProvider.GetAccessTokenFromCodeAsync(authorizationCode, redirectUri);
                     }
                     else
                     {

@@ -1,8 +1,10 @@
-﻿using i5.Toolkit.Core.ModelImporters;
+﻿using FakeItEasy;
+using i5.Toolkit.Core.ModelImporters;
 using i5.Toolkit.Core.ProceduralGeometry;
 using i5.Toolkit.Core.ServiceCore;
 using i5.Toolkit.Core.TestUtilities;
 using i5.Toolkit.Core.Utilities;
+using i5.Toolkit.Core.Utilities.ContentLoaders;
 using NUnit.Framework;
 using System;
 using System.Collections;
@@ -32,7 +34,7 @@ namespace i5.Toolkit.Core.Tests.ModelImporters
         /// <summary>
         /// Fake content loader that mimics a content load operation from the Web
         /// </summary>
-        private FakeContentLoader fakeContentLoader;
+        private IContentLoader<string> fakeContentLoader;
 
         /// <summary>
         /// The name of the example library which is used in these tests
@@ -46,7 +48,12 @@ namespace i5.Toolkit.Core.Tests.ModelImporters
         public void Initialize()
         {
             content = File.ReadAllText(PathUtils.GetPackagePath() + "Tests/Editor/Importers/Data/MatLib.mtl");
-            fakeContentLoader = new FakeContentLoader(content);
+            fakeContentLoader = A.Fake<IContentLoader<string>>();
+            A.CallTo(() => fakeContentLoader.LoadAsync(A<string>.Ignored)).Returns(async () =>
+            {
+                await Task.Delay(1);
+                return new WebResponse<string>(content, null, 200);
+            });
         }
 
         /// <summary>
@@ -82,7 +89,14 @@ namespace i5.Toolkit.Core.Tests.ModelImporters
         [UnityTest]
         public IEnumerator LoadLibraryAsync_LoadFailed_LibraryLoadedReturnsFalse()
         {
-            mtlLibrary.ContentLoader = new FakeContentFailLoader();
+            IContentLoader<string> contentLoader = A.Fake<IContentLoader<string>>();
+            A.CallTo(() => contentLoader.LoadAsync(A<string>.Ignored)).Returns( async () =>
+            {
+                await Task.Delay(1);
+                WebResponse<string> resp = new WebResponse<string>("This is a simulated fail", 404);
+                return resp;
+            });
+            mtlLibrary.ContentLoader = contentLoader;
             Task task = LoadLibrary();
 
             yield return AsyncTest.WaitForTask(task);
@@ -229,7 +243,7 @@ namespace i5.Toolkit.Core.Tests.ModelImporters
 
         /// <summary>
         /// Loads an example library
-        /// The given url needs to be valid but is chosen arbitrarily since the content is returned by the FakeContentLoader
+        /// The given url needs to be valid but is chosen arbitrarily since the content is returned by the fakeContentLoader
         /// </summary>
         /// <returns></returns>
         private async Task LoadLibrary()

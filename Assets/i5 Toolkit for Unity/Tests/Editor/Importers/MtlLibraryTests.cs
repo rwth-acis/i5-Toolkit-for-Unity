@@ -1,7 +1,6 @@
 ﻿using FakeItEasy;
 using i5.Toolkit.Core.ModelImporters;
 using i5.Toolkit.Core.ProceduralGeometry;
-using i5.Toolkit.Core.ServiceCore;
 using i5.Toolkit.Core.TestUtilities;
 using i5.Toolkit.Core.Utilities;
 using i5.Toolkit.Core.Utilities.ContentLoaders;
@@ -11,7 +10,6 @@ using System.Collections;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.TestTools;
 
@@ -32,11 +30,6 @@ namespace i5.Toolkit.Core.Tests.ModelImporters
         private string content;
 
         /// <summary>
-        /// Fake content loader that mimics a content load operation from the Web
-        /// </summary>
-        private IContentLoader<string> fakeContentLoader;
-
-        /// <summary>
         /// The name of the example library which is used in these tests
         /// </summary>
         private const string libraryName = "MatLib";
@@ -48,12 +41,6 @@ namespace i5.Toolkit.Core.Tests.ModelImporters
         public void Initialize()
         {
             content = File.ReadAllText(PathUtils.GetPackagePath() + "Tests/Editor/Importers/Data/MatLib.mtl");
-            fakeContentLoader = A.Fake<IContentLoader<string>>();
-            A.CallTo(() => fakeContentLoader.LoadAsync(A<string>.Ignored)).Returns(async () =>
-            {
-                await Task.Delay(1);
-                return new WebResponse<string>(content, null, 200);
-            });
         }
 
         /// <summary>
@@ -73,7 +60,7 @@ namespace i5.Toolkit.Core.Tests.ModelImporters
         [UnityTest]
         public IEnumerator LoadLibraryAsync_NewLibrary_LibraryLoadedReturnsTrue()
         {
-            mtlLibrary.ContentLoader = fakeContentLoader;
+            mtlLibrary.ContentLoader = FakeContentLoaderFactory.CreateFakeLoader(content);
             Task task = LoadLibrary();
 
             yield return AsyncTest.WaitForTask(task);
@@ -89,19 +76,13 @@ namespace i5.Toolkit.Core.Tests.ModelImporters
         [UnityTest]
         public IEnumerator LoadLibraryAsync_LoadFailed_LibraryLoadedReturnsFalse()
         {
-            IContentLoader<string> contentLoader = A.Fake<IContentLoader<string>>();
-            A.CallTo(() => contentLoader.LoadAsync(A<string>.Ignored)).Returns( async () =>
-            {
-                await Task.Delay(1);
-                WebResponse<string> resp = new WebResponse<string>("This is a simulated fail", 404);
-                return resp;
-            });
-            mtlLibrary.ContentLoader = contentLoader;
+            mtlLibrary.ContentLoader = FakeContentLoaderFactory.CreateFakeFailLoader<string>();
+
+            LogAssert.Expect(LogType.Error, new Regex(@"\w*This is a simulated fail\w*"));
+
             Task task = LoadLibrary();
 
             yield return AsyncTest.WaitForTask(task);
-
-            LogAssert.Expect(LogType.Error, new Regex(@"\w*This is a simulated fail\w*"));
 
             bool loaded = mtlLibrary.LibraryLoaded(libraryName);
             Assert.IsFalse(loaded, "The import should have aborted but apparently, the library is shown as imported");
@@ -114,7 +95,7 @@ namespace i5.Toolkit.Core.Tests.ModelImporters
         [UnityTest]
         public IEnumerator LoadLibraryAsync_LoadLibraryMultipleTimes_NoErrorsAndLibraryLoadedTrue()
         {
-            mtlLibrary.ContentLoader = fakeContentLoader;
+            mtlLibrary.ContentLoader = FakeContentLoaderFactory.CreateFakeLoader(content);
             Task task = LoadLibrary();
 
             yield return AsyncTest.WaitForTask(task);
@@ -137,7 +118,7 @@ namespace i5.Toolkit.Core.Tests.ModelImporters
         [Test]
         public void GetMaterialConstructor_NonExistentMatLib_ReturnsNull()
         {
-            mtlLibrary.ContentLoader = fakeContentLoader;
+            mtlLibrary.ContentLoader = FakeContentLoaderFactory.CreateFakeLoader(content);
             MaterialConstructor res = mtlLibrary.GetMaterialConstructor("", "");
             Assert.IsNull(res);
         }
@@ -149,7 +130,7 @@ namespace i5.Toolkit.Core.Tests.ModelImporters
         [UnityTest]
         public IEnumerator GetMaterialConstructor_ExistentMatLibNonExistentMat_ReturnsNull()
         {
-            mtlLibrary.ContentLoader = fakeContentLoader;
+            mtlLibrary.ContentLoader = FakeContentLoaderFactory.CreateFakeLoader(content);
             Task task = LoadLibrary();
 
             yield return AsyncTest.WaitForTask(task);
@@ -165,7 +146,7 @@ namespace i5.Toolkit.Core.Tests.ModelImporters
         [UnityTest]
         public IEnumerator GetMaterialConstructor_ExistentMatLibExistentMat_ReturnsNotNull()
         {
-            mtlLibrary.ContentLoader = fakeContentLoader;
+            mtlLibrary.ContentLoader = FakeContentLoaderFactory.CreateFakeLoader(content);
             Task task = LoadLibrary();
 
             yield return AsyncTest.WaitForTask(task);
@@ -182,7 +163,7 @@ namespace i5.Toolkit.Core.Tests.ModelImporters
         [UnityTest]
         public IEnumerator GetMaterialConstructor_ExistentMatLibExistentMat_MatConstrColorSet()
         {
-            mtlLibrary.ContentLoader = fakeContentLoader;
+            mtlLibrary.ContentLoader = FakeContentLoaderFactory.CreateFakeLoader(content);
             Task task = LoadLibrary();
 
             yield return AsyncTest.WaitForTask(task);
@@ -199,7 +180,7 @@ namespace i5.Toolkit.Core.Tests.ModelImporters
         [UnityTest]
         public IEnumerator GetMaterialConstructor_ExistentMatLibExistentMat_MatConstrNameSet()
         {
-            mtlLibrary.ContentLoader = fakeContentLoader;
+            mtlLibrary.ContentLoader = FakeContentLoaderFactory.CreateFakeLoader(content);
             Task task = LoadLibrary();
 
             yield return AsyncTest.WaitForTask(task);
@@ -216,7 +197,7 @@ namespace i5.Toolkit.Core.Tests.ModelImporters
         [UnityTest]
         public IEnumerator ExtendedLogging_Enabled_CommentsLogged()
         {
-            mtlLibrary.ContentLoader = fakeContentLoader;
+            mtlLibrary.ContentLoader = FakeContentLoaderFactory.CreateFakeLoader(content);
             mtlLibrary.ExtendedLogging = true;
             Task task = LoadLibrary();
 
@@ -232,7 +213,7 @@ namespace i5.Toolkit.Core.Tests.ModelImporters
         [UnityTest]
         public IEnumerator ExtendedLogging_Disabled_CommentsNotLogged()
         {
-            mtlLibrary.ContentLoader = fakeContentLoader;
+            mtlLibrary.ContentLoader = FakeContentLoaderFactory.CreateFakeLoader(content);
             mtlLibrary.ExtendedLogging = false;
             Task task = LoadLibrary();
 

@@ -14,11 +14,17 @@ env:
   UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
 
 jobs:
-  test:
-    name: Test my project ✨
+  testAllModes:
+    name: Test in ${{ matrix.testMode }} on version ${{ matrix.unityVersion }}
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
+      matrix:
+        unityVersion:
+          - 2018.4.15f1
+        testMode:
+          - playmode
+          - editmode
     steps:
     
       # Checkout
@@ -30,15 +36,18 @@ jobs:
         with:
           path: Library
           key: Library
+          restore-keys: |
+            Library
 
       # Test
-      - name: Run tests
-        uses: webbertakken/unity-test-runner@v1.6
+      - uses: webbertakken/unity-test-runner@v1.6
+        id: tests
         with:
-          unityVersion: 2018.4.15f1
-          
+          unityVersion: ${{ matrix.unityVersion }}
+          testMode: ${{ matrix.testMode }}
+          artifactsPath: ${{ matrix.testMode }}-artifacts
           
       - uses: actions/upload-artifact@v1
         with:
-          name: Test results
-          path: artifacts
+          name: Test results for ${{ matrix.testMode }}
+          path: ${{ steps.tests.outputs.artifactsPath }}

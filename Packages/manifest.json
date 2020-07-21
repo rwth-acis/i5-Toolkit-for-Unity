@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "com.glitchenzo.nugetforunity": "https://github.com/starikcetin/NuGetForUnity.git#1.2.3",
     "com.unity.ads": "2.0.8",
     "com.unity.analytics": "3.2.2",
     "com.unity.collab-proxy": "1.2.15",
@@ -37,11 +36,5 @@
     "com.unity.modules.vr": "1.0.0",
     "com.unity.modules.wind": "1.0.0",
     "com.unity.modules.xr": "1.0.0"
-  },
-  "lock": {
-    "com.glitchenzo.nugetforunity": {
-      "hash": "80e6356903b6018861dc856216ae2c27837abc95",
-      "revision": "1.2.3"
-    }
   }
 }

@@ -272,5 +272,11 @@ namespace i5.Toolkit.Core.Tests.ModelImporters
             MeshRenderer mr = res.transform.GetChild(0).GetComponent<MeshRenderer>();
             Assert.AreEqual("New Material", mr.sharedMaterial.name);
         }
+
+        [Test]
+        public void FailTest()
+        {
+            Assert.Fail();
+        }
     }
 }

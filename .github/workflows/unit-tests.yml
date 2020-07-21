@@ -17,6 +17,8 @@ jobs:
   test:
     name: Test my project ✨
     runs-on: ubuntu-latest
+    strategy:
+      fail-fase: false
     steps:
     
       # Checkout

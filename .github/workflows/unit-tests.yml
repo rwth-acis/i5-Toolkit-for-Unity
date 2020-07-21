@@ -48,6 +48,7 @@ jobs:
           artifactsPath: ${{ matrix.testMode }}-artifacts
           
       - uses: actions/upload-artifact@v1
+        if: succeeded() || failed()
         with:
           name: Test results for ${{ matrix.testMode }}
           path: ${{ steps.tests.outputs.artifactsPath }}

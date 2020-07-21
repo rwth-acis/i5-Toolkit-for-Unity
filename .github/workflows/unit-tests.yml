@@ -17,14 +17,6 @@ jobs:
   testAllModes:
     name: Test in ${{ matrix.testMode }} on version ${{ matrix.unityVersion }}
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        unityVersion:
-          - 2018.4.15f1
-        testMode:
-          - playmode
-          - editmode
     steps:
     
       # Checkout

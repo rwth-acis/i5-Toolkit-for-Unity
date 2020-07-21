@@ -36,20 +36,16 @@ jobs:
         with:
           path: Library
           key: Library
-          restore-keys: |
-            Library
 
       # Test
-      - uses: webbertakken/unity-test-runner@v1.6
-        id: tests
+      - name: Run tests
+        uses: webbertakken/unity-test-runner@v1.6
         with:
-          unityVersion: ${{ matrix.unityVersion }}
-          testMode: ${{ matrix.testMode }}
-          artifactsPath: ${{ matrix.testMode }}-artifacts
+          unityVersion: 2018.4.15f1
           
-      # Upload Test Results
+          
       - uses: actions/upload-artifact@v1
         if: success() || failure()
         with:
-          name: Test results for ${{ matrix.testMode }}
-          path: ${{ matrix.testMode }}-artifacts
+          name: Test results
+          path: artifacts

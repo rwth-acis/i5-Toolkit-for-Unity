@@ -15,7 +15,7 @@ env:
 
 jobs:
   testAllModes:
-    name: Test in ${{ matrix.testMode }} on version ${{ matrix.unityVersion }}
+    name: Test my project ✨
     runs-on: ubuntu-latest
     steps:
     

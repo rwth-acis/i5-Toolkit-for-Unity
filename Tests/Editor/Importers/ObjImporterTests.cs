@@ -1,6 +1,4 @@
-﻿using FakeItEasy;
-using i5.Toolkit.Core.ModelImporters;
-using i5.Toolkit.Core.ServiceCore;
+﻿using i5.Toolkit.Core.ModelImporters;
 using i5.Toolkit.Core.TestUtilities;
 using i5.Toolkit.Core.Utilities;
 using i5.Toolkit.Core.Utilities.ContentLoaders;
@@ -145,13 +143,13 @@ namespace i5.Toolkit.Core.Tests.ModelImporters
         {
             ObjImporter objImporter = SetUpObjImporter(emptyObj, emptyMtl);
 
+            LogAssert.Expect(LogType.Warning, new Regex(@"\w*There is an object without parsed vertices\w*"));
+            LogAssert.Expect(LogType.Error, new Regex(@"\w*No objects could be constructed.\w*"));
+
             Task<GameObject> task = objImporter.ImportAsync("http://test.org/test.obj");
 
             yield return AsyncTest.WaitForTask(task);
             GameObject res = task.Result;
-
-            LogAssert.Expect(LogType.Warning, new Regex(@"\w*There is an object without parsed vertices\w*"));
-            LogAssert.Expect(LogType.Error, new Regex(@"\w*No objects could be constructed.\w*"));
 
             Assert.NotNull(res);
             Assert.AreEqual(0, res.transform.childCount);

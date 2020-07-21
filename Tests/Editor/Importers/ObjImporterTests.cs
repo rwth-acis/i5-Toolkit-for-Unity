@@ -1,4 +1,5 @@
-﻿using i5.Toolkit.Core.ModelImporters;
+﻿using FakeItEasy;
+using i5.Toolkit.Core.ModelImporters;
 using i5.Toolkit.Core.ServiceCore;
 using i5.Toolkit.Core.TestUtilities;
 using i5.Toolkit.Core.Utilities;
@@ -67,8 +68,8 @@ namespace i5.Toolkit.Core.Tests.ModelImporters
         {
             ObjImporter objImporter = new ObjImporter();
             objImporter.Initialize(serviceManager);
-            objImporter.ContentLoader = new FakeContentLoader(objContent);
-            objImporter.MtlLibrary.ContentLoader = new FakeContentLoader(mtlContent);
+            objImporter.ContentLoader = FakeContentLoaderFactory.CreateFakeLoader(objContent);
+            objImporter.MtlLibrary.ContentLoader = FakeContentLoaderFactory.CreateFakeLoader(mtlContent);
             return objImporter;
         }
 
@@ -104,14 +105,16 @@ namespace i5.Toolkit.Core.Tests.ModelImporters
         {
             ObjImporter objImporter = new ObjImporter();
             objImporter.Initialize(serviceManager);
-            objImporter.ContentLoader = new FakeContentFailLoader();
+            objImporter.ContentLoader = FakeContentLoaderFactory.CreateFakeFailLoader<string>();
+
+            LogAssert.Expect(LogType.Error, new Regex(@"\w*Error fetching obj. No object imported\w*"));
+
             Task<GameObject> task = objImporter.ImportAsync("http://test.org/test.obj");
 
             yield return AsyncTest.WaitForTask(task);
 
             GameObject res = task.Result;
 
-            LogAssert.Expect(LogType.Error, new Regex(@"\w*Error fetching obj. No object imported\w*"));
             Assert.Null(res);
         }
 
@@ -257,14 +260,14 @@ namespace i5.Toolkit.Core.Tests.ModelImporters
         public IEnumerator ImportAsync_ObjFetchSuccessMtlFetchFail_CreateObjectWithDefaultMat()
         {
             ObjImporter objImporter = SetUpObjImporter(cubeObj, "");
-            objImporter.MtlLibrary.ContentLoader = new FakeContentFailLoader();
+            objImporter.MtlLibrary.ContentLoader = FakeContentLoaderFactory.CreateFakeFailLoader<string>();
+
+            LogAssert.Expect(LogType.Error, new Regex(@"\w*This is a simulated fail\w*"));
+            LogAssert.Expect(LogType.Error, new Regex(@"\w*Could not load .mtl file\w*"));
 
             Task<GameObject> task = objImporter.ImportAsync("http://test.org/test.obj");
             yield return AsyncTest.WaitForTask(task);
             GameObject res = task.Result;
-
-            LogAssert.Expect(LogType.Error, new Regex(@"\w*This is a simulated fail\w*"));
-            LogAssert.Expect(LogType.Error, new Regex(@"\w*Could not load .mtl file\w*"));
 
             Assert.NotNull(res);
             Assert.AreEqual(1, res.transform.childCount);

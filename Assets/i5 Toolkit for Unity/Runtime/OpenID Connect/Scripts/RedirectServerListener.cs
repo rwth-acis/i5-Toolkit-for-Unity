@@ -20,9 +20,16 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
 
         public void StartServer()
         {
-            ServerActive = true;
-            serverThread = new Thread(Listen);
-            serverThread.Start();
+            if (serverThread == null)
+            {
+                ServerActive = true;
+                serverThread = new Thread(Listen);
+                serverThread.Start();
+            }
+            else
+            {
+                i5Debug.LogWarning("Server is already running. There is no need to start it at the moment.", this);
+            }
         }
 
         public void StopServerImmediately()
@@ -31,7 +38,12 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
             {
                 serverThread.Abort();
                 http.Stop();
+                ServerActive = false;
                 i5Debug.Log("HTTPListener stopped.", this);
+            }
+            else
+            {
+                i5Debug.LogWarning("Server is already stopped. There is no need to stop it at the moment.", this);
             }
         }
 

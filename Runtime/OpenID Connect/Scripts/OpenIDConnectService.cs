@@ -104,7 +104,7 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
             serverThread.Start();
         }
 
-        private void StopServerImmediately()
+        public void StopServerImmediately()
         {
             if (serverThread != null)
             {
@@ -158,6 +158,10 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
                     i5Debug.Log("Server stopped", this);
 
                     LoginCompleted?.Invoke(this, EventArgs.Empty);
+                }
+                catch (ThreadAbortException)
+                {
+                    i5Debug.Log("OIDC server was shut shown manually.", this);
                 }
                 catch(Exception e)
                 {

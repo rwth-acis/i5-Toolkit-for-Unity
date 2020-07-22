@@ -147,28 +147,118 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
             oidc.OpenLoginPage();
         }
 
-        //[Test]
-        //public void OpenLoginPage_RedirectReceivedInImplicitFlow_AccessTokenRetrieved()
-        //{
-        //    OpenIDConnectService oidc = new OpenIDConnectService();
-        //    IOidcProvider oidcProvider = A.Fake<IOidcProvider>();
-        //    A.CallTo(() => oidcProvider.GetAccessToken(A<Dictionary<string, string>>.Ignored)).Returns("myAccessToken");
-        //    oidc.OidcProvider = oidcProvider;
-        //    IRedirectServerListener serverListener = A.Fake<IRedirectServerListener>();
-        //    oidc.ServerListener = serverListener;
+        [Test]
+        public void OnRedirect_AuthFlow_ExtractsCode()
+        {
+            OpenIDConnectService oidc = new OpenIDConnectService();
+            IOidcProvider oidcProvider = A.Fake<IOidcProvider>();
+            A.CallTo(() => oidcProvider.AuthorzationFlow).Returns(AuthorizationFlow.AUTHORIZATION_CODE);
+            oidc.OidcProvider = oidcProvider;
+            IRedirectServerListener serverListener = A.Fake<IRedirectServerListener>();
+            oidc.ServerListener = serverListener;
 
-        //    oidc.OpenLoginPage();
+            oidc.OpenLoginPage();
 
-        //    RedirectReceivedEventArgs redirectReceivedEventArgs = A.Fake<RedirectReceivedEventArgs>();
-        //    serverListener.RedirectReceived += Raise.With(redirectReceivedEventArgs);
-        //}
+            RedirectReceivedEventArgs redirectReceivedEventArgs = A.Fake<RedirectReceivedEventArgs>();
+            serverListener.RedirectReceived += Raise.With(redirectReceivedEventArgs);
+
+            A.CallTo(() => oidcProvider.GetAuthorizationCode(A<Dictionary<string, string>>.Ignored)).MustHaveHappenedOnceExactly();
+        }
+
+        [Test]
+        public void OnRedirect_AuthFlow_RetrievesAccessToken()
+        {
+            OpenIDConnectService oidc = new OpenIDConnectService();
+            IOidcProvider oidcProvider = A.Fake<IOidcProvider>();
+            A.CallTo(() => oidcProvider.GetAuthorizationCode(A<Dictionary<string, string>>.Ignored)).Returns("myCode");
+            A.CallTo(() => oidcProvider.GetAccessTokenFromCodeAsync(A<string>.Ignored, A<string>.Ignored))
+                .Returns(Task.FromResult("myAccessToken"));
+            A.CallTo(() => oidcProvider.AuthorzationFlow).Returns(AuthorizationFlow.AUTHORIZATION_CODE);
+            oidc.OidcProvider = oidcProvider;
+            IRedirectServerListener serverListener = A.Fake<IRedirectServerListener>();
+            oidc.ServerListener = serverListener;
+
+            oidc.OpenLoginPage();
+
+            RedirectReceivedEventArgs redirectReceivedEventArgs = A.Fake<RedirectReceivedEventArgs>();
+            serverListener.RedirectReceived += Raise.With(redirectReceivedEventArgs);
+
+            A.CallTo(() => oidcProvider.GetAccessTokenFromCodeAsync("myCode", A<string>.Ignored)).MustHaveHappenedOnceExactly();
+            Assert.AreEqual("myAccessToken", oidc.AccessToken);
+        }
+
+        [Test]
+        public void OnRedirect_ImplicitFlow_AccessTokenRetrieved()
+        {
+            OpenIDConnectService oidc = new OpenIDConnectService();
+            IOidcProvider oidcProvider = A.Fake<IOidcProvider>();
+            A.CallTo(() => oidcProvider.GetAccessToken(A<Dictionary<string, string>>.Ignored)).Returns("myAccessToken");
+            A.CallTo(() => oidcProvider.AuthorzationFlow).Returns(AuthorizationFlow.IMPLICIT);
+            oidc.OidcProvider = oidcProvider;
+            IRedirectServerListener serverListener = A.Fake<IRedirectServerListener>();
+            oidc.ServerListener = serverListener;
+
+            oidc.OpenLoginPage();
+
+            RedirectReceivedEventArgs redirectReceivedEventArgs = A.Fake<RedirectReceivedEventArgs>();
+            serverListener.RedirectReceived += Raise.With(redirectReceivedEventArgs);
+
+            Assert.AreEqual("myAccessToken", oidc.AccessToken);
+        }
+
+        [Test]
+        public void OnRedirect_RedirectContainsError_ErrorLogged()
+        {
+            OpenIDConnectService oidc = new OpenIDConnectService();
+            IOidcProvider oidcProvider = A.Fake<IOidcProvider>();
+            string errorMsg;
+            A.CallTo(() => oidcProvider.ParametersContainError(A<Dictionary<string, string>>.Ignored, out errorMsg))
+                .Returns(true)
+                .AssignsOutAndRefParameters("This is a simulated fail");
+            oidc.OidcProvider = oidcProvider;
+            IRedirectServerListener serverListener = A.Fake<IRedirectServerListener>();
+            RedirectReceivedEventArgs redirectReceivedEventArgs = A.Fake<RedirectReceivedEventArgs>();
+            oidc.ServerListener = serverListener;
+
+            LogAssert.Expect(LogType.Error, new Regex(@"\w*This is a simulated fail\w*"));
+
+            oidc.OpenLoginPage();
+
+            serverListener.RedirectReceived += Raise.With(redirectReceivedEventArgs);
+
+            A.CallTo(() => oidcProvider.ParametersContainError(A<Dictionary<string, string>>.Ignored, out errorMsg))
+                .MustHaveHappenedOnceExactly();
+            Assert.IsTrue(string.IsNullOrEmpty(oidc.AccessToken));
+        }
+
+        [Test]
+        public void OnRedirect_Success_EventRaised()
+        {
+            OpenIDConnectService oidc = new OpenIDConnectService();
+            IOidcProvider oidcProvider = A.Fake<IOidcProvider>();
+            oidc.OidcProvider = oidcProvider;
+            IRedirectServerListener serverListener = A.Fake<IRedirectServerListener>();
+            oidc.ServerListener = serverListener;
+            RedirectReceivedEventArgs redirectReceivedEventArgs = A.Fake<RedirectReceivedEventArgs>();
+
+            int eventCalls = 0;
+
+            oidc.LoginCompleted += delegate
+            {
+                eventCalls++;
+            };
+            oidc.OpenLoginPage();
+
+            serverListener.RedirectReceived += Raise.With(redirectReceivedEventArgs);
+
+            Assert.AreEqual(1, eventCalls);
+        }
 
         [Test]
         public void Logout_AccessTokenSet_AccessTokenCleared()
         {
             OpenIDConnectService oidc = new OpenIDConnectService();
             typeof(OpenIDConnectService).GetProperty("AccessToken").SetValue(oidc, "abcd");
-            Assert.IsNotEmpty(oidc.AccessToken);
 
             oidc.Logout();
             Assert.IsEmpty(oidc.AccessToken);
@@ -192,6 +282,46 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
         public void IsLoggedIn_Default_ReturnsFalse()
         {
             OpenIDConnectService oidc = new OpenIDConnectService();
+            Assert.IsFalse(oidc.IsLoggedIn);
+        }
+
+        [Test]
+        public void IsLoggedIn_SuccessfulLogin_ReturnsTrue()
+        {
+            OpenIDConnectService oidc = new OpenIDConnectService();
+            IOidcProvider oidcProvider = A.Fake<IOidcProvider>();
+            A.CallTo(() => oidcProvider.GetAccessToken(A<Dictionary<string, string>>.Ignored)).Returns("myAccessToken");
+            A.CallTo(() => oidcProvider.AuthorzationFlow).Returns(AuthorizationFlow.IMPLICIT);
+            oidc.OidcProvider = oidcProvider;
+            IRedirectServerListener serverListener = A.Fake<IRedirectServerListener>();
+            oidc.ServerListener = serverListener;
+
+            oidc.OpenLoginPage();
+
+            RedirectReceivedEventArgs redirectReceivedEventArgs = A.Fake<RedirectReceivedEventArgs>();
+            serverListener.RedirectReceived += Raise.With(redirectReceivedEventArgs);
+
+            Assert.IsTrue(oidc.IsLoggedIn);
+        }
+
+        [Test]
+        public void IsLoggedIn_SuccessfulLogout_ReturnsFalse()
+        {
+            OpenIDConnectService oidc = new OpenIDConnectService();
+            IOidcProvider oidcProvider = A.Fake<IOidcProvider>();
+            A.CallTo(() => oidcProvider.GetAccessToken(A<Dictionary<string, string>>.Ignored)).Returns("myAccessToken");
+            A.CallTo(() => oidcProvider.AuthorzationFlow).Returns(AuthorizationFlow.IMPLICIT);
+            oidc.OidcProvider = oidcProvider;
+            IRedirectServerListener serverListener = A.Fake<IRedirectServerListener>();
+            oidc.ServerListener = serverListener;
+
+            oidc.OpenLoginPage();
+
+            RedirectReceivedEventArgs redirectReceivedEventArgs = A.Fake<RedirectReceivedEventArgs>();
+            serverListener.RedirectReceived += Raise.With(redirectReceivedEventArgs);
+
+            oidc.Logout();
+
             Assert.IsFalse(oidc.IsLoggedIn);
         }
     }

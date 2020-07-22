@@ -49,10 +49,11 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
             OpenIDConnectService oidc = new OpenIDConnectService();
             IOidcProvider provider = A.Fake<IOidcProvider>();
             oidc.OidcProvider = provider;
+            IRedirectServerListener server = A.Fake<IRedirectServerListener>();
+            oidc.ServerListener = server;
+
             oidc.OpenLoginPage();
             A.CallTo(() => provider.OpenLoginPage(A<string[]>.Ignored, A<string>.Ignored)).MustHaveHappened();
-
-            oidc.StopServerImmediately();
         }
 
         [Test]
@@ -81,18 +82,10 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
         }
 
         [Test]
-        public void IsLoggedIn_AccessTokenNull_ReturnsFalse()
+        public void IsLoggedIn_Default_ReturnsFalse()
         {
             OpenIDConnectService oidc = new OpenIDConnectService();
             Assert.IsFalse(oidc.IsLoggedIn);
-        }
-
-        [Test]
-        public void IsLoggedIn_AccessTokenNotEmpty_ReturnsTrue()
-        {
-            OpenIDConnectService oidc = new OpenIDConnectService();
-            typeof(OpenIDConnectService).GetProperty("AccessToken").SetValue(oidc, "abcd");
-            Assert.IsTrue(oidc.IsLoggedIn);
         }
     }
 }

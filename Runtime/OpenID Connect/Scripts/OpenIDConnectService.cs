@@ -73,9 +73,9 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
 
         private async void ServerListener_RedirectReceived(object sender, RedirectReceivedEventArgs e)
         {
-            if (e.RedirectParameters.ContainsKey("error"))
+            if (OidcProvider.ParametersContainError(e.RedirectParameters, out string errorMessage))
             {
-                i5Debug.LogError("Error: " + e.RedirectParameters["error"], this);
+                i5Debug.LogError("Error: " + errorMessage, this);
                 return;
             }
 
@@ -88,12 +88,24 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
             {
                 AccessToken = OidcProvider.GetAccessToken(e.RedirectParameters);
             }
+            LoginCompleted?.Invoke(this, EventArgs.Empty);
         }
 
         public void Logout()
         {
             AccessToken = "";
             LogoutCompleted?.Invoke(this, EventArgs.Empty);
+        }
+
+        public async Task<bool> CheckAccessToken()
+        {
+            if (!IsLoggedIn)
+            {
+                i5Debug.LogWarning("Access token not valid because user is not logged in.", this);
+                return false;
+            }
+            IUserInfo userInfo = await GetUserDataAsync();
+            return userInfo != null;
         }
 
         public async Task<IUserInfo> GetUserDataAsync()

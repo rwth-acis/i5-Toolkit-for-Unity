@@ -15,6 +15,8 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
 
         string GetAuthorizationCode(Dictionary<string, string> redirectParameters);
 
+        bool ParametersContainError(Dictionary<string, string> parameters, out string errorMessage);
+
         Task<string> GetAccessTokenFromCodeAsync(string code, string redirectUri);
 
         string GetAccessToken(Dictionary<string, string> redirectParameters);

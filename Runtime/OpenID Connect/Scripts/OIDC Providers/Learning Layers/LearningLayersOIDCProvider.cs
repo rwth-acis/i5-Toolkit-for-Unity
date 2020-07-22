@@ -104,5 +104,16 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
                 return "";
             }
         }
+
+        public bool ParametersContainError(Dictionary<string, string> parameters, out string errorMessage)
+        {
+            if (parameters.ContainsKey("error"))
+            {
+                errorMessage = parameters["error"];
+                return true;
+            }
+            errorMessage = "";
+            return false;
+        }
     }
 }

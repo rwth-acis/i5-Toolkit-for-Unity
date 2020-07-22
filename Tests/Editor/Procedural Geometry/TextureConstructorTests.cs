@@ -58,19 +58,15 @@ namespace i5.Toolkit.Core.Tests.ProceduralGeometry
         public IEnumerator FetchTextureAsync_WebRequestSuccessful_ReturnsTexture()
         {
             TextureConstructor textureConstructor = new TextureConstructor(loadPath);
-            FakeTextureLoader fakeTextureLoader = new FakeTextureLoader();
-            textureConstructor.TextureLoader = fakeTextureLoader;
-            Task<Texture2D> task = textureConstructor.FetchTextureAsync();
+            Texture2D expected = new Texture2D(2, 2);
+            textureConstructor.TextureLoader = FakeContentLoaderFactory.CreateFakeLoader(expected);
 
+            Task<Texture2D> task = textureConstructor.FetchTextureAsync();
             yield return AsyncTest.WaitForTask(task);
             Texture2D res = task.Result;
 
-            Task<WebResponse<Texture2D>> taskExpectedRes = fakeTextureLoader.LoadAsync("");
-            yield return AsyncTest.WaitForTask(taskExpectedRes);
-            WebResponse<Texture2D> expectedResp = taskExpectedRes.Result;
-
             Assert.NotNull(res);
-            Assert.AreEqual(expectedResp.Content.imageContentsHash, res.imageContentsHash);
+            Assert.AreEqual(expected.imageContentsHash, res.imageContentsHash);
         }
 
         /// <summary>
@@ -81,13 +77,14 @@ namespace i5.Toolkit.Core.Tests.ProceduralGeometry
         public IEnumerator FetchTextureAsync_WebRequestFailed_ReturnsNull()
         {
             TextureConstructor textureConstructor = new TextureConstructor(loadPath);
-            textureConstructor.TextureLoader = new FakeTextureFailLoader();
-            Task<Texture2D> task = textureConstructor.FetchTextureAsync();
+            textureConstructor.TextureLoader = FakeContentLoaderFactory.CreateFakeFailLoader<Texture2D>();
 
+            LogAssert.Expect(LogType.Error, new Regex(@"\w*This is a simulated fail\w*"));
+
+            Task<Texture2D> task = textureConstructor.FetchTextureAsync();
             yield return AsyncTest.WaitForTask(task);
             Texture2D res = task.Result;
 
-            LogAssert.Expect(LogType.Error, new Regex(@"\w*This is a simulated fail\w*"));
             Assert.Null(res);
         }
     }

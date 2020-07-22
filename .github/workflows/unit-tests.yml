@@ -14,7 +14,7 @@ env:
   UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
 
 jobs:
-  test:
+  testAllModes:
     name: Test my project ✨
     runs-on: ubuntu-latest
     steps:
@@ -37,6 +37,7 @@ jobs:
           
           
       - uses: actions/upload-artifact@v1
+        if: success() || failure()
         with:
           name: Test results
           path: artifacts

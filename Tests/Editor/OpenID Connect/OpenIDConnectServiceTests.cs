@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using FakeItEasy;
 using i5.Toolkit.Core.OpenIDConnectClient;
@@ -23,14 +24,21 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
         }
 
         [Test]
-        public void ClientDataLoader_Initialized_DefaultNotNull()
+        public void ClientDataLoader_DefaultNotNull()
         {
             OpenIDConnectService oidc = new OpenIDConnectService();
             Assert.NotNull(oidc.ClientDataLoader);
         }
 
         [Test]
-        public void Initialize_Initialized_LoadsClientData()
+        public void ServerListener_DefaultNotNull()
+        {
+            OpenIDConnectService oidc = new OpenIDConnectService();
+            Assert.NotNull(oidc.ServerListener);
+        }
+
+        [Test]
+        public void Initialize_LoadsClientData()
         {
             OpenIDConnectService oidc = new OpenIDConnectService();
             IClientDataLoader dataLoader = A.Fake<IClientDataLoader>();
@@ -44,7 +52,54 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
         }
 
         [Test]
-        public void OpenLoginPage_Called_OpensLoginPage()
+        public void Cleanup_StopsServer()
+        {
+            OpenIDConnectService oidc = new OpenIDConnectService();
+            IRedirectServerListener serverListener = A.Fake<IRedirectServerListener>();
+            oidc.ServerListener = serverListener;
+
+            oidc.Cleanup();
+
+            A.CallTo(() => serverListener.StopServerImmediately()).MustHaveHappened();
+        }
+
+        [Test]
+        public void Cleanup_LoggedOut_DoesNotRaiseLogoutEvent()
+        {
+            OpenIDConnectService oidc = new OpenIDConnectService();
+            oidc.ServerListener = A.Fake<IRedirectServerListener>();
+
+            int eventCalls = 0;
+            oidc.LogoutCompleted += delegate
+            {
+                eventCalls++;
+            };
+
+            oidc.Cleanup();
+
+            Assert.AreEqual(0, eventCalls);
+        }
+
+        [Test]
+        public void Cleanup_LoggedIn_RaisesLogoutEvent()
+        {
+            OpenIDConnectService oidc = new OpenIDConnectService();
+            oidc.ServerListener = A.Fake<IRedirectServerListener>();
+            typeof(OpenIDConnectService).GetProperty("AccessToken").SetValue(oidc, "abcd");
+
+            int eventCalls = 0;
+            oidc.LogoutCompleted += delegate
+            {
+                eventCalls++;
+            };
+
+            oidc.Cleanup();
+
+            Assert.AreEqual(1, eventCalls);
+        }
+
+        [Test]
+        public void OpenLoginPage_OpensLoginPage()
         {
             OpenIDConnectService oidc = new OpenIDConnectService();
             IOidcProvider provider = A.Fake<IOidcProvider>();
@@ -55,6 +110,58 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
             oidc.OpenLoginPage();
             A.CallTo(() => provider.OpenLoginPage(A<string[]>.Ignored, A<string>.Ignored)).MustHaveHappened();
         }
+
+        [Test]
+        public void OpenLoginPage_Called_ServerStarted()
+        {
+            OpenIDConnectService oidc = new OpenIDConnectService();
+            IOidcProvider provider = A.Fake<IOidcProvider>();
+            oidc.OidcProvider = provider;
+            IRedirectServerListener server = A.Fake<IRedirectServerListener>();
+            oidc.ServerListener = server;
+
+            oidc.OpenLoginPage();
+            A.CallTo(() => server.StartServer()).MustHaveHappened();
+        }
+
+        [Test]
+        public void OpenLoginPage_OidcProviderNull_LogsError()
+        {
+            OpenIDConnectService oidc = new OpenIDConnectService();
+            oidc.OidcProvider = null;
+
+            LogAssert.Expect(LogType.Error, new Regex(@"\w*OIDC provider is not set\w*"));
+
+            oidc.OpenLoginPage();
+        }
+
+        [Test]
+        public void OpenLoginPage_ServerListenerNull_LogsError()
+        {
+            OpenIDConnectService oidc = new OpenIDConnectService();
+            oidc.OidcProvider = A.Fake<IOidcProvider>();
+            oidc.ServerListener = null;
+
+            LogAssert.Expect(LogType.Error, new Regex(@"\w*Redirect server listener is not set\w*"));
+
+            oidc.OpenLoginPage();
+        }
+
+        //[Test]
+        //public void OpenLoginPage_RedirectReceivedInImplicitFlow_AccessTokenRetrieved()
+        //{
+        //    OpenIDConnectService oidc = new OpenIDConnectService();
+        //    IOidcProvider oidcProvider = A.Fake<IOidcProvider>();
+        //    A.CallTo(() => oidcProvider.GetAccessToken(A<Dictionary<string, string>>.Ignored)).Returns("myAccessToken");
+        //    oidc.OidcProvider = oidcProvider;
+        //    IRedirectServerListener serverListener = A.Fake<IRedirectServerListener>();
+        //    oidc.ServerListener = serverListener;
+
+        //    oidc.OpenLoginPage();
+
+        //    RedirectReceivedEventArgs redirectReceivedEventArgs = A.Fake<RedirectReceivedEventArgs>();
+        //    serverListener.RedirectReceived += Raise.With(redirectReceivedEventArgs);
+        //}
 
         [Test]
         public void Logout_AccessTokenSet_AccessTokenCleared()

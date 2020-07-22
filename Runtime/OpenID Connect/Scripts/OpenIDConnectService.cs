@@ -29,6 +29,16 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         public event EventHandler LoginCompleted;
         public event EventHandler LogoutCompleted;
 
+        public OpenIDConnectService()
+        {
+            ServerListener = new RedirectServerListener();
+        }
+
+        public async void Initialize(BaseServiceManager owner)
+        {
+            clientData = await ClientDataLoader.LoadClientDataAsync();
+        }
+
         public void Cleanup()
         {
             ServerListener.StopServerImmediately();
@@ -38,17 +48,16 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
             }
         }
 
-        public async void Initialize(BaseServiceManager owner)
-        {
-            clientData = await ClientDataLoader.LoadClientDataAsync();
-            ServerListener = new RedirectServerListener();
-        }
-
         public void OpenLoginPage()
         {
             if (OidcProvider == null)
             {
                 i5Debug.LogError("OIDC provider is not set. Please set the OIDC provider before accessing the OIDC workflow.", this);
+                return;
+            }
+            if (ServerListener == null)
+            {
+                i5Debug.LogError("Redirect server listener is not set. Please set it before accessing the OIDC workflow.", this);
                 return;
             }
 
@@ -64,20 +73,20 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
 
         private async void ServerListener_RedirectReceived(object sender, RedirectReceivedEventArgs e)
         {
-            if (e.RequestParameters.ContainsKey("error"))
+            if (e.RedirectParameters.ContainsKey("error"))
             {
-                i5Debug.LogError("Error: " + e.RequestParameters["error"], this);
+                i5Debug.LogError("Error: " + e.RedirectParameters["error"], this);
                 return;
             }
 
             if (OidcProvider.AuthorzationFlow == AuthorizationFlow.AUTHORIZATION_CODE)
             {
-                string authorizationCode = OidcProvider.GetAuthorizationCode(e.RequestParameters);
+                string authorizationCode = OidcProvider.GetAuthorizationCode(e.RedirectParameters);
                 AccessToken = await OidcProvider.GetAccessTokenFromCodeAsync(authorizationCode, e.RedirectUri);
             }
             else
             {
-                AccessToken = OidcProvider.GetAccessToken(e.RequestParameters);
+                AccessToken = OidcProvider.GetAccessToken(e.RedirectParameters);
             }
         }
 

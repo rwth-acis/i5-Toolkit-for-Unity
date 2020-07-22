@@ -37,7 +37,11 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
             if (serverThread != null)
             {
                 serverThread.Abort();
-                http.Stop();
+                // check if http is not null (it might not even have run yet)
+                if (http != null)
+                {
+                    http.Stop();
+                }
                 ServerActive = false;
                 i5Debug.Log("HTTPListener stopped.", this);
             }

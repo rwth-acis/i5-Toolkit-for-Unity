@@ -24,17 +24,14 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
 
         public IOidcProvider OidcProvider { get; set; }
 
+        public IRedirectServerListener ServerListener { get; set; }
+
         public event EventHandler LoginCompleted;
         public event EventHandler LogoutCompleted;
 
-        private string redirectUri;
-        private Thread serverThread;
-        private bool serverActive = false;
-        private HttpListener http;
-
         public void Cleanup()
         {
-            StopServerImmediately();
+            ServerListener.StopServerImmediately();
             if (IsLoggedIn)
             {
                 Logout();
@@ -44,6 +41,7 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         public async void Initialize(BaseServiceManager owner)
         {
             clientData = await ClientDataLoader.LoadClientDataAsync();
+            ServerListener = new RedirectServerListener();
         }
 
         public void OpenLoginPage()
@@ -56,14 +54,31 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
 
             OidcProvider.ClientData = clientData;
 
-            if (string.IsNullOrEmpty(redirectUri))
-            {
-                redirectUri = GenerateRedirectUri();
-            }
-
-            StartServer();
+            // TODO: support custom Uri schema
+            string redirectUri = ServerListener.GenerateRedirectUri();
+            ServerListener.RedirectReceived += ServerListener_RedirectReceived;
+            ServerListener.StartServer();
 
             OidcProvider.OpenLoginPage(Scopes, redirectUri);
+        }
+
+        private async void ServerListener_RedirectReceived(object sender, RedirectReceivedEventArgs e)
+        {
+            if (e.RequestParameters.ContainsKey("error"))
+            {
+                i5Debug.LogError("Error: " + e.RequestParameters["error"], this);
+                return;
+            }
+
+            if (OidcProvider.AuthorzationFlow == AuthorizationFlow.AUTHORIZATION_CODE)
+            {
+                string authorizationCode = OidcProvider.GetAuthorizationCode(e.RequestParameters);
+                AccessToken = await OidcProvider.GetAccessTokenFromCodeAsync(authorizationCode, e.RedirectUri);
+            }
+            else
+            {
+                AccessToken = OidcProvider.GetAccessToken(e.RequestParameters);
+            }
         }
 
         public void Logout()
@@ -80,94 +95,6 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
                 return null;
             }
             return await OidcProvider.GetUserInfoAsync(AccessToken);
-        }
-
-        private static string GenerateRedirectUri(string protocol = "http")
-        {
-            string redirectUri = protocol + "://" + IPAddress.Loopback + ":" + GetUnusedPort() + "/";
-            return redirectUri;
-        }
-
-        private static int GetUnusedPort()
-        {
-            TcpListener listener = new TcpListener(IPAddress.Loopback, 0);
-            listener.Start();
-            int port = ((IPEndPoint)listener.LocalEndpoint).Port;
-            listener.Stop();
-            return port;
-        }
-
-        private void StartServer()
-        {
-            serverThread = new Thread(Listen);
-            serverActive = true;
-            serverThread.Start();
-        }
-
-        public void StopServerImmediately()
-        {
-            if (serverThread != null)
-            {
-                serverThread.Abort();
-                http.Stop();
-                i5Debug.Log("HTTPListener stopped.", this);
-            }
-        }
-
-        private async void Listen()
-        {
-            http = new HttpListener();
-            if (string.IsNullOrEmpty(redirectUri))
-            {
-                redirectUri = GenerateRedirectUri();
-            }
-            http.Prefixes.Add(redirectUri);
-            http.Start();
-            i5Debug.Log("OIDC Redirect server now listening on address " + redirectUri, this);
-
-            while(serverActive)
-            {
-                try
-                {
-                    HttpListenerContext context = http.GetContext();
-
-                    if (context.Request.QueryString.Get("error") != null)
-                    {
-                        i5Debug.LogError("Error: " + context.Request.QueryString.Get("error"), this);
-                        return;
-                    }
-
-                    if (OidcProvider.AuthorzationFlow == AuthorizationFlow.AUTHORIZATION_CODE)
-                    {
-                        string authorizationCode = OidcProvider.GetAuthorizationCode(context.Request.QueryString.ToDictionary());
-                        AccessToken = await OidcProvider.GetAccessTokenFromCodeAsync(authorizationCode, redirectUri);
-                    }
-                    else
-                    {
-                        AccessToken = OidcProvider.GetAccessToken(context.Request.QueryString.ToDictionary());
-                    }
-
-                    string responseString = string.Format("<html><head></head><body>Please return to the app</body></html>");
-                    byte[] buffer = System.Text.Encoding.UTF8.GetBytes(responseString);
-                    context.Response.ContentLength64 = buffer.Length;
-                    var responseOutput = context.Response.OutputStream;
-                    responseOutput.Write(buffer, 0, buffer.Length);
-                    responseOutput.Close();
-                    http.Stop();
-                    serverActive = false;
-                    i5Debug.Log("Server stopped", this);
-
-                    LoginCompleted?.Invoke(this, EventArgs.Empty);
-                }
-                catch (ThreadAbortException)
-                {
-                    i5Debug.Log("OIDC server was shut shown manually.", this);
-                }
-                catch(Exception e)
-                {
-                    i5Debug.LogError("OIDC server encountered an error: " + e.ToString() + "\nShutting server down.", this);
-                }
-            }
         }
     }
 }

@@ -48,7 +48,7 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
 
             oidc.Initialize(serviceManager);
 
-            A.CallTo(() => oidc.ClientDataLoader.LoadClientDataAsync()).MustHaveHappened(Repeated.Once);
+            A.CallTo(() => oidc.ClientDataLoader.LoadClientDataAsync()).MustHaveHappenedOnceExactly();
         }
 
         [Test]

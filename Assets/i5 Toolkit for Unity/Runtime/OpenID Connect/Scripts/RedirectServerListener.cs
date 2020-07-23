@@ -90,6 +90,10 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
                 {
                     i5Debug.LogError("OIDC server encountered an error: " + e.ToString() + "\nShutting server down.", this);
                 }
+                finally
+                {
+                    serverThread = null;
+                }
             }
         }
 

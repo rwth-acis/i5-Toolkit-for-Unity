@@ -34,9 +34,23 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
             ServerListener = new RedirectServerListener();
         }
 
+        public OpenIDConnectService(ClientData clientData) : this()
+        {
+            this.clientData = clientData;
+        }
+
         public async void Initialize(BaseServiceManager owner)
         {
-            clientData = await ClientDataLoader.LoadClientDataAsync();
+            if (clientData == null)
+            {
+                clientData = await ClientDataLoader.LoadClientDataAsync();
+            }
+
+            if (clientData == null)
+            {
+                i5Debug.LogError("No client data supplied for the OpenID Connect Client.\n" +
+                    "Create a JSON file in the resources or reference a OpenID Connect Data file.", this);
+            }
         }
 
         public void Cleanup()
@@ -65,13 +79,13 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
 
             // TODO: support custom Uri schema
             string redirectUri = ServerListener.GenerateRedirectUri();
-            ServerListener.RedirectReceived += ServerListener_RedirectReceived;
+            ServerListener.RedirectReceived += async (s, e) => await ServerListener_RedirectReceived(s, e);
             ServerListener.StartServer();
 
             OidcProvider.OpenLoginPage(Scopes, redirectUri);
         }
 
-        private async void ServerListener_RedirectReceived(object sender, RedirectReceivedEventArgs e)
+        private async Task ServerListener_RedirectReceived(object sender, RedirectReceivedEventArgs e)
         {
             if (OidcProvider.ParametersContainError(e.RedirectParameters, out string errorMessage))
             {
@@ -83,6 +97,7 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
             {
                 string authorizationCode = OidcProvider.GetAuthorizationCode(e.RedirectParameters);
                 AccessToken = await OidcProvider.GetAccessTokenFromCodeAsync(authorizationCode, e.RedirectUri);
+                Debug.Log("Got access token " + AccessToken);
             }
             else
             {

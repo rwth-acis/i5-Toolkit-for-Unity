@@ -162,6 +162,8 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
             RedirectReceivedEventArgs redirectReceivedEventArgs = A.Fake<RedirectReceivedEventArgs>();
             serverListener.RedirectReceived += Raise.With(redirectReceivedEventArgs);
 
+            oidc.Update();
+
             A.CallTo(() => oidcProvider.GetAuthorizationCode(A<Dictionary<string, string>>.Ignored)).MustHaveHappenedOnceExactly();
         }
 
@@ -183,6 +185,8 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
             RedirectReceivedEventArgs redirectReceivedEventArgs = A.Fake<RedirectReceivedEventArgs>();
             serverListener.RedirectReceived += Raise.With(redirectReceivedEventArgs);
 
+            oidc.Update();
+
             A.CallTo(() => oidcProvider.GetAccessTokenFromCodeAsync("myCode", A<string>.Ignored)).MustHaveHappenedOnceExactly();
             Assert.AreEqual("myAccessToken", oidc.AccessToken);
         }
@@ -202,6 +206,8 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
 
             RedirectReceivedEventArgs redirectReceivedEventArgs = A.Fake<RedirectReceivedEventArgs>();
             serverListener.RedirectReceived += Raise.With(redirectReceivedEventArgs);
+
+            oidc.Update();
 
             Assert.AreEqual("myAccessToken", oidc.AccessToken);
         }
@@ -225,6 +231,8 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
             oidc.OpenLoginPage();
 
             serverListener.RedirectReceived += Raise.With(redirectReceivedEventArgs);
+
+            oidc.Update();
 
             A.CallTo(() => oidcProvider.ParametersContainError(A<Dictionary<string, string>>.Ignored, out errorMsg))
                 .MustHaveHappenedOnceExactly();
@@ -250,6 +258,7 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
             oidc.OpenLoginPage();
 
             serverListener.RedirectReceived += Raise.With(redirectReceivedEventArgs);
+            oidc.Update();
 
             Assert.AreEqual(1, eventCalls);
         }
@@ -300,6 +309,8 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
 
             RedirectReceivedEventArgs redirectReceivedEventArgs = A.Fake<RedirectReceivedEventArgs>();
             serverListener.RedirectReceived += Raise.With(redirectReceivedEventArgs);
+
+            oidc.Update();
 
             Assert.IsTrue(oidc.IsLoggedIn);
         }

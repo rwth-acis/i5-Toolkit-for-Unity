@@ -1,4 +1,5 @@
-﻿using i5.Toolkit.Core.Utilities.ContentLoaders;
+﻿using i5.Toolkit.Core.Utilities;
+using i5.Toolkit.Core.Utilities.ContentLoaders;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -6,7 +7,7 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
 {
     public interface IOidcProvider
     {
-        IContentLoader<string> ContentLoader { get; set; }
+        IRestConnector ContentLoader { get; set; }
         AuthorizationFlow AuthorzationFlow { get; }
 
         ClientData ClientData { get; set; }

@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace i5.Toolkit.Core.OpenIDConnectClient
 {
-    public class OpenIDConnectService : IService
+    public class OpenIDConnectService : IUpdateableService
     {
         private ClientData clientData;
 
@@ -18,16 +18,28 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
 
         public string[] Scopes { get; set; } = new string[] { "openid", "profile", "email" };
 
-        public string AccessToken { get; private set; }
+        private string accessToken;
+        public string AccessToken
+        {
+            get => accessToken;
+            private set
+            {
+                accessToken = value;
+                Debug.Log("Set access token to " + value);
+            }
+        }
 
         public bool IsLoggedIn { get => !string.IsNullOrEmpty(AccessToken); }
 
         public IOidcProvider OidcProvider { get; set; }
 
         public IRedirectServerListener ServerListener { get; set; }
+        public bool Enabled { get; set; }
 
         public event EventHandler LoginCompleted;
         public event EventHandler LogoutCompleted;
+
+        private RedirectReceivedEventArgs eventArgs;
 
         public OpenIDConnectService()
         {
@@ -79,31 +91,16 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
 
             // TODO: support custom Uri schema
             string redirectUri = ServerListener.GenerateRedirectUri();
-            ServerListener.RedirectReceived += async (s, e) => await ServerListener_RedirectReceived(s, e);
+            ServerListener.RedirectReceived += ServerListener_RedirectReceived;
             ServerListener.StartServer();
 
             OidcProvider.OpenLoginPage(Scopes, redirectUri);
         }
 
-        private async Task ServerListener_RedirectReceived(object sender, RedirectReceivedEventArgs e)
+        private void ServerListener_RedirectReceived(object sender, RedirectReceivedEventArgs e)
         {
-            if (OidcProvider.ParametersContainError(e.RedirectParameters, out string errorMessage))
-            {
-                i5Debug.LogError("Error: " + errorMessage, this);
-                return;
-            }
-
-            if (OidcProvider.AuthorzationFlow == AuthorizationFlow.AUTHORIZATION_CODE)
-            {
-                string authorizationCode = OidcProvider.GetAuthorizationCode(e.RedirectParameters);
-                AccessToken = await OidcProvider.GetAccessTokenFromCodeAsync(authorizationCode, e.RedirectUri);
-                Debug.Log("Got access token " + AccessToken);
-            }
-            else
-            {
-                AccessToken = OidcProvider.GetAccessToken(e.RedirectParameters);
-            }
-            LoginCompleted?.Invoke(this, EventArgs.Empty);
+            eventArgs = e;
+            Enabled = true;
         }
 
         public void Logout()
@@ -131,6 +128,34 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
                 return null;
             }
             return await OidcProvider.GetUserInfoAsync(AccessToken);
+        }
+
+        public async void Update()
+        {
+            if (eventArgs == null)
+            {
+                return;
+            }
+
+            if (OidcProvider.ParametersContainError(eventArgs.RedirectParameters, out string errorMessage))
+            {
+                i5Debug.LogError("Error: " + errorMessage, this);
+                return;
+            }
+
+            if (OidcProvider.AuthorzationFlow == AuthorizationFlow.AUTHORIZATION_CODE)
+            {
+                string authorizationCode = OidcProvider.GetAuthorizationCode(eventArgs.RedirectParameters);
+                AccessToken = await OidcProvider.GetAccessTokenFromCodeAsync(authorizationCode, eventArgs.RedirectUri);
+            }
+            else
+            {
+                AccessToken = OidcProvider.GetAccessToken(eventArgs.RedirectParameters);
+            }
+            eventArgs = null;
+            Enabled = false;
+            Debug.Log("Update: Access token is " + AccessToken);
+            LoginCompleted?.Invoke(this, EventArgs.Empty);
         }
     }
 }

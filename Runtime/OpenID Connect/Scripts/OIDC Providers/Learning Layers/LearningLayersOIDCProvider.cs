@@ -16,20 +16,20 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
 
         public AuthorizationFlow AuthorzationFlow { get; set; }
 
-        public IContentLoader<string> ContentLoader { get; set; }
+        public IRestConnector ContentLoader { get; set; }
 
         public ClientData ClientData { get; set; }
 
         public LearningLayersOIDCProvider()
         {
-            ContentLoader = new UnityWebRequestLoader();
+            ContentLoader = new UnityWebRequestRestConnector();
         }
 
         public async Task<string> GetAccessTokenFromCodeAsync(string code, string redirectUri)
         {
             string uri = tokenEndpoint + $"?code={code}&client_id={ClientData.ClientId}" +
-                $"&client_secret={ClientData.ClientId}&redirect_uri={redirectUri}&grant_type=authorization_code";
-            WebResponse<string> response = await ContentLoader.LoadAsync(uri);
+                $"&client_secret={ClientData.ClientSecret}&redirect_uri={redirectUri}&grant_type=authorization_code";
+            WebResponse<string> response = await ContentLoader.PostAsync(uri, "");
             if (response.Successful)
             {
                 LearningLayersAuthorizationFlowAnswer answer =
@@ -62,7 +62,7 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
 
         public async Task<IUserInfo> GetUserInfoAsync(string accessToken)
         {
-            WebResponse<string> webResponse = await ContentLoader.LoadAsync(userInfoEndpoint + "?access_token=" + accessToken);
+            WebResponse<string> webResponse = await ContentLoader.GetAsync(userInfoEndpoint + "?access_token=" + accessToken);
             if (webResponse.Successful)
             {
                 LearningLayersUserInfo userInfo = JsonUtility.FromJson<LearningLayersUserInfo>(webResponse.Content);

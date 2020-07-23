@@ -14,6 +14,8 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
     {
         private ClientData clientData;
 
+        private OpenIDConnectServiceConfiguration configuration;
+
         public IClientDataLoader ClientDataLoader { get; set; } = new ClientDataResourcesLoader();
 
         public string[] Scopes { get; set; } = new string[] { "openid", "profile", "email" };
@@ -37,9 +39,14 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
             ServerListener = new RedirectServerListener();
         }
 
-        public OpenIDConnectService(ClientData clientData) : this()
+        public OpenIDConnectService(OpenIDConnectServiceConfiguration configuration) : this()
         {
-            this.clientData = clientData;
+            this.configuration = configuration;
+            clientData = configuration.clientDataObject.clientData;
+            if (configuration.redirectPage != null)
+            {
+                ServerListener.ResponseString = configuration.redirectPage.text;
+            }
         }
 
         public async void Initialize(BaseServiceManager owner)

@@ -6,6 +6,8 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
     {
         bool ServerActive { get; }
 
+        string ResponseString { get; set; }
+
         void StartServer();
         void StopServerImmediately();
 

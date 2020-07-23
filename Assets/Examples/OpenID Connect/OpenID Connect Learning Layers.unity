@@ -336,7 +336,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 001453952e2d99a479e690ee2df2117d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clientDataObject: {fileID: 11400000, guid: b7e08c8992b6caf4cba61a17a5c01eec, type: 2}
+  openIdConnectServiceConfiguration:
+    redirectPage: {fileID: 4900000, guid: 0e2ee1b159c945f4484835a5d23ee9bd, type: 3}
+    clientDataObject: {fileID: 11400000, guid: b7e08c8992b6caf4cba61a17a5c01eec, type: 2}
 --- !u!114 &1780600242
 MonoBehaviour:
   m_ObjectHideFlags: 0

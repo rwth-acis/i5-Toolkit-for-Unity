@@ -7,11 +7,11 @@ using UnityEngine;
 public class LearningLayersBootstrapper : MonoBehaviour, IServiceManagerBootstrapper
 {
     [SerializeField]
-    private ClientDataObject clientDataObject;
+    private OpenIDConnectServiceConfiguration openIdConnectServiceConfiguration;
 
     public void InitializeServiceManager()
     {
-        OpenIDConnectService oidc = new OpenIDConnectService(clientDataObject.clientData);
+        OpenIDConnectService oidc = new OpenIDConnectService(openIdConnectServiceConfiguration);
         oidc.OidcProvider = new LearningLayersOIDCProvider();
         ServiceManager.RegisterService(oidc);
     }

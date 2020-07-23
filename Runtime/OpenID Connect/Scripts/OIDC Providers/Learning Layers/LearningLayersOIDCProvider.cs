@@ -86,10 +86,11 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
 
         public void OpenLoginPage(string[] scopes, string redirectUri)
         {
-            string responseType = AuthorzationFlow == AuthorizationFlow.AUTHORIZATION_CODE ? "code" : "implicit";
+            string responseType = AuthorzationFlow == AuthorizationFlow.AUTHORIZATION_CODE ? "code" : "token";
             string uriScopes = UriUtils.WordArrayToSpaceEscapedString(scopes);
             string uri = authorizationEndpoint + $"?response_type={responseType}&scope={uriScopes}" +
                 $"&client_id={ClientData.ClientId}&redirect_uri={redirectUri}";
+            Application.OpenURL(uri);
         }
 
         public string GetAuthorizationCode(Dictionary<string, string> redirectParameters)

@@ -38,7 +38,7 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
         }
 
         [Test]
-        public void Initialize_LoadsClientData()
+        public void Initialize_NoClientDataGiven_LoadsClientData()
         {
             OpenIDConnectService oidc = new OpenIDConnectService();
             IClientDataLoader dataLoader = A.Fake<IClientDataLoader>();

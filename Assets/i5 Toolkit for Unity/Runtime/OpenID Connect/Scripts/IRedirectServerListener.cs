@@ -4,6 +4,8 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
 {
     public interface IRedirectServerListener
     {
+        bool ServerActive { get; }
+
         void StartServer();
         void StopServerImmediately();
 

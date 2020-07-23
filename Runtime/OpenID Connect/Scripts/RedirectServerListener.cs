@@ -18,6 +18,13 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
 
         public string RedirectUri { get; private set; }
 
+        public string ResponseString { get; set; }
+
+        public RedirectServerListener()
+        {
+            ResponseString = string.Format("<html><head></head><body>Please return to the app</body></html>");
+        }
+
         public void StartServer()
         {
             if (serverThread == null)
@@ -65,11 +72,10 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
             while (ServerActive)
             {
                 try
-                {
+                {                    
                     HttpListenerContext context = http.GetContext();
 
-                    string responseString = string.Format("<html><head></head><body>Please return to the app</body></html>");
-                    byte[] buffer = System.Text.Encoding.UTF8.GetBytes(responseString);
+                    byte[] buffer = System.Text.Encoding.UTF8.GetBytes(ResponseString);
                     context.Response.ContentLength64 = buffer.Length;
                     var responseOutput = context.Response.OutputStream;
                     responseOutput.Write(buffer, 0, buffer.Length);

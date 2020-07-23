@@ -18,16 +18,7 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
 
         public string[] Scopes { get; set; } = new string[] { "openid", "profile", "email" };
 
-        private string accessToken;
-        public string AccessToken
-        {
-            get => accessToken;
-            private set
-            {
-                accessToken = value;
-                Debug.Log("Set access token to " + value);
-            }
-        }
+        public string AccessToken { get; private set; }
 
         public bool IsLoggedIn { get => !string.IsNullOrEmpty(AccessToken); }
 
@@ -67,7 +58,11 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
 
         public void Cleanup()
         {
-            ServerListener.StopServerImmediately();
+            if (ServerListener.ServerActive)
+            {
+                ServerListener.StopServerImmediately();
+            }
+
             if (IsLoggedIn)
             {
                 Logout();
@@ -137,6 +132,10 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
                 return;
             }
 
+            // disable immediately again so that we do not execute this part here multiple times
+            // as long as the first operation takes to finish
+            Enabled = false;
+
             if (OidcProvider.ParametersContainError(eventArgs.RedirectParameters, out string errorMessage))
             {
                 i5Debug.LogError("Error: " + errorMessage, this);
@@ -153,8 +152,6 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
                 AccessToken = OidcProvider.GetAccessToken(eventArgs.RedirectParameters);
             }
             eventArgs = null;
-            Enabled = false;
-            Debug.Log("Update: Access token is " + AccessToken);
             LoginCompleted?.Invoke(this, EventArgs.Empty);
         }
     }

@@ -5,8 +5,16 @@ using UnityEngine;
 
 namespace i5.Toolkit.Core.OpenIDConnectClient
 {
+    /// <summary>
+    /// Loader that can load ClientData json files which are stored in the resources folder
+    /// </summary>
     public class ClientDataResourcesLoader : IClientDataLoader
     {
+        /// <summary>
+        /// Loads the client data from the resource folder
+        /// The client data have to be named "oidc_client.json"
+        /// </summary>
+        /// <returns>The loaded ClientData if they exist, otherwise null</returns>
         public async Task<ClientData> LoadClientDataAsync()
         {
             TextAsset clientJson = (TextAsset)await Resources.LoadAsync("oidc_client.json");

@@ -5,6 +5,10 @@ using UnityEngine;
 
 namespace i5.Toolkit.Core.OpenIDConnectClient
 {
+    /// <summary>
+    /// Configuration object for the OpenID Connect Service
+    /// This object can be edited in the inspector and it can be passed to the service
+    /// </summary>
     [Serializable]
     public class OpenIDConnectServiceConfiguration
     {

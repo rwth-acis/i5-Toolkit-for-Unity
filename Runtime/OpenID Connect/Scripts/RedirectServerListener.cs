@@ -7,24 +7,45 @@ using System.Threading;
 
 namespace i5.Toolkit.Core.OpenIDConnectClient
 {
+    /// <summary>
+    /// Implementation of a server that serves the redirect after the OpenID Connect login
+    /// </summary>
     public class RedirectServerListener : IRedirectServerListener
     {
         private Thread serverThread;
         private HttpListener http;
 
+        /// <summary>
+        /// Event which is raised once a redirect is received
+        /// </summary>
         public event EventHandler<RedirectReceivedEventArgs> RedirectReceived;
 
+        /// <summary>
+        /// True if the server is active
+        /// </summary>
         public bool ServerActive { get; private set; }
 
+        /// <summary>
+        /// The URI whrere the server listens for the redirect
+        /// </summary>
         public string RedirectUri { get; private set; }
 
+        /// <summary>
+        /// HTML response that is given on the redirect request
+        /// </summary>
         public string ResponseString { get; set; }
 
+        /// <summary>
+        /// Creates a new instance of the RedirectServerListener
+        /// </summary>
         public RedirectServerListener()
         {
             ResponseString = string.Format("<html><head></head><body>Please return to the app</body></html>");
         }
 
+        /// <summary>
+        /// Starts the server
+        /// </summary>
         public void StartServer()
         {
             if (serverThread == null)
@@ -39,6 +60,9 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
             }
         }
 
+        /// <summary>
+        /// Stops the server immediately and aborts the current operation
+        /// </summary>
         public void StopServerImmediately()
         {
             if (serverThread != null)
@@ -58,6 +82,10 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
             }
         }
 
+        /// <summary>
+        /// Listens for requests
+        /// This method should be executed on a separate thread
+        /// </summary>
         private void Listen()
         {
             http = new HttpListener();
@@ -103,6 +131,12 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
             }
         }
 
+        /// <summary>
+        /// Generates a redirect URI where the server can listen for the redirect
+        /// </summary>
+        /// <param name="protocol">Specify a custom URI schema.
+        /// If the app version of this registers as a handler for the URI schema, the app will be opened again.</param>
+        /// <returns>Returns a free URI where the server can listen</returns>
         public string GenerateRedirectUri(string protocol = "http")
         {
             string redirectUri = protocol + "://" + IPAddress.Loopback + ":" + GetUnusedPort() + "/";
@@ -110,6 +144,10 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
             return redirectUri;
         }
 
+        /// <summary>
+        /// Gets an unused port on which the server can listen
+        /// </summary>
+        /// <returns></returns>
         private static int GetUnusedPort()
         {
             TcpListener listener = new TcpListener(IPAddress.Loopback, 0);

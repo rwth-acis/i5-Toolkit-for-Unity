@@ -147,7 +147,7 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         /// <summary>
         /// Gets an unused port on which the server can listen
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Returns the unused port</returns>
         private static int GetUnusedPort()
         {
             TcpListener listener = new TcpListener(IPAddress.Loopback, 0);

@@ -7,6 +7,9 @@ using UnityEngine;
 
 namespace i5.Toolkit.Core.OpenIDConnectClient
 {
+    /// <summary>
+    /// Description of the user information data for the Learning Layers client
+    /// </summary>
     public class LearningLayersUserInfo : IUserInfo
     {
         [SerializeField] private string sub;
@@ -18,10 +21,22 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         [SerializeField] private string email;
         [SerializeField] private bool email_verfied;
 
+        /// <summary>
+        /// The username of the user
+        /// This is a mapping based on the available user data of the OIDC provider
+        /// </summary>
         public string Username { get => preferred_username; }
 
+        /// <summary>
+        /// The email address of the user
+        /// This is a mapping based on the available user data of the OIDC provider
+        /// </summary>
         public string Email { get => email; }
 
+        /// <summary>
+        /// A clear name of the user
+        /// This is a mapping based on the available user data of the OIDC provider
+        /// </summary>
         public string FullName { get => given_name; }
     }
 }

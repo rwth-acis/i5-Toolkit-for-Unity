@@ -24,6 +24,8 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
 
         public bool IsLoggedIn { get => !string.IsNullOrEmpty(AccessToken); }
 
+        public string UriSchema { get; set; } = "http";
+
         public IOidcProvider OidcProvider { get; set; }
 
         public IRedirectServerListener ServerListener { get; set; }
@@ -91,8 +93,7 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
 
             OidcProvider.ClientData = clientData;
 
-            // TODO: support custom Uri schema
-            string redirectUri = ServerListener.GenerateRedirectUri();
+            string redirectUri = ServerListener.GenerateRedirectUri(UriSchema);
             ServerListener.RedirectReceived += ServerListener_RedirectReceived;
             ServerListener.StartServer();
 

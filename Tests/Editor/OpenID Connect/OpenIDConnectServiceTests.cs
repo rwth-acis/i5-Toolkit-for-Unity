@@ -52,15 +52,29 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
         }
 
         [Test]
-        public void Cleanup_StopsServer()
+        public void Cleanup_ServerRunning_StopsServer()
         {
             OpenIDConnectService oidc = new OpenIDConnectService();
             IRedirectServerListener serverListener = A.Fake<IRedirectServerListener>();
+            A.CallTo(() => serverListener.ServerActive).Returns(true);
             oidc.ServerListener = serverListener;
 
             oidc.Cleanup();
 
             A.CallTo(() => serverListener.StopServerImmediately()).MustHaveHappened();
+        }
+
+        [Test]
+        public void Cleanup_ServerNotRunning_ServerNotStopped()
+        {
+            OpenIDConnectService oidc = new OpenIDConnectService();
+            IRedirectServerListener serverListener = A.Fake<IRedirectServerListener>();
+            A.CallTo(() => serverListener.ServerActive).Returns(false);
+            oidc.ServerListener = serverListener;
+
+            oidc.Cleanup();
+
+            A.CallTo(() => serverListener.StopServerImmediately()).MustNotHaveHappened();
         }
 
         [Test]

@@ -31,17 +31,6 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
         }
 
         [Test]
-        public void Initialize_NoClientDataGiven_GivesError()
-        {
-            OpenIDConnectService oidc = new OpenIDConnectService();
-            BaseServiceManager serviceManager = A.Fake<BaseServiceManager>();
-
-            LogAssert.Expect(LogType.Error, new Regex(@"\w*No client data supplied for the OpenID Connect Client.\w*"));
-
-            oidc.Initialize(serviceManager);
-        }
-
-        [Test]
         public void Cleanup_ServerRunning_StopsServer()
         {
             OpenIDConnectService oidc = new OpenIDConnectService();

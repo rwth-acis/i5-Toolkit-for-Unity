@@ -219,7 +219,7 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
                 return;
             }
 
-            if (OidcProvider.AuthorzationFlow == AuthorizationFlow.AUTHORIZATION_CODE)
+            if (OidcProvider.AuthorizationFlow == AuthorizationFlow.AUTHORIZATION_CODE)
             {
                 string authorizationCode = OidcProvider.GetAuthorizationCode(eventArgs.RedirectParameters);
                 AccessToken = await OidcProvider.GetAccessTokenFromCodeAsync(authorizationCode, eventArgs.RedirectUri);

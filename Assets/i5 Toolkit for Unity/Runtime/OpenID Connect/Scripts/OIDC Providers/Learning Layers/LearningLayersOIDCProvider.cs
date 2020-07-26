@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections;
+﻿using i5.Toolkit.Core.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using i5.Toolkit.Core.Utilities;
-using i5.Toolkit.Core.Utilities.ContentLoaders;
 using UnityEngine;
 
 namespace i5.Toolkit.Core.OpenIDConnectClient
@@ -30,24 +28,27 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         /// <summary>
         /// Gets or sets the used authorization flow
         /// </summary>
-        public AuthorizationFlow AuthorzationFlow { get; set; }
+        public AuthorizationFlow AuthorizationFlow { get; set; }
 
         /// <summary>
         /// Specifies how the REST API of the Web service is accessed
         /// </summary>
-        public IRestConnector ContentLoader { get; set; }
+        public IRestConnector RestConnector { get; set; }
 
         /// <summary>
         /// Client data that are required to authorize the client at the provider
         /// </summary>
         public ClientData ClientData { get; set; }
 
+        public IJsonSerializer JsonSerializer { get; set; }
+
         /// <summary>
         /// Creates a new instance of the learning layers client
         /// </summary>
         public LearningLayersOIDCProvider()
         {
-            ContentLoader = new UnityWebRequestRestConnector();
+            RestConnector = new UnityWebRequestRestConnector();
+            JsonSerializer = new JsonUtilityWrapper();
         }
 
         /// <summary>
@@ -61,17 +62,17 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
             if (ClientData == null)
             {
                 i5Debug.LogError("No client data supplied for the OpenID Connect Client.\n" +
-                    "Initialize this service with an OpenID Connect Data file.", this);
+                    "Initialize this provider with an OpenID Connect Data file.", this);
                 return "";
             }
 
             string uri = tokenEndpoint + $"?code={code}&client_id={ClientData.ClientId}" +
                 $"&client_secret={ClientData.ClientSecret}&redirect_uri={redirectUri}&grant_type=authorization_code";
-            WebResponse<string> response = await ContentLoader.PostAsync(uri, "");
+            WebResponse<string> response = await RestConnector.PostAsync(uri, "");
             if (response.Successful)
             {
                 LearningLayersAuthorizationFlowAnswer answer =
-                    JsonUtility.FromJson<LearningLayersAuthorizationFlowAnswer>(response.Content);
+                    JsonSerializer.FromJson<LearningLayersAuthorizationFlowAnswer>(response.Content);
                 if (answer == null)
                 {
                     i5Debug.LogError("Could not parse access token in code flow answer", this);
@@ -111,10 +112,10 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         /// <returns>Returns information about the logged in user if the request was successful, otherwise null</returns>
         public async Task<IUserInfo> GetUserInfoAsync(string accessToken)
         {
-            WebResponse<string> webResponse = await ContentLoader.GetAsync(userInfoEndpoint + "?access_token=" + accessToken);
+            WebResponse<string> webResponse = await RestConnector.GetAsync(userInfoEndpoint + "?access_token=" + accessToken);
             if (webResponse.Successful)
             {
-                LearningLayersUserInfo userInfo = JsonUtility.FromJson<LearningLayersUserInfo>(webResponse.Content);
+                LearningLayersUserInfo userInfo = JsonSerializer.FromJson<LearningLayersUserInfo>(webResponse.Content);
                 if (userInfo == null)
                 {
                     i5Debug.LogError("Could not parse user info", this);
@@ -148,11 +149,11 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
             if (ClientData == null)
             {
                 i5Debug.LogError("No client data supplied for the OpenID Connect Client.\n" +
-                    "Initialize this service with an OpenID Connect Data file.", this);
+                    "Initialize this provider with an OpenID Connect Data file.", this);
                 return;
             }
 
-            string responseType = AuthorzationFlow == AuthorizationFlow.AUTHORIZATION_CODE ? "code" : "token";
+            string responseType = AuthorizationFlow == AuthorizationFlow.AUTHORIZATION_CODE ? "code" : "token";
             string uriScopes = UriUtils.WordArrayToSpaceEscapedString(scopes);
             string uri = authorizationEndpoint + $"?response_type={responseType}&scope={uriScopes}" +
                 $"&client_id={ClientData.ClientId}&redirect_uri={redirectUri}";

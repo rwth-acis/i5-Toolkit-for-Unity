@@ -7,6 +7,9 @@ using UnityEngine;
 
 public class OpenIDConnectTester : MonoBehaviour
 {
+    [SerializeField]
+    private ClientDataObject learningLayersClientData;
+
     private void OpenIDConnectTester_LoginCompleted(object sender, System.EventArgs e)
     {
         i5Debug.Log("Login completed", this);
@@ -19,6 +22,10 @@ public class OpenIDConnectTester : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F5))
         {
+            LearningLayersOIDCProvider provider = new LearningLayersOIDCProvider();
+            provider.ClientData = learningLayersClientData.clientData;
+            ServiceManager.GetService<OpenIDConnectService>().OidcProvider = provider;
+
             ServiceManager.GetService<OpenIDConnectService>().LoginCompleted += OpenIDConnectTester_LoginCompleted;
             ServiceManager.GetService<OpenIDConnectService>().OpenLoginPage();
         }

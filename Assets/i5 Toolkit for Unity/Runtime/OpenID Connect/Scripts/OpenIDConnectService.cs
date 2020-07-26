@@ -15,8 +15,6 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
     /// </summary>
     public class OpenIDConnectService : IUpdateableService
     {
-        private ClientData clientData;
-
         private OpenIDConnectServiceConfiguration configuration;
 
         /// <summary>
@@ -88,7 +86,6 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         public OpenIDConnectService(OpenIDConnectServiceConfiguration configuration) : this()
         {
             this.configuration = configuration;
-            clientData = configuration.clientDataObject.clientData;
             if (configuration.redirectPage != null)
             {
                 ServerListener.ResponseString = configuration.redirectPage.text;
@@ -101,11 +98,6 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         /// <param name="owner">The service manager that owns this service</param>
         public void Initialize(BaseServiceManager owner)
         {
-            if (clientData == null)
-            {
-                i5Debug.LogError("No client data supplied for the OpenID Connect Client.\n" +
-                    "Initialize this service with an OpenID Connect Data file.", this);
-            }
         }
 
         /// <summary>
@@ -141,8 +133,6 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
                 i5Debug.LogError("Redirect server listener is not set. Please set it before accessing the OIDC workflow.", this);
                 return;
             }
-
-            OidcProvider.ClientData = clientData;
 
             string redirectUri = ServerListener.GenerateRedirectUri(UriSchema);
             ServerListener.RedirectReceived += ServerListener_RedirectReceived;

@@ -58,6 +58,13 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         /// <returns>Returns the access token if it could be retrieved; otherwise it returns an empty string</returns>
         public async Task<string> GetAccessTokenFromCodeAsync(string code, string redirectUri)
         {
+            if (ClientData == null)
+            {
+                i5Debug.LogError("No client data supplied for the OpenID Connect Client.\n" +
+                    "Initialize this service with an OpenID Connect Data file.", this);
+                return "";
+            }
+
             string uri = tokenEndpoint + $"?code={code}&client_id={ClientData.ClientId}" +
                 $"&client_secret={ClientData.ClientSecret}&redirect_uri={redirectUri}&grant_type=authorization_code";
             WebResponse<string> response = await ContentLoader.PostAsync(uri, "");
@@ -138,6 +145,13 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         /// <param name="redirectUri">The URI to which the browser should redirect after the successful login</param>
         public void OpenLoginPage(string[] scopes, string redirectUri)
         {
+            if (ClientData == null)
+            {
+                i5Debug.LogError("No client data supplied for the OpenID Connect Client.\n" +
+                    "Initialize this service with an OpenID Connect Data file.", this);
+                return;
+            }
+
             string responseType = AuthorzationFlow == AuthorizationFlow.AUTHORIZATION_CODE ? "code" : "token";
             string uriScopes = UriUtils.WordArrayToSpaceEscapedString(scopes);
             string uri = authorizationEndpoint + $"?response_type={responseType}&scope={uriScopes}" +

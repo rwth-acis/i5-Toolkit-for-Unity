@@ -13,12 +13,12 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         /// <summary>
         /// Specifies how the REST API of the Web service is accessed
         /// </summary>
-        IRestConnector ContentLoader { get; set; }
+        IRestConnector RestConnector { get; set; }
 
         /// <summary>
         /// Gets the authorization flow that should be used for the provider
         /// </summary>
-        AuthorizationFlow AuthorzationFlow { get; }
+        AuthorizationFlow AuthorizationFlow { get; }
 
         /// <summary>
         /// Client data that are required to authorize the client at the provider

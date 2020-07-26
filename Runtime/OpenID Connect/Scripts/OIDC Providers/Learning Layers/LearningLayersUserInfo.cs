@@ -38,5 +38,12 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         /// This is a mapping based on the available user data of the OIDC provider
         /// </summary>
         public string FullName { get => given_name; }
+
+        public LearningLayersUserInfo(string username, string email, string fullName)
+        {
+            this.preferred_username = username;
+            this.email = email;
+            this.given_name = fullName;
+        }
     }
 }

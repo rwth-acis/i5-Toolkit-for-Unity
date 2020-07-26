@@ -20,11 +20,6 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         private OpenIDConnectServiceConfiguration configuration;
 
         /// <summary>
-        /// Loader which can load the client data if they are not specified by a reference
-        /// </summary>
-        public IClientDataLoader ClientDataLoader { get; set; } = new ClientDataResourcesLoader();
-
-        /// <summary>
         /// List of scopes that the user must agree to and which give the client access to specific data
         /// </summary>
         public string[] Scopes { get; set; } = new string[] { "openid", "profile", "email" };
@@ -104,17 +99,12 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         /// Initialization which is called by the server manager once the service is registered
         /// </summary>
         /// <param name="owner">The service manager that owns this service</param>
-        public async void Initialize(BaseServiceManager owner)
+        public void Initialize(BaseServiceManager owner)
         {
             if (clientData == null)
             {
-                clientData = await ClientDataLoader.LoadClientDataAsync();
-            }
-
-            if (clientData == null)
-            {
                 i5Debug.LogError("No client data supplied for the OpenID Connect Client.\n" +
-                    "Create a JSON file in the resources or reference a OpenID Connect Data file.", this);
+                    "Initialize this service with an OpenID Connect Data file.", this);
             }
         }
 

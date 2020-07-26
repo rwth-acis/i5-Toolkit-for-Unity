@@ -24,13 +24,6 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
         }
 
         [Test]
-        public void ClientDataLoader_DefaultNotNull()
-        {
-            OpenIDConnectService oidc = new OpenIDConnectService();
-            Assert.NotNull(oidc.ClientDataLoader);
-        }
-
-        [Test]
         public void ServerListener_DefaultNotNull()
         {
             OpenIDConnectService oidc = new OpenIDConnectService();
@@ -38,17 +31,14 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
         }
 
         [Test]
-        public void Initialize_NoClientDataGiven_LoadsClientData()
+        public void Initialize_NoClientDataGiven_GivesError()
         {
             OpenIDConnectService oidc = new OpenIDConnectService();
-            IClientDataLoader dataLoader = A.Fake<IClientDataLoader>();
-            A.CallTo(() => dataLoader.LoadClientDataAsync()).Returns(Task.FromResult(A.Fake<ClientData>()));
             BaseServiceManager serviceManager = A.Fake<BaseServiceManager>();
-            oidc.ClientDataLoader = dataLoader;
+
+            LogAssert.Expect(LogType.Error, new Regex(@"\w*No client data supplied for the OpenID Connect Client.\w*"));
 
             oidc.Initialize(serviceManager);
-
-            A.CallTo(() => oidc.ClientDataLoader.LoadClientDataAsync()).MustHaveHappenedOnceExactly();
         }
 
         [Test]

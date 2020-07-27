@@ -42,6 +42,8 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
 
         public IJsonSerializer JsonSerializer { get; set; }
 
+        public IBrowser Browser { get; set; }
+
         /// <summary>
         /// Creates a new instance of the learning layers client
         /// </summary>
@@ -49,6 +51,7 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         {
             RestConnector = new UnityWebRequestRestConnector();
             JsonSerializer = new JsonUtilityWrapper();
+            Browser = new Browser();
         }
 
         /// <summary>
@@ -124,6 +127,7 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
             }
             else
             {
+                i5Debug.LogError("Error fetching the user info: " + webResponse.ErrorMessage, this);
                 return default;
             }
         }
@@ -157,7 +161,7 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
             string uriScopes = UriUtils.WordArrayToSpaceEscapedString(scopes);
             string uri = authorizationEndpoint + $"?response_type={responseType}&scope={uriScopes}" +
                 $"&client_id={ClientData.ClientId}&redirect_uri={redirectUri}";
-            Application.OpenURL(uri);
+            Browser.OpenURL(uri);
         }
 
         /// <summary>

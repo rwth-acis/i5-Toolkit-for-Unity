@@ -10,15 +10,8 @@ public class OpenIDConnectTester : MonoBehaviour
     [SerializeField]
     private ClientDataObject learningLayersClientData;
 
-    private void OpenIDConnectTester_LoginCompleted(object sender, System.EventArgs e)
-    {
-        i5Debug.Log("Login completed", this);
-        i5Debug.Log(ServiceManager.GetService<OpenIDConnectService>().AccessToken, this);
-        ServiceManager.GetService<OpenIDConnectService>().LoginCompleted -= OpenIDConnectTester_LoginCompleted;
-    }
-
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if (Input.GetKeyDown(KeyCode.F5))
         {
@@ -29,5 +22,16 @@ public class OpenIDConnectTester : MonoBehaviour
             ServiceManager.GetService<OpenIDConnectService>().LoginCompleted += OpenIDConnectTester_LoginCompleted;
             ServiceManager.GetService<OpenIDConnectService>().OpenLoginPage();
         }
+    }
+
+    private async void OpenIDConnectTester_LoginCompleted(object sender, System.EventArgs e)
+    {
+        i5Debug.Log("Login completed", this);
+        i5Debug.Log(ServiceManager.GetService<OpenIDConnectService>().AccessToken, this);
+        ServiceManager.GetService<OpenIDConnectService>().LoginCompleted -= OpenIDConnectTester_LoginCompleted;
+
+        IUserInfo userInfo = await ServiceManager.GetService<OpenIDConnectService>().GetUserDataAsync();
+        i5Debug.Log("Currently logged in user: " + userInfo.FullName 
+            + " (username: " + userInfo.Username + ") with the mail address " + userInfo.Email, this);
     }
 }

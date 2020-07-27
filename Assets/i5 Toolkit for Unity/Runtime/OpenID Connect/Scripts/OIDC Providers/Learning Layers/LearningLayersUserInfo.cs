@@ -37,7 +37,7 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         /// A clear name of the user
         /// This is a mapping based on the available user data of the OIDC provider
         /// </summary>
-        public string FullName { get => given_name; }
+        public string FullName { get => given_name + " " + family_name; }
 
         public LearningLayersUserInfo(string username, string email, string fullName)
         {

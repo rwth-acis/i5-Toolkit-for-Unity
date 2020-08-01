@@ -58,3 +58,5 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+/Assets/Examples/OpenID Connect/OpenID Connect Client Data.asset.meta
+/Assets/Examples/OpenID Connect/OpenID Connect Client Data.asset

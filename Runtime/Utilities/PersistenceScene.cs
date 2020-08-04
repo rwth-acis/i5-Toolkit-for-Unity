@@ -16,18 +16,20 @@ public static class PersistenceScene
     /// <returns>Returns the persistent scene</returns>
     public static Scene GetPersistentScene()
     {
-#if UNITY_EDITOR
-        // in the editor we should not create new scenes
-        return SceneManager.GetActiveScene();
-#endif
-#if !UNITY_EDITOR
-        // in play mode we can create 
-        if (persistentScene == null)
+        if (Application.isPlaying)
         {
-            persistentScene = SceneManager.CreateScene("i5 Persistent Scene");
+            // in play mode we can create 
+            if (persistentScene == null || !persistentScene.isLoaded)
+            {
+                persistentScene = SceneManager.CreateScene("i5 Persistent Scene");
+            }
+            return persistentScene;
         }
-        return persistentScene;
-#endif
+        else
+        {
+            // in the editor we should not create new scenes
+            return SceneManager.GetActiveScene();
+        }
     }
 
     /// <summary>
@@ -37,6 +39,7 @@ public static class PersistenceScene
     /// <param name="gameObject">GameObject which should be made persistent</param>
     public static void MarkPersistent(GameObject gameObject)
     {
+        // retrieve the persistent scene to make sure that it is created
         Scene targetScene = GetPersistentScene();
         SceneManager.MoveGameObjectToScene(gameObject, targetScene);
     }

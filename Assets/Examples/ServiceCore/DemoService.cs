@@ -36,7 +36,7 @@ namespace i5.Toolkit.Core.Examples.ServiceExample
         /// Called if the service is registered at the service manager
         /// </summary>
         /// <param name="owner">The service manager where the service is registered</param>
-        public void Initialize(BaseServiceManager owner)
+        public void Initialize(IServiceManager owner)
         {
         }
 

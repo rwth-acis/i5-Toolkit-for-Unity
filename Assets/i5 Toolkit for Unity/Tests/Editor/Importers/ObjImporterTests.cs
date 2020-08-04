@@ -1,4 +1,6 @@
-﻿using i5.Toolkit.Core.ModelImporters;
+﻿using FakeItEasy;
+using i5.Toolkit.Core.ModelImporters;
+using i5.Toolkit.Core.ServiceCore;
 using i5.Toolkit.Core.TestUtilities;
 using i5.Toolkit.Core.Utilities;
 using i5.Toolkit.Core.Utilities.ContentLoaders;
@@ -28,8 +30,6 @@ namespace i5.Toolkit.Core.Tests.ModelImporters
         /// </summary>
         private static string emptyMtl, cubeMtl, threeMtl;
 
-        private static FakeServiceManager serviceManager;
-
         /// <summary>
         /// Called one time to load the contents of the .obj and .mtl files
         /// </summary>
@@ -52,8 +52,6 @@ namespace i5.Toolkit.Core.Tests.ModelImporters
         public void ResetScene()
         {
             EditModeTestUtilities.ResetScene();
-            GameObject go = new GameObject("Fake Service Manager");
-            serviceManager = go.AddComponent<FakeServiceManager>();
         }
 
         /// <summary>
@@ -65,6 +63,7 @@ namespace i5.Toolkit.Core.Tests.ModelImporters
         private ObjImporter SetUpObjImporter(string objContent, string mtlContent)
         {
             ObjImporter objImporter = new ObjImporter();
+            IServiceManager serviceManager = A.Fake<IServiceManager>();
             objImporter.Initialize(serviceManager);
             objImporter.ContentLoader = FakeContentLoaderFactory.CreateFakeLoader(objContent);
             objImporter.MtlLibrary.ContentLoader = FakeContentLoaderFactory.CreateFakeLoader(mtlContent);
@@ -78,6 +77,7 @@ namespace i5.Toolkit.Core.Tests.ModelImporters
         public void ContentLoader_Initialized_InitWithUnityWebRequestLoader()
         {
             ObjImporter objImporter = new ObjImporter();
+            IServiceManager serviceManager = A.Fake<IServiceManager>();
             objImporter.Initialize(serviceManager);
             Assert.NotNull(objImporter.ContentLoader);
             Assert.True(objImporter.ContentLoader.GetType() == typeof(UnityWebRequestLoader));
@@ -90,6 +90,7 @@ namespace i5.Toolkit.Core.Tests.ModelImporters
         public void Initialize_Initialized_MtlLibrarySetUp()
         {
             ObjImporter objImporter = new ObjImporter();
+            IServiceManager serviceManager = A.Fake<IServiceManager>();
             objImporter.Initialize(serviceManager);
             Assert.NotNull(objImporter.MtlLibrary);
         }
@@ -102,6 +103,7 @@ namespace i5.Toolkit.Core.Tests.ModelImporters
         public IEnumerator ImportAsync_WebRequestFailed_ReturnNull()
         {
             ObjImporter objImporter = new ObjImporter();
+            IServiceManager serviceManager = A.Fake<IServiceManager>();
             objImporter.Initialize(serviceManager);
             objImporter.ContentLoader = FakeContentLoaderFactory.CreateFakeFailLoader<string>();
 

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using FakeItEasy;
 using i5.Toolkit.Core.ServiceCore;
 using i5.Toolkit.Core.TestUtilities;
 using NUnit.Framework;
@@ -24,51 +25,48 @@ namespace i5.Toolkit.Core.Tests.ServiceCore
             PlayModeTestUtilities.UnloadTestScene();
         }
 
-        [Test]
-        public void Awake_MultipleInstances_LogsError()
+        /// <summary>
+        /// Checks that a new runner is created if the existing runner was destroyed
+        /// </summary>
+        [UnityTest]
+        public IEnumerator Runner_RunnerGameObjectDestroyed_CreatesNewRunner()
         {
-            GameObject go1 = new GameObject("Service Manager 1");
-            go1.AddComponent<ServiceManager>();
-            GameObject go2 = new GameObject("Service Manager 2");
-            go2.AddComponent<ServiceManager>();
-            LogAssert.Expect(LogType.Error, new Regex(@"\w*There are multiple Service Managers\w*"));
-        }
-
-        [Test]
-        public void Awake_ManualComponentAdded_ComponentBecomesInstance()
-        {
-            GameObject serviceManagerObj = new GameObject("Service Manager");
-            ServiceManager addedComponent = serviceManagerObj.AddComponent<ServiceManager>();
-            Assert.AreEqual(addedComponent, ServiceManager.Instance);
+            ServiceManager manager = new ServiceManager();
+            Assert.IsTrue(manager.Runner != null);
+            manager.Runner.gameObject.name = "Old Runner";
+            GameObject.Destroy(manager.Runner.gameObject);
+            yield return null;
+            Assert.IsTrue(manager.Runner != null);
+            Assert.AreNotEqual("Old Runner", manager.Runner.name);
         }
 
         [UnityTest]
-        public IEnumerator Start_BootstrapperProvided_BootstrapperLoaded()
+        public IEnumerator Runner_RunnerComponentDestroyed_DestroysGameObject()
         {
-            GameObject serviceManagerObj = new GameObject("Service Manager");
-            serviceManagerObj.AddComponent<ServiceManager>();
-            serviceManagerObj.AddComponent<TestBootstrapper>();
+            ServiceManager manager = new ServiceManager();
+            GameObject runnerObj = manager.Runner.gameObject;
+            GameObject.Destroy(manager.Runner);
             yield return null;
-            // now the Start() method should have been called
-
-            Assert.IsTrue(ServiceManager.ServiceExists<TestService>());
+            Assert.IsTrue(runnerObj == null);
         }
 
         [UnityTest]
-        public IEnumerator OnDestroy_Destroy_ServiceCleanedUp()
+        public IEnumerator Runner_RunnerComponentDestroyed_CreatesNewRunner()
         {
-            ServiceManager.RegisterService(new TestService());
-            GameObject.Destroy(ServiceManager.Instance);
-            // wait a frame so that the Destroy takes effect
+            ServiceManager manager = new ServiceManager();
+            Assert.IsTrue(manager.Runner != null);
+            manager.Runner.gameObject.name = "Old Runner";
+            GameObject.Destroy(manager.Runner);
             yield return null;
-            LogAssert.Expect(LogType.Log, new Regex(@"\w*Cleaned up test service\w*"));
+            Assert.IsTrue(manager.Runner != null);
+            Assert.AreNotEqual("Old Runner", manager.Runner.name);
         }
 
         [UnityTest]
         public IEnumerator Update_NoUpdateableServices_NoError()
         {
-            // create a service manager instance
-            ServiceManager serviceManager = ServiceManager.Instance;
+            // create a service manager
+            ServiceManager serviceManager = new ServiceManager();
             // go over two frames
             yield return null;
             yield return null;
@@ -77,25 +75,25 @@ namespace i5.Toolkit.Core.Tests.ServiceCore
         [UnityTest]
         public IEnumerator Update_UpdateableServiceEnabled_ServiceUpdated()
         {
-            TestUpdateService testUpdateService = new TestUpdateService();
-            testUpdateService.Enabled = true;
-            ServiceManager.RegisterService(testUpdateService);
-            Assert.AreEqual(100, testUpdateService.TestCounter);
+            ServiceManager serviceManager = new ServiceManager();
+            IUpdateableService updateableService = A.Fake<IUpdateableService>();
+            A.CallTo(() => updateableService.Enabled).Returns(true);
+            serviceManager.InstRegisterService(updateableService);
             yield return null;
-            Assert.AreEqual(101, testUpdateService.TestCounter);
             yield return null;
-            Assert.AreEqual(102, testUpdateService.TestCounter);
+            A.CallTo(() => updateableService.Update()).MustHaveHappenedTwiceExactly();
         }
 
         [UnityTest]
         public IEnumerator Update_UpdateableServiceDisabled_ServiceNotUpdated()
         {
-            TestUpdateService testUpdateService = new TestUpdateService();
-            testUpdateService.Enabled = false;
-            ServiceManager.RegisterService(testUpdateService);
-            Assert.AreEqual(100, testUpdateService.TestCounter);
+            ServiceManager serviceManager = new ServiceManager();
+            IUpdateableService updateableService = A.Fake<IUpdateableService>();
+            A.CallTo(() => updateableService.Enabled).Returns(false);
+            serviceManager.InstRegisterService(updateableService);
             yield return null;
-            Assert.AreEqual(100, testUpdateService.TestCounter);
+            yield return null;
+            A.CallTo(() => updateableService.Update()).MustNotHaveHappened();
         }
     }
 }

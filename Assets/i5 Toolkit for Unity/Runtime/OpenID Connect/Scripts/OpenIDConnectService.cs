@@ -96,7 +96,7 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         /// Initialization which is called by the server manager once the service is registered
         /// </summary>
         /// <param name="owner">The service manager that owns this service</param>
-        public void Initialize(BaseServiceManager owner)
+        public void Initialize(IServiceManager owner)
         {
         }
 

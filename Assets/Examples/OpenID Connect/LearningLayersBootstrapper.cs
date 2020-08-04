@@ -4,12 +4,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LearningLayersBootstrapper : MonoBehaviour, IServiceManagerBootstrapper
+public class LearningLayersBootstrapper : BaseServiceBootstrapper
 {
     [SerializeField]
     private OpenIDConnectServiceConfiguration openIdConnectServiceConfiguration;
 
-    public void InitializeServiceManager()
+    protected override void RegisterServices()
     {
         OpenIDConnectService oidc = new OpenIDConnectService(openIdConnectServiceConfiguration);
         oidc.OidcProvider = new LearningLayersOIDCProvider();

@@ -8,13 +8,13 @@ namespace i5.Toolkit.Core.Examples.ServiceExample
     /// <summary>
     /// Bootstrapper which populates the service manager with the required services for the service demo
     /// </summary>
-    public class DemoBootstrapper : MonoBehaviour, IServiceManagerBootstrapper
+    public class DemoBootstrapper : BaseServiceBootstrapper
     {
         /// <summary>
         /// Initializes the service manager with the required services
         /// Called by the service manager if it is placed on the same GameObject at the start of the application
         /// </summary>
-        public void InitializeServiceManager()
+        protected override void RegisterServices()
         {
             DemoService ds = new DemoService("This is a demo message.");
             ServiceManager.RegisterService(ds);

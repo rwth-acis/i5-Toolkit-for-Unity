@@ -9,12 +9,12 @@ namespace i5.Toolkit.Core.Examples.ObjImporterExample
     /// <summary>
     /// Bootstrapper which initializes the obj importer service
     /// </summary>
-    public class ObjImporterBootstrapper : MonoBehaviour, IServiceManagerBootstrapper
+    public class ObjImporterBootstrapper : BaseServiceBootstrapper
     {
         /// <summary>
         /// Initializes the obj importer in the service manager
         /// </summary>
-        public void InitializeServiceManager()
+        protected override void RegisterServices()
         {
             ObjImporter importer = new ObjImporter();
             ServiceManager.RegisterService(importer);

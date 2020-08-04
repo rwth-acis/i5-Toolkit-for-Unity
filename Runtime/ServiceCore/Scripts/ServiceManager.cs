@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace i5.Toolkit.Core.ServiceCore
 {
@@ -50,9 +51,7 @@ namespace i5.Toolkit.Core.ServiceCore
         {
             runnerObject = ObjectPool<GameObject>.RequestResource(() => { return new GameObject(); });
             runnerObject.name = "Service Manager Runner";
-#if !UNITY_EDITOR
-            GameObject.DontDestroyOnLoad(runnerObject);
-#endif
+            PersistenceScene.MarkPersistent(runnerObject);
             Runner = runnerObject.AddComponent<ServiceManagerRunner>();
             Runner.Initialize(this);
         }

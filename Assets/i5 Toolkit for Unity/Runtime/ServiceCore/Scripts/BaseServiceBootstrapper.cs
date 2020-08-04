@@ -9,7 +9,7 @@ namespace i5.Toolkit.Core.ServiceCore
 {
     public abstract class BaseServiceBootstrapper : MonoBehaviour
     {
-        protected virtual void Awake()
+        protected virtual void Start()
         {
             RegisterServices();
         }

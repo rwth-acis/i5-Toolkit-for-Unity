@@ -38,7 +38,7 @@ namespace i5.Toolkit.Core.ModelImporters
         /// Called by the service manager to initialize the service if it is started
         /// </summary>
         /// <param name="owner">The service manager that owns this service</param>
-        public void Initialize(BaseServiceManager owner)
+        public void Initialize(IServiceManager owner)
         {
             MtlLibrary = new MtlLibrary();
 

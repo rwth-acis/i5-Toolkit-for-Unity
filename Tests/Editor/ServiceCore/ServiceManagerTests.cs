@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using FakeItEasy;
 using i5.Toolkit.Core.ServiceCore;
 using i5.Toolkit.Core.TestUtilities;
 using i5.Toolkit.Core.Utilities;
@@ -27,38 +28,24 @@ namespace i5.Toolkit.Core.Tests.ServiceCore
         }
 
         /// <summary>
-        /// Checks that an instance is returned in an empty scene
+        /// Checks that a runner object was created if an instance is requested in an empty scene
         /// </summary>
         [Test]
-        public void Instance_NoInstanceInScene_ReturnsNotNull()
+        public void Constructor_Called_RunnerCreated()
         {
-            ServiceManager manager = ServiceManager.Instance;
-            Assert.IsTrue(manager != null);
+            ServiceManager manager = new ServiceManager();
+            Assert.IsTrue(manager.Runner != null);
+
+            GameObject find = GameObject.Find(manager.Runner.name);
+            Assert.IsTrue(find != null);
         }
 
-        /// <summary>
-        /// Checks that an instance object was created if an instance is requested in an empty scene
-        /// </summary>
         [Test]
-        public void Instance_NoInstanceInScene_InstanceCreated()
+        public void Constructor_Called_ComponentAddedToRunner()
         {
-            ServiceManager manager = ServiceManager.Instance;
-            GameObject obj = GameObject.Find("Service Manager");
-            Assert.IsTrue(obj != null);
-        }
-
-        /// <summary>
-        /// Checks that a new instance is created if the existing service manager instance was destroyed
-        /// </summary>
-        [Test]
-        public void Instance_InstanceDestroyed_CreatesNewInstance()
-        {
-            ServiceManager manager = ServiceManager.Instance;
-            Assert.IsTrue(manager != null);
-            GameObject.DestroyImmediate(manager.gameObject);
-            Assert.IsTrue(manager == null);
-            manager = ServiceManager.Instance;
-            Assert.IsTrue(manager != null);
+            ServiceManager manager = new ServiceManager();
+            ServiceManagerRunner serviceManagerRunner = manager.Runner.GetComponent<ServiceManagerRunner>();
+            Assert.IsTrue(serviceManagerRunner != null);
         }
 
         /// <summary>
@@ -67,10 +54,11 @@ namespace i5.Toolkit.Core.Tests.ServiceCore
         [Test]
         public void RegisterService_ServiceRegistered_ServiceFound()
         {
-            TestService testService = new TestService();
-            ServiceManager.RegisterService(testService);
+            ServiceManager serviceManager = new ServiceManager();
+            IService service = A.Fake<IService>();
+            serviceManager.InstRegisterService(service);
 
-            Assert.IsTrue(ServiceManager.ServiceExists<TestService>());
+            Assert.IsTrue(serviceManager.InstServiceExists<IService>());
         }
 
         /// <summary>
@@ -79,11 +67,13 @@ namespace i5.Toolkit.Core.Tests.ServiceCore
         [Test]
         public void RegisterService_ServiceRegisteredDouble_ErrorLogged()
         {
-            TestService testService = new TestService();
-            ServiceManager.RegisterService(testService);
-            TestService testService2 = new TestService();
-            ServiceManager.RegisterService(testService2);
+            ServiceManager serviceManager = new ServiceManager();
+            IService service1 = A.Fake<IService>();
+            IService service2 = A.Fake<IService>();
+            serviceManager.InstRegisterService(service1);
+
             LogAssert.Expect(LogType.Error, new Regex(@"\w*An instance of this service is already registered\w*"));
+            serviceManager.InstRegisterService(service2);
         }
 
         /// <summary>
@@ -92,13 +82,16 @@ namespace i5.Toolkit.Core.Tests.ServiceCore
         [Test]
         public void RegisterService_ServiceRegisteredDouble_FirstServiceStored()
         {
-            TestService testService = new TestService();
-            ServiceManager.RegisterService(testService);
-            TestService testService2 = new TestService();
-            ServiceManager.RegisterService(testService2);
+            ServiceManager serviceManager = new ServiceManager();
+            IService service1 = A.Fake<IService>();
+            IService service2 = A.Fake<IService>();
+            serviceManager.InstRegisterService(service1);
+
             LogAssert.Expect(LogType.Error, new Regex(@"\w*An instance of this service is already registered\w*"));
-            TestService retrieved = ServiceManager.GetService<TestService>();
-            Assert.AreEqual(testService, retrieved);
+            serviceManager.InstRegisterService(service2);
+
+            IService retrieved = serviceManager.InstGetService<IService>();
+            Assert.AreEqual(service1, retrieved);
         }
 
         /// <summary>
@@ -107,10 +100,11 @@ namespace i5.Toolkit.Core.Tests.ServiceCore
         [Test]
         public void RegisterService_ServiceRegistered_ServiceInitialized()
         {
-            TestService testService = new TestService();
-            ServiceManager.RegisterService(testService);
+            ServiceManager serviceManager = new ServiceManager();
+            IService service = A.Fake<IService>();
+            serviceManager.InstRegisterService(service);
 
-            Assert.AreEqual(100, testService.TestCounter);
+            A.CallTo(() => service.Initialize(A<IServiceManager>.Ignored)).MustHaveHappenedOnceExactly();
         }
 
         /// <summary>
@@ -119,7 +113,8 @@ namespace i5.Toolkit.Core.Tests.ServiceCore
         [Test]
         public void ServiceExists_ServiceNotRegistered_ReturnsFalse()
         {
-            Assert.IsFalse(ServiceManager.ServiceExists<TestService>());
+            ServiceManager serviceManager = new ServiceManager();
+            Assert.IsFalse(serviceManager.InstServiceExists<IService>());
         }
 
         /// <summary>
@@ -128,8 +123,10 @@ namespace i5.Toolkit.Core.Tests.ServiceCore
         [Test]
         public void ServiceExists_ServiceRegistered_ReturnsTrue()
         {
-            ServiceManager.RegisterService(new TestService());
-            Assert.IsTrue(ServiceManager.ServiceExists<TestService>());
+            ServiceManager serviceManager = new ServiceManager();
+            IService service = A.Fake<IService>();
+            serviceManager.InstRegisterService(service);
+            Assert.IsTrue(serviceManager.InstServiceExists<IService>());
         }
 
         /// <summary>
@@ -138,10 +135,11 @@ namespace i5.Toolkit.Core.Tests.ServiceCore
         [Test]
         public void GetService_ServiceNotRegistered_ThrowsException()
         {
+            ServiceManager serviceManager = new ServiceManager();
             Assert.Throws<InvalidOperationException>(
-                delegate
+(TestDelegate)delegate
                 {
-                    ServiceManager.GetService<TestService>();
+                    serviceManager.InstGetService<IService>();
                 });
         }
 
@@ -151,10 +149,11 @@ namespace i5.Toolkit.Core.Tests.ServiceCore
         [Test]
         public void GetService_ServiceRegistered_ReturnsService()
         {
-            TestService testService = new TestService();
-            ServiceManager.RegisterService(testService);
-            TestService retrieved = ServiceManager.GetService<TestService>();
-            Assert.AreEqual(testService, retrieved);
+            ServiceManager serviceManager = new ServiceManager();
+            IService service = A.Fake<IService>();
+            serviceManager.InstRegisterService(service);
+            IService retrieved = serviceManager.InstGetService<IService>();
+            Assert.AreEqual(service, retrieved);
         }
 
         /// <summary>
@@ -163,10 +162,12 @@ namespace i5.Toolkit.Core.Tests.ServiceCore
         [Test]
         public void RemoveService_ServiceExists_ServiceRemoved()
         {
-            ServiceManager.RegisterService(new TestService());
-            Assert.IsTrue(ServiceManager.ServiceExists<TestService>());
-            ServiceManager.RemoveService<TestService>();
-            Assert.IsFalse(ServiceManager.ServiceExists<TestService>());
+            ServiceManager serviceManager = new ServiceManager();
+            IService service = A.Fake<IService>();
+            serviceManager.InstRegisterService(service);
+            Assert.IsTrue(serviceManager.InstServiceExists<IService>());
+            serviceManager.InstRemoveService<IService>();
+            Assert.IsFalse(serviceManager.InstServiceExists<IService>());
         }
 
         /// <summary>
@@ -175,9 +176,11 @@ namespace i5.Toolkit.Core.Tests.ServiceCore
         [Test]
         public void RemoveServcie_ServiceExists_ServiceCleanedUp()
         {
-            ServiceManager.RegisterService(new TestService());
-            ServiceManager.RemoveService<TestService>();
-            LogAssert.Expect(LogType.Log, new Regex(@"\w*Cleaned up test service\w*"));
+            ServiceManager serviceManager = new ServiceManager();
+            IService service = A.Fake<IService>();
+            serviceManager.InstRegisterService(service);
+            serviceManager.InstRemoveService<IService>();
+            A.CallTo(() => service.Cleanup()).MustHaveHappenedOnceExactly();
         }
 
         /// <summary>
@@ -186,9 +189,10 @@ namespace i5.Toolkit.Core.Tests.ServiceCore
         [Test]
         public void RemoveService_ServiceDoesNotExist_ThrowsException()
         {
-            Assert.Throws<InvalidOperationException>(delegate
+            ServiceManager serviceManager = new ServiceManager();
+            Assert.Throws<InvalidOperationException>((TestDelegate)delegate
            {
-               ServiceManager.RemoveService<TestService>();
+               serviceManager.InstRemoveService<IService>();
            });
         }
     }

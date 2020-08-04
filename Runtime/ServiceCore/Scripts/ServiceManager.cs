@@ -9,19 +9,17 @@ namespace i5.Toolkit.Core.ServiceCore
     /// Manager which administers registered services
     /// These services need to implement the IService interface and do not need to inherit from MonoBehaviour
     /// </summary>
-    public class ServiceManager : BaseServiceManager
+    public class ServiceManager : IServiceManager, IRunnerReceiver
     {
         private Dictionary<Type, IService> registeredServices = new Dictionary<Type, IService>();
 
         private List<IUpdateableService> updateableServices = new List<IUpdateableService>();
 
-        private bool inDestroyMode = false;
-
-        // keep track of a list of services that should be removed and remove them at the end of the frame
-        // this way, we are not modifying the list of services in the global cleanup at the end
-        private List<Type> serviceTypesToRemove = new List<Type>();
-
         private static ServiceManager instance;
+
+        private bool applicationQuitting = false;
+
+        private GameObject runnerObject;
 
         public static ServiceManager Instance
         {
@@ -32,35 +30,31 @@ namespace i5.Toolkit.Core.ServiceCore
             }
         }
 
+        public ServiceManagerRunner Runner { get; private set; }
+
         private static void EnsureInstance()
         {
             if (instance == null)
             {
-                GameObject serviceManagerObj = ObjectPool<GameObject>.RequestResource(() => { return new GameObject(); });
-                serviceManagerObj.name = "Service Manager";
-                instance = serviceManagerObj.AddComponent<ServiceManager>();
+                instance = new ServiceManager();
             }
         }
 
-        private void Awake()
+        public ServiceManager()
         {
-            if (instance == null)
-            {
-                instance = this;
-            }
-            else
-            {
-                i5Debug.LogError("There are multiple Service Managers", this);
-            }
+            CreateRunner();
+            Application.quitting += OnApplicationQuitting;
         }
 
-        private void Start()
+        private void CreateRunner()
         {
-            IServiceManagerBootstrapper bootstrapper = GetComponent<IServiceManagerBootstrapper>();
-            if (bootstrapper != null)
-            {
-                bootstrapper.InitializeServiceManager();
-            }
+            runnerObject = ObjectPool<GameObject>.RequestResource(() => { return new GameObject(); });
+            runnerObject.name = "Service Manager Runner";
+#if !UNITY_EDITOR
+            GameObject.DontDestroyOnLoad(runnerObject);
+#endif
+            Runner = runnerObject.AddComponent<ServiceManagerRunner>();
+            Runner.Initialize(this);
         }
 
         public static void RegisterService<T>(T service) where T : IService
@@ -69,7 +63,7 @@ namespace i5.Toolkit.Core.ServiceCore
             instance.InstRegisterService(service);
         }
 
-        public override void InstRegisterService<T>(T service)
+        public void InstRegisterService<T>(T service) where T : IService
         {
             if (registeredServices.ContainsKey(typeof(T)))
             {
@@ -92,19 +86,21 @@ namespace i5.Toolkit.Core.ServiceCore
             instance.InstRemoveService<T>();
         }
 
-        public override void InstRemoveService<T>()
+        public void InstRemoveService<T>() where T : IService
         {
-            if (!inDestroyMode)
+            if (registeredServices.ContainsKey(typeof(T)))
             {
-                if (registeredServices.ContainsKey(typeof(T)))
+                IService toRemove = registeredServices[typeof(T)];
+                if (toRemove is IUpdateableService)
                 {
-                    registeredServices[typeof(T)].Cleanup();
-                    registeredServices.Remove(typeof(T));
+                    updateableServices.Remove((IUpdateableService)toRemove);
                 }
-                else
-                {
-                    throw new InvalidOperationException("Tried to remove unregistered service");
-                }
+                toRemove.Cleanup();
+                registeredServices.Remove(typeof(T));
+            }
+            else
+            {
+                throw new InvalidOperationException("Tried to remove unregistered service");
             }
         }
 
@@ -114,7 +110,7 @@ namespace i5.Toolkit.Core.ServiceCore
             return instance.InstGetService<T>();
         }
 
-        public override T InstGetService<T>()
+        public T InstGetService<T>() where T : IService
         {
             if (!registeredServices.ContainsKey(typeof(T)))
             {
@@ -129,12 +125,12 @@ namespace i5.Toolkit.Core.ServiceCore
             return instance.InstServiceExists<T>();
         }
 
-        public override bool InstServiceExists<T>()
+        public bool InstServiceExists<T>() where T : IService
         {
             return registeredServices.ContainsKey(typeof(T));
         }
 
-        private void Update()
+        public void Update()
         {
             for (int i = 0; i < updateableServices.Count; i++)
             {
@@ -145,13 +141,24 @@ namespace i5.Toolkit.Core.ServiceCore
             }
         }
 
-        private void OnDestroy()
+        public void OnRunnerDestroyed()
         {
-            inDestroyMode = true;
+            // make sure that the entire object is destroyed
+            GameObject.Destroy(runnerObject);
+            // then re-create it if the application is not quitting
+            if (!applicationQuitting)
+            {
+                CreateRunner();
+            }
+        }
+
+        private void OnApplicationQuitting()
+        {
             foreach (KeyValuePair<Type, IService> service in registeredServices)
             {
                 service.Value.Cleanup();
             }
+            applicationQuitting = true;
         }
     }
 }

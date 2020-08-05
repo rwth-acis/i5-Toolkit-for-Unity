@@ -4,6 +4,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Bootstrapper for initializing the OpenID Connect service for the learning layers provider
+/// </summary>
 public class LearningLayersBootstrapper : BaseServiceBootstrapper
 {
     [SerializeField]

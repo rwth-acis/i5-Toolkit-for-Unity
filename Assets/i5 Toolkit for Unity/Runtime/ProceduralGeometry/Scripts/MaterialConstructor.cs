@@ -130,7 +130,7 @@ namespace i5.Toolkit.Core.ProceduralGeometry
         /// <summary>
         /// Constructs a material from the specified data in this constructor
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Returns the constructed material</returns>
         public Material ConstructMaterial()
         {
             // create a material with the correct shader

@@ -39,6 +39,12 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         /// </summary>
         public string FullName { get => given_name + " " + family_name; }
 
+        /// <summary>
+        /// Creates a new instance of the learning layers user info with the given parameters
+        /// </summary>
+        /// <param name="username">The user name of the user</param>
+        /// <param name="email">The email address of the user</param>
+        /// <param name="fullName">The full name of the user</param>
         public LearningLayersUserInfo(string username, string email, string fullName)
         {
             this.preferred_username = username;

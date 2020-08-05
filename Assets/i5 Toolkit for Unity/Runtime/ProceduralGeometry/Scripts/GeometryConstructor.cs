@@ -57,7 +57,7 @@ namespace i5.Toolkit.Core.ProceduralGeometry
         }
 
         /// <summary>
-        /// Adds a disconnected, unnamed vertex to the geometry with a given normal vector
+        /// Adds a disconnected vertex to the geometry with a given normal vector
         /// The normal vector is only used if a normal vector is supplied for every vertex
         /// </summary>
         /// <param name="coordinates">The coordinates of the vertex</param>
@@ -69,12 +69,25 @@ namespace i5.Toolkit.Core.ProceduralGeometry
             return AddVertex(coordinates);
         }
 
+        /// <summary>
+        /// Adds a disconnected vertex to the geometry with the given coordinates, UV coordinates and normal vector
+        /// </summary>
+        /// <param name="coordinates">The 3D coordinates of the vertex</param>
+        /// <param name="uvCoordinates">The texture UV coordinates of the vertex</param>
+        /// <param name="normalVector">The normal vector of the vertex</param>
+        /// <returns>Returns the index of the created vertex</returns>
         public int AddVertex(Vector3 coordinates, Vector2 uvCoordinates, Vector3 normalVector)
         {
             UVCoords.Add(uvCoordinates);
             return AddVertex(coordinates, normalVector);
         }
 
+        /// <summary>
+        /// Adds a disconnected vertex to the geometry with the given coordinates and UV coordinates
+        /// </summary>
+        /// <param name="coordinates">The 3D coordinates of the vertex</param>
+        /// <param name="uvCoordinates">The texture UV coordinates of the vertex</param>
+        /// <returns>Returns the index of the created vertex</returns>
         public int AddVertex(Vector3 coordinates, Vector2 uvCoordinates)
         {
             UVCoords.Add(uvCoordinates);

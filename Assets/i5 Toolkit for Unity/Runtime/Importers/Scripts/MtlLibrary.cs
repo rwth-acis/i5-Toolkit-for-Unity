@@ -1,5 +1,4 @@
 ﻿using i5.Toolkit.Core.ProceduralGeometry;
-using i5.Toolkit.Core.ServiceCore;
 using i5.Toolkit.Core.Utilities;
 using i5.Toolkit.Core.Utilities.ContentLoaders;
 using System;

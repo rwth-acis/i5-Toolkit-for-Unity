@@ -22,6 +22,9 @@ namespace i5.Toolkit.Core.ServiceCore
 
         private GameObject runnerObject;
 
+        /// <summary>
+        /// The instance of the service manager
+        /// </summary>
         public static ServiceManager Instance
         {
             get
@@ -31,6 +34,11 @@ namespace i5.Toolkit.Core.ServiceCore
             }
         }
 
+        /// <summary>
+        /// The runner in the scene
+        /// This runner object provides MonoBehaviour events to the service manager
+        /// It can be accessed by servies to run MonoBehaviour functionality, e.g. co-routines
+        /// </summary>
         public ServiceManagerRunner Runner { get; private set; }
 
         private static void EnsureInstance()
@@ -41,6 +49,9 @@ namespace i5.Toolkit.Core.ServiceCore
             }
         }
 
+        /// <summary>
+        /// Creates a new instance of a ServiceManager
+        /// </summary>
         public ServiceManager()
         {
             CreateRunner();
@@ -49,6 +60,7 @@ namespace i5.Toolkit.Core.ServiceCore
 
         private void CreateRunner()
         {
+            // create a new runner object and make it persistent
             runnerObject = ObjectPool<GameObject>.RequestResource(() => { return new GameObject(); });
             runnerObject.name = "Service Manager Runner";
             PersistenceScene.MarkPersistent(runnerObject);
@@ -56,12 +68,22 @@ namespace i5.Toolkit.Core.ServiceCore
             Runner.Initialize(this);
         }
 
+        /// <summary>
+        /// Registers a new service at the service manager
+        /// </summary>
+        /// <typeparam name="T">The type of service</typeparam>
+        /// <param name="service">The service instance which should be registered at the ServiceManager</param>
         public static void RegisterService<T>(T service) where T : IService
         {
             EnsureInstance();
             instance.InstRegisterService(service);
         }
 
+        /// <summary>
+        /// Instance method for registering a new service
+        /// </summary>
+        /// <typeparam name="T">The type of service</typeparam>
+        /// <param name="service">The service instance which should be registered</param>
         public void InstRegisterService<T>(T service) where T : IService
         {
             if (registeredServices.ContainsKey(typeof(T)))
@@ -79,12 +101,20 @@ namespace i5.Toolkit.Core.ServiceCore
             service.Initialize(this);
         }
 
+        /// <summary>
+        /// Removes a service with the given type from the ServiceManager
+        /// </summary>
+        /// <typeparam name="T">The type of service</typeparam>
         public static void RemoveService<T>() where T : IService
         {
             EnsureInstance();
             instance.InstRemoveService<T>();
         }
 
+        /// <summary>
+        /// Removes a service with the given type from this ServiceManager instance
+        /// </summary>
+        /// <typeparam name="T">The type of service</typeparam>
         public void InstRemoveService<T>() where T : IService
         {
             if (registeredServices.ContainsKey(typeof(T)))
@@ -103,12 +133,22 @@ namespace i5.Toolkit.Core.ServiceCore
             }
         }
 
+        /// <summary>
+        /// Gets the service instance with the given type
+        /// </summary>
+        /// <typeparam name="T">The type of service</typeparam>
+        /// <returns>Returns the registered service instance</returns>
         public static T GetService<T>() where T : IService
         {
             EnsureInstance();
             return instance.InstGetService<T>();
         }
 
+        /// <summary>
+        /// Gets the service instance with the given type that is registered at this instance
+        /// </summary>
+        /// <typeparam name="T">The type of service</typeparam>
+        /// <returns>Returns the registered service instance</returns>
         public T InstGetService<T>() where T : IService
         {
             if (!registeredServices.ContainsKey(typeof(T)))
@@ -118,17 +158,31 @@ namespace i5.Toolkit.Core.ServiceCore
             return (T)registeredServices[typeof(T)];
         }
 
+        /// <summary>
+        /// Checks if a service with the given type exists at the ServiceManager
+        /// </summary>
+        /// <typeparam name="T">The type of service</typeparam>
+        /// <returns>Returns true if a service of the given type was registered</returns>
         public static bool ServiceExists<T>() where T : IService
         {
             EnsureInstance();
             return instance.InstServiceExists<T>();
         }
 
+        /// <summary>
+        /// Checks if a service with the given type exists at this instance
+        /// </summary>
+        /// <typeparam name="T">The type of service</typeparam>
+        /// <returns>Returns true if a service of the given type was registered at this instance</returns>
         public bool InstServiceExists<T>() where T : IService
         {
             return registeredServices.ContainsKey(typeof(T));
         }
 
+        /// <summary>
+        /// Called by the update runner
+        /// Updates the updateable services
+        /// </summary>
         public void Update()
         {
             for (int i = 0; i < updateableServices.Count; i++)
@@ -140,6 +194,10 @@ namespace i5.Toolkit.Core.ServiceCore
             }
         }
 
+        /// <summary>
+        /// Called if the runner object is destroyed
+        /// Makes sure that the runner persists if it was destroyed by some other script
+        /// </summary>
         public void OnRunnerDestroyed()
         {
             // make sure that the entire object is destroyed

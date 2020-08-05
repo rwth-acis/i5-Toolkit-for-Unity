@@ -9,10 +9,19 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
     /// </summary>
     public interface IUserInfo
     {
+        /// <summary>
+        /// The user name of the logged in user
+        /// </summary>
         string Username { get; }
 
+        /// <summary>
+        /// The full name of the logged in user
+        /// </summary>
         string FullName { get; }
 
+        /// <summary>
+        /// The email address of the logged in user
+        /// </summary>
         string Email { get; }
     }
 }

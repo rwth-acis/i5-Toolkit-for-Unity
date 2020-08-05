@@ -12,6 +12,9 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
     [CreateAssetMenu(fileName = "OpenID Connect Client Data", menuName = "i5 Toolkit/OpenID Connect Client Data")]
     public class ClientDataObject : ScriptableObject
     {
+        /// <summary>
+        /// The credentials of the client so that it is accepted by the OpenID Connect provider
+        /// </summary>
         public ClientData clientData;
     }
 }

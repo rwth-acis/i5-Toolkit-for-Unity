@@ -3,7 +3,7 @@
     /// <summary>
     /// Container object which is produced by IContentLoader classes after they fetched content from the Web
     /// </summary>
-    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="T">The return type of the WebResponse</typeparam>
     public class WebResponse<T>
     {
         /// <summary>

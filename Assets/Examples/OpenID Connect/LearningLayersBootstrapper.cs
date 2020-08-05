@@ -18,4 +18,9 @@ public class LearningLayersBootstrapper : BaseServiceBootstrapper
         oidc.OidcProvider = new LearningLayersOIDCProvider();
         ServiceManager.RegisterService(oidc);
     }
+
+    protected override void UnRegisterServices()
+    {
+        ServiceManager.RemoveService<OpenIDConnectService>();
+    }
 }

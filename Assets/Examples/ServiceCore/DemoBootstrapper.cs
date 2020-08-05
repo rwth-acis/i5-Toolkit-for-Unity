@@ -23,5 +23,12 @@ namespace i5.Toolkit.Core.Examples.ServiceExample
             DemoAsyncService das = new DemoAsyncService();
             ServiceManager.RegisterService(das);
         }
+
+        protected override void UnRegisterServices()
+        {
+            ServiceManager.RemoveService<DemoService>();
+            ServiceManager.RemoveService<DemoUpdateService>();
+            ServiceManager.RemoveService<DemoAsyncService>();
+        }
     }
 }

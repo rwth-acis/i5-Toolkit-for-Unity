@@ -19,5 +19,10 @@ namespace i5.Toolkit.Core.Examples.ObjImporterExample
             ObjImporter importer = new ObjImporter();
             ServiceManager.RegisterService(importer);
         }
+
+        protected override void UnRegisterServices()
+        {
+            ServiceManager.RemoveService<ObjImporter>();
+        }
     }
 }

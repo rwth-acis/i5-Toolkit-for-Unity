@@ -2,7 +2,7 @@
 
 This document keeps track of the changes between versions of the toolkit.
 
-## [Unreleased]
+## 1.1.0
 
 ### Added
 - Added OpenID Connect client implementation as a login solution.

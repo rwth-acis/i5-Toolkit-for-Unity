@@ -4,9 +4,22 @@ This document keeps track of the changes between versions of the toolkit.
 
 ## [Unreleased]
 
-### Breaking Changes
-- The IService interface now requires a BaseServiceManager in the Initialize method.
-  To update, just replace `Initialize(ServiceManager owner)` with `Initialize(BaseServiceManager owner)` in your services.
+### Added
+- Added OpenID Connect client implementation as a login solution.
+- Added a solution to mark objects as persistent so that they are not unloaded on scene changes.
+
+### Changed
+- Service Manager is not a MonoBehaviour anymore.
+- Service bootstrappers can now be standalone components that do not depend on the existence of a service manager in the scene.
+
+### Update Guide
+- The IService interface now requires a IServiceManager in the Initialize method.
+  To update, just replace `Initialize(ServiceManager owner)` with `Initialize(IServiceManager owner)` in your services.
+- Service Manager is not a MonoBehaviour anymore.
+  If you added the Service Manager to a scene in the editor, just remove the component.
+- Bootstrappers now have to inherit from `BaseServiceBootstrapper` instead of `IServiceBootstrapper`.
+  To update, change the inheritance and implement the methods `RegisterServices()` and `UnRegisterServices()` in your bootstrappers.
+  Since the Service Manager is not a MonoBehaviour anymore, the bootstrapper component can now be placed anywhere in the scene.
 
 ## 1.0.1 (2020-07-02)
 

@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace i5.Toolkit.Core.Utilities
 {
+    /// <summary>
+    /// Utility functions regarding MonoBehaviour components
+    /// </summary>
     public static class ComponentUtilities
     {
         /// <summary>

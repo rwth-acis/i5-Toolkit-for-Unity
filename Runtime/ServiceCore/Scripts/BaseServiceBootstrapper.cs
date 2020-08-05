@@ -7,6 +7,9 @@ using UnityEngine;
 
 namespace i5.Toolkit.Core.ServiceCore
 {
+    /// <summary>
+    /// A bootstrapper base class which handles the service initialization
+    /// </summary>
     public abstract class BaseServiceBootstrapper : MonoBehaviour
     {
         protected virtual void Start()
@@ -14,6 +17,13 @@ namespace i5.Toolkit.Core.ServiceCore
             RegisterServices();
         }
 
+        protected virtual void OnDestroy()
+        {
+            UnRegisterServices();
+        }
+
         protected abstract void RegisterServices();
+
+        protected abstract void UnRegisterServices();
     }
 }

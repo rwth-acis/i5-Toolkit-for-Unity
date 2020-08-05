@@ -40,8 +40,14 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         /// </summary>
         public ClientData ClientData { get; set; }
 
+        /// <summary>
+        /// Serializer that is responsible for parsing JSON data and converting to JSON
+        /// </summary>
         public IJsonSerializer JsonSerializer { get; set; }
 
+        /// <summary>
+        /// The implementation that should accesss the browser
+        /// </summary>
         public IBrowser Browser { get; set; }
 
         /// <summary>

@@ -383,9 +383,10 @@ MonoBehaviour:
     using the toolkit''s service architecture.
 
 
-    The Service Manager GameObject contains a bootstrapper script which populates
+    The Service Bootstrapper GameObject contains a bootstrapper script which populates
     the service manager with services. This is one way to add service but they can
-    be added by any script at any time in the application''s life cycle.
+    be added by any script at any time in the application''s life cycle. However,
+    services can also be registered and unregistered in any script.
 
 
     The demo scene contains an updateable service which logs the application''s run

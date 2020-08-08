@@ -117,7 +117,6 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
             A.CallTo(() => server.GenerateRedirectUri(A<string>.Ignored))
                 .ReturnsLazily((string schema) => schema + "://127.0.0.1:1234");
             oidc.ServerListener = server;
-            oidc.UriSchema = "test";
 
             oidc.OpenLoginPage();
             A.CallTo(() => provider.OpenLoginPage(A<string[]>.Ignored, A<string>.That.StartsWith("test://")))

@@ -15,8 +15,6 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
     /// </summary>
     public class OpenIDConnectService : IUpdateableService
     {
-        private OpenIDConnectServiceConfiguration configuration;
-
         /// <summary>
         /// List of scopes that the user must agree to and which give the client access to specific data
         /// </summary>
@@ -34,12 +32,13 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         public bool IsLoggedIn { get => !string.IsNullOrEmpty(AccessToken); }
 
         /// <summary>
-        /// The URI schema which should be used in the redirect after the login
+        /// The URI which should be shown to the user after the login
         /// For UWP and Android apps, change the Uri schema to something unique
         /// and also change it in the project settings
         /// This way, the app will be opened again on the redirect.
+        /// If this URI is not set, a standard page is shown.
         /// </summary>
-        public string UriSchema { get; set; } = "http";
+        public string RedirectURI { get; set; }
 
         /// <summary>
         /// The provider that should be used for the OpenID Connect procedure
@@ -76,20 +75,6 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         public OpenIDConnectService()
         {
             ServerListener = new RedirectServerListener();
-        }
-
-        /// <summary>
-        /// Creates a new instance of the OpenID Connect service
-        /// Initializes the service with the given configuration
-        /// </summary>
-        /// <param name="configuration"></param>
-        public OpenIDConnectService(OpenIDConnectServiceConfiguration configuration) : this()
-        {
-            this.configuration = configuration;
-            if (configuration.redirectPage != null)
-            {
-                ServerListener.ResponseString = configuration.redirectPage.text;
-            }
         }
 
         /// <summary>
@@ -134,11 +119,15 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
                 return;
             }
 
-            string redirectUri = ServerListener.GenerateRedirectUri(UriSchema);
+            string internalServerRedirectUri = ServerListener.GenerateRedirectUri();
+            string customAdditionalRedirect = string.Format(
+                "<html><head><meta http-equiv=\"Refresh\" content=\"0; url = {0}\" />\"</head>" +
+                "<body>Please return to the app</body></html>", RedirectURI);
+            ServerListener.ResponseString = customAdditionalRedirect;
             ServerListener.RedirectReceived += ServerListener_RedirectReceived;
             ServerListener.StartServer();
 
-            OidcProvider.OpenLoginPage(Scopes, redirectUri);
+            OidcProvider.OpenLoginPage(Scopes, internalServerRedirectUri);
         }
 
         /// <summary>

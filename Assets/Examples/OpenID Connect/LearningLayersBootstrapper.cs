@@ -9,13 +9,11 @@ using UnityEngine;
 /// </summary>
 public class LearningLayersBootstrapper : BaseServiceBootstrapper
 {
-    [SerializeField]
-    private OpenIDConnectServiceConfiguration openIdConnectServiceConfiguration;
-
     protected override void RegisterServices()
     {
-        OpenIDConnectService oidc = new OpenIDConnectService(openIdConnectServiceConfiguration);
+        OpenIDConnectService oidc = new OpenIDConnectService();
         oidc.OidcProvider = new LearningLayersOIDCProvider();
+        oidc.RedirectURI = "https://www.google.de";
         ServiceManager.RegisterService(oidc);
     }
 

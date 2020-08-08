@@ -120,10 +120,15 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
             }
 
             string internalServerRedirectUri = ServerListener.GenerateRedirectUri();
-            string customAdditionalRedirect = string.Format(
-                "<html><head><meta http-equiv=\"Refresh\" content=\"0; url = {0}\" />\"</head>" +
-                "<body>Please return to the app</body></html>", RedirectURI);
-            ServerListener.ResponseString = customAdditionalRedirect;
+            string urlStart = "<html><head>";
+            string customAdditionalRedirect = "";
+            if (!string.IsNullOrEmpty(RedirectURI))
+            {
+                customAdditionalRedirect = string.Format("<meta http-equiv=\"Refresh\" content=\"0; url = {0}\" />"
+                    , RedirectURI);
+            }
+            string urlEnd = "</head><body>Please return to the app</body></html>";
+            ServerListener.ResponseString = urlStart + customAdditionalRedirect + urlEnd;
             ServerListener.RedirectReceived += ServerListener_RedirectReceived;
             ServerListener.StartServer();
 

@@ -92,7 +92,7 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
         }
 
         [Test]
-        public void OpenLoginPage_SchemaNotChanged_OpensLoginPageWithHttpRedirect()
+        public void OpenLoginPage_OpensLoginPageWithHttpRedirect()
         {
             OpenIDConnectService oidc = new OpenIDConnectService();
             IOidcProvider provider = A.Fake<IOidcProvider>();
@@ -103,24 +103,38 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
             oidc.ServerListener = server;
 
             oidc.OpenLoginPage();
-            A.CallTo(() => provider.OpenLoginPage(A<string[]>.Ignored, A<string>.That.StartsWith("http://")))
+            A.CallTo(() => provider.OpenLoginPage(A<string[]>.Ignored, A<string>.That.IsEqualTo("http://127.0.0.1:1234")))
                 .MustHaveHappened();
         }
 
         [Test]
-        public void OpenLoginPage_SchemaChanged_OpensLoginPageWithSchemaRedirect()
+        public void OpenLoginPage_NoRedirectUriGiven_UsesDefaultPage()
         {
             OpenIDConnectService oidc = new OpenIDConnectService();
             IOidcProvider provider = A.Fake<IOidcProvider>();
             oidc.OidcProvider = provider;
             IRedirectServerListener server = A.Fake<IRedirectServerListener>();
-            A.CallTo(() => server.GenerateRedirectUri(A<string>.Ignored))
-                .ReturnsLazily((string schema) => schema + "://127.0.0.1:1234");
             oidc.ServerListener = server;
 
             oidc.OpenLoginPage();
-            A.CallTo(() => provider.OpenLoginPage(A<string[]>.Ignored, A<string>.That.StartsWith("test://")))
-                .MustHaveHappened();
+
+            Assert.IsFalse(server.ResponseString.Contains("<meta http-equiv=\"Refresh\""));
+        }
+
+        [Test]
+        public void OpenLoginpage_RedirectUriGiven_RedirectUriInResponseString()
+        {
+            OpenIDConnectService oidc = new OpenIDConnectService();
+            IOidcProvider provider = A.Fake<IOidcProvider>();
+            oidc.OidcProvider = provider;
+            oidc.RedirectURI = "http://test.com";
+            IRedirectServerListener server = A.Fake<IRedirectServerListener>();
+            oidc.ServerListener = server;
+
+            oidc.OpenLoginPage();
+
+            Debug.Log("Resp: " + server.ResponseString);
+            Assert.IsTrue(server.ResponseString.Contains("<meta http-equiv=\"Refresh\" content=\"0; url = http://test.com\" />"));
         }
 
         [Test]

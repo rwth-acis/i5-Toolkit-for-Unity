@@ -119,20 +119,27 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
                 return;
             }
 
-            string internalServerRedirectUri = ServerListener.GenerateRedirectUri();
-            string urlStart = "<html><head>";
-            string customAdditionalRedirect = "";
-            if (!string.IsNullOrEmpty(RedirectURI))
+            if (ServerListener.ServerActive)
             {
-                customAdditionalRedirect = string.Format("<meta http-equiv=\"Refresh\" content=\"0; url = {0}\" />"
-                    , RedirectURI);
+                OidcProvider.OpenLoginPage(Scopes, ServerListener.ListeningUri);
             }
-            string urlEnd = "</head><body>Please return to the app</body></html>";
-            ServerListener.ResponseString = urlStart + customAdditionalRedirect + urlEnd;
-            ServerListener.RedirectReceived += ServerListener_RedirectReceived;
-            ServerListener.StartServer();
+            else
+            {
+                string internalServerRedirectUri = ServerListener.GenerateListeningUri();
+                string urlStart = "<html><head>";
+                string customAdditionalRedirect = "";
+                if (!string.IsNullOrEmpty(RedirectURI))
+                {
+                    customAdditionalRedirect = string.Format("<meta http-equiv=\"Refresh\" content=\"0; url = {0}\" />"
+                        , RedirectURI);
+                }
+                string urlEnd = "</head><body>Please return to the app</body></html>";
+                ServerListener.ResponseString = urlStart + customAdditionalRedirect + urlEnd;
+                ServerListener.RedirectReceived += ServerListener_RedirectReceived;
+                ServerListener.StartServer();
 
-            OidcProvider.OpenLoginPage(Scopes, internalServerRedirectUri);
+                OidcProvider.OpenLoginPage(Scopes, internalServerRedirectUri);
+            }
         }
 
         /// <summary>
@@ -142,6 +149,7 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         /// <param name="e">The arguments of the redirect event</param>
         private void ServerListener_RedirectReceived(object sender, RedirectReceivedEventArgs e)
         {
+            ServerListener.RedirectReceived -= ServerListener_RedirectReceived;
             eventArgs = e;
             // this method is executed by the thread that raised the event - the server's thread
             // enable the processing of the Update method so that we process the redirect on the main thread

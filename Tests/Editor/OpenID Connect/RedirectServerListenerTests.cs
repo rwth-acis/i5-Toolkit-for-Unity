@@ -66,9 +66,9 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
         {
             RedirectServerListener rsl = new RedirectServerListener();
 
-            string generatedUri = rsl.GenerateRedirectUri();
+            string generatedUri = rsl.GenerateListeningUri();
 
-            Assert.AreEqual(generatedUri, rsl.RedirectUri);
+            Assert.AreEqual(generatedUri, rsl.ListeningUri);
         }
 
         [Test]
@@ -76,7 +76,7 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
         {
             RedirectServerListener rsl = new RedirectServerListener();
 
-            string generatedUri = rsl.GenerateRedirectUri();
+            string generatedUri = rsl.GenerateListeningUri();
 
             Assert.IsTrue(generatedUri.StartsWith("http://"));
         }
@@ -86,7 +86,7 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
         {
             RedirectServerListener rsl = new RedirectServerListener();
 
-            string generatedUri = rsl.GenerateRedirectUri("test");
+            string generatedUri = rsl.GenerateListeningUri("test");
 
             Assert.IsTrue(generatedUri.StartsWith("test://"));
         }
@@ -96,7 +96,7 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
         {
             RedirectServerListener rsl = new RedirectServerListener();
 
-            string generatedUri = rsl.GenerateRedirectUri();
+            string generatedUri = rsl.GenerateListeningUri();
 
             generatedUri = generatedUri.Replace("http://", "");
 

@@ -28,7 +28,7 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         /// <summary>
         /// The URI whrere the server listens for the redirect
         /// </summary>
-        public string RedirectUri { get; private set; }
+        public string ListeningUri { get; private set; }
 
         /// <summary>
         /// HTML response that is given on the redirect request
@@ -89,13 +89,13 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         private void Listen()
         {
             http = new HttpListener();
-            if (string.IsNullOrEmpty(RedirectUri))
+            if (string.IsNullOrEmpty(ListeningUri))
             {
-                RedirectUri = GenerateRedirectUri();
+                ListeningUri = GenerateListeningUri();
             }
-            http.Prefixes.Add(RedirectUri);
+            http.Prefixes.Add(ListeningUri);
             http.Start();
-            i5Debug.Log("OIDC Redirect server now listening on address " + RedirectUri, this);
+            i5Debug.Log("OIDC Redirect server now listening on address " + ListeningUri, this);
 
             while (ServerActive)
             {
@@ -113,7 +113,7 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
                     i5Debug.Log("Redirect was received. Server stopped", this);
 
                     RedirectReceivedEventArgs args = 
-                        new RedirectReceivedEventArgs(context.Request.QueryString.ToDictionary(), RedirectUri);
+                        new RedirectReceivedEventArgs(context.Request.QueryString.ToDictionary(), ListeningUri);
                     RedirectReceived?.Invoke(this, args);
                 }
                 catch (ThreadAbortException)
@@ -137,10 +137,10 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         /// <param name="protocol">Specify a custom URI schema.
         /// If the app version of this registers as a handler for the URI schema, the app will be opened again.</param>
         /// <returns>Returns a free URI where the server can listen</returns>
-        public string GenerateRedirectUri(string protocol = "http")
+        public string GenerateListeningUri(string protocol = "http")
         {
             string redirectUri = protocol + "://" + IPAddress.Loopback + ":" + GetUnusedPort() + "/";
-            RedirectUri = redirectUri;
+            ListeningUri = redirectUri;
             return redirectUri;
         }
 

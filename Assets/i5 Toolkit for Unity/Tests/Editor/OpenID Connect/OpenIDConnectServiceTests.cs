@@ -98,7 +98,7 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
             IOidcProvider provider = A.Fake<IOidcProvider>();
             oidc.OidcProvider = provider;
             IRedirectServerListener server = A.Fake<IRedirectServerListener>();
-            A.CallTo(() => server.GenerateRedirectUri(A<string>.Ignored))
+            A.CallTo(() => server.GenerateListeningUri(A<string>.Ignored))
                 .ReturnsLazily((string schema) => schema + "://127.0.0.1:1234");
             oidc.ServerListener = server;
 

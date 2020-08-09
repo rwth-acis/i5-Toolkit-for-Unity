@@ -12,6 +12,8 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         /// </summary>
         bool ServerActive { get; }
 
+        string ListeningUri { get; }
+
         /// <summary>
         /// The HTML string which is send as an answer if a request is made to the server
         /// </summary>
@@ -37,6 +39,6 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         /// </summary>
         /// <param name="protocol">The URI schema that the URI should use</param>
         /// <returns>Returns a URI with a free port on which the server can listen</returns>
-        string GenerateRedirectUri(string protocol = "http");
+        string GenerateListeningUri(string protocol = "http");
     }
 }

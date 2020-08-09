@@ -100,7 +100,7 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
             while (ServerActive)
             {
                 try
-                {                    
+                {
                     HttpListenerContext context = http.GetContext();
 
                     byte[] buffer = System.Text.Encoding.UTF8.GetBytes(ResponseString);
@@ -150,11 +150,12 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         /// <returns>Returns the unused port</returns>
         private static int GetUnusedPort()
         {
-            TcpListener listener = new TcpListener(IPAddress.Loopback, 0);
-            listener.Start();
-            int port = ((IPEndPoint)listener.LocalEndpoint).Port;
-            listener.Stop();
-            return port;
+            //TcpListener listener = new TcpListener(IPAddress.Loopback, 0);
+            //listener.Start();
+            //int port = ((IPEndPoint)listener.LocalEndpoint).Port;
+            //listener.Stop();
+            //return port;
+            return 8088;
         }
     }
 }

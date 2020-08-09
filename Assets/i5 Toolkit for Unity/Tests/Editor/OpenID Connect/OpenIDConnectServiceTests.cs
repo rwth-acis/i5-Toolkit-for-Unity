@@ -100,6 +100,7 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
             IRedirectServerListener server = A.Fake<IRedirectServerListener>();
             A.CallTo(() => server.GenerateListeningUri(A<string>.Ignored))
                 .ReturnsLazily((string schema) => schema + "://127.0.0.1:1234");
+            server.ListeningUri = "http://127.0.0.1:1234";
             oidc.ServerListener = server;
 
             oidc.OpenLoginPage();

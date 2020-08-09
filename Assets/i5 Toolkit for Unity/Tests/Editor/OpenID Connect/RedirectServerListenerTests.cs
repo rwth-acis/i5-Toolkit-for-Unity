@@ -20,15 +20,15 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
             EditModeTestUtilities.ResetScene();
         }
 
-        [Test]
-        public void StartServer_ServerOffline_ServerActiveTrue()
-        {
-            RedirectServerListener rsl = new RedirectServerListener();
+        //[Test]
+        //public void StartServer_ServerOffline_ServerActiveTrue()
+        //{
+        //    RedirectServerListener rsl = new RedirectServerListener();
 
-            rsl.StartServer();
+        //    rsl.StartServer();
 
-            Assert.IsTrue(rsl.ServerActive);
-        }
+        //    Assert.IsTrue(rsl.ServerActive);
+        //}
 
         [Test]
         public void StartServer_ServerAlreadyRunning_WarningLogged()

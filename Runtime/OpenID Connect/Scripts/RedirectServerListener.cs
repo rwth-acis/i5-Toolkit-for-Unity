@@ -28,7 +28,7 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         /// <summary>
         /// The URI whrere the server listens for the redirect
         /// </summary>
-        public string ListeningUri { get; private set; }
+        public string ListeningUri { get; set; }
 
         /// <summary>
         /// HTML response that is given on the redirect request
@@ -150,12 +150,11 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         /// <returns>Returns the unused port</returns>
         private static int GetUnusedPort()
         {
-            //TcpListener listener = new TcpListener(IPAddress.Loopback, 0);
-            //listener.Start();
-            //int port = ((IPEndPoint)listener.LocalEndpoint).Port;
-            //listener.Stop();
-            //return port;
-            return 8088;
+            TcpListener listener = new TcpListener(IPAddress.Loopback, 0);
+            listener.Start();
+            int port = ((IPEndPoint)listener.LocalEndpoint).Port;
+            listener.Stop();
+            return port;
         }
     }
 }

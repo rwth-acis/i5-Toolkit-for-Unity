@@ -125,7 +125,10 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
             }
             else
             {
-                string internalServerRedirectUri = ServerListener.GenerateListeningUri();
+                if (string.IsNullOrEmpty(ServerListener.ListeningUri))
+                {
+                    ServerListener.GenerateListeningUri();
+                }
                 string urlStart = "<html><head>";
                 string customAdditionalRedirect = "";
                 if (!string.IsNullOrEmpty(RedirectURI))
@@ -138,7 +141,7 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
                 ServerListener.RedirectReceived += ServerListener_RedirectReceived;
                 ServerListener.StartServer();
 
-                OidcProvider.OpenLoginPage(Scopes, internalServerRedirectUri);
+                OidcProvider.OpenLoginPage(Scopes, ServerListener.ListeningUri);
             }
         }
 

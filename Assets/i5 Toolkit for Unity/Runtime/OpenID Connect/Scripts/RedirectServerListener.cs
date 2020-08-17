@@ -40,7 +40,7 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         /// </summary>
         public RedirectServerListener()
         {
-            ResponseString = string.Format("<html><head></head><body>Please return to the app</body></html>");
+            ResponseString = "<html><head></head><body>Please return to the app</body></html>";
         }
 
         /// <summary>

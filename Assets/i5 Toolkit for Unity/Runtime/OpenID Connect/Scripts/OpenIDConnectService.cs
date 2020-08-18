@@ -1,12 +1,15 @@
-﻿using i5.Toolkit.Core.ServiceCore;
+﻿using AOT;
+using i5.Toolkit.Core.ServiceCore;
 using i5.Toolkit.Core.Utilities;
 using System;
 using System.Collections.Generic;
-using System.Net;
-using System.Net.Sockets;
-using System.Threading;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using UnityEngine;
+
+#if ENABLE_WINMD_SUPPORT && UNITY_WSA
+using Windows.ApplicationModel.Activation;
+#endif
 
 namespace i5.Toolkit.Core.OpenIDConnectClient
 {
@@ -69,6 +72,44 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         /// </summary>
         private RedirectReceivedEventArgs eventArgs;
 
+#if ENABLE_WINMD_SUPPORT && UNITY_WSA
+        [DllImport("__Internal")]
+        extern static void SetupActivatedEventCallback(AppActivatedDelegate callback);
+
+        delegate void AppActivatedDelegate(IActivatedEventArgs activatedArgs);
+
+        [MonoPInvokeCallback(typeof(AppActivatedDelegate))]
+        static void OnAppActivated(IActivatedEventArgs activatedArgs)
+        {
+            if (UnityEngine.WSA.Application.RunningOnAppThread())
+            {
+                HandleActivation(activatedArgs);
+            }
+            else
+            {
+                UnityEngine.WSA.Application.InvokeOnAppThread(() =>
+                {
+                    HandleActivation(activatedArgs);
+                }, false);
+            }
+        }
+
+        static void HandleActivation(IActivatedEventArgs activatedArgs)
+        {
+            if (activatedArgs.Kind == ActivationKind.Protocol)
+            {
+                var protocolArgs = (ProtocolActivatedEventArgs)activatedArgs;
+                Dictionary<string,string> fragments = UriUtils.GetUriParameters(protocolArgs.Uri);
+        Debug.LogError(protocolArgs.Uri);
+        OpenIDConnectService oidcService = ServiceManager.GetService<OpenIDConnectService>();
+                oidcService.ServerListener_RedirectReceived(
+                    null, 
+                    new RedirectReceivedEventArgs(fragments, oidcService.RedirectURI));
+            }
+        }
+
+#endif
+
         /// <summary>
         /// Creates a new instance of the OpenID Connect service
         /// </summary>
@@ -83,6 +124,9 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         /// <param name="owner">The service manager that owns this service</param>
         public void Initialize(IServiceManager owner)
         {
+#if ENABLE_WINMD_SUPPORT && UNITY_WSA
+        SetupActivatedEventCallback(OnAppActivated);
+#endif
         }
 
         /// <summary>
@@ -113,37 +157,42 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
                 i5Debug.LogError("OIDC provider is not set. Please set the OIDC provider before accessing the OIDC workflow.", this);
                 return;
             }
+
+#if !ENABLE_WINMD_SUPPORT || !UNITY_WSA
+
             if (ServerListener == null)
             {
                 i5Debug.LogError("Redirect server listener is not set. Please set it before accessing the OIDC workflow.", this);
                 return;
             }
 
-            //if (ServerListener.ServerActive)
-            //{
-            //    OidcProvider.OpenLoginPage(Scopes, ServerListener.ListeningUri);
-            //}
-            //else
-            //{
-            //    if (string.IsNullOrEmpty(ServerListener.ListeningUri))
-            //    {
-            //        ServerListener.GenerateListeningUri();
-            //    }
-            //    string urlStart = "<html><head>";
-            //    string customAdditionalRedirect = "";
-            //    if (!string.IsNullOrEmpty(RedirectURI))
-            //    {
-            //        customAdditionalRedirect = string.Format("<meta http-equiv=\"Refresh\" content=\"0; url = {0}\" />"
-            //            , RedirectURI);
-            //    }
-            //    string urlEnd = "</head><body>Please return to the app</body></html>";
-            //    ServerListener.ResponseString = urlStart + customAdditionalRedirect + urlEnd;
-            //    ServerListener.RedirectReceived += ServerListener_RedirectReceived;
-            //    ServerListener.StartServer();
+            if (ServerListener.ServerActive)
+            {
+                OidcProvider.OpenLoginPage(Scopes, ServerListener.ListeningUri);
+            }
+            else
+            {
+                if (string.IsNullOrEmpty(ServerListener.ListeningUri))
+                {
+                    ServerListener.GenerateListeningUri();
+                }
+                string urlStart = "<html><head>";
+                string customAdditionalRedirect = "";
+                if (!string.IsNullOrEmpty(RedirectURI))
+                {
+                    customAdditionalRedirect = string.Format("<meta http-equiv=\"Refresh\" content=\"0; url = {0}\" />"
+                        , RedirectURI);
+                }
+                string urlEnd = "</head><body>Please return to the app</body></html>";
+                ServerListener.ResponseString = urlStart + customAdditionalRedirect + urlEnd;
+                ServerListener.RedirectReceived += ServerListener_RedirectReceived;
+                ServerListener.StartServer();
 
-            //    OidcProvider.OpenLoginPage(Scopes, ServerListener.ListeningUri);
-            //}
-            OidcProvider.OpenLoginPage(Scopes, "i5://");
+                OidcProvider.OpenLoginPage(Scopes, ServerListener.ListeningUri);
+            }
+#else
+            OidcProvider.OpenLoginPage(Scopes, RedirectURI);
+#endif
         }
 
         /// <summary>
@@ -151,7 +200,7 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         /// </summary>
         /// <param name="sender">The sender of the event</param>
         /// <param name="e">The arguments of the redirect event</param>
-        private void ServerListener_RedirectReceived(object sender, RedirectReceivedEventArgs e)
+        public void ServerListener_RedirectReceived(object sender, RedirectReceivedEventArgs e)
         {
             ServerListener.RedirectReceived -= ServerListener_RedirectReceived;
             eventArgs = e;
@@ -228,7 +277,9 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
             if (OidcProvider.AuthorizationFlow == AuthorizationFlow.AUTHORIZATION_CODE)
             {
                 string authorizationCode = OidcProvider.GetAuthorizationCode(eventArgs.RedirectParameters);
+                Debug.LogError("Auth code: " + authorizationCode);
                 AccessToken = await OidcProvider.GetAccessTokenFromCodeAsync(authorizationCode, eventArgs.RedirectUri);
+                Debug.LogError("Access token: " + AccessToken);
             }
             else
             {

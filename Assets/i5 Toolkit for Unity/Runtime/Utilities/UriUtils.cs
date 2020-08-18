@@ -31,6 +31,11 @@ namespace i5.Toolkit.Core.Utilities
             return resultUri;
         }
 
+        public static Dictionary<string, string> GetUriFragments(Uri uri)
+        {
+            return GetUriParams(uri, '#');
+        }
+
         /// <summary>
         /// Extracts the parameters of a given uri and returns them
         /// </summary>
@@ -38,7 +43,12 @@ namespace i5.Toolkit.Core.Utilities
         /// <returns>Returns the parameters of the uri</returns>
         public static Dictionary<string, string> GetUriParameters(Uri uri)
         {
-            string[] parts = uri.ToString().Split('?');
+            return GetUriParams(uri, '?');
+        }
+
+        private static Dictionary<string, string> GetUriParams(Uri uri, char separator)
+        {
+            string[] parts = uri.ToString().Split(separator);
             if (parts.Length < 2)
             {
                 // return an empty dictionary since the uri apparently does not have parameters
@@ -46,7 +56,7 @@ namespace i5.Toolkit.Core.Utilities
             }
             else if (parts.Length > 2)
             {
-                Debug.LogError("Unexpected amount of parts of the uri. The uri seems to contain multiple '?'");
+                Debug.LogError("Unexpected amount of parts of the uri. The uri seems to contain multiple '" + separator + "'");
                 return null;
             }
 
@@ -69,6 +79,7 @@ namespace i5.Toolkit.Core.Utilities
             }
 
             return parameters;
+
         }
 
         public static string WordArrayToSpaceEscapedString(string[] array)

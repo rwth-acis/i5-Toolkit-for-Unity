@@ -13,7 +13,7 @@ public class LearningLayersBootstrapper : BaseServiceBootstrapper
     {
         OpenIDConnectService oidc = new OpenIDConnectService();
         oidc.OidcProvider = new LearningLayersOIDCProvider();
-        oidc.RedirectURI = "https://www.google.de";
+        oidc.RedirectURI = "i5://";
         ServiceManager.RegisterService(oidc);
     }
 

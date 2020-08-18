@@ -14,7 +14,7 @@ namespace i5.Toolkit.Core.Utilities
 
                 if (req.isHttpError || req.isNetworkError)
                 {
-                    return new WebResponse<string>(req.error, req.responseCode);
+                    return new WebResponse<string>(false, req.downloadHandler.text, req.downloadHandler.data, req.responseCode, req.error);
                 }
                 else
                 {
@@ -31,7 +31,7 @@ namespace i5.Toolkit.Core.Utilities
 
                 if(req.isHttpError || req.isNetworkError)
                 {
-                    return new WebResponse<string>(req.error, req.responseCode);
+                    return new WebResponse<string>(false, req.downloadHandler.text, req.downloadHandler.data, req.responseCode, req.error);
                 }
                 else
                 {
@@ -48,7 +48,7 @@ namespace i5.Toolkit.Core.Utilities
 
                 if (req.isHttpError || req.isNetworkError)
                 {
-                    return new WebResponse<string>(req.error, req.responseCode);
+                    return new WebResponse<string>(false, req.downloadHandler.text, req.downloadHandler.data, req.responseCode, req.error);
                 }
                 else
                 {
@@ -65,7 +65,7 @@ namespace i5.Toolkit.Core.Utilities
 
                 if (req.isHttpError || req.isNetworkError)
                 {
-                    return new WebResponse<string>(req.error, req.responseCode);
+                    return new WebResponse<string>(false, req.downloadHandler.text, req.downloadHandler.data, req.responseCode, req.error);
                 }
                 else
                 {

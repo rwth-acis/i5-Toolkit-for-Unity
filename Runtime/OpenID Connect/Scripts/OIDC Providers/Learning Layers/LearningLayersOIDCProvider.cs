@@ -91,6 +91,7 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
             }
             else
             {
+                Debug.LogError(response.ErrorMessage + ": " + response.Content);
                 return "";
             }
         }

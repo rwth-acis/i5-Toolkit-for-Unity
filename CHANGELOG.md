@@ -11,6 +11,7 @@ This document keeps track of the changes between versions of the toolkit.
 ### Changed
 - Service Manager is not a MonoBehaviour anymore.
 - Service bootstrappers can now be standalone components that do not depend on the existence of a service manager in the scene.
+- WebResponses now provide the entire text of the response body in case of an error
 
 ### Update Guide
 - The IService interface now requires a IServiceManager in the Initialize method.

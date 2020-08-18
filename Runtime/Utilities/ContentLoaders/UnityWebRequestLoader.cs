@@ -24,7 +24,7 @@ namespace i5.Toolkit.Core.Utilities.ContentLoaders
                 if (req.isNetworkError || req.isHttpError)
                 {
                     i5Debug.LogError("Get request to: " + uri + " returned with error " + req.error, this);
-                    return new WebResponse<string>(req.error, req.responseCode);
+                    return new WebResponse<string>(false, req.downloadHandler.text, req.downloadHandler.data, req.responseCode, req.error);
                 }
                 else
                 {

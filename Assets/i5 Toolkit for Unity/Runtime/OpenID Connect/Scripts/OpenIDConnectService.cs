@@ -277,9 +277,7 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
             if (OidcProvider.AuthorizationFlow == AuthorizationFlow.AUTHORIZATION_CODE)
             {
                 string authorizationCode = OidcProvider.GetAuthorizationCode(eventArgs.RedirectParameters);
-                Debug.LogError("Auth code: " + authorizationCode);
                 AccessToken = await OidcProvider.GetAccessTokenFromCodeAsync(authorizationCode, eventArgs.RedirectUri);
-                Debug.LogError("Access token: " + AccessToken);
             }
             else
             {

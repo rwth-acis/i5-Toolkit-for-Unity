@@ -74,7 +74,7 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
         }
 
         [UnityTest]
-        public IEnumerator GetAccessCodeFromTokenAsync_WebResponseSuccess_ReturnsEmptyToken()
+        public IEnumerator GetAccessCodeFromTokenAsync_WebResponseFailed_ReturnsEmptyToken()
         {
             LearningLayersOIDCProvider lloidc = new LearningLayersOIDCProvider();
             IRestConnector restConnector = A.Fake<IRestConnector>();
@@ -83,6 +83,9 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
             lloidc.RestConnector = restConnector;
             lloidc.ClientData = A.Fake<ClientData>();
             lloidc.JsonSerializer = A.Fake<IJsonSerializer>();
+
+            LogAssert.Expect(LogType.Error,
+                new Regex(@"\w*my error\w*"));
 
             Task<string> task = lloidc.GetAccessTokenFromCodeAsync("", "");
 

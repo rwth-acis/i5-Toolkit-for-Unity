@@ -127,6 +127,12 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
 #if ENABLE_WINMD_SUPPORT && UNITY_WSA
         SetupActivatedEventCallback(OnAppActivated);
 #endif
+
+            // check if the platform is supported
+#if !UNITY_EDITOR && !UNITY_STANDALONE && !UNITY_WSA
+            throw new PlatformNotSupportedException(
+            "The OpenID Connect service only supports standalone, editor and UWP builds.");
+#endif
         }
 
         /// <summary>

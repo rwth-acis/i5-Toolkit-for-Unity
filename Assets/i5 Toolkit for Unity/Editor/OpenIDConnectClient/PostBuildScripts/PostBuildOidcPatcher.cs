@@ -19,11 +19,18 @@ public class PostBuildOidcPatcher
             {
                 Debug.Log("[i5 Toolkit PostProcessBuild] Running OIDC Patcher");
                 string appBaseSourcePath = PathUtils.GetPackagePath() + "Editor/OpenIDConnectClient/PostBuildScripts/App";
-                File.Copy(appBaseSourcePath + ".cpp", appBaseFilePath + ".cpp", true);
-                File.Copy(appBaseSourcePath + ".h", appBaseFilePath + ".h", true);
-                Debug.Log("[i5 Toolkit PostProcessBuild] OIDC Patcher included protocol redirect hook");
+                try
+                {
+                    File.Copy(appBaseSourcePath + ".cpp", appBaseFilePath + ".cpp", true);
+                    File.Copy(appBaseSourcePath + ".h", appBaseFilePath + ".h", true);
+                    Debug.Log("[i5 Toolkit PostProcessBuild] OIDC Patcher successfully included protocol redirect hook");
+                }
+                catch (IOException e)
+                {
+                    Debug.LogError("[i5 Toolkit PostProcessBuild] OIDC Patcher failed: " + e.ToString());
+                }
             }
-            
+
         }
     }
 #endif

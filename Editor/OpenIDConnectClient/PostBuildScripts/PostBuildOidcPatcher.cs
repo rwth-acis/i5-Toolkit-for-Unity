@@ -17,12 +17,12 @@ public class PostBuildOidcPatcher
             string appBaseFilePath = pathToBuiltProject + "/" + PlayerSettings.productName + "/App";
             if (File.Exists(appBaseFilePath + ".cpp"))
             {
-                Debug.Log("[i5 Toolkit PostProcessBuild] Running OIDC Patcher");
+                Debug.Log("[i5 Toolkit PostProcessBuild] Running OIDC Patcher...");
                 string appBaseSourcePath = PathUtils.GetPackagePath() + "Editor/OpenIDConnectClient/PostBuildScripts/App";
                 try
                 {
-                    File.Copy(appBaseSourcePath + ".cpp", appBaseFilePath + ".cpp", true);
-                    File.Copy(appBaseSourcePath + ".h", appBaseFilePath + ".h", true);
+                    File.Copy(appBaseSourcePath + ".cpp.txt", appBaseFilePath + ".cpp", true);
+                    File.Copy(appBaseSourcePath + ".h.txt", appBaseFilePath + ".h", true);
                     Debug.Log("[i5 Toolkit PostProcessBuild] OIDC Patcher successfully included protocol redirect hook");
                 }
                 catch (IOException e)
@@ -30,7 +30,10 @@ public class PostBuildOidcPatcher
                     Debug.LogError("[i5 Toolkit PostProcessBuild] OIDC Patcher failed: " + e.ToString());
                 }
             }
-
+            else
+            {
+                Debug.LogWarning("[i5 Toolkit PostProcessBuild] OIDC Patcher did not run. The generated project does not seem to be a C++ project.");
+            }
         }
     }
 #endif

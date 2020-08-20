@@ -131,7 +131,5 @@ namespace i5.Toolkit.Core.TestUtilities.UIOperator
             return component;
         }
 #endif
-
-
     }
 }

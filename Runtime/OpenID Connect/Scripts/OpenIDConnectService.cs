@@ -191,6 +191,11 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
                 OidcProvider.OpenLoginPage(Scopes, ServerListener.ListeningUri);
             }
 #else
+            if (RedirectURI.EndsWith("://"))
+            {
+                i5Debug.LogWarning("The redirect seems to be a custom uri scheme that ends with :// instead of :/.\n" +
+                    "Consider using a custom uri schema that ends with :/ since :// can cause problems with the redirect.", this);
+            }
             OidcProvider.OpenLoginPage(Scopes, RedirectURI);
 #endif
         }

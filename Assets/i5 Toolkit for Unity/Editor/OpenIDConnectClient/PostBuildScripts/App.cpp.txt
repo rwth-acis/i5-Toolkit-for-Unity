@@ -2,7 +2,7 @@
 #include "App.h"
 #include "UnityGenerated.h"
 
-using namespace i5_Toolkit_for_Unity_;
+using namespace <<MYNAMESPACE>>;
 using namespace Platform;
 using namespace UnityPlayer;
 using namespace Windows::ApplicationModel::Activation;

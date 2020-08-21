@@ -18,8 +18,6 @@ namespace i5.Toolkit.Core.ServiceCore
 
         private static ServiceManager instance;
 
-        private bool applicationQuitting = false;
-
         private GameObject runnerObject;
 
         /// <summary>
@@ -202,11 +200,8 @@ namespace i5.Toolkit.Core.ServiceCore
         {
             // make sure that the entire object is destroyed
             GameObject.Destroy(runnerObject);
-            // then re-create it if the application is not quitting
-            if (!applicationQuitting)
-            {
-                CreateRunner();
-            }
+            // then re-create it
+            CreateRunner();
         }
 
         private void OnApplicationQuitting()
@@ -215,7 +210,6 @@ namespace i5.Toolkit.Core.ServiceCore
             {
                 service.Value.Cleanup();
             }
-            applicationQuitting = true;
         }
     }
 }

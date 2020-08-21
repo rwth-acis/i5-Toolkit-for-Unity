@@ -6,35 +6,51 @@ using UnityEditor.Callbacks;
 #endif
 using UnityEngine;
 
-public class PostBuildOidcPatcher
+namespace i5.Toolkit.Core.OpenIDConnectClient
 {
-#if UNITY_EDITOR
-    [PostProcessBuild(1)]
-    public static void OnPostprocessBuild(BuildTarget target, string pathToBuiltProject)
+    public class PostBuildOidcPatcher
     {
-        if (target == BuildTarget.WSAPlayer)
+#if UNITY_EDITOR
+
+        private const string namespacePlaceholder = "<<MYNAMESPACE>>";
+
+        [PostProcessBuild(1)]
+        public static void OnPostprocessBuild(BuildTarget target, string pathToBuiltProject)
         {
-            string appBaseFilePath = pathToBuiltProject + "/" + PlayerSettings.productName + "/App";
-            if (File.Exists(appBaseFilePath + ".cpp"))
+            if (target == BuildTarget.WSAPlayer)
             {
-                Debug.Log("[i5 Toolkit PostProcessBuild] Running OIDC Patcher...");
+                string appBaseFilePath = pathToBuiltProject + "/" + PlayerSettings.productName + "/App";
+                if (!File.Exists(appBaseFilePath + ".cpp"))
+                {
+                    Debug.LogError("[i5 Toolkit PostProcessBuild] OIDC patcher did not run. Could not find .cpp file.");
+                    return;
+                }
+                if (!File.Exists(appBaseFilePath + ".h"))
+                {
+                    Debug.LogError("[i5 Toolkit PostProcessBuild] OIDC patcher did not run. Could not find .h file.");
+                    return;
+                }
+                Debug.Log("[i5 Toolkit PostProcessBuild] Running OIDC patcher...");
                 string appBaseSourcePath = PathUtils.GetPackagePath() + "Editor/OpenIDConnectClient/PostBuildScripts/App";
                 try
                 {
-                    File.Copy(appBaseSourcePath + ".cpp.txt", appBaseFilePath + ".cpp", true);
-                    File.Copy(appBaseSourcePath + ".h.txt", appBaseFilePath + ".h", true);
-                    Debug.Log("[i5 Toolkit PostProcessBuild] OIDC Patcher successfully included protocol redirect hook");
+                    string spaceEscapedProductName = PlayerSettings.productName.Replace(' ', '_');
+
+                    string cppContent = File.ReadAllText(appBaseSourcePath + ".cpp.txt");
+                    cppContent = cppContent.Replace(namespacePlaceholder, spaceEscapedProductName);
+                    File.WriteAllText(appBaseFilePath + ".cpp", cppContent);
+
+                    string hContent = File.ReadAllText(appBaseSourcePath + ".h.txt");
+                    hContent = hContent.Replace(namespacePlaceholder, spaceEscapedProductName);
+                    File.WriteAllText(hContent, appBaseFilePath + ".h");
+                    Debug.Log("[i5 Toolkit PostProcessBuild] OIDC patcher successfully included protocol redirect hook");
                 }
                 catch (IOException e)
                 {
                     Debug.LogError("[i5 Toolkit PostProcessBuild] OIDC Patcher failed: " + e.ToString());
                 }
             }
-            else
-            {
-                Debug.LogWarning("[i5 Toolkit PostProcessBuild] OIDC Patcher did not run. The generated project does not seem to be a C++ project.");
-            }
         }
-    }
 #endif
+    }
 }

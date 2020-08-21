@@ -20,6 +20,8 @@ namespace i5.Toolkit.Core.ServiceCore
 
         private GameObject runnerObject;
 
+        private static bool applicationQuitting;
+
         /// <summary>
         /// The instance of the service manager
         /// </summary>
@@ -52,12 +54,20 @@ namespace i5.Toolkit.Core.ServiceCore
         /// </summary>
         public ServiceManager()
         {
-            CreateRunner();
+            if (!applicationQuitting)
+            {
+                CreateRunner();
+            }
             Application.quitting += OnApplicationQuitting;
         }
 
         private void CreateRunner()
         {
+            if (applicationQuitting)
+            {
+                return;
+            }
+
             // create a new runner object and make it persistent
             runnerObject = ObjectPool<GameObject>.RequestResource(() => { return new GameObject(); });
             runnerObject.name = "Service Manager Runner";
@@ -201,11 +211,15 @@ namespace i5.Toolkit.Core.ServiceCore
             // make sure that the entire object is destroyed
             GameObject.Destroy(runnerObject);
             // then re-create it
-            CreateRunner();
+            if (!applicationQuitting)
+            {
+                CreateRunner();
+            }
         }
 
         private void OnApplicationQuitting()
         {
+            applicationQuitting = true;
             foreach (KeyValuePair<Type, IService> service in registeredServices)
             {
                 service.Value.Cleanup();

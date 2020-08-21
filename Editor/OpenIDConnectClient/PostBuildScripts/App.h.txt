@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-namespace i5_Toolkit_for_Unity_
+namespace <<MYNAMESPACE>>
 {
 	extern "C" void __stdcall AddActivatedEventArgs(IInspectable* activatedEventArgs);
 

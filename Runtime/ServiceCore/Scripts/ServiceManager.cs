@@ -49,6 +49,12 @@ namespace i5.Toolkit.Core.ServiceCore
             }
         }
 
+        [RuntimeInitializeOnLoadMethod]
+        private static void Initialize()
+        {
+            Application.quitting += OnApplicationQuitting;
+        }
+
         /// <summary>
         /// Creates a new instance of a ServiceManager
         /// </summary>
@@ -58,7 +64,6 @@ namespace i5.Toolkit.Core.ServiceCore
             {
                 CreateRunner();
             }
-            Application.quitting += OnApplicationQuitting;
         }
 
         private void CreateRunner()
@@ -217,12 +222,18 @@ namespace i5.Toolkit.Core.ServiceCore
             }
         }
 
-        private void OnApplicationQuitting()
+        // called when the application is quitting
+        private static void OnApplicationQuitting()
         {
             applicationQuitting = true;
-            foreach (KeyValuePair<Type, IService> service in registeredServices)
+            // if there is an instance: clean it up
+            // if there is no instance: do not create a new one since this will leak a runner into the scene
+            if (instance != null)
             {
-                service.Value.Cleanup();
+                foreach (KeyValuePair<Type, IService> service in instance.registeredServices)
+                {
+                    service.Value.Cleanup();
+                }
             }
         }
     }

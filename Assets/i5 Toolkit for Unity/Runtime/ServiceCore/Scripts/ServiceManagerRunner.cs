@@ -7,10 +7,12 @@ namespace i5.Toolkit.Core.ServiceCore
     /// </summary>
     public class ServiceManagerRunner : MonoBehaviour
     {
-        /// <summary>
-        /// The IRunnerReceiver which should receive the MonoBehaviour
-        /// </summary>
+        
+        // The IRunnerReceiver which should receive the MonoBehaviour
         private IRunnerReceiver runnerReceiver;
+
+        // true if the application is quitting
+        private bool applicationQuitting;
 
         /// <summary>
         /// Initializes the runner by assigning the runner receiver
@@ -26,9 +28,17 @@ namespace i5.Toolkit.Core.ServiceCore
             runnerReceiver.Update();
         }
 
+        private void OnApplicationQuit()
+        {
+            applicationQuitting = true;
+        }
+
         private void OnDestroy()
         {
-            runnerReceiver.OnRunnerDestroyed();
+            if (!applicationQuitting)
+            {
+                runnerReceiver.OnRunnerDestroyed();
+            }
         }
     }
 }

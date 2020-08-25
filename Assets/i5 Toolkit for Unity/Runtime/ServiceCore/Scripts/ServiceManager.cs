@@ -18,9 +18,9 @@ namespace i5.Toolkit.Core.ServiceCore
 
         private static ServiceManager instance;
 
-        private bool applicationQuitting = false;
-
         private GameObject runnerObject;
+
+        private static bool applicationQuitting;
 
         /// <summary>
         /// The instance of the service manager
@@ -49,17 +49,30 @@ namespace i5.Toolkit.Core.ServiceCore
             }
         }
 
+        [RuntimeInitializeOnLoadMethod]
+        private static void Initialize()
+        {
+            Application.quitting += OnApplicationQuitting;
+        }
+
         /// <summary>
         /// Creates a new instance of a ServiceManager
         /// </summary>
         public ServiceManager()
         {
-            CreateRunner();
-            Application.quitting += OnApplicationQuitting;
+            if (!applicationQuitting)
+            {
+                CreateRunner();
+            }
         }
 
         private void CreateRunner()
         {
+            if (applicationQuitting)
+            {
+                return;
+            }
+
             // create a new runner object and make it persistent
             runnerObject = ObjectPool<GameObject>.RequestResource(() => { return new GameObject(); });
             runnerObject.name = "Service Manager Runner";
@@ -202,20 +215,26 @@ namespace i5.Toolkit.Core.ServiceCore
         {
             // make sure that the entire object is destroyed
             GameObject.Destroy(runnerObject);
-            // then re-create it if the application is not quitting
+            // then re-create it
             if (!applicationQuitting)
             {
                 CreateRunner();
             }
         }
 
-        private void OnApplicationQuitting()
+        // called when the application is quitting
+        private static void OnApplicationQuitting()
         {
-            foreach (KeyValuePair<Type, IService> service in registeredServices)
-            {
-                service.Value.Cleanup();
-            }
             applicationQuitting = true;
+            // if there is an instance: clean it up
+            // if there is no instance: do not create a new one since this will leak a runner into the scene
+            if (instance != null)
+            {
+                foreach (KeyValuePair<Type, IService> service in instance.registeredServices)
+                {
+                    service.Value.Cleanup();
+                }
+            }
         }
     }
 }

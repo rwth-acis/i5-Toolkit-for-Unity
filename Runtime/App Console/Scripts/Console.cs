@@ -1,30 +1,52 @@
-﻿using System.Collections;
+﻿using i5.Toolkit.Core.ServiceCore;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using i5.Toolkit.Core.AppConsole;
 
-public class Console : MonoBehaviour, IMessageDisplay
+public class Console : MonoBehaviour, INotificationMessageReceiver
 {
-    private IMessageDisplayUI consoleUi;
-    private ILogFormatter consoleFormatter;
+    [SerializeField] private ConsoleUIBase consoleUi;
 
-    private List<string> messages = new List<string>();
+    private INotificationService notificationService;
+    private LogNotificationAdapter logNotificationAdapter;
+    private List<INotificationMessage> notificationMessages = new List<INotificationMessage>();
 
-    private void Awake()
+    private void OnEnable()
     {
-        consoleFormatter = GetComponent<ILogFormatter>();
-        consoleUi = GetComponent<IMessageDisplayUI>();
+        if (!ServiceManager.ServiceExists<INotificationService>())
+        {
+            notificationService = new NotificationService();
+            ServiceManager.RegisterService(notificationService);
+        }
+
+        notificationService.NotificationPosted += OnNotificationPosted;
+        if (logNotificationAdapter == null)
+        {
+            logNotificationAdapter = new LogNotificationAdapter(this);
+        }
+        logNotificationAdapter.IsSubscribed = true;
     }
 
-    private void Start()
+    private void OnDisable()
     {
-        MessageDisplayLogHandler logHandler = new MessageDisplayLogHandler(this, consoleFormatter);
-        Debug.unityLogger.AddLogHandler(logHandler);
+        notificationService.NotificationPosted -= OnNotificationPosted;
+        logNotificationAdapter.IsSubscribed = false;
     }
 
-    public void AddMessage(string message)
+    private void OnNotificationPosted(object sender, INotificationMessage message)
     {
-        messages.Add(message);
-        consoleUi.UpdateUI(messages);
+        AddMessage(message);
+    }
+
+    public void ReceiveNotification(INotificationMessage message)
+    {
+        AddMessage(message);
+    }
+
+    private void AddMessage(INotificationMessage message)
+    {
+        notificationMessages.Add(message);
+        consoleUi.UpdateUI(notificationMessages);
     }
 }

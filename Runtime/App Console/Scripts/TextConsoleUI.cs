@@ -6,18 +6,17 @@ using System.Threading.Tasks;
 using UnityEngine;
 using TMPro;
 
-public class ConsoleUI : MonoBehaviour, IMessageDisplayUI
+public class TextConsoleUI : ConsoleUIBase
 {
     [SerializeField] private TextMeshProUGUI consoleTextDisplay;
-    [SerializeField] private bool autoScroll;
 
-    public void UpdateUI(List<string> messages)
+    public override void UpdateUI(List<INotificationMessage> notificationMessages)
     {
         string text = "";
-        for (int i = 0; i < messages.Count; i++)
+        for (int i = 0; i < notificationMessages.Count; i++)
         {
-            text += messages[i];
-            if (i < messages.Count - 1)
+            text +=  consoleFormatter.Format(notificationMessages[i]);
+            if (i < notificationMessages.Count - 1)
             {
                 text += Environment.NewLine;
             }

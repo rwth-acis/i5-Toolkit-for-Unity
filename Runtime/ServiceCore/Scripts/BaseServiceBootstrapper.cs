@@ -10,6 +10,7 @@ namespace i5.Toolkit.Core.ServiceCore
     /// <summary>
     /// A bootstrapper base class which handles the service initialization
     /// </summary>
+    [DefaultExecutionOrder(-50)]
     public abstract class BaseServiceBootstrapper : MonoBehaviour
     {
         protected virtual void Start()

@@ -2,7 +2,7 @@
 
 This document keeps track of the changes between versions of the toolkit.
 
-## 1.1.0 (Preview)
+## 1.1.0 (2020-08-24)
 
 ### Added
 - Added OpenID Connect client implementation as a login solution for the editor, standalone and UWP.

@@ -24,6 +24,7 @@ public class AutoScroll : MonoBehaviour
     {
         autoScroll = true;
         ApplyAutoscroll();
+        autoScrollButton.gameObject.SetActive(!autoScroll);
     }
 
     public void OnScrollValueChanged(Vector2 value)
@@ -36,6 +37,7 @@ public class AutoScroll : MonoBehaviour
         else
         {
             autoScroll = value.y <= 0;
+            autoScrollButton.gameObject.SetActive(!autoScroll);
         }
     }
 

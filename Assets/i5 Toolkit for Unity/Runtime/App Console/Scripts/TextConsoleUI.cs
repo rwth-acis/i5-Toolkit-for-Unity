@@ -23,5 +23,6 @@ public class TextConsoleUI : ConsoleUIBase
         }
 
         consoleTextDisplay.text = text;
+        base.UpdateUI(notificationMessages);
     }
 }

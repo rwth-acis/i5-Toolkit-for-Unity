@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Console : MonoBehaviour, INotificationMessageReceiver
+public class Console : MonoBehaviour
 {
     [SerializeField] private ConsoleUIBase consoleUi;
 
@@ -23,15 +23,15 @@ public class Console : MonoBehaviour, INotificationMessageReceiver
         notificationService.NotificationPosted += OnNotificationPosted;
         if (logNotificationAdapter == null)
         {
-            logNotificationAdapter = new LogNotificationAdapter(this);
+            logNotificationAdapter = new LogNotificationAdapter();
         }
-        logNotificationAdapter.IsSubscribed = true;
+        Application.logMessageReceived += Application_logMessageReceived;
     }
 
     private void OnDisable()
     {
         notificationService.NotificationPosted -= OnNotificationPosted;
-        logNotificationAdapter.IsSubscribed = false;
+        Application.logMessageReceived -= Application_logMessageReceived;
     }
 
     private void OnNotificationPosted(object sender, INotificationMessage message)
@@ -39,9 +39,9 @@ public class Console : MonoBehaviour, INotificationMessageReceiver
         AddMessage(message);
     }
 
-    public void ReceiveNotification(INotificationMessage message)
+    private void Application_logMessageReceived(string condition, string stackTrace, LogType type)
     {
-        AddMessage(message);
+        AddMessage(logNotificationAdapter.FromLog(condition, stackTrace, type));
     }
 
     private void AddMessage(INotificationMessage message)

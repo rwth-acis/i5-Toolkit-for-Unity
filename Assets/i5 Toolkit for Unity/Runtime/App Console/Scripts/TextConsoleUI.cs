@@ -12,6 +12,8 @@ public class TextConsoleUI : ConsoleUIBase
 
     public override void UpdateUI(List<INotificationMessage> notificationMessages)
     {
+        base.UpdateUI(notificationMessages);
+
         string text = "";
         for (int i = 0; i < notificationMessages.Count; i++)
         {
@@ -23,6 +25,5 @@ public class TextConsoleUI : ConsoleUIBase
         }
 
         consoleTextDisplay.text = text;
-        base.UpdateUI(notificationMessages);
     }
 }

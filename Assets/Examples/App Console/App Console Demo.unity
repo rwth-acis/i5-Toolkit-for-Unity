@@ -275,6 +275,27 @@ MonoBehaviour:
   m_Script: {fileID: 1367256648, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &462794313 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5962829300182247583, guid: e6f9d8ad5c93e564c9c70b96f675d36b,
+    type: 3}
+  m_PrefabInstance: {fileID: 5962829300057163478}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &462794314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 462794313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6350690a46cb0f949bd5b1d37c368e76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scrollRect: {fileID: 427476692}
+  autoScrollButton: {fileID: 757460002}
+  content: {fileID: 1247995149}
 --- !u!224 &462794317 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5962829300182247579, guid: e6f9d8ad5c93e564c9c70b96f675d36b,
@@ -287,7 +308,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 5962829300057163478}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 462794313}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 73acc709cd8948b43846077847153e0c, type: 3}
@@ -330,7 +351,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 30}
+  m_SizeDelta: {x: 0, y: 20}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &757460002
 MonoBehaviour:
@@ -450,6 +471,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57a7d4027a0abd9488eca87b0c83432a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1247995149 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5962829298817573851, guid: e6f9d8ad5c93e564c9c70b96f675d36b,
+    type: 3}
+  m_PrefabInstance: {fileID: 5962829300057163478}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1273154816
 GameObject:
   m_ObjectHideFlags: 0
@@ -532,8 +565,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 20
+  m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -661,6 +694,11 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5962829298817573850, guid: e6f9d8ad5c93e564c9c70b96f675d36b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5962829299778845467, guid: e6f9d8ad5c93e564c9c70b96f675d36b,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -686,6 +724,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5962829299931686350, guid: e6f9d8ad5c93e564c9c70b96f675d36b,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5962829300182247577, guid: e6f9d8ad5c93e564c9c70b96f675d36b,
         type: 3}
       propertyPath: scrollRect
@@ -696,6 +739,11 @@ PrefabInstance:
       propertyPath: autoScrollButton
       value: 
       objectReference: {fileID: 757460002}
+    - target: {fileID: 5962829300182247577, guid: e6f9d8ad5c93e564c9c70b96f675d36b,
+        type: 3}
+      propertyPath: autoScroll
+      value: 
+      objectReference: {fileID: 462794314}
     - target: {fileID: 5962829300182247579, guid: e6f9d8ad5c93e564c9c70b96f675d36b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -836,15 +884,20 @@ PrefabInstance:
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 5962829300209549314, guid: e6f9d8ad5c93e564c9c70b96f675d36b,
+        type: 3}
+      propertyPath: m_ScrollSensitivity
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 5962829300209549319, guid: e6f9d8ad5c93e564c9c70b96f675d36b,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 15
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5962829300209549319, guid: e6f9d8ad5c93e564c9c70b96f675d36b,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: -30
+      value: -20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e6f9d8ad5c93e564c9c70b96f675d36b, type: 3}

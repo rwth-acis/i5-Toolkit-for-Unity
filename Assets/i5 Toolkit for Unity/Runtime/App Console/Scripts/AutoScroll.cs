@@ -11,6 +11,7 @@ public class AutoScroll : MonoBehaviour
     [SerializeField] protected TextMeshProUGUI content;
 
     private bool autoScroll;
+    private bool updatePending;
 
     public bool ExpectContentChange { get; set; }
 
@@ -18,6 +19,15 @@ public class AutoScroll : MonoBehaviour
     {
         autoScrollButton.onClick.AddListener(OnAutoScrollButtonClicked);
         scrollRect.onValueChanged.AddListener(OnScrollValueChanged);
+    }
+
+    private void Update()
+    {
+        if (autoScroll && updatePending)
+        {
+            scrollRect.verticalNormalizedPosition = 0;
+            updatePending = false;
+        }
     }
 
     public void OnAutoScrollButtonClicked()
@@ -46,8 +56,7 @@ public class AutoScroll : MonoBehaviour
     {
         if (autoScroll)
         {
-            content.ForceMeshUpdate();
-            scrollRect.verticalNormalizedPosition = 0;
+            updatePending = true;
         }
     }
 }

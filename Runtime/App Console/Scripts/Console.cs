@@ -7,10 +7,14 @@ using UnityEngine;
 public class Console : MonoBehaviour
 {
     [SerializeField] private ConsoleUIBase consoleUi;
+    [Tooltip("If set to true, the console will capture logs even if the gameobject is deactivated.")]
+    [SerializeField] private bool captureInBackground = true;
 
     private INotificationService notificationService;
     private LogNotificationAdapter logNotificationAdapter;
     private List<INotificationMessage> notificationMessages = new List<INotificationMessage>();
+
+    private bool isCapturing;
 
     private void OnEnable()
     {
@@ -20,18 +24,30 @@ public class Console : MonoBehaviour
             ServiceManager.RegisterService(notificationService);
         }
 
-        notificationService.NotificationPosted += OnNotificationPosted;
         if (logNotificationAdapter == null)
         {
             logNotificationAdapter = new LogNotificationAdapter();
         }
-        Application.logMessageReceived += Application_logMessageReceived;
+        if (!isCapturing)
+        {
+            notificationService.NotificationPosted += OnNotificationPosted;
+            Application.logMessageReceived += Application_logMessageReceived;
+            isCapturing = true;
+        }
+        else
+        {
+            consoleUi.UpdateUI(notificationMessages);
+        }
     }
 
     private void OnDisable()
     {
-        notificationService.NotificationPosted -= OnNotificationPosted;
-        Application.logMessageReceived -= Application_logMessageReceived;
+        if (!captureInBackground)
+        {
+            notificationService.NotificationPosted -= OnNotificationPosted;
+            Application.logMessageReceived -= Application_logMessageReceived;
+            isCapturing = false;
+        }
     }
 
     private void OnNotificationPosted(object sender, INotificationMessage message)

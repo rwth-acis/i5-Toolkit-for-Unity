@@ -1,11 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using i5.Toolkit.Core.TestUtilities;
+﻿using i5.Toolkit.Core.Editor.TestHelpers;
 using i5.Toolkit.Core.Utilities;
 using NUnit.Framework;
-using UnityEditor.SceneManagement;
 using UnityEngine;
-using UnityEngine.TestTools;
 
 namespace i5.Toolkit.Core.Tests.Utilities
 {

@@ -1,5 +1,6 @@
 ﻿using i5.Toolkit.Core.Editor.TestHelpers;
 using i5.Toolkit.Core.ProceduralGeometry;
+using i5.Toolkit.Core.TestHelpers;
 using i5.Toolkit.Core.TestUtilities;
 using NUnit.Framework;
 using System.Collections;

@@ -1,12 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Text.RegularExpressions;
-using FakeItEasy;
+﻿using FakeItEasy;
 using i5.Toolkit.Core.ServiceCore;
-using i5.Toolkit.Core.TestUtilities;
+using i5.Toolkit.Core.TestHelpers;
 using NUnit.Framework;
+using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
 
 namespace i5.Toolkit.Core.Tests.ServiceCore

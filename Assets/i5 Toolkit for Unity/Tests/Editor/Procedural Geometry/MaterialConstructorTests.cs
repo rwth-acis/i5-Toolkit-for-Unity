@@ -1,7 +1,7 @@
 ﻿using FakeItEasy;
 using i5.Toolkit.Core.Editor.TestHelpers;
 using i5.Toolkit.Core.ProceduralGeometry;
-using i5.Toolkit.Core.TestUtilities;
+using i5.Toolkit.Core.TestHelpers;
 using NUnit.Framework;
 using System.Collections;
 using System.Text.RegularExpressions;

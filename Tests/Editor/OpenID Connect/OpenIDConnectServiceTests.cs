@@ -1,12 +1,10 @@
-﻿using System.Collections;
+﻿using FakeItEasy;
+using i5.Toolkit.Core.Editor.TestHelpers;
+using i5.Toolkit.Core.OpenIDConnectClient;
+using NUnit.Framework;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using FakeItEasy;
-using i5.Toolkit.Core.OpenIDConnectClient;
-using i5.Toolkit.Core.ServiceCore;
-using i5.Toolkit.Core.TestUtilities;
-using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
 

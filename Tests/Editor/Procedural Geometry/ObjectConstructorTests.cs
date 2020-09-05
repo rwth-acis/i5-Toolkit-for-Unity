@@ -1,9 +1,7 @@
-﻿using i5.Toolkit.Core.ProceduralGeometry;
-using i5.Toolkit.Core.TestUtilities;
-using i5.Toolkit.Core.Utilities;
+﻿using i5.Toolkit.Core.Editor.TestHelpers;
+using i5.Toolkit.Core.ProceduralGeometry;
 using NUnit.Framework;
 using System.Text.RegularExpressions;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.TestTools;
 

@@ -3,7 +3,7 @@ using NUnit.Framework;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 
-namespace i5.Toolkit.Core.TestUtilities
+namespace i5.Toolkit.Core.Editor.TestHelpers
 {
     public static class EditModeTestUtilities
     {

@@ -1,6 +1,4 @@
-﻿using NUnit.Framework;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -23,7 +21,25 @@ namespace i5.Toolkit.Core.TestHelpers
 
         private static void CheckPlayMode()
         {
-            Assert.IsTrue(Application.isPlaying, "Play Mode Test Utilities can only be used in PlayMode");
+            if (!Application.isPlaying)
+            {
+                throw new InvalidPlatformException("Play Mode Test Utilities can only be used in PlayMode");
+            }
+        }
+    }
+
+    public class InvalidPlatformException : Exception
+    {
+        public InvalidPlatformException()
+        {
+        }
+
+        public InvalidPlatformException(string message) : base(message)
+        {
+        }
+
+        public InvalidPlatformException(string message, Exception inner) : base(message, inner)
+        {
         }
     }
 }

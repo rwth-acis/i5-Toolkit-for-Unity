@@ -4,9 +4,7 @@
         "i5.Toolkit.Core.Editor",
         "i5.Toolkit.Core.Runtime"
     ],
-    "optionalUnityReferences": [
-        "TestAssemblies"
-    ],
+    "optionalUnityReferences": [],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

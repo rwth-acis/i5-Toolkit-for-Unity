@@ -1,9 +1,7 @@
 {
     "name": "i5.Toolkit.Core.TestHelpers",
     "references": [],
-    "optionalUnityReferences": [
-        "TestAssemblies"
-    ],
+    "optionalUnityReferences": [],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

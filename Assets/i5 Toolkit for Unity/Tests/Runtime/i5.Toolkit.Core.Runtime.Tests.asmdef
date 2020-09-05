@@ -4,7 +4,6 @@
         "i5.Toolkit.Core.Editor",
         "i5.Toolkit.Core.Runtime",
         "i5.Toolkit.Core.TestUtilities",
-        "i5.Toolkit.Core.Editor.TestHelpers",
         "i5.Toolkit.Core.TestHelpers"
     ],
     "optionalUnityReferences": [

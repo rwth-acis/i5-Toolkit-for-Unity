@@ -1,12 +1,9 @@
 {
     "name": "i5.Toolkit.Core.Editor.TestHelpers",
     "references": [
-        "i5.Toolkit.Core.Editor",
-        "i5.Toolkit.Core.TestHelpers"
+        "i5.Toolkit.Core.Editor"
     ],
-    "optionalUnityReferences": [
-        "TestAssemblies"
-    ],
+    "optionalUnityReferences": [],
     "includePlatforms": [
         "Editor"
     ],

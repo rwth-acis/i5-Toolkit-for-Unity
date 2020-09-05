@@ -3,6 +3,7 @@ using i5.Toolkit.Core.Editor.TestHelpers;
 using i5.Toolkit.Core.ServiceCore;
 using NUnit.Framework;
 using System;
+using System.Reflection;
 using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.TestTools;
@@ -21,6 +22,23 @@ namespace i5.Toolkit.Core.Tests.ServiceCore
         public void ResetScene()
         {
             EditModeTestUtilities.ResetScene();
+            ResetStatics();
+        }
+
+        /// <summary>
+        /// Resets the static variables in the service manager again
+        /// </summary>
+        public void ResetStatics()
+        {
+            Type type = typeof(ServiceManager);
+
+            // reset instance to null
+            FieldInfo instanceInfo = type.GetField("instance", BindingFlags.NonPublic | BindingFlags.Static);
+            instanceInfo.SetValue(null, null);
+
+            // reset applicationQuitting
+            FieldInfo appQuitInfo = type.GetField("applicationQuitting", BindingFlags.NonPublic | BindingFlags.Static);
+            appQuitInfo.SetValue(null, false);
         }
 
         /// <summary>

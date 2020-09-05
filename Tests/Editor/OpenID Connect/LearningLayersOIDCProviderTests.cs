@@ -1,6 +1,6 @@
 ﻿using FakeItEasy;
 using i5.Toolkit.Core.OpenIDConnectClient;
-using i5.Toolkit.Core.TestUtilities;
+using i5.Toolkit.Core.TestHelpers;
 using i5.Toolkit.Core.Utilities;
 using NUnit.Framework;
 using System.Collections;

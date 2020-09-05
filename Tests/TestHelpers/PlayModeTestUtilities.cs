@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace i5.Toolkit.Core.TestUtilities
+namespace i5.Toolkit.Core.TestHelpers
 {
     public static class PlayModeTestUtilities
     {

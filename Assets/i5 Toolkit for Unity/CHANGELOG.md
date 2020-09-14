@@ -4,6 +4,9 @@ This document keeps track of the changes between versions of the toolkit.
 
 ## 1.2.0 (Unreleased)
 
+### Added
+- Json utilitiy to serialize and deserialize arrays at root level
+
 ### Changed
 - Refactored unit test helpers into own assemblies so that they can be accessed separately
 

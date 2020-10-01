@@ -5,7 +5,9 @@
   "description": "This package contains a collection of tools, features and assets for the development of Unity projects",
   "unity": "2018.4",
   "unityRelease": "15f1",
-  "dependencies": {},
+  "dependencies": {
+    "com.unity.textmeshpro": "1.5.1"
+  },
   "keywords": [
     "Unity",
     "Toolkit",

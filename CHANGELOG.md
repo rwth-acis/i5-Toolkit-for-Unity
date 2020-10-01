@@ -2,7 +2,10 @@
 
 This document keeps track of the changes between versions of the toolkit.
 
-## 1.2.0 (Unreleased)
+## 1.2.0 (Preview)
+
+### Added
+- In-application console which can show log outputs in deployed applications
 
 ### Changed
 - Refactored unit test helpers into own assemblies so that they can be accessed separately

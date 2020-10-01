@@ -1,15 +1,18 @@
 {
     "name": "i5.Toolkit.Core.Editor.TestHelpers",
     "references": [
-        "i5.Toolkit.Core.Editor"
+        "i5.Toolkit.Core.Editor",
+        ""
     ],
-    "optionalUnityReferences": [],
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ],
     "includePlatforms": [
         "Editor"
     ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
-    "overrideReferences": false,
+    "overrideReferences": true,
     "precompiledReferences": [],
     "autoReferenced": true,
     "defineConstraints": []

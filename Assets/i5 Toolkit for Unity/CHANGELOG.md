@@ -2,7 +2,10 @@
 
 This document keeps track of the changes between versions of the toolkit.
 
-## 1.2.0 (Unreleased)
+## 1.2.0 (Preview)
+
+### Added
+- In-application console which can show log outputs in deployed applications
 
 ### Added
 - Json utilitiy to serialize and deserialize arrays at root level

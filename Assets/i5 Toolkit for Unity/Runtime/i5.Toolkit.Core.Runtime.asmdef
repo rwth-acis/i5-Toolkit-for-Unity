@@ -1,6 +1,8 @@
 {
     "name": "i5.Toolkit.Core.Runtime",
-    "references": [],
+    "references": [
+        "Unity.TextMeshPro"
+    ],
     "optionalUnityReferences": [],
     "includePlatforms": [],
     "excludePlatforms": [],

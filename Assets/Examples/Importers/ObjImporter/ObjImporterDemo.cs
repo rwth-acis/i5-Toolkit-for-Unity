@@ -29,8 +29,6 @@ namespace i5.Toolkit.Core.Examples.ObjImporterExample
                 }
                 else
                 {
-                    //Replace the default UnityWRequestLoader content loader with the FileSystemLoader content loader that can handle local files
-                    ServiceManager.GetService<ObjImporter>().ContentLoader = new FileSystemLoader();
                     GameObject obj = await ServiceManager.GetService<ObjImporter>().ImportFromFileAsync(url);
                 }
             }

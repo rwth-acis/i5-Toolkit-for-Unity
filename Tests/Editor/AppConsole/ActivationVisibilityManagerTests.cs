@@ -8,16 +8,25 @@ using UnityEngine.TestTools;
 
 namespace i5.Toolkit.Core.Tests.AppConsole
 {
+    /// <summary>
+    /// Tests for the ActivationVisibilityManager
+    /// </summary>
     public class ActivationVisibilityManagerTests
     {
+        /// <summary>
+        /// Resets the scene for each test
+        /// </summary>
         [SetUp]
         public void SetUp()
         {
             EditModeTestUtilities.ResetScene();
         }
 
+        /// <summary>
+        /// Checks that setting the visibility to true activates the GameObject
+        /// </summary>
         [Test]
-        public void Visibility_SetTrue_ActivatesGameObject()
+        public void IsVisible_SetTrue_ActivatesGameObject()
         {
             GameObject go = new GameObject();
             ActivationVisibilityManager visibilityManager = go.AddComponent<ActivationVisibilityManager>();
@@ -28,8 +37,11 @@ namespace i5.Toolkit.Core.Tests.AppConsole
             Assert.IsTrue(go.activeSelf);
         }
 
+        /// <summary>
+        /// Checks that setting the visibility to false deactivates the GameObject
+        /// </summary>
         [Test]
-        public void Visibility_SetFalse_DeactivatesGameObject()
+        public void IsVisible_SetFalse_DeactivatesGameObject()
         {
             GameObject go = new GameObject();
             ActivationVisibilityManager visibilityManager = go.AddComponent<ActivationVisibilityManager>();
@@ -40,8 +52,11 @@ namespace i5.Toolkit.Core.Tests.AppConsole
             Assert.IsFalse(go.activeSelf);
         }
 
+        /// <summary>
+        /// Checks that IsVisible returns the active self state of the GameObject
+        /// </summary>
         [Test]
-        public void Visibility_Get_ReturnsActiveSelf()
+        public void IsVisible_Get_ReturnsActiveSelf()
         {
             GameObject go = new GameObject();
             ActivationVisibilityManager visibilityManager = go.AddComponent<ActivationVisibilityManager>();
@@ -52,8 +67,11 @@ namespace i5.Toolkit.Core.Tests.AppConsole
             Assert.IsTrue(visibilityManager.IsVisible);
         }
 
+        /// <summary>
+        /// Checks that IsVisible returns the active self state of the GameObject, even if the parent GameObject is deactivated
+        /// </summary>
         [Test]
-        public void Visibility_GetParentDeactivated_ReturnsActiveSelf()
+        public void IsVisible_GetParentDeactivated_ReturnsActiveSelf()
         {
             GameObject go = new GameObject();
             ActivationVisibilityManager visibilityManager = go.AddComponent<ActivationVisibilityManager>();

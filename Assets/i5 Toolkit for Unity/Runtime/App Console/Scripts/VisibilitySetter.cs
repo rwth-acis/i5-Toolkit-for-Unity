@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace i5.Toolkit.Core.SceneConsole
+namespace i5.Toolkit.Core.AppConsole
 {
 
     public class VisibilitySetter : MonoBehaviour

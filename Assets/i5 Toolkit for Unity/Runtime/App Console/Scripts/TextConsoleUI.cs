@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-namespace i5.Toolkit.Core.SceneConsole
+namespace i5.Toolkit.Core.AppConsole
 {
     public class TextConsoleUI : ConsoleUIBase
     {

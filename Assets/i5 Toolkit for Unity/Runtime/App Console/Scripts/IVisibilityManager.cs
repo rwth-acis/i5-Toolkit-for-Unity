@@ -1,4 +1,4 @@
-﻿namespace i5.Toolkit.Core.SceneConsole
+﻿namespace i5.Toolkit.Core.AppConsole
 {
     public interface IVisibilityManager
     {

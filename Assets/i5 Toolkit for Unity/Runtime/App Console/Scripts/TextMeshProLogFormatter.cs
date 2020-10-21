@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace i5.Toolkit.Core.SceneConsole
+namespace i5.Toolkit.Core.AppConsole
 {
     [CreateAssetMenu(fileName = "TMPLogFormatter", menuName = "i5 Toolkit/Console Formatters/TextMeshPro Log Formatter")]
     public class TextMeshProLogFormatter : LogFormatter

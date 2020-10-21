@@ -1,4 +1,4 @@
-﻿namespace i5.Toolkit.Core.SceneConsole
+﻿namespace i5.Toolkit.Core.AppConsole
 {
     /// <summary>
     /// Visibility manager which changes the visibility by activating/deactivating the gameobject

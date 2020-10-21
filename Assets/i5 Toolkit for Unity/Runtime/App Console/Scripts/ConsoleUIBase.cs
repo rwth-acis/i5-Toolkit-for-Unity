@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace i5.Toolkit.Core.SceneConsole
+namespace i5.Toolkit.Core.AppConsole
 {
     public abstract class ConsoleUIBase : MonoBehaviour
     {

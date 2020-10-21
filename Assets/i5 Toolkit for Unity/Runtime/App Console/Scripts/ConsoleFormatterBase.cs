@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace i5.Toolkit.Core.SceneConsole
+namespace i5.Toolkit.Core.AppConsole
 {
     /// <summary>
     /// A console formatter which can format messages in a specific way

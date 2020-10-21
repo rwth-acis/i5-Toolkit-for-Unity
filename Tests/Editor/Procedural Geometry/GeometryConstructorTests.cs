@@ -1,5 +1,5 @@
-﻿using i5.Toolkit.Core.ProceduralGeometry;
-using i5.Toolkit.Core.TestUtilities;
+﻿using i5.Toolkit.Core.Editor.TestHelpers;
+using i5.Toolkit.Core.ProceduralGeometry;
 using NUnit.Framework;
 using System;
 using UnityEngine;

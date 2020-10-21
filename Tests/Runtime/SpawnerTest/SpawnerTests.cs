@@ -1,5 +1,6 @@
 ﻿#if UNITY_EDITOR
 using i5.Toolkit.Core.Spawners;
+using i5.Toolkit.Core.TestHelpers;
 using i5.Toolkit.Core.TestUtilities;
 using i5.Toolkit.Core.Utilities;
 using NUnit.Framework;

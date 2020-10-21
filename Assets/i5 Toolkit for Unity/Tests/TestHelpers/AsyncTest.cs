@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace i5.Toolkit.Core.TestUtilities
+namespace i5.Toolkit.Core.TestHelpers
 {
     /// <summary>
     /// Utilities for asynchronous tests

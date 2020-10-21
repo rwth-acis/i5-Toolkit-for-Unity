@@ -28,7 +28,7 @@ The tool is available as a package for the Unity Package Manager. It can be incl
 2. Navigate to the Packages folder and open the file manifest.json. It contains a list of package dependencies which are loaded into the project.
 3. To add a specific version of the tool to the dependencies, add the following line inside of the "dependencies" object and replace [version] with the release number, e.g. "v1.0.0".
    To receive the latest version, replace [version] with upm.
-   `"com.i5.versiontool": "https://github.com/rwth-acis/Unity-VersionTool.git#[version]"`
+   `"com.i5.toolkit.core": "https://github.com/rwth-acis/i5-Toolkit-for-Unity.git#[version]",`
    After that, Unity will automatically download and import the package.
 
 If you specify "upm" to get the latest version, be aware that the package is not automatically updated.

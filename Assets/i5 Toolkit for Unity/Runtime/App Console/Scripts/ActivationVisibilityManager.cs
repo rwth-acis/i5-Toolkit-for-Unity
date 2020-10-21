@@ -1,17 +1,23 @@
-﻿using UnityEngine;
-
-public class ActivationVisibilityManager : VisibilityManager
+﻿namespace i5.Toolkit.Core.SceneConsole
 {
-    public override bool IsVisible
+    /// <summary>
+    /// Visibility manager which changes the visibility by activating/deactivating the gameobject
+    /// </summary>
+    public class ActivationVisibilityManager : VisibilityManager
     {
-        get
+        /// <summary>
+        /// Gets or sets the current visibility of the gameobject
+        /// </summary>
+        public override bool IsVisible
         {
-            return gameObject.activeSelf;
-        }
-        set
-        {
-            gameObject.SetActive(value);
+            get
+            {
+                return gameObject.activeSelf;
+            }
+            set
+            {
+                gameObject.SetActive(value);
+            }
         }
     }
 }
-

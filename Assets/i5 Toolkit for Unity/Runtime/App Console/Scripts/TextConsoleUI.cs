@@ -1,29 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 
-public class TextConsoleUI : ConsoleUIBase
+namespace i5.Toolkit.Core.SceneConsole
 {
-    [SerializeField] private TextMeshProUGUI consoleTextDisplay;
-
-    public override void UpdateUI(List<INotificationMessage> notificationMessages)
+    public class TextConsoleUI : ConsoleUIBase
     {
-        base.UpdateUI(notificationMessages);
+        [SerializeField] private TextMeshProUGUI consoleTextDisplay;
 
-        string text = "";
-        for (int i = 0; i < notificationMessages.Count; i++)
+        public override void UpdateUI(List<INotificationMessage> notificationMessages)
         {
-            text +=  consoleFormatter.Format(notificationMessages[i]);
-            if (i < notificationMessages.Count - 1)
-            {
-                text += Environment.NewLine;
-            }
-        }
+            base.UpdateUI(notificationMessages);
 
-        consoleTextDisplay.text = text;
+            string text = "";
+            for (int i = 0; i < notificationMessages.Count; i++)
+            {
+                text += consoleFormatter.Format(notificationMessages[i]);
+                if (i < notificationMessages.Count - 1)
+                {
+                    text += Environment.NewLine;
+                }
+            }
+
+            consoleTextDisplay.text = text;
+        }
     }
 }

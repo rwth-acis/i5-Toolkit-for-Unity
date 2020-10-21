@@ -4,10 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-public class DefaultConsoleFormatter : ConsoleFormatterBase
+namespace i5.Toolkit.Core.SceneConsole
 {
-    public override string Format(INotificationMessage message)
+    public class DefaultConsoleFormatter : ConsoleFormatterBase
     {
-        return message.Content;
+        public override string Format(INotificationMessage message)
+        {
+            return message.Content;
+        }
     }
 }

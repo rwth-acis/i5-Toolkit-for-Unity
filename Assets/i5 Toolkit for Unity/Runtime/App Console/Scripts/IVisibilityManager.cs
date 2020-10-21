@@ -1,8 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public interface IVisibilityManager
+﻿namespace i5.Toolkit.Core.SceneConsole
 {
-    bool IsVisible { get; set; }
+    public interface IVisibilityManager
+    {
+        bool IsVisible { get; set; }
+    }
 }

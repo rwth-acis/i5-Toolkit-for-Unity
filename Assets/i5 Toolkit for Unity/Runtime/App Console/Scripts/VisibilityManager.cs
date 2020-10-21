@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
+﻿using UnityEngine;
 
-public abstract class VisibilityManager : MonoBehaviour, IVisibilityManager
+namespace i5.Toolkit.Core.SceneConsole
 {
-    public abstract bool IsVisible { get; set; }
-}
 
+    public abstract class VisibilityManager : MonoBehaviour, IVisibilityManager
+    {
+        public abstract bool IsVisible { get; set; }
+    }
+}

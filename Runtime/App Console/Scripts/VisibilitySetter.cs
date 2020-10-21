@@ -1,18 +1,20 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class VisibilitySetter : MonoBehaviour
+namespace i5.Toolkit.Core.SceneConsole
 {
-    public KeyCode activationKey = KeyCode.F5;
 
-    public VisibilityManager consoleVisibilityManager;
-
-    private void Update()
+    public class VisibilitySetter : MonoBehaviour
     {
-        if (Input.GetKeyDown(activationKey))
+        public KeyCode activationKey = KeyCode.F5;
+
+        public VisibilityManager consoleVisibilityManager;
+
+        private void Update()
         {
-            consoleVisibilityManager.IsVisible = !consoleVisibilityManager.IsVisible;
+            if (Input.GetKeyDown(activationKey))
+            {
+                consoleVisibilityManager.IsVisible = !consoleVisibilityManager.IsVisible;
+            }
         }
     }
 }

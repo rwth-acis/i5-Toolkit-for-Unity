@@ -1,24 +1,25 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public abstract class ConsoleUIBase : MonoBehaviour
+namespace i5.Toolkit.Core.SceneConsole
 {
-    [SerializeField] protected ConsoleFormatterBase consoleFormatter;
-    [SerializeField] protected AutoScroll autoScroll;
-
-    protected virtual void Awake()
+    public abstract class ConsoleUIBase : MonoBehaviour
     {
-        if (consoleFormatter == null)
+        [SerializeField] protected ConsoleFormatterBase consoleFormatter;
+        [SerializeField] protected AutoScroll autoScroll;
+
+        protected virtual void Awake()
         {
-            consoleFormatter = new DefaultConsoleFormatter();
+            if (consoleFormatter == null)
+            {
+                consoleFormatter = new DefaultConsoleFormatter();
+            }
+        }
+
+        public virtual void UpdateUI(List<INotificationMessage> notificationMessages)
+        {
+            autoScroll.ExpectContentChange = true;
         }
     }
 
-    public virtual void UpdateUI(List<INotificationMessage> notificationMessages)
-    {
-        autoScroll.ExpectContentChange = true;
-    }
 }
-

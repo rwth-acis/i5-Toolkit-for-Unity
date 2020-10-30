@@ -2,7 +2,7 @@
 
 namespace i5.Toolkit.Core.AppConsole
 {
-    public abstract class LogFormatter : ConsoleFormatterBase
+    public abstract class LogColorFormatter : ConsoleFormatterBase
     {
         [SerializeField] protected Color logColor = Color.white;
         [SerializeField] protected Color warningColor = Color.yellow;

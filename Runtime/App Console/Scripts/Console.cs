@@ -15,7 +15,6 @@ namespace i5.Toolkit.Core.AppConsole
         [SerializeField] private bool captureInBackground = true;
 
         private INotificationService notificationService;
-        private LogNotificationAdapter logNotificationAdapter;
         private List<INotificationMessage> notificationMessages = new List<INotificationMessage>();
 
         private bool isCapturing;
@@ -28,10 +27,6 @@ namespace i5.Toolkit.Core.AppConsole
                 ServiceManager.RegisterService(notificationService);
             }
 
-            if (logNotificationAdapter == null)
-            {
-                logNotificationAdapter = new LogNotificationAdapter();
-            }
             if (!isCapturing)
             {
                 notificationService.NotificationPosted += OnNotificationPosted;
@@ -63,7 +58,7 @@ namespace i5.Toolkit.Core.AppConsole
         // called if a log message was received
         private void Application_logMessageReceived(string condition, string stackTrace, LogType type)
         {
-            AddMessage(logNotificationAdapter.FromLog(condition, stackTrace, type));
+            AddMessage(new LogMessage(condition, stackTrace, type));
         }
 
         // adds a message to the console

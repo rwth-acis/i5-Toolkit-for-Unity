@@ -16,7 +16,16 @@ namespace i5.Toolkit.Core.AppConsole
             string text = "";
             for (int i = 0; i < notificationMessages.Count; i++)
             {
-                text += consoleFormatter.Format(notificationMessages[i]);
+                ILogMessage logMessage = notificationMessages[i] as ILogMessage;
+                if (logMessage != null)
+                {
+                    text += consoleFormatter.Format(logMessage);
+                }
+                else
+                {
+                    text += notificationMessages[i].Content;
+                }
+
                 if (i < notificationMessages.Count - 1)
                 {
                     text += Environment.NewLine;

@@ -2,7 +2,7 @@
 
 namespace i5.Toolkit.Core.AppConsole
 {
-    public class TMPLogColorFormatterLogic : ILogColorFormatterLogic
+    public class TMPLogColorFormatter : ILogColorFormatter
     {
         public Color LogColor { get; set; } = Color.white;
 

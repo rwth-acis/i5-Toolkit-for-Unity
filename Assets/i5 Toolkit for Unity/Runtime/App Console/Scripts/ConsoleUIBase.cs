@@ -5,14 +5,16 @@ namespace i5.Toolkit.Core.AppConsole
 {
     public abstract class ConsoleUIBase : MonoBehaviour
     {
-        [SerializeField] protected ConsoleFormatterBase consoleFormatter;
+        [SerializeField] protected LogFormatterConfiguration logFormatterConfiguration;
         [SerializeField] protected AutoScroll autoScroll;
+
+        protected ILogFormatter logFormatter;
 
         protected virtual void Awake()
         {
-            if (consoleFormatter == null)
+            if (logFormatterConfiguration == null)
             {
-                consoleFormatter = new DefaultConsoleFormatter();
+                logFormatter = new DefaultConsoleFormatter();
             }
         }
 

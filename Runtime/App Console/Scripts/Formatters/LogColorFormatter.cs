@@ -9,5 +9,7 @@ namespace i5.Toolkit.Core.AppConsole
         [SerializeField] protected Color errorColor = Color.red;
         [SerializeField] protected Color exceptionColor = Color.red;
         [SerializeField] protected Color assertColor = Color.red;
+
+        protected new ILogColorFormatterLogic logFormatterLogic;
     }
 }

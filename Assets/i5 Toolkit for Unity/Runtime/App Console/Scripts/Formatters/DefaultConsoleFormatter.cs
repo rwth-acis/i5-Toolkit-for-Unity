@@ -10,7 +10,11 @@ namespace i5.Toolkit.Core.AppConsole
     {
         public override string Format(ILogMessage message)
         {
-            return message.Content;
+            if (logFormatterLogic == null)
+            {
+                logFormatterLogic = new DefaultConsoleFormatterLogic();
+            }
+            return base.Format(message);
         }
     }
 }

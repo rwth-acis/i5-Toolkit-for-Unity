@@ -5,13 +5,11 @@ namespace i5.Toolkit.Core.AppConsole
     [CreateAssetMenu(fileName = "TMPLogFormatter", menuName = "i5 Toolkit/Console Formatters/TextMeshPro Log Formatter")]
     public class TextMeshProLogColorFormatter : LogColorFormatter
     {
-        private TMPLogColorFormatterLogic tmpLogColorFormatter;
-
         public override string Format(ILogMessage message)
         {
-            if (tmpLogColorFormatter == null)
+            if (logFormatterLogic == null)
             {
-                tmpLogColorFormatter = new TMPLogColorFormatterLogic()
+                logFormatterLogic = new TMPLogColorFormatterLogic()
                 {
                     LogColor = logColor,
                     WarningColor = warningColor,
@@ -22,7 +20,7 @@ namespace i5.Toolkit.Core.AppConsole
                 };
             }
 
-            return tmpLogColorFormatter.Format(message);
+            return logFormatterLogic.Format(message);
         }
     }
 }

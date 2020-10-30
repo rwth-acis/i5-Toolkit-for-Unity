@@ -12,6 +12,6 @@ namespace i5.Toolkit.Core.AppConsole
         /// </summary>
         /// <param name="message">The message to format</param>
         /// <returns>The formatted message string</returns>
-        public abstract string Format(INotificationMessage message);
+        public abstract string Format(ILogMessage message);
     }
 }

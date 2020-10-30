@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98643120c0a1f254fbf997ee30b2d411, type: 3}
+  m_Script: {fileID: 11500000, guid: 725ea86ccec985e42a7e6ed6ce3e0fa6, type: 3}
   m_Name: TMPLogFormatter
   m_EditorClassIdentifier: 
-  logColor: {r: 0.28924885, g: 0.6952712, b: 0.9433962, a: 1}
-  warningColor: {r: 1, g: 0.950763, b: 0.3820755, a: 1}
-  errorColor: {r: 1, g: 0.4481132, b: 0.4481132, a: 1}
-  exceptionColor: {r: 1, g: 0.3443396, b: 0.8251574, a: 1}
-  assertColor: {r: 1, g: 0.6005734, b: 0.28773582, a: 1}
+  logColor: {r: 1, g: 1, b: 1, a: 1}
+  warningColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  errorColor: {r: 1, g: 0, b: 0, a: 1}
+  exceptionColor: {r: 0.8679245, g: 0.045033824, b: 0.5668429, a: 1}
+  assertColor: {r: 0.86666673, g: 0.043137256, b: 0.5686275, a: 1}

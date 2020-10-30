@@ -429,6 +429,11 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5962829298817573850, guid: e6f9d8ad5c93e564c9c70b96f675d36b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.000030517578
+      objectReference: {fileID: 0}
     - target: {fileID: 5962829299778845467, guid: e6f9d8ad5c93e564c9c70b96f675d36b,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -568,6 +573,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Console
+      objectReference: {fileID: 0}
+    - target: {fileID: 5962829300329645164, guid: e6f9d8ad5c93e564c9c70b96f675d36b,
+        type: 3}
+      propertyPath: m_Value
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e6f9d8ad5c93e564c9c70b96f675d36b, type: 3}

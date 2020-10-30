@@ -8,7 +8,7 @@ namespace i5.Toolkit.Core.AppConsole
 {
     public class DefaultConsoleFormatter : ConsoleFormatterBase
     {
-        public override string Format(INotificationMessage message)
+        public override string Format(ILogMessage message)
         {
             return message.Content;
         }

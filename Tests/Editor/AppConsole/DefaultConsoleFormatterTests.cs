@@ -5,7 +5,7 @@ using NUnit.Framework;
 
 namespace i5.Toolkit.Core.Tests.AppConsole
 {
-    public class DefaultConsoleFormatterLogicTests
+    public class DefaultLogFormatterTests
     {
         [SetUp]
         public void SetUp()
@@ -17,7 +17,7 @@ namespace i5.Toolkit.Core.Tests.AppConsole
         public void Format_OutputIsLogContent()
         {
             const string expectedContent = "my test content";
-            DefaultConsoleFormatterLogic formatterLogic = new DefaultConsoleFormatterLogic();
+            DefaultConsoleFormatter formatterLogic = new DefaultConsoleFormatter();
 
             ILogMessage logMessage = A.Fake<ILogMessage>();
             A.CallTo(() => logMessage.Content).Returns(expectedContent);

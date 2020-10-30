@@ -9,7 +9,7 @@ using UnityEngine.TestTools;
 
 namespace i5.Toolkit.Core.Tests.AppConsole
 {
-    public class TMPLogColorFormatterLogicTests
+    public class TMPLogColorFormatterTests
     {
         [SetUp]
         public void SetUp()
@@ -21,7 +21,7 @@ namespace i5.Toolkit.Core.Tests.AppConsole
         public void Format_Log_OutputUsesLogColor()
         {
             Color expectedColor = Color.green;
-            TMPLogColorFormatterLogic formatter = new TMPLogColorFormatterLogic()
+            TMPLogColorFormatter formatter = new TMPLogColorFormatter()
             {
                 LogColor = expectedColor,
                 ErrorColor = Color.red,
@@ -41,7 +41,7 @@ namespace i5.Toolkit.Core.Tests.AppConsole
         public void Format_ErrorLog_OutputUsesErrorColor()
         {
             Color expectedColor = Color.green;
-            TMPLogColorFormatterLogic formatter = new TMPLogColorFormatterLogic()
+            TMPLogColorFormatter formatter = new TMPLogColorFormatter()
             {
                 LogColor = Color.red,
                 ErrorColor = expectedColor,
@@ -61,7 +61,7 @@ namespace i5.Toolkit.Core.Tests.AppConsole
         public void Format_AssertLog_OutputUsesAssertColor()
         {
             Color expectedColor = Color.green;
-            TMPLogColorFormatterLogic formatter = new TMPLogColorFormatterLogic()
+            TMPLogColorFormatter formatter = new TMPLogColorFormatter()
             {
                 LogColor = Color.red,
                 ErrorColor = Color.red,
@@ -81,7 +81,7 @@ namespace i5.Toolkit.Core.Tests.AppConsole
         public void Format_ExceptionLog_OutputUsesExceptionColor()
         {
             Color expectedColor = Color.green;
-            TMPLogColorFormatterLogic formatter = new TMPLogColorFormatterLogic()
+            TMPLogColorFormatter formatter = new TMPLogColorFormatter()
             {
                 LogColor = Color.red,
                 ErrorColor = Color.red,
@@ -101,7 +101,7 @@ namespace i5.Toolkit.Core.Tests.AppConsole
         public void Format_WarningLog_OutputUsesWarningColor()
         {
             Color expectedColor = Color.green;
-            TMPLogColorFormatterLogic formatter = new TMPLogColorFormatterLogic()
+            TMPLogColorFormatter formatter = new TMPLogColorFormatter()
             {
                 LogColor = Color.red,
                 ErrorColor = Color.red,
@@ -121,7 +121,7 @@ namespace i5.Toolkit.Core.Tests.AppConsole
         public void Format_OutputContainsContent()
         {
             Color expectedColor = Color.green;
-            TMPLogColorFormatterLogic formatter = new TMPLogColorFormatterLogic()
+            TMPLogColorFormatter formatter = new TMPLogColorFormatter()
             {
                 LogColor = Color.red,
                 ErrorColor = Color.red,
@@ -142,7 +142,7 @@ namespace i5.Toolkit.Core.Tests.AppConsole
         public void Format_OutputContainsStackTrace()
         {
             Color expectedColor = Color.green;
-            TMPLogColorFormatterLogic formatter = new TMPLogColorFormatterLogic()
+            TMPLogColorFormatter formatter = new TMPLogColorFormatter()
             {
                 LogColor = Color.red,
                 ErrorColor = Color.red,

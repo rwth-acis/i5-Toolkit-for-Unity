@@ -2,7 +2,7 @@
 
 namespace i5.Toolkit.Core.AppConsole
 {
-    public interface ILogColorFormatterLogic : ILogFormatterLogic
+    public interface ILogColorFormatter : ILogFormatter
     {
         Color LogColor { get; set; }
         Color WarningColor { get; set; }

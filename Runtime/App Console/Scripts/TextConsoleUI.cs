@@ -19,7 +19,7 @@ namespace i5.Toolkit.Core.AppConsole
                 ILogMessage logMessage = notificationMessages[i] as ILogMessage;
                 if (logMessage != null)
                 {
-                    text += consoleFormatter.Format(logMessage);
+                    text += logFormatter.Format(logMessage);
                 }
                 else
                 {

@@ -1,6 +1,6 @@
 ﻿namespace i5.Toolkit.Core.AppConsole
 {
-    public interface ILogFormatterLogic
+    public interface ILogFormatter
     {
         string Format(ILogMessage logMessage);
     }

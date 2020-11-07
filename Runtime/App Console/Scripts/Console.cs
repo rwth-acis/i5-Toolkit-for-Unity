@@ -1,4 +1,5 @@
 ﻿using i5.Toolkit.Core.ServiceCore;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,16 +8,14 @@ namespace i5.Toolkit.Core.AppConsole
     /// <summary>
     /// Handles the console logic
     /// </summary>
-    public class Console
+    public class Console : IConsole
     {
         //private INotificationService notificationService;
         public List<ILogMessage> Messages { get; protected set; }
 
         private bool isCapturing;
 
-        public delegate void MessageAddedDelegate();
-
-        public event MessageAddedDelegate OnMessageAdded;
+        public event Action OnMessageAdded;
 
         public Console()
         {

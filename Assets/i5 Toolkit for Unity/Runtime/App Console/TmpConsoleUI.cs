@@ -1,13 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
 using TMPro;
-using UnityEngine;
 
 namespace i5.Toolkit.Core.AppConsole
 {
-    public class TmpConsoleUI : ConsoleUIBase
+    public class TmpConsoleUI : ConsoleUI
     {
-        [SerializeField] private TextMeshProUGUI consoleTextDisplay;
+        private TextMeshProUGUI consoleTextDisplay;
+
+        public TmpConsoleUI(TextMeshProUGUI consoleTextDisplay, LogFormatterConfiguration logFormatterConfiguration = null) : base(logFormatterConfiguration)
+        {
+            this.consoleTextDisplay = consoleTextDisplay;
+        }
 
         protected override void UpdateUI()
         {

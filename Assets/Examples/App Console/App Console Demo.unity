@@ -336,7 +336,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activationKey: 286
-  consoleVisibilityManager: {fileID: 0}
+  consoleVisibilityManager: {fileID: 5962829300057163479}
 --- !u!4 &1084197930
 Transform:
   m_ObjectHideFlags: 0
@@ -424,20 +424,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2104817469673592784, guid: e6f9d8ad5c93e564c9c70b96f675d36b,
-        type: 3}
-      propertyPath: captureInBackground
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5962829298817573850, guid: e6f9d8ad5c93e564c9c70b96f675d36b,
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5962829298817573850, guid: e6f9d8ad5c93e564c9c70b96f675d36b,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -0.000030517578
       objectReference: {fileID: 0}
     - target: {fileID: 5962829299778845467, guid: e6f9d8ad5c93e564c9c70b96f675d36b,
         type: 3}
@@ -462,11 +452,6 @@ PrefabInstance:
     - target: {fileID: 5962829299931686350, guid: e6f9d8ad5c93e564c9c70b96f675d36b,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5962829299931686350, guid: e6f9d8ad5c93e564c9c70b96f675d36b,
-        type: 3}
-      propertyPath: m_AnchorMin.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5962829300182247579, guid: e6f9d8ad5c93e564c9c70b96f675d36b,
@@ -579,10 +564,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Console
       objectReference: {fileID: 0}
-    - target: {fileID: 5962829300329645164, guid: e6f9d8ad5c93e564c9c70b96f675d36b,
-        type: 3}
-      propertyPath: m_Value
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e6f9d8ad5c93e564c9c70b96f675d36b, type: 3}
+--- !u!114 &5962829300057163479 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7158871810545089296, guid: e6f9d8ad5c93e564c9c70b96f675d36b,
+    type: 3}
+  m_PrefabInstance: {fileID: 5962829300057163478}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 731ca5ca2488cf342a6ffa9003830b4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

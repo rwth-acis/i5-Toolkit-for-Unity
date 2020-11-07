@@ -14,9 +14,9 @@ namespace i5.Toolkit.Core.AppConsole
 
         private bool isCapturing;
 
-        public delegate void ConsoleContentChangedDelegate();
+        public delegate void MessageAddedDelegate();
 
-        public event ConsoleContentChangedDelegate OnConsoleContentChanged;
+        public event MessageAddedDelegate OnMessageAdded;
 
         public Console()
         {
@@ -68,7 +68,7 @@ namespace i5.Toolkit.Core.AppConsole
         protected void AddMessage(ILogMessage message)
         {
             Messages.Add(message);
-            OnConsoleContentChanged?.Invoke();
+            OnMessageAdded?.Invoke();
         }
     }
 }

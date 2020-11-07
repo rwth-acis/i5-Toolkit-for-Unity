@@ -6,7 +6,6 @@ namespace i5.Toolkit.Core.AppConsole
     public abstract class ConsoleUIBase : MonoBehaviour
     {
         [SerializeField] protected LogFormatterConfiguration logFormatterConfiguration;
-        [SerializeField] protected AutoScroll autoScroll;
         [SerializeField] protected bool captureInBackground;
 
         protected ILogFormatter logFormatter;
@@ -29,7 +28,7 @@ namespace i5.Toolkit.Core.AppConsole
         protected virtual void OnEnable()
         {
             console.IsCapturing = true;
-            console.OnConsoleContentChanged += Console_OnConsoleContentChanged;
+            console.OnMessageAdded += Console_OnMessageAdded;
             UpdateUI();
         }
 
@@ -39,18 +38,15 @@ namespace i5.Toolkit.Core.AppConsole
             {
                 console.IsCapturing = false;
             }
-            console.OnConsoleContentChanged -= Console_OnConsoleContentChanged;
+            console.OnMessageAdded -= Console_OnMessageAdded;
         }
 
-        private void Console_OnConsoleContentChanged()
+        private void Console_OnMessageAdded()
         {
             UpdateUI();
         }
 
-        protected virtual void UpdateUI()
-        {
-            autoScroll.ExpectContentChange = true;
-        }
+        protected abstract void UpdateUI();
     }
 
 }

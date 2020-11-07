@@ -10,7 +10,7 @@ namespace i5.Toolkit.Core.AppConsole
 
         protected ILogFormatter logFormatter;
 
-        protected Console console;
+        protected IConsole console;
 
         protected virtual void Awake()
         {

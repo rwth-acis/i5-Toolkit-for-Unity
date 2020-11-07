@@ -1,13 +1,14 @@
-﻿using System;
+﻿using i5.Toolkit.Core.Utilities.UnityAdapters;
+using System;
 using TMPro;
 
 namespace i5.Toolkit.Core.AppConsole
 {
-    public class TmpConsoleUI : ConsoleUI
+    public class TextConsoleUI : ConsoleUI
     {
-        private TextMeshProUGUI consoleTextDisplay;
+        private ITextAdapter consoleTextDisplay;
 
-        public TmpConsoleUI(TextMeshProUGUI consoleTextDisplay, LogFormatterConfiguration logFormatterConfiguration = null) : base(logFormatterConfiguration)
+        public TextConsoleUI(ITextAdapter consoleTextDisplay, LogFormatterConfiguration logFormatterConfiguration = null) : base(logFormatterConfiguration)
         {
             this.consoleTextDisplay = consoleTextDisplay;
         }
@@ -33,7 +34,7 @@ namespace i5.Toolkit.Core.AppConsole
                 }
             }
 
-            consoleTextDisplay.text = text;
+            consoleTextDisplay.Text = text;
         }
     }
 }

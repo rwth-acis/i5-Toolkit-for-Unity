@@ -11,8 +11,6 @@ namespace i5.Toolkit.Core.AppConsole
 
         protected override void UpdateUI()
         {
-            base.UpdateUI();
-
             string text = "";
             for (int i = 0; i < console.Messages.Count; i++)
             {

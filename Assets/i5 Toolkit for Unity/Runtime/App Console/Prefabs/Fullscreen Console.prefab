@@ -602,10 +602,9 @@ GameObject:
   - component: {fileID: 5962829300182247578}
   - component: {fileID: 5962829300182247581}
   - component: {fileID: 5962829300182247580}
-  - component: {fileID: 5962829300182247558}
-  - component: {fileID: 5962829300182247577}
   - component: {fileID: 462794314}
   - component: {fileID: 7158871810545089296}
+  - component: {fileID: 2104817469673592784}
   m_Layer: 5
   m_Name: Fullscreen Console
   m_TagString: Untagged
@@ -694,35 +693,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &5962829300182247558
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5962829300182247583}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e55138aa8579aca47a1ed8fcc93e53f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  consoleUi: {fileID: 5962829300182247577}
-  captureInBackground: 1
---- !u!114 &5962829300182247577
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5962829300182247583}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73acc709cd8948b43846077847153e0c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  consoleFormatter: {fileID: 11400000, guid: 2ef34ec37559fec4e8247af93ad1a202, type: 2}
-  autoScroll: {fileID: 462794314}
-  consoleTextDisplay: {fileID: 5962829298817573851}
 --- !u!114 &462794314
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -750,6 +720,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 731ca5ca2488cf342a6ffa9003830b4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2104817469673592784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5962829300182247583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73acc709cd8948b43846077847153e0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  logFormatterConfiguration: {fileID: 11400000, guid: 2ef34ec37559fec4e8247af93ad1a202,
+    type: 2}
+  autoScroll: {fileID: 462794314}
+  captureInBackground: 0
+  consoleTextDisplay: {fileID: 5962829298817573851}
 --- !u!1 &5962829300209549318
 GameObject:
   m_ObjectHideFlags: 0

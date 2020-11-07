@@ -7,8 +7,11 @@ namespace i5.Toolkit.Core.AppConsole
     {
         [SerializeField] protected LogFormatterConfiguration logFormatterConfiguration;
         [SerializeField] protected AutoScroll autoScroll;
+        [SerializeField] protected bool captureInBackground;
 
         protected ILogFormatter logFormatter;
+
+        protected Console console;
 
         protected virtual void Awake()
         {
@@ -16,9 +19,35 @@ namespace i5.Toolkit.Core.AppConsole
             {
                 logFormatter = new DefaultConsoleFormatter();
             }
+            else
+            {
+                logFormatter = logFormatterConfiguration.GenerateFormatter();
+            }
+            console = new Console();
         }
 
-        public virtual void UpdateUI(List<INotificationMessage> notificationMessages)
+        protected virtual void OnEnable()
+        {
+            console.IsCapturing = true;
+            console.OnConsoleContentChanged += Console_OnConsoleContentChanged;
+            UpdateUI();
+        }
+
+        protected virtual void OnDisable()
+        {
+            if (!captureInBackground)
+            {
+                console.IsCapturing = false;
+            }
+            console.OnConsoleContentChanged -= Console_OnConsoleContentChanged;
+        }
+
+        private void Console_OnConsoleContentChanged()
+        {
+            UpdateUI();
+        }
+
+        protected virtual void UpdateUI()
         {
             autoScroll.ExpectContentChange = true;
         }

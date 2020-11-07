@@ -5,28 +5,28 @@ using UnityEngine;
 
 namespace i5.Toolkit.Core.AppConsole
 {
-    public class TextConsoleUI : ConsoleUIBase
+    public class TmpConsoleUI : ConsoleUIBase
     {
         [SerializeField] private TextMeshProUGUI consoleTextDisplay;
 
-        public override void UpdateUI(List<INotificationMessage> notificationMessages)
+        protected override void UpdateUI()
         {
-            base.UpdateUI(notificationMessages);
+            base.UpdateUI();
 
             string text = "";
-            for (int i = 0; i < notificationMessages.Count; i++)
+            for (int i = 0; i < console.Messages.Count; i++)
             {
-                ILogMessage logMessage = notificationMessages[i] as ILogMessage;
+                ILogMessage logMessage = console.Messages[i];
                 if (logMessage != null)
                 {
                     text += logFormatter.Format(logMessage);
                 }
                 else
                 {
-                    text += notificationMessages[i].Content;
+                    text += console.Messages[i].Content;
                 }
 
-                if (i < notificationMessages.Count - 1)
+                if (i < console.Messages.Count - 1)
                 {
                     text += Environment.NewLine;
                 }

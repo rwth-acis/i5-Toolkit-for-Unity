@@ -1,18 +1,14 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
-
-namespace i5.Toolkit.Core.AppConsole
+﻿namespace i5.Toolkit.Core.AppConsole
 {
-    public abstract class ConsoleUIBase : MonoBehaviour
+    public abstract class ConsoleUI
     {
-        [SerializeField] protected LogFormatterConfiguration logFormatterConfiguration;
-        [SerializeField] protected bool captureInBackground;
+        public bool CaptureInBackground { get; set; }
 
         protected ILogFormatter logFormatter;
 
         protected IConsole console;
 
-        protected virtual void Awake()
+        public ConsoleUI(LogFormatterConfiguration logFormatterConfiguration = null)
         {
             if (logFormatterConfiguration == null)
             {
@@ -25,16 +21,16 @@ namespace i5.Toolkit.Core.AppConsole
             console = new Console();
         }
 
-        protected virtual void OnEnable()
+        public void OnEnable()
         {
             console.IsCapturing = true;
             console.OnMessageAdded += Console_OnMessageAdded;
             UpdateUI();
         }
 
-        protected virtual void OnDisable()
+        public void OnDisable()
         {
-            if (!captureInBackground)
+            if (!CaptureInBackground)
             {
                 console.IsCapturing = false;
             }
@@ -48,5 +44,4 @@ namespace i5.Toolkit.Core.AppConsole
 
         protected abstract void UpdateUI();
     }
-
 }

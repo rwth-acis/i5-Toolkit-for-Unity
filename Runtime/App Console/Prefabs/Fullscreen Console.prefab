@@ -318,7 +318,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.000041484833}
+  m_AnchoredPosition: {x: 0, y: -0.000030517578}
   m_SizeDelta: {x: -50, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &5962829298817573848
@@ -602,9 +602,8 @@ GameObject:
   - component: {fileID: 5962829300182247578}
   - component: {fileID: 5962829300182247581}
   - component: {fileID: 5962829300182247580}
-  - component: {fileID: 462794314}
   - component: {fileID: 7158871810545089296}
-  - component: {fileID: 2104817469673592784}
+  - component: {fileID: 1561853707}
   m_Layer: 5
   m_Name: Fullscreen Console
   m_TagString: Untagged
@@ -693,21 +692,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &462794314
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5962829300182247583}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6350690a46cb0f949bd5b1d37c368e76, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scrollRect: {fileID: 5962829300209549314}
-  autoScrollButton: {fileID: 757460002}
-  content: {fileID: 5962829298817573851}
 --- !u!114 &7158871810545089296
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -720,7 +704,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 731ca5ca2488cf342a6ffa9003830b4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2104817469673592784
+--- !u!114 &1561853707
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -732,11 +716,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73acc709cd8948b43846077847153e0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  captureInBackground: 1
+  consoleTextDisplay: {fileID: 5962829298817573851}
   logFormatterConfiguration: {fileID: 11400000, guid: 2ef34ec37559fec4e8247af93ad1a202,
     type: 2}
-  autoScroll: {fileID: 462794314}
-  captureInBackground: 0
-  consoleTextDisplay: {fileID: 5962829298817573851}
 --- !u!1 &5962829300209549318
 GameObject:
   m_ObjectHideFlags: 0
@@ -774,8 +757,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 10}
+  m_SizeDelta: {x: 0, y: -20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &5962829300209549314
 MonoBehaviour:

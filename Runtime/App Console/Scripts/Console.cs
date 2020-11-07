@@ -7,52 +7,55 @@ namespace i5.Toolkit.Core.AppConsole
     /// <summary>
     /// Handles the console logic
     /// </summary>
-    public class Console : MonoBehaviour
+    public class Console
     {
-        [Tooltip("The console UI for displaying the collected data")]
-        [SerializeField] private ConsoleUIBase consoleUi;
-        [Tooltip("If set to true, the console will capture logs even if the gameobject is deactivated.")]
-        [SerializeField] private bool captureInBackground = true;
-
-        private INotificationService notificationService;
-        private List<INotificationMessage> notificationMessages = new List<INotificationMessage>();
+        //private INotificationService notificationService;
+        public List<ILogMessage> Messages { get; protected set; }
 
         private bool isCapturing;
 
-        private void OnEnable()
-        {
-            if (!ServiceManager.ServiceExists<INotificationService>())
-            {
-                notificationService = new NotificationService();
-                ServiceManager.RegisterService(notificationService);
-            }
+        public delegate void ConsoleContentChangedDelegate();
 
-            if (!isCapturing)
+        public event ConsoleContentChangedDelegate OnConsoleContentChanged;
+
+        public Console()
+        {
+            Messages = new List<ILogMessage>();
+        }
+
+        public bool IsCapturing
+        {
+            get => isCapturing;
+            set
             {
-                notificationService.NotificationPosted += OnNotificationPosted;
-                Application.logMessageReceived += Application_logMessageReceived;
-                isCapturing = true;
-            }
-            else
-            {
-                consoleUi.UpdateUI(notificationMessages);
+                bool changeSubscription = false;
+                if (isCapturing != value)
+                {
+                    changeSubscription = true;
+                }
+                isCapturing = value;
+                if (changeSubscription)
+                {
+                    if (value)
+                    {
+                        Subscribe();
+                    }
+                    else
+                    {
+                        Unsubscribe();
+                    }
+                }
             }
         }
 
-        private void OnDisable()
+        protected virtual void Subscribe()
         {
-            if (!captureInBackground)
-            {
-                notificationService.NotificationPosted -= OnNotificationPosted;
-                Application.logMessageReceived -= Application_logMessageReceived;
-                isCapturing = false;
-            }
+            Application.logMessageReceived += Application_logMessageReceived;
         }
 
-        // called if a notification was posted
-        private void OnNotificationPosted(object sender, INotificationMessage message)
+        protected virtual void Unsubscribe()
         {
-            AddMessage(message);
+            Application.logMessageReceived -= Application_logMessageReceived;
         }
 
         // called if a log message was received
@@ -62,10 +65,10 @@ namespace i5.Toolkit.Core.AppConsole
         }
 
         // adds a message to the console
-        private void AddMessage(INotificationMessage message)
+        protected void AddMessage(ILogMessage message)
         {
-            notificationMessages.Add(message);
-            consoleUi.UpdateUI(notificationMessages);
+            Messages.Add(message);
+            OnConsoleContentChanged?.Invoke();
         }
     }
 }

@@ -16,19 +16,19 @@ namespace i5.Toolkit.Core.AppConsole
         protected override void UpdateUI()
         {
             string text = "";
-            for (int i = 0; i < console.Messages.Count; i++)
+            for (int i = 0; i < Console.Messages.Count; i++)
             {
-                ILogMessage logMessage = console.Messages[i];
+                ILogMessage logMessage = Console.Messages[i];
                 if (logMessage != null)
                 {
                     text += logFormatter.Format(logMessage);
                 }
                 else
                 {
-                    text += console.Messages[i].Content;
+                    text += Console.Messages[i].Content;
                 }
 
-                if (i < console.Messages.Count - 1)
+                if (i < Console.Messages.Count - 1)
                 {
                     text += Environment.NewLine;
                 }

@@ -113,7 +113,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 757460003}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7604969434345090253}
+        m_MethodName: ActivateScroller
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1273154816
 GameObject:
   m_ObjectHideFlags: 0
@@ -604,6 +615,7 @@ GameObject:
   - component: {fileID: 5962829300182247580}
   - component: {fileID: 7158871810545089296}
   - component: {fileID: 1561853707}
+  - component: {fileID: 7604969434345090253}
   m_Layer: 5
   m_Name: Fullscreen Console
   m_TagString: Untagged
@@ -720,6 +732,21 @@ MonoBehaviour:
   consoleTextDisplay: {fileID: 5962829298817573851}
   logFormatterConfiguration: {fileID: 11400000, guid: 2ef34ec37559fec4e8247af93ad1a202,
     type: 2}
+--- !u!114 &7604969434345090253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5962829300182247583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ded7871c12325964583ed70cb30ed429, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scrollRect: {fileID: 5962829300209549314}
+  content: {fileID: 5962829298817573850}
+  scrollButton: {fileID: 757460002}
 --- !u!1 &5962829300209549318
 GameObject:
   m_ObjectHideFlags: 0
@@ -789,7 +816,18 @@ MonoBehaviour:
   m_VerticalScrollbarSpacing: -3
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7604969434345090253}
+        m_MethodName: OnScrollValueChanged
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!222 &5962829300209549317
 CanvasRenderer:
   m_ObjectHideFlags: 0

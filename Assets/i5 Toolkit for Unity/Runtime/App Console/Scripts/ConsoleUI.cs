@@ -6,7 +6,7 @@
 
         protected ILogFormatter logFormatter;
 
-        protected IConsole console;
+        public IConsole Console { get; set; }
 
         public ConsoleUI(LogFormatterConfiguration logFormatterConfiguration = null)
         {
@@ -18,13 +18,13 @@
             {
                 logFormatter = logFormatterConfiguration.GenerateFormatter();
             }
-            console = new Console();
+            Console = new Console();
         }
 
         public void OnEnable()
         {
-            console.IsCapturing = true;
-            console.OnMessageAdded += Console_OnMessageAdded;
+            Console.IsCapturing = true;
+            Console.OnMessageAdded += Console_OnMessageAdded;
             UpdateUI();
         }
 
@@ -32,9 +32,9 @@
         {
             if (!CaptureInBackground)
             {
-                console.IsCapturing = false;
+                Console.IsCapturing = false;
             }
-            console.OnMessageAdded -= Console_OnMessageAdded;
+            Console.OnMessageAdded -= Console_OnMessageAdded;
         }
 
         private void Console_OnMessageAdded()

@@ -1,23 +1,29 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using FakeItEasy;
+﻿using FakeItEasy;
 using i5.Toolkit.Core.AppConsole;
 using i5.Toolkit.Core.Editor.TestHelpers;
 using i5.Toolkit.Core.Utilities.UnityAdapters;
 using NUnit.Framework;
 using UnityEngine;
-using UnityEngine.TestTools;
 
 namespace i5.Toolkit.Core.Tests.AppConsole
 {
+    /// <summary>
+    /// Tests for the AutoScroller component
+    /// </summary>
     public class AutoScrollerTests
     {
+        /// <summary>
+        /// Resets the scene
+        /// </summary>
         [SetUp]
         public void SetUp()
         {
             EditModeTestUtilities.ResetScene();
         }
 
+        /// <summary>
+        /// Checks if the interaction element which starts the scroller is deactiaved if the scroller if active
+        /// </summary>
         [Test]
         public void ScrollerActive_SetTrue_DeactivatesElementToStartScroller()
         {
@@ -31,6 +37,9 @@ namespace i5.Toolkit.Core.Tests.AppConsole
             Assert.False(elementToStartScroller.ActiveSelf);
         }
 
+        /// <summary>
+        /// Checks if the scroller scrolls to be bottom if it is activated
+        /// </summary>
         [Test]
         public void ScrollerActive_SetTrue_ScrollsToBottom()
         {
@@ -46,6 +55,9 @@ namespace i5.Toolkit.Core.Tests.AppConsole
             Assert.AreEqual(0, scrollView.NormalizedPosition.y);
         }
 
+        /// <summary>
+        /// Checks if the interaction element which starts the scroller is activated if the scroller is not active
+        /// </summary>
         [Test]
         public void ScrollerActive_SetFalse_ActivatesElementToStartScroller()
         {
@@ -59,6 +71,9 @@ namespace i5.Toolkit.Core.Tests.AppConsole
             Assert.True(elementToStartScroller.ActiveSelf);
         }
 
+        /// <summary>
+        /// Checks if the scroller scrolls to the bottom when OnEnable is called
+        /// </summary>
         [Test]
         public void OnEnable_ScrollerActive_ScrollsToBottom()
         {
@@ -76,8 +91,11 @@ namespace i5.Toolkit.Core.Tests.AppConsole
             Assert.AreEqual(0, scrollView.NormalizedPosition.y);
         }
 
+        /// <summary>
+        /// Checks that the scroller is deactivated if the user scrolls the scrollview
+        /// </summary>
         [Test]
-        public void NotifyOnScrollValueChanged_UserScrolled_DeactivatesScroller()
+        public void NotifyScrollValueChanged_UserScrolled_DeactivatesScroller()
         {
             AutoScroller autoScroller = CreateAutoScroller(
                 out IScrollView scrollView,
@@ -87,13 +105,16 @@ namespace i5.Toolkit.Core.Tests.AppConsole
             autoScroller.ScrollerActive = true;
 
             // no changes to content size => manual scrolling
-            autoScroller.NotifyOnScrollValueChanged();
+            autoScroller.NotifyScrollValueChanged();
 
             Assert.False(autoScroller.ScrollerActive);
         }
 
+        /// <summary>
+        /// Checks that the scroller stays active if the scroll value changes because of a content update
+        /// </summary>
         [Test]
-        public void NotifyOnScrollValueChanged_ContentSizeChanged_KeepsScrollerActive()
+        public void NotifyScrollValueChanged_ContentSizeChanged_KeepsScrollerActive()
         {
             AutoScroller autoScroller = CreateAutoScroller(
                 out IScrollView scrollView,
@@ -105,13 +126,16 @@ namespace i5.Toolkit.Core.Tests.AppConsole
             content.Size = Vector2.one;
 
             // changes to content size => no manual scrolling
-            autoScroller.NotifyOnScrollValueChanged();
+            autoScroller.NotifyScrollValueChanged();
 
             Assert.True(autoScroller.ScrollerActive);
         }
 
+        /// <summary>
+        /// Checks that the scroller scrolls to the bottom if the content size was changed and the scroller is active
+        /// </summary>
         [Test]
-        public void NotifyOnScrollValueChanged_ContentSizeChanged_ScrollToBottom()
+        public void NotifyScrollValueChanged_ContentSizeChanged_ScrollToBottom()
         {
             AutoScroller autoScroller = CreateAutoScroller(
                 out IScrollView scrollView,
@@ -124,13 +148,16 @@ namespace i5.Toolkit.Core.Tests.AppConsole
             scrollView.NormalizedPosition = Vector2.one;
 
             // changes to content size => no manual scrolling
-            autoScroller.NotifyOnScrollValueChanged();
+            autoScroller.NotifyScrollValueChanged();
 
             Assert.AreEqual(0, scrollView.NormalizedPosition.y);
         }
 
+        /// <summary>
+        /// Checks that the scroller stays deactivated if the scroll value changes and the scroller is inactive
+        /// </summary>
         [Test]
-        public void NotifyOnScrollValueChanged_ScrollerInactive_StaysDeactivated()
+        public void NotifyScrollValueChanged_ScrollerInactive_StaysDeactivated()
         {
             AutoScroller autoScroller = CreateAutoScroller(
                 out IScrollView scrollView,
@@ -139,13 +166,16 @@ namespace i5.Toolkit.Core.Tests.AppConsole
 
             autoScroller.ScrollerActive = false;
 
-            autoScroller.NotifyOnScrollValueChanged();
+            autoScroller.NotifyScrollValueChanged();
 
             Assert.False(autoScroller.ScrollerActive);
         }
 
+        /// <summary>
+        /// Checks that the scroller does not scroll to bottom if it is deactivated and scroll value changes because of an content size change
+        /// </summary>
         [Test]
-        public void NotifyOnScrollValueChanged_ScrollerInactiveContentSizeChanged_NoScrollToBottom()
+        public void NotifyScrollValueChanged_ScrollerInactiveContentSizeChanged_NoScrollToBottom()
         {
             AutoScroller autoScroller = CreateAutoScroller(
                 out IScrollView scrollView,
@@ -157,11 +187,12 @@ namespace i5.Toolkit.Core.Tests.AppConsole
             content.Size = Vector2.one;
             scrollView.NormalizedPosition = Vector2.one;
 
-            autoScroller.NotifyOnScrollValueChanged();
+            autoScroller.NotifyScrollValueChanged();
 
             Assert.AreEqual(1, scrollView.NormalizedPosition.y);
         }
 
+        // creates an auto scroller object for the tests
         private AutoScroller CreateAutoScroller(out IScrollView scrollView, out IRectangle content, out IActivateable elementToStartScroller)
         {
             scrollView = A.Fake<IScrollView>();

@@ -1,10 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using i5.Toolkit.Core.AppConsole;
+﻿using i5.Toolkit.Core.AppConsole;
 using i5.Toolkit.Core.Editor.TestHelpers;
 using NUnit.Framework;
 using UnityEngine;
-using UnityEngine.TestTools;
 
 namespace i5.Toolkit.Core.Tests.AppConsole
 {

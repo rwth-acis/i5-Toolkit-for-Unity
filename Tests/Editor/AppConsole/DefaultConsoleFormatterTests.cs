@@ -5,14 +5,23 @@ using NUnit.Framework;
 
 namespace i5.Toolkit.Core.Tests.AppConsole
 {
+    /// <summary>
+    /// Tests for the default log formatter
+    /// </summary>
     public class DefaultLogFormatterTests
     {
+        /// <summary>
+        /// Resets the test scene
+        /// </summary>
         [SetUp]
         public void SetUp()
         {
             EditModeTestUtilities.ResetScene();
         }
 
+        /// <summary>
+        /// Checks that the log message's content is output as text
+        /// </summary>
         [Test]
         public void Format_OutputIsLogContent()
         {

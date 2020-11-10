@@ -24,6 +24,7 @@ namespace i5.Toolkit.Core.AppConsole
                 elementToStartScroller.ActiveSelf = !scrollerActive;
                 if (scrollerActive)
                 {
+                    lastContentHeight = content.Size.y;
                     ScrollToBottom();
                 }
             }
@@ -41,7 +42,10 @@ namespace i5.Toolkit.Core.AppConsole
 
         public void OnEnable()
         {
-            ScrollToBottom();
+            if (scrollerActive)
+            {
+                ScrollToBottom();
+            }
         }
 
         public void NotifyOnScrollValueChanged()

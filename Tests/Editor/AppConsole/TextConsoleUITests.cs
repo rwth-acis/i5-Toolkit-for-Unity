@@ -21,7 +21,7 @@ namespace i5.Toolkit.Core.Tests.AppConsole
         [Test]
         public void OnEnable_ConsoleCaptureTrue()
         {
-            TextConsoleUI textConsoleUI = SetupTextConsoleUI(out ITextAdapter textAdapter, out IConsole console);
+            TextConsoleUI textConsoleUI = SetupTextConsoleUI(out ITextDisplay textAdapter, out IConsole console);
 
             textConsoleUI.OnEnable();
 
@@ -31,7 +31,7 @@ namespace i5.Toolkit.Core.Tests.AppConsole
         [Test]
         public void OnDisable_CaptureInBackground_ConsoleCaptureTrue()
         {
-            TextConsoleUI textConsoleUI = SetupTextConsoleUI(out ITextAdapter textAdapter, out IConsole console);
+            TextConsoleUI textConsoleUI = SetupTextConsoleUI(out ITextDisplay textAdapter, out IConsole console);
             textConsoleUI.CaptureInBackground = true;
 
             textConsoleUI.OnEnable();
@@ -42,7 +42,7 @@ namespace i5.Toolkit.Core.Tests.AppConsole
         [Test]
         public void OnDisable_NoCaptureInBackground_ConsoleCaptureFalse()
         {
-            TextConsoleUI textConsoleUI = SetupTextConsoleUI(out ITextAdapter textAdapter, out IConsole console);
+            TextConsoleUI textConsoleUI = SetupTextConsoleUI(out ITextDisplay textAdapter, out IConsole console);
             textConsoleUI.CaptureInBackground = false;
 
             textConsoleUI.OnEnable();
@@ -53,7 +53,7 @@ namespace i5.Toolkit.Core.Tests.AppConsole
         [Test]
         public void UpdateUI_NoMessages_WritesEmptyString()
         {
-            TextConsoleUI textConsoleUI = SetupTextConsoleUI(out ITextAdapter textAdapter, out IConsole console);
+            TextConsoleUI textConsoleUI = SetupTextConsoleUI(out ITextDisplay textAdapter, out IConsole console);
 
             textConsoleUI.OnEnable();
             textConsoleUI.GetType()
@@ -68,7 +68,7 @@ namespace i5.Toolkit.Core.Tests.AppConsole
         {
             const string message = "Hello World";
 
-            TextConsoleUI textConsoleUI = SetupTextConsoleUI(out ITextAdapter textAdapter, out IConsole console);
+            TextConsoleUI textConsoleUI = SetupTextConsoleUI(out ITextDisplay textAdapter, out IConsole console);
             ILogMessage logMessage = A.Fake<ILogMessage>();
             A.CallTo(() => logMessage.Content).Returns(message);
             console.Messages.Add(logMessage);
@@ -81,9 +81,9 @@ namespace i5.Toolkit.Core.Tests.AppConsole
             Assert.AreEqual(message, textAdapter.Text);
         }
 
-        private TextConsoleUI SetupTextConsoleUI(out ITextAdapter textAdapter, out IConsole console)
+        private TextConsoleUI SetupTextConsoleUI(out ITextDisplay textAdapter, out IConsole console)
         {
-            textAdapter = A.Fake<ITextAdapter>();
+            textAdapter = A.Fake<ITextDisplay>();
             TextConsoleUI textConsoleUI = new TextConsoleUI(textAdapter);
             console = A.Fake<Console>();
 

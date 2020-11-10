@@ -114,8 +114,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7604969434345090253}
-        m_MethodName: ActivateScroller
+      - m_Target: {fileID: 62439664711170070}
+        m_MethodName: OnAutoScrollButtonPressed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -329,7 +329,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.000030517578}
+  m_AnchoredPosition: {x: 0, y: 0.000022023916}
   m_SizeDelta: {x: -50, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &5962829298817573848
@@ -615,7 +615,7 @@ GameObject:
   - component: {fileID: 5962829300182247580}
   - component: {fileID: 7158871810545089296}
   - component: {fileID: 1561853707}
-  - component: {fileID: 7604969434345090253}
+  - component: {fileID: 62439664711170070}
   m_Layer: 5
   m_Name: Fullscreen Console
   m_TagString: Untagged
@@ -732,7 +732,7 @@ MonoBehaviour:
   consoleTextDisplay: {fileID: 5962829298817573851}
   logFormatterConfiguration: {fileID: 11400000, guid: 2ef34ec37559fec4e8247af93ad1a202,
     type: 2}
---- !u!114 &7604969434345090253
+--- !u!114 &62439664711170070
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -741,7 +741,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5962829300182247583}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ded7871c12325964583ed70cb30ed429, type: 3}
+  m_Script: {fileID: 11500000, guid: 30b53cf9ba55e1442aecdd1143c68f20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   scrollRect: {fileID: 5962829300209549314}
@@ -817,7 +817,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7604969434345090253}
+      - m_Target: {fileID: 62439664711170070}
         m_MethodName: OnScrollValueChanged
         m_Mode: 1
         m_Arguments:

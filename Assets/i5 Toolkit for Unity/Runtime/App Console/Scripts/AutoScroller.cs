@@ -1,67 +1,72 @@
-﻿using System.Collections;
+﻿using i5.Toolkit.Core.Utilities.UnityAdapters;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class AutoScroller : MonoBehaviour
+namespace i5.Toolkit.Core.AppConsole
 {
-    [SerializeField] private ScrollRect scrollRect;
-    [SerializeField] private RectTransform content;
-    [SerializeField] private Button scrollButton;
-
-    private float lastContentHeight;
-    private bool scrollerActive;
-
-    public bool ScrollerActive
+    public class AutoScroller
     {
-        get => scrollerActive;
-        set
+        private IScrollView scrollView;
+        private IRectangle content;
+        private IActivateable elementToStartScroller;
+
+        private float lastContentHeight;
+        private bool scrollerActive;
+
+        public bool ScrollerActive
         {
-            scrollerActive = value;
-            scrollButton.gameObject.SetActive(!scrollerActive);
-        }
-    }
-
-
-    private void Start()
-    {
-        lastContentHeight = content.sizeDelta.y;
-        ScrollerActive = false;
-    }
-
-    private void OnEnable()
-    {
-        ScrollToBottom();
-    }
-
-    public void OnScrollValueChanged()
-    {
-        if (ScrollerActive)
-        {
-            bool scrolledManually = content.sizeDelta.y == lastContentHeight;
-            if (scrolledManually)
+            get => scrollerActive;
+            set
             {
-                ScrollerActive = false;
-            }
-            else
-            {
-                lastContentHeight = content.sizeDelta.y;
-                ScrollToBottom();
+                scrollerActive = value;
+                elementToStartScroller.ActiveSelf = !scrollerActive;
+                if (scrollerActive)
+                {
+                    ScrollToBottom();
+                }
             }
         }
-    }
 
-    public void ActivateScroller()
-    {
-        ScrollerActive = true;
-        ScrollToBottom();
-    }
-
-    private void ScrollToBottom()
-    {
-        if (ScrollerActive)
+        public AutoScroller(IScrollView scrollView, IRectangle content, IActivateable elementToStartScroller)
         {
-            scrollRect.verticalNormalizedPosition = 0f;
+            this.scrollView = scrollView;
+            this.content = content;
+            this.elementToStartScroller = elementToStartScroller;
+
+            lastContentHeight = content.Size.y;
+            ScrollerActive = false;
+        }
+
+        public void OnEnable()
+        {
+            ScrollToBottom();
+        }
+
+        public void NotifyOnScrollValueChanged()
+        {
+            if (ScrollerActive)
+            {
+                bool scrolledManually = content.Size.y == lastContentHeight;
+                if (scrolledManually)
+                {
+                    ScrollerActive = false;
+                }
+                else
+                {
+                    lastContentHeight = content.Size.y;
+                    ScrollToBottom();
+                }
+            }
+        }
+
+        private void ScrollToBottom()
+        {
+            if (ScrollerActive)
+            {
+                scrollView.NormalizedPosition = new Vector2(scrollView.NormalizedPosition.x, 0f);
+            }
         }
     }
 }

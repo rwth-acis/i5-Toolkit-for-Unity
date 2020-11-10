@@ -6,9 +6,9 @@ namespace i5.Toolkit.Core.AppConsole
 {
     public class TextConsoleUI : ConsoleUI
     {
-        private ITextAdapter consoleTextDisplay;
+        private ITextDisplay consoleTextDisplay;
 
-        public TextConsoleUI(ITextAdapter consoleTextDisplay, LogFormatterConfiguration logFormatterConfiguration = null) : base(logFormatterConfiguration)
+        public TextConsoleUI(ITextDisplay consoleTextDisplay, LogFormatterConfiguration logFormatterConfiguration = null) : base(logFormatterConfiguration)
         {
             this.consoleTextDisplay = consoleTextDisplay;
         }

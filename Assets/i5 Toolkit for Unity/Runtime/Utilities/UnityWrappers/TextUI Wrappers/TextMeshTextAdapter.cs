@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace i5.Toolkit.Core.Utilities.UnityAdapters
 {
-    public class TextMeshTextAdapter : ITextAdapter
+    public class TextMeshTextAdapter : ITextDisplay
     {
         public TextMesh TextMesh { get; private set; }
 

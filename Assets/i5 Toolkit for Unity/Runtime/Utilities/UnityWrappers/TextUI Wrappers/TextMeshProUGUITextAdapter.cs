@@ -5,7 +5,7 @@ using TMPro;
 
 namespace i5.Toolkit.Core.Utilities.UnityAdapters
 {
-    public class TextMeshProUGUITextAdapter : ITextAdapter
+    public class TextMeshProUGUITextAdapter : ITextDisplay
     {
         public TextMeshProUGUI TextMesh { get; private set; }
 

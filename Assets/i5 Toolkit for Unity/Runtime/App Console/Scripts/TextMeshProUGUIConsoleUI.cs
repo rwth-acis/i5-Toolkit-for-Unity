@@ -11,7 +11,7 @@ namespace i5.Toolkit.Core.AppConsole
 
         protected override void Awake()
         {
-            ITextAdapter textMeshProUGUIAdapter = new TextMeshProUGUITextAdapter(consoleTextDisplay);
+            ITextDisplay textMeshProUGUIAdapter = new TextMeshProUGUITextAdapter(consoleTextDisplay);
             consoleUI = new TextConsoleUI(textMeshProUGUIAdapter, logFormatterConfiguration);
 
             base.Awake();

@@ -10,18 +10,29 @@ namespace i5.Toolkit.Core.AppConsole
     /// </summary>
     public class Console : IConsole
     {
-        //private INotificationService notificationService;
+        /// <summary>
+        /// Captured messages
+        /// </summary>
         public List<ILogMessage> Messages { get; protected set; }
 
         private bool isCapturing;
 
+        /// <summary>
+        /// Event which is invoked when a new message is added to the console
+        /// </summary>
         public event Action OnMessageAdded;
 
+        /// <summary>
+        /// Creates a new console
+        /// </summary>
         public Console()
         {
             Messages = new List<ILogMessage>();
         }
 
+        /// <summary>
+        /// If true, the console captures messages
+        /// </summary>
         public bool IsCapturing
         {
             get => isCapturing;
@@ -47,11 +58,13 @@ namespace i5.Toolkit.Core.AppConsole
             }
         }
 
+        // subscribes to log message events
         protected virtual void Subscribe()
         {
             Application.logMessageReceived += Application_logMessageReceived;
         }
 
+        // unsubscribes from the log message events
         protected virtual void Unsubscribe()
         {
             Application.logMessageReceived -= Application_logMessageReceived;

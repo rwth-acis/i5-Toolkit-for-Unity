@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using i5.Toolkit.Core.AppConsole;
+﻿using i5.Toolkit.Core.AppConsole;
 using i5.Toolkit.Core.Editor.TestHelpers;
 using NUnit.Framework;
 using UnityEngine;
@@ -8,6 +6,9 @@ using UnityEngine.TestTools;
 
 namespace i5.Toolkit.Core.Tests.AppConsole
 {
+    /// <summary>
+    /// Tests for the console logic
+    /// </summary>
     public class ConsoleTests
     {
         /// <summary>
@@ -19,6 +20,9 @@ namespace i5.Toolkit.Core.Tests.AppConsole
             EditModeTestUtilities.ResetScene();
         }
 
+        /// <summary>
+        /// Checks that no logs are captured if IsCapturing is set to false
+        /// </summary>
         [Test]
         public void IsCapturing_False_NoLogsCaptured()
         {
@@ -30,6 +34,9 @@ namespace i5.Toolkit.Core.Tests.AppConsole
             Assert.AreEqual(0, console.Messages.Count);
         }
 
+        /// <summary>
+        /// Checks that the console captures logs when IsCapturing is true
+        /// </summary>
         [Test]
         public void IsCapturing_True_LogsCaptured()
         {
@@ -41,6 +48,9 @@ namespace i5.Toolkit.Core.Tests.AppConsole
             Assert.AreEqual(1, console.Messages.Count);
         }
 
+        /// <summary>
+        /// Checks that the correct log type is captured if a log message is received
+        /// </summary>
         [Test]
         public void MessageReceived_Log_CorrectTypeCaptured()
         {
@@ -52,6 +62,9 @@ namespace i5.Toolkit.Core.Tests.AppConsole
             Assert.AreEqual(LogType.Log, console.Messages[0].LogType);
         }
 
+        /// <summary>
+        /// Checks that the correct log type is captured if a warning message is received
+        /// </summary>
         [Test]
         public void MessageReceived_Warning_CorrectTypeCaptured()
         {
@@ -63,6 +76,9 @@ namespace i5.Toolkit.Core.Tests.AppConsole
             Assert.AreEqual(LogType.Warning, console.Messages[0].LogType);
         }
 
+        /// <summary>
+        /// Checks that the correct log type is captured if an error message is received
+        /// </summary>
         [Test]
         public void MessageReceived_Error_CorrectTypeCaptured()
         {
@@ -76,6 +92,9 @@ namespace i5.Toolkit.Core.Tests.AppConsole
             Assert.AreEqual(LogType.Error, console.Messages[0].LogType);
         }
 
+        /// <summary>
+        /// Checks that the text content is captured if a log message is received
+        /// </summary>
         [Test]
         public void MessageReceived_Log_TextCaptured()
         {
@@ -89,6 +108,9 @@ namespace i5.Toolkit.Core.Tests.AppConsole
             Assert.AreEqual(text, console.Messages[0].Content);
         }
 
+        /// <summary>
+        /// Checks that the text content is captured if a warning message is received
+        /// </summary>
         [Test]
         public void MessageReceived_LogWarning_TextCaptured()
         {
@@ -102,6 +124,9 @@ namespace i5.Toolkit.Core.Tests.AppConsole
             Assert.AreEqual(text, console.Messages[0].Content);
         }
 
+        /// <summary>
+        /// Checks that the text content is captured if an error message is received
+        /// </summary>
         [Test]
         public void MessageReceived_LogError_TextCaptured()
         {
@@ -117,6 +142,9 @@ namespace i5.Toolkit.Core.Tests.AppConsole
             Assert.AreEqual(text, console.Messages[0].Content);
         }
 
+        /// <summary>
+        /// Checks that new messages invoke the OnMessageAdded event
+        /// </summary>
         [Test]
         public void OnMessageAdded_IsCapturing_EventInvoked()
         {
@@ -135,6 +163,9 @@ namespace i5.Toolkit.Core.Tests.AppConsole
             Assert.True(eventInvoked);
         }
 
+        /// <summary>
+        /// Checks that no event is invoked if the console is not capturing
+        /// </summary>
         [Test]
         public void OnMessageAdded_IsNotCapturing_EventNotInvoked()
         {

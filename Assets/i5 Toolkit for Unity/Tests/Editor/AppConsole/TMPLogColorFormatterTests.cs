@@ -1,22 +1,28 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using FakeItEasy;
+﻿using FakeItEasy;
 using i5.Toolkit.Core.AppConsole;
 using i5.Toolkit.Core.Editor.TestHelpers;
 using NUnit.Framework;
 using UnityEngine;
-using UnityEngine.TestTools;
 
 namespace i5.Toolkit.Core.Tests.AppConsole
 {
+    /// <summary>
+    /// Tests for the TextMeshPro color formatter
+    /// </summary>
     public class TMPLogColorFormatterTests
     {
+        /// <summary>
+        /// Resets the scene
+        /// </summary>
         [SetUp]
         public void SetUp()
         {
             EditModeTestUtilities.ResetScene();
         }
 
+        /// <summary>
+        /// Checks that log messages are formatted using the log color
+        /// </summary>
         [Test]
         public void Format_Log_OutputUsesLogColor()
         {
@@ -37,6 +43,9 @@ namespace i5.Toolkit.Core.Tests.AppConsole
             Assert.True(result.Contains(ColorUtility.ToHtmlStringRGB(expectedColor)));
         }
 
+        /// <summary>
+        /// Checks that error messages are formatted using the error color
+        /// </summary>
         [Test]
         public void Format_ErrorLog_OutputUsesErrorColor()
         {
@@ -57,6 +66,9 @@ namespace i5.Toolkit.Core.Tests.AppConsole
             Assert.True(result.Contains(ColorUtility.ToHtmlStringRGB(expectedColor)));
         }
 
+        /// <summary>
+        /// Checks that assert messages are formatted using the assert color
+        /// </summary>
         [Test]
         public void Format_AssertLog_OutputUsesAssertColor()
         {
@@ -77,6 +89,9 @@ namespace i5.Toolkit.Core.Tests.AppConsole
             Assert.True(result.Contains(ColorUtility.ToHtmlStringRGB(expectedColor)));
         }
 
+        /// <summary>
+        /// Checks that exception messages are formatted using the exception color
+        /// </summary>
         [Test]
         public void Format_ExceptionLog_OutputUsesExceptionColor()
         {
@@ -97,6 +112,9 @@ namespace i5.Toolkit.Core.Tests.AppConsole
             Assert.True(result.Contains(ColorUtility.ToHtmlStringRGB(expectedColor)));
         }
 
+        /// <summary>
+        /// Checks that warning messages are formatted using the warning color
+        /// </summary>
         [Test]
         public void Format_WarningLog_OutputUsesWarningColor()
         {
@@ -117,6 +135,9 @@ namespace i5.Toolkit.Core.Tests.AppConsole
             Assert.True(result.Contains(ColorUtility.ToHtmlStringRGB(expectedColor)));
         }
 
+        /// <summary>
+        /// Checks that the formatted output containts the message's output
+        /// </summary>
         [Test]
         public void Format_OutputContainsContent()
         {
@@ -138,6 +159,9 @@ namespace i5.Toolkit.Core.Tests.AppConsole
             Assert.True(result.Contains(expectedContent));
         }
 
+        /// <summary>
+        /// Checks that the formatted output contains the stack trace
+        /// </summary>
         [Test]
         public void Format_OutputContainsStackTrace()
         {
@@ -159,7 +183,13 @@ namespace i5.Toolkit.Core.Tests.AppConsole
             Assert.True(result.Contains(expectedStackTrace));
         }
 
-
+        /// <summary>
+        /// Creates a fake log message for testing
+        /// </summary>
+        /// <param name="type">The type of the log message</param>
+        /// <param name="content">The content of the log message</param>
+        /// <param name="stackTrace">The stack trace of the log message</param>
+        /// <returns></returns>
         private ILogMessage CreateFakeLogMessage(LogType type, string content, string stackTrace)
         {
             ILogMessage logMessage = A.Fake<ILogMessage>();

@@ -73,3 +73,8 @@ Continuous integration using GitHub Actions has been set up to test and deploy n
 
 For Mixed Reality development, also check out the [i5 Toolkit for MR](https://github.com/rwth-acis/i5-Toolkit-for-Mixed-Reality).
 It is an extension package that builds upon the functionality of this package and is optimized for Mixed Reality.
+
+## Disclaimer
+
+This repository is not sponsored by or affiliated with Unity Technologies or its affiliates.
+"Unity" is a trademark or registered trademark of Unity Technologies or its affiliates in the U.S. and elsewhere.

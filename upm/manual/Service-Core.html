@@ -1,0 +1,183 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Service Core System | i5 Toolkit Documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Service Core System | i5 Toolkit Documentation ">
+    <meta name="generator" content="docfx 2.56.2.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="service-core-system">Service Core System</h1>
+
+<p><img src="../resources/Logos/ServiceCore.svg" alt="Service Core"></p>
+<h2 id="general">General</h2>
+<p>The service system provides a way to add singletons to the project without the need to have GameObjects or MonoBehaviours.
+Services are native C# classes which implement the <code>IService</code> interface.
+Hence, the services also provide a way to abstract away from MonoBehaviours.</p>
+<p>Whenever you need a centralized functionality that needs to be accessible globally, you can use services to realize it</p>
+<h2 id="usage">Usage</h2>
+<p>The central component of the service system is the <code>ServiceManager</code>.
+It is the only component which needs to be placed on a GameObject.
+However, you do not need to set up the GameObject yourself.
+Whenever you use the <code>ServiceManager</code>, it automatically generates an instance on a GameObject and sets it up.</p>
+<h2 id="services">Services</h2>
+<h3 id="creating-a-service">Creating a Service</h3>
+<p>To create a service, create a class that does not inherit from <code>MonoBehaviour</code>.
+The new service class must implement the interface <code>IService</code>.</p>
+<p>If you need to call a function in every frame, implement the interface <code>IUpdateableService</code> instead.</p>
+<h3 id="updateable-services">Updateable Services</h3>
+<p>A special type of service is the updateable service.
+You can define a updateable service by creating a new C# class that implements only the <code>IUpdateableService</code> interface.
+The interface provides the typical <code>IService</code> methods but also an <code>Update</code> method that is called every frame.
+Moreover, a property <code>Enabled</code>.
+The code inside of <code>Update</code> is only executed if <code>Enabled</code> is set to <code>true</code>.</p>
+<h3 id="async-threaded-worker-service">Async Threaded Worker Service</h3>
+<p>One pre-defined service is the <code>AsyncThreadedWorkerService</code>.
+Its purpose is to work on asynchronous, longer operations on a separate thread.
+After the operation, a result is returned.
+You can post operations to this service and the service will execute them on a separate thread.
+If the operation block contains a callback, the callback method will be invoked once the operation has finished.
+The result will be provided to the callback</p>
+<p><em>Important:</em> You cannot access the Unity API, e.g. GameObjects or Meshes, in the separate thread.
+This means you cannot manipulate or read the scene in the operation.
+Create your operation in a way that all information are available at the beginning of the operation and that you only need the result at the end.</p>
+<h2 id="registration-of-services">Registration of Services</h2>
+<p>Create an instance of the service using its constructor:</p>
+<pre><code>MyService myService = new MyService();
+// do your initial configuration of the service here
+</code></pre><p>After that, you can register a service by calling the following:</p>
+<pre><code>ServiceManager.RegisterService(myService)
+</code></pre><p>After that, the service is available and can be addressed.
+Registering the service automatically initializes it.</p>
+<h2 id="addressing-services">Addressing Services</h2>
+<p>Once you have created and registered a service, you can access it in the following way:</p>
+<pre><code>ServiceManager.GetService&lt;MyService&gt;();
+</code></pre><p>Specify the service class in the <code>GetService()</code> method.</p>
+<p>If the service is not registered, an <code>InvalidOperationException</code> is thrown.
+You can check if a service was registered by checking the Boolean return value of <code>ServiceManager.ServiceExists&lt;MyService&gt;()</code>.</p>
+<h2 id="removing-services">Removing Services</h2>
+<p>To remove the service, call the following statement:</p>
+<pre><code>ServiceManager.RemoveService&lt;MyService&gt;();
+</code></pre><h2 id="bootstrappers">Bootstrappers</h2>
+<p>You can create a bootstrapper script that automatically populates the service system.
+The bootstrapper class needs to inherit from <code>BaseServiceBootstrapper</code>.
+It must implement the methods <code>RegisterServices</code> and <code>UnRegisterServices</code> which are called once the component is started and once it is destroyed.
+If you want to keep services after scene changes, either leave the <code>UnRegisterServices</code> method empty or make the bootstrapper object persistent using <code>PersistenceScene.MarkPersistent</code>.</p>
+<p>You do not need to use the <code>BaseServiceBootstrapper</code>.
+Alternatively to a bootstrapper which adds all services at the beginning, you can dynamically register and unregister services at any time and in any script.</p>
+<h2 id="example-scene">Example Scene</h2>
+<p>There is an example scene that shows how to set up different kinds of services using the toolkit&#39;s service architecture.
+The <em>Service Bootstrapper</em> GameObject contains a bootstrapper script which populates the service manager with services.</p>
+<p>The demo scene contains an updateable service which logs the application&#39;s run time in intervals.
+There is also a service which prints a statement to the console if you press F5.
+Pressing F5 also triggers a simulated async operation which waits for a couple of seconds before printing a statement to the console.
+The F5 functionality is triggered by a <em>Demo Service Client</em>.</p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/rwth-acis/i5-Toolkit-for-Unity/blob/features/docFx/Documentation/manual/Service-Core.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            i5 Toolkit Documentation
+            
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

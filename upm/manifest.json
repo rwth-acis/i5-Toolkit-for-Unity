@@ -2128,22 +2128,103 @@
       "output": {
         ".html": {
           "relative_path": "index.html",
-          "hash": "TuylCK8makRdgXpbA/B69w=="
+          "hash": "KIKNtLjrPjhG9tNSbsLVoA=="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
-      "source_relative_path": "manual/sample.md",
+      "source_relative_path": "manual/Modified-3D-Objects.md",
       "output": {
         ".html": {
-          "relative_path": "manual/sample.html",
-          "hash": "ZjOHIG1CuNZfW/HNhefgaw=="
+          "relative_path": "manual/Modified-3D-Objects.html",
+          "hash": "F+iX2gxVr3kLWS5i2Lgrzg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/Obj-Importer.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/Obj-Importer.html",
+          "hash": "gcH5eTRRM6xib56kU50R7g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/Object-Pool.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/Object-Pool.html",
+          "hash": "eEzdNug50n06+X/NDfj4BA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/OpenID-Connect-Client.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/OpenID-Connect-Client.html",
+          "hash": "gvNFx48bPTB/hbgktMBX/A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/Procedural-Geometry.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/Procedural-Geometry.html",
+          "hash": "V199ZcXCoNU/GhdGhmzLJw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/Scene-Documentation.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/Scene-Documentation.html",
+          "hash": "Kn13RsvaNJd2hJlGuWALvQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/Service-Core.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/Service-Core.html",
+          "hash": "kjp5AbcD1SYL8w0Eo68w8A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/Spawner.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/Spawner.html",
+          "hash": "YkcrnMFf2qOeN3mDa+pxWw=="
         }
       },
       "is_incremental": false,
@@ -2155,7 +2236,128 @@
       "output": {
         ".html": {
           "relative_path": "manual/toc.html",
-          "hash": "T4lR25HflDkBPV5fvnpSlQ=="
+          "hash": "UadmAHIjSem46MGpbp1fLA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/Logos/ObjImporter.svg",
+      "output": {
+        "resource": {
+          "relative_path": "resources/Logos/ObjImporter.svg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/Logos/ObjectPool.svg",
+      "output": {
+        "resource": {
+          "relative_path": "resources/Logos/ObjectPool.svg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/Logos/OpenIDConnectClient.svg",
+      "output": {
+        "resource": {
+          "relative_path": "resources/Logos/OpenIDConnectClient.svg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/Logos/ProceduralGeometry.svg",
+      "output": {
+        "resource": {
+          "relative_path": "resources/Logos/ProceduralGeometry.svg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/Logos/RoundedCorners.svg",
+      "output": {
+        "resource": {
+          "relative_path": "resources/Logos/RoundedCorners.svg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/Logos/SceneDocumentation.svg",
+      "output": {
+        "resource": {
+          "relative_path": "resources/Logos/SceneDocumentation.svg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/Logos/ServiceCore.svg",
+      "output": {
+        "resource": {
+          "relative_path": "resources/Logos/ServiceCore.svg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/Logos/Spawner.svg",
+      "output": {
+        "resource": {
+          "relative_path": "resources/Logos/Spawner.svg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/ProceduralGeometry/Quad.svg",
+      "output": {
+        "resource": {
+          "relative_path": "resources/ProceduralGeometry/Quad.svg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/ProceduralGeometry/Triangle.svg",
+      "output": {
+        "resource": {
+          "relative_path": "resources/ProceduralGeometry/Triangle.svg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/ProceduralGeometry/TriangleFan.svg",
+      "output": {
+        "resource": {
+          "relative_path": "resources/ProceduralGeometry/TriangleFan.svg"
         }
       },
       "is_incremental": false,
@@ -2167,7 +2369,7 @@
       "output": {
         ".html": {
           "relative_path": "toc.html",
-          "hash": "qBeYu6zih/8e+SM4qNqCMA=="
+          "hash": "pMLWy8lCxcCIiMTQkUq1Dg=="
         }
       },
       "is_incremental": false,
@@ -2177,24 +2379,29 @@
   "incremental_info": [
     {
       "status": {
-        "can_incremental": false,
-        "details": "Cannot build incrementally because last build info is missing.",
+        "can_incremental": true,
         "incrementalPhase": "build",
         "total_file_count": 0,
-        "skipped_file_count": 0,
-        "full_build_reason_code": "NoAvailableBuildCache"
+        "skipped_file_count": 0
       },
       "processors": {
         "ConceptualDocumentProcessor": {
-          "can_incremental": false,
+          "can_incremental": true,
           "incrementalPhase": "build",
-          "total_file_count": 2,
-          "skipped_file_count": 0
+          "total_file_count": 9,
+          "skipped_file_count": 8
         },
         "ManagedReferenceDocumentProcessor": {
-          "can_incremental": false,
+          "can_incremental": true,
           "incrementalPhase": "build",
           "total_file_count": 179,
+          "skipped_file_count": 179
+        },
+        "ResourceDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor ResourceDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build",
+          "total_file_count": 0,
           "skipped_file_count": 0
         },
         "TocDocumentProcessor": {

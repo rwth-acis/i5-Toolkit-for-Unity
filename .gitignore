@@ -74,3 +74,4 @@ crashlytics-build.properties
 /**/obj/
 reference
 /Documentation/api
+/Assets/i5 Toolkit for Unity/Editor/OpenIDConnectClient/PostBuildScripts/obj.meta

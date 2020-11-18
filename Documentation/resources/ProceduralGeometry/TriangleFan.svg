@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 3072 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
+    <g transform="matrix(-0.357394,1.01787,-0.619988,-0.217689,1753.56,449.296)">
+        <path d="M317.479,166.546L449.545,848.346L185.413,848.346L317.479,166.546Z" style="fill:rgb(31,144,244);stroke:rgb(0,84,159);stroke-width:6.67px;"/>
+    </g>
+    <g transform="matrix(-0.879543,0.624662,-0.380482,-0.53573,1879.44,627.101)">
+        <path d="M317.479,166.546L449.545,848.346L185.413,848.346L317.479,166.546Z" style="fill:rgb(31,144,244);stroke:rgb(0,84,159);stroke-width:6.67px;"/>
+    </g>
+    <g transform="matrix(-1.07879,0.00212331,-0.00129331,-0.657093,1879.55,844.957)">
+        <path d="M317.479,166.546L449.545,848.346L185.413,848.346L317.479,166.546Z" style="fill:rgb(31,144,244);stroke:rgb(0,84,159);stroke-width:6.67px;"/>
+    </g>
+    <g transform="matrix(-0.881995,-0.621195,0.37837,-0.537223,1753.84,1022.88)">
+        <path d="M317.479,166.546L449.545,848.346L185.413,848.346L317.479,166.546Z" style="fill:rgb(31,144,244);stroke:rgb(0,84,159);stroke-width:6.67px;"/>
+    </g>
+    <g transform="matrix(-0.361398,-1.01646,0.619126,-0.220128,1548.46,1095.56)">
+        <path d="M317.479,166.546L449.545,848.346L185.413,848.346L317.479,166.546Z" style="fill:rgb(31,144,244);stroke:rgb(0,84,159);stroke-width:6.67px;"/>
+    </g>
+    <g transform="matrix(1.32372,0,0,1.32372,914.139,-377.717)">
+        <circle cx="469.75" cy="841.499" r="17.891" style="fill:rgb(0,84,159);"/>
+    </g>
+    <g transform="matrix(1.32372,0,0,1.32372,445.114,-391.274)">
+        <circle cx="469.75" cy="841.499" r="17.891" style="fill:rgb(0,84,159);"/>
+    </g>
+    <g transform="matrix(-1.32372,0,0,1.32372,2624.21,-396.603)">
+        <circle cx="469.75" cy="841.499" r="17.891" style="fill:rgb(0,84,159);"/>
+    </g>
+    <g transform="matrix(1.32372,0,0,1.32372,539.451,-660.564)">
+        <circle cx="469.75" cy="841.499" r="17.891" style="fill:rgb(0,84,159);"/>
+    </g>
+    <g transform="matrix(-1.32372,0,0,1.32372,2527.74,-660.564)">
+        <circle cx="469.75" cy="841.499" r="17.891" style="fill:rgb(0,84,159);"/>
+    </g>
+    <g transform="matrix(1.32372,0,0,1.32372,772.108,-821.654)">
+        <circle cx="469.75" cy="841.499" r="17.891" style="fill:rgb(0,84,159);"/>
+    </g>
+    <g transform="matrix(-1.32372,0,0,1.32372,2295.08,-821.654)">
+        <circle cx="469.75" cy="841.499" r="17.891" style="fill:rgb(0,84,159);"/>
+    </g>
+    <g transform="matrix(1,0,0,1,22.4879,-27.4647)">
+        <text x="1475.49px" y="867.455px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:72px;fill:rgb(0,84,159);">v0</text>
+    </g>
+    <g transform="matrix(1,0,0,1,-556.051,-105.79)">
+        <text x="1475.49px" y="867.455px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:72px;fill:rgb(0,84,159);">v1</text>
+    </g>
+    <g transform="matrix(1,0,0,1,-461.75,-424.152)">
+        <text x="1475.49px" y="867.455px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:72px;fill:rgb(0,84,159);">v2</text>
+    </g>
+    <g transform="matrix(1,0,0,1,-118.436,-626.145)">
+        <text x="1475.49px" y="867.455px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:72px;fill:rgb(0,84,159);">v3</text>
+    </g>
+    <g transform="matrix(1,0,0,1,160.591,-626.145)">
+        <text x="1475.49px" y="867.455px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:72px;fill:rgb(0,84,159);">v4</text>
+    </g>
+    <g transform="matrix(1,0,0,1,488.553,-424.152)">
+        <text x="1475.49px" y="867.455px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:72px;fill:rgb(0,84,159);">v5</text>
+    </g>
+    <g transform="matrix(1,0,0,1,587.642,-105.79)">
+        <text x="1475.49px" y="867.455px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:72px;fill:rgb(0,84,159);">v6</text>
+    </g>
+</svg>

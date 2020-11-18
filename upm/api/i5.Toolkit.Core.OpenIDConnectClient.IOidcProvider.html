@@ -1,0 +1,530 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Interface IOidcProvider
+   | i5 Toolkit Documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Interface IOidcProvider
+   | i5 Toolkit Documentation ">
+    <meta name="generator" content="docfx 2.56.2.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="i5.Toolkit.Core.OpenIDConnectClient.IOidcProvider">
+  
+  
+  <h1 id="i5_Toolkit_Core_OpenIDConnectClient_IOidcProvider" data-uid="i5.Toolkit.Core.OpenIDConnectClient.IOidcProvider" class="text-break">Interface IOidcProvider
+  </h1>
+  <div class="markdown level0 summary"><p>Contract that specifies the capabilities of an OpenID Connect provider</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="i5.Toolkit.Core.OpenIDConnectClient.html">i5.Toolkit.Core.OpenIDConnectClient</a></h6>
+  <h6><strong>Assembly</strong>: cs.temp.dll.dll</h6>
+  <h5 id="i5_Toolkit_Core_OpenIDConnectClient_IOidcProvider_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public interface IOidcProvider</code></pre>
+  </div>
+  <h3 id="properties">Properties
+  </h3>
+  
+  
+  <a id="i5_Toolkit_Core_OpenIDConnectClient_IOidcProvider_AuthorizationFlow_" data-uid="i5.Toolkit.Core.OpenIDConnectClient.IOidcProvider.AuthorizationFlow*"></a>
+  <h4 id="i5_Toolkit_Core_OpenIDConnectClient_IOidcProvider_AuthorizationFlow" data-uid="i5.Toolkit.Core.OpenIDConnectClient.IOidcProvider.AuthorizationFlow">AuthorizationFlow</h4>
+  <div class="markdown level1 summary"><p>Gets the authorization flow that should be used for the provider</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">AuthorizationFlow AuthorizationFlow { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Global.AuthorizationFlow.html">AuthorizationFlow</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="i5_Toolkit_Core_OpenIDConnectClient_IOidcProvider_ClientData_" data-uid="i5.Toolkit.Core.OpenIDConnectClient.IOidcProvider.ClientData*"></a>
+  <h4 id="i5_Toolkit_Core_OpenIDConnectClient_IOidcProvider_ClientData" data-uid="i5.Toolkit.Core.OpenIDConnectClient.IOidcProvider.ClientData">ClientData</h4>
+  <div class="markdown level1 summary"><p>Client data that are required to authorize the client at the provider</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ClientData ClientData { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="i5.Toolkit.Core.OpenIDConnectClient.ClientData.html">ClientData</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="i5_Toolkit_Core_OpenIDConnectClient_IOidcProvider_RestConnector_" data-uid="i5.Toolkit.Core.OpenIDConnectClient.IOidcProvider.RestConnector*"></a>
+  <h4 id="i5_Toolkit_Core_OpenIDConnectClient_IOidcProvider_RestConnector" data-uid="i5.Toolkit.Core.OpenIDConnectClient.IOidcProvider.RestConnector">RestConnector</h4>
+  <div class="markdown level1 summary"><p>Specifies how the REST API of the Web service is accessed</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IRestConnector RestConnector { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="i5.Toolkit.Core.Utilities.IRestConnector.html">IRestConnector</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  
+  
+  <a id="i5_Toolkit_Core_OpenIDConnectClient_IOidcProvider_CheckAccessTokenAsync_" data-uid="i5.Toolkit.Core.OpenIDConnectClient.IOidcProvider.CheckAccessTokenAsync*"></a>
+  <h4 id="i5_Toolkit_Core_OpenIDConnectClient_IOidcProvider_CheckAccessTokenAsync_System_String_" data-uid="i5.Toolkit.Core.OpenIDConnectClient.IOidcProvider.CheckAccessTokenAsync(System.String)">CheckAccessTokenAsync(String)</h4>
+  <div class="markdown level1 summary"><p>Checks if the access token is valid by checking it at the provider</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;bool&gt; CheckAccessTokenAsync(string accessToken)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">accessToken</span></td>
+        <td><p>The access token that should be checked</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a>&gt;</td>
+        <td><p>True if the access token is valid, otherwise false</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="i5_Toolkit_Core_OpenIDConnectClient_IOidcProvider_GetAccessToken_" data-uid="i5.Toolkit.Core.OpenIDConnectClient.IOidcProvider.GetAccessToken*"></a>
+  <h4 id="i5_Toolkit_Core_OpenIDConnectClient_IOidcProvider_GetAccessToken_Dictionary_System_String_System_String__" data-uid="i5.Toolkit.Core.OpenIDConnectClient.IOidcProvider.GetAccessToken(Dictionary{System.String,System.String})">GetAccessToken(Dictionary&lt;String, String&gt;)</h4>
+  <div class="markdown level1 summary"><p>Gets the access token from a list of parameters in a Web answer</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">string GetAccessToken(Dictionary&lt;string, string&gt; redirectParameters)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Dictionary</span>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a>, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
+        <td><span class="parametername">redirectParameters</span></td>
+        <td><p>The parameters of the Web answer as a dictionary</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><p>Returns the access token if it exists in the parameters,
+otherwise an empty string is returned</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="i5_Toolkit_Core_OpenIDConnectClient_IOidcProvider_GetAccessTokenFromCodeAsync_" data-uid="i5.Toolkit.Core.OpenIDConnectClient.IOidcProvider.GetAccessTokenFromCodeAsync*"></a>
+  <h4 id="i5_Toolkit_Core_OpenIDConnectClient_IOidcProvider_GetAccessTokenFromCodeAsync_System_String_System_String_" data-uid="i5.Toolkit.Core.OpenIDConnectClient.IOidcProvider.GetAccessTokenFromCodeAsync(System.String,System.String)">GetAccessTokenFromCodeAsync(String, String)</h4>
+  <div class="markdown level1 summary"><p>Gets the access token based on a previously retrieved authorization code</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;string&gt; GetAccessTokenFromCodeAsync(string code, string redirectUri)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">code</span></td>
+        <td><p>The authorization code</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">redirectUri</span></td>
+        <td><p>The redirect URI which was used during the login</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
+        <td><p>Returns the access token if it could be retrieved; otherwise it returns an empty string</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="i5_Toolkit_Core_OpenIDConnectClient_IOidcProvider_GetAuthorizationCode_" data-uid="i5.Toolkit.Core.OpenIDConnectClient.IOidcProvider.GetAuthorizationCode*"></a>
+  <h4 id="i5_Toolkit_Core_OpenIDConnectClient_IOidcProvider_GetAuthorizationCode_Dictionary_System_String_System_String__" data-uid="i5.Toolkit.Core.OpenIDConnectClient.IOidcProvider.GetAuthorizationCode(Dictionary{System.String,System.String})">GetAuthorizationCode(Dictionary&lt;String, String&gt;)</h4>
+  <div class="markdown level1 summary"><p>Extracts the authorization code from parameters of a Web answer</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">string GetAuthorizationCode(Dictionary&lt;string, string&gt; redirectParameters)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Dictionary</span>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a>, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
+        <td><span class="parametername">redirectParameters</span></td>
+        <td><p>Parameters of a Web answer as a dictionary</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><p>The authorization code if it could be found, otherwise an empty string is returned</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="i5_Toolkit_Core_OpenIDConnectClient_IOidcProvider_GetUserInfoAsync_" data-uid="i5.Toolkit.Core.OpenIDConnectClient.IOidcProvider.GetUserInfoAsync*"></a>
+  <h4 id="i5_Toolkit_Core_OpenIDConnectClient_IOidcProvider_GetUserInfoAsync_System_String_" data-uid="i5.Toolkit.Core.OpenIDConnectClient.IOidcProvider.GetUserInfoAsync(System.String)">GetUserInfoAsync(String)</h4>
+  <div class="markdown level1 summary"><p>Gets information about the logged in user from the provider</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;IUserInfo&gt; GetUserInfoAsync(string accessToken)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">accessToken</span></td>
+        <td><p>The access token to authenticate the user</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span>&lt;<a class="xref" href="i5.Toolkit.Core.OpenIDConnectClient.IUserInfo.html">IUserInfo</a>&gt;</td>
+        <td><p>Returns information about the logged in user if the request was successful, otherwise null</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="i5_Toolkit_Core_OpenIDConnectClient_IOidcProvider_OpenLoginPage_" data-uid="i5.Toolkit.Core.OpenIDConnectClient.IOidcProvider.OpenLoginPage*"></a>
+  <h4 id="i5_Toolkit_Core_OpenIDConnectClient_IOidcProvider_OpenLoginPage_System_String___System_String_" data-uid="i5.Toolkit.Core.OpenIDConnectClient.IOidcProvider.OpenLoginPage(System.String[],System.String)">OpenLoginPage(String[], String)</h4>
+  <div class="markdown level1 summary"><p>Opens the provider&apos;s login page in the system&apos;s default Web browser</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void OpenLoginPage(string[] scopes, string redirectUri)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a>[]</td>
+        <td><span class="parametername">scopes</span></td>
+        <td><p>The OpenID Connect scopes that the user must agree to</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">redirectUri</span></td>
+        <td><p>The URI to which the browser should redirect after the successful login</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="i5_Toolkit_Core_OpenIDConnectClient_IOidcProvider_ParametersContainError_" data-uid="i5.Toolkit.Core.OpenIDConnectClient.IOidcProvider.ParametersContainError*"></a>
+  <h4 id="i5_Toolkit_Core_OpenIDConnectClient_IOidcProvider_ParametersContainError_Dictionary_System_String_System_String__System_String__" data-uid="i5.Toolkit.Core.OpenIDConnectClient.IOidcProvider.ParametersContainError(Dictionary{System.String,System.String},System.String@)">ParametersContainError(Dictionary&lt;String, String&gt;, out String)</h4>
+  <div class="markdown level1 summary"><p>Checks if the provider included error messages in the parameters of a Web answer</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool ParametersContainError(Dictionary&lt;string, string&gt; parameters, out string errorMessage)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Dictionary</span>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a>, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
+        <td><span class="parametername">parameters</span></td>
+        <td><p>The parameters of a Web answer as a dictionary</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">errorMessage</span></td>
+        <td><p>The error message that the provider included, empty if no error exists</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p>Returns true if the parameters contain an error message, otherwise false</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            i5 Toolkit Documentation
+            
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

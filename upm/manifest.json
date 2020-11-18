@@ -1,0 +1,2226 @@
+{
+  "sitemap": {
+    "fileOptions": {
+      "api/*": {
+        "baseUrl": "https://localhost/",
+        "changefreq": "daily"
+      }
+    },
+    "baseUrl": "https://localhost/",
+    "changefreq": "weekly"
+  },
+  "homepages": [],
+  "source_base_path": "D:/Unity/i5-Toolkit-for-Unity/Documentation",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "Resource",
+      "output": {
+        "resource": {
+          "relative_path": "index.json"
+        }
+      },
+      "is_incremental": false
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Global.AuthorizationFlow.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Global.AuthorizationFlow.html",
+          "hash": "vEL4lnEfB3mGNFotY73IWQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Global.INotificationMessage.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Global.INotificationMessage.html",
+          "hash": "13BqyNF9xuY1+T64VjWjUA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Global.INotificationService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Global.INotificationService.html",
+          "hash": "0fWv6ORU3zoCdmgbO1glpw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Global.JsonSerialization.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Global.JsonSerialization.html",
+          "hash": "BNT8fYbHtksqtgRvO6oePQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Global.LearningLayersBootstrapper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Global.LearningLayersBootstrapper.html",
+          "hash": "p88t+l2xrnkIlcf94YsfiA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Global.LogGenerator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Global.LogGenerator.html",
+          "hash": "+DsmbSec40CfQMrL3fgH3w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Global.NotificationMessage.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Global.NotificationMessage.html",
+          "hash": "GnZ7z4xHbNU3gh8EHH4z0A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Global.NotificationService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Global.NotificationService.html",
+          "hash": "iWUaxsETsw6omT+JmJi5sA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Global.OpenIDConnectTester.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Global.OpenIDConnectTester.html",
+          "hash": "UIy0yqv0UXV8r7ffsIn6PQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Global.PersistenceScene.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Global.PersistenceScene.html",
+          "hash": "0LpCSH7EpTmuXYOEgobbXA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Global.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Global.html",
+          "hash": "u/lXUsIWpNv3jxZcRsZQww=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.AppConsole.ActivationVisibilityManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.AppConsole.ActivationVisibilityManager.html",
+          "hash": "erfUqNeI8qIpSSWMPAttfA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.AppConsole.AutoScroller.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.AppConsole.AutoScroller.html",
+          "hash": "QjnoWDdC7h8JDcLsBu6DZQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.AppConsole.AutoScrollerBehaviour.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.AppConsole.AutoScrollerBehaviour.html",
+          "hash": "IVjR4jiIUHhAxjYp3baY6A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.AppConsole.Console.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.AppConsole.Console.html",
+          "hash": "T71jUuKk9qjPol+DY8TiBg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.AppConsole.ConsoleUI.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.AppConsole.ConsoleUI.html",
+          "hash": "yHrvCSG263xsEyLFBL9huA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.AppConsole.ConsoleUIBehaviour.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.AppConsole.ConsoleUIBehaviour.html",
+          "hash": "GtE8RGlR93VD3/L01N4Qtg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.AppConsole.DefaultConsoleFormatter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.AppConsole.DefaultConsoleFormatter.html",
+          "hash": "yqavvUhfPFRYuKkm96mcJQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.AppConsole.IConsole.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.AppConsole.IConsole.html",
+          "hash": "AKdYfy0xDVsKTs+k9N1NiQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.AppConsole.ILogColorFormatter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.AppConsole.ILogColorFormatter.html",
+          "hash": "2c2KnrQ19PKZOFPgImXuJA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.AppConsole.ILogFormatter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.AppConsole.ILogFormatter.html",
+          "hash": "DnxFbgLw67FbtOc7nXlmlw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.AppConsole.ILogMessage.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.AppConsole.ILogMessage.html",
+          "hash": "5UK9L/05wYuTocypwZo5FA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.AppConsole.IVisibilityManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.AppConsole.IVisibilityManager.html",
+          "hash": "zMjCPmeQm0TDd3su+Jth3w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.AppConsole.LogColorFormatterConfiguration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.AppConsole.LogColorFormatterConfiguration.html",
+          "hash": "Jscp1tA/J4ST0P9GfgTyGw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.AppConsole.LogFormatterConfiguration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.AppConsole.LogFormatterConfiguration.html",
+          "hash": "R1ZbNj87Ts4/FC3i9MHKpA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.AppConsole.LogMessage.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.AppConsole.LogMessage.html",
+          "hash": "OGco/DxFldz/S+FanY9Fqg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.AppConsole.TMPLogColorFormatter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.AppConsole.TMPLogColorFormatter.html",
+          "hash": "vz/dh2Du2vPDOnKsdiQHUQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.AppConsole.TMPLogColorFormatterConfiguration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.AppConsole.TMPLogColorFormatterConfiguration.html",
+          "hash": "ZlBWgRVSjpok5A2uV7dzbg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.AppConsole.TextConsoleUI.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.AppConsole.TextConsoleUI.html",
+          "hash": "cHMJJnznu5I1LxzSIW6BCQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.AppConsole.TextMeshProUGUIConsoleUI.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.AppConsole.TextMeshProUGUIConsoleUI.html",
+          "hash": "2NcWsqtuN4l0jKsnF8EJYg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.AppConsole.VisibilityManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.AppConsole.VisibilityManager.html",
+          "hash": "GxWvM3uB4NVp11D74CIzWw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.AppConsole.VisibilitySetter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.AppConsole.VisibilitySetter.html",
+          "hash": "RDLnaZYDZ1TSeU6N6ch3bw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.AppConsole.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.AppConsole.html",
+          "hash": "JSiidt1vLHy2TDF3Snqqtg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Editor.TestHelpers.EditModeTestUtilities.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Editor.TestHelpers.EditModeTestUtilities.html",
+          "hash": "hs8s1GkDgXftK+xtiavGyA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Editor.TestHelpers.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Editor.TestHelpers.html",
+          "hash": "3GZEg2RwgSdMGznOq1S06Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Examples.MeshPoolExample.MeshPoolDemo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Examples.MeshPoolExample.MeshPoolDemo.html",
+          "hash": "yltDuaX52jxkPwSSgqBLIg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Examples.MeshPoolExample.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Examples.MeshPoolExample.html",
+          "hash": "LijJOSJmFnoO0ezoUDJ/Tg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Examples.ObjImporterExample.ObjImporterBootstrapper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Examples.ObjImporterExample.ObjImporterBootstrapper.html",
+          "hash": "B35uXFhD8F5B+zYqB+1qPw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Examples.ObjImporterExample.ObjImporterDemo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Examples.ObjImporterExample.ObjImporterDemo.html",
+          "hash": "Q+zzaxCcvE/XJ5lh4PtAvA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Examples.ObjImporterExample.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Examples.ObjImporterExample.html",
+          "hash": "3goxMI5KSD5ziq3bdLb6sg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Examples.ServiceExample.DemoAsyncService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Examples.ServiceExample.DemoAsyncService.html",
+          "hash": "ph7ZGF+Bn4KjVqrek+izgg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Examples.ServiceExample.DemoBootstrapper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Examples.ServiceExample.DemoBootstrapper.html",
+          "hash": "HGVY2GQ3B1rKpZOcSPDiwQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Examples.ServiceExample.DemoService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Examples.ServiceExample.DemoService.html",
+          "hash": "5/PToTfEw6Mry8G0jS3DnQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Examples.ServiceExample.DemoServiceClient.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Examples.ServiceExample.DemoServiceClient.html",
+          "hash": "sBOG/OUPVMOmlgWjc2tcGA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Examples.ServiceExample.DemoUpdateService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Examples.ServiceExample.DemoUpdateService.html",
+          "hash": "QZBqgCC+lOrASi5jCyvTBA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Examples.ServiceExample.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Examples.ServiceExample.html",
+          "hash": "BNhnuqdg9m7Gd+QIrSnjtQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.ModelImporters.MtlLibrary.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.ModelImporters.MtlLibrary.html",
+          "hash": "SBbPui1wTI0jK4O+gzsmdg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.ModelImporters.ObjImporter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.ModelImporters.ObjImporter.html",
+          "hash": "FxcIdquxVJeMJBoeivB0XA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.ModelImporters.ObjParseResult.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.ModelImporters.ObjParseResult.html",
+          "hash": "Xqr17IPUVrNH2ONI6dcxbA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.ModelImporters.VertexData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.ModelImporters.VertexData.html",
+          "hash": "OaCO3yGI38QuxUksliXIzA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.ModelImporters.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.ModelImporters.html",
+          "hash": "seEpENWlteYiVeipldC0sg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Modified3DObjects.RoundedCorners.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Modified3DObjects.RoundedCorners.html",
+          "hash": "mO+74WIvmuSDCkfC8tje7w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Modified3DObjects.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Modified3DObjects.html",
+          "hash": "4FYIRjo+7sT+lQ9SGmZq1Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.OpenIDConnectClient.ClientData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.OpenIDConnectClient.ClientData.html",
+          "hash": "18Zj/Rfx+hO4XuKeNXkvsQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.OpenIDConnectClient.ClientDataObject.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.OpenIDConnectClient.ClientDataObject.html",
+          "hash": "COt4KEMnavl4iWEJFQ0i/w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.OpenIDConnectClient.IOidcProvider.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.OpenIDConnectClient.IOidcProvider.html",
+          "hash": "/Jzufm+ysiRueL7CKqn68Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.OpenIDConnectClient.IRedirectServerListener.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.OpenIDConnectClient.IRedirectServerListener.html",
+          "hash": "B3dqWvhdP1i0BGKg719/CQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.OpenIDConnectClient.IUserInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.OpenIDConnectClient.IUserInfo.html",
+          "hash": "FUIF3TBBa31vg/OjRHfe1A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.OpenIDConnectClient.LearningLayersAuthorizationFlowAnswer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.OpenIDConnectClient.LearningLayersAuthorizationFlowAnswer.html",
+          "hash": "adI5D4I+gsOjj1vHCDYcYw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.OpenIDConnectClient.LearningLayersOIDCProvider.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.OpenIDConnectClient.LearningLayersOIDCProvider.html",
+          "hash": "we8VKJINTyZqMtqXs/Go/Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.OpenIDConnectClient.LearningLayersUserInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.OpenIDConnectClient.LearningLayersUserInfo.html",
+          "hash": "HFFRi3w/Y1LVfBvBeqwpdg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.html",
+          "hash": "FJZG5OMBm8Gx5bd7AO+jmw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.OpenIDConnectClient.PostBuildOidcPatcher.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.OpenIDConnectClient.PostBuildOidcPatcher.html",
+          "hash": "69wh6WF2SXEQYifXK9zIIA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.OpenIDConnectClient.RedirectReceivedEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.OpenIDConnectClient.RedirectReceivedEventArgs.html",
+          "hash": "Ykxp+p+u3CkC5Y080yms9Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.OpenIDConnectClient.RedirectServerListener.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.OpenIDConnectClient.RedirectServerListener.html",
+          "hash": "kOhUfynIUoPtKIG2lwEB7g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.OpenIDConnectClient.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.OpenIDConnectClient.html",
+          "hash": "GwfjvC6d0yCTCPUVUTBkJg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.ProceduralGeometry.GeometryConstructor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.ProceduralGeometry.GeometryConstructor.html",
+          "hash": "G+GzszZOxhWV6I+jm7ajwA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.ProceduralGeometry.ITextureConstructor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.ProceduralGeometry.ITextureConstructor.html",
+          "hash": "zorvr6EFiSQHolcI7gCwMg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.ProceduralGeometry.MaterialConstructor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.ProceduralGeometry.MaterialConstructor.html",
+          "hash": "ktf31xXC9Hz4SP8GzYapoQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.ProceduralGeometry.ObjectConstructor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.ProceduralGeometry.ObjectConstructor.html",
+          "hash": "dbPN3vp+xbHHvpdaiAhPqw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.ProceduralGeometry.TextureConstructor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.ProceduralGeometry.TextureConstructor.html",
+          "hash": "/vTxchy21LEXSUldg4aTRA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.ProceduralGeometry.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.ProceduralGeometry.html",
+          "hash": "Ti/nj7sBAHHfLa7VQSYY0Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.SceneDocumentation.DocumentationObject.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.SceneDocumentation.DocumentationObject.html",
+          "hash": "pIj2plYoMzt4txzjqpSoLA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.SceneDocumentation.DocumentationType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.SceneDocumentation.DocumentationType.html",
+          "hash": "sWA7ItG5WDEFmCL7wGPciw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.SceneDocumentation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.SceneDocumentation.html",
+          "hash": "k04tX95kz/QM5VNlFwPGhg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.ServiceCore.AsyncThreadedWorkerService-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.ServiceCore.AsyncThreadedWorkerService-1.html",
+          "hash": "aqkNsbvBBR2LkoUHDN4asg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.ServiceCore.BaseServiceBootstrapper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.ServiceCore.BaseServiceBootstrapper.html",
+          "hash": "3O0J4mg4K6JBRJgGfH9BSA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.ServiceCore.IOperation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.ServiceCore.IOperation.html",
+          "hash": "HgCK5e/q7vdtm0R2GxKSMQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.ServiceCore.IRunnerReceiver.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.ServiceCore.IRunnerReceiver.html",
+          "hash": "H/+HbkYoKnGyLFNrMW8BCg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.ServiceCore.IService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.ServiceCore.IService.html",
+          "hash": "Z3W41pMn+JHxwLDBFq12Zw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.ServiceCore.IServiceManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.ServiceCore.IServiceManager.html",
+          "hash": "NKFKJm73DGT4mkyySA4R/g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.ServiceCore.IUpdateableService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.ServiceCore.IUpdateableService.html",
+          "hash": "7s7z0bGKvCSl74NfRAJiEA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.ServiceCore.Operation-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.ServiceCore.Operation-1.html",
+          "hash": "W+5qmNAnTWZtEj6bY7Heuw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.ServiceCore.OperationStatus.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.ServiceCore.OperationStatus.html",
+          "hash": "CbIYS2FdMQuayKS6e1mYwQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.ServiceCore.ServiceManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.ServiceCore.ServiceManager.html",
+          "hash": "6ZX4ALpdtdAVpjOH1wuGnQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.ServiceCore.ServiceManagerRunner.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.ServiceCore.ServiceManagerRunner.html",
+          "hash": "tSAriXlwYfGe3sdNi0Kxew=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.ServiceCore.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.ServiceCore.html",
+          "hash": "qOfnrxr4lnnrLxjO6nQd4g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Spawners.Demo.SpawnerDemo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Spawners.Demo.SpawnerDemo.html",
+          "hash": "XZjrbZXXdYZcw4YJTKRhHw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Spawners.Demo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Spawners.Demo.html",
+          "hash": "d1bK5YgH7eXQLPn3Uy9SGg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Spawners.Spawner.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Spawners.Spawner.html",
+          "hash": "fGHujAmDvHUb7Et3KBBRJA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Spawners.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Spawners.html",
+          "hash": "3VPcAcxr3b3fYhqs8JJtSw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.TestHelpers.AsyncTest.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.TestHelpers.AsyncTest.html",
+          "hash": "ymLxFp17sP3DQTeEAW8W9A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.TestHelpers.InvalidPlatformException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.TestHelpers.InvalidPlatformException.html",
+          "hash": "3QP+Kq0PN+KVo69cUBMN4w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.TestHelpers.PlayModeTestUtilities.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.TestHelpers.PlayModeTestUtilities.html",
+          "hash": "cFQisx6rXBEOxrqf6Ogv+g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.TestHelpers.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.TestHelpers.html",
+          "hash": "8pers3vs/LRE3sL02HM2Yg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.TestUtilities.FakeContentLoaderFactory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.TestUtilities.FakeContentLoaderFactory.html",
+          "hash": "FmaDauUhpnoO/pszs0K6cA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.TestUtilities.TestObject.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.TestUtilities.TestObject.html",
+          "hash": "gLa6oLrOHoRZrD77nvT5Hw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.TestUtilities.TestUpdateService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.TestUtilities.TestUpdateService.html",
+          "hash": "7UWtVLCAf03Uowr7lLs9HA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.TestUtilities.UIOperator.UiElementNotFoundException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.TestUtilities.UIOperator.UiElementNotFoundException.html",
+          "hash": "2+qt9YofhQr+D52ww9B+Xw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.TestUtilities.UIOperator.UiOperator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.TestUtilities.UIOperator.UiOperator.html",
+          "hash": "MwCBaZ3wK+sagmMjbGuykA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.TestUtilities.UIOperator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.TestUtilities.UIOperator.html",
+          "hash": "Siuem+m4gRm/fYbpWTWiKA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.TestUtilities.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.TestUtilities.html",
+          "hash": "2yp0qovBmTHeqPB8Gpky7w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Tests.AppConsole.ActivationVisibilityManagerTests.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Tests.AppConsole.ActivationVisibilityManagerTests.html",
+          "hash": "+OFihpUZ088tpQRcuIqcag=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Tests.AppConsole.AutoScrollerTests.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Tests.AppConsole.AutoScrollerTests.html",
+          "hash": "jacDi6fj0gPG70ti/pi0YA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Tests.AppConsole.ConsoleTests.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Tests.AppConsole.ConsoleTests.html",
+          "hash": "cof8XaTyBk0+tQoAojL8DA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Tests.AppConsole.DefaultLogFormatterTests.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Tests.AppConsole.DefaultLogFormatterTests.html",
+          "hash": "F4wmqLptQTohf6pX80xx8w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Tests.AppConsole.TMPLogColorFormatterTests.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Tests.AppConsole.TMPLogColorFormatterTests.html",
+          "hash": "hcGGyh/L8ATvz9YL0Zzvjw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Tests.AppConsole.TextConsoleUITests.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Tests.AppConsole.TextConsoleUITests.html",
+          "hash": "8NSnAthHflV7lvc9HQLuWA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Tests.AppConsole.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Tests.AppConsole.html",
+          "hash": "Vx2xKgPuSDT3+BqtzXbkHQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Tests.ModelImporters.MtlLibraryTests.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Tests.ModelImporters.MtlLibraryTests.html",
+          "hash": "HEp2NBxm5TS6mRjxk4tz2Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Tests.ModelImporters.ObjImporterTests.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Tests.ModelImporters.ObjImporterTests.html",
+          "hash": "//Y6jkN1lC/iW0DX+oitdQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Tests.ModelImporters.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Tests.ModelImporters.html",
+          "hash": "SzDc4yIqUwldyKxgL2+ePg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Tests.OpenIDConnectClient.LearningLayersOIDCProviderTests.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Tests.OpenIDConnectClient.LearningLayersOIDCProviderTests.html",
+          "hash": "KdPCpDSEPD4pWnR7OjBJ8w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Tests.OpenIDConnectClient.OpenIDConnectServiceTests.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Tests.OpenIDConnectClient.OpenIDConnectServiceTests.html",
+          "hash": "Acb2mAN9j1/o492LhbhdhA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Tests.OpenIDConnectClient.RedirectServerListenerTests.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Tests.OpenIDConnectClient.RedirectServerListenerTests.html",
+          "hash": "aaCT9K0YAhm01vc7OKxzbw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Tests.OpenIDConnectClient.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Tests.OpenIDConnectClient.html",
+          "hash": "a5Tmq9G9tD53bngyM+9MMA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Tests.ProceduralGeometry.GeometryConstructorTests.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Tests.ProceduralGeometry.GeometryConstructorTests.html",
+          "hash": "TiPrIARO99hk5+a2kuhDRQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Tests.ProceduralGeometry.MaterialConstructorTests.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Tests.ProceduralGeometry.MaterialConstructorTests.html",
+          "hash": "Svkqi9w/MMUWlCeMWRM/5A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Tests.ProceduralGeometry.ObjectConstructorTests.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Tests.ProceduralGeometry.ObjectConstructorTests.html",
+          "hash": "NKGJIJrS8RlxK7kNBcrNtA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Tests.ProceduralGeometry.TextureConstructorTests.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Tests.ProceduralGeometry.TextureConstructorTests.html",
+          "hash": "imPO0XBHP7/9AahMd4tJdw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Tests.ProceduralGeometry.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Tests.ProceduralGeometry.html",
+          "hash": "tHwnGxAecDzjbrfAITdd6A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Tests.ServiceCore.ServiceManagerRunnerTests.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Tests.ServiceCore.ServiceManagerRunnerTests.html",
+          "hash": "/iG0DF+3A6k0s67bwX2+Hg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Tests.ServiceCore.ServiceManagerTests.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Tests.ServiceCore.ServiceManagerTests.html",
+          "hash": "icpU72zUQXnmg2oD3oEK/A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Tests.ServiceCore.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Tests.ServiceCore.html",
+          "hash": "usqk8ppRKOA0PuyIWG0APg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Tests.Utilities.ComponentUtilitiesTests.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Tests.Utilities.ComponentUtilitiesTests.html",
+          "hash": "ztgUy6rx/d3+Q+jv5C6wzA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Tests.Utilities.ConversionUtilsTests.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Tests.Utilities.ConversionUtilsTests.html",
+          "hash": "sqpfMgKOQYPvu20kyuvrwQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Tests.Utilities.NameValueCollectionExtensionsTests.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Tests.Utilities.NameValueCollectionExtensionsTests.html",
+          "hash": "yy+tl33O6ND3/tTKblMQzw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Tests.Utilities.ObjectPoolTests.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Tests.Utilities.ObjectPoolTests.html",
+          "hash": "270N6YotTctlS58nNbzOqA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Tests.Utilities.ParserUtilsTests.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Tests.Utilities.ParserUtilsTests.html",
+          "hash": "EG2RmN3y1twNRy5ukx4q2Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Tests.Utilities.UriUtilsTests.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Tests.Utilities.UriUtilsTests.html",
+          "hash": "FW14IZXq5djKfzeveyqD0w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Tests.Utilities.i5DebugTests.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Tests.Utilities.i5DebugTests.html",
+          "hash": "amMJ+SKEpVz8Ezg2SiPwBw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Tests.Utilities.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Tests.Utilities.html",
+          "hash": "2zVF/ZK/9+KtPnt6ZggzGw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Utilities.Async.AwaiterExtensions.SimpleCoroutineAwaiter-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Utilities.Async.AwaiterExtensions.SimpleCoroutineAwaiter-1.html",
+          "hash": "e4IAoDI40GechLXdNq5Msw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Utilities.Async.AwaiterExtensions.SimpleCoroutineAwaiter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Utilities.Async.AwaiterExtensions.SimpleCoroutineAwaiter.html",
+          "hash": "PepB6VxyKaQxtrIuCLgcrQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Utilities.Async.AwaiterExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Utilities.Async.AwaiterExtensions.html",
+          "hash": "Uq6itTBZ//s/uGtO1KYoOg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Utilities.Async.SyncContextUtility.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Utilities.Async.SyncContextUtility.html",
+          "hash": "o/e3Iy4kU+e1tMmtg7n3Ag=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Utilities.Async.WaitForBackgroundThread.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Utilities.Async.WaitForBackgroundThread.html",
+          "hash": "YhEwO0RJDIlyOkpDYPehIA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Utilities.Async.WaitForUpdate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Utilities.Async.WaitForUpdate.html",
+          "hash": "xGzaeXOVJH0NZrTtyTwngA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Utilities.Async.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Utilities.Async.html",
+          "hash": "ub5T9I21TB6a97JhTBMDQg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Utilities.Browser.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Utilities.Browser.html",
+          "hash": "lnuaxZCUwQQax+WhR/mYWQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Utilities.ComponentUtilities.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Utilities.ComponentUtilities.html",
+          "hash": "lwwTAaiKtzs4BD/XKZgyqg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Utilities.ConstantRotation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Utilities.ConstantRotation.html",
+          "hash": "ps+tj4bcHnutLGLYevI/vQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Utilities.ContentLoaders.IContentLoader-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Utilities.ContentLoaders.IContentLoader-1.html",
+          "hash": "I0orPE23yE/jv4q7/Ilm8g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Utilities.ContentLoaders.UnityTextureLoader.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Utilities.ContentLoaders.UnityTextureLoader.html",
+          "hash": "RMzTPHA9XraAKq0nMCJU1g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Utilities.ContentLoaders.UnityWebRequestLoader.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Utilities.ContentLoaders.UnityWebRequestLoader.html",
+          "hash": "GcOIMVKB2DKsGgZ7aXgLeQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Utilities.ContentLoaders.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Utilities.ContentLoaders.html",
+          "hash": "GWgbs8oDjOWSAhHYsGJgYg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Utilities.ConversionUtils.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Utilities.ConversionUtils.html",
+          "hash": "m4XXHeAdH1KnSi/T5KYAHw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Utilities.Exceptions.PlatformNotSupportedException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Utilities.Exceptions.PlatformNotSupportedException.html",
+          "hash": "66p8P2cbYBDQapB5/W6iwQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Utilities.Exceptions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Utilities.Exceptions.html",
+          "hash": "iLpqyfPg9bypmk6Q/LgiDg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Utilities.IBrowser.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Utilities.IBrowser.html",
+          "hash": "r2E421mc4ZJzRnPygwVEfQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Utilities.IJsonSerializer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Utilities.IJsonSerializer.html",
+          "hash": "r/WloaTCNnp1DNI8n0lXjw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Utilities.IRestConnector.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Utilities.IRestConnector.html",
+          "hash": "N9KWzJ9gv1yQf4WUslc7Vg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Utilities.JsonArrayUtility.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Utilities.JsonArrayUtility.html",
+          "hash": "QF2no1/Hog9Q4EuOUtnN3w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Utilities.JsonUtilityWrapper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Utilities.JsonUtilityWrapper.html",
+          "hash": "0YClJw5zvnXNiEm1mwYaUg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Utilities.NameValueCollectionExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Utilities.NameValueCollectionExtensions.html",
+          "hash": "aPq1VMBBNGmiw5UeZpZBPQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Utilities.ObjectPool-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Utilities.ObjectPool-1.html",
+          "hash": "3SDnUgsz5Hgh4VpKN1oLBg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Utilities.ParserUtils.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Utilities.ParserUtils.html",
+          "hash": "B2X58Xl58fhoEqiqE7Vnkg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Utilities.SpecialDebugMessages.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Utilities.SpecialDebugMessages.html",
+          "hash": "GWA+hfIY0py+tCZx/maTRA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Utilities.UnityAdapters.GameObjectAdapter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Utilities.UnityAdapters.GameObjectAdapter.html",
+          "hash": "pS0jRc3AVGjjZwsdtZZd9g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Utilities.UnityAdapters.IActivateable.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Utilities.UnityAdapters.IActivateable.html",
+          "hash": "w/1TnJFHqr13bnsxo2ypaw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Utilities.UnityAdapters.IRectangle.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Utilities.UnityAdapters.IRectangle.html",
+          "hash": "ahkbXdQ0XiRr5SBldclYAQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Utilities.UnityAdapters.IScrollView.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Utilities.UnityAdapters.IScrollView.html",
+          "hash": "8TJfjI4NjqG61FKu1gMstg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Utilities.UnityAdapters.ITextDisplay.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Utilities.UnityAdapters.ITextDisplay.html",
+          "hash": "zaaCN8/up/MjTHkqJ8H28g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Utilities.UnityAdapters.RectTransformAdapter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Utilities.UnityAdapters.RectTransformAdapter.html",
+          "hash": "rQlBmw19QaBRSNu+Xp5vDg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Utilities.UnityAdapters.ScrollRectAdapter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Utilities.UnityAdapters.ScrollRectAdapter.html",
+          "hash": "L6Y4G5BwNWXTBcKWsgbstg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Utilities.UnityAdapters.TextMeshProTextAdapter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Utilities.UnityAdapters.TextMeshProTextAdapter.html",
+          "hash": "rzk3X4JR98Jm91ZuliSCHg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Utilities.UnityAdapters.TextMeshProUGUITextAdapter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Utilities.UnityAdapters.TextMeshProUGUITextAdapter.html",
+          "hash": "gBgb+ME1qgr/3hxh2W3JXA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Utilities.UnityAdapters.TextMeshTextAdapter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Utilities.UnityAdapters.TextMeshTextAdapter.html",
+          "hash": "ZEpr8rO63J6Dnis5dNbJKQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Utilities.UnityAdapters.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Utilities.UnityAdapters.html",
+          "hash": "26cU40V5wGHDxdUf9PQ9+A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Utilities.UnityWebRequestRestConnector.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Utilities.UnityWebRequestRestConnector.html",
+          "hash": "kN8LQ4sSxWPXE6dsCHw3vg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Utilities.UriUtils.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Utilities.UriUtils.html",
+          "hash": "2FkgIyNX2jXgNP0+v7A7fQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Utilities.WebResponse-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Utilities.WebResponse-1.html",
+          "hash": "QpLsDVvPv6Kwdm1ObJT4Zg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Utilities.i5Debug.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Utilities.i5Debug.html",
+          "hash": "rpeeiCwo1zEPhGVVck5LqA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Utilities.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Utilities.html",
+          "hash": "zICkTw2uKqcSmPIgxZctgw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html",
+          "hash": "sI9iP6SeFd3TreaAPe/f7Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html",
+          "hash": "TuylCK8makRdgXpbA/B69w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "UidNotFound"
+      ],
+      "type": "Conceptual",
+      "source_relative_path": "manual/sample.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/sample.html",
+          "hash": "ZjOHIG1CuNZfW/HNhefgaw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "manual/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "manual/toc.html",
+          "hash": "T4lR25HflDkBPV5fvnpSlQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html",
+          "hash": "qBeYu6zih/8e+SM4qNqCMA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    }
+  ],
+  "incremental_info": [
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Cannot build incrementally because last build info is missing.",
+        "incrementalPhase": "build",
+        "total_file_count": 0,
+        "skipped_file_count": 0,
+        "full_build_reason_code": "NoAvailableBuildCache"
+      },
+      "processors": {
+        "ConceptualDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 2,
+          "skipped_file_count": 0
+        },
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 179,
+          "skipped_file_count": 0
+        },
+        "TocDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build",
+          "total_file_count": 0,
+          "skipped_file_count": 0
+        }
+      }
+    },
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Cannot support incremental post processing, the reason is: should not trace intermediate info.",
+        "incrementalPhase": "postProcessing",
+        "total_file_count": 0,
+        "skipped_file_count": 0
+      },
+      "processors": {}
+    }
+  ],
+  "version_info": {},
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}

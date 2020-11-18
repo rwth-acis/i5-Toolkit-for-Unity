@@ -1,0 +1,368 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class ObjectPoolTests
+   | i5 Toolkit Documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class ObjectPoolTests
+   | i5 Toolkit Documentation ">
+    <meta name="generator" content="docfx 2.56.2.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="i5.Toolkit.Core.Tests.Utilities.ObjectPoolTests">
+  
+  
+  <h1 id="i5_Toolkit_Core_Tests_Utilities_ObjectPoolTests" data-uid="i5.Toolkit.Core.Tests.Utilities.ObjectPoolTests" class="text-break">Class ObjectPoolTests
+  </h1>
+  <div class="markdown level0 summary"><p>Tests for the ObjectPool</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></div>
+    <div class="level1"><span class="xref">ObjectPoolTests</span></div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="i5.Toolkit.Core.Tests.Utilities.html">i5.Toolkit.Core.Tests.Utilities</a></h6>
+  <h6><strong>Assembly</strong>: cs.temp.dll.dll</h6>
+  <h5 id="i5_Toolkit_Core_Tests_Utilities_ObjectPoolTests_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class ObjectPoolTests</code></pre>
+  </div>
+  <h3 id="methods">Methods
+  </h3>
+  
+  
+  <a id="i5_Toolkit_Core_Tests_Utilities_ObjectPoolTests_ClearPool_ClearedCustomPool_UsesFactoryAfterClean_" data-uid="i5.Toolkit.Core.Tests.Utilities.ObjectPoolTests.ClearPool_ClearedCustomPool_UsesFactoryAfterClean*"></a>
+  <h4 id="i5_Toolkit_Core_Tests_Utilities_ObjectPoolTests_ClearPool_ClearedCustomPool_UsesFactoryAfterClean" data-uid="i5.Toolkit.Core.Tests.Utilities.ObjectPoolTests.ClearPool_ClearedCustomPool_UsesFactoryAfterClean">ClearPool_ClearedCustomPool_UsesFactoryAfterClean()</h4>
+  <div class="markdown level1 summary"><p>Checks that the factory method is used after a non-empty custom pool was cleared (meaning that it is now empty)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearPool_ClearedCustomPool_UsesFactoryAfterClean()</code></pre>
+  </div>
+  
+  
+  <a id="i5_Toolkit_Core_Tests_Utilities_ObjectPoolTests_ClearPool_ClearedDefaultPool_UsesFactoryAfterClean_" data-uid="i5.Toolkit.Core.Tests.Utilities.ObjectPoolTests.ClearPool_ClearedDefaultPool_UsesFactoryAfterClean*"></a>
+  <h4 id="i5_Toolkit_Core_Tests_Utilities_ObjectPoolTests_ClearPool_ClearedDefaultPool_UsesFactoryAfterClean" data-uid="i5.Toolkit.Core.Tests.Utilities.ObjectPoolTests.ClearPool_ClearedDefaultPool_UsesFactoryAfterClean">ClearPool_ClearedDefaultPool_UsesFactoryAfterClean()</h4>
+  <div class="markdown level1 summary"><p>Checks that the factory method is used after a non-empty default pool was cleared (meaning that it is now empty)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearPool_ClearedDefaultPool_UsesFactoryAfterClean()</code></pre>
+  </div>
+  
+  
+  <a id="i5_Toolkit_Core_Tests_Utilities_ObjectPoolTests_ClearPool_PoolDoesNotExist_ThrowsInvalidOperationException_" data-uid="i5.Toolkit.Core.Tests.Utilities.ObjectPoolTests.ClearPool_PoolDoesNotExist_ThrowsInvalidOperationException*"></a>
+  <h4 id="i5_Toolkit_Core_Tests_Utilities_ObjectPoolTests_ClearPool_PoolDoesNotExist_ThrowsInvalidOperationException" data-uid="i5.Toolkit.Core.Tests.Utilities.ObjectPoolTests.ClearPool_PoolDoesNotExist_ThrowsInvalidOperationException">ClearPool_PoolDoesNotExist_ThrowsInvalidOperationException()</h4>
+  <div class="markdown level1 summary"><p>Checks that an exception is thrown if a pool is cleared that does not exist</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearPool_PoolDoesNotExist_ThrowsInvalidOperationException()</code></pre>
+  </div>
+  
+  
+  <a id="i5_Toolkit_Core_Tests_Utilities_ObjectPoolTests_CreatePool_MultiplePools_IdsIncrement_" data-uid="i5.Toolkit.Core.Tests.Utilities.ObjectPoolTests.CreatePool_MultiplePools_IdsIncrement*"></a>
+  <h4 id="i5_Toolkit_Core_Tests_Utilities_ObjectPoolTests_CreatePool_MultiplePools_IdsIncrement" data-uid="i5.Toolkit.Core.Tests.Utilities.ObjectPoolTests.CreatePool_MultiplePools_IdsIncrement">CreatePool_MultiplePools_IdsIncrement()</h4>
+  <div class="markdown level1 summary"><p>Checks if the pool ids are incremented if multiple pools are created</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void CreatePool_MultiplePools_IdsIncrement()</code></pre>
+  </div>
+  
+  
+  <a id="i5_Toolkit_Core_Tests_Utilities_ObjectPoolTests_CreatePool_SinglePool_Accessible_" data-uid="i5.Toolkit.Core.Tests.Utilities.ObjectPoolTests.CreatePool_SinglePool_Accessible*"></a>
+  <h4 id="i5_Toolkit_Core_Tests_Utilities_ObjectPoolTests_CreatePool_SinglePool_Accessible" data-uid="i5.Toolkit.Core.Tests.Utilities.ObjectPoolTests.CreatePool_SinglePool_Accessible">CreatePool_SinglePool_Accessible()</h4>
+  <div class="markdown level1 summary"><p>Checks if the created pool is accessible</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void CreatePool_SinglePool_Accessible()</code></pre>
+  </div>
+  
+  
+  <a id="i5_Toolkit_Core_Tests_Utilities_ObjectPoolTests_CreatePool_SinglePoolCapacity_ReturnsIdBigger0_" data-uid="i5.Toolkit.Core.Tests.Utilities.ObjectPoolTests.CreatePool_SinglePoolCapacity_ReturnsIdBigger0*"></a>
+  <h4 id="i5_Toolkit_Core_Tests_Utilities_ObjectPoolTests_CreatePool_SinglePoolCapacity_ReturnsIdBigger0" data-uid="i5.Toolkit.Core.Tests.Utilities.ObjectPoolTests.CreatePool_SinglePoolCapacity_ReturnsIdBigger0">CreatePool_SinglePoolCapacity_ReturnsIdBigger0()</h4>
+  <div class="markdown level1 summary"><p>Checks if an id in the correct range is created if a new pool with a pre-defined capacity is created</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void CreatePool_SinglePoolCapacity_ReturnsIdBigger0()</code></pre>
+  </div>
+  
+  
+  <a id="i5_Toolkit_Core_Tests_Utilities_ObjectPoolTests_CreatePool_SinglePoolNoCapacity_ReturnsIdBigger0_" data-uid="i5.Toolkit.Core.Tests.Utilities.ObjectPoolTests.CreatePool_SinglePoolNoCapacity_ReturnsIdBigger0*"></a>
+  <h4 id="i5_Toolkit_Core_Tests_Utilities_ObjectPoolTests_CreatePool_SinglePoolNoCapacity_ReturnsIdBigger0" data-uid="i5.Toolkit.Core.Tests.Utilities.ObjectPoolTests.CreatePool_SinglePoolNoCapacity_ReturnsIdBigger0">CreatePool_SinglePoolNoCapacity_ReturnsIdBigger0()</h4>
+  <div class="markdown level1 summary"><p>Checks if an id in the correct range is created if a new pool is created</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void CreatePool_SinglePoolNoCapacity_ReturnsIdBigger0()</code></pre>
+  </div>
+  
+  
+  <a id="i5_Toolkit_Core_Tests_Utilities_ObjectPoolTests_ReleaseResource_CustomPool_StoredInPool_" data-uid="i5.Toolkit.Core.Tests.Utilities.ObjectPoolTests.ReleaseResource_CustomPool_StoredInPool*"></a>
+  <h4 id="i5_Toolkit_Core_Tests_Utilities_ObjectPoolTests_ReleaseResource_CustomPool_StoredInPool" data-uid="i5.Toolkit.Core.Tests.Utilities.ObjectPoolTests.ReleaseResource_CustomPool_StoredInPool">ReleaseResource_CustomPool_StoredInPool()</h4>
+  <div class="markdown level1 summary"><p>Checks that a release object is stored in a custom pool</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ReleaseResource_CustomPool_StoredInPool()</code></pre>
+  </div>
+  
+  
+  <a id="i5_Toolkit_Core_Tests_Utilities_ObjectPoolTests_ReleaseResource_DefaultPool_StoredInPool_" data-uid="i5.Toolkit.Core.Tests.Utilities.ObjectPoolTests.ReleaseResource_DefaultPool_StoredInPool*"></a>
+  <h4 id="i5_Toolkit_Core_Tests_Utilities_ObjectPoolTests_ReleaseResource_DefaultPool_StoredInPool" data-uid="i5.Toolkit.Core.Tests.Utilities.ObjectPoolTests.ReleaseResource_DefaultPool_StoredInPool">ReleaseResource_DefaultPool_StoredInPool()</h4>
+  <div class="markdown level1 summary"><p>Checks that a released object is stored in the default pool</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ReleaseResource_DefaultPool_StoredInPool()</code></pre>
+  </div>
+  
+  
+  <a id="i5_Toolkit_Core_Tests_Utilities_ObjectPoolTests_ReleaseResource_PoolDoesNotExist_ThrowsInvalidOperationException_" data-uid="i5.Toolkit.Core.Tests.Utilities.ObjectPoolTests.ReleaseResource_PoolDoesNotExist_ThrowsInvalidOperationException*"></a>
+  <h4 id="i5_Toolkit_Core_Tests_Utilities_ObjectPoolTests_ReleaseResource_PoolDoesNotExist_ThrowsInvalidOperationException" data-uid="i5.Toolkit.Core.Tests.Utilities.ObjectPoolTests.ReleaseResource_PoolDoesNotExist_ThrowsInvalidOperationException">ReleaseResource_PoolDoesNotExist_ThrowsInvalidOperationException()</h4>
+  <div class="markdown level1 summary"><p>Checks that an exception is thrown if an object is released to a pool that does not exist</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ReleaseResource_PoolDoesNotExist_ThrowsInvalidOperationException()</code></pre>
+  </div>
+  
+  
+  <a id="i5_Toolkit_Core_Tests_Utilities_ObjectPoolTests_RemovePool_CreateAndRemovePool_PoolNotAccessibleAnymore_" data-uid="i5.Toolkit.Core.Tests.Utilities.ObjectPoolTests.RemovePool_CreateAndRemovePool_PoolNotAccessibleAnymore*"></a>
+  <h4 id="i5_Toolkit_Core_Tests_Utilities_ObjectPoolTests_RemovePool_CreateAndRemovePool_PoolNotAccessibleAnymore" data-uid="i5.Toolkit.Core.Tests.Utilities.ObjectPoolTests.RemovePool_CreateAndRemovePool_PoolNotAccessibleAnymore">RemovePool_CreateAndRemovePool_PoolNotAccessibleAnymore()</h4>
+  <div class="markdown level1 summary"><p>Checks if a removed pool is not accessible anymore</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RemovePool_CreateAndRemovePool_PoolNotAccessibleAnymore()</code></pre>
+  </div>
+  
+  
+  <a id="i5_Toolkit_Core_Tests_Utilities_ObjectPoolTests_RemovePool_PoolDoesNotExist_LogsWarning_" data-uid="i5.Toolkit.Core.Tests.Utilities.ObjectPoolTests.RemovePool_PoolDoesNotExist_LogsWarning*"></a>
+  <h4 id="i5_Toolkit_Core_Tests_Utilities_ObjectPoolTests_RemovePool_PoolDoesNotExist_LogsWarning" data-uid="i5.Toolkit.Core.Tests.Utilities.ObjectPoolTests.RemovePool_PoolDoesNotExist_LogsWarning">RemovePool_PoolDoesNotExist_LogsWarning()</h4>
+  <div class="markdown level1 summary"><p>Checks that a warning is logged if a pool is removed that did not exist</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RemovePool_PoolDoesNotExist_LogsWarning()</code></pre>
+  </div>
+  
+  
+  <a id="i5_Toolkit_Core_Tests_Utilities_ObjectPoolTests_RemovePool_RemovePool0_LogsError_" data-uid="i5.Toolkit.Core.Tests.Utilities.ObjectPoolTests.RemovePool_RemovePool0_LogsError*"></a>
+  <h4 id="i5_Toolkit_Core_Tests_Utilities_ObjectPoolTests_RemovePool_RemovePool0_LogsError" data-uid="i5.Toolkit.Core.Tests.Utilities.ObjectPoolTests.RemovePool_RemovePool0_LogsError">RemovePool_RemovePool0_LogsError()</h4>
+  <div class="markdown level1 summary"><p>Checks that the default pool cannot be removed</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RemovePool_RemovePool0_LogsError()</code></pre>
+  </div>
+  
+  
+  <a id="i5_Toolkit_Core_Tests_Utilities_ObjectPoolTests_RequestResource_CustomPoolAndEmpty_UsesFactory_" data-uid="i5.Toolkit.Core.Tests.Utilities.ObjectPoolTests.RequestResource_CustomPoolAndEmpty_UsesFactory*"></a>
+  <h4 id="i5_Toolkit_Core_Tests_Utilities_ObjectPoolTests_RequestResource_CustomPoolAndEmpty_UsesFactory" data-uid="i5.Toolkit.Core.Tests.Utilities.ObjectPoolTests.RequestResource_CustomPoolAndEmpty_UsesFactory">RequestResource_CustomPoolAndEmpty_UsesFactory()</h4>
+  <div class="markdown level1 summary"><p>Checks that the factory method is used if an object is requested from an empt custom pool</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RequestResource_CustomPoolAndEmpty_UsesFactory()</code></pre>
+  </div>
+  
+  
+  <a id="i5_Toolkit_Core_Tests_Utilities_ObjectPoolTests_RequestResource_CustomPoolContainsMultipleObj_UsesFIFO_" data-uid="i5.Toolkit.Core.Tests.Utilities.ObjectPoolTests.RequestResource_CustomPoolContainsMultipleObj_UsesFIFO*"></a>
+  <h4 id="i5_Toolkit_Core_Tests_Utilities_ObjectPoolTests_RequestResource_CustomPoolContainsMultipleObj_UsesFIFO" data-uid="i5.Toolkit.Core.Tests.Utilities.ObjectPoolTests.RequestResource_CustomPoolContainsMultipleObj_UsesFIFO">RequestResource_CustomPoolContainsMultipleObj_UsesFIFO()</h4>
+  <div class="markdown level1 summary"><p>Checks that the custom pool uses FIFO if it contains multiple objects and one is requested</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RequestResource_CustomPoolContainsMultipleObj_UsesFIFO()</code></pre>
+  </div>
+  
+  
+  <a id="i5_Toolkit_Core_Tests_Utilities_ObjectPoolTests_RequestResource_CustomPoolContainsObj_ReturnsObj_" data-uid="i5.Toolkit.Core.Tests.Utilities.ObjectPoolTests.RequestResource_CustomPoolContainsObj_ReturnsObj*"></a>
+  <h4 id="i5_Toolkit_Core_Tests_Utilities_ObjectPoolTests_RequestResource_CustomPoolContainsObj_ReturnsObj" data-uid="i5.Toolkit.Core.Tests.Utilities.ObjectPoolTests.RequestResource_CustomPoolContainsObj_ReturnsObj">RequestResource_CustomPoolContainsObj_ReturnsObj()</h4>
+  <div class="markdown level1 summary"><p>Checks that the object is returned that exists in a custom pool if it is requested</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RequestResource_CustomPoolContainsObj_ReturnsObj()</code></pre>
+  </div>
+  
+  
+  <a id="i5_Toolkit_Core_Tests_Utilities_ObjectPoolTests_RequestResource_DefaultPoolAndEmpty_UsesFactory_" data-uid="i5.Toolkit.Core.Tests.Utilities.ObjectPoolTests.RequestResource_DefaultPoolAndEmpty_UsesFactory*"></a>
+  <h4 id="i5_Toolkit_Core_Tests_Utilities_ObjectPoolTests_RequestResource_DefaultPoolAndEmpty_UsesFactory" data-uid="i5.Toolkit.Core.Tests.Utilities.ObjectPoolTests.RequestResource_DefaultPoolAndEmpty_UsesFactory">RequestResource_DefaultPoolAndEmpty_UsesFactory()</h4>
+  <div class="markdown level1 summary"><p>Checks that the factory method is used if a resource is requested from the empty default pool</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RequestResource_DefaultPoolAndEmpty_UsesFactory()</code></pre>
+  </div>
+  
+  
+  <a id="i5_Toolkit_Core_Tests_Utilities_ObjectPoolTests_RequestResource_DefaultPoolContainsMultipleObj_UsesFIFO_" data-uid="i5.Toolkit.Core.Tests.Utilities.ObjectPoolTests.RequestResource_DefaultPoolContainsMultipleObj_UsesFIFO*"></a>
+  <h4 id="i5_Toolkit_Core_Tests_Utilities_ObjectPoolTests_RequestResource_DefaultPoolContainsMultipleObj_UsesFIFO" data-uid="i5.Toolkit.Core.Tests.Utilities.ObjectPoolTests.RequestResource_DefaultPoolContainsMultipleObj_UsesFIFO">RequestResource_DefaultPoolContainsMultipleObj_UsesFIFO()</h4>
+  <div class="markdown level1 summary"><p>Checks that an object is selected based on FIFO if multiple objects are present in the default pool and one is requested</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RequestResource_DefaultPoolContainsMultipleObj_UsesFIFO()</code></pre>
+  </div>
+  
+  
+  <a id="i5_Toolkit_Core_Tests_Utilities_ObjectPoolTests_RequestResource_DefaultPoolContainsObj_ReturnsObj_" data-uid="i5.Toolkit.Core.Tests.Utilities.ObjectPoolTests.RequestResource_DefaultPoolContainsObj_ReturnsObj*"></a>
+  <h4 id="i5_Toolkit_Core_Tests_Utilities_ObjectPoolTests_RequestResource_DefaultPoolContainsObj_ReturnsObj" data-uid="i5.Toolkit.Core.Tests.Utilities.ObjectPoolTests.RequestResource_DefaultPoolContainsObj_ReturnsObj">RequestResource_DefaultPoolContainsObj_ReturnsObj()</h4>
+  <div class="markdown level1 summary"><p>Checks that the object is returned if there is an object in the default pool and a resource is requested</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RequestResource_DefaultPoolContainsObj_ReturnsObj()</code></pre>
+  </div>
+  
+  
+  <a id="i5_Toolkit_Core_Tests_Utilities_ObjectPoolTests_RequestResource_PoolDoesNotExist_ThrowsInvalidOperationException_" data-uid="i5.Toolkit.Core.Tests.Utilities.ObjectPoolTests.RequestResource_PoolDoesNotExist_ThrowsInvalidOperationException*"></a>
+  <h4 id="i5_Toolkit_Core_Tests_Utilities_ObjectPoolTests_RequestResource_PoolDoesNotExist_ThrowsInvalidOperationException" data-uid="i5.Toolkit.Core.Tests.Utilities.ObjectPoolTests.RequestResource_PoolDoesNotExist_ThrowsInvalidOperationException">RequestResource_PoolDoesNotExist_ThrowsInvalidOperationException()</h4>
+  <div class="markdown level1 summary"><p>Checks that an exception is thrown if an object is requested from a pool that does not exist</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RequestResource_PoolDoesNotExist_ThrowsInvalidOperationException()</code></pre>
+  </div>
+  
+  
+  <a id="i5_Toolkit_Core_Tests_Utilities_ObjectPoolTests_ResetScene_" data-uid="i5.Toolkit.Core.Tests.Utilities.ObjectPoolTests.ResetScene*"></a>
+  <h4 id="i5_Toolkit_Core_Tests_Utilities_ObjectPoolTests_ResetScene" data-uid="i5.Toolkit.Core.Tests.Utilities.ObjectPoolTests.ResetScene">ResetScene()</h4>
+  <div class="markdown level1 summary"><p>Loads a new scene for each test</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ResetScene()</code></pre>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            i5 Toolkit Documentation
+            
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

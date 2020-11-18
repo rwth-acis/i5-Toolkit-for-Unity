@@ -1,0 +1,664 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class GeometryConstructor
+   | i5 Toolkit Documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class GeometryConstructor
+   | i5 Toolkit Documentation ">
+    <meta name="generator" content="docfx 2.56.2.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="i5.Toolkit.Core.ProceduralGeometry.GeometryConstructor">
+  
+  
+  <h1 id="i5_Toolkit_Core_ProceduralGeometry_GeometryConstructor" data-uid="i5.Toolkit.Core.ProceduralGeometry.GeometryConstructor" class="text-break">Class GeometryConstructor
+  </h1>
+  <div class="markdown level0 summary"><p>Utility class which guides the construction of meshes
+Provides helper methods to register vertices and create faces of different shapes</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></div>
+    <div class="level1"><span class="xref">GeometryConstructor</span></div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="i5.Toolkit.Core.ProceduralGeometry.html">i5.Toolkit.Core.ProceduralGeometry</a></h6>
+  <h6><strong>Assembly</strong>: cs.temp.dll.dll</h6>
+  <h5 id="i5_Toolkit_Core_ProceduralGeometry_GeometryConstructor_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class GeometryConstructor</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  
+  
+  <a id="i5_Toolkit_Core_ProceduralGeometry_GeometryConstructor__ctor_" data-uid="i5.Toolkit.Core.ProceduralGeometry.GeometryConstructor.#ctor*"></a>
+  <h4 id="i5_Toolkit_Core_ProceduralGeometry_GeometryConstructor__ctor" data-uid="i5.Toolkit.Core.ProceduralGeometry.GeometryConstructor.#ctor">GeometryConstructor()</h4>
+  <div class="markdown level1 summary"><p>Creates the geometry constructor to buid the mesh data
+You can only add geometry, not remove it</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GeometryConstructor()</code></pre>
+  </div>
+  <h3 id="properties">Properties
+  </h3>
+  
+  
+  <a id="i5_Toolkit_Core_ProceduralGeometry_GeometryConstructor_Name_" data-uid="i5.Toolkit.Core.ProceduralGeometry.GeometryConstructor.Name*"></a>
+  <h4 id="i5_Toolkit_Core_ProceduralGeometry_GeometryConstructor_Name" data-uid="i5.Toolkit.Core.ProceduralGeometry.GeometryConstructor.Name">Name</h4>
+  <div class="markdown level1 summary"><p>The name of the produced mesh</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Name { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="i5_Toolkit_Core_ProceduralGeometry_GeometryConstructor_Normals_" data-uid="i5.Toolkit.Core.ProceduralGeometry.GeometryConstructor.Normals*"></a>
+  <h4 id="i5_Toolkit_Core_ProceduralGeometry_GeometryConstructor_Normals" data-uid="i5.Toolkit.Core.ProceduralGeometry.GeometryConstructor.Normals">Normals</h4>
+  <div class="markdown level1 summary"><p>Manually set normals</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;Vector3&gt; Normals { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">List</span>&lt;<span class="xref">Vector3</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="i5_Toolkit_Core_ProceduralGeometry_GeometryConstructor_Triangles_" data-uid="i5.Toolkit.Core.ProceduralGeometry.GeometryConstructor.Triangles*"></a>
+  <h4 id="i5_Toolkit_Core_ProceduralGeometry_GeometryConstructor_Triangles" data-uid="i5.Toolkit.Core.ProceduralGeometry.GeometryConstructor.Triangles">Triangles</h4>
+  <div class="markdown level1 summary"><p>The triangles/faces of the geometry object</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;int&gt; Triangles { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">List</span>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="i5_Toolkit_Core_ProceduralGeometry_GeometryConstructor_UVCoords_" data-uid="i5.Toolkit.Core.ProceduralGeometry.GeometryConstructor.UVCoords*"></a>
+  <h4 id="i5_Toolkit_Core_ProceduralGeometry_GeometryConstructor_UVCoords" data-uid="i5.Toolkit.Core.ProceduralGeometry.GeometryConstructor.UVCoords">UVCoords</h4>
+  <div class="markdown level1 summary"><p>Manually set UV coords</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;Vector2&gt; UVCoords { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">List</span>&lt;<span class="xref">Vector2</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="i5_Toolkit_Core_ProceduralGeometry_GeometryConstructor_Vertices_" data-uid="i5.Toolkit.Core.ProceduralGeometry.GeometryConstructor.Vertices*"></a>
+  <h4 id="i5_Toolkit_Core_ProceduralGeometry_GeometryConstructor_Vertices" data-uid="i5.Toolkit.Core.ProceduralGeometry.GeometryConstructor.Vertices">Vertices</h4>
+  <div class="markdown level1 summary"><p>The vertices of the geometry object</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;Vector3&gt; Vertices { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">List</span>&lt;<span class="xref">Vector3</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  
+  
+  <a id="i5_Toolkit_Core_ProceduralGeometry_GeometryConstructor_AddQuad_" data-uid="i5.Toolkit.Core.ProceduralGeometry.GeometryConstructor.AddQuad*"></a>
+  <h4 id="i5_Toolkit_Core_ProceduralGeometry_GeometryConstructor_AddQuad_System_Int32_System_Int32_System_Int32_System_Int32_System_Boolean_" data-uid="i5.Toolkit.Core.ProceduralGeometry.GeometryConstructor.AddQuad(System.Int32,System.Int32,System.Int32,System.Int32,System.Boolean)">AddQuad(Int32, Int32, Int32, Int32, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Adds a quad to the geometry (by adding two triangles)
+List the four vertices in clockwise order as seen from the outside
+The diagonal will be created between the first and third vertex
+The indices must exist in the geometry, i.e. they first need to be added using AddVertex()</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AddQuad(int v0, int v1, int v2, int v3, bool flipNormals = false)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">v0</span></td>
+        <td><p>Index of vertex 1</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">v1</span></td>
+        <td><p>Index of vertex 2</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">v2</span></td>
+        <td><p>Index of vertex 3</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">v3</span></td>
+        <td><p>Index of vertex 4</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><span class="parametername">flipNormals</span></td>
+        <td><p>If set to true, the quad will face the other way</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="i5_Toolkit_Core_ProceduralGeometry_GeometryConstructor_AddTriangle_" data-uid="i5.Toolkit.Core.ProceduralGeometry.GeometryConstructor.AddTriangle*"></a>
+  <h4 id="i5_Toolkit_Core_ProceduralGeometry_GeometryConstructor_AddTriangle_System_Int32_System_Int32_System_Int32_System_Boolean_" data-uid="i5.Toolkit.Core.ProceduralGeometry.GeometryConstructor.AddTriangle(System.Int32,System.Int32,System.Int32,System.Boolean)">AddTriangle(Int32, Int32, Int32, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Adds a triangle to the geometry
+List the three vertices in clockwise order as seen from the outside
+The indices must exist in the geometry, i.e. they first need to be added using AddVertex()</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AddTriangle(int v0, int v1, int v2, bool flipNormal = false)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">v0</span></td>
+        <td><p>Index of vertex 1</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">v1</span></td>
+        <td><p>Index of vertex 2</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">v2</span></td>
+        <td><p>Index of vertex 3</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><span class="parametername">flipNormal</span></td>
+        <td><p>If set to true, the triangle will face the other way</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="i5_Toolkit_Core_ProceduralGeometry_GeometryConstructor_AddTriangleFan_" data-uid="i5.Toolkit.Core.ProceduralGeometry.GeometryConstructor.AddTriangleFan*"></a>
+  <h4 id="i5_Toolkit_Core_ProceduralGeometry_GeometryConstructor_AddTriangleFan_System_Int32_System_Int32___System_Boolean_" data-uid="i5.Toolkit.Core.ProceduralGeometry.GeometryConstructor.AddTriangleFan(System.Int32,System.Int32[],System.Boolean)">AddTriangleFan(Int32, Int32[], Boolean)</h4>
+  <div class="markdown level1 summary"><p>Adds a fan of triangles to the geometry
+List the otherVertices clockwise
+The indices must exist in the geometry, i.e. they first need to be added using AddVertex()</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AddTriangleFan(int poleVertex, int[] otherVertices, bool flipNormals = false)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">poleVertex</span></td>
+        <td><p>The pole vertex which is connected to all other vertices of the fan</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a>[]</td>
+        <td><span class="parametername">otherVertices</span></td>
+        <td><p>The vertices which span the fan</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><span class="parametername">flipNormals</span></td>
+        <td><p>If set to true, the triangle fan will face the other way</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="i5_Toolkit_Core_ProceduralGeometry_GeometryConstructor_AddVertex_" data-uid="i5.Toolkit.Core.ProceduralGeometry.GeometryConstructor.AddVertex*"></a>
+  <h4 id="i5_Toolkit_Core_ProceduralGeometry_GeometryConstructor_AddVertex_Vector3_" data-uid="i5.Toolkit.Core.ProceduralGeometry.GeometryConstructor.AddVertex(Vector3)">AddVertex(Vector3)</h4>
+  <div class="markdown level1 summary"><p>Adds a disconnected, unnamed vertex to the geometry</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int AddVertex(Vector3 coordinates)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Vector3</span></td>
+        <td><span class="parametername">coordinates</span></td>
+        <td><p>The coordinates of the vertex</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><p>The index of the created vertex</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="i5_Toolkit_Core_ProceduralGeometry_GeometryConstructor_AddVertex_" data-uid="i5.Toolkit.Core.ProceduralGeometry.GeometryConstructor.AddVertex*"></a>
+  <h4 id="i5_Toolkit_Core_ProceduralGeometry_GeometryConstructor_AddVertex_Vector3_Vector2_" data-uid="i5.Toolkit.Core.ProceduralGeometry.GeometryConstructor.AddVertex(Vector3,Vector2)">AddVertex(Vector3, Vector2)</h4>
+  <div class="markdown level1 summary"><p>Adds a disconnected vertex to the geometry with the given coordinates and UV coordinates</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int AddVertex(Vector3 coordinates, Vector2 uvCoordinates)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Vector3</span></td>
+        <td><span class="parametername">coordinates</span></td>
+        <td><p>The 3D coordinates of the vertex</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Vector2</span></td>
+        <td><span class="parametername">uvCoordinates</span></td>
+        <td><p>The texture UV coordinates of the vertex</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><p>Returns the index of the created vertex</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="i5_Toolkit_Core_ProceduralGeometry_GeometryConstructor_AddVertex_" data-uid="i5.Toolkit.Core.ProceduralGeometry.GeometryConstructor.AddVertex*"></a>
+  <h4 id="i5_Toolkit_Core_ProceduralGeometry_GeometryConstructor_AddVertex_Vector3_Vector2_Vector3_" data-uid="i5.Toolkit.Core.ProceduralGeometry.GeometryConstructor.AddVertex(Vector3,Vector2,Vector3)">AddVertex(Vector3, Vector2, Vector3)</h4>
+  <div class="markdown level1 summary"><p>Adds a disconnected vertex to the geometry with the given coordinates, UV coordinates and normal vector</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int AddVertex(Vector3 coordinates, Vector2 uvCoordinates, Vector3 normalVector)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Vector3</span></td>
+        <td><span class="parametername">coordinates</span></td>
+        <td><p>The 3D coordinates of the vertex</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Vector2</span></td>
+        <td><span class="parametername">uvCoordinates</span></td>
+        <td><p>The texture UV coordinates of the vertex</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Vector3</span></td>
+        <td><span class="parametername">normalVector</span></td>
+        <td><p>The normal vector of the vertex</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><p>Returns the index of the created vertex</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="i5_Toolkit_Core_ProceduralGeometry_GeometryConstructor_AddVertex_" data-uid="i5.Toolkit.Core.ProceduralGeometry.GeometryConstructor.AddVertex*"></a>
+  <h4 id="i5_Toolkit_Core_ProceduralGeometry_GeometryConstructor_AddVertex_Vector3_Vector3_" data-uid="i5.Toolkit.Core.ProceduralGeometry.GeometryConstructor.AddVertex(Vector3,Vector3)">AddVertex(Vector3, Vector3)</h4>
+  <div class="markdown level1 summary"><p>Adds a disconnected vertex to the geometry with a given normal vector
+The normal vector is only used if a normal vector is supplied for every vertex</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int AddVertex(Vector3 coordinates, Vector3 normalVector)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Vector3</span></td>
+        <td><span class="parametername">coordinates</span></td>
+        <td><p>The coordinates of the vertex</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Vector3</span></td>
+        <td><span class="parametername">normalVector</span></td>
+        <td><p>The normal vector which should be used</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><p>The index of the created vertex</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="i5_Toolkit_Core_ProceduralGeometry_GeometryConstructor_ConstructMesh_" data-uid="i5.Toolkit.Core.ProceduralGeometry.GeometryConstructor.ConstructMesh*"></a>
+  <h4 id="i5_Toolkit_Core_ProceduralGeometry_GeometryConstructor_ConstructMesh" data-uid="i5.Toolkit.Core.ProceduralGeometry.GeometryConstructor.ConstructMesh">ConstructMesh()</h4>
+  <div class="markdown level1 summary"><p>Builds a mesh from the constructed geometry data</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Mesh ConstructMesh()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Mesh</span></td>
+        <td><p>The constructed mesh which is described by these geometry data</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            i5 Toolkit Documentation
+            
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

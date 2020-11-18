@@ -63,3 +63,15 @@ crashlytics-build.properties
 /Assets/TextMesh Pro
 /Assets/i5 Toolkit for Unity/package-lock.json
 /Assets/i5 Toolkit for Unity/package-lock.json.meta
+
+
+# DocFX
+/_site/
+/**/DROP/
+/**/TEMP/
+/**/packages/
+/**/bin/
+/**/obj/
+reference
+/Documentation/api
+/Assets/i5 Toolkit for Unity/Editor/OpenIDConnectClient/PostBuildScripts/obj.meta

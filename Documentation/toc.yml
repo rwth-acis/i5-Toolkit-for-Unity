@@ -1,0 +1,4 @@
+- name: Manual
+  href: manual/
+- name: API Documentation
+  href: api/

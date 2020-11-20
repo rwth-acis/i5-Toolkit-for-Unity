@@ -14,6 +14,7 @@ This document keeps track of the changes between versions of the toolkit.
 
 ### Changed
 - Sample scenes can now be accessed with the Unity Package UI (with Unity Package Manager 2.0 in Unity 2019.1 or later)
+- Documentation moved to [GitHub pages]()
 
 ## 1.1.0 (2020-08-24)
 

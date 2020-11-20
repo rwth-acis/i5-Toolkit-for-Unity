@@ -11,10 +11,22 @@ It is a foundation for new projects, kickstarting the development with already c
 
 The i5 Toolkit provides a series of modules and features that can be used in projects.
 
-| &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<br/> [![Modified 3D Objects](https://raw.githubusercontent.com/rwth-acis/i5-Toolkit-for-Unity/master/Logos/Rounded%20Corners.svg)<br/>Modified 3D Objects](https://github.com/rwth-acis/i5-Toolkit-for-Unity/wiki/Modified-3D-Objects)<br/>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  | &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<br/> [![Object Pool](https://raw.githubusercontent.com/rwth-acis/i5-Toolkit-for-Unity/master/Logos/Object%20Pool.svg)<br/>Object Pool](https://github.com/rwth-acis/i5-Toolkit-for-Unity/wiki/Object-Pool)<br/>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<br/> [![Obj Importer](https://raw.githubusercontent.com/rwth-acis/i5-Toolkit-for-Unity/master/Logos/Obj%20Importer.svg)<br/>Obj Importer](https://github.com/rwth-acis/i5-Toolkit-for-Unity/wiki/Obj-Importer)<br/>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; |
-| :---: | :---: | :---: |
-| [![OpenID Connect Client](https://raw.githubusercontent.com/rwth-acis/i5-Toolkit-for-Unity/master/Logos/OpenIDConnectClient.svg)<br/>**OpenID Connect Client**](https://github.com/rwth-acis/i5-Toolkit-for-Unity/wiki/OpenID-Connect-Client) | [![Procedural Geometry](https://raw.githubusercontent.com/rwth-acis/i5-Toolkit-for-Unity/master/Logos/Procedural%20Geometry.svg)<br/>**Procedural Geometry**](https://github.com/rwth-acis/i5-Toolkit-for-Unity/wiki/Procedural-Geometry) | [![Scene Documentation](https://raw.githubusercontent.com/rwth-acis/i5-Toolkit-for-Unity/master/Logos/Scene%20Documentation.svg)<br/>**Scene Documentation**](https://github.com/rwth-acis/i5-Toolkit-for-Unity/wiki/Scene-Documentation) |
-| [![Service Core](https://raw.githubusercontent.com/rwth-acis/i5-Toolkit-for-Unity/master/Logos/ServiceCore.svg)<br/>**Service Core**](https://github.com/rwth-acis/i5-Toolkit-for-Unity/wiki/Service-Core) | [![Spawner](https://raw.githubusercontent.com/rwth-acis/i5-Toolkit-for-Unity/master/Logos/Spawner.svg)<br/>**Spawner**](https://github.com/rwth-acis/i5-Toolkit-for-Unity/wiki/Spawner) | |
+<table style="text-align: center; vertical-align: middle">
+    <tr>
+        <td><a href="../../../../Documentation/manual/Modified-3D-Objects.md"><img src="../../Documentation/resources/Logos/RoundedCorners.svg" alt="Modified 3D Objects" style="width:200px"/><br/>Modified 3D Models</a></td>
+        <td><a href="../../../../Documentation/manual/Object-Pool.md"><img src="../../Documentation/resources/Logos/ObjectPool.svg" alt="Object Pool" style="width:200px"/><br/>Object Pool</a></td>
+        <td><a href="../../../../Documentation/manual/Obj-Importer.md"><img src="../../Documentation/resources/Logos/ObjImporter.svg" alt="Obj Importer" style="width:200px"/><br/>Obj Importer</a></td>
+    </tr>
+    <tr>
+        <td><a href="../../../../Documentation/manual/OpenID-Connect-Client.md"><img src="../../Documentation/resources/Logos/OpenIDConnectClient.svg" alt="OpenID Connect Client" style="width:200px"/><br/>OpenID Connect Client</a></td>
+        <td><a href="../../../../Documentation/manual/Procedural-Geometry.md"><img src="../../Documentation/resources/Logos/ProceduralGeometry.svg" alt="Procedural Geometry" style="width:200px"/><br/>Procedural Geometry</a></td>
+        <td><a href="../../../../Documentation/manual/Scene-Documentation.md"><img src="../../Documentation/resources/Logos/SceneDocumentation.svg" alt="Scene Documentation" style="width:200px"/><br/>Scene Documentation</a></td>
+    </tr>
+    <tr>
+        <td><a href="../../../../Documentation/manual/Service-Core.md"><img src="../../Documentation/resources/Logos/ServiceCore.svg" alt="Service Core" style="width:200px"/><br/>Service Core</a></td>
+        <td><a href="../../../../Documentation/manual/Spawner.md"><img src="../../Documentation/resources/Logos/Spawner.svg" alt="Spawner" style="width:200px"/><br/>Spawner</a></td>
+    </tr>
+</table>
 
 ## Setup
 

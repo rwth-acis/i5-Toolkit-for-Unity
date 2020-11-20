@@ -23,10 +23,10 @@ If this option is not checked, trying to create new copies will not work.
 
 ## Usage
 
-You can create a new copy in the scene by calling the method `Spawn()` on the spawner component.
+You can create a new copy in the scene by calling the method <xref:i5.Toolkit.Core.Spawners.Spawner.Spawn> on the spawner component.
 
-Created copies are listed under the property `SpawnedInstances`.
-Moreover, the last spawned GameObject can be accessed using the property `MostRecentlySpawnedObject`.
+Created copies are listed under the property <xref:i5.Toolkit.Core.Spawners.Spawner.SpawnedInstances>.
+Moreover, the last spawned GameObject can be accessed using the property <xref:i5.Toolkit.Core.Spawners.Spawner.MostRecentlySpawnedObject>.
 
 ## Example Scene
 

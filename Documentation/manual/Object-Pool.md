@@ -5,9 +5,9 @@
 ## Purpose
 
 **The problem**:
-Usually, objects like GameObjects and meshes are instantiated when they are needed so that they can be used in the scene.
+Usually, objects like [GameObjects](xref:UnityEngine.GameObject) and [Meshes](xref:UnityEngine.Mesh) are instantiated when they are needed so that they can be used in the scene.
 If the object is not required anymore, it is usually destroyed.
-Such calls of Unity's `Instantiate` and `Destroy` have a performance overhead which manifests in frame drops.
+Such calls of Unity's <xref:UnityEngine.Object#Instantiate> and <xref:UnityEngine.Object#Destroy> have a performance overhead which manifests in frame drops.
 Destroyed objects also need to be collected by the garbage collector which intercepts the program execution and also leads to poor performance.
 This is especially true if many objects need to be created or destroyed at once.
 

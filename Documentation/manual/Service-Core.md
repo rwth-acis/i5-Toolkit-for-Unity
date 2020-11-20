@@ -5,34 +5,34 @@
 ## General
 
 The service system provides a way to add singletons to the project without the need to have GameObjects or MonoBehaviours.
-Services are native C# classes which implement the `IService` interface.
+Services are native C# classes which implement the <xref:i5.Toolkit.Core.ServiceCore.IService> interface.
 Hence, the services also provide a way to abstract away from MonoBehaviours.
 
 Whenever you need a centralized functionality that needs to be accessible globally, you can use services to realize it
 
 ## Usage
 
-The central component of the service system is the `ServiceManager`.
+The central component of the service system is the <xref:i5.Toolkit.Core.ServiceCore.ServiceManager>.
 It is the only component which needs to be placed on a GameObject.
 However, you do not need to set up the GameObject yourself.
-Whenever you use the `ServiceManager`, it automatically generates an instance on a GameObject and sets it up.
+Whenever you use the <xref:i5.Toolkit.Core.ServiceCore.ServiceManager>, it automatically generates an instance on a GameObject and sets it up.
 
 ## Services
 
 ### Creating a Service
 
-To create a service, create a class that does not inherit from `MonoBehaviour`.
-The new service class must implement the interface `IService`.
+To create a service, create a class that does not inherit from <xref:UnityEngine.MonoBehaviour>.
+The new service class must implement the interface <xref:i5.Toolkit.Core.ServiceCore.IService>.
 
-If you need to call a function in every frame, implement the interface `IUpdateableService` instead.
+If you need to call a function in every frame, implement the interface <xref:i5.Toolkit.Core.ServiceCore.IUpdateableService> instead.
 
 ### Updateable Services
 
 A special type of service is the updateable service.
-You can define a updateable service by creating a new C# class that implements only the `IUpdateableService` interface.
-The interface provides the typical `IService` methods but also an `Update` method that is called every frame.
-Moreover, a property `Enabled`.
-The code inside of `Update` is only executed if `Enabled` is set to `true`.
+You can define a updateable service by creating a new C# class that implements only the <xref:i5.Toolkit.Core.ServiceCore.IUpdateableService> interface.
+The interface provides the typical <xref:i5.Toolkit.Core.ServiceCore.IService> methods but also an <xref:i5.Toolkit.Core.ServiceCore.IUpdateableService.Update> method that is called every frame.
+Moreover, it adds a property <xref:i5.Toolkit.Core.ServiceCore.IUpdateableService.Enabled>.
+The code inside of <xref:i5.Toolkit.Core.ServiceCore.IUpdateableService.Update> is only executed if <xref:i5.Toolkit.Core.ServiceCore.IUpdateableService.Enabled> is set to `true`.
 
 ### Async Threaded Worker Service
 
@@ -70,10 +70,10 @@ Once you have created and registered a service, you can access it in the followi
 ServiceManager.GetService<MyService>();
 ```
 
-Specify the service class in the `GetService()` method.
+Specify the service class in the `GetService` method.
 
-If the service is not registered, an `InvalidOperationException` is thrown.
-You can check if a service was registered by checking the Boolean return value of `ServiceManager.ServiceExists<MyService>()`.
+If the service is not registered, an <xref:System.InvalidOperationException> is thrown.
+You can check if a service was registered by checking the bool return value of `ServiceManager.ServiceExists<MyService>()`.
 
 ## Removing Services
 
@@ -86,11 +86,11 @@ ServiceManager.RemoveService<MyService>();
 ## Bootstrappers
 
 You can create a bootstrapper script that automatically populates the service system.
-The bootstrapper class needs to inherit from `BaseServiceBootstrapper`.
-It must implement the methods `RegisterServices` and `UnRegisterServices` which are called once the component is started and once it is destroyed.
-If you want to keep services after scene changes, either leave the `UnRegisterServices` method empty or make the bootstrapper object persistent using `PersistenceScene.MarkPersistent`.
+The bootstrapper class needs to inherit from <xref:i5.Toolkit.Core.ServiceCore.BaseServiceBootstrapper>.
+It must implement the methods <xref:i5.Toolkit.Core.ServiceCore.BaseServiceBootstrapper.RegisterServices> and <xref:i5.Toolkit.Core.ServiceCore.BaseServiceBootstrapper.UnRegisterServices> which are called once the component is started and once it is destroyed.
+If you want to keep services after scene changes, either leave the <xref:i5.Toolkit.Core.ServiceCore.BaseServiceBootstrapper.UnRegisterServices> method empty or make the bootstrapper object persistent using <xref:i5.Toolkit.Core.Utilities.PersistenceScene.MarkPersistent(GameObject)>.
 
-You do not need to use the `BaseServiceBootstrapper`.
+You do not need to use the <xref:i5.Toolkit.Core.ServiceCore.BaseServiceBootstrapper>.
 Alternatively to a bootstrapper which adds all services at the beginning, you can dynamically register and unregister services at any time and in any script.
 
 ## Example Scene

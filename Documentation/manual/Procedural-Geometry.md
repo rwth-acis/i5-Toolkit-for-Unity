@@ -2,7 +2,7 @@
 
 ![Procedural Geometry](../resources/Logos/ProceduralGeometry.svg)
 
-The procedural geometry kit streamlines the way how meshes can be built.
+The procedural geometry kit streamlines the way how [meshes](xref:UnityEngine.Mesh) can be built.
 It provides the several advantages over working directly with Unity's `Mesh` API:
 
 - **Abstraction from low-level mesh representations**: Meshes are represented by different arrays, e.g. an array for the vertex positions, a vertex index array to determine the triangles, an array for normal vectors, etc.
@@ -21,9 +21,9 @@ It provides the several advantages over working directly with Unity's `Mesh` API
 
 ## Usage
 
-### Creating a Geometry Constructor
+### Create a Geometry Constructor
 
-To create geometry, create a GeometryConstructor object:
+To create geometry, create a <xref:i5.Toolkit.Core.ProceduralGeometry.GeometryConstructor> object:
 
 ```[C#]
 GeometryConstructor geometryConstructor = new GeometryConstructor();
@@ -31,9 +31,9 @@ GeometryConstructor geometryConstructor = new GeometryConstructor();
 
 ### Add Vertices
 
-After that, you can add vertices to the geometry using one of the following methods.
+After that, you can add vertices to the geometry using the method <i5.Toolkit.Core.ProceduralGeometry.GeometryConstructor.AddVertex(UnityEngine.Vector3)>.
 The position of the vertex has to be specified.
-Optionally, you can also enter the normal vector and UV coordinates.
+Optionally, you can also enter the [normal vector](xref:i5.Toolkit.Core.ProceduralGeometry.GeometryConstructor.AddVertex(UnityEngine.Vector3, UnityEngine.Vector3)>), [UV coordinates](xref:i5.Toolkit.Core.ProceduralGeometry.GeometryConstructor.AddVertex(UnityEngine.Vector3, UnityEngine.Vector2)) or [both](xref:i5.Toolkit.Core.ProceduralGeometry.GeometryConstructor.AddVertex(UnityEngine.Vector3, UnityEngine.Vector2, UnityEngine.Vector3)).
 
 
 ```[C#]
@@ -51,7 +51,7 @@ Use it to construct faces.
 
 Faces are defined by specifying the vertices that are connected to a face.
 In any of the methods that create faces, list the vertices in **clockwise** order.
-All the methods also provide an optional last paramter `flipNormals`.
+All the methods also provide an optional last parameter `flipNormals`.
 If this argument is set to true, the normal vector of the face will point into the opposite direction, meaning that the face will be visible from hte other side.
 
 In the following code examples `v0, v1, v2...` are integer indices of previously added vertices.
@@ -60,16 +60,16 @@ In the following code examples `v0, v1, v2...` are integer indices of previously
 
 ![Triangle](../resources/ProceduralGeometry/Triangle.svg)
 
-To add triangles, call the method:
+To add triangles, call the method <xref:i5.Toolkit.Core.ProceduralGeometry.GeometryConstructor.AddTriangle(System.Int32, System.Int32, System.Int32, System.Boolean)>
 ```[C#]
-geometryConstructor.AddTriangles(v0, v1, v2);
+geometryConstructor.AddTriangle(v0, v1, v2);
 ```
 
 ### Quads
 
 ![Quad](../resources/ProceduralGeometry/Quad.svg)
 
-To add quads, call the method:
+To add quads, call the method <xref:i5.Toolkit.Core.ProceduralGeometry.GeometryConstructor(System.Int32, System.Int32, System.Int32, System.Int32, System.Boolean)>
 ```[C#]
 geometryConstructor.AddQuad(v0, v1, v2, v3);
 ```
@@ -79,7 +79,7 @@ The quad is automatically converted to two triangles as shown in the figure.
 
 ![Triangle Fan](../resources/ProceduralGeometry/TriangleFan.svg)
 
-You can add a triangle fan.
+You can add a triangle fan using the method <xref:i5.Toolkit.Core.ProceduralGeometry.GeometryConstructor.AddTriangleFan(System.Int32, System.Int32[], System.Boolean)>
 Specify the pole (the vertex which is part of all triangles) first and after that, list the vertices clockwise.
 
 ```[C#]
@@ -89,8 +89,10 @@ geometryConstructor.AddTriangleFan(v0, faceIndices);
 
 ### Generate Mesh
 
-After the geometry has been defined, the mesh can be generated:
+After the geometry has been defined, the mesh can be generated using the method <xref:i5.Toolkit.Core.ProceduralGeometry.GeometryConstructor.ConstructMesh>
 
 ```[C#]
 Mesh result = geometryConstructor.ConstructMesh();
 ```
+
+The result of this operation will be a Unity-<xref:UnityEngine.Mesh> with the same vertices, triangles, etc. as previously provided to the <xref:i5.Toolkit.Core.ProceduralGeometry.GeometryConstructor>.

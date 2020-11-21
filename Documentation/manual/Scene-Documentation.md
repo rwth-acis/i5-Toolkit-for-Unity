@@ -26,7 +26,7 @@ There are a couple of different types that change the icon which is shown on the
 
 ## Example Scene
 
-
+The package's examples contain a scene where all available documentation objects are demonstrated.
 
 ## Remarks
 

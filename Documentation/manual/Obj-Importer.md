@@ -21,7 +21,7 @@ ObjImporter objImporter = new ObjImporter();
 ServiceManager.RegisterService(objImporter);
 ```
 
-When registering the service, it will automatically register an <xref:i5.ToolkitCore.ModelImporters.MtlLibrary> service, too.
+When registering the service, it will automatically register an <xref:i5.Toolkit.Core.ModelImporters.MtlLibrary> service, too.
 This service is required for importing the material files and caching them so that they can be reused.
 
 ### Import Models

@@ -54,7 +54,7 @@ Create an instance of the service using its constructor:
 MyService myService = new MyService();
 // do your initial configuration of the service here
 ```
-After that, you can register a service by calling the following:
+After that, you can register a service by calling [`RegisterService`](xref:i5.Toolkit.Core.ServiceCore.ServiceManager.RegisterService*):
 ```
 ServiceManager.RegisterService(myService)
 ```
@@ -64,7 +64,7 @@ Registering the service automatically initializes it.
 
 ## Addressing Services
 
-Once you have created and registered a service, you can access it in the following way:
+Once you have created and registered a service, you can access by calling [`GetService`](xref:i5.Toolkit.Core.ServiceCore.ServiceManager.GetService*)
 
 ```
 ServiceManager.GetService<MyService>();
@@ -77,7 +77,7 @@ You can check if a service was registered by checking the bool return value of `
 
 ## Removing Services
 
-To remove the service, call the following statement:
+To remove the service, call [`RemoveService`](xref:i5.Toolkit.Core.ServiceCore.ServiceManager.RemoveService*)
 
 ```
 ServiceManager.RemoveService<MyService>();

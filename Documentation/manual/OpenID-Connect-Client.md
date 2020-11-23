@@ -30,13 +30,12 @@ The OpenID Connect client currently works on the following platforms:
 
 ### Service Initialization
 
-Register a `OpenIDConnectService` at the [service manager](Service-Core.md).
+Register a <xref:i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService> at the [service manager](Service-Core.md).
 This can e.g. be done using a [bootstrapper](Service-Core.md#bootstrappers) by following these steps:
 
-1. In the bootstrapper script, create a field of the type `OpenIDConnectServiceConfiguration` that is accessible in the inspector.
-   Add the bootstrapper and the service manager to the same GameObject in the scene.
+1. Create a bootstrapper and create a field of the type <xref:i5.Toolkit.Core.OpenIDConnectClient.ClientDataObject` that is accessible in the inspector.
    In the inspector, the bootstrapper component will give you options to specify a redirect page.
-2. In the `InitializeServiceManager()` method, create a new `OpenIDConnectService` object.
+2. In the <xref:i5.Toolkit.Core.ServiceCore.BaseServiceBootstrapper.RegisterServices> method, create a new <xref:i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService> object.
    You can pass the `OpenIDConnectServiceConfiguration` object in the inspector so that the service will use the given settings.
 3. Before you can access the OpenID Connect workflow, you have to assign the service's `OidcProvier`.
    The `OidcProvider` is the specific implementation to access the API of a OpenID Connect provider, e.g. Learning Layers.

@@ -16,7 +16,9 @@
     "globalMetadata": {
       "_appTitle": "i5 Toolkit Documentation",
       "_appFooter": "i5 Toolkit Documentation",
-      "_enableSearch": true
+      "_enableSearch": true,
+      "_appLogoPath": "resources/Logos/Logo_whiteBg.svg",
+      "_appFaviconPath":  "resources/Logos/Logo_whiteBg.svg"
     },
     "content": [
       {

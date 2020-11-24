@@ -30,9 +30,7 @@
         "dest": "api"
       },
       {
-        "src": "manual",
-        "files": [ "toc.yml", "*.md" ],
-        "dest": "manual"
+        "files": [ "manual/toc.yml", "manual/**.md" ]
       }
     ],
     "overwrite": [

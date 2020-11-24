@@ -16,3 +16,21 @@
   href: Service-Core.md
 - name: Spawner
   href: Spawner.md
+- name: Test Helpers
+  items:
+    - name: Async Test
+      href: TestHelpers/Async-Test.md
+- name: Utilities
+  items:
+    - name: Component Utilities
+      href: Utilities/Component-Utilities.md
+    - name: Constant Rotation
+      href: Utilities/Constant-Rotation.md
+    - name: i5Debug Logs
+      href: Utilities/i5Debug.md
+    - name: Json Array Utility
+      href: Utilities/Json-Array-Utility.md
+    - name: Persistent Scene
+      href: Utilities/Persistent-Scene.md
+    - name: Unity Adapters
+      href: Utilities/Unity-Adapters.md

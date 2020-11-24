@@ -10,7 +10,7 @@
     <meta name="title" content="Object Pool | i5 Toolkit Documentation ">
     <meta name="generator" content="docfx 2.56.2.0">
     
-    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="shortcut icon" href="../resources/Logos/Logo_whiteBg.svg">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
     <link rel="stylesheet" href="../styles/docfx.css">
     <link rel="stylesheet" href="../styles/main.css">
@@ -35,7 +35,7 @@
               </button>
               
               <a class="navbar-brand" href="../index.html">
-                <img id="logo" class="svg" src="../logo.svg" alt="">
+                <img id="logo" class="svg" src="../resources/Logos/Logo_whiteBg.svg" alt="">
               </a>
             </div>
             <div class="collapse navbar-collapse" id="navbar">
@@ -82,9 +82,9 @@
 <p><img src="../resources/Logos/ObjectPool.svg" alt="Object Pool"></p>
 <h2 id="purpose">Purpose</h2>
 <p><strong>The problem</strong>:
-Usually, objects like GameObjects and meshes are instantiated when they are needed so that they can be used in the scene.
+Usually, objects like <a class="xref" href="https://docs.unity3d.com/ScriptReference/GameObject.html">GameObjects</a> and <a class="xref" href="https://docs.unity3d.com/ScriptReference/Mesh.html">Meshes</a> are instantiated when they are needed so that they can be used in the scene.
 If the object is not required anymore, it is usually destroyed.
-Such calls of Unity&#39;s <code>Instantiate</code> and <code>Destroy</code> have a performance overhead which manifests in frame drops.
+Such calls of Unity&#39;s <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.html#Instantiate">Object</a> and <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.html#Destroy">Object</a> have a performance overhead which manifests in frame drops.
 Destroyed objects also need to be collected by the garbage collector which intercepts the program execution and also leads to poor performance.
 This is especially true if many objects need to be created or destroyed at once.</p>
 <p><strong>The solution: Object Pools</strong>
@@ -144,7 +144,7 @@ The <code>ObjectPool&lt;Mesh&gt;</code> pool solves this problem because the mes
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/rwth-acis/i5-Toolkit-for-Unity/blob/features/docFx/Documentation/manual/Object-Pool.md/#L1" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/rwth-acis/i5-Toolkit-for-Unity/blob/develop/Documentation/manual/Object-Pool.md/#L1" class="contribution-link">Improve this Doc</a>
                   </li>
                 </ul>
               </div>

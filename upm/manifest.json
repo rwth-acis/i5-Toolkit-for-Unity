@@ -24,23 +24,11 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/Global.AuthorizationFlow.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Global.AuthorizationFlow.html",
-          "hash": "vEL4lnEfB3mGNFotY73IWQ=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "api/Global.INotificationMessage.yml",
       "output": {
         ".html": {
           "relative_path": "api/Global.INotificationMessage.html",
-          "hash": "13BqyNF9xuY1+T64VjWjUA=="
+          "hash": "HwYIBNxjtHSPVMd6C0PPdA=="
         }
       },
       "is_incremental": false,
@@ -52,7 +40,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Global.INotificationService.html",
-          "hash": "0fWv6ORU3zoCdmgbO1glpw=="
+          "hash": "T+2dyAZ0TAA75CzgKrv9Vw=="
         }
       },
       "is_incremental": false,
@@ -64,31 +52,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Global.JsonSerialization.html",
-          "hash": "BNT8fYbHtksqtgRvO6oePQ=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Global.LearningLayersBootstrapper.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Global.LearningLayersBootstrapper.html",
-          "hash": "p88t+l2xrnkIlcf94YsfiA=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Global.LogGenerator.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Global.LogGenerator.html",
-          "hash": "+DsmbSec40CfQMrL3fgH3w=="
+          "hash": "PKfXS/QgGVAynPCt7aGKDA=="
         }
       },
       "is_incremental": false,
@@ -100,7 +64,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Global.NotificationMessage.html",
-          "hash": "GnZ7z4xHbNU3gh8EHH4z0A=="
+          "hash": "yYpvTiTJroaXQX3nZCY/WA=="
         }
       },
       "is_incremental": false,
@@ -112,31 +76,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Global.NotificationService.html",
-          "hash": "iWUaxsETsw6omT+JmJi5sA=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Global.OpenIDConnectTester.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Global.OpenIDConnectTester.html",
-          "hash": "UIy0yqv0UXV8r7ffsIn6PQ=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Global.PersistenceScene.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Global.PersistenceScene.html",
-          "hash": "0LpCSH7EpTmuXYOEgobbXA=="
+          "hash": "Mx/ZloiQPaK6lfMYYBA7yQ=="
         }
       },
       "is_incremental": false,
@@ -148,7 +88,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Global.html",
-          "hash": "u/lXUsIWpNv3jxZcRsZQww=="
+          "hash": "kjHWh/HQyErgtw5JlNogBA=="
         }
       },
       "is_incremental": false,
@@ -160,7 +100,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.AppConsole.ActivationVisibilityManager.html",
-          "hash": "erfUqNeI8qIpSSWMPAttfA=="
+          "hash": "Ft6k4oV7SeMZef6Hd/YgHA=="
         }
       },
       "is_incremental": false,
@@ -172,7 +112,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.AppConsole.AutoScroller.html",
-          "hash": "QjnoWDdC7h8JDcLsBu6DZQ=="
+          "hash": "a9pNuHR7Pko16LyWBCyv+w=="
         }
       },
       "is_incremental": false,
@@ -184,7 +124,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.AppConsole.AutoScrollerBehaviour.html",
-          "hash": "IVjR4jiIUHhAxjYp3baY6A=="
+          "hash": "fLHtYu2y2KggcIIJB1cczw=="
         }
       },
       "is_incremental": false,
@@ -196,7 +136,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.AppConsole.Console.html",
-          "hash": "T71jUuKk9qjPol+DY8TiBg=="
+          "hash": "+aBp+d/yvNhlpW8lTL2LLw=="
         }
       },
       "is_incremental": false,
@@ -208,7 +148,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.AppConsole.ConsoleUI.html",
-          "hash": "yHrvCSG263xsEyLFBL9huA=="
+          "hash": "/62CprBlC3Niyb+a7au3fw=="
         }
       },
       "is_incremental": false,
@@ -220,7 +160,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.AppConsole.ConsoleUIBehaviour.html",
-          "hash": "GtE8RGlR93VD3/L01N4Qtg=="
+          "hash": "PG3Z7AqLt2OtKiX9KEoWtg=="
         }
       },
       "is_incremental": false,
@@ -232,7 +172,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.AppConsole.DefaultConsoleFormatter.html",
-          "hash": "yqavvUhfPFRYuKkm96mcJQ=="
+          "hash": "WRTmWMk5snhp1JSR7+xfIw=="
         }
       },
       "is_incremental": false,
@@ -244,7 +184,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.AppConsole.IConsole.html",
-          "hash": "AKdYfy0xDVsKTs+k9N1NiQ=="
+          "hash": "TDbfXoHZjHhlpwvB3okbTg=="
         }
       },
       "is_incremental": false,
@@ -256,7 +196,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.AppConsole.ILogColorFormatter.html",
-          "hash": "2c2KnrQ19PKZOFPgImXuJA=="
+          "hash": "BUluyyqGe8Vrp5l/jN+A5A=="
         }
       },
       "is_incremental": false,
@@ -268,7 +208,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.AppConsole.ILogFormatter.html",
-          "hash": "DnxFbgLw67FbtOc7nXlmlw=="
+          "hash": "vL0MxQCT9o4aCYKKIiIhNA=="
         }
       },
       "is_incremental": false,
@@ -280,7 +220,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.AppConsole.ILogMessage.html",
-          "hash": "5UK9L/05wYuTocypwZo5FA=="
+          "hash": "84wS85Dl8RrIKZYoHRnZXQ=="
         }
       },
       "is_incremental": false,
@@ -292,7 +232,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.AppConsole.IVisibilityManager.html",
-          "hash": "zMjCPmeQm0TDd3su+Jth3w=="
+          "hash": "v0Ssz+zYb/laR6/50KNxPg=="
         }
       },
       "is_incremental": false,
@@ -304,7 +244,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.AppConsole.LogColorFormatterConfiguration.html",
-          "hash": "Jscp1tA/J4ST0P9GfgTyGw=="
+          "hash": "E0TQhtgjjubQxn7qNC+F9A=="
         }
       },
       "is_incremental": false,
@@ -316,7 +256,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.AppConsole.LogFormatterConfiguration.html",
-          "hash": "R1ZbNj87Ts4/FC3i9MHKpA=="
+          "hash": "9vuMf5QYFZz21VzAzGw5jw=="
         }
       },
       "is_incremental": false,
@@ -328,7 +268,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.AppConsole.LogMessage.html",
-          "hash": "OGco/DxFldz/S+FanY9Fqg=="
+          "hash": "DO10hBvc5Gb1fiW4q/wksg=="
         }
       },
       "is_incremental": false,
@@ -340,7 +280,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.AppConsole.TMPLogColorFormatter.html",
-          "hash": "vz/dh2Du2vPDOnKsdiQHUQ=="
+          "hash": "TXWcVUcLc9pP7ZaJ6WNv1Q=="
         }
       },
       "is_incremental": false,
@@ -352,7 +292,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.AppConsole.TMPLogColorFormatterConfiguration.html",
-          "hash": "ZlBWgRVSjpok5A2uV7dzbg=="
+          "hash": "X4Y5Ffna67lnmLdJ0Vh5RA=="
         }
       },
       "is_incremental": false,
@@ -364,7 +304,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.AppConsole.TextConsoleUI.html",
-          "hash": "cHMJJnznu5I1LxzSIW6BCQ=="
+          "hash": "Ysn/ZPhoX2K3MygPpHgTZw=="
         }
       },
       "is_incremental": false,
@@ -376,7 +316,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.AppConsole.TextMeshProUGUIConsoleUI.html",
-          "hash": "2NcWsqtuN4l0jKsnF8EJYg=="
+          "hash": "iOEwG9SgllS7/9n+FGrYhQ=="
         }
       },
       "is_incremental": false,
@@ -388,7 +328,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.AppConsole.VisibilityManager.html",
-          "hash": "GxWvM3uB4NVp11D74CIzWw=="
+          "hash": "3b37YMKZWjxkg2iEOYGanA=="
         }
       },
       "is_incremental": false,
@@ -400,7 +340,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.AppConsole.VisibilitySetter.html",
-          "hash": "RDLnaZYDZ1TSeU6N6ch3bw=="
+          "hash": "EZJwhZHIh/PXLiPmrpXevA=="
         }
       },
       "is_incremental": false,
@@ -412,7 +352,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.AppConsole.html",
-          "hash": "JSiidt1vLHy2TDF3Snqqtg=="
+          "hash": "4RI4Csectr5s3CwO3/M5Bw=="
         }
       },
       "is_incremental": false,
@@ -424,7 +364,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.Editor.TestHelpers.EditModeTestUtilities.html",
-          "hash": "hs8s1GkDgXftK+xtiavGyA=="
+          "hash": "gfo9GqQYbsVDU+w0oVU7Hw=="
         }
       },
       "is_incremental": false,
@@ -436,139 +376,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.Editor.TestHelpers.html",
-          "hash": "3GZEg2RwgSdMGznOq1S06Q=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/i5.Toolkit.Core.Examples.MeshPoolExample.MeshPoolDemo.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/i5.Toolkit.Core.Examples.MeshPoolExample.MeshPoolDemo.html",
-          "hash": "yltDuaX52jxkPwSSgqBLIg=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/i5.Toolkit.Core.Examples.MeshPoolExample.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/i5.Toolkit.Core.Examples.MeshPoolExample.html",
-          "hash": "LijJOSJmFnoO0ezoUDJ/Tg=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/i5.Toolkit.Core.Examples.ObjImporterExample.ObjImporterBootstrapper.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/i5.Toolkit.Core.Examples.ObjImporterExample.ObjImporterBootstrapper.html",
-          "hash": "B35uXFhD8F5B+zYqB+1qPw=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/i5.Toolkit.Core.Examples.ObjImporterExample.ObjImporterDemo.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/i5.Toolkit.Core.Examples.ObjImporterExample.ObjImporterDemo.html",
-          "hash": "Q+zzaxCcvE/XJ5lh4PtAvA=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/i5.Toolkit.Core.Examples.ObjImporterExample.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/i5.Toolkit.Core.Examples.ObjImporterExample.html",
-          "hash": "3goxMI5KSD5ziq3bdLb6sg=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/i5.Toolkit.Core.Examples.ServiceExample.DemoAsyncService.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/i5.Toolkit.Core.Examples.ServiceExample.DemoAsyncService.html",
-          "hash": "ph7ZGF+Bn4KjVqrek+izgg=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/i5.Toolkit.Core.Examples.ServiceExample.DemoBootstrapper.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/i5.Toolkit.Core.Examples.ServiceExample.DemoBootstrapper.html",
-          "hash": "HGVY2GQ3B1rKpZOcSPDiwQ=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/i5.Toolkit.Core.Examples.ServiceExample.DemoService.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/i5.Toolkit.Core.Examples.ServiceExample.DemoService.html",
-          "hash": "5/PToTfEw6Mry8G0jS3DnQ=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/i5.Toolkit.Core.Examples.ServiceExample.DemoServiceClient.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/i5.Toolkit.Core.Examples.ServiceExample.DemoServiceClient.html",
-          "hash": "sBOG/OUPVMOmlgWjc2tcGA=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/i5.Toolkit.Core.Examples.ServiceExample.DemoUpdateService.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/i5.Toolkit.Core.Examples.ServiceExample.DemoUpdateService.html",
-          "hash": "QZBqgCC+lOrASi5jCyvTBA=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/i5.Toolkit.Core.Examples.ServiceExample.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/i5.Toolkit.Core.Examples.ServiceExample.html",
-          "hash": "BNhnuqdg9m7Gd+QIrSnjtQ=="
+          "hash": "gVdmgp9XKZfoSiaY4Hhgdg=="
         }
       },
       "is_incremental": false,
@@ -580,7 +388,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.ModelImporters.MtlLibrary.html",
-          "hash": "SBbPui1wTI0jK4O+gzsmdg=="
+          "hash": "WWvfhAJoZjTJATu5LyLCXQ=="
         }
       },
       "is_incremental": false,
@@ -592,7 +400,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.ModelImporters.ObjImporter.html",
-          "hash": "FxcIdquxVJeMJBoeivB0XA=="
+          "hash": "vw7Lu7u26CbeLR/sLQSWNw=="
         }
       },
       "is_incremental": false,
@@ -604,7 +412,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.ModelImporters.ObjParseResult.html",
-          "hash": "Xqr17IPUVrNH2ONI6dcxbA=="
+          "hash": "dVUTdBEDwsWHYOFB9NHO9g=="
         }
       },
       "is_incremental": false,
@@ -616,7 +424,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.ModelImporters.VertexData.html",
-          "hash": "OaCO3yGI38QuxUksliXIzA=="
+          "hash": "kp+jRfnaxJDFIMjk5dEvkw=="
         }
       },
       "is_incremental": false,
@@ -628,7 +436,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.ModelImporters.html",
-          "hash": "seEpENWlteYiVeipldC0sg=="
+          "hash": "o3SLYHotgznCb5F9JirrBg=="
         }
       },
       "is_incremental": false,
@@ -640,7 +448,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.Modified3DObjects.RoundedCorners.html",
-          "hash": "mO+74WIvmuSDCkfC8tje7w=="
+          "hash": "2PHeCYQ2PSM+4cz90DvdGQ=="
         }
       },
       "is_incremental": false,
@@ -652,7 +460,19 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.Modified3DObjects.html",
-          "hash": "4FYIRjo+7sT+lQ9SGmZq1Q=="
+          "hash": "aizefjtTy7PRquZwpmQmMA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.OpenIDConnectClient.AuthorizationFlow.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.OpenIDConnectClient.AuthorizationFlow.html",
+          "hash": "/dzR111SOmtlqzUUnYFRKA=="
         }
       },
       "is_incremental": false,
@@ -664,7 +484,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.OpenIDConnectClient.ClientData.html",
-          "hash": "18Zj/Rfx+hO4XuKeNXkvsQ=="
+          "hash": "n2LEtpSn0CcwlMGz86Ilmw=="
         }
       },
       "is_incremental": false,
@@ -676,7 +496,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.OpenIDConnectClient.ClientDataObject.html",
-          "hash": "COt4KEMnavl4iWEJFQ0i/w=="
+          "hash": "0XQtENAeXVWKCvTBxeTymg=="
         }
       },
       "is_incremental": false,
@@ -688,7 +508,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.OpenIDConnectClient.IOidcProvider.html",
-          "hash": "/Jzufm+ysiRueL7CKqn68Q=="
+          "hash": "4MWG2LtH+WVnWfniIH/uEA=="
         }
       },
       "is_incremental": false,
@@ -700,7 +520,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.OpenIDConnectClient.IRedirectServerListener.html",
-          "hash": "B3dqWvhdP1i0BGKg719/CQ=="
+          "hash": "56xOE4RKaxBtK9O3KSd9Lw=="
         }
       },
       "is_incremental": false,
@@ -712,7 +532,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.OpenIDConnectClient.IUserInfo.html",
-          "hash": "FUIF3TBBa31vg/OjRHfe1A=="
+          "hash": "8zpX9MBpAojmNhUvjmuApw=="
         }
       },
       "is_incremental": false,
@@ -724,7 +544,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.OpenIDConnectClient.LearningLayersAuthorizationFlowAnswer.html",
-          "hash": "adI5D4I+gsOjj1vHCDYcYw=="
+          "hash": "2449muU6PSogDp/eZEePcw=="
         }
       },
       "is_incremental": false,
@@ -736,7 +556,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.OpenIDConnectClient.LearningLayersOIDCProvider.html",
-          "hash": "we8VKJINTyZqMtqXs/Go/Q=="
+          "hash": "KVLSmDdYxXKRoScFwiZ2pw=="
         }
       },
       "is_incremental": false,
@@ -748,7 +568,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.OpenIDConnectClient.LearningLayersUserInfo.html",
-          "hash": "HFFRi3w/Y1LVfBvBeqwpdg=="
+          "hash": "+nvkjAdzykWXQPfKc2HaoQ=="
         }
       },
       "is_incremental": false,
@@ -760,7 +580,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.html",
-          "hash": "FJZG5OMBm8Gx5bd7AO+jmw=="
+          "hash": "MHfD5EXR6QO507nbTFSfzA=="
         }
       },
       "is_incremental": false,
@@ -772,7 +592,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.OpenIDConnectClient.PostBuildOidcPatcher.html",
-          "hash": "69wh6WF2SXEQYifXK9zIIA=="
+          "hash": "117PtEGS5emKvY+IhVOr2w=="
         }
       },
       "is_incremental": false,
@@ -784,7 +604,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.OpenIDConnectClient.RedirectReceivedEventArgs.html",
-          "hash": "Ykxp+p+u3CkC5Y080yms9Q=="
+          "hash": "sxG+qvykxJiG3gwOy6GPLQ=="
         }
       },
       "is_incremental": false,
@@ -796,7 +616,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.OpenIDConnectClient.RedirectServerListener.html",
-          "hash": "kOhUfynIUoPtKIG2lwEB7g=="
+          "hash": "lLlP2L/fnf7rSKCyZqlDow=="
         }
       },
       "is_incremental": false,
@@ -808,7 +628,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.OpenIDConnectClient.html",
-          "hash": "GwfjvC6d0yCTCPUVUTBkJg=="
+          "hash": "3whZW3KPs1IkAbypEoFsVQ=="
         }
       },
       "is_incremental": false,
@@ -820,7 +640,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.ProceduralGeometry.GeometryConstructor.html",
-          "hash": "G+GzszZOxhWV6I+jm7ajwA=="
+          "hash": "FbKJk+CdHwiBfodWVEhbpA=="
         }
       },
       "is_incremental": false,
@@ -832,7 +652,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.ProceduralGeometry.ITextureConstructor.html",
-          "hash": "zorvr6EFiSQHolcI7gCwMg=="
+          "hash": "Qzo64QDJa2XRuC44nw9qOw=="
         }
       },
       "is_incremental": false,
@@ -844,7 +664,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.ProceduralGeometry.MaterialConstructor.html",
-          "hash": "ktf31xXC9Hz4SP8GzYapoQ=="
+          "hash": "WWYwE+WaAs5JzOu7CHMYTw=="
         }
       },
       "is_incremental": false,
@@ -856,7 +676,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.ProceduralGeometry.ObjectConstructor.html",
-          "hash": "dbPN3vp+xbHHvpdaiAhPqw=="
+          "hash": "kD70EsJYbTSG0zlZ5AyrFg=="
         }
       },
       "is_incremental": false,
@@ -868,7 +688,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.ProceduralGeometry.TextureConstructor.html",
-          "hash": "/vTxchy21LEXSUldg4aTRA=="
+          "hash": "3d+WdPRQH+0kIW1J9NdHdg=="
         }
       },
       "is_incremental": false,
@@ -880,7 +700,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.ProceduralGeometry.html",
-          "hash": "Ti/nj7sBAHHfLa7VQSYY0Q=="
+          "hash": "MRvJJ5NJWtFtEsWiWHv0hA=="
         }
       },
       "is_incremental": false,
@@ -892,7 +712,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.SceneDocumentation.DocumentationObject.html",
-          "hash": "pIj2plYoMzt4txzjqpSoLA=="
+          "hash": "VuKxaGOU6MmGSnQRCMkRYA=="
         }
       },
       "is_incremental": false,
@@ -904,7 +724,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.SceneDocumentation.DocumentationType.html",
-          "hash": "sWA7ItG5WDEFmCL7wGPciw=="
+          "hash": "X3JoKSqcsXiPqBsDK1N55w=="
         }
       },
       "is_incremental": false,
@@ -916,7 +736,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.SceneDocumentation.html",
-          "hash": "k04tX95kz/QM5VNlFwPGhg=="
+          "hash": "0pwh87uPXfL3UZ1dBSbHog=="
         }
       },
       "is_incremental": false,
@@ -928,7 +748,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.ServiceCore.AsyncThreadedWorkerService-1.html",
-          "hash": "aqkNsbvBBR2LkoUHDN4asg=="
+          "hash": "syRkPcDDqFbjRsCTfQKJlA=="
         }
       },
       "is_incremental": false,
@@ -940,7 +760,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.ServiceCore.BaseServiceBootstrapper.html",
-          "hash": "3O0J4mg4K6JBRJgGfH9BSA=="
+          "hash": "caQV0/gjglsxsC8D44SLwg=="
         }
       },
       "is_incremental": false,
@@ -952,7 +772,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.ServiceCore.IOperation.html",
-          "hash": "HgCK5e/q7vdtm0R2GxKSMQ=="
+          "hash": "XSgfP0NGZ1SitTKj3cSJQQ=="
         }
       },
       "is_incremental": false,
@@ -964,7 +784,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.ServiceCore.IRunnerReceiver.html",
-          "hash": "H/+HbkYoKnGyLFNrMW8BCg=="
+          "hash": "kxQMPgz477G50hCmVX8Iwg=="
         }
       },
       "is_incremental": false,
@@ -976,7 +796,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.ServiceCore.IService.html",
-          "hash": "Z3W41pMn+JHxwLDBFq12Zw=="
+          "hash": "rW3f8AjzBzkvrAOfVgnHFA=="
         }
       },
       "is_incremental": false,
@@ -988,7 +808,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.ServiceCore.IServiceManager.html",
-          "hash": "NKFKJm73DGT4mkyySA4R/g=="
+          "hash": "wnPzM/Doz01cdR50x0gaZg=="
         }
       },
       "is_incremental": false,
@@ -1000,7 +820,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.ServiceCore.IUpdateableService.html",
-          "hash": "7s7z0bGKvCSl74NfRAJiEA=="
+          "hash": "2TJYp+QclYUsgC55hMHFrQ=="
         }
       },
       "is_incremental": false,
@@ -1012,7 +832,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.ServiceCore.Operation-1.html",
-          "hash": "W+5qmNAnTWZtEj6bY7Heuw=="
+          "hash": "FjbYkr56WJ7W6/cedmF2JA=="
         }
       },
       "is_incremental": false,
@@ -1024,7 +844,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.ServiceCore.OperationStatus.html",
-          "hash": "CbIYS2FdMQuayKS6e1mYwQ=="
+          "hash": "DQupEUx6nF2hBO0i7/g8JA=="
         }
       },
       "is_incremental": false,
@@ -1036,7 +856,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.ServiceCore.ServiceManager.html",
-          "hash": "6ZX4ALpdtdAVpjOH1wuGnQ=="
+          "hash": "d+OWYs3EP0+Bt7j+8j3piw=="
         }
       },
       "is_incremental": false,
@@ -1048,7 +868,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.ServiceCore.ServiceManagerRunner.html",
-          "hash": "tSAriXlwYfGe3sdNi0Kxew=="
+          "hash": "PoLjgNzAXoeKOLjxjBUWkQ=="
         }
       },
       "is_incremental": false,
@@ -1060,31 +880,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.ServiceCore.html",
-          "hash": "qOfnrxr4lnnrLxjO6nQd4g=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/i5.Toolkit.Core.Spawners.Demo.SpawnerDemo.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/i5.Toolkit.Core.Spawners.Demo.SpawnerDemo.html",
-          "hash": "XZjrbZXXdYZcw4YJTKRhHw=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/i5.Toolkit.Core.Spawners.Demo.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/i5.Toolkit.Core.Spawners.Demo.html",
-          "hash": "d1bK5YgH7eXQLPn3Uy9SGg=="
+          "hash": "nYesLiVP5oQ4uf147Rs0YQ=="
         }
       },
       "is_incremental": false,
@@ -1096,7 +892,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.Spawners.Spawner.html",
-          "hash": "fGHujAmDvHUb7Et3KBBRJA=="
+          "hash": "Oa5YxSOHHGBFNRLQlvU1Lg=="
         }
       },
       "is_incremental": false,
@@ -1108,7 +904,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.Spawners.html",
-          "hash": "3VPcAcxr3b3fYhqs8JJtSw=="
+          "hash": "yYmASrN7v+sRsTWK9sED/Q=="
         }
       },
       "is_incremental": false,
@@ -1120,7 +916,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.TestHelpers.AsyncTest.html",
-          "hash": "ymLxFp17sP3DQTeEAW8W9A=="
+          "hash": "q+CNLrqtLLHGwcTzXWSfmA=="
         }
       },
       "is_incremental": false,
@@ -1132,7 +928,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.TestHelpers.InvalidPlatformException.html",
-          "hash": "3QP+Kq0PN+KVo69cUBMN4w=="
+          "hash": "GVFL+3BW5MuQMAKyK5llkQ=="
         }
       },
       "is_incremental": false,
@@ -1144,7 +940,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.TestHelpers.PlayModeTestUtilities.html",
-          "hash": "cFQisx6rXBEOxrqf6Ogv+g=="
+          "hash": "9AsFG6KQ3bZlfeOKXD5x/Q=="
         }
       },
       "is_incremental": false,
@@ -1156,7 +952,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.TestHelpers.html",
-          "hash": "8pers3vs/LRE3sL02HM2Yg=="
+          "hash": "gVWkTNTj6T8cI0WnramU0Q=="
         }
       },
       "is_incremental": false,
@@ -1168,7 +964,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.TestUtilities.FakeContentLoaderFactory.html",
-          "hash": "FmaDauUhpnoO/pszs0K6cA=="
+          "hash": "fsBvVwSLlca7Q8RugY5jEQ=="
         }
       },
       "is_incremental": false,
@@ -1180,7 +976,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.TestUtilities.TestObject.html",
-          "hash": "gLa6oLrOHoRZrD77nvT5Hw=="
+          "hash": "5jTa23NtdJXO1eeAdfpVqw=="
         }
       },
       "is_incremental": false,
@@ -1192,7 +988,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.TestUtilities.TestUpdateService.html",
-          "hash": "7UWtVLCAf03Uowr7lLs9HA=="
+          "hash": "UtmiszIq9b8mc80WXTifXA=="
         }
       },
       "is_incremental": false,
@@ -1204,7 +1000,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.TestUtilities.UIOperator.UiElementNotFoundException.html",
-          "hash": "2+qt9YofhQr+D52ww9B+Xw=="
+          "hash": "ICvNdRUR2/bdAQzlP2d46w=="
         }
       },
       "is_incremental": false,
@@ -1216,7 +1012,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.TestUtilities.UIOperator.UiOperator.html",
-          "hash": "MwCBaZ3wK+sagmMjbGuykA=="
+          "hash": "j4LPK0jknEeB9YXaSBN6mQ=="
         }
       },
       "is_incremental": false,
@@ -1228,7 +1024,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.TestUtilities.UIOperator.html",
-          "hash": "Siuem+m4gRm/fYbpWTWiKA=="
+          "hash": "CGUF50BV5mBJZGcmtIGjNg=="
         }
       },
       "is_incremental": false,
@@ -1240,367 +1036,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.TestUtilities.html",
-          "hash": "2yp0qovBmTHeqPB8Gpky7w=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/i5.Toolkit.Core.Tests.AppConsole.ActivationVisibilityManagerTests.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/i5.Toolkit.Core.Tests.AppConsole.ActivationVisibilityManagerTests.html",
-          "hash": "+OFihpUZ088tpQRcuIqcag=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/i5.Toolkit.Core.Tests.AppConsole.AutoScrollerTests.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/i5.Toolkit.Core.Tests.AppConsole.AutoScrollerTests.html",
-          "hash": "jacDi6fj0gPG70ti/pi0YA=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/i5.Toolkit.Core.Tests.AppConsole.ConsoleTests.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/i5.Toolkit.Core.Tests.AppConsole.ConsoleTests.html",
-          "hash": "cof8XaTyBk0+tQoAojL8DA=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/i5.Toolkit.Core.Tests.AppConsole.DefaultLogFormatterTests.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/i5.Toolkit.Core.Tests.AppConsole.DefaultLogFormatterTests.html",
-          "hash": "F4wmqLptQTohf6pX80xx8w=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/i5.Toolkit.Core.Tests.AppConsole.TMPLogColorFormatterTests.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/i5.Toolkit.Core.Tests.AppConsole.TMPLogColorFormatterTests.html",
-          "hash": "hcGGyh/L8ATvz9YL0Zzvjw=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/i5.Toolkit.Core.Tests.AppConsole.TextConsoleUITests.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/i5.Toolkit.Core.Tests.AppConsole.TextConsoleUITests.html",
-          "hash": "8NSnAthHflV7lvc9HQLuWA=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/i5.Toolkit.Core.Tests.AppConsole.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/i5.Toolkit.Core.Tests.AppConsole.html",
-          "hash": "Vx2xKgPuSDT3+BqtzXbkHQ=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/i5.Toolkit.Core.Tests.ModelImporters.MtlLibraryTests.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/i5.Toolkit.Core.Tests.ModelImporters.MtlLibraryTests.html",
-          "hash": "HEp2NBxm5TS6mRjxk4tz2Q=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/i5.Toolkit.Core.Tests.ModelImporters.ObjImporterTests.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/i5.Toolkit.Core.Tests.ModelImporters.ObjImporterTests.html",
-          "hash": "//Y6jkN1lC/iW0DX+oitdQ=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/i5.Toolkit.Core.Tests.ModelImporters.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/i5.Toolkit.Core.Tests.ModelImporters.html",
-          "hash": "SzDc4yIqUwldyKxgL2+ePg=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/i5.Toolkit.Core.Tests.OpenIDConnectClient.LearningLayersOIDCProviderTests.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/i5.Toolkit.Core.Tests.OpenIDConnectClient.LearningLayersOIDCProviderTests.html",
-          "hash": "KdPCpDSEPD4pWnR7OjBJ8w=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/i5.Toolkit.Core.Tests.OpenIDConnectClient.OpenIDConnectServiceTests.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/i5.Toolkit.Core.Tests.OpenIDConnectClient.OpenIDConnectServiceTests.html",
-          "hash": "Acb2mAN9j1/o492LhbhdhA=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/i5.Toolkit.Core.Tests.OpenIDConnectClient.RedirectServerListenerTests.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/i5.Toolkit.Core.Tests.OpenIDConnectClient.RedirectServerListenerTests.html",
-          "hash": "aaCT9K0YAhm01vc7OKxzbw=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/i5.Toolkit.Core.Tests.OpenIDConnectClient.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/i5.Toolkit.Core.Tests.OpenIDConnectClient.html",
-          "hash": "a5Tmq9G9tD53bngyM+9MMA=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/i5.Toolkit.Core.Tests.ProceduralGeometry.GeometryConstructorTests.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/i5.Toolkit.Core.Tests.ProceduralGeometry.GeometryConstructorTests.html",
-          "hash": "TiPrIARO99hk5+a2kuhDRQ=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/i5.Toolkit.Core.Tests.ProceduralGeometry.MaterialConstructorTests.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/i5.Toolkit.Core.Tests.ProceduralGeometry.MaterialConstructorTests.html",
-          "hash": "Svkqi9w/MMUWlCeMWRM/5A=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/i5.Toolkit.Core.Tests.ProceduralGeometry.ObjectConstructorTests.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/i5.Toolkit.Core.Tests.ProceduralGeometry.ObjectConstructorTests.html",
-          "hash": "NKGJIJrS8RlxK7kNBcrNtA=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/i5.Toolkit.Core.Tests.ProceduralGeometry.TextureConstructorTests.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/i5.Toolkit.Core.Tests.ProceduralGeometry.TextureConstructorTests.html",
-          "hash": "imPO0XBHP7/9AahMd4tJdw=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/i5.Toolkit.Core.Tests.ProceduralGeometry.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/i5.Toolkit.Core.Tests.ProceduralGeometry.html",
-          "hash": "tHwnGxAecDzjbrfAITdd6A=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/i5.Toolkit.Core.Tests.ServiceCore.ServiceManagerRunnerTests.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/i5.Toolkit.Core.Tests.ServiceCore.ServiceManagerRunnerTests.html",
-          "hash": "/iG0DF+3A6k0s67bwX2+Hg=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/i5.Toolkit.Core.Tests.ServiceCore.ServiceManagerTests.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/i5.Toolkit.Core.Tests.ServiceCore.ServiceManagerTests.html",
-          "hash": "icpU72zUQXnmg2oD3oEK/A=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/i5.Toolkit.Core.Tests.ServiceCore.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/i5.Toolkit.Core.Tests.ServiceCore.html",
-          "hash": "usqk8ppRKOA0PuyIWG0APg=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/i5.Toolkit.Core.Tests.Utilities.ComponentUtilitiesTests.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/i5.Toolkit.Core.Tests.Utilities.ComponentUtilitiesTests.html",
-          "hash": "ztgUy6rx/d3+Q+jv5C6wzA=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/i5.Toolkit.Core.Tests.Utilities.ConversionUtilsTests.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/i5.Toolkit.Core.Tests.Utilities.ConversionUtilsTests.html",
-          "hash": "sqpfMgKOQYPvu20kyuvrwQ=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/i5.Toolkit.Core.Tests.Utilities.NameValueCollectionExtensionsTests.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/i5.Toolkit.Core.Tests.Utilities.NameValueCollectionExtensionsTests.html",
-          "hash": "yy+tl33O6ND3/tTKblMQzw=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/i5.Toolkit.Core.Tests.Utilities.ObjectPoolTests.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/i5.Toolkit.Core.Tests.Utilities.ObjectPoolTests.html",
-          "hash": "270N6YotTctlS58nNbzOqA=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/i5.Toolkit.Core.Tests.Utilities.ParserUtilsTests.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/i5.Toolkit.Core.Tests.Utilities.ParserUtilsTests.html",
-          "hash": "EG2RmN3y1twNRy5ukx4q2Q=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/i5.Toolkit.Core.Tests.Utilities.UriUtilsTests.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/i5.Toolkit.Core.Tests.Utilities.UriUtilsTests.html",
-          "hash": "FW14IZXq5djKfzeveyqD0w=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/i5.Toolkit.Core.Tests.Utilities.i5DebugTests.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/i5.Toolkit.Core.Tests.Utilities.i5DebugTests.html",
-          "hash": "amMJ+SKEpVz8Ezg2SiPwBw=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/i5.Toolkit.Core.Tests.Utilities.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/i5.Toolkit.Core.Tests.Utilities.html",
-          "hash": "2zVF/ZK/9+KtPnt6ZggzGw=="
+          "hash": "ltmI/gwcn1z7JA6mTmQW4A=="
         }
       },
       "is_incremental": false,
@@ -1612,7 +1048,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.Utilities.Async.AwaiterExtensions.SimpleCoroutineAwaiter-1.html",
-          "hash": "e4IAoDI40GechLXdNq5Msw=="
+          "hash": "WufyPlkRXhuoaEvzM293OA=="
         }
       },
       "is_incremental": false,
@@ -1624,7 +1060,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.Utilities.Async.AwaiterExtensions.SimpleCoroutineAwaiter.html",
-          "hash": "PepB6VxyKaQxtrIuCLgcrQ=="
+          "hash": "Oj3WDHsROdy4m1s/3EHwZA=="
         }
       },
       "is_incremental": false,
@@ -1636,7 +1072,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.Utilities.Async.AwaiterExtensions.html",
-          "hash": "Uq6itTBZ//s/uGtO1KYoOg=="
+          "hash": "qhCeG54XIU+zTn/pcqTZhQ=="
         }
       },
       "is_incremental": false,
@@ -1648,7 +1084,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.Utilities.Async.SyncContextUtility.html",
-          "hash": "o/e3Iy4kU+e1tMmtg7n3Ag=="
+          "hash": "ptQHBWQwAqrQdBUg5z/+pg=="
         }
       },
       "is_incremental": false,
@@ -1660,7 +1096,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.Utilities.Async.WaitForBackgroundThread.html",
-          "hash": "YhEwO0RJDIlyOkpDYPehIA=="
+          "hash": "yDPjRCT0WiCNdzP+YfjiOg=="
         }
       },
       "is_incremental": false,
@@ -1672,7 +1108,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.Utilities.Async.WaitForUpdate.html",
-          "hash": "xGzaeXOVJH0NZrTtyTwngA=="
+          "hash": "50WKMCok18Ry4Ndv3mc/3A=="
         }
       },
       "is_incremental": false,
@@ -1684,7 +1120,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.Utilities.Async.html",
-          "hash": "ub5T9I21TB6a97JhTBMDQg=="
+          "hash": "TXT1acdV6ASdvUZDbuOc7Q=="
         }
       },
       "is_incremental": false,
@@ -1696,7 +1132,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.Utilities.Browser.html",
-          "hash": "lnuaxZCUwQQax+WhR/mYWQ=="
+          "hash": "kJ6VA/fFHaOuNmdbUpwsgw=="
         }
       },
       "is_incremental": false,
@@ -1708,7 +1144,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.Utilities.ComponentUtilities.html",
-          "hash": "lwwTAaiKtzs4BD/XKZgyqg=="
+          "hash": "Sj0WFKKO/7ju6hNb9rd61g=="
         }
       },
       "is_incremental": false,
@@ -1720,7 +1156,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.Utilities.ConstantRotation.html",
-          "hash": "ps+tj4bcHnutLGLYevI/vQ=="
+          "hash": "7NhJ+5GkEcjFllCEAGq8zg=="
         }
       },
       "is_incremental": false,
@@ -1732,7 +1168,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.Utilities.ContentLoaders.IContentLoader-1.html",
-          "hash": "I0orPE23yE/jv4q7/Ilm8g=="
+          "hash": "iCfUk41G2A5FtrjK1pBUHw=="
         }
       },
       "is_incremental": false,
@@ -1744,7 +1180,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.Utilities.ContentLoaders.UnityTextureLoader.html",
-          "hash": "RMzTPHA9XraAKq0nMCJU1g=="
+          "hash": "8N84jzx3ctpwqvKhq0OuoA=="
         }
       },
       "is_incremental": false,
@@ -1756,7 +1192,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.Utilities.ContentLoaders.UnityWebRequestLoader.html",
-          "hash": "GcOIMVKB2DKsGgZ7aXgLeQ=="
+          "hash": "IBo9YL9lKu0f7wC0j+A4Qw=="
         }
       },
       "is_incremental": false,
@@ -1768,7 +1204,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.Utilities.ContentLoaders.html",
-          "hash": "GWgbs8oDjOWSAhHYsGJgYg=="
+          "hash": "ZXSvepAdPpp6gy8RtQRSew=="
         }
       },
       "is_incremental": false,
@@ -1780,7 +1216,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.Utilities.ConversionUtils.html",
-          "hash": "m4XXHeAdH1KnSi/T5KYAHw=="
+          "hash": "0BJzKpiOHj7EP8fzGbweQg=="
         }
       },
       "is_incremental": false,
@@ -1792,7 +1228,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.Utilities.Exceptions.PlatformNotSupportedException.html",
-          "hash": "66p8P2cbYBDQapB5/W6iwQ=="
+          "hash": "LlZF8VAaWPS1ax3O8az9Lw=="
         }
       },
       "is_incremental": false,
@@ -1804,7 +1240,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.Utilities.Exceptions.html",
-          "hash": "iLpqyfPg9bypmk6Q/LgiDg=="
+          "hash": "VixttYYXrSJ0Q4cj2vVziA=="
         }
       },
       "is_incremental": false,
@@ -1816,7 +1252,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.Utilities.IBrowser.html",
-          "hash": "r2E421mc4ZJzRnPygwVEfQ=="
+          "hash": "IPt+lcAk5TqI6qCEbkEKTQ=="
         }
       },
       "is_incremental": false,
@@ -1828,7 +1264,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.Utilities.IJsonSerializer.html",
-          "hash": "r/WloaTCNnp1DNI8n0lXjw=="
+          "hash": "JHPMLUKvlfkZe1AZZ12H2A=="
         }
       },
       "is_incremental": false,
@@ -1840,7 +1276,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.Utilities.IRestConnector.html",
-          "hash": "N9KWzJ9gv1yQf4WUslc7Vg=="
+          "hash": "4LvZdAiNaIvk9qqoHaXY2w=="
         }
       },
       "is_incremental": false,
@@ -1852,7 +1288,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.Utilities.JsonArrayUtility.html",
-          "hash": "QF2no1/Hog9Q4EuOUtnN3w=="
+          "hash": "JAkKUs8m+OVFIsvs7NJ11A=="
         }
       },
       "is_incremental": false,
@@ -1864,7 +1300,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.Utilities.JsonUtilityWrapper.html",
-          "hash": "0YClJw5zvnXNiEm1mwYaUg=="
+          "hash": "BXvaGTLh+tsMoPa7RWubmw=="
         }
       },
       "is_incremental": false,
@@ -1876,7 +1312,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.Utilities.NameValueCollectionExtensions.html",
-          "hash": "aPq1VMBBNGmiw5UeZpZBPQ=="
+          "hash": "HH3PEJm+MhuhrRMxZmAHxw=="
         }
       },
       "is_incremental": false,
@@ -1888,7 +1324,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.Utilities.ObjectPool-1.html",
-          "hash": "3SDnUgsz5Hgh4VpKN1oLBg=="
+          "hash": "tnXpO/wJOrWPstsfDwqgNQ=="
         }
       },
       "is_incremental": false,
@@ -1900,7 +1336,19 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.Utilities.ParserUtils.html",
-          "hash": "B2X58Xl58fhoEqiqE7Vnkg=="
+          "hash": "buh3La50Wt1LruTDfF7J4Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/i5.Toolkit.Core.Utilities.PersistenceScene.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/i5.Toolkit.Core.Utilities.PersistenceScene.html",
+          "hash": "+BwXkeF6wICkvee3kL2Lhg=="
         }
       },
       "is_incremental": false,
@@ -1912,7 +1360,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.Utilities.SpecialDebugMessages.html",
-          "hash": "GWA+hfIY0py+tCZx/maTRA=="
+          "hash": "CPZGXeOfaIag040yukqf0g=="
         }
       },
       "is_incremental": false,
@@ -1924,7 +1372,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.Utilities.UnityAdapters.GameObjectAdapter.html",
-          "hash": "pS0jRc3AVGjjZwsdtZZd9g=="
+          "hash": "T0Vj6ZLeli/Y8wEaAEhd6g=="
         }
       },
       "is_incremental": false,
@@ -1936,7 +1384,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.Utilities.UnityAdapters.IActivateable.html",
-          "hash": "w/1TnJFHqr13bnsxo2ypaw=="
+          "hash": "CuPlMDrZNe9+Zb0f9RaHLQ=="
         }
       },
       "is_incremental": false,
@@ -1948,7 +1396,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.Utilities.UnityAdapters.IRectangle.html",
-          "hash": "ahkbXdQ0XiRr5SBldclYAQ=="
+          "hash": "rkFDJYkDexB24Bc3Nr29fQ=="
         }
       },
       "is_incremental": false,
@@ -1960,7 +1408,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.Utilities.UnityAdapters.IScrollView.html",
-          "hash": "8TJfjI4NjqG61FKu1gMstg=="
+          "hash": "B1WG2O3iZDw1ft1G3oQhww=="
         }
       },
       "is_incremental": false,
@@ -1972,7 +1420,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.Utilities.UnityAdapters.ITextDisplay.html",
-          "hash": "zaaCN8/up/MjTHkqJ8H28g=="
+          "hash": "heVM8WviuR59spKhNnJSKg=="
         }
       },
       "is_incremental": false,
@@ -1984,7 +1432,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.Utilities.UnityAdapters.RectTransformAdapter.html",
-          "hash": "rQlBmw19QaBRSNu+Xp5vDg=="
+          "hash": "hmxMxks+KZbItUAXPRjC6w=="
         }
       },
       "is_incremental": false,
@@ -1996,7 +1444,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.Utilities.UnityAdapters.ScrollRectAdapter.html",
-          "hash": "L6Y4G5BwNWXTBcKWsgbstg=="
+          "hash": "5eKnp+J5jqqd9SNCYdW4Yg=="
         }
       },
       "is_incremental": false,
@@ -2008,7 +1456,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.Utilities.UnityAdapters.TextMeshProTextAdapter.html",
-          "hash": "rzk3X4JR98Jm91ZuliSCHg=="
+          "hash": "V7m+WMAPNb1uddid4K7p8g=="
         }
       },
       "is_incremental": false,
@@ -2020,7 +1468,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.Utilities.UnityAdapters.TextMeshProUGUITextAdapter.html",
-          "hash": "gBgb+ME1qgr/3hxh2W3JXA=="
+          "hash": "vk20fUmRtHZsk1+I/vf0wA=="
         }
       },
       "is_incremental": false,
@@ -2032,7 +1480,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.Utilities.UnityAdapters.TextMeshTextAdapter.html",
-          "hash": "ZEpr8rO63J6Dnis5dNbJKQ=="
+          "hash": "WxkfAY93U5AkuMn3MkFH7A=="
         }
       },
       "is_incremental": false,
@@ -2044,7 +1492,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.Utilities.UnityAdapters.html",
-          "hash": "26cU40V5wGHDxdUf9PQ9+A=="
+          "hash": "LCBuQeEKwRJOmLQGg6naYA=="
         }
       },
       "is_incremental": false,
@@ -2056,7 +1504,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.Utilities.UnityWebRequestRestConnector.html",
-          "hash": "kN8LQ4sSxWPXE6dsCHw3vg=="
+          "hash": "GJHeA0qoziFWyNrx0gKgdQ=="
         }
       },
       "is_incremental": false,
@@ -2068,7 +1516,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.Utilities.UriUtils.html",
-          "hash": "2FkgIyNX2jXgNP0+v7A7fQ=="
+          "hash": "SMst9+LMXyGHbrowVz3DiA=="
         }
       },
       "is_incremental": false,
@@ -2080,7 +1528,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.Utilities.WebResponse-1.html",
-          "hash": "QpLsDVvPv6Kwdm1ObJT4Zg=="
+          "hash": "arOWJ5SRM7QG8KXSAxQrpA=="
         }
       },
       "is_incremental": false,
@@ -2092,7 +1540,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.Utilities.i5Debug.html",
-          "hash": "rpeeiCwo1zEPhGVVck5LqA=="
+          "hash": "5RLUL95or9eghv5axuRHjw=="
         }
       },
       "is_incremental": false,
@@ -2104,7 +1552,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.Utilities.html",
-          "hash": "zICkTw2uKqcSmPIgxZctgw=="
+          "hash": "rjPsk9R5eIUqD2a3EWkpCw=="
         }
       },
       "is_incremental": false,
@@ -2116,7 +1564,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "sI9iP6SeFd3TreaAPe/f7Q=="
+          "hash": "8EeqweCu9rNHRhin6FsQkQ=="
         }
       },
       "is_incremental": false,
@@ -2128,7 +1576,19 @@
       "output": {
         ".html": {
           "relative_path": "index.html",
-          "hash": "KIKNtLjrPjhG9tNSbsLVoA=="
+          "hash": "GuyAonNXVEleqeOpHfCucw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/App-Console.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/App-Console.html",
+          "hash": "po5P29rQ2RxeLXeJCVZB5A=="
         }
       },
       "is_incremental": false,
@@ -2140,7 +1600,7 @@
       "output": {
         ".html": {
           "relative_path": "manual/Modified-3D-Objects.html",
-          "hash": "F+iX2gxVr3kLWS5i2Lgrzg=="
+          "hash": "bTfzX9/JmJgvOhT1c39ctA=="
         }
       },
       "is_incremental": false,
@@ -2152,7 +1612,7 @@
       "output": {
         ".html": {
           "relative_path": "manual/Obj-Importer.html",
-          "hash": "gcH5eTRRM6xib56kU50R7g=="
+          "hash": "5d8ghE3aea8hgvQKiSb1mA=="
         }
       },
       "is_incremental": false,
@@ -2164,7 +1624,7 @@
       "output": {
         ".html": {
           "relative_path": "manual/Object-Pool.html",
-          "hash": "eEzdNug50n06+X/NDfj4BA=="
+          "hash": "/DEtFNpbYZmtX/iyNQoDyw=="
         }
       },
       "is_incremental": false,
@@ -2176,7 +1636,7 @@
       "output": {
         ".html": {
           "relative_path": "manual/OpenID-Connect-Client.html",
-          "hash": "gvNFx48bPTB/hbgktMBX/A=="
+          "hash": "uX5LzRx51EMVYxMN82wJiQ=="
         }
       },
       "is_incremental": false,
@@ -2188,7 +1648,7 @@
       "output": {
         ".html": {
           "relative_path": "manual/Procedural-Geometry.html",
-          "hash": "V199ZcXCoNU/GhdGhmzLJw=="
+          "hash": "Z5qeT50A1lSNlwpA1/5Fgw=="
         }
       },
       "is_incremental": false,
@@ -2200,7 +1660,7 @@
       "output": {
         ".html": {
           "relative_path": "manual/Scene-Documentation.html",
-          "hash": "Kn13RsvaNJd2hJlGuWALvQ=="
+          "hash": "Skl4hs+SJMSt//4zbbPTFQ=="
         }
       },
       "is_incremental": false,
@@ -2212,7 +1672,7 @@
       "output": {
         ".html": {
           "relative_path": "manual/Service-Core.html",
-          "hash": "kjp5AbcD1SYL8w0Eo68w8A=="
+          "hash": "tvQ8n5nDjIC9m7xVuXcmQA=="
         }
       },
       "is_incremental": false,
@@ -2224,7 +1684,91 @@
       "output": {
         ".html": {
           "relative_path": "manual/Spawner.html",
-          "hash": "YkcrnMFf2qOeN3mDa+pxWw=="
+          "hash": "owYdSezerDK7EIfZpp4I1A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/TestHelpers/Async-Test.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/TestHelpers/Async-Test.html",
+          "hash": "ggJ5I9YXBHn2RAAXa+qpag=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/Utilities/Component-Utilities.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/Utilities/Component-Utilities.html",
+          "hash": "Cx0yTevDO1TzB89gIs11SA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/Utilities/Constant-Rotation.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/Utilities/Constant-Rotation.html",
+          "hash": "TmRlDj+EfSjSb6kpc9XfMQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/Utilities/Json-Array-Utility.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/Utilities/Json-Array-Utility.html",
+          "hash": "ehhEHBnkC/cwVIO8y7l4HQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/Utilities/Persistent-Scene.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/Utilities/Persistent-Scene.html",
+          "hash": "UIfj83IDfy0zTwwKwnRZpw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/Utilities/Unity-Adapters.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/Utilities/Unity-Adapters.html",
+          "hash": "6rVPlxpj4L0dCR3jtO1Ecg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/Utilities/i5Debug.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/Utilities/i5Debug.html",
+          "hash": "+omQ9ZrDmxOjw2GZQdNKNA=="
         }
       },
       "is_incremental": false,
@@ -2236,7 +1780,40 @@
       "output": {
         ".html": {
           "relative_path": "manual/toc.html",
-          "hash": "UadmAHIjSem46MGpbp1fLA=="
+          "hash": "Q0/uCTkmU5M5O/qtqCcdbA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/Logos/AppConsole.svg",
+      "output": {
+        "resource": {
+          "relative_path": "resources/Logos/AppConsole.svg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/Logos/Logo.svg",
+      "output": {
+        "resource": {
+          "relative_path": "resources/Logos/Logo.svg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/Logos/Logo_whiteBg.svg",
+      "output": {
+        "resource": {
+          "relative_path": "resources/Logos/Logo_whiteBg.svg"
         }
       },
       "is_incremental": false,
@@ -2369,7 +1946,7 @@
       "output": {
         ".html": {
           "relative_path": "toc.html",
-          "hash": "pMLWy8lCxcCIiMTQkUq1Dg=="
+          "hash": "JEPGhZ1ppYYDf5QwrYEM0Q=="
         }
       },
       "is_incremental": false,
@@ -2388,14 +1965,14 @@
         "ConceptualDocumentProcessor": {
           "can_incremental": true,
           "incrementalPhase": "build",
-          "total_file_count": 9,
-          "skipped_file_count": 8
+          "total_file_count": 17,
+          "skipped_file_count": 17
         },
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": true,
           "incrementalPhase": "build",
-          "total_file_count": 179,
-          "skipped_file_count": 179
+          "total_file_count": 134,
+          "skipped_file_count": 134
         },
         "ResourceDocumentProcessor": {
           "can_incremental": false,

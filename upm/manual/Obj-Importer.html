@@ -10,7 +10,7 @@
     <meta name="title" content="Obj Importer | i5 Toolkit Documentation ">
     <meta name="generator" content="docfx 2.56.2.0">
     
-    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="shortcut icon" href="../resources/Logos/Logo_whiteBg.svg">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
     <link rel="stylesheet" href="../styles/docfx.css">
     <link rel="stylesheet" href="../styles/main.css">
@@ -35,7 +35,7 @@
               </button>
               
               <a class="navbar-brand" href="../index.html">
-                <img id="logo" class="svg" src="../logo.svg" alt="">
+                <img id="logo" class="svg" src="../resources/Logos/Logo_whiteBg.svg" alt="">
               </a>
             </div>
             <div class="collapse navbar-collapse" id="navbar">
@@ -87,16 +87,33 @@ Moreover, users can upload 3D models to the Web and so, the application can load
 <p>The obj importer also fetches any referenced material files in the .mtl format.
 Moreover, associated textures in materials are also loaded.</p>
 <h2 id="usage">Usage</h2>
-<p>Use the method <code>ImportAsync(url)</code> to load a 3D object from the given URL and import it as a new GameObject.
+<h3 id="register-the-service">Register the Service</h3>
+<p>First, register the <a class="xref" href="../api/i5.Toolkit.Core.ModelImporters.ObjImporter.html">ObjImporter</a> as a service at the <a class="xref" href="../api/i5.Toolkit.Core.ServiceCore.ServiceManager.html">ServiceManager</a>;</p>
+<pre><code class="lang-[C#]">ObjImporter objImporter = new ObjImporter();
+ServiceManager.RegisterService(objImporter);
+</code></pre><p>When registering the service, it will automatically register an <a class="xref" href="../api/i5.Toolkit.Core.ModelImporters.MtlLibrary.html">MtlLibrary</a> service, too.
+This service is required for importing the material files and caching them so that they can be reused.</p>
+<h3 id="import-models">Import Models</h3>
+<p>Use the method <a class="xref" href="../api/i5.Toolkit.Core.ModelImporters.ObjImporter.html#i5_Toolkit_Core_ModelImporters_ObjImporter_ImportAsync_System_String_">ImportAsync(String)</a> to load a 3D object from the given URL and import it as a new GameObject.
 The method runs asynchronously because of the Web request.
 Moreover, the geometry construction happens in the background on a separate thread so that there should be no noticable impact on the performance.</p>
-<p>The specified URL should point directly to the .obj file.
+<pre><code class="lang-[C#]">string url = &quot;https://raw.githubusercontent.com/rwth-acis/i5-Toolkit-for-Unity/master/Assets/i5%20Toolkit%20for%20Unity/Samples%7E/Importers/ObjImporter/Obj%20Models/Monkey_textured.obj&quot;
+GameObject obj = await ServiceManager.GetService&lt;ObjImporter&gt;().ImportAsync(url);
+</code></pre><p>The specified URL should point directly to the .obj file.
 If it does not point to a file that ends with .obj, a warning is given but the import is still tried.</p>
-<h2 id="example-scene">Example Scene</h2>
+<h3 id="debugging">Debugging</h3>
+<p>The service provides a field <a class="xref" href="../api/i5.Toolkit.Core.ModelImporters.ObjImporter.html#i5_Toolkit_Core_ModelImporters_ObjImporter_ExtendedLogging">ExtendedLogging</a>.
+If it is set to <code>true</code>, the ObjImporter gives more detailed log outputs about the import process.</p>
+<pre><code class="lang-[C#]">ServiceManager.GetService&lt;ObjImporter&gt;().ExtendedLogging = true;
+</code></pre><h2 id="example-scene">Example Scene</h2>
 <p>The example scene shows how to load different .obj files.
 In the folder &quot;Obj Models&quot;, different 3D models which have been created in Blender, are stored.
 They can be loaded using the link to the raw object on GitHub.
 The 3D models vary in complexity, the number of objects, materials and textures.</p>
+<p>To find the url of an example 3D model, navigate to the <a href="https://github.com/rwth-acis/i5-Toolkit-for-Unity/tree/master/Assets/i5%20Toolkit%20for%20Unity/Samples%7E/Importers/ObjImporter/Obj%20Models">model folder of the repository</a>, select one of the .obj files  and click on &quot;View raw&quot;.
+After that, copy the url from your browser into the url field of the ServiceClient in the ObjImporter example scene.</p>
+<p>In PlayMode, press F5 to trigger the import.
+You can also change the url field of the ServiceManager during PlayMode and import different 3D models into one session by pressing F5 after changing the model url.</p>
 </article>
           </div>
           
@@ -105,7 +122,7 @@ The 3D models vary in complexity, the number of objects, materials and textures.
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/rwth-acis/i5-Toolkit-for-Unity/blob/features/docFx/Documentation/manual/Obj-Importer.md/#L1" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/rwth-acis/i5-Toolkit-for-Unity/blob/develop/Documentation/manual/Obj-Importer.md/#L1" class="contribution-link">Improve this Doc</a>
                   </li>
                 </ul>
               </div>

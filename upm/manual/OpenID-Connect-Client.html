@@ -10,7 +10,7 @@
     <meta name="title" content="OpenID Connect Client | i5 Toolkit Documentation ">
     <meta name="generator" content="docfx 2.56.2.0">
     
-    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="shortcut icon" href="../resources/Logos/Logo_whiteBg.svg">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
     <link rel="stylesheet" href="../styles/docfx.css">
     <link rel="stylesheet" href="../styles/main.css">
@@ -35,7 +35,7 @@
               </button>
               
               <a class="navbar-brand" href="../index.html">
-                <img id="logo" class="svg" src="../logo.svg" alt="">
+                <img id="logo" class="svg" src="../resources/Logos/Logo_whiteBg.svg" alt="">
               </a>
             </div>
             <div class="collapse navbar-collapse" id="navbar">
@@ -102,13 +102,12 @@ The user can revoke these access rights at any time.</p>
 </ul>
 <h2 id="usage">Usage</h2>
 <h3 id="service-initialization">Service Initialization</h3>
-<p>Register a <code>OpenIDConnectService</code> at the <a href="Service-Core.html">service manager</a>.
+<p>Register a <a class="xref" href="../api/i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.html">OpenIDConnectService</a> at the <a href="Service-Core.html">service manager</a>.
 This can e.g. be done using a <a href="Service-Core.html#bootstrappers">bootstrapper</a> by following these steps:</p>
 <ol>
-<li>In the bootstrapper script, create a field of the type <code>OpenIDConnectServiceConfiguration</code> that is accessible in the inspector.
-Add the bootstrapper and the service manager to the same GameObject in the scene.
+<li>Create a bootstrapper and create a field of the type &lt;xref:i5.Toolkit.Core.OpenIDConnectClient.ClientDataObject` that is accessible in the inspector.
 In the inspector, the bootstrapper component will give you options to specify a redirect page.</li>
-<li>In the <code>InitializeServiceManager()</code> method, create a new <code>OpenIDConnectService</code> object.
+<li>In the <a class="xref" href="../api/i5.Toolkit.Core.ServiceCore.BaseServiceBootstrapper.html#i5_Toolkit_Core_ServiceCore_BaseServiceBootstrapper_RegisterServices">RegisterServices()</a> method, create a new <a class="xref" href="../api/i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.html">OpenIDConnectService</a> object.
 You can pass the <code>OpenIDConnectServiceConfiguration</code> object in the inspector so that the service will use the given settings.</li>
 <li>Before you can access the OpenID Connect workflow, you have to assign the service&#39;s <code>OidcProvier</code>.
 The <code>OidcProvider</code> is the specific implementation to access the API of a OpenID Connect provider, e.g. Learning Layers.</li>
@@ -255,7 +254,7 @@ It also triggers the login procedure and reacts to the successful login.</p>
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/rwth-acis/i5-Toolkit-for-Unity/blob/features/docFx/Documentation/manual/OpenID-Connect-Client.md/#L1" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/rwth-acis/i5-Toolkit-for-Unity/blob/develop/Documentation/manual/OpenID-Connect-Client.md/#L1" class="contribution-link">Improve this Doc</a>
                   </li>
                 </ul>
               </div>

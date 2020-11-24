@@ -10,7 +10,7 @@
     <meta name="title" content="Procedural Geometry Kit | i5 Toolkit Documentation ">
     <meta name="generator" content="docfx 2.56.2.0">
     
-    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="shortcut icon" href="../resources/Logos/Logo_whiteBg.svg">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
     <link rel="stylesheet" href="../styles/docfx.css">
     <link rel="stylesheet" href="../styles/main.css">
@@ -35,7 +35,7 @@
               </button>
               
               <a class="navbar-brand" href="../index.html">
-                <img id="logo" class="svg" src="../logo.svg" alt="">
+                <img id="logo" class="svg" src="../resources/Logos/Logo_whiteBg.svg" alt="">
               </a>
             </div>
             <div class="collapse navbar-collapse" id="navbar">
@@ -80,7 +80,7 @@
 <h1 id="procedural-geometry-kit">Procedural Geometry Kit</h1>
 
 <p><img src="../resources/Logos/ProceduralGeometry.svg" alt="Procedural Geometry"></p>
-<p>The procedural geometry kit streamlines the way how meshes can be built.
+<p>The procedural geometry kit streamlines the way how <a class="xref" href="https://docs.unity3d.com/ScriptReference/Mesh.html">meshes</a> can be built.
 It provides the several advantages over working directly with Unity&#39;s <code>Mesh</code> API:</p>
 <ul>
 <li><strong>Abstraction from low-level mesh representations</strong>: Meshes are represented by different arrays, e.g. an array for the vertex positions, a vertex index array to determine the triangles, an array for normal vectors, etc.
@@ -98,13 +98,13 @@ With the procedural geometry kit, you can add polygons with an arbitrary number 
 They are automatically triangulated so that they work with Unity&#39;s mesh.</li>
 </ul>
 <h2 id="usage">Usage</h2>
-<h3 id="creating-a-geometry-constructor">Creating a Geometry Constructor</h3>
-<p>To create geometry, create a GeometryConstructor object:</p>
+<h3 id="create-a-geometry-constructor">Create a Geometry Constructor</h3>
+<p>To create geometry, create a <a class="xref" href="../api/i5.Toolkit.Core.ProceduralGeometry.GeometryConstructor.html">GeometryConstructor</a> object:</p>
 <pre><code class="lang-[C#]">GeometryConstructor geometryConstructor = new GeometryConstructor();
 </code></pre><h3 id="add-vertices">Add Vertices</h3>
-<p>After that, you can add vertices to the geometry using one of the following methods.
+<p>After that, you can add vertices to the geometry using the method &lt;i5.Toolkit.Core.ProceduralGeometry.GeometryConstructor.AddVertex(UnityEngine.Vector3)&gt;.
 The position of the vertex has to be specified.
-Optionally, you can also enter the normal vector and UV coordinates.</p>
+Optionally, you can also enter the [normal vector](xref:i5.Toolkit.Core.ProceduralGeometry.GeometryConstructor.AddVertex(UnityEngine.Vector3, UnityEngine.Vector3)&gt;), [UV coordinates](xref:i5.Toolkit.Core.ProceduralGeometry.GeometryConstructor.AddVertex(UnityEngine.Vector3, UnityEngine.Vector2)) or [both](xref:i5.Toolkit.Core.ProceduralGeometry.GeometryConstructor.AddVertex(UnityEngine.Vector3, UnityEngine.Vector2, UnityEngine.Vector3)).</p>
 <pre><code class="lang-[C#]">Vector3 vertexPosition = new Vector3(0, 1, 2);
 Vector3 normalVector = new Vector3(1, 1, 1);
 Vector2 uvCoordinates = new Vector2(0.5f, 0.5f);
@@ -115,28 +115,29 @@ Use it to construct faces.</p>
 <h3 id="add-faces">Add Faces</h3>
 <p>Faces are defined by specifying the vertices that are connected to a face.
 In any of the methods that create faces, list the vertices in <strong>clockwise</strong> order.
-All the methods also provide an optional last paramter <code>flipNormals</code>.
+All the methods also provide an optional last parameter <code>flipNormals</code>.
 If this argument is set to true, the normal vector of the face will point into the opposite direction, meaning that the face will be visible from hte other side.</p>
 <p>In the following code examples <code>v0, v1, v2...</code> are integer indices of previously added vertices.</p>
 <h4 id="triangles">Triangles</h4>
 <p><img src="../resources/ProceduralGeometry/Triangle.svg" alt="Triangle"></p>
-<p>To add triangles, call the method:</p>
-<pre><code class="lang-[C#]">geometryConstructor.AddTriangles(v0, v1, v2);
+<p>To add triangles, call the method &lt;xref:i5.Toolkit.Core.ProceduralGeometry.GeometryConstructor.AddTriangle(System.Int32, System.Int32, System.Int32, System.Boolean)&gt;</p>
+<pre><code class="lang-[C#]">geometryConstructor.AddTriangle(v0, v1, v2);
 </code></pre><h3 id="quads">Quads</h3>
 <p><img src="../resources/ProceduralGeometry/Quad.svg" alt="Quad"></p>
-<p>To add quads, call the method:</p>
+<p>To add quads, call the method &lt;xref:i5.Toolkit.Core.ProceduralGeometry.GeometryConstructor(System.Int32, System.Int32, System.Int32, System.Int32, System.Boolean)&gt;</p>
 <pre><code class="lang-[C#]">geometryConstructor.AddQuad(v0, v1, v2, v3);
 </code></pre><p>The quad is automatically converted to two triangles as shown in the figure.</p>
 <h3 id="triangle-fan">Triangle Fan</h3>
 <p><img src="../resources/ProceduralGeometry/TriangleFan.svg" alt="Triangle Fan"></p>
-<p>You can add a triangle fan.
+<p>You can add a triangle fan using the method &lt;xref:i5.Toolkit.Core.ProceduralGeometry.GeometryConstructor.AddTriangleFan(System.Int32, System.Int32[], System.Boolean)&gt;
 Specify the pole (the vertex which is part of all triangles) first and after that, list the vertices clockwise.</p>
 <pre><code class="lang-[C#]">int[] faceIndices = new int[] {v1, v2, v3, v4, v5, v6};
 geometryConstructor.AddTriangleFan(v0, faceIndices);
 </code></pre><h3 id="generate-mesh">Generate Mesh</h3>
-<p>After the geometry has been defined, the mesh can be generated:</p>
+<p>After the geometry has been defined, the mesh can be generated using the method <a class="xref" href="../api/i5.Toolkit.Core.ProceduralGeometry.GeometryConstructor.html#i5_Toolkit_Core_ProceduralGeometry_GeometryConstructor_ConstructMesh">ConstructMesh()</a></p>
 <pre><code class="lang-[C#]">Mesh result = geometryConstructor.ConstructMesh();
-</code></pre></article>
+</code></pre><p>The result of this operation will be a Unity-<a class="xref" href="https://docs.unity3d.com/ScriptReference/Mesh.html">Mesh</a> with the same vertices, triangles, etc. as previously provided to the <a class="xref" href="../api/i5.Toolkit.Core.ProceduralGeometry.GeometryConstructor.html">GeometryConstructor</a>.</p>
+</article>
           </div>
           
           <div class="hidden-sm col-md-2" role="complementary">
@@ -144,7 +145,7 @@ geometryConstructor.AddTriangleFan(v0, faceIndices);
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/rwth-acis/i5-Toolkit-for-Unity/blob/features/docFx/Documentation/manual/Procedural-Geometry.md/#L1" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/rwth-acis/i5-Toolkit-for-Unity/blob/develop/Documentation/manual/Procedural-Geometry.md/#L1" class="contribution-link">Improve this Doc</a>
                   </li>
                 </ul>
               </div>

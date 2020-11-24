@@ -1,4 +1,10 @@
 apiRules:
+- exclude:
+    uidRegex: ^i5.Toolkit.Core.Examples.*
+    type: Namespace
+- exclude:
+    uidRegex: ^i5.Toolkit.Core.Tests.*
+    type: Namespace
 - include:
     uidRegex: ^i5.*
     type: Namespace

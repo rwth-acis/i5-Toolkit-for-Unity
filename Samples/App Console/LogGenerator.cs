@@ -1,27 +1,28 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class LogGenerator : MonoBehaviour
+namespace i5.Toolkit.Core.Examples.AppConsole
 {
-    private void Update()
+    public class LogGenerator : MonoBehaviour
     {
-        if (Input.GetKeyDown(KeyCode.F1))
+        private void Update()
         {
-            Debug.Log("This is a log", this);
-        }
-        else if (Input.GetKeyDown(KeyCode.F2))
-        {
-            Debug.LogWarning("This is a warning", this);
-        }
-        else if (Input.GetKeyDown(KeyCode.F3))
-        {
-            Debug.LogError("This is an error", this);
-        }
-        else if (Input.GetKeyDown(KeyCode.F4))
-        {
-            throw new NotImplementedException("This is an excpetion");
+            if (Input.GetKeyDown(KeyCode.F1))
+            {
+                Debug.Log("This is a log", this);
+            }
+            else if (Input.GetKeyDown(KeyCode.F2))
+            {
+                Debug.LogWarning("This is a warning", this);
+            }
+            else if (Input.GetKeyDown(KeyCode.F3))
+            {
+                Debug.LogError("This is an error", this);
+            }
+            else if (Input.GetKeyDown(KeyCode.F4))
+            {
+                throw new NotImplementedException("This is an excpetion");
+            }
         }
     }
 }

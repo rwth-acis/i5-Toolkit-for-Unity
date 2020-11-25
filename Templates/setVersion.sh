@@ -1,7 +1,7 @@
 #!/bin/bash
 
 version=$1
-versionReplaceString="s/\${version}/$version/"
+versionReplaceString='s/\${version}/$version/'
 
 # =============== README =====================
 
@@ -11,9 +11,9 @@ cp README.md ../Documentation/index.md
 cp README.md ../Assets/'i5 Toolkit for Unity'/README.md
 
 # replace the version
-sed $versionReplaceString ../README.md
-sed $versionReplaceString ../Documentation/index.md
-sed $versionReplaceString ../Assets/'i5 Toolkit for Unity'/README.md
+sed -e $versionReplaceString -e 's/\${docPath}/Documentation/' -e 's/\${docExtension}/.md/' ../README.md
+sed -e $versionReplaceString -e 's/\${docPath}//' -e 's/\${docExtension}/.md/' ../Documentation/index.md
+sed -e $versionReplaceString -e 's/\${docPath}/https:\/\/rwth-acis.github.io\/i5-Toolkit-for-Unity\/$version/' -e 's/\${docExtension}/.html/' ../Assets/'i5 Toolkit for Unity'/README.md
 
 # =============== Documentation =====================
 

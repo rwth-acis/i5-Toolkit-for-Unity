@@ -15,18 +15,18 @@ The i5 Toolkit provides a series of modules and features that can be used in pro
 
 <table style="text-align: center; vertical-align: middle">
     <tr>
-        <td><a href="Documentation/manual/Modified-3D-Objects.md"><img src="Documentation/resources/Logos/RoundedCorners.svg" alt="Modified 3D Objects" style="width:200px"/><br/>Modified 3D Models</a></td>
-        <td><a href="Documentation/manual/Object-Pool.md"><img src="Documentation/resources/Logos/ObjectPool.svg" alt="Object Pool" style="width:200px"/><br/>Object Pool</a></td>
-        <td><a href="Documentation/manual/Obj-Importer.md"><img src="Documentation/resources/Logos/ObjImporter.svg" alt="Obj Importer" style="width:200px"/><br/>Obj Importer</a></td>
+        <td><a href="${docPath}/manual/Modified-3D-Objects.${docExtension}"><img src="${docPath}/resources/Logos/RoundedCorners.svg" alt="Modified 3D Objects" style="width:200px"/><br/>Modified 3D Models</a></td>
+        <td><a href="${docPath}/manual/Object-Pool.${docExtension}"><img src="${docPath}/resources/Logos/ObjectPool.svg" alt="Object Pool" style="width:200px"/><br/>Object Pool</a></td>
+        <td><a href="${docPath}/manual/Obj-Importer.${docExtension}"><img src="${docPath}/resources/Logos/ObjImporter.svg" alt="Obj Importer" style="width:200px"/><br/>Obj Importer</a></td>
     </tr>
     <tr>
-        <td><a href="Documentation/manual/OpenID-Connect-Client.md"><img src="Documentation/resources/Logos/OpenIDConnectClient.svg" alt="OpenID Connect Client" style="width:200px"/><br/>OpenID Connect Client</a></td>
-        <td><a href="Documentation/manual/Procedural-Geometry.md"><img src="Documentation/resources/Logos/ProceduralGeometry.svg" alt="Procedural Geometry" style="width:200px"/><br/>Procedural Geometry</a></td>
-        <td><a href="Documentation/manual/Scene-Documentation.md"><img src="Documentation/resources/Logos/SceneDocumentation.svg" alt="Scene Documentation" style="width:200px"/><br/>Scene Documentation</a></td>
+        <td><a href="${docPath}/manual/OpenID-Connect-Client.${docExtension}"><img src="${docPath}/resources/Logos/OpenIDConnectClient.svg" alt="OpenID Connect Client" style="width:200px"/><br/>OpenID Connect Client</a></td>
+        <td><a href="${docPath}/manual/Procedural-Geometry.${docExtension}"><img src="${docPath}/resources/Logos/ProceduralGeometry.svg" alt="Procedural Geometry" style="width:200px"/><br/>Procedural Geometry</a></td>
+        <td><a href="${docPath}/manual/Scene-Documentation.${docExtension}"><img src="${docPath}/resources/Logos/SceneDocumentation.svg" alt="Scene Documentation" style="width:200px"/><br/>Scene Documentation</a></td>
     </tr>
     <tr>
-        <td><a href="Documentation/manual/Service-Core.md"><img src="Documentation/resources/Logos/ServiceCore.svg" alt="Service Core" style="width:200px"/><br/>Service Core</a></td>
-        <td><a href="Documentation/manual/Spawner.md"><img src="Documentation/resources/Logos/Spawner.svg" alt="Spawner" style="width:200px"/><br/>Spawner</a></td>
+        <td><a href="${docPath}/manual/Service-Core.${docExtension}"><img src="${docPath}/resources/Logos/ServiceCore.svg" alt="Service Core" style="width:200px"/><br/>Service Core</a></td>
+        <td><a href="${docPath}/manual/Spawner.${docExtension}"><img src="${docPath}/resources/Logos/Spawner.svg" alt="Spawner" style="width:200px"/><br/>Spawner</a></td>
     </tr>
 </table>
 

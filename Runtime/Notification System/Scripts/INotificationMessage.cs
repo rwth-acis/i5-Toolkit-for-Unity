@@ -1,4 +1,7 @@
-﻿public interface INotificationMessage
+﻿namespace i5.Toolkit.Core.Experimental.NotificationSystem
 {
-    string Content { get; }
+    public interface INotificationMessage
+    {
+        string Content { get; }
+    }
 }

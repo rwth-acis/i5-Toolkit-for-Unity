@@ -14,10 +14,10 @@ cp README.md "$readmeMainPath"
 cp README.md "$readmeDocPath"
 cp README.md "$readmePackagePath"
 
-# replace the version
-sed -i -e "$versionReplaceString" -e "s/\${docPath}/Documentation\//g" -e "s/\${docExtension}/md/g" "$readmeMainPath"
-sed -i -e "$versionReplaceString" -e "s/\${docPath}//g" -e "s/\${docExtension}/md/g" "$readmeDocPath"
-sed -i -e "$versionReplaceString" -e "s/\${docPath}/https:\/\/rwth-acis.github.io\/i5-Toolkit-for-Unity\/$version\//g" -e "s/\${docExtension}/html/" "$readmePackagePath"
+# replace the version and paths
+sed -i -e "$versionReplaceString" -e "s/\${docPath}/https:\/\/rwth-acis.github.io\/i5-Toolkit-for-Unity\/$version\//g" -e "s/\${docImgPath}/Documentation\//g" -e "s/\${docExtension}/md/g" "$readmeMainPath"
+sed -i -e "$versionReplaceString" -e "s/\${docPath}//g" -e "s/\${docImgPath}//g" -e "s/\${docExtension}/md/g" "$readmeDocPath"
+sed -i -e "$versionReplaceString" -e "s/\${docPath}/https:\/\/rwth-acis.github.io\/i5-Toolkit-for-Unity\/$version\//g" -e "s/\${docImgPath}/https:\/\/rwth-acis.github.io\/i5-Toolkit-for-Unity\/$version\//g" -e "s/\${docExtension}/html/" "$readmePackagePath"
 
 # =============== Documentation =====================
 

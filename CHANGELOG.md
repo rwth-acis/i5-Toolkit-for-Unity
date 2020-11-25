@@ -11,6 +11,7 @@ This document keeps track of the changes between versions of the toolkit.
   - Interfaces for text displays, activatable objects, UI rectangles and scroll views
   - Adapter for text UI (TextMesh, TextMeshPro and TextMeshProUGUI)
   - Adapter for GameObject, RectTransform, ScrollRect
+- Experimental notification system
 
 ### Changed
 - Sample scenes can now be accessed with the Unity Package UI (with Unity Package Manager 2.0 in Unity 2019.1 or later)

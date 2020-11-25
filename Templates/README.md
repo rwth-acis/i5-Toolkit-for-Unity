@@ -15,18 +15,19 @@ The i5 Toolkit provides a series of modules and features that can be used in pro
 
 <table style="text-align: center; vertical-align: middle">
     <tr>
-        <td><a href="${docPath}/manual/Modified-3D-Objects.${docExtension}"><img src="${docPath}/resources/Logos/RoundedCorners.svg" alt="Modified 3D Objects" style="width:200px"/><br/>Modified 3D Models</a></td>
-        <td><a href="${docPath}/manual/Object-Pool.${docExtension}"><img src="${docPath}/resources/Logos/ObjectPool.svg" alt="Object Pool" style="width:200px"/><br/>Object Pool</a></td>
-        <td><a href="${docPath}/manual/Obj-Importer.${docExtension}"><img src="${docPath}/resources/Logos/ObjImporter.svg" alt="Obj Importer" style="width:200px"/><br/>Obj Importer</a></td>
+        <td><a href="${docPath}manual/App-Console.${docExtension}"><img src="${docPath}resources/Logos/AppConsole.svg" alt="App Console" style="width:200px"/><br/>App Console</a></td>
+        <td><a href="${docPath}manual/Modified-3D-Objects.${docExtension}"><img src="${docPath}resources/Logos/RoundedCorners.svg" alt="Modified 3D Objects" style="width:200px"/><br/>Modified 3D Models</a></td>
+        <td><a href="${docPath}manual/Object-Pool.${docExtension}"><img src="${docPath}resources/Logos/ObjectPool.svg" alt="Object Pool" style="width:200px"/><br/>Object Pool</a></td>
     </tr>
     <tr>
-        <td><a href="${docPath}/manual/OpenID-Connect-Client.${docExtension}"><img src="${docPath}/resources/Logos/OpenIDConnectClient.svg" alt="OpenID Connect Client" style="width:200px"/><br/>OpenID Connect Client</a></td>
-        <td><a href="${docPath}/manual/Procedural-Geometry.${docExtension}"><img src="${docPath}/resources/Logos/ProceduralGeometry.svg" alt="Procedural Geometry" style="width:200px"/><br/>Procedural Geometry</a></td>
-        <td><a href="${docPath}/manual/Scene-Documentation.${docExtension}"><img src="${docPath}/resources/Logos/SceneDocumentation.svg" alt="Scene Documentation" style="width:200px"/><br/>Scene Documentation</a></td>
+        <td><a href="${docPath}manual/Obj-Importer.${docExtension}"><img src="${docPath}resources/Logos/ObjImporter.svg" alt="Obj Importer" style="width:200px"/><br/>Obj Importer</a></td>
+        <td><a href="${docPath}manual/OpenID-Connect-Client.${docExtension}"><img src="${docPath}resources/Logos/OpenIDConnectClient.svg" alt="OpenID Connect Client" style="width:200px"/><br/>OpenID Connect Client</a></td>
+        <td><a href="${docPath}manual/Procedural-Geometry.${docExtension}"><img src="${docPath}resources/Logos/ProceduralGeometry.svg" alt="Procedural Geometry" style="width:200px"/><br/>Procedural Geometry</a></td>
     </tr>
     <tr>
-        <td><a href="${docPath}/manual/Service-Core.${docExtension}"><img src="${docPath}/resources/Logos/ServiceCore.svg" alt="Service Core" style="width:200px"/><br/>Service Core</a></td>
-        <td><a href="${docPath}/manual/Spawner.${docExtension}"><img src="${docPath}/resources/Logos/Spawner.svg" alt="Spawner" style="width:200px"/><br/>Spawner</a></td>
+        <td><a href="${docPath}manual/Scene-Documentation.${docExtension}"><img src="${docPath}resources/Logos/SceneDocumentation.svg" alt="Scene Documentation" style="width:200px"/><br/>Scene Documentation</a></td>
+        <td><a href="${docPath}manual/Service-Core.${docExtension}"><img src="${docPath}resources/Logos/ServiceCore.svg" alt="Service Core" style="width:200px"/><br/>Service Core</a></td>
+        <td><a href="${docPath}manual/Spawner.${docExtension}"><img src="${docPath}resources/Logos/Spawner.svg" alt="Spawner" style="width:200px"/><br/>Spawner</a></td>
     </tr>
 </table>
 
@@ -40,7 +41,7 @@ The tool is available as a package for the Unity Package Manager. It can be incl
 
 1. Open your project's root folder in a file explorer.
 2. Navigate to the Packages folder and open the file manifest.json. It contains a list of package dependencies which are loaded into the project.
-3. To add a specific version of the tool to the dependencies, add the following line inside of the "dependencies" object and replace [version] with the release number, e.g. "v1.0.0".
+3. To add a specific version of the tool to the dependencies, add the following line inside of the "dependencies" object and replace [version] with "v", followed by the release number, e.g. "v${version}".
    To receive the latest version, replace [version] with upm.
    `"com.i5.toolkit.core": "https://github.com/rwth-acis/i5-Toolkit-for-Unity.git#[version]",`
    After that, Unity will automatically download and import the package.
@@ -55,7 +56,7 @@ The package can be downloaded from a git-repository in the package manager's UI.
 
 1. In Unity, go to Window > Package Manger.
 2. Click on the plus-button in the top left corner of the package manager and select "add".
-3. Enter https://github.com/rwth-acis/i5-Toolkit-for-Unity.git#[version] into the text field where [version] is replaced with the release number, e.g. "${version}" or upm for the latest version.
+3. Enter https://github.com/rwth-acis/i5-Toolkit-for-Unity.git#[version] into the text field where [version] is replaced with "v", followed by the release number, e.g. "v${version}" or upm for the latest version.
    Confirm the download by clicking on the "add" button.
 
 If you specify "upm" to get the latest version, be aware that the package is not automatically updated.

@@ -1,12 +1,14 @@
 ﻿using i5.Toolkit.Core.ServiceCore;
 using System;
 
-public interface INotificationService : IService
+namespace i5.Toolkit.Core.Experimental.NotificationSystem
 {
-    void PostNotification(string message);
+    public interface INotificationService : IService
+    {
+        void PostNotification(string message);
 
-    void PostNotification(INotificationMessage message);
+        void PostNotification(INotificationMessage message);
 
-    event EventHandler<INotificationMessage> NotificationPosted;
+        event EventHandler<INotificationMessage> NotificationPosted;
+    }
 }
-

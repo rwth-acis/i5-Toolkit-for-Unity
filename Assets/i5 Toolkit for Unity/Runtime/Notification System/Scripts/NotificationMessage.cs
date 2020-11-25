@@ -1,9 +1,12 @@
-﻿public class NotificationMessage : INotificationMessage
+﻿namespace i5.Toolkit.Core.Experimental.NotificationSystem
 {
-    public string Content { get; }
-
-    public NotificationMessage(string content)
+    public class NotificationMessage : INotificationMessage
     {
-        Content = content;
+        public string Content { get; }
+
+        public NotificationMessage(string content)
+        {
+            Content = content;
+        }
     }
 }

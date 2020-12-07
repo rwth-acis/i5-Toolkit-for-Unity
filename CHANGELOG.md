@@ -6,12 +6,16 @@ This document keeps track of the changes between versions of the toolkit.
 
 ### Added
 - In-application console which can show log outputs in deployed applications
-
-### Added
 - Json utilitiy to serialize and deserialize arrays at root level
+- Unity adapter classes
+  - Interfaces for text displays, activatable objects, UI rectangles and scroll views
+  - Adapter for text UI (TextMesh, TextMeshPro and TextMeshProUGUI)
+  - Adapter for GameObject, RectTransform, ScrollRect
+- Experimental notification system
 
 ### Changed
-- Refactored unit test helpers into own assemblies so that they can be accessed separately
+- Sample scenes can now be accessed with the Unity Package UI (with Unity Package Manager 2.0 in Unity 2019.1 or later)
+- Documentation moved to [GitHub pages](https://rwth-acis.github.io/i5-Toolkit-for-Unity)
 
 ## 1.1.0 (2020-08-24)
 

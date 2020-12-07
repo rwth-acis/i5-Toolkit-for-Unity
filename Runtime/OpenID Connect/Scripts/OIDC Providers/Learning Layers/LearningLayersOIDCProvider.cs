@@ -10,7 +10,7 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
     /// Implementation of the OpenID Connect Learning Layers Provider
     /// More information can be found here: https://api.learning-layers.eu/o/oauth2/
     /// </summary>
-    public class LearningLayersOIDCProvider : IOidcProvider
+    public class LearningLayersOidcProvider : IOidcProvider
     {
         /// <summary>
         /// The endpoint for the log in
@@ -53,7 +53,7 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         /// <summary>
         /// Creates a new instance of the learning layers client
         /// </summary>
-        public LearningLayersOIDCProvider()
+        public LearningLayersOidcProvider()
         {
             RestConnector = new UnityWebRequestRestConnector();
             JsonSerializer = new JsonUtilityWrapper();

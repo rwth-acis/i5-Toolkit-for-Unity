@@ -2,7 +2,7 @@
 
 This document keeps track of the changes between versions of the toolkit.
 
-## 1.2.0 (Preview)
+## 1.2.0 (2020-12-07)
 
 ### Added
 - In-application console which can show log outputs in deployed applications

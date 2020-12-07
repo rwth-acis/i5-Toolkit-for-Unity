@@ -1,0 +1,178 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Procedural Geometry Kit | i5 Toolkit Documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Procedural Geometry Kit | i5 Toolkit Documentation ">
+    <meta name="generator" content="docfx 2.56.2.0">
+    
+    <link rel="shortcut icon" href="../resources/Logos/Logo_whiteBg.svg">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../resources/Logos/Logo_whiteBg.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="procedural-geometry-kit">Procedural Geometry Kit</h1>
+
+<p><img src="../resources/Logos/ProceduralGeometry.svg" alt="Procedural Geometry"></p>
+<p>The procedural geometry kit streamlines the way how <a class="xref" href="https://docs.unity3d.com/ScriptReference/Mesh.html">meshes</a> can be built.
+It provides the several advantages over working directly with Unity&#39;s <code>Mesh</code> API:</p>
+<ul>
+<li><strong>Abstraction from low-level mesh representations</strong>: Meshes are represented by different arrays, e.g. an array for the vertex positions, a vertex index array to determine the triangles, an array for normal vectors, etc.
+The procedural geometry kit abstract from this by providing methods for adding vertices or faces. 
+The required low-level operations on the arrays are automatically handeled by the procedural geometry kit.
+This improves the readability of the code since you are working with named methods instead of numberic arrays.</li>
+<li><strong>Step by step geometry construction</strong>: You can determine the position of vertices and connection between faces in a step-by-step manner, instead of uploading the full vertex and index arrays at once.</li>
+<li><strong>Multi-threaded, asynchronous geometry construction</strong>: The procedural geometry kit does not use Unity&#39;s API in the construction process.
+Therefore, you can calculate the mesh&#39;s geometry in a separate thread.
+Only the generation of the final mesh from the specified geometry data has to happen on the main thread.</li>
+<li><strong>Uses mesh pooling</strong>: Whenever you do not need to use a mesh anymore, you need to make sure that it does not stay in the memory.
+The geometry creator re-uses meshes which are not needed.</li>
+<li><strong>Support for polygons</strong>: With Unity&#39;s native meshes, faces have to be triangles.
+With the procedural geometry kit, you can add polygons with an arbitrary number of vertices to the geometry.
+They are automatically triangulated so that they work with Unity&#39;s mesh.</li>
+</ul>
+<h2 id="usage">Usage</h2>
+<h3 id="create-a-geometry-constructor">Create a Geometry Constructor</h3>
+<p>To create geometry, create a <a class="xref" href="../api/i5.Toolkit.Core.ProceduralGeometry.GeometryConstructor.html">GeometryConstructor</a> object:</p>
+<pre><code class="lang-[C#]">GeometryConstructor geometryConstructor = new GeometryConstructor();
+</code></pre><h3 id="add-vertices">Add Vertices</h3>
+<p>After that, you can add vertices to the geometry using the method &lt;i5.Toolkit.Core.ProceduralGeometry.GeometryConstructor.AddVertex(UnityEngine.Vector3)&gt;.
+The position of the vertex has to be specified.
+Optionally, you can also enter the [normal vector](xref:i5.Toolkit.Core.ProceduralGeometry.GeometryConstructor.AddVertex(UnityEngine.Vector3, UnityEngine.Vector3)&gt;), [UV coordinates](xref:i5.Toolkit.Core.ProceduralGeometry.GeometryConstructor.AddVertex(UnityEngine.Vector3, UnityEngine.Vector2)) or [both](xref:i5.Toolkit.Core.ProceduralGeometry.GeometryConstructor.AddVertex(UnityEngine.Vector3, UnityEngine.Vector2, UnityEngine.Vector3)).</p>
+<pre><code class="lang-[C#]">Vector3 vertexPosition = new Vector3(0, 1, 2);
+Vector3 normalVector = new Vector3(1, 1, 1);
+Vector2 uvCoordinates = new Vector2(0.5f, 0.5f);
+// add a vertex to the geometry
+int vertexIndex = geometryConstructor.AddVertex(vertexPosition, uvCoordinates, normalVector);
+</code></pre><p>As a result, the index of the vertex is returned.
+Use it to construct faces.</p>
+<h3 id="add-faces">Add Faces</h3>
+<p>Faces are defined by specifying the vertices that are connected to a face.
+In any of the methods that create faces, list the vertices in <strong>clockwise</strong> order.
+All the methods also provide an optional last parameter <code>flipNormals</code>.
+If this argument is set to true, the normal vector of the face will point into the opposite direction, meaning that the face will be visible from hte other side.</p>
+<p>In the following code examples <code>v0, v1, v2...</code> are integer indices of previously added vertices.</p>
+<h4 id="triangles">Triangles</h4>
+<p><img src="../resources/ProceduralGeometry/Triangle.svg" alt="Triangle"></p>
+<p>To add triangles, call the method &lt;xref:i5.Toolkit.Core.ProceduralGeometry.GeometryConstructor.AddTriangle(System.Int32, System.Int32, System.Int32, System.Boolean)&gt;</p>
+<pre><code class="lang-[C#]">geometryConstructor.AddTriangle(v0, v1, v2);
+</code></pre><h3 id="quads">Quads</h3>
+<p><img src="../resources/ProceduralGeometry/Quad.svg" alt="Quad"></p>
+<p>To add quads, call the method &lt;xref:i5.Toolkit.Core.ProceduralGeometry.GeometryConstructor(System.Int32, System.Int32, System.Int32, System.Int32, System.Boolean)&gt;</p>
+<pre><code class="lang-[C#]">geometryConstructor.AddQuad(v0, v1, v2, v3);
+</code></pre><p>The quad is automatically converted to two triangles as shown in the figure.</p>
+<h3 id="triangle-fan">Triangle Fan</h3>
+<p><img src="../resources/ProceduralGeometry/TriangleFan.svg" alt="Triangle Fan"></p>
+<p>You can add a triangle fan using the method &lt;xref:i5.Toolkit.Core.ProceduralGeometry.GeometryConstructor.AddTriangleFan(System.Int32, System.Int32[], System.Boolean)&gt;
+Specify the pole (the vertex which is part of all triangles) first and after that, list the vertices clockwise.</p>
+<pre><code class="lang-[C#]">int[] faceIndices = new int[] {v1, v2, v3, v4, v5, v6};
+geometryConstructor.AddTriangleFan(v0, faceIndices);
+</code></pre><h3 id="generate-mesh">Generate Mesh</h3>
+<p>After the geometry has been defined, the mesh can be generated using the method <a class="xref" href="../api/i5.Toolkit.Core.ProceduralGeometry.GeometryConstructor.html#i5_Toolkit_Core_ProceduralGeometry_GeometryConstructor_ConstructMesh">ConstructMesh()</a></p>
+<pre><code class="lang-[C#]">Mesh result = geometryConstructor.ConstructMesh();
+</code></pre><p>The result of this operation will be a Unity-<a class="xref" href="https://docs.unity3d.com/ScriptReference/Mesh.html">Mesh</a> with the same vertices, triangles, etc. as previously provided to the <a class="xref" href="../api/i5.Toolkit.Core.ProceduralGeometry.GeometryConstructor.html">GeometryConstructor</a>.</p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/rwth-acis/i5-Toolkit-for-Unity/blob/develop/Documentation/manual/Procedural-Geometry.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            i5 Toolkit Documentation
+            
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

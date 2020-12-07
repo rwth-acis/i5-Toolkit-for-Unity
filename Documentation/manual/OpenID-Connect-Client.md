@@ -30,46 +30,47 @@ The OpenID Connect client currently works on the following platforms:
 
 ### Service Initialization
 
-Register a <xref:i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService> at the [service manager](Service-Core.md).
-This can e.g. be done using a [bootstrapper](Service-Core.md#bootstrappers) by following these steps:
-
-1. Create a bootstrapper and create a field of the type <xref:i5.Toolkit.Core.OpenIDConnectClient.ClientDataObject` that is accessible in the inspector.
-   In the inspector, the bootstrapper component will give you options to specify a redirect page.
-2. In the <xref:i5.Toolkit.Core.ServiceCore.BaseServiceBootstrapper.RegisterServices> method, create a new <xref:i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService> object.
-   You can pass the `OpenIDConnectServiceConfiguration` object in the inspector so that the service will use the given settings.
-3. Before you can access the OpenID Connect workflow, you have to assign the service's `OidcProvier`.
-   The `OidcProvider` is the specific implementation to access the API of a OpenID Connect provider, e.g. Learning Layers.
-4. Finally, register the service instance at the service manager.
+Register a <xref:i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService> at the <xref:i5.Toolkit.Core.ServiceCore.ServiceManager>.
+This can e.g. be done using a [bootstrapper](Service-Core.md#bootstrappers).
+When creating the service, make sure that its <xref:i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.OidcProvider> is set up.
 
 Here is an example bootstrapper:
 ```[C#]
-public class LearningLayersBootstrapper : MonoBehaviour, IServiceManagerBootstrapper
+protected override void RegisterServices()
 {
-    [SerializeField]
-    private OpenIDConnectServiceConfiguration openIdConnectServiceConfiguration;
-
-    public void InitializeServiceManager()
-    {
-        OpenIDConnectService oidc = new OpenIDConnectService(openIdConnectServiceConfiguration);
-        oidc.OidcProvider = new LearningLayersOIDCProvider();
-        ServiceManager.RegisterService(oidc);
-    }
+    OpenIDConnectService oidc = new OpenIDConnectService();
+    oidc.OidcProvider = new LearningLayersOidcProvider();
+    // this example shows how the service can be used on an app for multiple platforms
+#if UNITY_WSA
+    oidc.RedirectURI = "i5:/";
+#else
+    oidc.RedirectURI = "https://www.google.com";
+#endif
+    ServiceManager.RegisterService(oidc);
 }
 ```
 
+In this example, the <xref:i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.OidcProvider> is set up, e.g. using the <xref:i5.Toolkit.Core.OpenIDConnectClient.LearningLayersOidcProvider>.
+To set it up, a redirect page is defined.
+Note, that different redirect pages can be defined for different platforms.
+This also has the advantage that different redirect methods can be used on these platforms.
+In this example, Windows Store Apps use the custom URL schema "i5:/" whereas all other platforms redirect to Google.
+
 ### Switching between OpenID Connect Providers
 
-The `OidcProvider` is an implementation that specifies how the authentication API of a provider should be used.
+The <xref:i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.OidcProvider> is an implementation that specifies how the authentication API of a provider should be used.
 Currently, the toolkit has built-in support for the following OpenID Connect providers:
 
-- [Learning Layers](https://api.learning-layers.eu/o/oauth2/)
+| Platform | Implementation |
+| --- | --- |
+[Learning Layers](https://api.learning-layers.eu/o/oauth2/) | <xref:i5.Toolkit.Core.OpenIDConnectClient.LearningLayersOidcProvider> |
 
-You can add support for further OpenID Connect providers by creating a class that implements the `IOidcProvider` interface.
+You can add support for further OpenID Connect providers by creating a class that implements the <xref:i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.OidcProvider> interface.
 The class has to define how to access the different API endpoints of the provider to retrieve information such as the access token.
 
-In the example in the previous section, we assigned the `OidcProvider` during the initialization phase.
+In the example in the previous section, we assigned the <xref:i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.OidcProvider> during the initialization phase.
 However, it is also possible to set this property just before calling the login function, e.g. to give the user a choice between different providers.
-Each `OidcProvider` has to be initialized with their own client credentials.
+Each <xref:i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.OidcProvider> has to be initialized with their own client credentials before using the login procedure.
 
 ### Adding the Client Credentials
 
@@ -78,7 +79,7 @@ This is a manual step that has to be done once at the beginning of the developme
 During the registration process, the provider will generate a client ID and a client secret.
 To access the API's methods, the client has to include these credentials in the requests.
 
-You can find instructions on how to register clients in the section [Client Registration]{#ClientRegistration}
+You can find instructions on how to register clients in the section [Client Registration](#client-registration)
 
 **Protect your client data**. As the name suggests, your client secret (and other client data as well) should be kept confidential.
 Therefore, they should be excluded if the project's source code is uploaded to public places such as GitHub.
@@ -88,9 +89,19 @@ If you select it, you can enter the client credentials in Unity's inspector.
 If you are using Git, you can now add the created file to *.gitignore* so that it will not be uploaded.
 In the setup instructions of your project, include a note that each developer has to create their own client credentials and add them to the file.
 
+Before calling the login procedure, assign the client data in the following way:
+
+```[C#]
+// expose a field in the inspector for your client credentials
+[SerializeField]
+private ClientDataObject clientDataObject;
+// assign the client data
+ServiceManager.GetService<OpenIDConnectService>().OidcProvider.ClientData = clientDataObject.clientData;
+```
+
 ### Defining the Redirect URI
 
-Before the login page is shown, a redirect URI should be specified by setting the `RedirectURI` property of the service.
+Before the login page is shown, a redirect URI should be specified by setting the <xref:i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.RedirectURI> property of the service.
 The importance of this redirect URI varies based on the target platform.
 
 #### Editor & Standalone
@@ -101,7 +112,7 @@ The importance of this redirect URI varies based on the target platform.
 In the editor and standalone builds, the toolkits starts an internal server to which the login automatically redirects.
 This way, the server always fetches the necessary data which are provided in the redirect.
 After that, the user is redirected to the specified URI which can e.g. point to your Web page that tells the user to return to the application.
-So, for editor and standalone builds, setting the `RedirectURI` property is optional and can be used to improve the user's experience.
+So, for editor and standalone builds, setting the <xref:i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.RedirectURI> property is optional and can be used to improve the user's experience.
 
 #### UWP
 
@@ -127,39 +138,47 @@ So, in our example, you need to add "i5:/" as an allowed redirect URI, e.g. at t
 ### Starting the Login Process
 
 First, make sure that an OpenID Connect provider has been set.
-The `IOidcProvider` has to be configured with the client credentials.
-One way to initialize it is to attach a `MonoBehaviour` script to the button UI object in the scene that triggers the login.
+The <xref:i5.Toolkit.Core.OpenIDConnectClient.IOidcProvider> has to be configured with the client credentials.
+One way to initialize it is to attach a <xref:UnityEngine.MonoBehaviour> script to the button UI object in the scene that triggers the login.
 The script has a public field where you can reference the client credentials.
-Once the button is clicked, first create an instance of the `IOidcProvider` that should be used and assign the client credentials.
-After that, assign the instance to the `OidcProvider` property of the service.
+Once the button is clicked, first create an instance of the <xref:i5.Toolkit.Core.OpenIDConnectClient.IOidcProvider> that should be used and assign the client credentials.
+After that, assign the instance to the xref:i5.Toolkit.Core.OpenIDConnectClient.IOidcProvider> property of the service.
 
-Before starting the login process, subscribe to the `LoginCompleted` event to get notified once the login procedure is completed.
-To start the login process, call the `OpenLoginPage()` method of the `OpenIDConnectService`.
+Before starting the login process, subscribe to the <xref:i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.LoginCompleted> event to get notified once the login procedure is completed.
+To start the login process, call the <xref:i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.OpenLoginPage> method of the <xref:i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService>.
 This will show the login page of the provider to the user in the system's default browser.
 Once the user is logged in, all the necessary redirects and requests to get the access token are made automatically.
-After the login process has finished successfully, the `LoginCompleted` event is raised.
+After the login process has finished successfully, the <xref:i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.LoginCompleted> event is raised.
 
 
 ### Bringing the Application Back into Focus
 
+After the login, the Web browser redirects to a URI to which the app listens and which is defined in the <xref:i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.RedirectURI>.
+This is usually a custom app protocol or the loopback address where a local server is listening.
+However, in some cases, the application has to make sure that it gets back into focus after the login.
+
 #### UWP
 
-On UWP, the application is automatically brought back into focus if you have specified the custom URI schema as the service's `RedirectURI` and if you have added it as a protocol in the player settings.
+On UWP, the application is automatically brought back into focus if you have specified the custom URI schema as the service's <xref:i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.RedirectURI> and if you have added it as a protocol in the player settings.
 Using a custom URI schema as a redirect URI is mandatory for this platform since the redirect contains the necessary data to finish the login.
 
 #### Editor & Standalone
 
 For these platforms, the OpenID Connect service only handles the redirect of information.
 Without additional logic or configurations, the user manually has to return to the application.
-You can set the `RedirectURI` to a Web page which should tell the user to return to the app.
+You can set the <xref:i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.RedirectURI> to a Web page which should tell the user to return to the app.
 You can also search for more platform-specific approaches that get the application back into view.
 
 ### Logout
 
-To log out, call the `Logout` method of the OpenID Connect service.
-There is also an event `LogoutCompleted` which is raised after the logout.
+To log out, call the <xref:i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.Logout> method of the OpenID Connect service.
+There is also an event <xref:i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.LogoutCompleted> which is raised after the logout.
 
-## Client Registration {#ClientRegistration}
+## Client Registration
+
+To set up an OpenID Connect client for a specific provider, the client needs to be registered at the provider.
+As a result, the provider issues client credentials which usually consist of a client id and a client secret.
+Once you have obtained the client credentials, [add them to the client](#adding-the-client-credentials).
 
 ### Creating a Learning Layers Client
 
@@ -205,6 +224,6 @@ If you press F5, the browser is opened with the Learning Layers login page.
 Once you log in and return to the app, the console will print the access token and same information about the logged in user.
 
 The important GameObjects in example scene are the *Service Bootstrapper* and *Tester*.
-The service manager bootstrapper on the *Service Bootstrapper* initializes the `OpenIDConnectService`.
+The service manager bootstrapper on the *Service Bootstrapper* initializes the <xref:i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService>.
 The *Tester* GameObject contains the configuration of the Learning Layers OpenID Connect client.
 It also triggers the login procedure and reacts to the successful login.

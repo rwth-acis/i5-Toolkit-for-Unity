@@ -17,7 +17,7 @@ namespace i5.Toolkit.Core.Examples.OpenIDConnectClient
         {
             if (Input.GetKeyDown(KeyCode.F5))
             {
-                LearningLayersOIDCProvider provider = new LearningLayersOIDCProvider();
+                LearningLayersOidcProvider provider = new LearningLayersOidcProvider();
                 provider.ClientData = learningLayersClientData.clientData;
                 ServiceManager.GetService<OpenIDConnectService>().OidcProvider = provider;
 

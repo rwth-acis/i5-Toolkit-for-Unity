@@ -17,7 +17,7 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
         [Test]
         public void Constructor_Initialized_ContentLoaderNotNull()
         {
-            LearningLayersOIDCProvider lloidc = new LearningLayersOIDCProvider();
+            LearningLayersOidcProvider lloidc = new LearningLayersOidcProvider();
 
             Assert.IsNotNull(lloidc.RestConnector);
         }
@@ -25,7 +25,7 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
         [Test]
         public void Constructor_Initialized_JsonWrapperNotNull()
         {
-            LearningLayersOIDCProvider lloidc = new LearningLayersOIDCProvider();
+            LearningLayersOidcProvider lloidc = new LearningLayersOidcProvider();
 
             Assert.IsNotNull(lloidc.JsonSerializer);
         }
@@ -33,7 +33,7 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
         [UnityTest]
         public IEnumerator GetAccessCodeFromTokenAsync_NoClientData_ReturnsEmptyString()
         {
-            LearningLayersOIDCProvider lloidc = new LearningLayersOIDCProvider();
+            LearningLayersOidcProvider lloidc = new LearningLayersOidcProvider();
             lloidc.RestConnector = A.Fake<IRestConnector>();
 
             LogAssert.Expect(LogType.Error, 
@@ -51,7 +51,7 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
         [UnityTest]
         public IEnumerator GetAccessCodeFromTokenAsync_WebResponseSuccess_ReturnsToken()
         {
-            LearningLayersOIDCProvider lloidc = new LearningLayersOIDCProvider();
+            LearningLayersOidcProvider lloidc = new LearningLayersOidcProvider();
             IRestConnector restConnector = A.Fake<IRestConnector>();
             A.CallTo(() => restConnector.PostAsync(A<string>.Ignored, A<string>.Ignored))
                 .Returns(Task.FromResult(new WebResponse<string>("json string", null, 200)));
@@ -76,7 +76,7 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
         [UnityTest]
         public IEnumerator GetAccessCodeFromTokenAsync_WebResponseFailed_ReturnsEmptyToken()
         {
-            LearningLayersOIDCProvider lloidc = new LearningLayersOIDCProvider();
+            LearningLayersOidcProvider lloidc = new LearningLayersOidcProvider();
             IRestConnector restConnector = A.Fake<IRestConnector>();
             A.CallTo(() => restConnector.PostAsync(A<string>.Ignored, A<string>.Ignored))
                 .Returns(Task.FromResult(new WebResponse<string>("my error", 400)));
@@ -99,7 +99,7 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
         [Test]
         public void GetAccessToken_TokenProvided_ExtractsToken()
         {
-            LearningLayersOIDCProvider lloidc = new LearningLayersOIDCProvider();
+            LearningLayersOidcProvider lloidc = new LearningLayersOidcProvider();
             Dictionary<string, string> redirectParameters = new Dictionary<string, string>();
             redirectParameters.Add("token", "myAccessToken");
 
@@ -111,7 +111,7 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
         [Test]
         public void GetAccessToken_TokenNotProvided_ReturnsEmptyToken()
         {
-            LearningLayersOIDCProvider lloidc = new LearningLayersOIDCProvider();
+            LearningLayersOidcProvider lloidc = new LearningLayersOidcProvider();
             Dictionary<string, string> redirectParameters = new Dictionary<string, string>();
 
             LogAssert.Expect(LogType.Error, new Regex(@"\w*Redirect parameters did not contain access token\w*"));
@@ -124,7 +124,7 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
         [UnityTest]
         public IEnumerator GetUserInfoAsync_WebResponseSuccessful_ReturnsUserInfo()
         {
-            LearningLayersOIDCProvider lloidc = new LearningLayersOIDCProvider();
+            LearningLayersOidcProvider lloidc = new LearningLayersOidcProvider();
             IRestConnector restConnector = A.Fake<IRestConnector>();
             A.CallTo(() => restConnector.GetAsync(A<string>.Ignored))
                 .Returns(new WebResponse<string>("answer", null, 200));
@@ -147,7 +147,7 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
         [UnityTest]
         public IEnumerator GetUserInfoAsync_WebResponseFailed_ReturnsNull()
         {
-            LearningLayersOIDCProvider lloidc = new LearningLayersOIDCProvider();
+            LearningLayersOidcProvider lloidc = new LearningLayersOidcProvider();
             IRestConnector restConnector = A.Fake<IRestConnector>();
             A.CallTo(() => restConnector.GetAsync(A<string>.Ignored))
                 .Returns(new WebResponse<string>("This is a simulated error", 400));
@@ -167,7 +167,7 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
         [UnityTest]
         public IEnumerator GetUserInfoAsync_JsonParseFailed_ReturnsNull()
         {
-            LearningLayersOIDCProvider lloidc = new LearningLayersOIDCProvider();
+            LearningLayersOidcProvider lloidc = new LearningLayersOidcProvider();
             IRestConnector restConnector = A.Fake<IRestConnector>();
             A.CallTo(() => restConnector.GetAsync(A<string>.Ignored))
                 .Returns(new WebResponse<string>("answer", null, 200));
@@ -192,7 +192,7 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
         [UnityTest]
         public IEnumerator CheckAccessTokenAsync_WebResponseSuccessful_ReturnsTrue()
         {
-            LearningLayersOIDCProvider lloidc = new LearningLayersOIDCProvider();
+            LearningLayersOidcProvider lloidc = new LearningLayersOidcProvider();
             IRestConnector restConnector = A.Fake<IRestConnector>();
             A.CallTo(() => restConnector.GetAsync(A<string>.Ignored))
                 .Returns(new WebResponse<string>("answer", null, 200));
@@ -215,7 +215,7 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
         [UnityTest]
         public IEnumerator CheckAccessTokenAsync_WebResponseFailed_ReturnsFalse()
         {
-            LearningLayersOIDCProvider lloidc = new LearningLayersOIDCProvider();
+            LearningLayersOidcProvider lloidc = new LearningLayersOidcProvider();
             IRestConnector restConnector = A.Fake<IRestConnector>();
             A.CallTo(() => restConnector.GetAsync(A<string>.Ignored))
                 .Returns(new WebResponse<string>("This is a simulated error", 400));
@@ -235,7 +235,7 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
         [Test]
         public void OpenLoginPage_UriGiven_BrowserOpened()
         {
-            LearningLayersOIDCProvider lloidc = new LearningLayersOIDCProvider();
+            LearningLayersOidcProvider lloidc = new LearningLayersOidcProvider();
             IBrowser browser = A.Fake<IBrowser>();
             lloidc.Browser = browser;
             lloidc.ClientData = A.Fake<ClientData>();
@@ -250,7 +250,7 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
         [Test]
         public void GetAuthorizationCode_CodeProvided_ExtractsCode()
         {
-            LearningLayersOIDCProvider lloidc = new LearningLayersOIDCProvider();
+            LearningLayersOidcProvider lloidc = new LearningLayersOidcProvider();
             Dictionary<string, string> redirectParameters = new Dictionary<string, string>();
             redirectParameters.Add("code", "myCode");
             string res = lloidc.GetAuthorizationCode(redirectParameters);
@@ -261,7 +261,7 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
         [Test]
         public void GetAuthorizationCode_CodeNotProvided_ReturnsEmptyString()
         {
-            LearningLayersOIDCProvider lloidc = new LearningLayersOIDCProvider();
+            LearningLayersOidcProvider lloidc = new LearningLayersOidcProvider();
             Dictionary<string, string> redirectParameters = new Dictionary<string, string>();
 
             LogAssert.Expect(LogType.Error, new Regex(@"\w*Redirect parameters did not contain authorization code\w*"));
@@ -274,7 +274,7 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
         [Test]
         public void ParametersContainError_NoError_ReturnsFalse()
         {
-            LearningLayersOIDCProvider lloidc = new LearningLayersOIDCProvider();
+            LearningLayersOidcProvider lloidc = new LearningLayersOidcProvider();
             Dictionary<string, string> redirectParameters = new Dictionary<string, string>();
 
             bool res = lloidc.ParametersContainError(redirectParameters, out string message);
@@ -285,7 +285,7 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
         [Test]
         public void ParametersContainError_NoError_ErrorMessageEmpty()
         {
-            LearningLayersOIDCProvider lloidc = new LearningLayersOIDCProvider();
+            LearningLayersOidcProvider lloidc = new LearningLayersOidcProvider();
             Dictionary<string, string> redirectParameters = new Dictionary<string, string>();
 
             bool res = lloidc.ParametersContainError(redirectParameters, out string message);
@@ -296,7 +296,7 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
         [Test]
         public void ParametersContainError_ErrorGiven_ReturnsTrue()
         {
-            LearningLayersOIDCProvider lloidc = new LearningLayersOIDCProvider();
+            LearningLayersOidcProvider lloidc = new LearningLayersOidcProvider();
             Dictionary<string, string> redirectParameters = new Dictionary<string, string>();
             redirectParameters.Add("error", "This is a simulated error");
 
@@ -308,7 +308,7 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
         [Test]
         public void ParametersContainError_ErrorGiven_ErrorMessageSet()
         {
-            LearningLayersOIDCProvider lloidc = new LearningLayersOIDCProvider();
+            LearningLayersOidcProvider lloidc = new LearningLayersOidcProvider();
             Dictionary<string, string> redirectParameters = new Dictionary<string, string>();
             string errorMsg = "This is a simulated error";
             redirectParameters.Add("error", errorMsg);

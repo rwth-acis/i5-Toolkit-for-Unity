@@ -1,12 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-/// <summary>
-/// The authorization flow of the OpenID Connect procedure
-/// It is recommended to use the Authorization Code flow
-/// </summary>
-public enum AuthorizationFlow
+﻿namespace i5.Toolkit.Core.OpenIDConnectClient
 {
-    AUTHORIZATION_CODE, IMPLICIT
+    /// <summary>
+    /// The authorization flow of the OpenID Connect procedure
+    /// It is recommended to use the Authorization Code flow
+    /// </summary>
+    public enum AuthorizationFlow
+    {
+        AUTHORIZATION_CODE, IMPLICIT
+    }
 }

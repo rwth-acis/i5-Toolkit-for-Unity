@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 74a5d6eb991be3649b65c01d38f4a065, type: 3}
-  m_Name: TmpLogFormatter
+  m_Name: TMPLogFormatter
   m_EditorClassIdentifier: 
   logColor: {r: 1, g: 1, b: 1, a: 1}
   warningColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}

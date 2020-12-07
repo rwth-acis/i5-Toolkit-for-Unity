@@ -1,0 +1,60 @@
+{
+  "metadata": [
+    {
+      "src": [
+        {
+          "src": "..",
+          "files": [ "**.cs" ]
+        }
+      ],
+      "globalNamespaceId": "Global",
+      "filter": "filterConfig.yml",
+      "dest": "api"
+    }
+  ],
+  "build": {
+    "globalMetadata": {
+      "_appTitle": "i5 Toolkit Documentation",
+      "_appFooter": "i5 Toolkit Documentation",
+      "_enableSearch": true,
+      "_appLogoPath": "resources/Logos/Logo_whiteBg.svg",
+      "_appFaviconPath":  "resources/Logos/Logo_whiteBg.svg"
+    },
+    "content": [
+      {
+        "files": [ "toc.yml", "index.md" ]
+      },
+      {
+        "src": "api",
+        "files": [ "*.yml" ],
+        "dest": "api"
+      },
+      {
+        "files": [ "manual/toc.yml", "manual/**.md" ]
+      }
+    ],
+    "overwrite": [
+      {
+        "src": "..",
+        "files": [ "Assets/i5 Toolkit for Unity/**/*.md" ]
+      }
+    ],
+    "resource": [
+      {
+        "files": [ "resources/**/*" ],
+      }
+    ],
+    "sitemap": {
+      "baseUrl": "https://localhost",
+      "changefreq": "weekly",
+      "fileOptions": {
+        "api/*": {
+          "changefreq": "daily"
+        }
+      }
+    },
+    "xref": [ "https://normanderwan.github.io/DocFxForUnity/Unity/xrefmap.yml" ],
+    "xrefService": [ "https://xref.docs.microsoft.com/query?uid={uid}" ],
+    "dest": "../_site"
+  }
+}

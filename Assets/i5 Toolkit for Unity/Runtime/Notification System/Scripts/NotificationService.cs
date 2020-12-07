@@ -1,40 +1,38 @@
 ﻿using i5.Toolkit.Core.ServiceCore;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-
-public class NotificationService : INotificationService
+namespace i5.Toolkit.Core.Experimental.NotificationSystem
 {
-    public event EventHandler<INotificationMessage> NotificationPosted;
-
-    public NotificationService()
+    public class NotificationService : INotificationService
     {
-    }
+        public event EventHandler<INotificationMessage> NotificationPosted;
 
-    public void Initialize(IServiceManager owner)
-    {
-    }
+        public NotificationService()
+        {
+        }
 
-    public void Cleanup()
-    {
-    }
+        public void Initialize(IServiceManager owner)
+        {
+        }
 
-    public void PostNotification(string message)
-    {
-        INotificationMessage notification = new NotificationMessage(message);
-        InvokeNotificationEvent(notification);
-    }
+        public void Cleanup()
+        {
+        }
 
-    public void PostNotification(INotificationMessage message)
-    {
-        InvokeNotificationEvent(message);
-    }
+        public void PostNotification(string message)
+        {
+            INotificationMessage notification = new NotificationMessage(message);
+            InvokeNotificationEvent(notification);
+        }
 
-    private void InvokeNotificationEvent(INotificationMessage notification)
-    {
-        NotificationPosted?.Invoke(this, notification);
+        public void PostNotification(INotificationMessage message)
+        {
+            InvokeNotificationEvent(message);
+        }
+
+        private void InvokeNotificationEvent(INotificationMessage notification)
+        {
+            NotificationPosted?.Invoke(this, notification);
+        }
     }
 }

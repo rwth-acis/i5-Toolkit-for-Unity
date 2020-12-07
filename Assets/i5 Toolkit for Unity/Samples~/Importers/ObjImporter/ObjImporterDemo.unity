@@ -247,7 +247,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   extendedLogging: 1
-  url: https://raw.githubusercontent.com/rwth-acis/i5-Toolkit-for-Unity/develop/Assets/Examples/Importers/ObjImporter/Obj%20Models/Monkey_textured.obj
+  url: https://raw.githubusercontent.com/rwth-acis/i5-Toolkit-for-Unity/master/Assets/i5%20Toolkit%20for%20Unity/Samples%7E/Importers/ObjImporter/Obj%20Models/Monkey_textured.obj
 --- !u!4 &1294683387
 Transform:
   m_ObjectHideFlags: 0

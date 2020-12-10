@@ -44,3 +44,6 @@ sed -i "$versionReplaceString" "$packageJsonPath"
 # Copy changelog to repository front page and package
 cp CHANGELOG.md ../CHANGELOG.md
 cp CHANGELOG.md ../Assets/'i5 Toolkit for Unity'/CHANGELOG.md
+
+# =============== Project Settings =====================
+sed -i "/bundleVersion:/s/.*/  bundleVersion: $version/" "../ProjectSettings/ProjectSettings.asset"

@@ -2,6 +2,15 @@
 
 This document keeps track of the changes between versions of the toolkit.
 
+## 1.2.1 (2020-12-10)
+
+### Fixed
+- Fixed a compilation error that was caused by the OpenID Connect module when building with IL2CPP on other platforms than UWP
+
+### Changed
+- Added an instance of the app console to the OpenID Connect sample scene.
+  This way, the console output with the login result can be seen in compiled applications.
+
 ## 1.2.0 (2020-12-07)
 
 ### Added

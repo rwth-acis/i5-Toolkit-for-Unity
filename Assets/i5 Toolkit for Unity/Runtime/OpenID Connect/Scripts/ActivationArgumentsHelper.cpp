@@ -1,4 +1,4 @@
-#if 1 // UNITY_WSA
+#if UNITY_WSA
 
 #include <string>
 #include <vector>

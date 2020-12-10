@@ -28,51 +28,6 @@ references:
   isSpec: "True"
   fullName: JsonSerialization.TestTokenStruct_JsonUtility
   nameWithType: JsonSerialization.TestTokenStruct_JsonUtility
-- uid: Global.PackageExporter
-  name: PackageExporter
-  href: api/Global.PackageExporter.html
-  commentId: T:Global.PackageExporter
-  fullName: PackageExporter
-  nameWithType: PackageExporter
-- uid: Global.PackageExporter.ExportCoreReleasePackage
-  name: ExportCoreReleasePackage()
-  href: api/Global.PackageExporter.html#Global_PackageExporter_ExportCoreReleasePackage
-  commentId: M:Global.PackageExporter.ExportCoreReleasePackage
-  fullName: PackageExporter.ExportCoreReleasePackage()
-  nameWithType: PackageExporter.ExportCoreReleasePackage()
-- uid: Global.PackageExporter.ExportCoreReleasePackage*
-  name: ExportCoreReleasePackage
-  href: api/Global.PackageExporter.html#Global_PackageExporter_ExportCoreReleasePackage_
-  commentId: Overload:Global.PackageExporter.ExportCoreReleasePackage
-  isSpec: "True"
-  fullName: PackageExporter.ExportCoreReleasePackage
-  nameWithType: PackageExporter.ExportCoreReleasePackage
-- uid: Global.PackageExporter.ExportPackages
-  name: ExportPackages()
-  href: api/Global.PackageExporter.html#Global_PackageExporter_ExportPackages
-  commentId: M:Global.PackageExporter.ExportPackages
-  fullName: PackageExporter.ExportPackages()
-  nameWithType: PackageExporter.ExportPackages()
-- uid: Global.PackageExporter.ExportPackages*
-  name: ExportPackages
-  href: api/Global.PackageExporter.html#Global_PackageExporter_ExportPackages_
-  commentId: Overload:Global.PackageExporter.ExportPackages
-  isSpec: "True"
-  fullName: PackageExporter.ExportPackages
-  nameWithType: PackageExporter.ExportPackages
-- uid: Global.PackageExporter.ExportSampleReleasePackage
-  name: ExportSampleReleasePackage()
-  href: api/Global.PackageExporter.html#Global_PackageExporter_ExportSampleReleasePackage
-  commentId: M:Global.PackageExporter.ExportSampleReleasePackage
-  fullName: PackageExporter.ExportSampleReleasePackage()
-  nameWithType: PackageExporter.ExportSampleReleasePackage()
-- uid: Global.PackageExporter.ExportSampleReleasePackage*
-  name: ExportSampleReleasePackage
-  href: api/Global.PackageExporter.html#Global_PackageExporter_ExportSampleReleasePackage_
-  commentId: Overload:Global.PackageExporter.ExportSampleReleasePackage
-  isSpec: "True"
-  fullName: PackageExporter.ExportSampleReleasePackage
-  nameWithType: PackageExporter.ExportSampleReleasePackage
 - uid: i5.Toolkit.Core.AppConsole
   name: i5.Toolkit.Core.AppConsole
   href: api/i5.Toolkit.Core.AppConsole.html
@@ -4426,11 +4381,11 @@ references:
   commentId: M:i5.Toolkit.Core.Utilities.Async.AwaiterExtensions.GetAwaiter(ResourceRequest)
   fullName: i5.Toolkit.Core.Utilities.Async.AwaiterExtensions.GetAwaiter(ResourceRequest)
   nameWithType: AwaiterExtensions.GetAwaiter(ResourceRequest)
-- uid: i5.Toolkit.Core.Utilities.Async.AwaiterExtensions.GetAwaiter(System.Collections.IEnumerator)
+- uid: i5.Toolkit.Core.Utilities.Async.AwaiterExtensions.GetAwaiter(System.Collections.Generic.IEnumerator)
   name: GetAwaiter(IEnumerator)
-  href: api/i5.Toolkit.Core.Utilities.Async.AwaiterExtensions.html#i5_Toolkit_Core_Utilities_Async_AwaiterExtensions_GetAwaiter_System_Collections_IEnumerator_
-  commentId: M:i5.Toolkit.Core.Utilities.Async.AwaiterExtensions.GetAwaiter(System.Collections.IEnumerator)
-  fullName: i5.Toolkit.Core.Utilities.Async.AwaiterExtensions.GetAwaiter(System.Collections.IEnumerator)
+  href: api/i5.Toolkit.Core.Utilities.Async.AwaiterExtensions.html#i5_Toolkit_Core_Utilities_Async_AwaiterExtensions_GetAwaiter_System_Collections_Generic_IEnumerator_
+  commentId: M:i5.Toolkit.Core.Utilities.Async.AwaiterExtensions.GetAwaiter(System.Collections.Generic.IEnumerator)
+  fullName: i5.Toolkit.Core.Utilities.Async.AwaiterExtensions.GetAwaiter(System.Collections.Generic.IEnumerator)
   nameWithType: AwaiterExtensions.GetAwaiter(IEnumerator)
 - uid: i5.Toolkit.Core.Utilities.Async.AwaiterExtensions.GetAwaiter(WaitForEndOfFrame)
   name: GetAwaiter(WaitForEndOfFrame)

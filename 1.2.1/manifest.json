@@ -36,23 +36,11 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/Global.PackageExporter.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Global.PackageExporter.html",
-          "hash": "7jRGxmLttmtjcrc+2+iXCw=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "api/Global.yml",
       "output": {
         ".html": {
           "relative_path": "api/Global.html",
-          "hash": "DxlGFhRAvmtmrW6cdnVfzg=="
+          "hash": "eu0bGGF6zLCPsVf1gsMtdA=="
         }
       },
       "is_incremental": false,
@@ -916,7 +904,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.Spawners.Spawner.html",
-          "hash": "li6hh17UGGHvBA33vTKVlQ=="
+          "hash": "Oa5YxSOHHGBFNRLQlvU1Lg=="
         }
       },
       "is_incremental": false,
@@ -940,7 +928,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.TestHelpers.AsyncTest.html",
-          "hash": "W8eFk0nSEvM5LWIaEfIdbw=="
+          "hash": "tPiABoDn/ionBGyzWoYuzA=="
         }
       },
       "is_incremental": false,
@@ -1096,7 +1084,7 @@
       "output": {
         ".html": {
           "relative_path": "api/i5.Toolkit.Core.Utilities.Async.AwaiterExtensions.html",
-          "hash": "HeylMn1rzP8FCjvVle7tRA=="
+          "hash": "+nzPxu/C+1Jq8SYlkob2hw=="
         }
       },
       "is_incremental": false,
@@ -1588,7 +1576,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "1gHn32uotJJReZ/+9x98VQ=="
+          "hash": "Hrzd02H2Hb9v1JyaQL/OkA=="
         }
       },
       "is_incremental": false,
@@ -1990,13 +1978,13 @@
           "can_incremental": true,
           "incrementalPhase": "build",
           "total_file_count": 17,
-          "skipped_file_count": 16
+          "skipped_file_count": 17
         },
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": true,
           "incrementalPhase": "build",
-          "total_file_count": 136,
-          "skipped_file_count": 21
+          "total_file_count": 135,
+          "skipped_file_count": 24
         },
         "ResourceDocumentProcessor": {
           "can_incremental": false,

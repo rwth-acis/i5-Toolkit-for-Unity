@@ -59,7 +59,7 @@ public static class PackageExporter
         foreach (string guid in AssetDatabase.FindAssets("", searchFolders))
         {
             string path = AssetDatabase.GUIDToAssetPath(guid);
-            if (!path.Contains("OpenID Connect Client Data.asset"))
+            if (!path.EndsWith("OpenID Connect Client Data.asset"))
             {
                 exportFiles.Add(path);
             }

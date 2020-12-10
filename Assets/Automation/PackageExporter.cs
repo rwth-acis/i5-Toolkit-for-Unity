@@ -35,6 +35,12 @@ public static class PackageExporter
             }
         }
 
+        exportFiles.Add("Assets/i5 Toolkit for Unity/CHANGELOG.md");
+        exportFiles.Add("Assets/i5 Toolkit for Unity/LICENSE.md");
+        exportFiles.Add("Assets/i5 Toolkit for Unity/Logo.png");
+        exportFiles.Add("Assets/i5 Toolkit for Unity/README.md");
+        exportFiles.Add("Assets/i5 Toolkit for Unity/package.json");
+
         AssetDatabase.ExportPackage(exportFiles.ToArray(),
             $"{releasesFolder}/i5-Toolkit-for-Unity-v{Application.version}.unitypackage",
             ExportPackageOptions.Default);
@@ -53,7 +59,10 @@ public static class PackageExporter
         foreach (string guid in AssetDatabase.FindAssets("", searchFolders))
         {
             string path = AssetDatabase.GUIDToAssetPath(guid);
-            exportFiles.Add(path);
+            if (!path.Contains("OpenID Connect Client Data.asset"))
+            {
+                exportFiles.Add(path);
+            }
         }
         AssetDatabase.ExportPackage(exportFiles.ToArray(),
            $"{releasesFolder}/i5-Toolkit-for-Unity-v{Application.version}-Examples.unitypackage",

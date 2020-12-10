@@ -5,6 +5,9 @@ apiRules:
 - exclude:
     uidRegex: ^i5.Toolkit.Core.Tests.*
     type: Namespace
+- exclude:
+    uidRegex: ^InternalTools
+    type: Namespace
 - include:
     uidRegex: ^i5.*
     type: Namespace

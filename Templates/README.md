@@ -48,15 +48,15 @@ To do this, add an entry to the dependency file:
 3. Add a scoped registry definition which tells Unity to look at the given URL for the package.
    ```
    {
-   "name": "com.i5.toolkit.core",
-   "url": "https://package.openupm.com",
-   "scopes": [
-     "com.i5.toolkit.core"
-   ]
+     "name": "com.i5.toolkit.core",
+     "url": "https://package.openupm.com",
+     "scopes": [
+       "com.i5.toolkit.core"
+     ]
    }
    ```
 
-4. To add a specific version of the tool to the dependencies, add the following line inside of the "dependencies" object and replace [version] with "v", followed by the release number, e.g. "v${version}".
+4. To add a specific version of the tool to the dependencies, add the following line inside of the "dependencies" object and replace [version] by the release number, e.g. "${version}".
    `"com.i5.toolkit.core": "[version]",`
    After that, Unity will automatically download and import the package.
 
@@ -75,7 +75,7 @@ So, after completing these steps you should have a manifest.json file which look
     ... some more scoped registries
     ],
     "dependencies": {
-        "com.i5.toolkit.core":  "1.2.1",
+        "com.i5.toolkit.core":  "${version}",
         ... some more packages
     }
 }

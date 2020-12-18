@@ -9,6 +9,8 @@ It is a foundation for new projects, kickstarting the development with already c
 
 ![1.2.1](https://img.shields.io/badge/version-1.2.1-blue)
 
+[![openupm](https://img.shields.io/npm/v/com.i5.toolkit.core?label=openupm&registry_uri=https://package.openupm.com)](https://openupm.com/packages/com.i5.toolkit.core/)
+
 ## Modules
 
 The i5 Toolkit provides a series of modules and features that can be used in projects.
@@ -35,12 +37,58 @@ The i5 Toolkit provides a series of modules and features that can be used in pro
 
 There are different ways to add the package to a project.
 
-### Alternative 1: Unity Dependency File with Git (Unity 2018.3 or later) (Recommended)
+### Alternative 1: Unity Dependency File with OpenUPM (Unity 2018.3 or later) (Recommended)
 
-The tool is available as a package for the Unity Package Manager. It can be included in new projects by referencing the git-repository on GitHub in the dependency file of the Unity project:
+The toolkit can be loaded using Unity's package manager.
+To do this, add an entry to the dependency file:
 
 1. Open your project's root folder in a file explorer.
-2. Navigate to the Packages folder and open the file manifest.json. It contains a list of package dependencies which are loaded into the project.
+2. Navigate to the Packages folder and open the file manifest.json.
+   It contains a list of package dependencies which are loaded into the project.
+3. Add a scoped registry definition which tells Unity to look at the given URL for the package.
+   ```
+   {
+   "name": "com.i5.toolkit.core",
+   "url": "https://package.openupm.com",
+   "scopes": [
+     "com.i5.toolkit.core"
+   ]
+   }
+   ```
+
+4. To add a specific version of the tool to the dependencies, add the following line inside of the "dependencies" object and replace [version] with "v", followed by the release number, e.g. "v1.2.1".
+   `"com.i5.toolkit.core": "[version]",`
+   After that, Unity will automatically download and import the package.
+
+So, after completing these steps you should have a manifest.json file which looks like this:
+
+```
+{
+  "scopedRegistries": [
+    {
+      "name": "com.i5.toolkit.core",
+      "url": "https://package.openupm.com",
+      "scopes": [
+        "com.i5.toolkit.core"
+      ]
+    },
+    ... some more scoped registries
+    ],
+    "dependencies": {
+        "com.i5.toolkit.core":  "1.2.1",
+        ... some more packages
+    }
+}
+```
+
+### Alternative 2: Unity Dependency File with Git (Unity 2018.3 or later) (Recommended)
+
+The toolkit is available as a package for the Unity Package Manager.
+It can be included in new projects by referencing the git-repository on GitHub in the dependency file of the Unity project:
+
+1. Open your project's root folder in a file explorer.
+2. Navigate to the Packages folder and open the file manifest.json.
+   It contains a list of package dependencies which are loaded into the project.
 3. To add a specific version of the tool to the dependencies, add the following line inside of the "dependencies" object and replace [version] with "v", followed by the release number, e.g. "v1.2.1".
    To receive the latest version, replace [version] with upm.
    `"com.i5.toolkit.core": "https://github.com/rwth-acis/i5-Toolkit-for-Unity.git#[version]",`
@@ -50,7 +98,7 @@ If you specify "upm" to get the latest version, be aware that the package is not
 This command just pulls the latest version which is available at that time.
 To update to the newest current version, remove the package again and re-download it.
 
-### Alternative 2: Unity Package Manager UI with Git (Unity 2019.3 or later)
+### Alternative 3: Unity Package Manager UI with Git (Unity 2019.3 or later)
 
 The package can be downloaded from a git-repository in the package manager's UI.
 
@@ -63,7 +111,16 @@ If you specify "upm" to get the latest version, be aware that the package is not
 This command just pulls the latest version which is available at that time.
 To update to the newest current version, remove the package again and re-download it.
 
-### Alternative 3: Import custom package (Unity 2017 or later)
+### Alternative 4: Import using the OpenUPM command line interface (Unity 2018.3 or later)
+
+Documentation about the OpenUPM CLI can be found [here](https://openupm.com/docs/getting-started.html#installing-openupm-cli).
+
+1. Intall the command line interface.
+2. Navigate to your Unity project's folder.
+   This is the folder which also contains folders such as *Assets* or *Packages*.
+3. Enter the command `openupm add com.i5.toolkit.core`.
+
+### Alternative 5: Import custom package (Unity 2017 or later)
 
 Another option is to import the package as a .unitypackage.
 
@@ -72,7 +129,7 @@ Another option is to import the package as a .unitypackage.
 3. Navigate to the path where you downloaded the .unitypackage-file, select it and confirm by clicking the "Open" buttom
 4. A dialog window opens where you can select which files should be imported. Select everything and click on "Import".
 
-Important for alternative 3: If you are updating from an earlier version, it is recommended to delete the existing "i5 Toolkit" folder.
+Important for this alternative: If you are updating from an earlier version, it is recommended to delete the existing "i5 Toolkit" folder.
 After that, import the new package.
 
 ## Example Scenes

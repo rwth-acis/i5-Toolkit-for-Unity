@@ -5,27 +5,35 @@ using UnityEngine;
 
 public static class GitVersion
 {
-    public static string Version
+    public static bool TryGetVersion(out string version)
     {
-        get
+        int resCode = RunGit(@"describe --tags --long --match ‘v[0–9]*’", out string output, out string errors);
+        if (resCode != 0)
         {
-            int resCode = RunGit(@"describe --tags --long --match ‘v[0–9]*’", out string output, out string errors);
-            if (resCode != 0)
-            {
-                UnityEngine.Debug.LogError("Error running git: " + errors);
-                return "0.1";
-            }
-            else
-            {
-                return output;
-            }
+            UnityEngine.Debug.LogWarning("Error running git: " + errors);
+            version = "0.1";
+            return false;
+        }
+        else
+        {
+            version = output;
+            version = version.Replace('-', '.');
+            version = version.Remove(version.LastIndexOf('.'));
+            return true;
         }
     }
 
     [MenuItem("i5 Toolkit/Get Semantic Version")]
     public static void TestVersion()
     {
-        UnityEngine.Debug.Log("Version: " + Version);
+        if (TryGetVersion(out string version))
+        {
+            UnityEngine.Debug.Log("Version: " + version);
+        }
+        else
+        {
+            UnityEngine.Debug.LogError($"Could not get version. Using default {version}. See previous output for error messages");
+        }
     }
 
     /// <summary>

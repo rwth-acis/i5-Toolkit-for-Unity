@@ -2,10 +2,15 @@
 
 namespace i5.Toolkit.Core.GitVersion
 {
+    /// <summary>
+    /// Creates a menu entry in the top menu of Unity
+    /// </summary>
     public static class GitEditorMenu
     {
+        // cache the git version
         private static GitVersionCalculator gitVersion;
 
+        // ensures that the git version exists
         private static void EnsureGitVersion()
         {
             if (gitVersion == null)
@@ -14,6 +19,9 @@ namespace i5.Toolkit.Core.GitVersion
             }
         }
 
+        /// <summary>
+        /// Outputs the version based on the Git tag information
+        /// </summary>
         [MenuItem("i5 Toolkit/Build Versioning/Get Semantic Version")]
         public static void TestVersion()
         {
@@ -28,6 +36,9 @@ namespace i5.Toolkit.Core.GitVersion
             }
         }
 
+        /// <summary>
+        /// Gets the name of the currently checked out git branch
+        /// </summary>
         [MenuItem("i5 Toolkit/Build Versioning/Get Git Branch")]
         public static void TestBranch()
         {
@@ -42,6 +53,9 @@ namespace i5.Toolkit.Core.GitVersion
             }
         }
 
+        /// <summary>
+        /// Gets the total number of commits on the branch
+        /// </summary>
         [MenuItem("i5 Toolkit/Build Versioning/Get Total Commits on Branch")]
         public static void TestTotalCommits()
         {

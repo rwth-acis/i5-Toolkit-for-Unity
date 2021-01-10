@@ -1,4 +1,5 @@
-﻿using System;
+﻿using i5.Toolkit.Core.Utilities;
+using System;
 using System.Text.RegularExpressions;
 using UnityEditor;
 using UnityEngine;
@@ -10,8 +11,6 @@ namespace i5.Toolkit.Core.GitVersion
     /// </summary>
     public class GitVersionBuildStep
     {
-        // name of the tool which is shown in the logs
-        private const string toolName = "i5 Build Versioning Tool";
         // placeholder that is replaced with the version number
         private const string gitVersionplaceholder = "$gitVersion";
         // placeholder that is replaced with the branch name
@@ -25,6 +24,12 @@ namespace i5.Toolkit.Core.GitVersion
         public GitVersionBuildStep()
         {
             gitVersion = new GitVersionCalculator();
+        }
+
+        public bool ContainsPlaceholder(string versionString)
+        {
+            return versionString.Contains(gitVersionplaceholder)
+                || versionString.Contains(branchPlaceholder);
         }
 
         /// <summary>
@@ -47,18 +52,16 @@ namespace i5.Toolkit.Core.GitVersion
         {
             if (!versionString.Contains(gitVersionplaceholder))
             {
-                Debug.Log($"[{toolName}] Version placeholder not found. To use automatic semantic versioning with Git, write the placeholder {gitVersionplaceholder} into the application's version");
+                return versionString;
             }
-            else
-            {
-                Debug.Log($"[{toolName}] Version placeholder found. Running versioning tool to calculate semantic version number from Git tags");
-                if (!gitVersion.TryGetVersion(out string version))
-                {
-                    Debug.LogWarning($"[{toolName}] Could not get version name. Version placeholder will be replaced with default {version}");
-                }
 
-                versionString = versionString.Replace(gitVersionplaceholder, version);
+            i5Debug.Log("Version placeholder found. Running versioning tool to calculate semantic version number from Git tags", this);
+            if (!gitVersion.TryGetVersion(out string version))
+            {
+                i5Debug.LogWarning($"Could not get version name. Version placeholder will be replaced with default {version}", this);
             }
+
+            versionString = versionString.Replace(gitVersionplaceholder, version);
 
             return versionString;
         }
@@ -66,16 +69,18 @@ namespace i5.Toolkit.Core.GitVersion
         // replaces the branch placeholder
         private string ReplaceBranchPlaceholder(string versionString)
         {
-            if (versionString.Contains(branchPlaceholder))
+            if (!versionString.Contains(branchPlaceholder))
             {
-                Debug.Log($"[{toolName}] Branch placeholder found. Running git to get the branch name");
-                if (!gitVersion.TryGetBranch(out string branch))
-                {
-                    Debug.LogWarning($"[{toolName}] Could not get branch name. Branch placeholder will be replaced with UNKNOWN");
-                }
-
-                versionString = versionString.Replace(branchPlaceholder, branch);
+                return versionString;
             }
+
+            i5Debug.Log("Branch placeholder found. Running git to get the branch name", this);
+            if (!gitVersion.TryGetBranch(out string branch))
+            {
+                i5Debug.LogWarning("Could not get branch name. Branch placeholder will be replaced with UNKNOWN", this);
+            }
+
+            versionString = versionString.Replace(branchPlaceholder, branch);
             return versionString;
         }
 

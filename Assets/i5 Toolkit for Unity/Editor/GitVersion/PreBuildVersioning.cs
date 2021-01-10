@@ -26,11 +26,18 @@ namespace i5.Toolkit.Core.GitVersion
 
             GitVersionBuildStep buildStep = new GitVersionBuildStep();
 
-            versionString = buildStep.ReplacePlaceholders(versionString);
+            if (buildStep.ContainsPlaceholder(versionString))
+            {
+                versionString = buildStep.ReplacePlaceholders(versionString);
 
-            PlayerSettings.bundleVersion = versionString;
-            PlayerSettings.WSA.packageVersion = buildStep.WSAVersion(versionString);
-            PlayerSettings.Android.bundleVersionCode = buildStep.AndroidVersion();
+                PlayerSettings.bundleVersion = versionString;
+                PlayerSettings.WSA.packageVersion = buildStep.WSAVersion(versionString);
+                PlayerSettings.Android.bundleVersionCode = buildStep.AndroidVersion();
+            }
+            else
+            {
+                Debug.Log($"[Versioning Tool] Version placeholders not found. To use automatic semantic versioning with Git, add a placeholder to the application's version string");
+            }
         }
     }
 }

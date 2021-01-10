@@ -37,6 +37,14 @@ namespace i5.Toolkit.Core.GitVersion
             {
                 Debug.Log($"[Versioning Tool] Version placeholders not found. To use automatic semantic versioning with Git, add a placeholder to the application's version string");
             }
+            CacheVersionConfig();
+        }
+
+        private void CacheVersionConfig()
+        {
+            VersionCache.appVersion = PlayerSettings.bundleVersion;
+            VersionCache.wsaVersion = PlayerSettings.WSA.packageVersion;
+            VersionCache.androidVersion = PlayerSettings.Android.bundleVersionCode;
         }
     }
 }

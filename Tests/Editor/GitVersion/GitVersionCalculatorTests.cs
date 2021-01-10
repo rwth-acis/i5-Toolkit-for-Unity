@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using FakeItEasy;
+﻿using FakeItEasy;
 using i5.Toolkit.Core.Editor.TestHelpers;
 using i5.Toolkit.Core.GitVersion;
 using NUnit.Framework;

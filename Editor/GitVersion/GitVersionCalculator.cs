@@ -1,11 +1,6 @@
-﻿using System.Diagnostics;
-using System.Text;
-using UnityEditor;
-using UnityEngine;
-
-namespace i5.Toolkit.Core.GitVersion
+﻿namespace i5.Toolkit.Core.GitVersion
 {
-    public class GitVersionCalculator
+    public class GitVersionCalculator : IGitVersionCalculator
     {
         private IGitRunner gitRunner;
 

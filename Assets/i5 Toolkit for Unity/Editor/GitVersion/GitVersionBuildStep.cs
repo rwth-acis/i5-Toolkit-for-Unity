@@ -1,6 +1,7 @@
 ﻿using i5.Toolkit.Core.Utilities;
 using System;
 using System.Text.RegularExpressions;
+using UnityEngine;
 
 namespace i5.Toolkit.Core.GitVersion
 {
@@ -95,7 +96,10 @@ namespace i5.Toolkit.Core.GitVersion
             versionString = rgx.Replace(versionString, "");
             if (Version.TryParse(versionString, out Version result))
             {
-                return new Version(result.Major, result.Minor, result.Build, 0);
+                int major = Mathf.Max(0, result.Major);
+                int minor = Mathf.Max(0, result.Minor);
+                int build = Mathf.Max(0, result.Build);
+                return new Version(major, minor, build, 0);
             }
             else
             {

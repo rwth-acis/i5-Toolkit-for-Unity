@@ -21,6 +21,38 @@ namespace i5.Toolkit.Core.Tests.GitVersion
         }
 
         [Test]
+        public void ContainsPlaceholders_ContainsVersion_ReturnsTrue()
+        {
+            GitVersionBuildStep buildStep = CreateGitVersionBuildStep(out IGitVersionCalculator versionCalculator);
+
+            Assert.IsTrue(buildStep.ContainsPlaceholder("$gitVersion"));
+        }
+
+        [Test]
+        public void ContainsPlaceholders_ContainsBranch_ReturnsTrue()
+        {
+            GitVersionBuildStep buildStep = CreateGitVersionBuildStep(out IGitVersionCalculator versionCalculator);
+
+            Assert.IsTrue(buildStep.ContainsPlaceholder("$branch"));
+        }
+
+        [Test]
+        public void ContainsPlaceholders_NoPlaceholders_ReturnsFalse()
+        {
+            GitVersionBuildStep buildStep = CreateGitVersionBuildStep(out IGitVersionCalculator versionCalculator);
+
+            Assert.IsFalse(buildStep.ContainsPlaceholder("$noPlaceholder"));
+        }
+
+        [Test]
+        public void ContainsPlaceholders_Empty_ReturnsFalse()
+        {
+            GitVersionBuildStep buildStep = CreateGitVersionBuildStep(out IGitVersionCalculator versionCalculator);
+
+            Assert.IsFalse(buildStep.ContainsPlaceholder(""));
+        }
+
+        [Test]
         public void ReplacePlaceholders_ContainsVersionPlaceholder_Replaces()
         {
             GitVersionBuildStep buildStep = CreateGitVersionBuildStep(out IGitVersionCalculator versionCalculator);
@@ -66,22 +98,6 @@ namespace i5.Toolkit.Core.Tests.GitVersion
             string result = buildStep.ReplacePlaceholders("no-placeholder");
 
             Assert.AreEqual("no-placeholder", result);
-        }
-
-        [Test]
-        public void ReplacePlaceholders_ContainsNothing_LogsInfo()
-        {
-            GitVersionBuildStep buildStep = CreateGitVersionBuildStep(out IGitVersionCalculator versionCalculator);
-            string ignored = null;
-            A.CallTo(()
-                => versionCalculator
-                .TryGetVersion(out ignored))
-                .Returns(true)
-                .AssignsOutAndRefParameters("1.2.3");
-
-            LogAssert.Expect(UnityEngine.LogType.Log, new Regex(@"\w*Version placeholder not found.\w*"));
-
-            string result = buildStep.ReplacePlaceholders("no-placeholder");
         }
 
         [Test]

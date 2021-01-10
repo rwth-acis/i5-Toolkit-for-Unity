@@ -1,8 +1,6 @@
 ﻿using i5.Toolkit.Core.Utilities;
 using System;
 using System.Text.RegularExpressions;
-using UnityEditor;
-using UnityEngine;
 
 namespace i5.Toolkit.Core.GitVersion
 {

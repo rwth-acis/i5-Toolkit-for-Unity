@@ -6,6 +6,9 @@ using UnityEngine;
 
 namespace i5.Toolkit.Core.GitVersion
 {
+    /// <summary>
+    /// Bridge to the git command line interface
+    /// </summary>
     public class GitRunner : IGitRunner
     {
         /// <summary>
@@ -17,6 +20,7 @@ namespace i5.Toolkit.Core.GitVersion
         /// <returns>The exit code of the command</returns>
         public int RunCommand(string arguments, out string output, out string errors)
         {
+            // create a new process that does not require interaction and that does not open a new window
             using (var process = new Process())
             {
                 process.StartInfo = new ProcessStartInfo

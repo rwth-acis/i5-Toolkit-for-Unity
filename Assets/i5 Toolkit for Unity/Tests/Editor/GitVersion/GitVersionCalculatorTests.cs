@@ -37,7 +37,7 @@ namespace i5.Toolkit.Core.Tests.GitVersion
 
             gitVersion.TryGetVersion(out string version);
 
-            Assert.AreEqual("0.1", version);
+            Assert.AreEqual("0.1.0", version);
         }
 
         [Test]

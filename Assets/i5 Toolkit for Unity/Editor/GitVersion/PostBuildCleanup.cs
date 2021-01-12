@@ -1,6 +1,7 @@
 ﻿using UnityEditor;
 using UnityEditor.Build;
 using UnityEditor.Build.Reporting;
+using UnityEngine;
 
 namespace i5.Toolkit.Core.GitVersion
 {
@@ -11,21 +12,17 @@ namespace i5.Toolkit.Core.GitVersion
         public void OnPostprocessBuild(BuildReport report)
         {
             RestoreVersions();
-            ClearCache();
+            Debug.Log($"[{GitVersionBuildStep.toolName}] Removing temporary cache");
+            VersionCache.Remove();
         }
 
         private void RestoreVersions()
         {
-            PlayerSettings.bundleVersion = VersionCache.appVersion;
-            PlayerSettings.WSA.packageVersion = VersionCache.wsaVersion;
-            PlayerSettings.Android.bundleVersionCode = VersionCache.androidVersion;
-        }
-
-        private void ClearCache()
-        {
-            VersionCache.appVersion = "";
-            VersionCache.wsaVersion = new System.Version();
-            VersionCache.androidVersion = 0;
+            VersionCache cache = VersionCache.Load();
+            Debug.Log($"[{GitVersionBuildStep.toolName}] Restoring version config:\n{PlayerSettings.bundleVersion}->{cache.appVersion}\n{PlayerSettings.WSA.packageVersion}->{cache.wsaVersion}\n{PlayerSettings.Android.bundleVersionCode}->{cache.androidVersion}");
+            PlayerSettings.bundleVersion = cache.appVersion;
+            PlayerSettings.WSA.packageVersion = cache.wsaVersion;
+            PlayerSettings.Android.bundleVersionCode = cache.androidVersion;
         }
     }
 }

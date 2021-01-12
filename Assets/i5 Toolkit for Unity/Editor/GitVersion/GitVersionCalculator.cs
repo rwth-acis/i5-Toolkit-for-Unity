@@ -28,7 +28,7 @@
             if (resCode != 0)
             {
                 UnityEngine.Debug.LogWarning("Error running git: " + errors);
-                version = "0.1";
+                version = "0.1.0";
                 return false;
             }
             else

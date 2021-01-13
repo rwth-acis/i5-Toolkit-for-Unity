@@ -31,6 +31,9 @@ The i5 Toolkit provides a series of modules and features that can be used in pro
         <td><a href="${docPath}manual/Service-Core.${docExtension}"><img src="${docImgPath}resources/Logos/ServiceCore.svg" alt="Service Core" style="width:200px"/><br/>Service Core</a></td>
         <td><a href="${docPath}manual/Spawner.${docExtension}"><img src="${docImgPath}resources/Logos/Spawner.svg" alt="Spawner" style="width:200px"/><br/>Spawner</a></td>
     </tr>
+    <tr>
+        <td><a href="${docPath}manual/Version-Tool.${docExtension}"><img src="${docImgPath}resources/Logos/Version-Tool.svg" alt="Version Tool" style="width:200px"/><br/>Version Tool</a></td>
+    </tr>
 </table>
 
 ## Setup

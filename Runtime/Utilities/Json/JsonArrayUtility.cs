@@ -27,23 +27,10 @@ namespace i5.Toolkit.Core.Utilities
         /// Converts an array of type T to a json string
         /// </summary>
         /// <typeparam name="T">The type of the array</typeparam>
-        /// <param name="array">Array to convert to json data</param>
-        /// <returns>JSON string</returns>
-        public static string ToJson<T>(T[] array)
-        {
-            JsonArray<T> wrapper = new JsonArray<T>();
-            wrapper.array = array;
-            return JsonUtility.ToJson(wrapper);
-        }
-
-        /// <summary>
-        /// Converts an array of type T to a json string
-        /// </summary>
-        /// <typeparam name="T">The type of the array</typeparam>
         /// <param name="array">Array to conver to json data</param>
         /// <param name="prettyPrint">If true, the output will be printed in a way that is more human-readable</param>
         /// <returns>Json string</returns>
-        public static string ToJson<T>(T[] array, bool prettyPrint)
+        public static string ToJson<T>(T[] array, bool prettyPrint=false)
         {
             JsonArray<T> wrapper = new JsonArray<T>();
             wrapper.array = array;

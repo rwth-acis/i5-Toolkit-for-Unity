@@ -16,8 +16,8 @@
   href: Service-Core.md
 - name: Spawner
   href: Spawner.md
-- name: Version Calculator
-  href: Version-Calculator.md
+- name: Version Tool
+  href: Version-Tool.md
 - name: Test Helpers
   items:
     - name: Async Test

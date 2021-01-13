@@ -1,11 +1,11 @@
 ﻿using FakeItEasy;
 using i5.Toolkit.Core.Editor.TestHelpers;
-using i5.Toolkit.Core.GitVersion;
+using i5.Toolkit.Core.VersionTool;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
 
-namespace i5.Toolkit.Core.Tests.GitVersion
+namespace i5.Toolkit.Core.Tests.VersionTool
 {
     public class GitVersionCalculatorTests
     {

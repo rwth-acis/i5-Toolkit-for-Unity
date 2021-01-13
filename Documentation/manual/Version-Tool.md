@@ -1,6 +1,6 @@
-# Versioning Tool
+# Version Tool
 
-![Version Calculator](../resources/Logos/Version-Calculator.svg)
+![Version Tool](../resources/Logos/Version-Tool.svg)
 
 ## Semantic Versioning
 

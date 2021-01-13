@@ -138,38 +138,16 @@ namespace i5.Toolkit.Core.Tests.VersionTool
         public void WSAVersion_IsolatedVersionGiven_ReturnsVersion()
         {
             GitVersionBuildStep buildStep = CreateGitVersionBuildStep(out IGitVersionCalculator versionCalculator);
+            string ignored = null;
+            A.CallTo(() => versionCalculator.TryGetVersion(out ignored))
+                .Returns(true)
+                .AssignsOutAndRefParameters("1.2.3");
 
-            Version result = buildStep.WSAVersion("1.2.3");
-
-            Assert.AreEqual(1, result.Major);
-            Assert.AreEqual(2, result.Minor);
-            Assert.AreEqual(3, result.Build);
-            Assert.AreEqual(0, result.Revision);
-        }
-
-        [Test]
-        public void WSAVersion_InfixVersionGiven_ReturnsVersion()
-        {
-            GitVersionBuildStep buildStep = CreateGitVersionBuildStep(out IGitVersionCalculator versionCalculator);
-
-            Version result = buildStep.WSAVersion("prefix1.2.3postfix");
+            Version result = buildStep.WSAVersion;
 
             Assert.AreEqual(1, result.Major);
             Assert.AreEqual(2, result.Minor);
             Assert.AreEqual(3, result.Build);
-            Assert.AreEqual(0, result.Revision);
-        }
-
-        [Test]
-        public void WSAVersion_InvalidString_ReturnsDefault()
-        {
-            GitVersionBuildStep buildStep = CreateGitVersionBuildStep(out IGitVersionCalculator versionCalculator);
-
-            Version result = buildStep.WSAVersion("no-version");
-
-            Assert.AreEqual(0, result.Major);
-            Assert.AreEqual(0, result.Minor);
-            Assert.AreEqual(1, result.Build);
             Assert.AreEqual(0, result.Revision);
         }
 
@@ -184,7 +162,7 @@ namespace i5.Toolkit.Core.Tests.VersionTool
                 .Returns(true)
                 .AssignsOutAndRefParameters(123);
 
-            int result = buildStep.AndroidVersion();
+            int result = buildStep.AndroidVersion;
 
             Assert.AreEqual(123, result);
         }

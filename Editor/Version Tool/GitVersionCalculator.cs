@@ -1,4 +1,4 @@
-﻿namespace i5.Toolkit.Core.GitVersion
+﻿namespace i5.Toolkit.Core.VersionTool
 {
     /// <summary>
     /// Uses Git to calculate the version of the application

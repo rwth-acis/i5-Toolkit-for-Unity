@@ -3,7 +3,7 @@ using System;
 using System.Text.RegularExpressions;
 using UnityEngine;
 
-namespace i5.Toolkit.Core.GitVersion
+namespace i5.Toolkit.Core.VersionTool
 {
     /// <summary>
     /// Logic for the build step that applies the git version

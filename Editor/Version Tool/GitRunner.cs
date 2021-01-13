@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.Text;
 using UnityEngine;
 
-namespace i5.Toolkit.Core.GitVersion
+namespace i5.Toolkit.Core.VersionTool
 {
     /// <summary>
     /// Bridge to the git command line interface

@@ -3,7 +3,7 @@ using UnityEditor.Build;
 using UnityEditor.Build.Reporting;
 using UnityEngine;
 
-namespace i5.Toolkit.Core.GitVersion
+namespace i5.Toolkit.Core.VersionTool
 {
     /// <summary>
     /// Pre-Build step which replaces placeholders

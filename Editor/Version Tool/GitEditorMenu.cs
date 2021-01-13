@@ -1,6 +1,6 @@
 ﻿using UnityEditor;
 
-namespace i5.Toolkit.Core.GitVersion
+namespace i5.Toolkit.Core.VersionTool
 {
     /// <summary>
     /// Creates a menu entry in the top menu of Unity

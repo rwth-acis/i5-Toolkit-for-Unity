@@ -2,7 +2,7 @@
 using System.IO;
 using UnityEngine;
 
-namespace i5.Toolkit.Core.GitVersion
+namespace i5.Toolkit.Core.VersionTool
 {
     [Serializable]
     public class VersionCache

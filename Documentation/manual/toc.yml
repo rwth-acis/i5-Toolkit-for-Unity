@@ -16,6 +16,8 @@
   href: Service-Core.md
 - name: Spawner
   href: Spawner.md
+- name: Version Calculator
+  href: Version-Calculator.md
 - name: Test Helpers
   items:
     - name: Async Test
@@ -30,6 +32,8 @@
       href: Utilities/i5Debug.md
     - name: Json Array Utility
       href: Utilities/Json-Array-Utility.md
+    - name: Json Dictionary Utility
+      href: Utilities/Json-Dictionary-Utility.md
     - name: Persistent Scene
       href: Utilities/Persistent-Scene.md
     - name: Unity Adapters

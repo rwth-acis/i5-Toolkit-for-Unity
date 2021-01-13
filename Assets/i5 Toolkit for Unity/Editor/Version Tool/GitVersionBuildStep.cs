@@ -90,22 +90,25 @@ namespace i5.Toolkit.Core.VersionTool
         /// e.g. for UWP builds
         /// The version is extracted from the version string
         /// </summary>
-        /// <param name="versionString">The version string on which the version should be based</param>
         /// <returns>Returns the version for the WSA packages</returns>
-        public Version WSAVersion(string versionString)
+        public Version WSAVersion
         {
-            Regex rgx = new Regex("[^0-9.]");
-            versionString = rgx.Replace(versionString, "");
-            if (Version.TryParse(versionString, out Version result))
+            get
             {
-                int major = Mathf.Max(0, result.Major);
-                int minor = Mathf.Max(0, result.Minor);
-                int build = Mathf.Max(0, result.Build);
-                return new Version(major, minor, build, 0);
-            }
-            else
-            {
-                return new Version(0, 0, 1, 0);
+                Regex rgx = new Regex("[^0-9.]");
+                gitVersion.TryGetVersion(out string versionString);
+                versionString = rgx.Replace(versionString, "");
+                if (Version.TryParse(versionString, out Version result))
+                {
+                    int major = Mathf.Max(0, result.Major);
+                    int minor = Mathf.Max(0, result.Minor);
+                    int build = Mathf.Max(0, result.Build);
+                    return new Version(major, minor, build, 0);
+                }
+                else
+                {
+                    return new Version(0, 0, 1, 0);
+                }
             }
         }
 
@@ -113,11 +116,14 @@ namespace i5.Toolkit.Core.VersionTool
         /// Calculates the version for Android installation packages
         /// This value is based on the number of commits in git on this branch
         /// </summary>
-        /// <returns>Returns an integer number that is increased with each git commit</returns>
-        public int AndroidVersion()
+        /// <returns>Returns an integer number that is increased with each git commit</returns>        
+        public int AndroidVersion
         {
-            gitVersion.TryGetTotalCommitsOnBranch(out int commitCount);
-            return commitCount;
+            get
+            {
+                gitVersion.TryGetTotalCommitsOnBranch(out int commitCount);
+                return commitCount;
+            }
         }
     }
 }

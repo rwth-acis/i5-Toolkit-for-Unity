@@ -2,6 +2,12 @@
 
 This document keeps track of the changes between versions of the toolkit.
 
+## 1.3.0 (2021-01-13)
+
+### Added
+- Version Tool which automatically applies a version based on Git information
+- Json Dictionary Utilities for serializing dictionaries
+
 ## 1.2.1 (2020-12-10)
 
 ### Fixed

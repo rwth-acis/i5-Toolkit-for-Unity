@@ -15,7 +15,7 @@ Critical information such as the user name and password are always entered at th
 This also means that the client never sees the user's credentials.
 Instead, the client only receives an access token after the login.
 Such an access token is only valid for a limited amount of time.
-Moreover, the user has to agree to *scopes* which list the kind information that the application is allowed to access.
+Moreover, the user has to agree to *scopes* which list the kind of information that the application is allowed to access.
 The user can revoke these access rights at any time.
 
 ## Supported Platforms
@@ -109,7 +109,7 @@ The importance of this redirect URI varies based on the target platform.
 > Setting the redirect URI for editor and standalone builds is optional.
 > You can do it to improve the user experience.
 
-In the editor and standalone builds, the toolkits starts an internal server to which the login automatically redirects.
+In the editor and standalone builds, the toolkit starts an internal server to which the login automatically redirects.
 This way, the server always fetches the necessary data which are provided in the redirect.
 After that, the user is redirected to the specified URI which can e.g. point to your Web page that tells the user to return to the application.
 So, for editor and standalone builds, setting the <xref:i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.RedirectURI> property is optional and can be used to improve the user's experience.
@@ -122,14 +122,14 @@ So, for editor and standalone builds, setting the <xref:i5.Toolkit.Core.OpenIDCo
 In UWP builds, the redirect URI is essential.
 Set it to a custom URI scheme, e.g. `i5:/`.
 After that, go to the player settings (Edit > Project Settings and select the player tab).
-Make sure that you are in the UWP settings (the tab with the Windows logo) and nagivate to the "Publishing Settings".
+Make sure that you are in the UWP settings (the tab with the Windows logo) and navigate to the "Publishing Settings".
 There is an entry "protocol" where you can enter the custom URI scheme.
 So, in this example, you would enter "i5" - so omit the ":/" part here.
 When this is done, the built app will open whenever an URI that starts with i5:/ is called.
 
 Make sure that in the player settings under "Other Settings", the scripting runtime version is set to .NET 4.x Equivalent and the scripting backend is IL2CPP.
 To retrieve the data that is contained in the login redirect, the i5 Toolkit has an OIDC patcher which will post-process the built IL2CPP.
-When building the app, there should be an entry in the log console about the OIDC patcher running successully.
+When building the app, there should be an entry in the log console about the OIDC patcher running successfully.
 The patcher will add a hook to the generated C++ files which links the received redirect data back into the Unity C# world.
 
 The redirect from the login page to the custom URI schema only works if you add the custom URI schema to the list of allowed redirect URIs in the client's configuration on the provider's Web page.
@@ -193,7 +193,7 @@ To register a learning layers client, follow these steps:
    If your app uses a custom URI schema, you must add the redirect URI to the list, e.g. mySchema:/.
 8. If you want to, you can customize the approval page that is shown to the user when the OpenID Connect scopes have to be authorized.
    You can add a logo and links to Web pages of the terms of service, policy and home page.
-   Moreover, you can add furhter e-mail contacts apart from your own one to indicate who is responsible for this client.
+   Moreover, you can add further e-mail contacts apart from your own one to indicate who is responsible for this client.
    All configurations from this step are optional and do not influence the functionality of the OpenID Connect workflow.
 9. Scroll up again and select the "Access" tab on the page.
 10. Add the scopes that you need to the list of scopes.
@@ -219,11 +219,11 @@ To use the scene, first register a client at the [Learning Layers provider](http
 After that, create the client credentials file by right-clicking in the Assets browser and choosing "Create > i5 Toolkit > OpenID Connect Client Data".
 Select the created file and enter the client id and client data in the inspector.
 Then, select the "Tester" GameObject in the scene and drag and drop the file onto the field on the OpenID Connect Tester.
-After these initialization, you can start the scene.
+After this initialization, you can start the scene.
 If you press F5, the browser is opened with the Learning Layers login page.
-Once you log in and return to the app, the console will print the access token and same information about the logged in user.
+Once you log in and return to the app, the console will print the access token and some information about the logged in user.
 
-The important GameObjects in example scene are the *Service Bootstrapper* and *Tester*.
+The important GameObjects in the example scene are the *Service Bootstrapper* and *Tester*.
 The service manager bootstrapper on the *Service Bootstrapper* initializes the <xref:i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService>.
 The *Tester* GameObject contains the configuration of the Learning Layers OpenID Connect client.
 It also triggers the login procedure and reacts to the successful login.

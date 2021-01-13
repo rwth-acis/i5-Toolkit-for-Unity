@@ -33,7 +33,7 @@ namespace i5.Toolkit.Core.Tests.VersionTool
         {
             GitVersionBuildStep buildStep = CreateGitVersionBuildStep(out IGitVersionCalculator versionCalculator);
 
-            Assert.IsTrue(buildStep.ContainsPlaceholder("$branch"));
+            Assert.IsTrue(buildStep.ContainsPlaceholder("$gitBranch"));
         }
 
         [Test]
@@ -110,7 +110,7 @@ namespace i5.Toolkit.Core.Tests.VersionTool
                 .Returns(true)
                 .AssignsOutAndRefParameters("features/testBranch");
 
-            string result = buildStep.ReplacePlaceholders("prefix-$branch-postfix");
+            string result = buildStep.ReplacePlaceholders("prefix-$gitBranch-postfix");
 
             Assert.AreEqual("prefix-features/testBranch-postfix", result);
         }
@@ -129,7 +129,7 @@ namespace i5.Toolkit.Core.Tests.VersionTool
                 .Returns(true)
                 .AssignsOutAndRefParameters("features/testBranch");
 
-            string result = buildStep.ReplacePlaceholders("v$gitVersion-$branch");
+            string result = buildStep.ReplacePlaceholders("v$gitVersion-$gitBranch");
 
             Assert.AreEqual("v1.2.3-features/testBranch", result);
         }

@@ -13,9 +13,9 @@ namespace i5.Toolkit.Core.VersionTool
         // placeholder that is replaced with the version number
         private const string gitVersionplaceholder = "$gitVersion";
         // placeholder that is replaced with the branch name
-        private const string branchPlaceholder = "$branch";
+        private const string branchPlaceholder = "$gitBranch";
 
-        public const string toolName = "Versioning Tool";
+        public const string toolName = "Version Tool";
 
         private IGitVersionCalculator gitVersion;
 

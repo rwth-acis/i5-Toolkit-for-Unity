@@ -42,7 +42,7 @@ The following placeholders are available:
 | Placeholder | Meaning | Example Value |
 | --- | --- | --- |
 | `$gitVersion` | Gets the version which consists of a major, minor and patch number based on git tags. | 1.2.3 |
-| `$branch` | Gets the current branch name | develop |
+| `$gitBranch` | Gets the current branch name | develop |
 
 In order to calculate the correct version numbers, tag your application's releases with git tags.
 The tags must have the form `v1.2`, so start them with a "v", followed by the major and minor version number.

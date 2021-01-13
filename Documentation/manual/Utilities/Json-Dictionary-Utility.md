@@ -16,7 +16,13 @@ It returns a JSON object with two arrays "keys" and "values".
 These arrays are the contents of the array entries.
 
 ```[C#]
+Dictionary<string, int> dictionary = new Dictionary<string, int>();
+dictionary.Add("firstKey", 42);
+dictionary.Add("secondKey", 1);
 
+string json = JsonDictionaryUtility.ToJson(dictionary);
+// result:
+// "{\"keys\":[\"firstKey\",\"secondKey\"],\"values\":[42,1]}"
 ```
 
 ### Deserialize from JSON
@@ -24,7 +30,11 @@ These arrays are the contents of the array entries.
 If the JSON string uses the same format of a "keys"-array and a "values"-array, you can use <xref:i5.Toolkit.Core.Utilities.JsonArrayUtility.FromJson*> to deserialize the JSON string and convert it to a native <xref:System.Collections.Generic.Dictionary%602>.
 
 ```[C#]
-
+string json = "{\"keys\":[\"firstKey\",\"secondKey\"],\"values\":[42,1]}";
+Dictionary<string, int> dictionary = JsonDictionaryUtility.FromJson<string, int>(json);
+// resulting dictionary has two entries with:
+// dictionary["firstKey"] == 42
+// dictionary["secondKey"] == 1
 ```
 
 ## Functionality

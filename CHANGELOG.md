@@ -2,7 +2,7 @@
 
 This document keeps track of the changes between versions of the toolkit.
 
-## 1.3.0 (2021-01-13)
+## 1.3.0 (2021-01-14)
 
 ### Added
 - Version Tool which automatically applies a version based on Git information

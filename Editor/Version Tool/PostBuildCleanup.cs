@@ -5,10 +5,23 @@ using UnityEngine;
 
 namespace i5.Toolkit.Core.VersionTool
 {
+    /// <summary>
+    /// Clean up step that is executed after the build
+    /// Resets version values which have been altered by the version tool
+    /// This happens so that version control does not detect changes after the build
+    /// </summary>
     public class PostBuildVersionCleanup : IPostprocessBuildWithReport
     {
+        /// <summary>
+        /// The position in the execution order in which this script is executed after the build
+        /// </summary>
         public int callbackOrder => 0;
 
+        /// <summary>
+        /// Called once the build has finished
+        /// Restores version project settings that have been altered by the version tool
+        /// </summary>
+        /// <param name="report">A report about the build</param>
         public void OnPostprocessBuild(BuildReport report)
         {
             RestoreVersions();
@@ -16,6 +29,7 @@ namespace i5.Toolkit.Core.VersionTool
             VersionCache.Remove();
         }
 
+        // restores the versions
         private void RestoreVersions()
         {
             VersionCache cache = VersionCache.Load();

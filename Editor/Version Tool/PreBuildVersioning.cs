@@ -31,9 +31,18 @@ namespace i5.Toolkit.Core.VersionTool
             {
                 versionString = buildStep.ReplacePlaceholders(versionString);
 
-                PlayerSettings.bundleVersion = versionString;
-                PlayerSettings.WSA.packageVersion = buildStep.WSAVersion(versionString);
-                PlayerSettings.Android.bundleVersionCode = buildStep.AndroidVersion();
+                switch (report.summary.platformGroup)
+                {
+                    case BuildTargetGroup.Standalone:
+                        PlayerSettings.bundleVersion = versionString;
+                        break;
+                    case BuildTargetGroup.WSA:
+                        PlayerSettings.WSA.packageVersion = buildStep.WSAVersion;
+                        break;
+                    case BuildTargetGroup.Android:
+                        PlayerSettings.Android.bundleVersionCode = buildStep.AndroidVersion;
+                        break;
+                }
             }
             else
             {
@@ -41,6 +50,8 @@ namespace i5.Toolkit.Core.VersionTool
             }
         }
 
+        // caches the project's original version configuration
+        // so that it can be restored after the build
         private void CacheVersionConfig()
         {
             Debug.Log($"[{GitVersionBuildStep.toolName}] Caching version config:\n{PlayerSettings.bundleVersion}\n{PlayerSettings.WSA.packageVersion}\n{PlayerSettings.Android.bundleVersionCode}");

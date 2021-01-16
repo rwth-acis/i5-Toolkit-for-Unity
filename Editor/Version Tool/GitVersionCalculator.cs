@@ -24,7 +24,7 @@
         /// <returns>Returns true if the version could be read, otherwise false (e.g. when no tag exists or if git is not installed)</returns>
         public bool TryGetVersion(out string version)
         {
-            int resCode = gitRunner.RunCommand(@"describe --tags --long --match ‘v[0–9]*’", out string output, out string errors);
+            int resCode = gitRunner.RunCommand("describe --tags --long --match \"v[0-9]*\"", out string output, out string errors);
             if (resCode != 0)
             {
                 UnityEngine.Debug.LogWarning("Error running git: " + errors);

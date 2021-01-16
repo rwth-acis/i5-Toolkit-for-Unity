@@ -2,6 +2,11 @@
 
 This document keeps track of the changes between versions of the toolkit.
 
+## 1.3.1 (2021-01-16)
+
+## Fixed
+- Fixed tag filter in Version Tool
+
 ## 1.3.0 (2021-01-14)
 
 ### Added

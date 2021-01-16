@@ -1,0 +1,307 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>OpenID Connect Client | i5 Toolkit Documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="OpenID Connect Client | i5 Toolkit Documentation ">
+    <meta name="generator" content="docfx 2.56.2.0">
+    
+    <link rel="shortcut icon" href="../resources/Logos/Logo_whiteBg.svg">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../resources/Logos/Logo_whiteBg.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="openid-connect-client">OpenID Connect Client</h1>
+
+<p><img src="../resources/Logos/OpenIDConnectClient.svg" alt="OpenID Connect Client"></p>
+<h2 id="openid-connect">OpenID Connect</h2>
+<p>OpenID Connect is a single sign-on solution for user authentication.
+Users can log in at a central login page that is provided by the OpenID Connect provider, e.g. Google or Learning Layers.
+As a result of the successful login, the application receives an access token that can be used to request protected resources or data about the logged in user.</p>
+<p>For users, OpenID Connect has the advantage that they only need one account at the OpenID Connect provider.
+This account can be reused in all applications that support the provider&#39;s OpenID Connect sign-in.
+Moreover, users do not have to trust that clients protect their login credentials and developers do not have to administer such credentials.
+Critical information such as the user name and password are always entered at the central login page of the OpenID Connect provider.
+This also means that the client never sees the user&#39;s credentials.
+Instead, the client only receives an access token after the login.
+Such an access token is only valid for a limited amount of time.
+Moreover, the user has to agree to <em>scopes</em> which list the kind of information that the application is allowed to access.
+The user can revoke these access rights at any time.</p>
+<h2 id="supported-platforms">Supported Platforms</h2>
+<p>The OpenID Connect client currently works on the following platforms:</p>
+<ul>
+<li>Unity editor (for testing)</li>
+<li>Standalone builds</li>
+<li>UWP (IL2CPP only; scripting runtime version must be set to &quot;.NET 4.x Equivalent&quot;)</li>
+</ul>
+<h2 id="usage">Usage</h2>
+<h3 id="service-initialization">Service Initialization</h3>
+<p>Register a <a class="xref" href="../api/i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.html">OpenIDConnectService</a> at the <a class="xref" href="../api/i5.Toolkit.Core.ServiceCore.ServiceManager.html">ServiceManager</a>.
+This can e.g. be done using a <a href="Service-Core.html#bootstrappers">bootstrapper</a>.
+When creating the service, make sure that its <a class="xref" href="../api/i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.html#i5_Toolkit_Core_OpenIDConnectClient_OpenIDConnectService_OidcProvider">OidcProvider</a> is set up.</p>
+<p>Here is an example bootstrapper:</p>
+<pre><code class="lang-[C#]">protected override void RegisterServices()
+{
+    OpenIDConnectService oidc = new OpenIDConnectService();
+    oidc.OidcProvider = new LearningLayersOidcProvider();
+    // this example shows how the service can be used on an app for multiple platforms
+#if UNITY_WSA
+    oidc.RedirectURI = &quot;i5:/&quot;;
+#else
+    oidc.RedirectURI = &quot;https://www.google.com&quot;;
+#endif
+    ServiceManager.RegisterService(oidc);
+}
+</code></pre><p>In this example, the <a class="xref" href="../api/i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.html#i5_Toolkit_Core_OpenIDConnectClient_OpenIDConnectService_OidcProvider">OidcProvider</a> is set up, e.g. using the <a class="xref" href="../api/i5.Toolkit.Core.OpenIDConnectClient.LearningLayersOidcProvider.html">LearningLayersOidcProvider</a>.
+To set it up, a redirect page is defined.
+Note, that different redirect pages can be defined for different platforms.
+This also has the advantage that different redirect methods can be used on these platforms.
+In this example, Windows Store Apps use the custom URL schema &quot;i5:/&quot; whereas all other platforms redirect to Google.</p>
+<h3 id="switching-between-openid-connect-providers">Switching between OpenID Connect Providers</h3>
+<p>The <a class="xref" href="../api/i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.html#i5_Toolkit_Core_OpenIDConnectClient_OpenIDConnectService_OidcProvider">OidcProvider</a> is an implementation that specifies how the authentication API of a provider should be used.
+Currently, the toolkit has built-in support for the following OpenID Connect providers:</p>
+<table>
+<thead>
+<tr>
+<th>Platform</th>
+<th>Implementation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://api.learning-layers.eu/o/oauth2/">Learning Layers</a></td>
+<td><a class="xref" href="../api/i5.Toolkit.Core.OpenIDConnectClient.LearningLayersOidcProvider.html">LearningLayersOidcProvider</a></td>
+</tr>
+</tbody>
+</table>
+<p>You can add support for further OpenID Connect providers by creating a class that implements the <a class="xref" href="../api/i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.html#i5_Toolkit_Core_OpenIDConnectClient_OpenIDConnectService_OidcProvider">OidcProvider</a> interface.
+The class has to define how to access the different API endpoints of the provider to retrieve information such as the access token.</p>
+<p>In the example in the previous section, we assigned the <a class="xref" href="../api/i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.html#i5_Toolkit_Core_OpenIDConnectClient_OpenIDConnectService_OidcProvider">OidcProvider</a> during the initialization phase.
+However, it is also possible to set this property just before calling the login function, e.g. to give the user a choice between different providers.
+Each <a class="xref" href="../api/i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.html#i5_Toolkit_Core_OpenIDConnectClient_OpenIDConnectService_OidcProvider">OidcProvider</a> has to be initialized with their own client credentials before using the login procedure.</p>
+<h3 id="adding-the-client-credentials">Adding the Client Credentials</h3>
+<p>An application can only use a provider&#39;s OpenID Connect API, if you have registered a client at the API.
+This is a manual step that has to be done once at the beginning of the development.
+During the registration process, the provider will generate a client ID and a client secret.
+To access the API&#39;s methods, the client has to include these credentials in the requests.</p>
+<p>You can find instructions on how to register clients in the section <a href="#client-registration">Client Registration</a></p>
+<p><strong>Protect your client data</strong>. As the name suggests, your client secret (and other client data as well) should be kept confidential.
+Therefore, they should be excluded if the project&#39;s source code is uploaded to public places such as GitHub.
+To solve this, the OpenID Connect Service can load client credentials from a separate file in the project.
+To define the client credentials, right-click somewhere in your Assets folder or any subfolder and choose <em>&quot;Create &gt; i5 Toolkit &gt; OpenID Connect Client Data</em> to create the file.
+If you select it, you can enter the client credentials in Unity&#39;s inspector.
+If you are using Git, you can now add the created file to <em>.gitignore</em> so that it will not be uploaded.
+In the setup instructions of your project, include a note that each developer has to create their own client credentials and add them to the file.</p>
+<p>Before calling the login procedure, assign the client data in the following way:</p>
+<pre><code class="lang-[C#]">// expose a field in the inspector for your client credentials
+[SerializeField]
+private ClientDataObject clientDataObject;
+// assign the client data
+ServiceManager.GetService&lt;OpenIDConnectService&gt;().OidcProvider.ClientData = clientDataObject.clientData;
+</code></pre><h3 id="defining-the-redirect-uri">Defining the Redirect URI</h3>
+<p>Before the login page is shown, a redirect URI should be specified by setting the <a class="xref" href="../api/i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.html#i5_Toolkit_Core_OpenIDConnectClient_OpenIDConnectService_RedirectURI">RedirectURI</a> property of the service.
+The importance of this redirect URI varies based on the target platform.</p>
+<h4 id="editor--standalone">Editor &amp; Standalone</h4>
+<blockquote><p>Setting the redirect URI for editor and standalone builds is optional.
+You can do it to improve the user experience.</p>
+</blockquote>
+<p>In the editor and standalone builds, the toolkit starts an internal server to which the login automatically redirects.
+This way, the server always fetches the necessary data which are provided in the redirect.
+After that, the user is redirected to the specified URI which can e.g. point to your Web page that tells the user to return to the application.
+So, for editor and standalone builds, setting the <a class="xref" href="../api/i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.html#i5_Toolkit_Core_OpenIDConnectClient_OpenIDConnectService_RedirectURI">RedirectURI</a> property is optional and can be used to improve the user&#39;s experience.</p>
+<h4 id="uwp">UWP</h4>
+<blockquote><p>UWP builds require a redirect URI which needs to be set to a custom URI schema.
+The custom URI schema must be registered in the provider&#39;s client configuration and in Unity&#39;s player settings.</p>
+</blockquote>
+<p>In UWP builds, the redirect URI is essential.
+Set it to a custom URI scheme, e.g. <code>i5:/</code>.
+After that, go to the player settings (Edit &gt; Project Settings and select the player tab).
+Make sure that you are in the UWP settings (the tab with the Windows logo) and navigate to the &quot;Publishing Settings&quot;.
+There is an entry &quot;protocol&quot; where you can enter the custom URI scheme.
+So, in this example, you would enter &quot;i5&quot; - so omit the &quot;:/&quot; part here.
+When this is done, the built app will open whenever an URI that starts with i5:/ is called.</p>
+<p>Make sure that in the player settings under &quot;Other Settings&quot;, the scripting runtime version is set to .NET 4.x Equivalent and the scripting backend is IL2CPP.
+To retrieve the data that is contained in the login redirect, the i5 Toolkit has an OIDC patcher which will post-process the built IL2CPP.
+When building the app, there should be an entry in the log console about the OIDC patcher running successfully.
+The patcher will add a hook to the generated C++ files which links the received redirect data back into the Unity C# world.</p>
+<p>The redirect from the login page to the custom URI schema only works if you add the custom URI schema to the list of allowed redirect URIs in the client&#39;s configuration on the provider&#39;s Web page.
+So, in our example, you need to add &quot;i5:/&quot; as an allowed redirect URI, e.g. at the Learning Layers client configuration page.</p>
+<h3 id="starting-the-login-process">Starting the Login Process</h3>
+<p>First, make sure that an OpenID Connect provider has been set.
+The <a class="xref" href="../api/i5.Toolkit.Core.OpenIDConnectClient.IOidcProvider.html">IOidcProvider</a> has to be configured with the client credentials.
+One way to initialize it is to attach a <a class="xref" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.html">MonoBehaviour</a> script to the button UI object in the scene that triggers the login.
+The script has a public field where you can reference the client credentials.
+Once the button is clicked, first create an instance of the <a class="xref" href="../api/i5.Toolkit.Core.OpenIDConnectClient.IOidcProvider.html">IOidcProvider</a> that should be used and assign the client credentials.
+After that, assign the instance to the xref:i5.Toolkit.Core.OpenIDConnectClient.IOidcProvider&gt; property of the service.</p>
+<p>Before starting the login process, subscribe to the <a class="xref" href="../api/i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.html#i5_Toolkit_Core_OpenIDConnectClient_OpenIDConnectService_LoginCompleted">LoginCompleted</a> event to get notified once the login procedure is completed.
+To start the login process, call the <a class="xref" href="../api/i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.html#i5_Toolkit_Core_OpenIDConnectClient_OpenIDConnectService_OpenLoginPage">OpenLoginPage()</a> method of the <a class="xref" href="../api/i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.html">OpenIDConnectService</a>.
+This will show the login page of the provider to the user in the system&#39;s default browser.
+Once the user is logged in, all the necessary redirects and requests to get the access token are made automatically.
+After the login process has finished successfully, the <a class="xref" href="../api/i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.html#i5_Toolkit_Core_OpenIDConnectClient_OpenIDConnectService_LoginCompleted">LoginCompleted</a> event is raised.</p>
+<h3 id="bringing-the-application-back-into-focus">Bringing the Application Back into Focus</h3>
+<p>After the login, the Web browser redirects to a URI to which the app listens and which is defined in the <a class="xref" href="../api/i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.html#i5_Toolkit_Core_OpenIDConnectClient_OpenIDConnectService_RedirectURI">RedirectURI</a>.
+This is usually a custom app protocol or the loopback address where a local server is listening.
+However, in some cases, the application has to make sure that it gets back into focus after the login.</p>
+<h4 id="uwp-1">UWP</h4>
+<p>On UWP, the application is automatically brought back into focus if you have specified the custom URI schema as the service&#39;s <a class="xref" href="../api/i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.html#i5_Toolkit_Core_OpenIDConnectClient_OpenIDConnectService_RedirectURI">RedirectURI</a> and if you have added it as a protocol in the player settings.
+Using a custom URI schema as a redirect URI is mandatory for this platform since the redirect contains the necessary data to finish the login.</p>
+<h4 id="editor--standalone-1">Editor &amp; Standalone</h4>
+<p>For these platforms, the OpenID Connect service only handles the redirect of information.
+Without additional logic or configurations, the user manually has to return to the application.
+You can set the <a class="xref" href="../api/i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.html#i5_Toolkit_Core_OpenIDConnectClient_OpenIDConnectService_RedirectURI">RedirectURI</a> to a Web page which should tell the user to return to the app.
+You can also search for more platform-specific approaches that get the application back into view.</p>
+<h3 id="logout">Logout</h3>
+<p>To log out, call the <a class="xref" href="../api/i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.html#i5_Toolkit_Core_OpenIDConnectClient_OpenIDConnectService_Logout">Logout()</a> method of the OpenID Connect service.
+There is also an event <a class="xref" href="../api/i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.html#i5_Toolkit_Core_OpenIDConnectClient_OpenIDConnectService_LogoutCompleted">LogoutCompleted</a> which is raised after the logout.</p>
+<h2 id="client-registration">Client Registration</h2>
+<p>To set up an OpenID Connect client for a specific provider, the client needs to be registered at the provider.
+As a result, the provider issues client credentials which usually consist of a client id and a client secret.
+Once you have obtained the client credentials, <a href="#adding-the-client-credentials">add them to the client</a>.</p>
+<h3 id="creating-a-learning-layers-client">Creating a Learning Layers Client</h3>
+<p>To register a learning layers client, follow these steps:</p>
+<ol>
+<li>Go to <a href="https://api.learning-layers.eu/o/oauth2/">https://api.learning-layers.eu/o/oauth2/</a>.</li>
+<li>Click the &quot;Log in&quot; button.</li>
+<li>Login with your user credentials or create a new account if you do not have one.</li>
+<li>In the left side bar, select &quot;Self-service client registration&quot;.</li>
+<li>Click the button &quot;Register a new client&quot;.</li>
+<li>Enter a client name.</li>
+<li>Add redirect URIs, e.g. <a href="http://127.0.0.1">http://127.0.0.1</a>.
+If your app uses a custom URI schema, you must add the redirect URI to the list, e.g. mySchema:/.</li>
+<li>If you want to, you can customize the approval page that is shown to the user when the OpenID Connect scopes have to be authorized.
+You can add a logo and links to Web pages of the terms of service, policy and home page.
+Moreover, you can add further e-mail contacts apart from your own one to indicate who is responsible for this client.
+All configurations from this step are optional and do not influence the functionality of the OpenID Connect workflow.</li>
+<li>Scroll up again and select the &quot;Access&quot; tab on the page.</li>
+<li>Add the scopes that you need to the list of scopes.
+Only the scopes which are listed here can be requested by the client.</li>
+<li>Make sure that &quot;Grant Types&quot; is set to &quot;authorization code&quot;.</li>
+<li>Go to the &quot;Other&quot; tab.
+Change the default max age to 1440000 so that the access token is valid for a longer time.</li>
+<li>Leave all other settings at their default values.
+Click the &quot;Save&quot; button at the top or bottom to finalize the client generation.</li>
+<li>You will now be presented with the client credentials.
+Copy the values in the fields &quot;Client ID&quot;, &quot;Client Secret&quot;, &quot;Client Configuration URL&quot; and &quot;Registration Access Token&quot; and save them somewhere on your hard drive.
+It is important that you keep these values secret and you need them to authorize the client.
+The values are also required if you later want to edit the client&#39;s settings.</li>
+</ol>
+<p>To change settings at a later point, enter the asked values on the right under &quot;Self-service client registration&quot;.</p>
+<p>To use the client credentials in the application, proceed with the section <a href="#adding-the-client-credentials">Adding the Client Credentials</a>.</p>
+<h2 id="example-scene">Example Scene</h2>
+<p>There is an example scene which shows how to set up and use the Learning Layers OpenID Connect client.
+To use the scene, first register a client at the <a href="https://api.learning-layers.eu/o/oauth2/">Learning Layers provider</a>.
+After that, create the client credentials file by right-clicking in the Assets browser and choosing &quot;Create &gt; i5 Toolkit &gt; OpenID Connect Client Data&quot;.
+Select the created file and enter the client id and client data in the inspector.
+Then, select the &quot;Tester&quot; GameObject in the scene and drag and drop the file onto the field on the OpenID Connect Tester.
+After this initialization, you can start the scene.
+If you press F5, the browser is opened with the Learning Layers login page.
+Once you log in and return to the app, the console will print the access token and some information about the logged in user.</p>
+<p>The important GameObjects in the example scene are the <em>Service Bootstrapper</em> and <em>Tester</em>.
+The service manager bootstrapper on the <em>Service Bootstrapper</em> initializes the <a class="xref" href="../api/i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.html">OpenIDConnectService</a>.
+The <em>Tester</em> GameObject contains the configuration of the Learning Layers OpenID Connect client.
+It also triggers the login procedure and reacts to the successful login.</p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/rwth-acis/i5-Toolkit-for-Unity/blob/features/gitVersioning/Documentation/manual/OpenID-Connect-Client.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            i5 Toolkit Documentation
+            
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

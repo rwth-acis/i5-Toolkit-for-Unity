@@ -1,0 +1,233 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Version Tool | i5 Toolkit Documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Version Tool | i5 Toolkit Documentation ">
+    <meta name="generator" content="docfx 2.56.2.0">
+    
+    <link rel="shortcut icon" href="../resources/Logos/Logo_whiteBg.svg">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../resources/Logos/Logo_whiteBg.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="version-tool">Version Tool</h1>
+
+<p><img src="../resources/Logos/Version-Tool.svg" alt="Version Tool"></p>
+<h2 id="semantic-versioning">Semantic Versioning</h2>
+<p>Applications and packages should be released using the <a href="https://semver.org/">semantic versioning schema</a>.
+It consists of a major release number, a minor release number, a patch number and sometimes a revision number.
+These numbers are separated by dots which leads to versions such as 1.2.3.
+Here, 1 is the major release, 2 the minor release and 3 the patch number.</p>
+<p>Each of the numbers is incremented by some rules. The major version is only increased if the app&#39;s API fundamentally changes so that breaking changes are introduced.
+The minor number is bumped if new features are added but the API is still compatible.
+The patch number is incremented if bugfixes are added which do not break the application.</p>
+<h2 id="use-case">Use Case</h2>
+<p>The version number of an application should be incremented to show what kind of changes have happened but also to make sure that testers can overwrite already installed versions on a device.
+If the version number is not incremented or even lowered, testers first need to deinstall apps on devices such as Android, UWP and iOS and can only install the new version of the app after that.
+This means that in a setup where a continuos integration pipeline creates installer files, the version should be incremented automatically.
+Developers can determine the major and minor version.
+The patch number can be incremented automatically.</p>
+<p>Since Unity stores the app&#39;s version number in the project settings, changing the version number is a change that needs to be added to the source control.
+This means that the version number cannot be stored explicitly in the Unity project itself since calculating and applying a version number contributes another entry in the source control&#39;s history.
+The versioning tool allows developers to add placeholder variables to the version string in Unity&#39;s project settings.
+They can then define the major and minor version using git tags, e.g. v1.2.
+When building the installer files of the app, the versioning tool automatically calculates the version number from the available information in Git and writes it into the built application.</p>
+<h2 id="usage">Usage</h2>
+<p>The version tool allows you to add placeholders in the project&#39;s version string.
+You can add any number of placeholders and you can combine them with other text.</p>
+<p>To edit your project&#39;s version number go to &quot;Edit &gt; Project Settings...&quot; in the top menu of Unity&#39;s editor.
+After that, select the &quot;Player&quot; tab in the opened window.
+At the top, there is a field version.
+Enter the version schema with the placeholders here.</p>
+<p>The following placeholders are available:</p>
+<table>
+<thead>
+<tr>
+<th>Placeholder</th>
+<th>Meaning</th>
+<th>Example Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>$gitVersion</code></td>
+<td>Gets the version which consists of a major, minor and patch number based on git tags.</td>
+<td>1.2.3</td>
+</tr>
+<tr>
+<td><code>$gitBranch</code></td>
+<td>Gets the current branch name</td>
+<td>develop</td>
+</tr>
+</tbody>
+</table>
+<p>In order to calculate the correct version numbers, tag your application&#39;s releases with git tags.
+The tags must have the form <code>v1.2</code>, so start them with a &quot;v&quot;, followed by the major and minor version number.</p>
+<p>The version is automatically applied to a built application.
+This means that the version number is not available in the Unity editor but only in the compiled application package.</p>
+<p>The version number is currently applied to installation files for the following platforms:</p>
+<table>
+<thead>
+<tr>
+<th>Platform</th>
+<th>Used Format</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Standalone</td>
+<td>Uses the version string that was set in the player settings and where the placeholders are replaced</td>
+</tr>
+<tr>
+<td>UWP</td>
+<td>Uses a version number format with four numbers: 1.2.3.4. The first three numbers are reconstructed from the <code>$gitVersion</code> placeholder. The last number is always 0 as it is reserved by the Windows Store.</td>
+</tr>
+<tr>
+<td>Android</td>
+<td>Uses one single number. It is calculated from the total number of commits that have been made on the currently checked out branch</td>
+</tr>
+</tbody>
+</table>
+<h2 id="recommended-setup">Recommended Setup</h2>
+<p>It is recommended to follow the <a href="https://www.atlassian.com/de/git/tutorials/comparing-workflows/gitflow-workflow">gitflow workflow</a>.
+You should use a main branch which contains stable releases, a develop branch which works towards the next release and feature branches for individual features.</p>
+<p>The given way of calculating versions is not able to give each commit on every branch a unique version.
+If two features are developed in parallel, they share the same version numbers since their number of commits since the last tag can be identical.
+Therefore, it is recommended to produce versioned builds from the main branch.
+On the master branch, each version is unique since branches that are merged into master are put into a sequential order again.</p>
+<p>If you want to provide preview builds, you can provide builds from the develop branch but you should label them as preview to indicate that their versions are not final and might change on the master branch.</p>
+<h2 id="testing">Testing</h2>
+<p>You can test the data that the versioning tool reads from Git using the menu at the top in the Unity editor:
+The available entries are:</p>
+<table>
+<thead>
+<tr>
+<th>Menu Entry</th>
+<th>Output</th>
+<th>Example Output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>i5 Toolkit &gt; Build Versioning &gt; Get Semantic Version</td>
+<td>Gets the major and minor version from git tags and the patch version from the number of commits since the last git tag. The calculated version is output as a log message</td>
+<td>1.2.3</td>
+</tr>
+<tr>
+<td>i5 Toolkit &gt; Build Versioning &gt; Get Git Branch</td>
+<td>Logs the name of the currently checked out git branch in the console</td>
+<td>develop</td>
+</tr>
+<tr>
+<td>i5 Toolkit &gt; Build Versioning &gt; Get Total Commits on Branch</td>
+<td>Counts the total number of commits that are tracked on the currently checked out branch and logs them in the console.</td>
+<td>Total number of commits on branch: 42</td>
+</tr>
+</tbody>
+</table>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/rwth-acis/i5-Toolkit-for-Unity/blob/develop/Documentation/manual/Version-Tool.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            i5 Toolkit Documentation
+            
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

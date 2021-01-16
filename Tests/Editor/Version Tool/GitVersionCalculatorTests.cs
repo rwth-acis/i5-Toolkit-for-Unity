@@ -23,7 +23,7 @@ namespace i5.Toolkit.Core.Tests.VersionTool
         {
             GitVersionCalculator gitVersion = CreateGitVersionCalculator(out IGitRunner gitRunner);
             string ignored = null;
-            A.CallTo(() => gitRunner.RunCommand(@"describe --tags --long --match ‘v[0–9]*’", out ignored, out ignored)).Returns(1).AssignsOutAndRefParameters("testOutput", "testError");
+            A.CallTo(() => gitRunner.RunCommand("describe --tags --long --match \"v[0-9]*\"", out ignored, out ignored)).Returns(1).AssignsOutAndRefParameters("testOutput", "testError");
 
             Assert.IsFalse(gitVersion.TryGetVersion(out string version));
         }
@@ -33,7 +33,7 @@ namespace i5.Toolkit.Core.Tests.VersionTool
         {
             GitVersionCalculator gitVersion = CreateGitVersionCalculator(out IGitRunner gitRunner);
             string ignored = null;
-            A.CallTo(() => gitRunner.RunCommand(@"describe --tags --long --match ‘v[0–9]*’", out ignored, out ignored)).Returns(1).AssignsOutAndRefParameters("testOutput", "testError");
+            A.CallTo(() => gitRunner.RunCommand("describe --tags --long --match \"v[0-9]*\"", out ignored, out ignored)).Returns(1).AssignsOutAndRefParameters("testOutput", "testError");
 
             gitVersion.TryGetVersion(out string version);
 
@@ -43,10 +43,9 @@ namespace i5.Toolkit.Core.Tests.VersionTool
         [Test]
         public void TryGetVersion_GitError_LogsWarning()
         {
-
             GitVersionCalculator gitVersion = CreateGitVersionCalculator(out IGitRunner gitRunner);
             string ignored = null;
-            A.CallTo(() => gitRunner.RunCommand(@"describe --tags --long --match ‘v[0–9]*’", out ignored, out ignored)).Returns(1).AssignsOutAndRefParameters("testOutput", "testError");
+            A.CallTo(() => gitRunner.RunCommand("describe --tags --long --match \"v[0-9]*\"", out ignored, out ignored)).Returns(1).AssignsOutAndRefParameters("testOutput", "testError");
 
             LogAssert.Expect(LogType.Warning, "Error running git: testError");
 
@@ -60,7 +59,7 @@ namespace i5.Toolkit.Core.Tests.VersionTool
             string ignored = null;
             A.CallTo(() => gitRunner
             .RunCommand(
-                @"describe --tags --long --match ‘v[0–9]*’",
+                "describe --tags --long --match \"v[0-9]*\"",
                 out ignored, out ignored))
                 .Returns(0)
                 .AssignsOutAndRefParameters("v1.2-3-g4ab59cb78", "");
@@ -75,7 +74,7 @@ namespace i5.Toolkit.Core.Tests.VersionTool
             string ignored = null;
             A.CallTo(() => gitRunner
             .RunCommand(
-                @"describe --tags --long --match ‘v[0–9]*’",
+                "describe --tags --long --match \"v[0-9]*\"",
                 out ignored, out ignored))
                 .Returns(0)
                 .AssignsOutAndRefParameters("v1.2-3-g4ab59cb78", "");

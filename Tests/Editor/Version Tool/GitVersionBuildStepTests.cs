@@ -3,9 +3,6 @@ using i5.Toolkit.Core.Editor.TestHelpers;
 using i5.Toolkit.Core.VersionTool;
 using NUnit.Framework;
 using System;
-using System.Text.RegularExpressions;
-using UnityEngine;
-using UnityEngine.TestTools;
 
 namespace i5.Toolkit.Core.Tests.VersionTool
 {

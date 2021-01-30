@@ -1,4 +1,5 @@
 ﻿using i5.Toolkit.Core.Utilities;
+using i5.Toolkit.Core.Utilities.SystemAdapters;
 using System;
 
 namespace i5.Toolkit.Core.VersionTool
@@ -15,11 +16,14 @@ namespace i5.Toolkit.Core.VersionTool
         // placeholder that is replaced with the value of the environment variable $APP_VERSION
         private const string appVersionPlaceHolder = "$appVersion";
         // name of the enviornment variable
-        private const string appVersionVarName = "APPVERSION";
+        private const string appVersionVarName = "APP_VERSION";
+        // name of the android environment variable
+        private const string androidAppVersionVarName = "ANDROID_APP_VERSION";
 
         public const string toolName = "Version Tool";
 
         private IGitVersionCalculator gitVersion;
+        private ISystemEnvironment systemEnvironment;
 
         /// <summary>
         /// Creates a new instance of the build logic step
@@ -27,6 +31,7 @@ namespace i5.Toolkit.Core.VersionTool
         public GitVersionBuildStep()
         {
             gitVersion = new GitVersionCalculator();
+            systemEnvironment = new SystemEnvironmentAdapter();
         }
 
         public bool ContainsPlaceholder(string versionString)
@@ -98,7 +103,7 @@ namespace i5.Toolkit.Core.VersionTool
             }
 
             // first check if APPVERSION variable was set
-            string appVersionVar = Environment.GetEnvironmentVariable(appVersionVarName);
+            string appVersionVar = systemEnvironment.GetEnvironmentVariable(appVersionVarName);
 
             if (!string.IsNullOrEmpty(appVersionVar))
             {
@@ -143,6 +148,16 @@ namespace i5.Toolkit.Core.VersionTool
         {
             get
             {
+                string strAndroidAppVersion = systemEnvironment.GetEnvironmentVariable(androidAppVersionVarName);
+                if (!string.IsNullOrEmpty(strAndroidAppVersion))
+                {
+                    if (int.TryParse(strAndroidAppVersion, out int androidAppVersion))
+                    {
+                        return androidAppVersion;
+                    }
+                }
+
+                // if variable not set or is not an int
                 gitVersion.TryGetTotalCommitsOnBranch(out int commitCount);
                 return commitCount;
             }

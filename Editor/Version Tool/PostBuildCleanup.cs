@@ -33,7 +33,11 @@ namespace i5.Toolkit.Core.VersionTool
         private void RestoreVersions()
         {
             VersionCache cache = VersionCache.Load();
-            Debug.Log($"[{GitVersionBuildStep.toolName}] Restoring version config:\n{PlayerSettings.bundleVersion}->{cache.appVersion}\n{PlayerSettings.WSA.packageVersion}->{cache.wsaVersion}\n{PlayerSettings.Android.bundleVersionCode}->{cache.androidVersion}");
+            Debug.Log($"[{GitVersionBuildStep.toolName}] Restoring version config:\n" +
+                $"{PlayerSettings.bundleVersion}->{cache.appVersion}\n" +
+                $"{PlayerSettings.WSA.packageVersion}->{cache.wsaVersion}\n" +
+                $"{PlayerSettings.Android.bundleVersionCode}->{cache.androidVersion}"
+                );
             PlayerSettings.bundleVersion = cache.appVersion;
             PlayerSettings.WSA.packageVersion = cache.wsaVersion;
             PlayerSettings.Android.bundleVersionCode = cache.androidVersion;

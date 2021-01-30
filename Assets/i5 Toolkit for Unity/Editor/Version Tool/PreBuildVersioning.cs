@@ -54,14 +54,17 @@ namespace i5.Toolkit.Core.VersionTool
         // so that it can be restored after the build
         private void CacheVersionConfig()
         {
-            Debug.Log($"[{GitVersionBuildStep.toolName}] Caching version config:\n{PlayerSettings.bundleVersion}\n{PlayerSettings.WSA.packageVersion}\n{PlayerSettings.Android.bundleVersionCode}");
+            Debug.Log($"[{GitVersionBuildStep.toolName}] Caching version config:\n" +
+                $"{PlayerSettings.bundleVersion}\n" +
+                $"{PlayerSettings.WSA.packageVersion}\n" +
+                $"{PlayerSettings.Android.bundleVersionCode}");
             VersionCache cache = new VersionCache();
             cache.appVersion = PlayerSettings.bundleVersion;
             cache.wsaVersion = PlayerSettings.WSA.packageVersion;
             cache.androidVersion = PlayerSettings.Android.bundleVersionCode;
 
-            Debug.Log($"[{GitVersionBuildStep.toolName}] Saved temporary cache");
             cache.Save();
+            Debug.Log($"[{GitVersionBuildStep.toolName}] Saved temporary cache");
         }
     }
 }

@@ -1,7 +1,5 @@
 ﻿using i5.Toolkit.Core.Utilities;
 using System;
-using System.Text.RegularExpressions;
-using UnityEngine;
 
 namespace i5.Toolkit.Core.VersionTool
 {
@@ -14,6 +12,10 @@ namespace i5.Toolkit.Core.VersionTool
         private const string gitVersionplaceholder = "$gitVersion";
         // placeholder that is replaced with the branch name
         private const string branchPlaceholder = "$gitBranch";
+        // placeholder that is replaced with the value of the environment variable $APP_VERSION
+        private const string appVersionPlaceHolder = "$appVersion";
+        // name of the enviornment variable
+        private const string appVersionVarName = "APPVERSION";
 
         public const string toolName = "Version Tool";
 
@@ -42,21 +44,24 @@ namespace i5.Toolkit.Core.VersionTool
         {
             GitVersionCalculator gitVersion = new GitVersionCalculator();
 
-            versionString = ReplaceVersionPlaceholder(versionString);
+            versionString = ReplaceGitVersionPlaceholder(versionString);
             versionString = ReplaceBranchPlaceholder(versionString);
+            versionString = ReplaceAppVersionPlaceholder(versionString);
 
             return versionString;
         }
 
         // replaces the version placeholder
-        private string ReplaceVersionPlaceholder(string versionString)
+        private string ReplaceGitVersionPlaceholder(string versionString)
         {
             if (!versionString.Contains(gitVersionplaceholder))
             {
                 return versionString;
             }
 
-            i5Debug.Log("Version placeholder found. Running versioning tool to calculate semantic version number from Git tags", this);
+            i5Debug.Log("Version placeholder found.", this);
+
+            i5Debug.Log("Running versioning tool to calculate semantic version number from Git tags", this);
             if (!gitVersion.TryGetVersion(out string version))
             {
                 i5Debug.LogWarning($"Could not get version name. Version placeholder will be replaced with default {version}", this);
@@ -85,6 +90,35 @@ namespace i5.Toolkit.Core.VersionTool
             return versionString;
         }
 
+        private string ReplaceAppVersionPlaceholder(string versionString)
+        {
+            if (!versionString.Contains(appVersionPlaceHolder))
+            {
+                return versionString;
+            }
+
+            // first check if APPVERSION variable was set
+            string appVersionVar = Environment.GetEnvironmentVariable(appVersionVarName);
+
+            if (!string.IsNullOrEmpty(appVersionVar))
+            {
+                i5Debug.Log("Using environment variable APPVERSION to replace version placeholder.", this);
+                versionString = versionString.Replace(gitVersionplaceholder, appVersionVar);
+            }
+            // else: try calculating it using git
+            else
+            {
+                i5Debug.Log("Running versioning tool to calculate semantic version number from Git tags", this);
+                if (!gitVersion.TryGetVersion(out string version))
+                {
+                    i5Debug.LogWarning($"Could not get version name. Version placeholder will be replaced with default {version}", this);
+                }
+
+                versionString = versionString.Replace(gitVersionplaceholder, version);
+            }
+            return versionString;
+        }
+
         /// <summary>
         /// Calculates the version which can be applied to WSA packages
         /// e.g. for UWP builds
@@ -95,20 +129,8 @@ namespace i5.Toolkit.Core.VersionTool
         {
             get
             {
-                Regex rgx = new Regex("[^0-9.]");
                 gitVersion.TryGetVersion(out string versionString);
-                versionString = rgx.Replace(versionString, "");
-                if (Version.TryParse(versionString, out Version result))
-                {
-                    int major = Mathf.Max(0, result.Major);
-                    int minor = Mathf.Max(0, result.Minor);
-                    int build = Mathf.Max(0, result.Build);
-                    return new Version(major, minor, build, 0);
-                }
-                else
-                {
-                    return new Version(0, 0, 1, 0);
-                }
+                return VersionUtilities.StringToVersion(versionString);
             }
         }
 

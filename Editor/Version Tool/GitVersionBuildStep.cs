@@ -10,11 +10,11 @@ namespace i5.Toolkit.Core.VersionTool
     public class GitVersionBuildStep
     {
         // placeholder that is replaced with the version number
-        private const string gitVersionplaceholder = "$gitVersion";
+        private const string gitVersionPlaceholder = "$gitVersion";
         // placeholder that is replaced with the branch name
         private const string branchPlaceholder = "$gitBranch";
         // placeholder that is replaced with the value of the environment variable $APP_VERSION
-        private const string appVersionPlaceHolder = "$appVersion";
+        private const string appVersionPlaceholder = "$appVersion";
         // name of the enviornment variable
         private const string appVersionVarName = "APP_VERSION";
         // name of the android environment variable
@@ -36,8 +36,9 @@ namespace i5.Toolkit.Core.VersionTool
 
         public bool ContainsPlaceholder(string versionString)
         {
-            return versionString.Contains(gitVersionplaceholder)
-                || versionString.Contains(branchPlaceholder);
+            return versionString.Contains(gitVersionPlaceholder)
+                || versionString.Contains(branchPlaceholder)
+                || versionString.Contains(appVersionPlaceholder);
         }
 
         /// <summary>
@@ -59,7 +60,7 @@ namespace i5.Toolkit.Core.VersionTool
         // replaces the version placeholder
         private string ReplaceGitVersionPlaceholder(string versionString)
         {
-            if (!versionString.Contains(gitVersionplaceholder))
+            if (!versionString.Contains(gitVersionPlaceholder))
             {
                 return versionString;
             }
@@ -72,7 +73,7 @@ namespace i5.Toolkit.Core.VersionTool
                 i5Debug.LogWarning($"Could not get version name. Version placeholder will be replaced with default {version}", this);
             }
 
-            versionString = versionString.Replace(gitVersionplaceholder, version);
+            versionString = versionString.Replace(gitVersionPlaceholder, version);
 
             return versionString;
         }
@@ -97,7 +98,7 @@ namespace i5.Toolkit.Core.VersionTool
 
         private string ReplaceAppVersionPlaceholder(string versionString)
         {
-            if (!versionString.Contains(appVersionPlaceHolder))
+            if (!versionString.Contains(appVersionPlaceholder))
             {
                 return versionString;
             }
@@ -108,7 +109,7 @@ namespace i5.Toolkit.Core.VersionTool
             if (!string.IsNullOrEmpty(appVersionVar))
             {
                 i5Debug.Log("Using environment variable APPVERSION to replace version placeholder.", this);
-                versionString = versionString.Replace(gitVersionplaceholder, appVersionVar);
+                versionString = versionString.Replace(appVersionPlaceholder, appVersionVar);
             }
             // else: try calculating it using git
             else
@@ -119,7 +120,7 @@ namespace i5.Toolkit.Core.VersionTool
                     i5Debug.LogWarning($"Could not get version name. Version placeholder will be replaced with default {version}", this);
                 }
 
-                versionString = versionString.Replace(gitVersionplaceholder, version);
+                versionString = versionString.Replace(appVersionPlaceholder, version);
             }
             return versionString;
         }

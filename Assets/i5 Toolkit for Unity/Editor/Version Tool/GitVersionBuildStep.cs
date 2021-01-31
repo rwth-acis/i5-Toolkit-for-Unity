@@ -1,7 +1,6 @@
 ﻿using i5.Toolkit.Core.Utilities;
+using i5.Toolkit.Core.Utilities.SystemAdapters;
 using System;
-using System.Text.RegularExpressions;
-using UnityEngine;
 
 namespace i5.Toolkit.Core.VersionTool
 {
@@ -11,13 +10,20 @@ namespace i5.Toolkit.Core.VersionTool
     public class GitVersionBuildStep
     {
         // placeholder that is replaced with the version number
-        private const string gitVersionplaceholder = "$gitVersion";
+        private const string gitVersionPlaceholder = "$gitVersion";
         // placeholder that is replaced with the branch name
         private const string branchPlaceholder = "$gitBranch";
+        // placeholder that is replaced with the value of the environment variable $APP_VERSION
+        private const string appVersionPlaceholder = "$appVersion";
+        // name of the enviornment variable
+        private const string appVersionVarName = "APP_VERSION";
+        // name of the android environment variable
+        private const string androidAppVersionVarName = "ANDROID_APP_VERSION";
 
         public const string toolName = "Version Tool";
 
         private IGitVersionCalculator gitVersion;
+        private ISystemEnvironment systemEnvironment;
 
         /// <summary>
         /// Creates a new instance of the build logic step
@@ -25,12 +31,14 @@ namespace i5.Toolkit.Core.VersionTool
         public GitVersionBuildStep()
         {
             gitVersion = new GitVersionCalculator();
+            systemEnvironment = new SystemEnvironmentAdapter();
         }
 
         public bool ContainsPlaceholder(string versionString)
         {
-            return versionString.Contains(gitVersionplaceholder)
-                || versionString.Contains(branchPlaceholder);
+            return versionString.Contains(gitVersionPlaceholder)
+                || versionString.Contains(branchPlaceholder)
+                || versionString.Contains(appVersionPlaceholder);
         }
 
         /// <summary>
@@ -42,27 +50,30 @@ namespace i5.Toolkit.Core.VersionTool
         {
             GitVersionCalculator gitVersion = new GitVersionCalculator();
 
-            versionString = ReplaceVersionPlaceholder(versionString);
+            versionString = ReplaceGitVersionPlaceholder(versionString);
             versionString = ReplaceBranchPlaceholder(versionString);
+            versionString = ReplaceAppVersionPlaceholder(versionString);
 
             return versionString;
         }
 
         // replaces the version placeholder
-        private string ReplaceVersionPlaceholder(string versionString)
+        private string ReplaceGitVersionPlaceholder(string versionString)
         {
-            if (!versionString.Contains(gitVersionplaceholder))
+            if (!versionString.Contains(gitVersionPlaceholder))
             {
                 return versionString;
             }
 
-            i5Debug.Log("Version placeholder found. Running versioning tool to calculate semantic version number from Git tags", this);
+            i5Debug.Log("Version placeholder found.", this);
+
+            i5Debug.Log("Running versioning tool to calculate semantic version number from Git tags", this);
             if (!gitVersion.TryGetVersion(out string version))
             {
                 i5Debug.LogWarning($"Could not get version name. Version placeholder will be replaced with default {version}", this);
             }
 
-            versionString = versionString.Replace(gitVersionplaceholder, version);
+            versionString = versionString.Replace(gitVersionPlaceholder, version);
 
             return versionString;
         }
@@ -85,6 +96,36 @@ namespace i5.Toolkit.Core.VersionTool
             return versionString;
         }
 
+        private string ReplaceAppVersionPlaceholder(string versionString)
+        {
+            if (!versionString.Contains(appVersionPlaceholder))
+            {
+                return versionString;
+            }
+
+            // first check if APPVERSION variable was set
+            string appVersionVar = systemEnvironment.GetEnvironmentVariable(appVersionVarName);
+
+            if (!string.IsNullOrEmpty(appVersionVar))
+            {
+                i5Debug.Log($"Using environment variable {appVersionVarName} to replace version placeholder.\n" +
+                    $"{appVersionVarName} has the value {appVersionVar}", this);
+                versionString = versionString.Replace(appVersionPlaceholder, appVersionVar);
+            }
+            // else: try calculating it using git
+            else
+            {
+                i5Debug.Log("Running versioning tool to calculate semantic version number from Git tags", this);
+                if (!gitVersion.TryGetVersion(out string version))
+                {
+                    i5Debug.LogWarning($"Could not get version name. Version placeholder will be replaced with default {version}", this);
+                }
+
+                versionString = versionString.Replace(appVersionPlaceholder, version);
+            }
+            return versionString;
+        }
+
         /// <summary>
         /// Calculates the version which can be applied to WSA packages
         /// e.g. for UWP builds
@@ -95,19 +136,20 @@ namespace i5.Toolkit.Core.VersionTool
         {
             get
             {
-                Regex rgx = new Regex("[^0-9.]");
-                gitVersion.TryGetVersion(out string versionString);
-                versionString = rgx.Replace(versionString, "");
-                if (Version.TryParse(versionString, out Version result))
+                // first try to get environment variable
+                string appVersion = systemEnvironment.GetEnvironmentVariable(appVersionVarName);
+                if (!string.IsNullOrEmpty(appVersion))
                 {
-                    int major = Mathf.Max(0, result.Major);
-                    int minor = Mathf.Max(0, result.Minor);
-                    int build = Mathf.Max(0, result.Build);
-                    return new Version(major, minor, build, 0);
+                    i5Debug.Log($"Using environment variable {appVersionVarName} to set WSA version.\n" +
+                        $"{appVersionVarName} has the value {appVersion}", this);
+                    return VersionUtilities.StringToVersion(appVersion);
                 }
                 else
                 {
-                    return new Version(0, 0, 1, 0);
+                    gitVersion.TryGetVersion(out string versionString);
+                    i5Debug.Log($"Using git to set WSA version\n" +
+                        $"Git returned {versionString}", this);
+                    return VersionUtilities.StringToVersion(versionString);
                 }
             }
         }
@@ -121,7 +163,21 @@ namespace i5.Toolkit.Core.VersionTool
         {
             get
             {
+                string strAndroidAppVersion = systemEnvironment.GetEnvironmentVariable(androidAppVersionVarName);
+                if (!string.IsNullOrEmpty(strAndroidAppVersion))
+                {
+                    if (int.TryParse(strAndroidAppVersion, out int androidAppVersion))
+                    {
+                        i5Debug.Log($"Using environment variable {androidAppVersionVarName} to set Android version.\n" +
+                            $"Android version will be set to {androidAppVersion}", this);
+                        return androidAppVersion;
+                    }
+                }
+
+                // if variable not set or is not an int
                 gitVersion.TryGetTotalCommitsOnBranch(out int commitCount);
+                i5Debug.Log($"Using git to set Android version.\n" +
+                    $"Android version will be set to {commitCount}", this);
                 return commitCount;
             }
         }

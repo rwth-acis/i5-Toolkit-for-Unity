@@ -30,12 +30,12 @@ namespace i5.Toolkit.Core.VersionTool
             if (buildStep.ContainsPlaceholder(versionString))
             {
                 versionString = buildStep.ReplacePlaceholders(versionString);
+                // in any case: adjust the main version setting
+                PlayerSettings.bundleVersion = versionString;
 
+                // check if additional changes are required if we are building for another platform
                 switch (report.summary.platformGroup)
                 {
-                    case BuildTargetGroup.Standalone:
-                        PlayerSettings.bundleVersion = versionString;
-                        break;
                     case BuildTargetGroup.WSA:
                         PlayerSettings.WSA.packageVersion = buildStep.WSAVersion;
                         break;
@@ -54,14 +54,17 @@ namespace i5.Toolkit.Core.VersionTool
         // so that it can be restored after the build
         private void CacheVersionConfig()
         {
-            Debug.Log($"[{GitVersionBuildStep.toolName}] Caching version config:\n{PlayerSettings.bundleVersion}\n{PlayerSettings.WSA.packageVersion}\n{PlayerSettings.Android.bundleVersionCode}");
+            Debug.Log($"[{GitVersionBuildStep.toolName}] Caching version config:\n" +
+                $"{PlayerSettings.bundleVersion}\n" +
+                $"{PlayerSettings.WSA.packageVersion}\n" +
+                $"{PlayerSettings.Android.bundleVersionCode}");
             VersionCache cache = new VersionCache();
             cache.appVersion = PlayerSettings.bundleVersion;
             cache.wsaVersion = PlayerSettings.WSA.packageVersion;
             cache.androidVersion = PlayerSettings.Android.bundleVersionCode;
 
-            Debug.Log($"[{GitVersionBuildStep.toolName}] Saved temporary cache");
             cache.Save();
+            Debug.Log($"[{GitVersionBuildStep.toolName}] Saved temporary cache");
         }
     }
 }

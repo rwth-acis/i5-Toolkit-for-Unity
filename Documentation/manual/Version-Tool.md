@@ -43,6 +43,7 @@ The following placeholders are available:
 | --- | --- | --- |
 | `$gitVersion` | Gets the version which consists of a major, minor and patch number based on git tags. | 1.2.3 |
 | `$gitBranch` | Gets the current branch name | develop |
+| `$appVersion` | Gets the version from the environment variable `APP_VERSION`. If the variable is not set, it behaves like `$gitVersion`. | 1.2.3 |
 
 In order to calculate the correct version numbers, tag your application's releases with git tags.
 The tags must have the form `v1.2`, so start them with a "v", followed by the major and minor version number.
@@ -55,13 +56,27 @@ The version number is currently applied to installation files for the following 
 | Platform | Used Format |
 | --- | --- |
 | Standalone | Uses the version string that was set in the player settings and where the placeholders are replaced |
-| UWP | Uses a version number format with four numbers: 1.2.3.4. The first three numbers are reconstructed from the `$gitVersion` placeholder. The last number is always 0 as it is reserved by the Windows Store. |
-| Android | Uses one single number. It is calculated from the total number of commits that have been made on the currently checked out branch |
+| UWP | Uses a version number format with four numbers: 1.2.3.4. The first three numbers are reconstructed from the `$appVersion` placeholder. The last number is always 0 as it is reserved by the Windows Store. |
+| Android | Uses one single number. It is calculated from the total number of commits that have been made on the currently checked out branch. |
+
+Some CI systems do not allow Unity to start other processes so that git cannot be executed.
+In these cases, you can use the `$appVersion` placeholder and you can set the environment variables to bypass the git execution.
+
+For UWP, the number can be overwritten by setting the environment variable `APP_VERSION`.
+If it is non-empty, the value of the variable is used.
+Otherwise, git is executed to calculate the version.
+
+For Android, the number can also be overwritten by setting the environment variable `ANDROID_APP_VERSION`.
+If this variable is set, it is parsed to an integer and applied to the Android version.
+In case that the variable is not set or the value cannot be parsed to an integer, the version tool tries to fetch the number of commits on the branch using git.
 
 ## Recommended Setup
 
 It is recommended to follow the [gitflow workflow](https://www.atlassian.com/de/git/tutorials/comparing-workflows/gitflow-workflow).
 You should use a main branch which contains stable releases, a develop branch which works towards the next release and feature branches for individual features.
+
+To get correct version numbers, tag releases on the master branch in the form `v1.0`.
+Hence, start the tag with a `v`, followed by the major and minor release number.
 
 The given way of calculating versions is not able to give each commit on every branch a unique version.
 If two features are developed in parallel, they share the same version numbers since their number of commits since the last tag can be identical.
@@ -69,6 +84,40 @@ Therefore, it is recommended to produce versioned builds from the main branch.
 On the master branch, each version is unique since branches that are merged into master are put into a sequential order again.
 
 If you want to provide preview builds, you can provide builds from the develop branch but you should label them as preview to indicate that their versions are not final and might change on the master branch.
+
+Some CI runner do not allow Unity to access Git.
+In this case, you can use the environment variable `APP_VERSION` to calculate the version as part of the CI script.
+To also pre-calculate the Android version, set the `ANDROID_APP_VERSION` environment variable.
+The version tool then uses the values of these environment variables.
+
+To calculate the version of the application in the same way as the version tool, use the following Linux bash script:
+
+```
+#! /bin/bash
+
+DESCRIBE=`git describe --tags --long --match v[0-9]\*`
+
+VERSION=`echo $DESCRIBE | awk '{split($0,a,"-"); print a[1]}'`
+BUILD=`echo $DESCRIBE | awk '{split($0,a,"-"); print a[2]}'`
+
+if [[ "${DESCRIBE}" =~ ^[A-Fa-f0-9]+$ ]]; then
+    VERSION="0.0.0"
+    BUILD=`git rev-list HEAD --count`
+    BUILD=${DESCRIBE}
+fi
+
+if [ "${BUILD}" = "" ]; then
+    BUILD='0'
+fi
+
+echo ${VERSION:1}.${BUILD}
+```
+
+Assuming that the script is called `get_version.sh`, you can set the environment variable using:
+
+```
+APP_VERSION=`./ci/get_version.sh`
+```
 
 ## Testing
 You can test the data that the versioning tool reads from Git using the menu at the top in the Unity editor:

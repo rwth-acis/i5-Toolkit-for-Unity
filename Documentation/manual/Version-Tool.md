@@ -24,7 +24,7 @@ The patch number can be incremented automatically.
 Since Unity stores the app's version number in the project settings, changing the version number is a change that needs to be added to the source control.
 This means that the version number cannot be stored explicitly in the Unity project itself since calculating and applying a version number contributes another entry in the source control's history.
 The versioning tool allows developers to add placeholder variables to the version string in Unity's project settings.
-They can then define the major and minor version using git tags, e.g. v1.2.
+They can then define the major and minor version using Git tags, e.g. v1.2.
 When building the installer files of the app, the versioning tool automatically calculates the version number from the available information in Git and writes it into the built application.
 
 ## Usage
@@ -41,11 +41,11 @@ The following placeholders are available:
 
 | Placeholder | Meaning | Example Value |
 | --- | --- | --- |
-| `$gitVersion` | Gets the version which consists of a major, minor and patch number based on git tags. | 1.2.3 |
+| `$gitVersion` | Gets the version which consists of a major, minor and patch number based on Git tags. | 1.2.3 |
 | `$gitBranch` | Gets the current branch name | develop |
 | `$appVersion` | Gets the version from the environment variable `APP_VERSION`. If the variable is not set, it behaves like `$gitVersion`. | 1.2.3 |
 
-In order to calculate the correct version numbers, tag your application's releases with git tags.
+In order to calculate the correct version numbers, tag your application's releases with Git tags.
 The tags must have the form `v1.2`, so start them with a "v", followed by the major and minor version number.
 
 The version is automatically applied to a built application.
@@ -59,16 +59,16 @@ The version number is currently applied to installation files for the following 
 | UWP | Uses a version number format with four numbers: 1.2.3.4. The first three numbers are reconstructed from the `$appVersion` placeholder. The last number is always 0 as it is reserved by the Windows Store. |
 | Android | Uses one single number. It is calculated from the total number of commits that have been made on the currently checked out branch. |
 
-Some CI systems do not allow Unity to start other processes so that git cannot be executed.
-In these cases, you can use the `$appVersion` placeholder and you can set the environment variables to bypass the git execution.
+Some CI systems do not allow Unity to start other processes so that Git cannot be executed.
+In these cases, you can use the `$appVersion` placeholder and you can set the environment variables to bypass the Git execution.
 
 For UWP, the number can be overwritten by setting the environment variable `APP_VERSION`.
 If it is non-empty, the value of the variable is used.
-Otherwise, git is executed to calculate the version.
+Otherwise, Git is executed to calculate the version.
 
 For Android, the number can also be overwritten by setting the environment variable `ANDROID_APP_VERSION`.
 If this variable is set, it is parsed to an integer and applied to the Android version.
-In case that the variable is not set or the value cannot be parsed to an integer, the version tool tries to fetch the number of commits on the branch using git.
+In case that the variable is not set or the value cannot be parsed to an integer, the version tool tries to fetch the number of commits on the branch using Git.
 
 ## Recommended Setup
 
@@ -125,6 +125,6 @@ The available entries are:
 
 | Menu Entry | Output | Example Output |
 | --- | --- | --- |
-| i5 Toolkit > Build Versioning > Get Semantic Version | Gets the major and minor version from git tags and the patch version from the number of commits since the last git tag. The calculated version is output as a log message | 1.2.3 |
-| i5 Toolkit > Build Versioning > Get Git Branch | Logs the name of the currently checked out git branch in the console | develop |
+| i5 Toolkit > Build Versioning > Get Semantic Version | Gets the major and minor version from Git tags and the patch version from the number of commits since the last git tag. The calculated version is output as a log message | 1.2.3 |
+| i5 Toolkit > Build Versioning > Get Git Branch | Logs the name of the currently checked out Git branch in the console | develop |
 | i5 Toolkit > Build Versioning > Get Total Commits on Branch | Counts the total number of commits that are tracked on the currently checked out branch and logs them in the console. | Total number of commits on branch: 42 |

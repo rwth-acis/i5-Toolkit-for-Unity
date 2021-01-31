@@ -2,6 +2,12 @@
 
 This document keeps track of the changes between versions of the toolkit.
 
+## 1.3.2 (2021-01-31)
+
+### Added
+- Added option to Version Tool to specify version using environment variables `APP_VERSION` and `ANDROID_APP_VERISON`.
+  If the environment variable is set, it is used instead of executing Git.
+
 ## 1.3.1 (2021-01-16)
 
 ### Fixed

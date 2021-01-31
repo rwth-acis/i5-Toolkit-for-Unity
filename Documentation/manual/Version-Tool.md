@@ -56,8 +56,15 @@ The version number is currently applied to installation files for the following 
 | Platform | Used Format |
 | --- | --- |
 | Standalone | Uses the version string that was set in the player settings and where the placeholders are replaced |
-| UWP | Uses a version number format with four numbers: 1.2.3.4. The first three numbers are reconstructed from the `$gitVersion` placeholder. The last number is always 0 as it is reserved by the Windows Store. |
-| Android | Uses one single number. It is calculated from the total number of commits that have been made on the currently checked out branch |
+| UWP | Uses a version number format with four numbers: 1.2.3.4. The first three numbers are reconstructed from the `$appVersion` placeholder. The last number is always 0 as it is reserved by the Windows Store. |
+| Android | Uses one single number. It is calculated from the total number of commits that have been made on the currently checked out branch. |
+
+Some CI systems do not allow Unity to start other processes so that git cannot be executed.
+In these cases, you can use the `$appVersion` placeholder and you can set the environment variables to bypass the git execution.
+
+For UWP, the number can be overwritten by setting the environment variable `APP_VERSION`.
+If it is non-empty, the value of the variable is used.
+Otherwise, git is executed to calculate the version.
 
 For Android, the number can also be overwritten by setting the environment variable `ANDROID_APP_VERSION`.
 If this variable is set, it is parsed to an integer and applied to the Android version.

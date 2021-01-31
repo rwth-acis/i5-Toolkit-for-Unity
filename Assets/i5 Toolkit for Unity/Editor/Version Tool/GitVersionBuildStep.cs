@@ -108,7 +108,8 @@ namespace i5.Toolkit.Core.VersionTool
 
             if (!string.IsNullOrEmpty(appVersionVar))
             {
-                i5Debug.Log("Using environment variable APPVERSION to replace version placeholder.", this);
+                i5Debug.Log($"Using environment variable {appVersionVarName} to replace version placeholder.\n" +
+                    $"{appVersionVarName} has the value {appVersionVar}", this);
                 versionString = versionString.Replace(appVersionPlaceholder, appVersionVar);
             }
             // else: try calculating it using git
@@ -135,8 +136,21 @@ namespace i5.Toolkit.Core.VersionTool
         {
             get
             {
-                gitVersion.TryGetVersion(out string versionString);
-                return VersionUtilities.StringToVersion(versionString);
+                // first try to get environment variable
+                string appVersion = systemEnvironment.GetEnvironmentVariable(appVersionVarName);
+                if (!string.IsNullOrEmpty(appVersion))
+                {
+                    i5Debug.Log($"Using environment variable {appVersionVarName} to set WSA version.\n" +
+                        $"{appVersionVarName} has the value {appVersion}", this);
+                    return VersionUtilities.StringToVersion(appVersion);
+                }
+                else
+                {
+                    gitVersion.TryGetVersion(out string versionString);
+                    i5Debug.Log($"Using git to set WSA version\n" +
+                        $"Git returned {versionString}", this);
+                    return VersionUtilities.StringToVersion(versionString);
+                }
             }
         }
 
@@ -154,12 +168,16 @@ namespace i5.Toolkit.Core.VersionTool
                 {
                     if (int.TryParse(strAndroidAppVersion, out int androidAppVersion))
                     {
+                        i5Debug.Log($"Using environment variable {androidAppVersionVarName} to set Android version.\n" +
+                            $"Android version will be set to {androidAppVersion}", this);
                         return androidAppVersion;
                     }
                 }
 
                 // if variable not set or is not an int
                 gitVersion.TryGetTotalCommitsOnBranch(out int commitCount);
+                i5Debug.Log($"Using git to set Android version.\n" +
+                    $"Android version will be set to {commitCount}", this);
                 return commitCount;
             }
         }

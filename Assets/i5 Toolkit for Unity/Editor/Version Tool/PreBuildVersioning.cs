@@ -30,12 +30,12 @@ namespace i5.Toolkit.Core.VersionTool
             if (buildStep.ContainsPlaceholder(versionString))
             {
                 versionString = buildStep.ReplacePlaceholders(versionString);
+                // in any case: adjust the main version setting
+                PlayerSettings.bundleVersion = versionString;
 
+                // check if additional changes are required if we are building for another platform
                 switch (report.summary.platformGroup)
                 {
-                    case BuildTargetGroup.Standalone:
-                        PlayerSettings.bundleVersion = versionString;
-                        break;
                     case BuildTargetGroup.WSA:
                         PlayerSettings.WSA.packageVersion = buildStep.WSAVersion;
                         break;

@@ -214,7 +214,7 @@ namespace i5.Toolkit.Core.Tests.VersionTool
         }
 
         [Test]
-        public void WSAVersion_IsolatedVersionGiven_ReturnsVersion()
+        public void WSAVersion_VarEmptyGitGiven_ReturnsVersionUsingGit()
         {
             GitVersionBuildStep buildStep = CreateGitVersionBuildStep(
                 out IGitVersionCalculator versionCalculator,
@@ -224,6 +224,30 @@ namespace i5.Toolkit.Core.Tests.VersionTool
             A.CallTo(() => versionCalculator.TryGetVersion(out ignored))
                 .Returns(true)
                 .AssignsOutAndRefParameters("1.2.3");
+            A.CallTo(() => systemEnvironment.GetEnvironmentVariable(A<string>.Ignored))
+                .Returns("");
+
+            Version result = buildStep.WSAVersion;
+
+            Assert.AreEqual(1, result.Major);
+            Assert.AreEqual(2, result.Minor);
+            Assert.AreEqual(3, result.Build);
+            Assert.AreEqual(0, result.Revision);
+        }
+
+        [Test]
+        public void WSAVersion_VarVersionGiven_ReturnsVarVersion()
+        {
+            GitVersionBuildStep buildStep = CreateGitVersionBuildStep(
+                out IGitVersionCalculator versionCalculator,
+                out ISystemEnvironment systemEnvironment);
+
+            string ignored = null;
+            A.CallTo(() => versionCalculator.TryGetVersion(out ignored))
+                .Returns(true)
+                .AssignsOutAndRefParameters("1.0.42");
+            A.CallTo(() => systemEnvironment.GetEnvironmentVariable(A<string>.Ignored))
+                .Returns("1.2.3");
 
             Version result = buildStep.WSAVersion;
 

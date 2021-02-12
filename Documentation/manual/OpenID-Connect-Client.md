@@ -114,6 +114,12 @@ This way, the server always fetches the necessary data which are provided in the
 After that, the user is redirected to the specified URI which can e.g. point to your Web page that tells the user to return to the application.
 So, for editor and standalone builds, setting the <xref:i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.RedirectURI> property is optional and can be used to improve the user's experience.
 
+Optional: If you require a workflow where the OpenID Connect redirect has to go to a fixed URL, you can manually set the <xref:i5.Toolkit.Core.OpenIDConnectClient.RedirectServerListener.ListeningUri> to the loopback address and the fixed port:
+
+```
+ServiceManager.GetService<OpenIDConnectService>().ServerListener.ListeningUri = "http://127.0.0.1:8080";
+```
+
 #### UWP
 
 > UWP builds require a redirect URI which needs to be set to a custom URI schema.

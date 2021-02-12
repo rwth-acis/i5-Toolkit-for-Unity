@@ -93,6 +93,16 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
             {
                 ListeningUri = GenerateListeningUri();
             }
+            string origListeningUri = ListeningUri;
+            // some services require the IP address and port without a trailing slash
+            // however, the server requires it to start
+            if (!ListeningUri.EndsWith("/"))
+            {
+                i5Debug.Log(
+                    "Server's listening URI needs to end with a slash. " +
+                    "I will automatically append this slash.", this);
+                ListeningUri += "/";
+            }
             http.Prefixes.Add(ListeningUri);
             http.Start();
             i5Debug.Log("OIDC Redirect server now listening on address " + ListeningUri, this);
@@ -113,7 +123,7 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
                     i5Debug.Log("Redirect was received. Server stopped", this);
 
                     RedirectReceivedEventArgs args = 
-                        new RedirectReceivedEventArgs(context.Request.QueryString.ToDictionary(), ListeningUri);
+                        new RedirectReceivedEventArgs(context.Request.QueryString.ToDictionary(), origListeningUri);
                     RedirectReceived?.Invoke(this, args);
                 }
                 catch (ThreadAbortException)

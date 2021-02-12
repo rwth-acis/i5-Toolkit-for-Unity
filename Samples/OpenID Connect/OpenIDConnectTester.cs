@@ -21,8 +21,6 @@ namespace i5.Toolkit.Core.Examples.OpenIDConnectClient
                 provider.ClientData = learningLayersClientData.clientData;
                 ServiceManager.GetService<OpenIDConnectService>().OidcProvider = provider;
 
-                ServiceManager.GetService<OpenIDConnectService>().ServerListener.ListeningUri = "http://127.0.0.1:12345";
-
                 // only subscribe to the event if it was not yet done before, e.g. in a failed login attempt
                 if (!isSubscribedToOidc)
                 {

@@ -93,6 +93,16 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
             {
                 ListeningUri = GenerateListeningUri();
             }
+            // some services require the IP address and port without a trailing slash
+            // however, the server requires it to start
+            if (!ListeningUri.EndsWith("/"))
+            {
+                i5Debug.LogWarning(
+                    "Server's listening URI needs to end with a slash. " +
+                    "I will automatically append this slash. " +
+                    "For some services, this will create a mismatch between the requested and actual redirect URIs", this);
+                ListeningUri += "/";
+            }
             http.Prefixes.Add(ListeningUri);
             http.Start();
             i5Debug.Log("OIDC Redirect server now listening on address " + ListeningUri, this);

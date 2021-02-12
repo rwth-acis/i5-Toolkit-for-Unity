@@ -2,6 +2,11 @@
 
 This document keeps track of the changes between versions of the toolkit.
 
+## 1.3.3 (2021-02-12)
+
+### Changed
+- Improved OpenID Connect support for workflows where the port needs to be set to a fixed number
+
 ## 1.3.2 (2021-01-31)
 
 ### Added

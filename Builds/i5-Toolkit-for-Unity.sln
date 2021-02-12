@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.9.28307.1234
+VisualStudioVersion = 15.9.28307.1321
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "i5-Toolkit-for-Unity", "i5-Toolkit-for-Unity\i5-Toolkit-for-Unity.vcxproj", "{2FABDF39-A3A3-4497-95BA-5AEE089EBF0F}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -93,6 +93,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {BF8F9F74-A366-41D0-9E0F-7131205183C4}
+		SolutionGuid = {2F150260-9AEE-4C2D-8902-9B1EDAAFAF71}
 	EndGlobalSection
 EndGlobal

@@ -99,6 +99,7 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
             if (activatedArgs.Kind == ActivationKind.Protocol)
             {
                 var protocolArgs = (ProtocolActivatedEventArgs)activatedArgs;
+                Debug.Log("Protocol received: " + protocolArgs.Uri);
                 Dictionary<string, string> fragments = UriUtils.GetUriParameters(protocolArgs.Uri);
                 OpenIDConnectService oidcService = ServiceManager.GetService<OpenIDConnectService>();
                 oidcService.ServerListener_RedirectReceived(

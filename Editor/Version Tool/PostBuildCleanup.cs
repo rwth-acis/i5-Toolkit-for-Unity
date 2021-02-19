@@ -36,11 +36,14 @@ namespace i5.Toolkit.Core.VersionTool
             Debug.Log($"[{GitVersionBuildStep.toolName}] Restoring version config:\n" +
                 $"{PlayerSettings.bundleVersion}->{cache.appVersion}\n" +
                 $"{PlayerSettings.WSA.packageVersion}->{cache.wsaVersion}\n" +
-                $"{PlayerSettings.Android.bundleVersionCode}->{cache.androidVersion}"
+                $"{PlayerSettings.Android.bundleVersionCode}->{cache.androidVersion}\n" +
+                $"{PlayerSettings.iOS.buildNumber}->{cache.iOSBuildNumber}"
                 );
             PlayerSettings.bundleVersion = cache.appVersion;
             PlayerSettings.WSA.packageVersion = cache.wsaVersion;
             PlayerSettings.Android.bundleVersionCode = cache.androidVersion;
+            PlayerSettings.iOS.buildNumber = cache.iOSBuildNumber;
+            AssetDatabase.SaveAssets();
         }
     }
 }

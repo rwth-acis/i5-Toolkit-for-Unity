@@ -22,6 +22,10 @@ namespace i5.Toolkit.Core.VersionTool
         /// Android version number
         /// </summary>
         public int androidVersion;
+        /// <summary>
+        /// iOS build number
+        /// </summary>
+        public string iOSBuildNumber;
 
         // Unity cannot serialize the Version object,
         // so it is first converted to a string that is serialized

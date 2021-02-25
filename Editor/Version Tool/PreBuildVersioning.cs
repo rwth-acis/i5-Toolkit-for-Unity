@@ -42,9 +42,6 @@ namespace i5.Toolkit.Core.VersionTool
                     case BuildTargetGroup.Android:
                         PlayerSettings.Android.bundleVersionCode = buildStep.AndroidVersion;
                         break;
-                    case BuildTargetGroup.iOS:
-                        PlayerSettings.iOS.buildNumber = buildStep.WSAVersion.ToString();
-                        break;
                 }
             }
             else
@@ -60,13 +57,11 @@ namespace i5.Toolkit.Core.VersionTool
             Debug.Log($"[{GitVersionBuildStep.toolName}] Caching version config:\n" +
                 $"Version: {PlayerSettings.bundleVersion}\n" +
                 $"UWP version: {PlayerSettings.WSA.packageVersion}\n" +
-                $"Android version: {PlayerSettings.Android.bundleVersionCode}\n" +
-                $"iOS version: {PlayerSettings.iOS.buildNumber}");
+                $"Android version: {PlayerSettings.Android.bundleVersionCode}\n");
             VersionCache cache = new VersionCache();
             cache.appVersion = PlayerSettings.bundleVersion;
             cache.wsaVersion = PlayerSettings.WSA.packageVersion;
             cache.androidVersion = PlayerSettings.Android.bundleVersionCode;
-            cache.iOSBuildNumber = PlayerSettings.iOS.buildNumber;
 
             cache.Save();
             Debug.Log($"[{GitVersionBuildStep.toolName}] Saved temporary cache");

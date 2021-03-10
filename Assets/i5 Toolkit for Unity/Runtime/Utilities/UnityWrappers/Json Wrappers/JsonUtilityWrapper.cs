@@ -8,6 +8,7 @@ namespace i5.Toolkit.Core.Utilities
     {
         public T FromJson<T>(string json)
         {
+            Debug.Log(json);
             return JsonUtility.FromJson<T>(json);
         }
 

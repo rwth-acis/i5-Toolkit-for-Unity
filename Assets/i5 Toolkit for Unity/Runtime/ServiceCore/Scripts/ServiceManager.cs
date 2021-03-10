@@ -13,15 +13,9 @@ namespace i5.Toolkit.Core.ServiceCore
     public class ServiceManager : IServiceManager, IRunnerReceiver
 
     {
-        public enum Provider
-        {
-            LearningLayers,
-            GitHub
-        }
-
         private Dictionary<Type, IService> registeredServices = new Dictionary<Type, IService>();
 
-        private Dictionary<Provider, IService> registeredProviders = new Dictionary<Provider, IService>();
+        private Dictionary<ProviderTypes, IService> registeredProviders = new Dictionary<ProviderTypes, IService>();
 
         private List<IUpdateableService> updateableServices = new List<IUpdateableService>();
 
@@ -107,7 +101,7 @@ namespace i5.Toolkit.Core.ServiceCore
         /// <typeparam name="T">The type of service</typeparam>
         /// <param name="provider">The provider instance which should be registered at the ServiceManager</param>
         /// /// <param name="type">The type of provider which should be registered at the ServiceManager</param>
-        public static void RegisterProvider<T>(T provider, Provider type) where T : IService
+        public static void RegisterProvider<T>(T provider, ProviderTypes type) where T : IService
         {
             EnsureInstance();
             instance.InstRegisterProvider(provider, type);
@@ -118,8 +112,8 @@ namespace i5.Toolkit.Core.ServiceCore
         /// </summary>
         /// <typeparam name="T">The type of service</typeparam>
         /// <param name="provider">The provider instance which should be registered at the ServiceManager</param>
-        /// /// <param name="type">The type of provider which should be registered at the ServiceManager</param>
-        public void InstRegisterProvider<T>(T provider, Provider type) where T : IService
+        /// <param name="type">The type of provider which should be registered at the ServiceManager</param>
+        public void InstRegisterProvider<T>(T provider, ProviderTypes type) where T : IService
         {
             if (registeredProviders.ContainsKey(type))
             {
@@ -163,7 +157,7 @@ namespace i5.Toolkit.Core.ServiceCore
         /// </summary>
         /// <typeparam name="T">The type of service</typeparam>
         /// <param name="type">The provider type that should be removed</param>
-        public static void RemoveProvider<T>(Provider type) where T : IService
+        public static void RemoveProvider<T>(ProviderTypes type) where T : IService
         {
             EnsureInstance();
             instance.InstRemoveProvider<T>(type);
@@ -184,7 +178,7 @@ namespace i5.Toolkit.Core.ServiceCore
         /// </summary>
         /// <typeparam name="T">The type of service</typeparam>
         /// <param name="type">The provider type that should be removed</param>
-        public void InstRemoveProvider<T>(Provider type) where T : IService
+        public void InstRemoveProvider<T>(ProviderTypes type) where T : IService
         {
             if (registeredProviders.ContainsKey(type))
             {
@@ -230,7 +224,7 @@ namespace i5.Toolkit.Core.ServiceCore
         /// <typeparam name="T">The type of service</typeparam>
         /// <param name="type">The provider type</param>
         /// <returns>Returns the registered provider instance</returns>
-        public static T GetProvider<T>(Provider type) where T : IService
+        public static T GetProvider<T>(ProviderTypes type) where T : IService
         {
             EnsureInstance();
             return instance.InstGetProvider<T>(type);
@@ -253,7 +247,7 @@ namespace i5.Toolkit.Core.ServiceCore
         /// <typeparam name="T">The type of service</typeparam>
         /// <param name="type">The provider type</param>
         /// <returns>Returns the registered provider instance</returns>
-        public T InstGetProvider<T>(Provider type) where T : IService
+        public T InstGetProvider<T>(ProviderTypes type) where T : IService
         {
             if (!registeredProviders.ContainsKey(type))
             {
@@ -282,7 +276,7 @@ namespace i5.Toolkit.Core.ServiceCore
         /// <typeparam name="T">The type of service</typeparam>
         /// <param name="type">The provider type</param>
         /// <returns>Returns true if a provider of the given type was registered</returns>
-        public static bool ProviderExists<T>(Provider type) where T : IService
+        public static bool ProviderExists<T>(ProviderTypes type) where T : IService
         {
             EnsureInstance();
             return instance.InstProviderExists<T>(type);
@@ -305,7 +299,7 @@ namespace i5.Toolkit.Core.ServiceCore
         /// <typeparam name="T">The type of service</typeparam>
         /// <param name="type">The provider type</param>
         /// <returns>Returns true if a service of the given type was registered at this instance</returns>
-        public bool InstProviderExists<T>(Provider type) where T : IService
+        public bool InstProviderExists<T>(ProviderTypes type) where T : IService
         {
             return registeredProviders.ContainsKey(type);
         }

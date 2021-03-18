@@ -2,16 +2,22 @@
     "name": "i5.Toolkit.Core.TestUtilities",
     "references": [
         "i5.Toolkit.Core.Editor",
-        "i5.Toolkit.Core.Runtime"
-    ],
-    "optionalUnityReferences": [
-        "TestAssemblies"
+        "i5.Toolkit.Core.Runtime",
+        "UnityEngine.TestRunner",
+        "UnityEditor.TestRunner"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
-    "overrideReferences": false,
-    "precompiledReferences": [],
-    "autoReferenced": true,
-    "defineConstraints": []
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "nunit.framework.dll",
+        "FakeItEasy.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [
+        "UNITY_INCLUDE_TESTS"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
 }

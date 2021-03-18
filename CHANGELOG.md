@@ -2,10 +2,7 @@
 
 This document keeps track of the changes between versions of the toolkit.
 
-## 1.3.4 (2021-02-24)
-
-### Added
-- Extended Version Tool to also apply the version to iOS builds
+## 1.3.4 (2021-03-18)
 
 ### Changed
 - Project is now saved after running the Version Tool on builds so that Git does not pick up temporary changes

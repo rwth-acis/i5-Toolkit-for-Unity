@@ -55,9 +55,9 @@ namespace i5.Toolkit.Core.VersionTool
         private void CacheVersionConfig()
         {
             Debug.Log($"[{GitVersionBuildStep.toolName}] Caching version config:\n" +
-                $"{PlayerSettings.bundleVersion}\n" +
-                $"{PlayerSettings.WSA.packageVersion}\n" +
-                $"{PlayerSettings.Android.bundleVersionCode}");
+                $"Version: {PlayerSettings.bundleVersion}\n" +
+                $"UWP version: {PlayerSettings.WSA.packageVersion}\n" +
+                $"Android version: {PlayerSettings.Android.bundleVersionCode}\n");
             VersionCache cache = new VersionCache();
             cache.appVersion = PlayerSettings.bundleVersion;
             cache.wsaVersion = PlayerSettings.WSA.packageVersion;

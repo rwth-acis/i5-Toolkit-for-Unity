@@ -33,7 +33,7 @@ jobs:
       - uses: game-ci/unity-test-runner@v2
         id: tests
         env:
-          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE_2018_4_15 }}
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE_2019_4_5 }}
         with:
           projectPath: ${{ matrix.projectPath }}
           testMode: ${{ matrix.testMode }}

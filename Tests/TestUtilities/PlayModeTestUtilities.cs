@@ -16,7 +16,7 @@ namespace i5.Toolkit.Core.TestHelpers
         public static void UnloadTestScene()
         {
             CheckPlayMode();
-            SceneManager.UnloadSceneAsync("PlayTest Scene");
+            SceneManager.UnloadScene("PlayTest Scene");
         }
 
         private static void CheckPlayMode()

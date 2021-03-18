@@ -10,34 +10,38 @@ on:
       # do not execute this on the master branch - we have a CI action for that
       - master
 
-env:
-  UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-
 jobs:
   testAllModes:
-    name: Test my project ✨
+    name: Test in ${{ matrix.testMode }}
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        projectPath:
+          - .
+        testMode:
+          - playmode
+          - editmode
     steps:
-    
-      # Checkout
-      - name: Checkout repository
-        uses: actions/checkout@v2
-    
-      # Cache
-      - uses: actions/cache@v1.1.0
+      - uses: actions/checkout@v2
+      - uses: actions/cache@v2
         with:
-          path: Library
-          key: Library
-
-      # Test
-      - name: Run tests
-        uses: webbertakken/unity-test-runner@v1.6
+          path: ${{ matrix.projectPath }}/Library
+          key: Library-${{ matrix.projectPath }}
+          restore-keys: |
+            Library-
+      - uses: game-ci/unity-test-runner@v2
+        id: tests
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE_2018_4_15 }}
         with:
-          unityVersion: 2019.4.5f1
-          
-          
-      - uses: actions/upload-artifact@v1
-        if: success() || failure()
+          projectPath: ${{ matrix.projectPath }}
+          testMode: ${{ matrix.testMode }}
+          artifactsPath: ${{ matrix.testMode }}-artifacts
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          checkName: ${{ matrix.testMode }} Test Results
+      - uses: actions/upload-artifact@v2
+        if: always()
         with:
-          name: Test results
-          path: artifacts
+          name: Test results for ${{ matrix.testMode }}
+          path: ${{ steps.tests.outputs.artifactsPath }}

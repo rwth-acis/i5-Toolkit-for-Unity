@@ -8,34 +8,51 @@ on:
     branches:
     - master
 
-env:
-  UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-
 jobs:
-  test:
-    name: Test & Push to UPM branch
+  testAllModes:
+    name: Test in ${{ matrix.testMode }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        projectPath:
+          - .
+        testMode:
+          - playmode
+          - editmode
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/cache@v2
+        with:
+          path: ${{ matrix.projectPath }}/Library
+          key: Library-${{ matrix.projectPath }}
+          restore-keys: |
+            Library-
+      - uses: game-ci/unity-test-runner@v2
+        id: tests
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE_2018_4_15 }}
+        with:
+          projectPath: ${{ matrix.projectPath }}
+          testMode: ${{ matrix.testMode }}
+          artifactsPath: ${{ matrix.testMode }}-artifacts
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          checkName: ${{ matrix.testMode }} Test Results
+      - uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          name: Test results for ${{ matrix.testMode }}
+          path: ${{ steps.tests.outputs.artifactsPath }}
+  
+  pushUpm:
+    name: Publish UPM
+    needs: testAllModes
     runs-on: ubuntu-latest
     steps:
-    
-      # Checkout
-      - name: Checkout repository
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
         with:
           fetch-depth: 0
-    
-      # Cache
-      - uses: actions/cache@v1.1.0
-        with:
-          path: Library
-          key: Library
-
-      # Test
-      - name: Run tests
-        uses: webbertakken/unity-test-runner@v1.6
-        with:
-          unityVersion: 2019.4.5f1
-  
-      - name: Push to UPM branch
+      - name: push to UPM branch
         run: |
           git subtree push --prefix "$PKG_ROOT" origin upm
         env:

@@ -22,33 +22,24 @@ jobs:
         testMode:
           - playmode
           - editmode
-
     steps:
-    
-      # Checkout
-      - name: Checkout repository
-        uses: actions/checkout@v2
-    
-      # Cache
+      - uses: actions/checkout@v2
       - uses: actions/cache@v2
         with:
-          path: Library
-          key: Library
+          path: ${{ matrix.projectPath }}/Library
+          key: Library-${{ matrix.projectPath }}
           restore-keys: |
             Library-
-
-      # Test
-      - name: Run tests
-        uses: game-ci/unity-test-runner@v2
+      - uses: game-ci/unity-test-runner@v2
         id: tests
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
         with:
+          projectPath: ${{ matrix.projectPath }}
           testMode: ${{ matrix.testMode }}
           artifactsPath: ${{ matrix.testMode }}-artifacts
           githubToken: ${{ secrets.GITHUB_TOKEN }}
           checkName: ${{ matrix.testMode }} Test Results
-          
       - uses: actions/upload-artifact@v2
         if: always()
         with:

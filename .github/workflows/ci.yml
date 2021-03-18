@@ -49,6 +49,7 @@ jobs:
     needs: testAllModes
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - name: push to UPM branch
         run: |
           git subtree push --prefix "$PKG_ROOT" origin upm

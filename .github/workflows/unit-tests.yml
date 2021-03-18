@@ -33,7 +33,7 @@ jobs:
       - name: Run tests
         uses: webbertakken/unity-test-runner@v1.6
         with:
-          unityVersion: 2018.4.15f1
+          unityVersion: 2019.4.5f1
           
           
       - uses: actions/upload-artifact@v1

@@ -14,13 +14,13 @@ public class DeepLinkingService : IService
 
     public void Initialize(IServiceManager owner)
     {
+        ConstructMapping();
+
         Application.deepLinkActivated += OnDeepLinkActivated;
         if (!string.IsNullOrEmpty(Application.absoluteURL))
         {
             OnDeepLinkActivated(Application.absoluteURL);
         }
-
-        ConstructMapping();
     }
 
     private void ConstructMapping()
@@ -40,11 +40,16 @@ public class DeepLinkingService : IService
                 }
             }
         }
+
+        foreach(string key in paths.Keys)
+        {
+            Debug.Log("Registered path " + key);
+        }
     }
 
     public void Cleanup()
     {
-        Application.deepLinkActivated += OnDeepLinkActivated;
+        Application.deepLinkActivated -= OnDeepLinkActivated;
     }
 
     public void AddListenerClass(object obj)
@@ -59,6 +64,8 @@ public class DeepLinkingService : IService
 
     public void OnDeepLinkActivated(string path)
     {
+        Debug.Log("Got deep link for " + path);
+
         // extract path and attributes
         paths[path].Item2.Invoke(paths[path].Item1, new object[0]);
     }

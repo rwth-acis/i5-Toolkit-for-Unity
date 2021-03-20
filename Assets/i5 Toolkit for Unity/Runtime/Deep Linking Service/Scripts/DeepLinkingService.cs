@@ -8,9 +8,14 @@ using UnityEngine;
 
 public class DeepLinkingService : IService
 {
-    private List<object> registeredListeners = new List<object>();
+    private object[] registeredListeners;
 
     private Dictionary<string, Tuple<object, MethodInfo>> paths = new Dictionary<string, Tuple<object, MethodInfo>>();
+
+    public DeepLinkingService(object[] registeredListeners)
+    {
+        this.registeredListeners = registeredListeners;
+    }
 
     public void Initialize(IServiceManager owner)
     {
@@ -36,7 +41,7 @@ public class DeepLinkingService : IService
                 Attribute[] attributes = info.GetCustomAttributes(typeof(DeepLinkAttribute)).ToArray();
                 foreach (DeepLinkAttribute attribute in attributes)
                 {
-                    paths.Add(attribute.Path, new Tuple<object, MethodInfo>(listener, info));
+                    paths.Add(attribute.Path.ToLower(), new Tuple<object, MethodInfo>(listener, info));
                 }
             }
         }
@@ -52,21 +57,13 @@ public class DeepLinkingService : IService
         Application.deepLinkActivated -= OnDeepLinkActivated;
     }
 
-    public void AddListenerClass(object obj)
-    {
-        registeredListeners.Add(obj);
-    }
-
-    public void RemoveListenerClass(object obj)
-    {
-        registeredListeners.Remove(obj);
-    }
-
     public void OnDeepLinkActivated(string path)
     {
         Debug.Log("Got deep link for " + path);
 
+        Uri uri = new Uri(path);
+
         // extract path and attributes
-        paths[path].Item2.Invoke(paths[path].Item1, new object[0]);
+        paths[uri.Authority.ToLower()].Item2.Invoke(paths[uri.Authority.ToLower()].Item1, new object[0]);
     }
 }

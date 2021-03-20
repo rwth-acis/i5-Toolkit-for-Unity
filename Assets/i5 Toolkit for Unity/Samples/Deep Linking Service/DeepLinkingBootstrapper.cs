@@ -7,9 +7,8 @@ public class DeepLinkingBootstrapper : BaseServiceBootstrapper
 {
     protected override void RegisterServices()
     {
-        DeepLinkingService service = new DeepLinkingService();
-        DeepLinkReceiver reciever = new DeepLinkReceiver();
-        service.AddListenerClass(reciever);
+        DeepLinkReceiver receiver = new DeepLinkReceiver();
+        DeepLinkingService service = new DeepLinkingService(new object[] { receiver });
         ServiceManager.RegisterService(service);
     }
 

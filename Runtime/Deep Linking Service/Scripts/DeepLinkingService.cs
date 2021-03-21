@@ -1,4 +1,5 @@
 ﻿using i5.Toolkit.Core.ServiceCore;
+using i5.Toolkit.Core.Utilities;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ public class DeepLinkingService : IService
 {
     private object[] registeredListeners;
 
-    private Dictionary<string, Tuple<object, MethodInfo>> paths = new Dictionary<string, Tuple<object, MethodInfo>>();
+    private Dictionary<string, InstancedMethod> paths = new Dictionary<string, InstancedMethod>();
 
     public DeepLinkingService(object[] registeredListeners)
     {
@@ -41,7 +42,7 @@ public class DeepLinkingService : IService
                 Attribute[] attributes = info.GetCustomAttributes(typeof(DeepLinkAttribute)).ToArray();
                 foreach (DeepLinkAttribute attribute in attributes)
                 {
-                    paths.Add(attribute.Path.ToLower(), new Tuple<object, MethodInfo>(listener, info));
+                    paths.Add(attribute.Path.ToLower(), new InstancedMethod(listener, info));
                 }
             }
         }
@@ -57,13 +58,16 @@ public class DeepLinkingService : IService
         Application.deepLinkActivated -= OnDeepLinkActivated;
     }
 
-    public void OnDeepLinkActivated(string path)
+    public void OnDeepLinkActivated(string deepLink)
     {
-        Debug.Log("Got deep link for " + path);
+        Debug.Log("Got deep link for " + deepLink);
 
-        Uri uri = new Uri(path);
+        Uri uri = new Uri(deepLink);
 
-        // extract path and attributes
-        paths[uri.Authority.ToLower()].Item2.Invoke(paths[uri.Authority.ToLower()].Item1, new object[0]);
+        InstancedMethod targetMethod = paths[uri.Authority.ToLower()];
+
+        targetMethod.Method.Invoke(
+            targetMethod.ClassInstance,
+            new object[0]);
     }
 }

@@ -47,7 +47,7 @@ public class DeepLinkingService : IService
             }
         }
 
-        foreach(string key in paths.Keys)
+        foreach (string key in paths.Keys)
         {
             Debug.Log("Registered path " + key);
         }
@@ -65,9 +65,20 @@ public class DeepLinkingService : IService
         Uri uri = new Uri(deepLink);
 
         InstancedMethod targetMethod = paths[uri.Authority.ToLower()];
+        Dictionary<string, string> fragments = UriUtils.GetUriParameters(uri);
+        ParameterInfo[] parameters = targetMethod.Method.GetParameters();
+
+        // convert strings to objects
+        object[] convertedArguments = new object[parameters.Length];
+        for (int i = 0; i < parameters.Length; i++)
+        {
+            string value = fragments[parameters[i].Name];
+            object convertedValue = Convert.ChangeType(value, parameters[i].ParameterType);
+            convertedArguments[i] = convertedValue;
+        }
 
         targetMethod.Method.Invoke(
             targetMethod.ClassInstance,
-            new object[0]);
+            convertedArguments);
     }
 }

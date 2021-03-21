@@ -10,7 +10,7 @@ public class DeepLinkTester : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F5))
         {
-            ServiceManager.GetService<DeepLinkingService>().OnDeepLinkActivated("i5://helloWorld");
+            ServiceManager.GetService<DeepLinkingService>().OnDeepLinkActivated("i5://helloWorld?x=42&check=true");
         }
     }
 }

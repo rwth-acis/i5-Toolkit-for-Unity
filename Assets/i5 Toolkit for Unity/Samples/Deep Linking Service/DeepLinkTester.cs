@@ -1,6 +1,5 @@
-﻿using i5.Toolkit.Core.ServiceCore;
-using System.Collections;
-using System.Collections.Generic;
+﻿using i5.Toolkit.Core.DeepLinkAPI;
+using i5.Toolkit.Core.ServiceCore;
 using UnityEngine;
 
 public class DeepLinkTester : MonoBehaviour

@@ -1,19 +1,20 @@
-﻿using i5.Toolkit.Core.ServiceCore;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using i5.Toolkit.Core.DeepLinkAPI;
+using i5.Toolkit.Core.ServiceCore;
 
-public class DeepLinkingBootstrapper : BaseServiceBootstrapper
+namespace i5.Toolkit.Core.Examples.DeepLinkAPI
 {
-    protected override void RegisterServices()
+    public class DeepLinkingBootstrapper : BaseServiceBootstrapper
     {
-        DeepLinkReceiver receiver = new DeepLinkReceiver();
-        DeepLinkingService service = new DeepLinkingService(new object[] { receiver });
-        ServiceManager.RegisterService(service);
-    }
+        protected override void RegisterServices()
+        {
+            DeepLinkReceiver receiver = new DeepLinkReceiver();
+            DeepLinkingService service = new DeepLinkingService(new object[] { receiver });
+            ServiceManager.RegisterService(service);
+        }
 
-    protected override void UnRegisterServices()
-    {
-        ServiceManager.RemoveService<DeepLinkingService>();
+        protected override void UnRegisterServices()
+        {
+            ServiceManager.RemoveService<DeepLinkingService>();
+        }
     }
 }

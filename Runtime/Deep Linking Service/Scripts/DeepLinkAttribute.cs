@@ -1,13 +1,16 @@
 ﻿using System;
 
-[AttributeUsage(AttributeTargets.Method, AllowMultiple = true, Inherited = true)]
-public class DeepLinkAttribute : Attribute
+namespace i5.Toolkit.Core.DeepLinkAPI
 {
-    public string Path { get; set; }
-
-    public DeepLinkAttribute(string path)
+    [AttributeUsage(AttributeTargets.Method, AllowMultiple = true, Inherited = true)]
+    public class DeepLinkAttribute : Attribute
     {
-        Path = path;
-    }
-}
+        public string Path { get; set; }
 
+        public DeepLinkAttribute(string path)
+        {
+            Path = path;
+        }
+    }
+
+}

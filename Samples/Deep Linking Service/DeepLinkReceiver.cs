@@ -1,10 +1,14 @@
-﻿using UnityEngine;
+﻿using i5.Toolkit.Core.DeepLinkAPI;
+using UnityEngine;
 
-public class DeepLinkReceiver
+namespace i5.Toolkit.Core.Examples.DeepLinkAPI
 {
-    [DeepLink("helloWorld")]
-    public void HelloWorld(int x, bool check)
+    public class DeepLinkReceiver
     {
-        Debug.Log($"Hello World; x={x}; check={check}");
+        [DeepLink("helloWorld")]
+        public void HelloWorld(int x, bool check)
+        {
+            Debug.Log($"Hello World; x={x}; check={check}");
+        }
     }
 }

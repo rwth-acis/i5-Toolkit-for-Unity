@@ -1,16 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Reflection;
-using UnityEngine;
+﻿using System.Reflection;
 
-public class InstancedMethod
+namespace i5.Toolkit.Core.DeepLinkAPI
 {
-    public object ClassInstance { get; private set; }
-    public MethodInfo Method { get; private set; }
-
-    public InstancedMethod(object classInstance, MethodInfo method)
+    public class InstancedMethod
     {
-        ClassInstance = classInstance;
-        Method = method;
+        public object ClassInstance { get; private set; }
+        public MethodInfo Method { get; private set; }
+
+        public InstancedMethod(object classInstance, MethodInfo method)
+        {
+            ClassInstance = classInstance;
+            Method = method;
+        }
     }
 }

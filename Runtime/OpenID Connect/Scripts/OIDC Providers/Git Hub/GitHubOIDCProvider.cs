@@ -76,15 +76,14 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
 
             string uri = tokenEndpoint + $"?client_id={ClientData.ClientId}" +
                 $"&redirect_uri={redirectUri}&client_secret={ClientData.ClientSecret}&code={code}&grant_type=authorization_code";
-            Debug.Log(uri);
-            Debug.Log(redirectUri);
             WebResponse<string> response = await RestConnector.PostAsync(uri, "");
+            string response_content = WrapAsJson(response.Content);
 
- 
+
             if (response.Successful)
             {
                 GitHubAuthorizationFlowAnswer answer =
-                    JsonSerializer.FromJson<GitHubAuthorizationFlowAnswer>(response.Content);
+                    JsonSerializer.FromJson<GitHubAuthorizationFlowAnswer>(response_content);
                 if (answer == null)
                 {
                     i5Debug.LogError("Could not parse access token in code flow answer", this);
@@ -207,5 +206,25 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
             errorMessage = "";
             return false;
         }
-    }
+
+        private string WrapAsJson(string token)
+        {
+            string[] parameters = token.Split('&', '=');
+            string wrappedToken = "{";
+            for(int i=0; i<parameters.Length-1; i++)
+            {
+                if (i%2==0)
+                {
+                    wrappedToken = wrappedToken + (char)34 + parameters[i] + (char)34 + ":";
+                }
+                else
+                {
+                    wrappedToken = wrappedToken + (char)34 + parameters[i] + (char)34 + ",";
+                }
+            }
+
+            wrappedToken = wrappedToken + (char)34 + parameters[parameters.Length-1] + (char)34 + "}";
+            return wrappedToken;
+        }
+    } 
 }

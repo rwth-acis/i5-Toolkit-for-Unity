@@ -53,7 +53,7 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
         {
             LearningLayersOidcProvider lloidc = new LearningLayersOidcProvider();
             IRestConnector restConnector = A.Fake<IRestConnector>();
-            A.CallTo(() => restConnector.PostAsync(A<string>.Ignored, A<string>.Ignored))
+            A.CallTo(() => restConnector.PostAsync(A<string>.Ignored, A<string>.Ignored, A<Dictionary<string, string>>.Ignored))
                 .Returns(Task.FromResult(new WebResponse<string>("json string", null, 200)));
             lloidc.RestConnector = restConnector;
             lloidc.ClientData = A.Fake<ClientData>();
@@ -78,7 +78,7 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
         {
             LearningLayersOidcProvider lloidc = new LearningLayersOidcProvider();
             IRestConnector restConnector = A.Fake<IRestConnector>();
-            A.CallTo(() => restConnector.PostAsync(A<string>.Ignored, A<string>.Ignored))
+            A.CallTo(() => restConnector.PostAsync(A<string>.Ignored, A<string>.Ignored, A<Dictionary<string, string>>.Ignored))
                 .Returns(Task.FromResult(new WebResponse<string>("my error", 400)));
             lloidc.RestConnector = restConnector;
             lloidc.ClientData = A.Fake<ClientData>();
@@ -126,7 +126,7 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
         {
             LearningLayersOidcProvider lloidc = new LearningLayersOidcProvider();
             IRestConnector restConnector = A.Fake<IRestConnector>();
-            A.CallTo(() => restConnector.GetAsync(A<string>.Ignored))
+            A.CallTo(() => restConnector.GetAsync(A<string>.Ignored, A<Dictionary<string, string>>.Ignored))
                 .Returns(new WebResponse<string>("answer", null, 200));
             lloidc.RestConnector = restConnector;
             LearningLayersUserInfo userInfo = new LearningLayersUserInfo("tester", "tester@test.com", "Tester");
@@ -149,7 +149,7 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
         {
             LearningLayersOidcProvider lloidc = new LearningLayersOidcProvider();
             IRestConnector restConnector = A.Fake<IRestConnector>();
-            A.CallTo(() => restConnector.GetAsync(A<string>.Ignored))
+            A.CallTo(() => restConnector.GetAsync(A<string>.Ignored, A<Dictionary<string, string>>.Ignored))
                 .Returns(new WebResponse<string>("This is a simulated error", 400));
             lloidc.RestConnector = restConnector;
 
@@ -169,7 +169,7 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
         {
             LearningLayersOidcProvider lloidc = new LearningLayersOidcProvider();
             IRestConnector restConnector = A.Fake<IRestConnector>();
-            A.CallTo(() => restConnector.GetAsync(A<string>.Ignored))
+            A.CallTo(() => restConnector.GetAsync(A<string>.Ignored, A<Dictionary<string, string>>.Ignored))
                 .Returns(new WebResponse<string>("answer", null, 200));
             lloidc.RestConnector = restConnector;
             LearningLayersUserInfo userInfo = new LearningLayersUserInfo("tester", "tester@test.com", "Tester");
@@ -194,7 +194,7 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
         {
             LearningLayersOidcProvider lloidc = new LearningLayersOidcProvider();
             IRestConnector restConnector = A.Fake<IRestConnector>();
-            A.CallTo(() => restConnector.GetAsync(A<string>.Ignored))
+            A.CallTo(() => restConnector.GetAsync(A<string>.Ignored, A<Dictionary<string, string>>.Ignored))
                 .Returns(new WebResponse<string>("answer", null, 200));
             lloidc.RestConnector = restConnector;
             LearningLayersUserInfo userInfo = new LearningLayersUserInfo("tester", "tester@test.com", "Tester");
@@ -217,7 +217,7 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
         {
             LearningLayersOidcProvider lloidc = new LearningLayersOidcProvider();
             IRestConnector restConnector = A.Fake<IRestConnector>();
-            A.CallTo(() => restConnector.GetAsync(A<string>.Ignored))
+            A.CallTo(() => restConnector.GetAsync(A<string>.Ignored, A<Dictionary<string,string>>.Ignored))
                 .Returns(new WebResponse<string>("This is a simulated error", 400));
             lloidc.RestConnector = restConnector;
 

@@ -12,20 +12,14 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
     /// </summary>
     public class GitHubUserInfo : IUserInfo
     {
-        [SerializeField] private string sub;
-        [SerializeField] private string name;
-        [SerializeField] private string preferred_username;
-        [SerializeField] private string given_name;
-        [SerializeField] private string family_name;
-        [SerializeField] private string updated_time;
+        [SerializeField] private string login;
         [SerializeField] private string email;
-        [SerializeField] private bool email_verfied;
 
         /// <summary>
         /// The username of the user
         /// This is a mapping based on the available user data of the OIDC provider
         /// </summary>
-        public string Username { get => preferred_username; }
+        public string Username { get => login; }
 
         /// <summary>
         /// The email address of the user
@@ -37,7 +31,7 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         /// A clear name of the user
         /// This is a mapping based on the available user data of the OIDC provider
         /// </summary>
-        public string FullName { get => given_name + " " + family_name; }
+        public string FullName { get => login; }
 
         /// <summary>
         /// Creates a new instance of the GitHub user info with the given parameters
@@ -45,11 +39,10 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         /// <param name="username">The user name of the user</param>
         /// <param name="email">The email address of the user</param>
         /// <param name="fullName">The full name of the user</param>
-        public GitHubUserInfo(string username, string email, string fullName)
+        public GitHubUserInfo(string loginName, string email)
         {
-            this.preferred_username = username;
+            this.login = loginName;
             this.email = email;
-            this.given_name = fullName;
         }
     }
 }

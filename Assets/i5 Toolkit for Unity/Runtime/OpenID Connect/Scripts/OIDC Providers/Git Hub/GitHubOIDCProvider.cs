@@ -124,7 +124,9 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         /// <returns>Returns information about the logged in user if the request was successful, otherwise null</returns>
         public async Task<IUserInfo> GetUserInfoAsync(string accessToken)
         {
-            WebResponse<string> webResponse = await RestConnector.GetAsync(userInfoEndpoint + "?access_token=" + accessToken);
+            Dictionary<string, string> headers = new Dictionary<string, string>();
+            headers.Add("Authorization", $"token {accessToken}");
+            WebResponse<string> webResponse = await RestConnector.GetAsync(userInfoEndpoint + "?access_token=" + accessToken, headers);
             if (webResponse.Successful)
             {
                 GitHubUserInfo userInfo = JsonSerializer.FromJson<GitHubUserInfo>(webResponse.Content);

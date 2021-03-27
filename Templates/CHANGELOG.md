@@ -2,6 +2,13 @@
 
 This document keeps track of the changes between versions of the toolkit.
 
+## 1.4.0 (Unreleased)
+
+### Added
+- Added support for GitHub OpenID Connect login
+- Added an option to the `IRestConnector` interface to specify a header dictionary.
+  This addition also applies to the `UnityWebRestConnector`.
+
 ## 1.3.4 (2021-03-18)
 
 ### Changed

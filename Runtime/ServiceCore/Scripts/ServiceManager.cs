@@ -11,11 +11,8 @@ namespace i5.Toolkit.Core.ServiceCore
     /// These services need to implement the IService interface and do not need to inherit from MonoBehaviour
     /// </summary>
     public class ServiceManager : IServiceManager, IRunnerReceiver
-
     {
         private Dictionary<Type, IService> registeredServices = new Dictionary<Type, IService>();
-
-        private Dictionary<ProviderTypes, IService> registeredProviders = new Dictionary<ProviderTypes, IService>();
 
         private List<IUpdateableService> updateableServices = new List<IUpdateableService>();
 
@@ -96,41 +93,6 @@ namespace i5.Toolkit.Core.ServiceCore
         }
 
         /// <summary>
-        /// Registers a new provider at the service manager
-        /// </summary>
-        /// <typeparam name="T">The type of service</typeparam>
-        /// <param name="provider">The provider instance which should be registered at the ServiceManager</param>
-        /// /// <param name="type">The type of provider which should be registered at the ServiceManager</param>
-        public static void RegisterProvider<T>(T provider, ProviderTypes type) where T : IService
-        {
-            EnsureInstance();
-            instance.InstRegisterProvider(provider, type);
-        }
-
-        /// <summary>
-        /// Instance method for registering a new provider
-        /// </summary>
-        /// <typeparam name="T">The type of service</typeparam>
-        /// <param name="provider">The provider instance which should be registered at the ServiceManager</param>
-        /// <param name="type">The type of provider which should be registered at the ServiceManager</param>
-        public void InstRegisterProvider<T>(T provider, ProviderTypes type) where T : IService
-        {
-            if (registeredProviders.ContainsKey(type))
-            {
-                i5Debug.LogError("An instance of this provider type is already registered", this);
-                return;
-            }
-            registeredProviders.Add(type, provider);
-
-            if (provider is IUpdateableService)
-            {
-                updateableServices.Add((IUpdateableService)provider);
-            }
-
-            provider.Initialize(this);
-        }
-
-        /// <summary>
         /// Instance method for registering a new service
         /// </summary>
         /// <typeparam name="T">The type of service</typeparam>
@@ -153,17 +115,6 @@ namespace i5.Toolkit.Core.ServiceCore
         }
 
         /// <summary>
-        /// Removes a service with the given type from the ServiceManager
-        /// </summary>
-        /// <typeparam name="T">The type of service</typeparam>
-        /// <param name="type">The provider type that should be removed</param>
-        public static void RemoveProvider<T>(ProviderTypes type) where T : IService
-        {
-            EnsureInstance();
-            instance.InstRemoveProvider<T>(type);
-        }
-
-        /// <summary>
         /// Removes a provider with the given type from the ServiceManager
         /// </summary>
         /// <typeparam name="T">The type of service</typeparam>
@@ -171,29 +122,6 @@ namespace i5.Toolkit.Core.ServiceCore
         {
             EnsureInstance();
             instance.InstRemoveService<T>();
-        }
-
-        /// <summary>
-        /// Removes a provider with the given type from this ServiceManager instance
-        /// </summary>
-        /// <typeparam name="T">The type of service</typeparam>
-        /// <param name="type">The provider type that should be removed</param>
-        public void InstRemoveProvider<T>(ProviderTypes type) where T : IService
-        {
-            if (registeredProviders.ContainsKey(type))
-            {
-                IService toRemove = registeredProviders[type];
-                if (toRemove is IUpdateableService)
-                {
-                    updateableServices.Remove((IUpdateableService)toRemove);
-                }
-                toRemove.Cleanup();
-                registeredProviders.Remove(type);
-            }
-            else
-            {
-                throw new InvalidOperationException("Tried to remove unregistered service");
-            }
         }
 
         /// <summary>
@@ -219,18 +147,6 @@ namespace i5.Toolkit.Core.ServiceCore
         }
 
         /// <summary>
-        /// Gets the provider instance with the given type
-        /// </summary>
-        /// <typeparam name="T">The type of service</typeparam>
-        /// <param name="type">The provider type</param>
-        /// <returns>Returns the registered provider instance</returns>
-        public static T GetProvider<T>(ProviderTypes type) where T : IService
-        {
-            EnsureInstance();
-            return instance.InstGetProvider<T>(type);
-        }
-
-        /// <summary>
         /// Gets the service instance with the given type
         /// </summary>
         /// <typeparam name="T">The type of service</typeparam>
@@ -239,21 +155,6 @@ namespace i5.Toolkit.Core.ServiceCore
         {
             EnsureInstance();
             return instance.InstGetService<T>();
-        }
-
-        /// <summary>
-        /// Gets the provider instance with the given type that is registered at this instance
-        /// </summary>
-        /// <typeparam name="T">The type of service</typeparam>
-        /// <param name="type">The provider type</param>
-        /// <returns>Returns the registered provider instance</returns>
-        public T InstGetProvider<T>(ProviderTypes type) where T : IService
-        {
-            if (!registeredProviders.ContainsKey(type))
-            {
-                throw new InvalidOperationException("Tried to get unregistered provider");
-            }
-            return (T)registeredProviders[type];
         }
 
         /// <summary>
@@ -271,18 +172,6 @@ namespace i5.Toolkit.Core.ServiceCore
         }
 
         /// <summary>
-        /// Checks if a provider with the given type exists at the ServiceManager
-        /// </summary>
-        /// <typeparam name="T">The type of service</typeparam>
-        /// <param name="type">The provider type</param>
-        /// <returns>Returns true if a provider of the given type was registered</returns>
-        public static bool ProviderExists<T>(ProviderTypes type) where T : IService
-        {
-            EnsureInstance();
-            return instance.InstProviderExists<T>(type);
-        }
-
-        /// <summary>
         /// Checks if a service with the given type exists at the ServiceManager
         /// </summary>
         /// <typeparam name="T">The type of service</typeparam>
@@ -291,17 +180,6 @@ namespace i5.Toolkit.Core.ServiceCore
         {
             EnsureInstance();
             return instance.InstServiceExists<T>();
-        }
-
-        /// <summary>
-        /// Checks if a provider with the given type exists at this instance
-        /// </summary>
-        /// <typeparam name="T">The type of service</typeparam>
-        /// <param name="type">The provider type</param>
-        /// <returns>Returns true if a service of the given type was registered at this instance</returns>
-        public bool InstProviderExists<T>(ProviderTypes type) where T : IService
-        {
-            return registeredProviders.ContainsKey(type);
         }
 
         /// <summary>

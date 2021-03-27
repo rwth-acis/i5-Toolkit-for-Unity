@@ -27,25 +27,10 @@ namespace i5.Toolkit.Core.ServiceCore
         void InstRegisterService<T>(T service) where T : IService;
 
         /// <summary>
-        /// Instance method for registering a new provider
-        /// </summary>
-        /// <typeparam name="T">The type of service</typeparam>
-        /// <param name="provider">The provider instance which should be registered at the ServiceManager</param>
-        /// <param name="type">The type of provider which should be registered at the ServiceManager</param>
-        void InstRegisterProvider<T>(T provider, ProviderTypes type) where T : IService;
-
-        /// <summary>
         /// Removes a service from the service manager
         /// </summary>
         /// <typeparam name="T">The type of service</typeparam>
         void InstRemoveService<T>() where T : IService;
-
-        /// <summary>
-        /// Removes a provider with the given type from this ServiceManager instance
-        /// </summary>
-        /// <typeparam name="T">The type of service</typeparam>
-        /// <param name="type">The provider type that should be removed</param>
-        void InstRemoveProvider<T>(ProviderTypes type) where T : IService;
 
         /// <summary>
         /// Retrieves the reference to a registered service of the given type
@@ -55,26 +40,10 @@ namespace i5.Toolkit.Core.ServiceCore
         T InstGetService<T>() where T : IService;
 
         /// <summary>
-        /// Gets the provider instance with the given type that is registered at this instance
-        /// </summary>
-        /// <typeparam name="T">The type of service</typeparam>
-        /// <param name="type">The provider type</param>
-        /// <returns>Returns the registered provider instance</returns>
-        T InstGetProvider<T>(ProviderTypes type) where T : IService;
-
-        /// <summary>
         /// Checks if a service of the given type has been registered at the service manager
         /// </summary>
         /// <typeparam name="T">The type of the service</typeparam>
         /// <returns>Returns true if a service with the given type exists at the service manager</returns>
         bool InstServiceExists<T>() where T : IService;
-
-        /// <summary>
-        /// Checks if a provider with the given type exists at this instance
-        /// </summary>
-        /// <typeparam name="T">The type of service</typeparam>
-        /// <param name="type">The provider type</param>
-        /// <returns>Returns true if a service of the given type was registered at this instance</returns>
-        bool InstProviderExists<T>(ProviderTypes type) where T : IService;
     }
 }

@@ -1,8 +1,10 @@
-﻿using i5.Toolkit.Core.Examples.OpenIDConnectClient;
+﻿using i5.Toolkit.Core.Examples;
+using i5.Toolkit.Core.Examples.OpenIDConnectClient;
+using i5.Toolkit.Core.OpenIDConnectClient;
 using i5.Toolkit.Core.ServiceCore;
 using UnityEngine;
 
-namespace i5.Toolkit.Core.OpenIDConnectClient
+namespace i5.Toolkit.Core.Examples.OpenIDConnectClient
 {
     public class MultiProviderBootstrapper : BaseServiceBootstrapper
     {

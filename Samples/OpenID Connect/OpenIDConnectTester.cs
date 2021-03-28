@@ -1,36 +1,38 @@
-﻿using i5.Toolkit.Core.OpenIDConnectClient;
-using i5.Toolkit.Core.ServiceCore;
+﻿using i5.Toolkit.Core.ServiceCore;
 using i5.Toolkit.Core.Utilities;
 using UnityEngine;
 
-public class OpenIDConnectTester : MonoBehaviour
+namespace i5.Toolkit.Core.OpenIDConnectClient
 {
-    private bool isSubscribedToOidc = false;
-
-    // Update is called once per frame
-    private void Update()
+    public class OpenIDConnectTester : MonoBehaviour
     {
-        if (Input.GetKeyDown(KeyCode.F5))
+        private bool isSubscribedToOidc = false;
+
+        // Update is called once per frame
+        private void Update()
         {
-            // only subscribe to the event if it was not yet done before, e.g. in a failed login attempt
-            if (!isSubscribedToOidc)
+            if (Input.GetKeyDown(KeyCode.F5))
             {
-                ServiceManager.GetService<OpenIDConnectService>().LoginCompleted += OpenIDConnectTester_LoginCompleted;
-                isSubscribedToOidc = true;
+                // only subscribe to the event if it was not yet done before, e.g. in a failed login attempt
+                if (!isSubscribedToOidc)
+                {
+                    ServiceManager.GetService<OpenIDConnectService>().LoginCompleted += OpenIDConnectTester_LoginCompleted;
+                    isSubscribedToOidc = true;
+                }
+                ServiceManager.GetService<OpenIDConnectService>().OpenLoginPage();
             }
-            ServiceManager.GetService<OpenIDConnectService>().OpenLoginPage();
         }
-    }
 
-    private async void OpenIDConnectTester_LoginCompleted(object sender, System.EventArgs e)
-    {
-        i5Debug.Log("Login completed", this);
-        i5Debug.Log(ServiceManager.GetService<OpenIDConnectService>().AccessToken, this);
-        ServiceManager.GetService<OpenIDConnectService>().LoginCompleted -= OpenIDConnectTester_LoginCompleted;
-        isSubscribedToOidc = false;
+        private async void OpenIDConnectTester_LoginCompleted(object sender, System.EventArgs e)
+        {
+            i5Debug.Log("Login completed", this);
+            i5Debug.Log(ServiceManager.GetService<OpenIDConnectService>().AccessToken, this);
+            ServiceManager.GetService<OpenIDConnectService>().LoginCompleted -= OpenIDConnectTester_LoginCompleted;
+            isSubscribedToOidc = false;
 
-        IUserInfo userInfo = await ServiceManager.GetService<OpenIDConnectService>().GetUserDataAsync();
-        i5Debug.Log("Currently logged in user: " + userInfo.FullName
-            + " (username: " + userInfo.Username + ") with the mail address " + userInfo.Email, this);
+            IUserInfo userInfo = await ServiceManager.GetService<OpenIDConnectService>().GetUserDataAsync();
+            i5Debug.Log("Currently logged in user: " + userInfo.FullName
+                + " (username: " + userInfo.Username + ") with the mail address " + userInfo.Email, this);
+        }
     }
 }

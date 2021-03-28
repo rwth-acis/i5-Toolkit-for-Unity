@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GitHubOidcService : OpenIDConnectService
+namespace i5.Toolkit.Core.Examples.OpenIDConnectClient
 {
+    public class GitHubOidcService : OpenIDConnectService
+    {
+    }
 }

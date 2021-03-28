@@ -12,7 +12,7 @@ using UnityEngine.TestTools;
 
 namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
 {
-    public class GithubOidcProviderTests
+    public class GithubOIDCProviderTests
     {
         [Test]
         public void Constructor_Initialized_ContentLoaderNotNull()

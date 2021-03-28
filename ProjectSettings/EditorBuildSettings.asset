@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/i5 Toolkit for Unity/Samples/OpenID Connect/Learning Layers/OpenID
       Connect Learning Layers.unity
     guid: c91b24406c1955244bdfaf3b08dd1b5e

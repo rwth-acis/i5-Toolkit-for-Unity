@@ -3,7 +3,7 @@ using i5.Toolkit.Core.ServiceCore;
 using i5.Toolkit.Core.Utilities;
 using UnityEngine;
 
-public class OidcTester : MonoBehaviour
+public class OpenIDConnectTester : MonoBehaviour
 {
     private bool isSubscribedToOidc = false;
 

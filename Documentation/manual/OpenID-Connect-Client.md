@@ -36,12 +36,16 @@ When creating the service, make sure that its <xref:i5.Toolkit.Core.OpenIDConnec
 
 Here is an example bootstrapper:
 ```[C#]
+[SerializeField]
+private ClientDataObject learningLayersClientData;
+
 protected override void RegisterServices()
 {
     OpenIDConnectService oidc = new OpenIDConnectService();
     oidc.OidcProvider = new LearningLayersOidcProvider();
+    oidc.OidcProvider.ClientData = learningLayersClientData.clientData;
     // this example shows how the service can be used on an app for multiple platforms
-#if UNITY_WSA
+#if !UNITY_EDITOR
     oidc.RedirectURI = "i5:/";
 #else
     oidc.RedirectURI = "https://www.google.com";
@@ -64,13 +68,15 @@ Currently, the toolkit has built-in support for the following OpenID Connect pro
 | Platform | Implementation |
 | --- | --- |
 [Learning Layers](https://api.learning-layers.eu/o/oauth2/) | <xref:i5.Toolkit.Core.OpenIDConnectClient.LearningLayersOidcProvider> |
+[GitHub](https://docs.github.com/en/github/authenticating-to-github/connecting-with-third-party-applications) | <xref:i5.Toolkit.Core.OpenIDConnectClient.GitHubOidcProvider> |
 
 You can add support for further OpenID Connect providers by creating a class that implements the <xref:i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.OidcProvider> interface.
 The class has to define how to access the different API endpoints of the provider to retrieve information such as the access token.
 
 In the example in the previous section, we assigned the <xref:i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.OidcProvider> during the initialization phase.
-However, it is also possible to set this property just before calling the login function, e.g. to give the user a choice between different providers.
+However, it is also possible to set this property just before calling the login function, e.g. to give the user a choice between different providers that are switched on the fly.
 Each <xref:i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.OidcProvider> has to be initialized with their own client credentials before using the login procedure.
+For parallel support of multiple providers, read the section about [Using Multiple Providers in Parallel](#using-multiple-providers-in-parallel)
 
 ### Adding the Client Credentials
 
@@ -89,7 +95,8 @@ If you select it, you can enter the client credentials in Unity's inspector.
 If you are using Git, you can now add the created file to *.gitignore* so that it will not be uploaded.
 In the setup instructions of your project, include a note that each developer has to create their own client credentials and add them to the file.
 
-Before calling the login procedure, assign the client data in the following way:
+Before calling the login procedure, assign the client data in the following way.
+You can either do this in the service bootstrapper as part of the general initialization or you can do this on the fly, just before accessing the login flow.
 
 ```[C#]
 // expose a field in the inspector for your client credentials
@@ -180,6 +187,28 @@ You can also search for more platform-specific approaches that get the applicati
 To log out, call the <xref:i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.Logout> method of the OpenID Connect service.
 There is also an event <xref:i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.LogoutCompleted> which is raised after the logout.
 
+### Using Multiple Providers in Parallel
+
+This section describes how to provide parallel logins that allow your user to be logged in at multiple providers in parallel, e.g. at Learning Layers and GitHub.
+The initial problem is that there is only one <xref:i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService> which only provides one <xref:i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.OidcProvider>.
+The <i5.Toolkit.Core.ServiceCore.ServiceManager> also only allows to register one instance of each class.
+
+Hence, the solution is to create a new class for each provider that you have and let it inherit from the <xref:i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService>.
+This way, you can register e.g. a `LearnignLayersOIDCService` and a `GitHubOIDCService` at the same time.
+
+```[C#]
+public class LearningLayersOidcService : OpenIDConnectService
+{
+}
+```
+
+Initialize the new service classes like usual and after that, you are able to access their login data and login workflows independently.
+
+### Using Multiple Providers as a Selection Option
+
+If you do not need a user to be logged in parallel but they need to choose between one of the given provider options, this solution also works.
+Alternatively, you can switch out the <xref:i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.OidcProvider> since you do not need to store multiple access tokens in parallel.
+
 ## Client Registration
 
 To set up an OpenID Connect client for a specific provider, the client needs to be registered at the provider.
@@ -218,18 +247,66 @@ To change settings at a later point, enter the asked values on the right under "
 
 To use the client credentials in the application, proceed with the section [Adding the Client Credentials](#adding-the-client-credentials).
 
-## Example Scene
+### Creating a GitHub client
+
+To register a GitHub client, follow the steps in the [official documentation](https://docs.github.com/en/developers/apps/creating-an-oauth-app) to create a new OAuth app.
+
+You can register a new app [here](https://github.com/settings/applications/new).
+
+The important part is to add an "Authorization callback URL" which is the redirect URI.
+To use deep linking, enter the protocol to which your app is registered, e.g. `i5://`.
+To use the local server, e.g. for in-editor testing, enter `http://127.0.0.1`.
+
+> Note that you cannot register multiple redirect URIs in GitHub apps, e.g. for cross-platform.
+> To solve this, create different apps for each redirect URI.
+> After that, initialize the <xref:i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.OidcProvider>'s <xref:i5.Toolkit.Core.OpenIDConnectClient.IOidcProvider.ClientData> with the data of the app with the corresponding redirect URI.
+
+## Example Scenes
+
+The OpenID Connect example contains multiple subfolders and scenes for different examples.
+
+### Learning Layers Example
 
 There is an example scene which shows how to set up and use the Learning Layers OpenID Connect client.
 To use the scene, first register a client at the [Learning Layers provider](https://api.learning-layers.eu/o/oauth2/).
 After that, create the client credentials file by right-clicking in the Assets browser and choosing "Create > i5 Toolkit > OpenID Connect Client Data".
 Select the created file and enter the client id and client data in the inspector.
-Then, select the "Tester" GameObject in the scene and drag and drop the file onto the field on the OpenID Connect Tester.
+Then, select the "Service Bootstrapper" GameObject in the scene and drag and drop the file onto the field on the Learning Layers Bootstrapper.
 After this initialization, you can start the scene.
 If you press F5, the browser is opened with the Learning Layers login page.
 Once you log in and return to the app, the console will print the access token and some information about the logged in user.
 
 The important GameObjects in the example scene are the *Service Bootstrapper* and *Tester*.
-The service manager bootstrapper on the *Service Bootstrapper* initializes the <xref:i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService>.
-The *Tester* GameObject contains the configuration of the Learning Layers OpenID Connect client.
-It also triggers the login procedure and reacts to the successful login.
+The service manager bootstrapper on the *Service Bootstrapper* initializes the <xref:i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService> and adds the provider's client data.
+The *Tester* GameObject triggers the login procedure and reacts to the successful login.
+
+### GitHub Example
+
+The GitHub folder contains an example scene for trying out the login at GitHub.
+First, [register an OAuth Client at GitHub](https://github.com/settings/applications/new).
+To do so, follow the instructions in the section [Creating a GitHub client](#creating-a-github-client).
+If you only want to test the demo in the editor, it suffices to create the client with the "Authorization callback URL" `http://127.0.0.1`.
+Create the second OAuth client with your deep link protocol if you want to deploy the example scene to an app.
+
+Once the client credentials are created, right click in Unity's Asset browser and choose "Create > i5 Toolkit > OpenID Connect Client Data".
+After that, enter the client credentials that you just created.
+If you created two client, you need two OpenID Connect Client data files.
+
+After that, select the "Service Bootstrapper" object in the example scene and assign the client data files in its bootstrapper component.
+This can be done by dragging and dropping the client data file from the Asset browser into the component's field in the inspector.
+
+With this setup, you can start the scene or build the application.
+Press F5 to trigger the login procedure.
+
+### Multiple Providers in Parallel
+
+The example scene in the folder "Multiple Providers in Parallel" shows a possible app setup where a user can be logged in a multiple providers at the same time.
+Here, Learning Layers and GitHub can be used in parallel.
+To set up this example, create the client credentials for each of the providers.
+Assign them to the bootstrapper fields on the "Service Bootstrapper" GameObject.
+After that, you can press F1 to open the Learning Layers login.
+F2 lets you verify that you are still logged in at Learning Layers and that the application memorized your access token.
+Press F3 to log in at GitHub.
+With F4, the application will log your GitHub username to show that it still knows that you are logged in.
+
+Try out the following workflow: First log in at both Learning Layers and GitHub (F1 and F3) and after that, press F2 and F4 to verify that both providers exist in parallel and have indeed saved your access token.

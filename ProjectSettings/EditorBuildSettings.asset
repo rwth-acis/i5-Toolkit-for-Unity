@@ -6,8 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/i5 Toolkit for Unity/Samples/OpenID Connect/OpenID Connect Learning
-      Layers.unity
+    path: Assets/i5 Toolkit for Unity/Samples/OpenID Connect/Learning Layers/OpenID
+      Connect Learning Layers.unity
     guid: c91b24406c1955244bdfaf3b08dd1b5e
   - enabled: 1
     path: Assets/i5 Toolkit for Unity/Tests/TestResources/SetupTestScene.unity

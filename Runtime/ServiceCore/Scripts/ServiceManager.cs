@@ -115,7 +115,7 @@ namespace i5.Toolkit.Core.ServiceCore
         }
 
         /// <summary>
-        /// Removes a service with the given type from the ServiceManager
+        /// Removes a provider with the given type from the ServiceManager
         /// </summary>
         /// <typeparam name="T">The type of service</typeparam>
         public static void RemoveService<T>() where T : IService

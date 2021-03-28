@@ -7,42 +7,45 @@ using System.Reflection;
 using UnityEditor;
 using UnityEngine;
 
-/// <summary>
-/// Initializes the scene documentation resources
-/// </summary>
-[InitializeOnLoad]
-public class SceneDocumentationInitializer
+namespace i5.Toolkit.Core.SceneDocumentation
 {
     /// <summary>
-    /// Static constructor which copies the gizmos files from the textures folder to the Assets/Gizmos folder
+    /// Initializes the scene documentation resources
     /// </summary>
-    static SceneDocumentationInitializer()
+    [InitializeOnLoad]
+    public class SceneDocumentationInitializer
     {
-        if (!Directory.Exists("Assets/Gizmos"))
+        /// <summary>
+        /// Static constructor which copies the gizmos files from the textures folder to the Assets/Gizmos folder
+        /// </summary>
+        static SceneDocumentationInitializer()
         {
-            Directory.CreateDirectory("Assets/Gizmos");
-            Debug.Log("[SceneDocumentationInitializer] Created Gizmos folder");
+            if (!Directory.Exists("Assets/Gizmos"))
+            {
+                Directory.CreateDirectory("Assets/Gizmos");
+                Debug.Log("[SceneDocumentationInitializer] Created Gizmos folder");
+            }
+
+            string packageLocation = PathUtils.GetPackagePath();
+
+            EnsureFile(packageLocation, "Bug.png");
+            EnsureFile(packageLocation, "Todo.png");
+            EnsureFile(packageLocation, "Info.png");
         }
 
-        string packageLocation = PathUtils.GetPackagePath();
-
-        EnsureFile(packageLocation, "Bug.png");
-        EnsureFile(packageLocation, "Todo.png");
-        EnsureFile(packageLocation, "Info.png");
-    }
-
-    /// <summary>
-    /// Ensures that the file with the given name exists in the Gizmos folder
-    /// If it does not exist, it is copied from the textures folder
-    /// </summary>
-    /// <param name="packageLocation">The path where the package is located in the project</param>
-    /// <param name="filename">The filename of the gizmos icon</param>
-    private static void EnsureFile(string packageLocation, string filename)
-    {
-        if (!File.Exists("Assets/Gizmos/" + filename))
+        /// <summary>
+        /// Ensures that the file with the given name exists in the Gizmos folder
+        /// If it does not exist, it is copied from the textures folder
+        /// </summary>
+        /// <param name="packageLocation">The path where the package is located in the project</param>
+        /// <param name="filename">The filename of the gizmos icon</param>
+        private static void EnsureFile(string packageLocation, string filename)
         {
-            File.Copy(packageLocation + "Editor/Scene Documentation/Textures/" + filename, "Assets/Gizmos/" + filename);
-            Debug.Log("[SceneDocumentationInitializer] Copied " + filename + " to Gizmos folder");
+            if (!File.Exists("Assets/Gizmos/" + filename))
+            {
+                File.Copy(packageLocation + "Editor/Scene Documentation/Textures/" + filename, "Assets/Gizmos/" + filename);
+                Debug.Log("[SceneDocumentationInitializer] Copied " + filename + " to Gizmos folder");
+            }
         }
     }
 }

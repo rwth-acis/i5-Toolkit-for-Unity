@@ -1,19 +1,20 @@
-﻿using i5.Toolkit.Core.Examples.OpenIDConnectClient;
+﻿using i5.Toolkit.Core.OpenIDConnectClient;
 using i5.Toolkit.Core.ServiceCore;
 using i5.Toolkit.Core.Utilities;
 using System;
+using System.Threading.Tasks;
 using UnityEngine;
 
-namespace i5.Toolkit.Core.OpenIDConnectClient
+namespace i5.Toolkit.Core.Examples.OpenIDConnectClient
 {
     public class MultiProviderTester : MonoBehaviour
     {
         private bool isSubscribedToLearningLayers;
         private bool isSubscribedToGitHub;
 
-        private void Update()
+        private async Task Update()
         {
-            if (Input.GetKeyDown(KeyCode.F5))
+            if (Input.GetKeyDown(KeyCode.F1))
             {
                 // learning layers login
                 // only subscribe to the event if it was not yet done before, e.g. in a failed login attempt
@@ -24,7 +25,19 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
                 }
                 ServiceManager.GetService<LearningLayersOidcService>().OpenLoginPage();
             }
-            else if (Input.GetKeyDown(KeyCode.F6))
+            else if (Input.GetKeyDown(KeyCode.F2))
+            {
+                if (ServiceManager.GetService<LearningLayersOidcService>().IsLoggedIn)
+                {
+                    IUserInfo info = await ServiceManager.GetService<LearningLayersOidcService>().GetUserDataAsync();
+                    i5Debug.Log("Logged in user at Learning Layers: " + info.Username, this);
+                }
+                else
+                {
+                    i5Debug.Log("Cannot get user info because you are not logged in. Press F1 to log in at Learning Layers.", this);
+                }
+            }
+            else if (Input.GetKeyDown(KeyCode.F3))
             {
                 // github login
                 // only subscribe to the event if it was not yet done before, e.g. in a failed login attempt
@@ -34,6 +47,18 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
                     isSubscribedToGitHub = true;
                 }
                 ServiceManager.GetService<GitHubOidcService>().OpenLoginPage();
+            }
+            else if (Input.GetKeyDown(KeyCode.F4))
+            {
+                if (ServiceManager.GetService<GitHubOidcService>().IsLoggedIn)
+                {
+                    IUserInfo info = await ServiceManager.GetService<GitHubOidcService>().GetUserDataAsync();
+                    i5Debug.Log("Logged in user at GitHub: " + info.Username, this);
+                }
+                else
+                {
+                    i5Debug.Log("Cannot get user info because you are not logged in. Press F3 to log in at GitHub.", this);
+                }
             }
         }
 

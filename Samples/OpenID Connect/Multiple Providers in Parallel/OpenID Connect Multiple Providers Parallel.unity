@@ -293,9 +293,13 @@ MonoBehaviour:
   description: 'This scene gives an example how OpenID Connect Login can be used with
     multiple login providers in parallel.
 
-    Press F5 to trigger the login procedure for Learning Layers.
+    Press F1 to trigger the login procedure for Learning Layers.
 
-    Press F6 to trigger the login procedure for GitHub.'
+    Press F2 to verify your login status at Learning Layers by logging your username.
+
+    Press F3 to trigger the login procedure for GitHub.
+
+    Press F4 to verify your login status at GitHub by logging your username.'
   type: 0
   url: 
 --- !u!4 &929522739

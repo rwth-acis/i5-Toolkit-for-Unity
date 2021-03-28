@@ -341,15 +341,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Important Note - Register Client First
   description: 'Important: To use this scene, you will first need to register your
-    own client on the Learning Layers administration site (see the following url)
-    - there are no client credentials shipped with this example.
+    own client on the GitHub administration site (see the following url) - there are
+    no client credentials shipped with this example.
 
-    First, create an account and then choose "Self-service client registration".
-
-    More information and instructions can be found in the documentation (see the other
-    documentation object in this scene).'
+    If you want to test both deep linking and the in-editor server, you need to create
+    two separate clients with the callback URIs set to i5:// and 127.0.0.1, respectively.'
   type: 1
-  url: https://api.learning-layers.eu/o/oauth2/
+  url: https://github.com/settings/applications/new
 --- !u!4 &1037205113
 Transform:
   m_ObjectHideFlags: 0

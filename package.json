@@ -1,6 +1,6 @@
 {
   "name": "com.i5.toolkit.core",
-  "version": "1.3.4",
+  "version": "1.4.1",
   "displayName": "i5 Toolkit for Unity",
   "description": "This package contains a collection of tools, features and assets for the development of Unity projects",
   "unity": "2018.4",
@@ -37,7 +37,7 @@
     },
     {
       "displayName": "OpenID Connect",
-      "description": "Example how to implement an OpenID Connect client in Unity; note: you need to add client credentials to use the example",
+      "description": "Examples showing how to implement an OpenID Connect client in Unity; note: you need to add client credentials to use the examples",
       "path": "Samples~/OpenID Connect"
     },
     {

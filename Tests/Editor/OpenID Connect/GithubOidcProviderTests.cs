@@ -12,34 +12,34 @@ using UnityEngine.TestTools;
 
 namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
 {
-    public class LearningLayersOIDCProviderTests
+    public class GithubOIDCProviderTests
     {
         [Test]
         public void Constructor_Initialized_ContentLoaderNotNull()
         {
-            LearningLayersOidcProvider lloidc = new LearningLayersOidcProvider();
+            GitHubOidcProvider ghoidc = new GitHubOidcProvider();
 
-            Assert.IsNotNull(lloidc.RestConnector);
+            Assert.IsNotNull(ghoidc.RestConnector);
         }
 
         [Test]
         public void Constructor_Initialized_JsonWrapperNotNull()
         {
-            LearningLayersOidcProvider lloidc = new LearningLayersOidcProvider();
+            GitHubOidcProvider ghoidc = new GitHubOidcProvider();
 
-            Assert.IsNotNull(lloidc.JsonSerializer);
+            Assert.IsNotNull(ghoidc.JsonSerializer);
         }
 
         [UnityTest]
         public IEnumerator GetAccessCodeFromTokenAsync_NoClientData_ReturnsEmptyString()
         {
-            LearningLayersOidcProvider lloidc = new LearningLayersOidcProvider();
-            lloidc.RestConnector = A.Fake<IRestConnector>();
+            GitHubOidcProvider ghoidc = new GitHubOidcProvider();
+            ghoidc.RestConnector = A.Fake<IRestConnector>();
 
-            LogAssert.Expect(LogType.Error, 
+            LogAssert.Expect(LogType.Error,
                 new Regex(@"\w*No client data supplied for the OpenID Connect Client\w*"));
 
-            Task<string> task = lloidc.GetAccessTokenFromCodeAsync("", "");
+            Task<string> task = ghoidc.GetAccessTokenFromCodeAsync("", "");
 
             yield return AsyncTest.WaitForTask(task);
 
@@ -51,20 +51,20 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
         [UnityTest]
         public IEnumerator GetAccessCodeFromTokenAsync_WebResponseSuccess_ReturnsToken()
         {
-            LearningLayersOidcProvider lloidc = new LearningLayersOidcProvider();
+            GitHubOidcProvider ghoidc = new GitHubOidcProvider();
             IRestConnector restConnector = A.Fake<IRestConnector>();
             A.CallTo(() => restConnector.PostAsync(A<string>.Ignored, A<string>.Ignored, A<Dictionary<string, string>>.Ignored))
                 .Returns(Task.FromResult(new WebResponse<string>("json string", null, 200)));
-            lloidc.RestConnector = restConnector;
-            lloidc.ClientData = A.Fake<ClientData>();
-            LearningLayersAuthorizationFlowAnswer answer = new LearningLayersAuthorizationFlowAnswer();
+            ghoidc.RestConnector = restConnector;
+            ghoidc.ClientData = A.Fake<ClientData>();
+            GitHubAuthorizationFlowAnswer answer = new GitHubAuthorizationFlowAnswer();
             answer.access_token = "myAccessToken";
             IJsonSerializer serializer = A.Fake<IJsonSerializer>();
-            A.CallTo(() => serializer.FromJson<LearningLayersAuthorizationFlowAnswer>(A<string>.Ignored))
+            A.CallTo(() => serializer.FromJson<GitHubAuthorizationFlowAnswer>(A<string>.Ignored))
                 .Returns(answer);
-            lloidc.JsonSerializer = serializer;
+            ghoidc.JsonSerializer = serializer;
 
-            Task<string> task = lloidc.GetAccessTokenFromCodeAsync("", "");
+            Task<string> task = ghoidc.GetAccessTokenFromCodeAsync("", "");
 
             yield return AsyncTest.WaitForTask(task);
 
@@ -76,18 +76,18 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
         [UnityTest]
         public IEnumerator GetAccessCodeFromTokenAsync_WebResponseFailed_ReturnsEmptyToken()
         {
-            LearningLayersOidcProvider lloidc = new LearningLayersOidcProvider();
+            GitHubOidcProvider ghoidc = new GitHubOidcProvider();
             IRestConnector restConnector = A.Fake<IRestConnector>();
             A.CallTo(() => restConnector.PostAsync(A<string>.Ignored, A<string>.Ignored, A<Dictionary<string, string>>.Ignored))
                 .Returns(Task.FromResult(new WebResponse<string>("my error", 400)));
-            lloidc.RestConnector = restConnector;
-            lloidc.ClientData = A.Fake<ClientData>();
-            lloidc.JsonSerializer = A.Fake<IJsonSerializer>();
+            ghoidc.RestConnector = restConnector;
+            ghoidc.ClientData = A.Fake<ClientData>();
+            ghoidc.JsonSerializer = A.Fake<IJsonSerializer>();
 
             LogAssert.Expect(LogType.Error,
                 new Regex(@"\w*my error\w*"));
 
-            Task<string> task = lloidc.GetAccessTokenFromCodeAsync("", "");
+            Task<string> task = ghoidc.GetAccessTokenFromCodeAsync("", "");
 
             yield return AsyncTest.WaitForTask(task);
 
@@ -99,11 +99,11 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
         [Test]
         public void GetAccessToken_TokenProvided_ExtractsToken()
         {
-            LearningLayersOidcProvider lloidc = new LearningLayersOidcProvider();
+            GitHubOidcProvider ghoidc = new GitHubOidcProvider();
             Dictionary<string, string> redirectParameters = new Dictionary<string, string>();
             redirectParameters.Add("token", "myAccessToken");
 
-            string res = lloidc.GetAccessToken(redirectParameters);
+            string res = ghoidc.GetAccessToken(redirectParameters);
 
             Assert.AreEqual("myAccessToken", res);
         }
@@ -111,12 +111,12 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
         [Test]
         public void GetAccessToken_TokenNotProvided_ReturnsEmptyToken()
         {
-            LearningLayersOidcProvider lloidc = new LearningLayersOidcProvider();
+            GitHubOidcProvider ghoidc = new GitHubOidcProvider();
             Dictionary<string, string> redirectParameters = new Dictionary<string, string>();
 
             LogAssert.Expect(LogType.Error, new Regex(@"\w*Redirect parameters did not contain access token\w*"));
 
-            string res = lloidc.GetAccessToken(redirectParameters);
+            string res = ghoidc.GetAccessToken(redirectParameters);
 
             Assert.IsEmpty(res);
         }
@@ -124,18 +124,18 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
         [UnityTest]
         public IEnumerator GetUserInfoAsync_WebResponseSuccessful_ReturnsUserInfo()
         {
-            LearningLayersOidcProvider lloidc = new LearningLayersOidcProvider();
+            GitHubOidcProvider ghoidc = new GitHubOidcProvider();
             IRestConnector restConnector = A.Fake<IRestConnector>();
             A.CallTo(() => restConnector.GetAsync(A<string>.Ignored, A<Dictionary<string, string>>.Ignored))
                 .Returns(new WebResponse<string>("answer", null, 200));
-            lloidc.RestConnector = restConnector;
-            LearningLayersUserInfo userInfo = new LearningLayersUserInfo("tester", "tester@test.com", "Tester");
+            ghoidc.RestConnector = restConnector;
+            GitHubUserInfo userInfo = new GitHubUserInfo("tester", "tester@test.com");
             IJsonSerializer serializer = A.Fake<IJsonSerializer>();
-            A.CallTo(() => serializer.FromJson<LearningLayersUserInfo>(A<string>.Ignored))
+            A.CallTo(() => serializer.FromJson<GitHubUserInfo>(A<string>.Ignored))
                 .Returns(userInfo);
-            lloidc.JsonSerializer = serializer;
+            ghoidc.JsonSerializer = serializer;
 
-            Task<IUserInfo> task = lloidc.GetUserInfoAsync("");
+            Task<IUserInfo> task = ghoidc.GetUserInfoAsync("");
 
             yield return AsyncTest.WaitForTask(task);
 
@@ -147,15 +147,15 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
         [UnityTest]
         public IEnumerator GetUserInfoAsync_WebResponseFailed_ReturnsNull()
         {
-            LearningLayersOidcProvider lloidc = new LearningLayersOidcProvider();
+            GitHubOidcProvider ghoidc = new GitHubOidcProvider();
             IRestConnector restConnector = A.Fake<IRestConnector>();
             A.CallTo(() => restConnector.GetAsync(A<string>.Ignored, A<Dictionary<string, string>>.Ignored))
                 .Returns(new WebResponse<string>("This is a simulated error", 400));
-            lloidc.RestConnector = restConnector;
+            ghoidc.RestConnector = restConnector;
 
             LogAssert.Expect(LogType.Error, new Regex(@"\w*This is a simulated error\w*"));
 
-            Task<IUserInfo> task = lloidc.GetUserInfoAsync("");
+            Task<IUserInfo> task = ghoidc.GetUserInfoAsync("");
 
             yield return AsyncTest.WaitForTask(task);
 
@@ -167,20 +167,20 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
         [UnityTest]
         public IEnumerator GetUserInfoAsync_JsonParseFailed_ReturnsNull()
         {
-            LearningLayersOidcProvider lloidc = new LearningLayersOidcProvider();
+            GitHubOidcProvider ghoidc = new GitHubOidcProvider();
             IRestConnector restConnector = A.Fake<IRestConnector>();
             A.CallTo(() => restConnector.GetAsync(A<string>.Ignored, A<Dictionary<string, string>>.Ignored))
                 .Returns(new WebResponse<string>("answer", null, 200));
-            lloidc.RestConnector = restConnector;
-            LearningLayersUserInfo userInfo = new LearningLayersUserInfo("tester", "tester@test.com", "Tester");
+            ghoidc.RestConnector = restConnector;
+            GitHubUserInfo userInfo = new GitHubUserInfo("tester", "tester@test.com");
             IJsonSerializer serializer = A.Fake<IJsonSerializer>();
-            A.CallTo(() => serializer.FromJson<LearningLayersUserInfo>(A<string>.Ignored))
+            A.CallTo(() => serializer.FromJson<GitHubUserInfo>(A<string>.Ignored))
                 .Returns(null);
-            lloidc.JsonSerializer = serializer;
+            ghoidc.JsonSerializer = serializer;
 
             LogAssert.Expect(LogType.Error, new Regex(@"\w*Could not parse user info\w*"));
 
-            Task<IUserInfo> task = lloidc.GetUserInfoAsync("");
+            Task<IUserInfo> task = ghoidc.GetUserInfoAsync("");
 
             yield return AsyncTest.WaitForTask(task);
 
@@ -192,14 +192,14 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
         [UnityTest]
         public IEnumerator CheckAccessTokenAsync_WebResponseSuccessful_ReturnsTrue()
         {
-            LearningLayersOidcProvider lloidc = new LearningLayersOidcProvider();
+            GitHubOidcProvider lloidc = new GitHubOidcProvider();
             IRestConnector restConnector = A.Fake<IRestConnector>();
             A.CallTo(() => restConnector.GetAsync(A<string>.Ignored, A<Dictionary<string, string>>.Ignored))
                 .Returns(new WebResponse<string>("answer", null, 200));
             lloidc.RestConnector = restConnector;
-            LearningLayersUserInfo userInfo = new LearningLayersUserInfo("tester", "tester@test.com", "Tester");
+            GitHubUserInfo userInfo = new GitHubUserInfo("tester", "tester@test.com");
             IJsonSerializer serializer = A.Fake<IJsonSerializer>();
-            A.CallTo(() => serializer.FromJson<LearningLayersUserInfo>(A<string>.Ignored))
+            A.CallTo(() => serializer.FromJson<GitHubUserInfo>(A<string>.Ignored))
                 .Returns(userInfo);
             lloidc.JsonSerializer = serializer;
 
@@ -215,15 +215,15 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
         [UnityTest]
         public IEnumerator CheckAccessTokenAsync_WebResponseFailed_ReturnsFalse()
         {
-            LearningLayersOidcProvider lloidc = new LearningLayersOidcProvider();
+            GitHubOidcProvider ghoidc = new GitHubOidcProvider();
             IRestConnector restConnector = A.Fake<IRestConnector>();
-            A.CallTo(() => restConnector.GetAsync(A<string>.Ignored, A<Dictionary<string,string>>.Ignored))
+            A.CallTo(() => restConnector.GetAsync(A<string>.Ignored, A<Dictionary<string, string>>.Ignored))
                 .Returns(new WebResponse<string>("This is a simulated error", 400));
-            lloidc.RestConnector = restConnector;
+            ghoidc.RestConnector = restConnector;
 
             LogAssert.Expect(LogType.Error, new Regex(@"\w*This is a simulated error\w*"));
 
-            Task<bool> task = lloidc.CheckAccessTokenAsync("");
+            Task<bool> task = ghoidc.CheckAccessTokenAsync("");
 
             yield return AsyncTest.WaitForTask(task);
 
@@ -235,13 +235,13 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
         [Test]
         public void OpenLoginPage_UriGiven_BrowserOpened()
         {
-            LearningLayersOidcProvider lloidc = new LearningLayersOidcProvider();
+            GitHubOidcProvider ghoidc = new GitHubOidcProvider();
             IBrowser browser = A.Fake<IBrowser>();
-            lloidc.Browser = browser;
-            lloidc.ClientData = A.Fake<ClientData>();
+            ghoidc.Browser = browser;
+            ghoidc.ClientData = A.Fake<ClientData>();
             string[] testScopes = new string[] { "testScope" };
 
-            lloidc.OpenLoginPage(testScopes, "http://www.test.com");
+            ghoidc.OpenLoginPage(testScopes, "http://www.test.com");
 
             A.CallTo(() => browser.OpenURL(A<string>.That.Contains("http://www.test.com"))).MustHaveHappenedOnceExactly();
             A.CallTo(() => browser.OpenURL(A<string>.That.Contains("testScope"))).MustHaveHappenedOnceExactly();
@@ -250,10 +250,10 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
         [Test]
         public void GetAuthorizationCode_CodeProvided_ExtractsCode()
         {
-            LearningLayersOidcProvider lloidc = new LearningLayersOidcProvider();
+            GitHubOidcProvider ghoidc = new GitHubOidcProvider();
             Dictionary<string, string> redirectParameters = new Dictionary<string, string>();
             redirectParameters.Add("code", "myCode");
-            string res = lloidc.GetAuthorizationCode(redirectParameters);
+            string res = ghoidc.GetAuthorizationCode(redirectParameters);
 
             Assert.AreEqual("myCode", res);
         }
@@ -261,12 +261,12 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
         [Test]
         public void GetAuthorizationCode_CodeNotProvided_ReturnsEmptyString()
         {
-            LearningLayersOidcProvider lloidc = new LearningLayersOidcProvider();
+            GitHubOidcProvider ghoidc = new GitHubOidcProvider();
             Dictionary<string, string> redirectParameters = new Dictionary<string, string>();
 
             LogAssert.Expect(LogType.Error, new Regex(@"\w*Redirect parameters did not contain authorization code\w*"));
 
-            string res = lloidc.GetAuthorizationCode(redirectParameters);
+            string res = ghoidc.GetAuthorizationCode(redirectParameters);
 
             Assert.IsEmpty(res);
         }
@@ -274,10 +274,10 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
         [Test]
         public void ParametersContainError_NoError_ReturnsFalse()
         {
-            LearningLayersOidcProvider lloidc = new LearningLayersOidcProvider();
+            GitHubOidcProvider ghoidc = new GitHubOidcProvider();
             Dictionary<string, string> redirectParameters = new Dictionary<string, string>();
 
-            bool res = lloidc.ParametersContainError(redirectParameters, out string message);
+            bool res = ghoidc.ParametersContainError(redirectParameters, out string message);
 
             Assert.IsFalse(res);
         }
@@ -285,10 +285,10 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
         [Test]
         public void ParametersContainError_NoError_ErrorMessageEmpty()
         {
-            LearningLayersOidcProvider lloidc = new LearningLayersOidcProvider();
+            GitHubOidcProvider ghoidc = new GitHubOidcProvider();
             Dictionary<string, string> redirectParameters = new Dictionary<string, string>();
 
-            bool res = lloidc.ParametersContainError(redirectParameters, out string message);
+            bool res = ghoidc.ParametersContainError(redirectParameters, out string message);
 
             Assert.IsEmpty(message);
         }
@@ -296,11 +296,11 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
         [Test]
         public void ParametersContainError_ErrorGiven_ReturnsTrue()
         {
-            LearningLayersOidcProvider lloidc = new LearningLayersOidcProvider();
+            GitHubOidcProvider ghoidc = new GitHubOidcProvider();
             Dictionary<string, string> redirectParameters = new Dictionary<string, string>();
             redirectParameters.Add("error", "This is a simulated error");
 
-            bool res = lloidc.ParametersContainError(redirectParameters, out string message);
+            bool res = ghoidc.ParametersContainError(redirectParameters, out string message);
 
             Assert.IsTrue(res);
         }
@@ -308,12 +308,12 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
         [Test]
         public void ParametersContainError_ErrorGiven_ErrorMessageSet()
         {
-            LearningLayersOidcProvider lloidc = new LearningLayersOidcProvider();
+            GitHubOidcProvider ghoidc = new GitHubOidcProvider();
             Dictionary<string, string> redirectParameters = new Dictionary<string, string>();
             string errorMsg = "This is a simulated error";
             redirectParameters.Add("error", errorMsg);
 
-            bool res = lloidc.ParametersContainError(redirectParameters, out string message);
+            bool res = ghoidc.ParametersContainError(redirectParameters, out string message);
 
             Assert.AreEqual(errorMsg, message);
         }

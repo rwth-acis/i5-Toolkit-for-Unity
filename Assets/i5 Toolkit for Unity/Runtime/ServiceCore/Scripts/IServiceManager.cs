@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using i5.Toolkit.Core.OpenIDConnectClient;
 
 namespace i5.Toolkit.Core.ServiceCore
 {
@@ -11,6 +12,7 @@ namespace i5.Toolkit.Core.ServiceCore
     /// </summary>
     public interface IServiceManager
     {
+      
         /// <summary>
         /// The runner object which provides MonoBehaviour events to the service manager
         /// This can also be used by services to access MonoBehaviour functionality, e.g. for running co-routines

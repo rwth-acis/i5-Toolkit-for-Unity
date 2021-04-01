@@ -1,15 +1,11 @@
-﻿using i5.Toolkit.Core.OpenIDConnectClient;
-using i5.Toolkit.Core.ServiceCore;
+﻿using i5.Toolkit.Core.ServiceCore;
 using i5.Toolkit.Core.Utilities;
 using UnityEngine;
 
-namespace i5.Toolkit.Core.Examples.OpenIDConnectClient
+namespace i5.Toolkit.Core.OpenIDConnectClient
 {
     public class OpenIDConnectTester : MonoBehaviour
     {
-        [SerializeField]
-        private ClientDataObject learningLayersClientData;
-
         private bool isSubscribedToOidc = false;
 
         // Update is called once per frame
@@ -17,10 +13,6 @@ namespace i5.Toolkit.Core.Examples.OpenIDConnectClient
         {
             if (Input.GetKeyDown(KeyCode.F5))
             {
-                LearningLayersOidcProvider provider = new LearningLayersOidcProvider();
-                provider.ClientData = learningLayersClientData.clientData;
-                ServiceManager.GetService<OpenIDConnectService>().OidcProvider = provider;
-
                 // only subscribe to the event if it was not yet done before, e.g. in a failed login attempt
                 if (!isSubscribedToOidc)
                 {

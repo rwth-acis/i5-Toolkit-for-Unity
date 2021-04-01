@@ -37,7 +37,7 @@
     },
     {
       "displayName": "OpenID Connect",
-      "description": "Example how to implement an OpenID Connect client in Unity; note: you need to add client credentials to use the example",
+      "description": "Examples showing how to implement an OpenID Connect client in Unity; note: you need to add client credentials to use the examples",
       "path": "Samples~/OpenID Connect"
     },
     {

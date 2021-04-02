@@ -11,21 +11,14 @@ namespace i5.Toolkit.Core.DeepLinkAPI
 {
     public class DeepLinkingService : IService
     {
-        private object[] registeredListeners;
+        private List<WeakReference<object>> registeredListeners = new List<WeakReference<object>>();
 
         private Dictionary<string, InstancedMethod> paths = new Dictionary<string, InstancedMethod>();
 
         public IApplication ApplicationAPI { get; set; } = new ApplicationWrapper();
 
-        public DeepLinkingService(object[] registeredListeners)
-        {
-            this.registeredListeners = registeredListeners;
-        }
-
         public void Initialize(IServiceManager owner)
         {
-            ConstructMapping();
-
             ApplicationAPI.DeepLinkActivated += OnDeepLinkActivated;
             if (!string.IsNullOrEmpty(ApplicationAPI.AbsoluteURL))
             {
@@ -33,27 +26,35 @@ namespace i5.Toolkit.Core.DeepLinkAPI
             }
         }
 
-        private void ConstructMapping()
+        public void AddDeepLinkListener(object listener)
         {
-            foreach (object listener in registeredListeners)
+            if (registeredListeners.Contains(listener))
             {
-                MethodInfo[] methods = listener.GetType().GetMethods()
-                    .Where(m => m.GetCustomAttributes(typeof(DeepLinkAttribute), false).Length > 0)
-                    .ToArray();
-
-                foreach (MethodInfo info in methods)
-                {
-                    Attribute[] attributes = info.GetCustomAttributes(typeof(DeepLinkAttribute)).ToArray();
-                    foreach (DeepLinkAttribute attribute in attributes)
-                    {
-                        paths.Add(attribute.Path.ToLower(), new InstancedMethod(listener, info));
-                    }
-                }
+                return;
             }
 
-            foreach (string key in paths.Keys)
+            registeredListeners.Add(new WeakReference<object>(listener));
+            if (!string.IsNullOrEmpty(ApplicationAPI.AbsoluteURL))
             {
-                Debug.Log("Registered path " + key);
+                CheckInstanceMethods(ApplicationAPI.AbsoluteURL, listener);
+            }
+        }
+
+        public void RemoveDeepLinkListener(object listener)
+        {
+            for (int i = registeredListeners.Count-1; i >= 0; i--)
+            {
+                if (registeredListeners[i].TryGetTarget(out object item))
+                {
+                    if (item == listener)
+                    {
+                        registeredListeners.RemoveAt(i);
+                    }
+                }
+                else
+                {
+                    registeredListeners.RemoveAt(i);
+                }
             }
         }
 
@@ -66,32 +67,53 @@ namespace i5.Toolkit.Core.DeepLinkAPI
         {
             Debug.Log("Got deep link for " + deepLink);
 
+            for (int i=registeredListeners.Count-1;i>=0;i--)
+            {
+                if (registeredListeners[i].TryGetTarget(out object listener))
+                {
+                    CheckInstanceMethods(deepLink, listener);
+                }
+                else
+                {
+                    registeredListeners.RemoveAt(i);
+                }
+            }
+        }
+
+        private void CheckInstanceMethods(string deepLink, object instance)
+        {
             Uri uri = new Uri(deepLink);
 
             string path = uri.Authority.ToLower();
 
-            if (paths.ContainsKey(path))
-            {
-                InstancedMethod targetMethod = paths[uri.Authority.ToLower()];
-                Dictionary<string, string> fragments = UriUtils.GetUriParameters(uri);
-                ParameterInfo[] parameters = targetMethod.Method.GetParameters();
+            MethodInfo[] methods = instance.GetType().GetMethods()
+                        .Where(m => m.GetCustomAttributes(typeof(DeepLinkAttribute), false).Length > 0)
+                        .ToArray();
 
-                // convert strings to objects
-                object[] convertedArguments = new object[parameters.Length];
-                for (int i = 0; i < parameters.Length; i++)
+            foreach (MethodInfo method in methods)
+            {
+                Attribute[] attributes = method.GetCustomAttributes(typeof(DeepLinkAttribute)).ToArray();
+                foreach (DeepLinkAttribute attribute in attributes)
                 {
-                    string value = fragments[parameters[i].Name];
-                    object convertedValue = Convert.ChangeType(value, parameters[i].ParameterType);
-                    convertedArguments[i] = convertedValue;
-                }
+                    if (path.Equals(attribute.Path.ToLower()))
+                    {
+                        Dictionary<string, string> fragments = UriUtils.GetUriParameters(uri);
+                        ParameterInfo[] parameters = method.GetParameters();
 
-                targetMethod.Method.Invoke(
-                    targetMethod.ClassInstance,
-                    convertedArguments);
-            }
-            else
-            {
-                Debug.Log("No path registered for deep link " + deepLink);
+                        // convert strings to objects
+                        object[] convertedArguments = new object[parameters.Length];
+                        for (int paramIndex = 0; paramIndex < parameters.Length; paramIndex++)
+                        {
+                            string value = fragments[parameters[paramIndex].Name];
+                            object convertedValue = Convert.ChangeType(value, parameters[paramIndex].ParameterType);
+                            convertedArguments[paramIndex] = convertedValue;
+                        }
+
+                        method.Invoke(
+                            instance,
+                            convertedArguments);
+                    }
+                }
             }
         }
     }

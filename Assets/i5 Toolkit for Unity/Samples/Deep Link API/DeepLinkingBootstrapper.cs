@@ -7,9 +7,11 @@ namespace i5.Toolkit.Core.Examples.DeepLinkAPI
     {
         protected override void RegisterServices()
         {
-            DeepLinkReceiver receiver = new DeepLinkReceiver();
-            DeepLinkingService service = new DeepLinkingService(new object[] { receiver });
+            DeepLinkingService service = new DeepLinkingService();
             ServiceManager.RegisterService(service);
+
+            DeepLinkReceiver receiver = new DeepLinkReceiver();
+            service.AddDeepLinkListener(receiver);
         }
 
         protected override void UnRegisterServices()

@@ -13,16 +13,17 @@ namespace i5.Toolkit.Core.Utilities.UnityAdapters
         /// <summary>
         /// Connects to Application.deepLinkActivated
         /// </summary>
-        public event Action<string> DeepLinkActivated
+        public event EventHandler<string> DeepLinkActivated;
+
+        public ApplicationWrapper()
         {
-            add
-            {
-                Application.deepLinkActivated += value;
-            }
-            remove
-            {
-                Application.deepLinkActivated -= value;
-            }
+            Application.deepLinkActivated += OnDeepLinkActivated;
+        }
+
+
+        private void OnDeepLinkActivated(string obj)
+        {
+            DeepLinkActivated?.Invoke(null, obj);
         }
     }
 }

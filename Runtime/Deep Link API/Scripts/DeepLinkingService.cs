@@ -22,7 +22,7 @@ namespace i5.Toolkit.Core.DeepLinkAPI
             ApplicationAPI.DeepLinkActivated += OnDeepLinkActivated;
             if (!string.IsNullOrEmpty(ApplicationAPI.AbsoluteURL))
             {
-                OnDeepLinkActivated(ApplicationAPI.AbsoluteURL);
+                OnDeepLinkActivated(null, ApplicationAPI.AbsoluteURL);
             }
         }
 
@@ -42,7 +42,7 @@ namespace i5.Toolkit.Core.DeepLinkAPI
 
         public void RemoveDeepLinkListener(object listener)
         {
-            for (int i = registeredListeners.Count-1; i >= 0; i--)
+            for (int i = registeredListeners.Count - 1; i >= 0; i--)
             {
                 if (registeredListeners[i].TryGetTarget(out object item))
                 {
@@ -61,13 +61,14 @@ namespace i5.Toolkit.Core.DeepLinkAPI
         public void Cleanup()
         {
             ApplicationAPI.DeepLinkActivated -= OnDeepLinkActivated;
+            registeredListeners.Clear();
         }
 
-        private void OnDeepLinkActivated(string deepLink)
+        private void OnDeepLinkActivated(object sender, string deepLink)
         {
             Debug.Log("Got deep link for " + deepLink);
 
-            for (int i=registeredListeners.Count-1;i>=0;i--)
+            for (int i = registeredListeners.Count - 1; i >= 0; i--)
             {
                 if (registeredListeners[i].TryGetTarget(out object listener))
                 {
@@ -97,21 +98,28 @@ namespace i5.Toolkit.Core.DeepLinkAPI
                 {
                     if (path.Equals(attribute.Path.ToLower()))
                     {
-                        Dictionary<string, string> fragments = UriUtils.GetUriParameters(uri);
                         ParameterInfo[] parameters = method.GetParameters();
 
-                        // convert strings to objects
-                        object[] convertedArguments = new object[parameters.Length];
-                        for (int paramIndex = 0; paramIndex < parameters.Length; paramIndex++)
+                        if (parameters.Length == 0)
                         {
-                            string value = fragments[parameters[paramIndex].Name];
-                            object convertedValue = Convert.ChangeType(value, parameters[paramIndex].ParameterType);
-                            convertedArguments[paramIndex] = convertedValue;
-                        }
-
-                        method.Invoke(
+                            method.Invoke(
                             instance,
-                            convertedArguments);
+                            null);
+                        }
+                        else if (parameters.Length == 1 && parameters[0].ParameterType == typeof(DeepLinkArgs))
+                        {
+                            Dictionary<string, string> fragments = UriUtils.GetUriParameters(uri);
+                            DeepLinkArgs args = new DeepLinkArgs(fragments, uri);
+
+                            method.Invoke(
+                                instance,
+                                new object[] { args }
+                                );
+                        }
+                        else
+                        {
+                            i5Debug.LogError($"Cannot deep-link-invoke method {method.Name} since it must either have 0 arguments or 1 argument of type {nameof(DeepLinkArgs)}.", this);
+                        }
                     }
                 }
             }

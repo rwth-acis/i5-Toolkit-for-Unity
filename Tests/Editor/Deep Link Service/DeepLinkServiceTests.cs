@@ -20,7 +20,7 @@ namespace i5.Toolkit.Core.Tests.DeepLinkAPI
         [Test]
         public void Initialize_SubscribesToDeepLinkEvent()
         {
-            DeepLinkingService linkingService = new DeepLinkingService(new object[0]);
+            DeepLinkingService linkingService = new DeepLinkingService();
             IApplication appFake = A.Fake<IApplication>();
             linkingService.ApplicationAPI = appFake;
 
@@ -31,7 +31,7 @@ namespace i5.Toolkit.Core.Tests.DeepLinkAPI
         [Test]
         public void Cleanup_UnsubscribesFromDeepLinkEvent()
         {
-            DeepLinkingService linkingService = new DeepLinkingService(new object[0]);
+            DeepLinkingService linkingService = new DeepLinkingService();
             IApplication appFake = A.Fake<IApplication>();
             linkingService.ApplicationAPI = appFake;
 
@@ -44,7 +44,9 @@ namespace i5.Toolkit.Core.Tests.DeepLinkAPI
         public void Initialize_AbsoluteURINonEmpty_CallsTarget()
         {
             DeepLinkTestDefinition dl = new DeepLinkTestDefinition();
-            DeepLinkingService linkingService = new DeepLinkingService(new object[] { dl });
+            DeepLinkingService linkingService = new DeepLinkingService();
+            linkingService.AddDeepLinkListener(dl);
+
             IApplication appFake = A.Fake<IApplication>();
             A.CallTo(()=>appFake.AbsoluteURL).Returns("test://passWithoutParams");
             linkingService.ApplicationAPI = appFake;
@@ -57,8 +59,7 @@ namespace i5.Toolkit.Core.Tests.DeepLinkAPI
         [Test]
         public void Initialize_AbsoluteURINonEmptyNotRegistered_NoError()
         {
-            DeepLinkTestDefinition dl = new DeepLinkTestDefinition();
-            DeepLinkingService linkingService = new DeepLinkingService(new object[] { dl });
+            DeepLinkingService linkingService = new DeepLinkingService();
             IApplication appFake = A.Fake<IApplication>();
             A.CallTo(() => appFake.AbsoluteURL).Returns("test://notRegistered");
             linkingService.ApplicationAPI = appFake;

@@ -48,12 +48,12 @@ namespace i5.Toolkit.Core.Tests.DeepLinkAPI
             linkingService.AddDeepLinkListener(dl);
 
             IApplication appFake = A.Fake<IApplication>();
-            A.CallTo(()=>appFake.AbsoluteURL).Returns("test://passWithoutParams");
+            A.CallTo(() => appFake.AbsoluteURL).Returns("test://withoutParams");
             linkingService.ApplicationAPI = appFake;
 
-            LogAssert.Expect(UnityEngine.LogType.Log, "Pass without parameters");
-
             linkingService.Initialize(A.Fake<IServiceManager>());
+
+            Assert.AreEqual(1, dl.TimesWithoutParamsCalled);
         }
 
         [Test]
@@ -67,19 +67,63 @@ namespace i5.Toolkit.Core.Tests.DeepLinkAPI
             linkingService.Initialize(A.Fake<IServiceManager>());
         }
 
-        //[Test]
-        //public void OnDeepLinkActivated_PathRegistered_CallsPath()
-        //{
-        //    DeepLinkTestDefinition dl = new DeepLinkTestDefinition();
-        //    DeepLinkingService linkingService = new DeepLinkingService(new object[] { dl });
-        //    IApplication appFake = A.Fake<IApplication>();
+        [Test]
+        public void OnDeepLinkActivated_PathRegistered_CallsPath()
+        {
+            DeepLinkTestDefinition dl = new DeepLinkTestDefinition();
+            DeepLinkingService linkingService = new DeepLinkingService();
+            IApplication appFake = A.Fake<IApplication>();
+            linkingService.ApplicationAPI = appFake;
+            linkingService.Initialize(A.Fake<IServiceManager>());
+            linkingService.AddDeepLinkListener(dl);
 
-        //    linkingService.Initialize(A.Fake<IServiceManager>());
+            appFake.DeepLinkActivated += Raise.With("test://withoutParams");
 
-        //    appFake.DeepLinkActivated += Raise.With<string>("test://passWithoutParams");
-        //    linkingService.ApplicationAPI = appFake;
-        //}
+            Assert.AreEqual(1, dl.TimesWithoutParamsCalled);
+        }
 
-        // TODO: received deep link that is not registered
+        [Test]
+        public void OnDeepLinkActivated_RecieverNotRegistered_NoAction()
+        {
+            DeepLinkTestDefinition dl = new DeepLinkTestDefinition();
+            DeepLinkingService linkingService = new DeepLinkingService();
+            IApplication appFake = A.Fake<IApplication>();
+            linkingService.ApplicationAPI = appFake;
+            linkingService.Initialize(A.Fake<IServiceManager>());
+
+            appFake.DeepLinkActivated += Raise.With("test://withoutParams");
+
+            Assert.AreEqual(0, dl.TimesWithoutParamsCalled);
+        }
+
+        [Test]
+        public void OnDeepLinkActivated_UnknownPath_NoAction()
+        {
+            DeepLinkTestDefinition dl = new DeepLinkTestDefinition();
+            DeepLinkingService linkingService = new DeepLinkingService();
+            IApplication appFake = A.Fake<IApplication>();
+            linkingService.ApplicationAPI = appFake;
+            linkingService.Initialize(A.Fake<IServiceManager>());
+            linkingService.AddDeepLinkListener(dl);
+
+            appFake.DeepLinkActivated += Raise.With("test://unknown");
+
+            Assert.AreEqual(0, dl.TimesWithoutParamsCalled);
+        }
+
+        [Test]
+        public void OnDeepLinkActivated_Param_MethodCalled()
+        {
+            DeepLinkTestDefinition dl = new DeepLinkTestDefinition();
+            DeepLinkingService linkingService = new DeepLinkingService();
+            IApplication appFake = A.Fake<IApplication>();
+            linkingService.ApplicationAPI = appFake;
+            linkingService.Initialize(A.Fake<IServiceManager>());
+            linkingService.AddDeepLinkListener(dl);
+
+            appFake.DeepLinkActivated += Raise.With("test://unknown");
+
+            Assert.AreEqual(0, dl.TimesWithoutParamsCalled);
+        }
     }
 }

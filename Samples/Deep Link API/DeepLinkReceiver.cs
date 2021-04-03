@@ -6,9 +6,9 @@ namespace i5.Toolkit.Core.Examples.DeepLinkAPI
     public class DeepLinkReceiver
     {
         [DeepLink("helloWorld")]
-        public void HelloWorld(int x, bool check)
+        public void HelloWorld()
         {
-            Debug.Log($"Hello World; x={x}; check={check}");
+            Debug.Log($"Hello World");
         }
     }
 }

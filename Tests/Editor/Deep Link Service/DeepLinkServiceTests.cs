@@ -54,6 +54,31 @@ namespace i5.Toolkit.Core.Tests.DeepLinkAPI
         }
 
         [Test]
+        public void Initialize_AbsoluteURINonEmptyWithParams_WithParamsCalled()
+        {
+            linkingService.AddDeepLinkListener(dl);
+
+            A.CallTo(() => appFake.AbsoluteURL).Returns("test://withParams?value=123");
+
+            linkingService.Initialize(A.Fake<IServiceManager>());
+
+            Assert.AreEqual(0, dl.TimesWithoutParamsCalled);
+            Assert.AreEqual(1, dl.TimesWithParamsCalled);
+        }
+
+        [Test]
+        public void Initialize_AbsoluteURINonEmptyWithParams_ArgumentsSet()
+        {
+            linkingService.AddDeepLinkListener(dl);
+
+            A.CallTo(() => appFake.AbsoluteURL).Returns("test://withParams?value=123");
+
+            linkingService.Initialize(A.Fake<IServiceManager>());
+
+            Assert.AreEqual("123", dl.DeepLinkArgs.Parameters["value"]);
+        }
+
+        [Test]
         public void Initialize_AbsoluteURINonEmptyNotRegistered_NoError()
         {
             A.CallTo(() => appFake.AbsoluteURL).Returns("test://notRegistered");

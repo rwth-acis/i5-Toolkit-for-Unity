@@ -55,4 +55,10 @@ public class DeepLinkTestDefinition
     {
         TimesWithParamsCalled++;
     }
+
+    [DeepLink(scheme: "test", path: "filtered")]
+    public void Filtered()
+    {
+        TimesWithoutParamsCalled++;
+    }
 }

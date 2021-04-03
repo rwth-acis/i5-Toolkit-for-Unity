@@ -304,5 +304,27 @@ namespace i5.Toolkit.Core.Tests.DeepLinkAPI
             Assert.AreEqual(0, dl.TimesWithParamsCalled);
             Assert.AreEqual(0, dl.TimesWithoutParamsCalled);
         }
+
+        [Test]
+        public void OnDeepLinkActivated_FilteredMatching_CallsMethod()
+        {
+            linkingService.Initialize(A.Fake<IServiceManager>());
+            linkingService.AddDeepLinkListener(dl);
+
+            appFake.DeepLinkActivated += Raise.With("test://filtered");
+
+            Assert.AreEqual(1, dl.TimesWithoutParamsCalled);
+        }
+
+        [Test]
+        public void OnDeepLinkActivated_FilterNotMatching_CallsMethod()
+        {
+            linkingService.Initialize(A.Fake<IServiceManager>());
+            linkingService.AddDeepLinkListener(dl);
+
+            appFake.DeepLinkActivated += Raise.With("nonmatch://filtered");
+
+            Assert.AreEqual(0, dl.TimesWithoutParamsCalled);
+        }
     }
 }

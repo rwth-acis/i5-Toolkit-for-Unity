@@ -147,7 +147,10 @@ namespace i5.Toolkit.Core.DeepLinkAPI
                 // check every DeepLinkAttribute on the method
                 foreach (DeepLinkAttribute attribute in attributes)
                 {
-                    if (path.Equals(attribute.Path.ToLower()))
+                    bool schemeMatches = string.IsNullOrEmpty(attribute.Scheme)
+                        || uri.Scheme == attribute.Scheme.Replace("://", "");
+
+                    if (schemeMatches && path.Equals(attribute.Path.ToLower()))
                     {
                         ParameterInfo[] parameters = method.GetParameters();
 

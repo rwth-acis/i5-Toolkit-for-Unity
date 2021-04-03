@@ -5,6 +5,7 @@ using i5.Toolkit.Core.ServiceCore;
 using i5.Toolkit.Core.Utilities.UnityAdapters;
 using NUnit.Framework;
 using System;
+using System.Text.RegularExpressions;
 using UnityEngine.TestTools;
 
 namespace i5.Toolkit.Core.Tests.DeepLinkAPI
@@ -85,6 +86,51 @@ namespace i5.Toolkit.Core.Tests.DeepLinkAPI
             
             linkingService.Initialize(A.Fake<IServiceManager>());
         }
+
+        [Test]
+        public void AddDeepLinkListener_NotContained_ListenerCountIncreased()
+        {
+            linkingService.AddDeepLinkListener(dl);
+            Assert.AreEqual(1, linkingService.RegisteredListenersCount);
+        }
+
+        [Test]
+        public void AddDeepLinkListener_AlreadyContained_DoesNotAddTwice()
+        {
+            linkingService.AddDeepLinkListener(dl);
+            Assert.AreEqual(1, linkingService.RegisteredListenersCount);
+
+            linkingService.AddDeepLinkListener(dl);
+            Assert.AreEqual(1, linkingService.RegisteredListenersCount);
+        }
+
+        [Test]
+        public void AddDeepLinkListener_TargetForAbsoluteURL_TriggersURL()
+        {
+            A.CallTo(() => appFake.AbsoluteURL).Returns("test://withoutParams");
+
+            linkingService.AddDeepLinkListener(dl);
+
+            Assert.AreEqual(1, dl.TimesWithoutParamsCalled);
+        }
+
+        [Test]
+        public void RemoveDeepLinkListener_Contained_CountDecreasedBy1()
+        {
+            linkingService.AddDeepLinkListener(dl);
+            linkingService.RemoveDeepLinkListener(dl);
+            Assert.AreEqual(0, linkingService.RegisteredListenersCount);
+        }
+
+        [Test]
+        public void RemoveDeepLinkListener_NotContained_CountSame()
+        {
+            DeepLinkTestDefinition dl2 = new DeepLinkTestDefinition();
+            linkingService.AddDeepLinkListener(dl2);
+            linkingService.RemoveDeepLinkListener(dl);
+            Assert.AreEqual(1, linkingService.RegisteredListenersCount);
+        }
+
 
         [Test]
         public void OnDeepLinkActivated_PathRegistered_CallsPath()
@@ -244,6 +290,19 @@ namespace i5.Toolkit.Core.Tests.DeepLinkAPI
             appFake.DeepLinkActivated += Raise.With(url);
 
             Assert.AreEqual(url.ToLower(), dl.DeepLinkArgs.DeepLink.ToString());
+        }
+
+        [Test]
+        public void OnDeepLinkActivated_FaultyMethodTargeted_LogsError()
+        {
+            linkingService.Initialize(A.Fake<IServiceManager>());
+            linkingService.AddDeepLinkListener(dl);
+
+            LogAssert.Expect(UnityEngine.LogType.Error, new Regex(@"\w*Cannot deep-link\w*"));
+            appFake.DeepLinkActivated += Raise.With("test://faulty");
+
+            Assert.AreEqual(0, dl.TimesWithParamsCalled);
+            Assert.AreEqual(0, dl.TimesWithoutParamsCalled);
         }
     }
 }

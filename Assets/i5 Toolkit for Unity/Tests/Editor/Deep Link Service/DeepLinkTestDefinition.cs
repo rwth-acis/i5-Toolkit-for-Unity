@@ -49,4 +49,10 @@ public class DeepLinkTestDefinition
     {
         DeepLinkArgs = args;
     }
+
+    [DeepLink("faulty")]
+    public void Faulty(string invalidParam)
+    {
+        TimesWithParamsCalled++;
+    }
 }

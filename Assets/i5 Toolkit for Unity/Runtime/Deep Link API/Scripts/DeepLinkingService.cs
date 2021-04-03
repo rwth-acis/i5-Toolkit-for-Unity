@@ -13,9 +13,9 @@ namespace i5.Toolkit.Core.DeepLinkAPI
     {
         private List<WeakReference<object>> registeredListeners = new List<WeakReference<object>>();
 
-        private Dictionary<string, InstancedMethod> paths = new Dictionary<string, InstancedMethod>();
-
         public IApplication ApplicationAPI { get; set; } = new ApplicationWrapper();
+
+        public int RegisteredListenersCount => registeredListeners.Count;
 
         public void Initialize(IServiceManager owner)
         {
@@ -28,9 +28,22 @@ namespace i5.Toolkit.Core.DeepLinkAPI
 
         public void AddDeepLinkListener(object listener)
         {
-            if (registeredListeners.Contains(listener))
+            // check if list already contains object
+            for (int i=registeredListeners.Count-1;i>=0;i--)
             {
-                return;
+                if (registeredListeners[i].TryGetTarget(out object item))
+                {
+                    if (item.Equals(listener))
+                    {
+                        // if it is contained: return
+                        return;
+                    }
+                }
+                // remove garbage collected items
+                else
+                {
+                    registeredListeners.RemoveAt(i);
+                }
             }
 
             registeredListeners.Add(new WeakReference<object>(listener));

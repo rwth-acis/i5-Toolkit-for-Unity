@@ -11,7 +11,7 @@ apiRules:
 - include:
     uidRegex: ^i5.*
     type: Namespace
-- include:
+- exclude:
     uidRegex: ^Global
     type: Namespace
 - exclude:

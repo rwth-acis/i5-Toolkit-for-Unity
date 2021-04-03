@@ -8,8 +8,7 @@ public class DeepLinkTestDefinition
 
     public int TimesWithParamsCalled { get; private set; } = 0;
 
-    public string StringValue { get; private set; }
-    public int IntValue { get; private set; }
+    public DeepLinkArgs DeepLinkArgs { get; private set; }
 
     [DeepLink("withoutParams")]
     public void EmptyDeepLinkTargetPass()
@@ -18,46 +17,36 @@ public class DeepLinkTestDefinition
         TimesWithoutParamsCalled++;
     }
 
-    [DeepLink("withString")]
-    public void WithString(string value)
+    [DeepLink("withParams")]
+    public void WithString(DeepLinkArgs args)
     {
-        Debug.Log("Method with string parameter called");
+        Debug.Log("Method with parameters called");
         TimesWithParamsCalled++;
-        StringValue = value;
-    }
-
-
-    [DeepLink("multiParams")]
-    public void MultiParams(string value1, int value2 = 100)
-    {
-        Debug.Log("Method with multiple parameters called");
-        TimesWithParamsCalled++;
-        StringValue = value1;
-        IntValue = value2;
+        DeepLinkArgs = args;
     }
 
     [DeepLink("duplicate")]
     public void Duplicate()
     {
-
+        TimesWithoutParamsCalled++;
     }
 
     [DeepLink("duplicate")]
     public void Duplicate2()
     {
-
+        TimesWithoutParamsCalled++;
     }
 
     [DeepLink("duplicate")]
     public void Duplicate(DeepLinkArgs args)
     {
-
+        TimesWithParamsCalled++;
     }
 
-    [DeepLink("duplicate")]
-    [DeepLink("duplicate2")]
-    public void MultipePaths()
+    [DeepLink("multiPaths")]
+    [DeepLink("multiPaths2")]
+    public void MultipePaths(DeepLinkArgs args)
     {
-
+        DeepLinkArgs = args;
     }
 }

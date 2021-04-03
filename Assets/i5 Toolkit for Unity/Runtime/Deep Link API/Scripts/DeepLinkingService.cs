@@ -102,9 +102,7 @@ namespace i5.Toolkit.Core.DeepLinkAPI
 
                         if (parameters.Length == 0)
                         {
-                            method.Invoke(
-                            instance,
-                            null);
+                            method.Invoke(instance, null);
                         }
                         else if (parameters.Length == 1 && parameters[0].ParameterType == typeof(DeepLinkArgs))
                         {

@@ -211,7 +211,7 @@ namespace i5.Toolkit.Core.Tests.DeepLinkAPI
 
             appFake.DeepLinkActivated += Raise.With(deepLink);
 
-            Assert.AreEqual("test", dl.DeepLinkArgs.Protocol);
+            Assert.AreEqual("test", dl.DeepLinkArgs.Scheme);
         }
 
         [Test]

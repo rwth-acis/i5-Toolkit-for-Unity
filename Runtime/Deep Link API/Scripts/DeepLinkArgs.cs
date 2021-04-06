@@ -17,9 +17,9 @@ namespace i5.Toolkit.Core.DeepLinkAPI
         /// </summary>
         public Uri DeepLink { get; private set; }
         /// <summary>
-        /// The protocol of the deep link, e.g. i5://
+        /// The scheme of the deep link, e.g. i5://
         /// </summary>
-        public string Protocol => DeepLink.Scheme;
+        public string Scheme => DeepLink.Scheme;
 
         /// <summary>
         /// Creates a new instance of the deep link arguments

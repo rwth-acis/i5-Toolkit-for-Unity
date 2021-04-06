@@ -37,7 +37,7 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         /// <summary>
         /// Generates and sets a redirect URI with a free port on which the server will listen once it is started
         /// </summary>
-        /// <param name="protocol">The URI schema that the URI should use</param>
+        /// <param name="protocol">The URI scheme that the URI should use</param>
         /// <returns>Returns a URI with a free port on which the server can listen</returns>
         string GenerateListeningUri(string protocol = "http");
     }

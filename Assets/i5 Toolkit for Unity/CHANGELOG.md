@@ -2,6 +2,16 @@
 
 This document keeps track of the changes between versions of the toolkit.
 
+## 1.5.0 (Unreleased)
+
+### Added
+
+- Added a service and attribute to quickly set up APIs for mobile deep links
+
+### Changed
+
+- Changed minimum Unity version to 2019.4 since Unity 2018.4 reached the end of its LTS support
+
 ## 1.4.0 (2021-03-28)
 
 ### Added

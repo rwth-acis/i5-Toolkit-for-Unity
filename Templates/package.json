@@ -29,7 +29,7 @@
             "displayName": "Deep Links",
             "description": "Example scene which shows how to react to mobile deep links",
             "path":  "Samples~/Deep Link API"
-        }
+        },
         {
             "displayName": "Mesh Pool",
             "description": "Example how to re-use meshes with the object pool architecture to avoid memory leaks",

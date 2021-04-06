@@ -280,7 +280,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 486883355}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 2}
+  m_LocalPosition: {x: 0, y: 1, z: 2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -566,7 +566,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1523993966}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -602,7 +602,7 @@ PrefabInstance:
     - target: {fileID: 5962829298817573850, guid: e6f9d8ad5c93e564c9c70b96f675d36b,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 15.65
       objectReference: {fileID: 0}
     - target: {fileID: 5962829298817573851, guid: e6f9d8ad5c93e564c9c70b96f675d36b,
         type: 3}
@@ -632,27 +632,27 @@ PrefabInstance:
     - target: {fileID: 5962829299778845467, guid: e6f9d8ad5c93e564c9c70b96f675d36b,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5962829299778845467, guid: e6f9d8ad5c93e564c9c70b96f675d36b,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5962829299778845467, guid: e6f9d8ad5c93e564c9c70b96f675d36b,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: -17
       objectReference: {fileID: 0}
     - target: {fileID: 5962829299931686350, guid: e6f9d8ad5c93e564c9c70b96f675d36b,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5962829299931686350, guid: e6f9d8ad5c93e564c9c70b96f675d36b,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5962829300182247579, guid: e6f9d8ad5c93e564c9c70b96f675d36b,
         type: 3}
@@ -763,6 +763,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Fullscreen Console
+      objectReference: {fileID: 0}
+    - target: {fileID: 5962829300182247583, guid: e6f9d8ad5c93e564c9c70b96f675d36b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e6f9d8ad5c93e564c9c70b96f675d36b, type: 3}

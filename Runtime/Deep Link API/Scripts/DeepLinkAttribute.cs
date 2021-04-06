@@ -22,21 +22,21 @@ namespace i5.Toolkit.Core.DeepLinkAPI
         /// For instance, to react to any scheme, e.g. i5://myPath but also dbis://myPath, leave it empty.
         /// To only react on i5://myPath but not dbis://myPath, enter "i5" as the scheme.
         /// </summary>
-        public string Scheme { get; set; }
+        public string Schema { get; set; }
 
         /// <summary>
         /// Marks the method as a deep link target with the given path
         /// </summary>
         /// <param name="path">The path of the deep link
         /// If you want to react to i5://myPath, enter "myPath".</param>
-        /// <param name="scheme">Filters the scheme.
-        /// If left empty, all schemes are allowed, otherwise only the exact matches will be considered.
-        /// For instance, to react to any scheme, e.g. i5://myPath but also dbis://myPath, leave it empty.
-        /// To only react on i5://myPath but not dbis://myPath, enter "i5" as the scheme.</param>
-        public DeepLinkAttribute(string path, string scheme = "")
+        /// <param name="schema">Filters the schema.
+        /// If left empty, all schemas are allowed, otherwise only the exact matches will be considered.
+        /// For instance, to react to any schema, e.g. i5://myPath but also dbis://myPath, leave it empty.
+        /// To only react on i5://myPath but not dbis://myPath, enter "i5" as the schema.</param>
+        public DeepLinkAttribute(string path, string schema = "")
         {
             Path = path;
-            Scheme = scheme;
+            Schema = schema;
         }
     }
 

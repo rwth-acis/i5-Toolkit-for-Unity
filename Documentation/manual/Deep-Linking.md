@@ -23,18 +23,46 @@ If a user clicks the link, the mail client opens and automatically sets up a new
 
 Follow these steps to integrate deep linking into your application:
 
-1. Add a <xref:i5.Toolkit.Core.DeepLinkAPI.DeepLinkingService> to your application.
+1. Add a <xref:i5.Toolkit.Core.DeepLinkAPI.DeepLinkingService> to your application, e.g. in a [service bootstrapper](Service-Core.md#bootstrappers).
+   
+   ```[C#]
+   DeepLinkingService service = new DeepLinkingService();
+   ServiceManager.RegisterService(service);
+   ```
 2. Add the <xref:i5.Toolkit.Core.DeepLinkAPI.DeepLinkAttribute> to a method that should react to a deep link.
    When specifying the attribute, set the path to which it should react, e.g. "myDeepLink" if it should react to deep links like "i5://myDeepLink".
    The path is case-insensitive.
-3. Optionally, you can also enter a schema in the attribute's definition.
-   If you do not add a schema, all schemas are recognized which have the same path.
-   For instance, `[DeepLink("myDeepLink")]` will be activated by any URL with the path myDeepLink, e.g. "i5://myDeepLink" but also "rwth://myDeepLink", etc.
-   If the schema is specified, only links which match this exact schema target the given method.
-   So, `[DeepLink(schema: "i5", path: "myDeepLink")]` will only be called by the deep link "i5://myDeepLink" but e.g. not by "rwth://myDeepLink".
-4. *Important*: To optimize performance, the <xref:i5.Toolkit.Core.DeepLinkAPI.DeepLinkingService> does not scan the entire code for the methods with attributes.
+
+   ```[C#]
+   [DeepLink("myPath")]
+   public void Foo()
+   { ... }
+   ```
+3. *Important*: To optimize performance, the <xref:i5.Toolkit.Core.DeepLinkAPI.DeepLinkingService> does not scan the entire code for the methods with attributes.
    Instead, you need to add the class that contains the method manually using <xref:i5.Toolkit.Core.DeepLinkAPI.DeepLinkingService.AddDeepLinkListener(System.Object)>.
-5. To clean up, you can remove a listener class again using <xref:i5.Toolkit.Core.DeepLinkAPI.DeepLinkingService.RemoveDeepLinkListener(System.Object)>
+
+   ```[C#]
+   service.AddDeepLinkListener(myClass);
+   ```
+4. To clean up, you can remove a listener class again using <xref:i5.Toolkit.Core.DeepLinkAPI.DeepLinkingService.RemoveDeepLinkListener(System.Object)>
+
+### Filtering Schemas
+
+Optionally, you can also enter a schema in the attribute's definition.
+If you do not add a schema, all schemas are recognized which have the same path.
+For instance, `[DeepLink("myDeepLink")]` will be activated by any URL with the path myDeepLink, e.g. "i5://myDeepLink" but also "rwth://myDeepLink", etc.
+If the schema is specified, only links which match this exact schema target the given method.
+So, `[DeepLink(schema: "i5", path: "myDeepLink")]` will only be called by the deep link "i5://myDeepLink" but e.g. not by "rwth://myDeepLink".
+
+### Extracting Further Information About the Received Deep Link
+
+Methods that are marked with the <xref:i5.Toolkit.Core.DeepLinkAPI.DeepLinkAttribute> can either take no arguments or one argument of type <xref:i5.Toolkit.Core.DeepLinkAPI.DeepLinkArgs>.
+In this argument helper class, the full deep link can be found, as well as information about the schema, and parameters that were specified with the deep link.
+
+#### Passing Parameters to the Application Using Deep Links
+
+You can specify parameters in the deep link, e.g. "i5://withParams?value=123&secondvalue=helloWorld".
+They are available as a <xref:System.Collections.Generic.Dictionary`2> in the <xref:i5.Toolkit.Core.DeepLinkAPI.DeepLinkArgs.Parameters>.
 
 ### Recommendations
 
@@ -52,3 +80,27 @@ These API-definition classes should be available from the beginning of the appli
 
 ## Example Scene
 
+There is an example scene that demonstrates the usage of the deep links.
+It can only be tested in UWP, Android and iOS builds.
+
+Follow these steps to set up the example:
+1. Open the example scene "Deep Linking Demo".
+2. Go to "File > Build Settings" and click the button "Add open scenes".
+   Make sure that the "Deep Linking Demo" scene has index 0 in the build - it needs to be at the top of the list.
+   If it is not at the top, you can drag and drop the scene entry so that it is the first one in the list.
+3. In the build settings dialog, select either Universal Windows Platform (UWP), Android or iOS as the target platform and click the "Switch Platform" button.
+   If you want to test on your development Windows PC, it is recommended to choose UWP because you can directly install the app on your PC and do not need an additional smartphone.
+4. Click the "Player Settings" button in the build settings dialog.
+   After that, register a deep link schema for "i5" for your selected target platform.
+5. Build the application and install it on your device.
+6. Click on the following link on the device on which you installed the application.
+   The browser will ask you whether you want to open the link with your application.
+
+<i5://changeColor?color=#0000ff>
+
+The cube in the scene has a deep link receiver on it that responds to the *changeColor* path.
+You can modify the value of the *color* parameter by copying the link and manually pasting it into the browser's address bar.
+Each time you hit enter, the browser redirects to the example application and the cube changes its color.
+This works both, if the app is not running in the background and with the already opened app.
+
+If you hit F5, you can toggle the visibility of a fullscreen [app console](App-Console.md) which prints the deep link that was received.

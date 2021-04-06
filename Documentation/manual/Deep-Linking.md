@@ -10,7 +10,7 @@ These deep links do not start with "http://" or "https://" but use a custom sche
 For instance, it is possible to register an app to react to all links that start with "i5://".
 To ensure that the schema is unique, it is also possible to use reverse DNS notation, e.g. by writing "com.i5.Toolkit://".
 
-For more information on mobile deep links can be found [here](https://en.wikipedia.org/wiki/Mobile_deep_linking).
+More information on mobile deep links can be found [here](https://en.wikipedia.org/wiki/Mobile_deep_linking).
 
 ## Use Case
 
@@ -19,17 +19,30 @@ As an example, it is possible to tell the app to immediately load certain conten
 A common deep link that can be found on the Web is the "mailto://" schema.
 If a user clicks the link, the mail client opens and automatically sets up a new mail where the receiver mail is automatically filled based on the link's content.
 
+## Supported Platforms
+
+Deep links can only be registered for installed apps, e.g. on the following platforms:
+
+- Universal Windows Platform
+- Android
+- iOS
+
+In particular, this feature does not supported testing in the Unity editor and on Standalone builds.
+
 ## Usage
 
 Follow these steps to integrate deep linking into your application:
 
-1. Add a <xref:i5.Toolkit.Core.DeepLinkAPI.DeepLinkingService> to your application, e.g. in a [service bootstrapper](Service-Core.md#bootstrappers).
+1. In the Player Settings of your target platform, register the deep link scheme.
+   More information can be found in [Unity's documentation](https://docs.unity3d.com/Manual/enabling-deep-linking.html).
+   You only need to follow the the instructions for your specific platform - the code examples are already handled by the given deep linking service.
+2. Add a <xref:i5.Toolkit.Core.DeepLinkAPI.DeepLinkingService> to your application, e.g. in a [service bootstrapper](Service-Core.md#bootstrappers).
    
    ```[C#]
    DeepLinkingService service = new DeepLinkingService();
    ServiceManager.RegisterService(service);
    ```
-2. Add the <xref:i5.Toolkit.Core.DeepLinkAPI.DeepLinkAttribute> to a method that should react to a deep link.
+3. Add the <xref:i5.Toolkit.Core.DeepLinkAPI.DeepLinkAttribute> to a method that should react to a deep link.
    When specifying the attribute, set the path to which it should react, e.g. "myDeepLink" if it should react to deep links like "i5://myDeepLink".
    The path is case-insensitive.
 
@@ -38,21 +51,21 @@ Follow these steps to integrate deep linking into your application:
    public void Foo()
    { ... }
    ```
-3. *Important*: To optimize performance, the <xref:i5.Toolkit.Core.DeepLinkAPI.DeepLinkingService> does not scan the entire code for the methods with attributes.
+4. *Important*: To optimize performance, the <xref:i5.Toolkit.Core.DeepLinkAPI.DeepLinkingService> does not scan the entire code for the methods with attributes.
    Instead, you need to add the class that contains the method manually using <xref:i5.Toolkit.Core.DeepLinkAPI.DeepLinkingService.AddDeepLinkListener(System.Object)>.
 
    ```[C#]
    service.AddDeepLinkListener(myClass);
    ```
-4. To clean up, you can remove a listener class again using <xref:i5.Toolkit.Core.DeepLinkAPI.DeepLinkingService.RemoveDeepLinkListener(System.Object)>
+5. To clean up, you can remove a listener class again using <xref:i5.Toolkit.Core.DeepLinkAPI.DeepLinkingService.RemoveDeepLinkListener(System.Object)>
 
-### Filtering Schemas
+### Filtering Schemes
 
-Optionally, you can also enter a schema in the attribute's definition.
-If you do not add a schema, all schemas are recognized which have the same path.
+Optionally, you can also enter a scheme in the attribute's definition.
+If you do not add a scheme, all schemes are recognized which have the same path.
 For instance, `[DeepLink("myDeepLink")]` will be activated by any URL with the path myDeepLink, e.g. "i5://myDeepLink" but also "rwth://myDeepLink", etc.
-If the schema is specified, only links which match this exact schema target the given method.
-So, `[DeepLink(schema: "i5", path: "myDeepLink")]` will only be called by the deep link "i5://myDeepLink" but e.g. not by "rwth://myDeepLink".
+If the scheme is specified, only links which match this exact scheme target the given method.
+So, `[DeepLink(scheme: "i5", path: "myDeepLink")]` will only be called by the deep link "i5://myDeepLink" but e.g. not by "rwth://myDeepLink".
 
 ### Extracting Further Information About the Received Deep Link
 
@@ -90,15 +103,14 @@ Follow these steps to set up the example:
    If it is not at the top, you can drag and drop the scene entry so that it is the first one in the list.
 3. In the build settings dialog, select either Universal Windows Platform (UWP), Android or iOS as the target platform and click the "Switch Platform" button.
    If you want to test on your development Windows PC, it is recommended to choose UWP because you can directly install the app on your PC and do not need an additional smartphone.
-4. Click the "Player Settings" button in the build settings dialog.
-   After that, register a deep link schema for "i5" for your selected target platform.
+4. Register a deep link scheme for "i5" for your selected target platform, using the platform-specific instructions in [Unity's docuemtation](https://docs.unity3d.com/Manual/enabling-deep-linking.html).
 5. Build the application and install it on your device.
 6. Click on the following link on the device on which you installed the application.
    The browser will ask you whether you want to open the link with your application.
 
 <i5://changeColor?color=#0000ff>
 
-The cube in the scene has a deep link receiver on it that responds to the *changeColor* path.
+A deep link receiver that responds to the *changeColor* path is attached to the cube.
 You can modify the value of the *color* parameter by copying the link and manually pasting it into the browser's address bar.
 Each time you hit enter, the browser redirects to the example application and the cube changes its color.
 This works both, if the app is not running in the background and with the already opened app.

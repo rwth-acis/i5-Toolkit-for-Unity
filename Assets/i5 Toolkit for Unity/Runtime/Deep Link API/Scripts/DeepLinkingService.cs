@@ -14,7 +14,7 @@ namespace i5.Toolkit.Core.DeepLinkAPI
     /// Use <see cref="DeepLinkAttribute"/> to mark methods as targets of deep links.
     /// Moreover, add classes using <see cref="DeepLinkAttribute"/> to the list of listeners in this service using <see cref="AddDeepLinkListener(object)"/>.
     /// </summary>
-    public class DeepLinkingService : IService
+    public class DeepLinkingService : IDeepLinkingService
     {
         // registered listeners which should be searched for deep link targets
         private List<WeakReference<object>> registeredListeners = new List<WeakReference<object>>();

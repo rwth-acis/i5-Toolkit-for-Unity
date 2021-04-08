@@ -1,0 +1,208 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Deep Linking | i5 Toolkit Documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Deep Linking | i5 Toolkit Documentation ">
+    <meta name="generator" content="docfx 2.56.2.0">
+    
+    <link rel="shortcut icon" href="../resources/Logos/Logo_whiteBg.svg">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../resources/Logos/Logo_whiteBg.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="deep-linking">Deep Linking</h1>
+
+<p><img src="../resources/Logos/DeepLink.svg" alt="Deep Linking"></p>
+<h2 id="mobile-deep-links">Mobile Deep Links</h2>
+<p>Mobile deep links are special links on Web pages.
+They allow users to seamlessly switch into an installed application and trigger an action there.
+These deep links do not start with &quot;http://&quot; or &quot;https://&quot; but use a custom schema that can be freely chosen.
+For instance, it is possible to register an app to react to all links that start with &quot;i5://&quot;.
+To ensure that the schema is unique, it is also possible to use reverse DNS notation, e.g. by writing &quot;com.i5.Toolkit://&quot;.</p>
+<p>More information on mobile deep links can be found <a href="https://en.wikipedia.org/wiki/Mobile_deep_linking">here</a>.</p>
+<h2 id="use-case">Use Case</h2>
+<p>The mobile deep links can be used to quickly access functionalities and services of installed applications.
+As an example, it is possible to tell the app to immediately load certain content or open a specific editor.
+A common deep link that can be found on the Web is the &quot;mailto://&quot; schema.
+If a user clicks the link, the mail client opens and automatically sets up a new mail where the receiver mail is automatically filled based on the link&#39;s content.</p>
+<h2 id="supported-platforms">Supported Platforms</h2>
+<p>Deep links can only be registered for installed apps, e.g. on the following platforms:</p>
+<ul>
+<li>Universal Windows Platform</li>
+<li>Android</li>
+<li>iOS</li>
+</ul>
+<p>In particular, this feature does not supported testing in the Unity editor and on Standalone builds.</p>
+<h2 id="usage">Usage</h2>
+<p>Follow these steps to integrate deep linking into your application:</p>
+<ol>
+<li>In the Player Settings of your target platform, register the deep link scheme.
+More information can be found in <a href="https://docs.unity3d.com/Manual/enabling-deep-linking.html">Unity&#39;s documentation</a>.
+You only need to follow the the instructions for your specific platform - the code examples are already handled by the given deep linking service.</li>
+<li><p>Add a <a class="xref" href="../api/i5.Toolkit.Core.DeepLinkAPI.DeepLinkingService.html">DeepLinkingService</a> to your application, e.g. in a <a href="Service-Core.html#bootstrappers">service bootstrapper</a>.</p>
+<pre><code class="lang-[C#]">DeepLinkingService service = new DeepLinkingService();
+ServiceManager.RegisterService(service);
+</code></pre></li>
+<li><p>Add the <a class="xref" href="../api/i5.Toolkit.Core.DeepLinkAPI.DeepLinkAttribute.html">DeepLinkAttribute</a> to a method that should react to a deep link.
+When specifying the attribute, set the path to which it should react, e.g. &quot;myDeepLink&quot; if it should react to deep links like &quot;i5://myDeepLink&quot;.
+The path is case-insensitive.</p>
+<pre><code class="lang-[C#]">[DeepLink(&quot;myPath&quot;)]
+public void Foo()
+{ ... }
+</code></pre></li>
+<li><p><em>Important</em>: To optimize performance, the <a class="xref" href="../api/i5.Toolkit.Core.DeepLinkAPI.DeepLinkingService.html">DeepLinkingService</a> does not scan the entire code for the methods with attributes.
+Instead, you need to add the class that contains the method manually using <a class="xref" href="../api/i5.Toolkit.Core.DeepLinkAPI.DeepLinkingService.html#i5_Toolkit_Core_DeepLinkAPI_DeepLinkingService_AddDeepLinkListener_System_Object_">AddDeepLinkListener(Object)</a>.</p>
+<pre><code class="lang-[C#]">service.AddDeepLinkListener(myClass);
+</code></pre></li>
+<li>To clean up, you can remove a listener class again using <a class="xref" href="../api/i5.Toolkit.Core.DeepLinkAPI.DeepLinkingService.html#i5_Toolkit_Core_DeepLinkAPI_DeepLinkingService_RemoveDeepLinkListener_System_Object_">RemoveDeepLinkListener(Object)</a></li>
+</ol>
+<h3 id="filtering-schemes">Filtering Schemes</h3>
+<p>Optionally, you can also enter a scheme in the attribute&#39;s definition.
+If you do not add a scheme, all schemes are recognized which have the same path.
+For instance, <code>[DeepLink(&quot;myDeepLink&quot;)]</code> will be activated by any URL with the path myDeepLink, e.g. &quot;i5://myDeepLink&quot; but also &quot;rwth://myDeepLink&quot;, etc.
+If the scheme is specified, only links which match this exact scheme target the given method.
+So, <code>[DeepLink(scheme: &quot;i5&quot;, path: &quot;myDeepLink&quot;)]</code> will only be called by the deep link &quot;i5://myDeepLink&quot; but e.g. not by &quot;rwth://myDeepLink&quot;.</p>
+<h3 id="extracting-further-information-about-the-received-deep-link">Extracting Further Information About the Received Deep Link</h3>
+<p>Methods that are marked with the <a class="xref" href="../api/i5.Toolkit.Core.DeepLinkAPI.DeepLinkAttribute.html">DeepLinkAttribute</a> can either take no arguments or one argument of type <a class="xref" href="../api/i5.Toolkit.Core.DeepLinkAPI.DeepLinkArgs.html">DeepLinkArgs</a>.
+In this argument helper class, the full deep link can be found, as well as information about the schema, and parameters that were specified with the deep link.</p>
+<h4 id="passing-parameters-to-the-application-using-deep-links">Passing Parameters to the Application Using Deep Links</h4>
+<p>You can specify parameters in the deep link, e.g. &quot;i5://withParams?value=123&amp;secondvalue=helloWorld&quot;.
+They are available as a <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary&lt;TKey,TValue&gt;</a> in the <a class="xref" href="../api/i5.Toolkit.Core.DeepLinkAPI.DeepLinkArgs.html#i5_Toolkit_Core_DeepLinkAPI_DeepLinkArgs_Parameters">Parameters</a>.</p>
+<h3 id="recommendations">Recommendations</h3>
+<p>It is possible to mark any method in the code as a deep link receiver.
+However, you should only choose methods that are available after the automatic initialization procedure of your application.
+Moreover, the methods should stay available during the entire lifetime of the application.</p>
+<p>This is due to the fact that the deep links should be state-free.
+No matter where in the application you are, a received deep link should always have the same effect.
+Moreover, when launching the application via a deep link, it should directly react to the deep link&#39;s content without user intervention.
+It would be confusing for users if they start via a deep link, get into the normal main menu, can interact with it and e.g. only if they open the settings menu, the deep link is suddenly recognized and has an effect.</p>
+<p>To keep the architecture clean, it is recommended to create few API-definition classes that bundle deep link paths instead of scattering them throughout the application&#39;s code.
+These API-definition classes should be available from the beginning of the application and should persist until the application is terminated.</p>
+<h2 id="example-scene">Example Scene</h2>
+<p>There is an example scene that demonstrates the usage of the deep links.
+It can only be tested in UWP, Android and iOS builds.</p>
+<p>Follow these steps to set up the example:</p>
+<ol>
+<li>Open the example scene &quot;Deep Linking Demo&quot;.</li>
+<li>Go to &quot;File &gt; Build Settings&quot; and click the button &quot;Add open scenes&quot;.
+Make sure that the &quot;Deep Linking Demo&quot; scene has index 0 in the build - it needs to be at the top of the list.
+If it is not at the top, you can drag and drop the scene entry so that it is the first one in the list.</li>
+<li>In the build settings dialog, select either Universal Windows Platform (UWP), Android or iOS as the target platform and click the &quot;Switch Platform&quot; button.
+If you want to test on your development Windows PC, it is recommended to choose UWP because you can directly install the app on your PC and do not need an additional smartphone.</li>
+<li>Register a deep link scheme for &quot;i5&quot; for your selected target platform, using the platform-specific instructions in <a href="https://docs.unity3d.com/Manual/enabling-deep-linking.html">Unity&#39;s docuemtation</a>.</li>
+<li>Build the application and install it on your device.</li>
+<li>Click on the following link on the device on which you installed the application.
+The browser will ask you whether you want to open the link with your application.</li>
+</ol>
+<p><a href="i5://changeColor?color=#0000ff">i5://changeColor?color=#0000ff</a></p>
+<p>A deep link receiver that responds to the <em>changeColor</em> path is attached to the cube.
+You can modify the value of the <em>color</em> parameter by copying the link and manually pasting it into the browser&#39;s address bar.
+Each time you hit enter, the browser redirects to the example application and the cube changes its color.
+This works both, if the app is not running in the background and with the already opened app.</p>
+<p>If you hit F5, you can toggle the visibility of a fullscreen <a href="App-Console.html">app console</a> which prints the deep link that was received.</p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/rwth-acis/i5-Toolkit-for-Unity/blob/develop/Documentation/manual/Deep-Linking.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            i5 Toolkit Documentation
+            
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

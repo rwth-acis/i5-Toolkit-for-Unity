@@ -39,9 +39,11 @@ The i5 Toolkit provides a series of modules and features that can be used in pro
 
 ## Setup
 
+Minimum Unity version: 2019.4.
+
 There are different ways to add the package to a project.
 
-### Alternative 1: Unity Dependency File with OpenUPM (Unity 2018.3 or later) (Recommended)
+### Alternative 1: Unity Dependency File with OpenUPM (Recommended)
 
 The toolkit can be loaded using Unity's package manager.
 To do this, add an entry to the dependency file:
@@ -85,7 +87,7 @@ So, after completing these steps you should have a manifest.json file which look
 }
 ```
 
-### Alternative 2: Unity Dependency File with Git (Unity 2018.3 or later) (Recommended)
+### Alternative 2: Unity Dependency File with Git (Recommended)
 
 The toolkit is available as a package for the Unity Package Manager.
 It can be included in new projects by referencing the git-repository on GitHub in the dependency file of the Unity project:
@@ -115,7 +117,7 @@ If you specify "upm" to get the latest version, be aware that the package is not
 This command just pulls the latest version which is available at that time.
 To update to the newest current version, remove the package again and re-download it.
 
-### Alternative 4: Import using the OpenUPM command line interface (Unity 2018.3 or later)
+### Alternative 4: Import using the OpenUPM command line interface
 
 Documentation about the OpenUPM CLI can be found [here](https://openupm.com/docs/getting-started.html#installing-openupm-cli).
 
@@ -124,7 +126,7 @@ Documentation about the OpenUPM CLI can be found [here](https://openupm.com/docs
    This is the folder which also contains folders such as *Assets* or *Packages*.
 3. Enter the command `openupm add com.i5.toolkit.core`.
 
-### Alternative 5: Import custom package (Unity 2017 or later)
+### Alternative 5: Import custom package
 
 Another option is to import the package as a .unitypackage.
 

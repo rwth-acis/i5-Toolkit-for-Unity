@@ -132,6 +132,7 @@ namespace i5.Toolkit.Core.DeepLinkAPI
         // scans the methods of the given instance's class to find deep link targets
         private void CheckInstanceMethods(string deepLink, object instance)
         {
+            // fix links that only use ":/" so that System.Uri is able to analyze them
             if (!deepLink.Contains("://") && deepLink.Contains(":/"))
             {
                 deepLink = deepLink.Replace(":/", "://");

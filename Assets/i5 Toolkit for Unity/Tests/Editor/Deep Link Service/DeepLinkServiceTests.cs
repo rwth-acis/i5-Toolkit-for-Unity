@@ -326,5 +326,30 @@ namespace i5.Toolkit.Core.Tests.DeepLinkAPI
 
             Assert.AreEqual(0, dl.TimesWithoutParamsCalled);
         }
+
+        [Test]
+        public void Initialize_OneSlashInURL_MethodCalled()
+        {
+            linkingService.AddDeepLinkListener(dl);
+
+            A.CallTo(() => appFake.AbsoluteURL).Returns("test:/withParams?value=123");
+
+            linkingService.Initialize(A.Fake<IServiceManager>());
+
+            Assert.AreEqual(0, dl.TimesWithoutParamsCalled);
+            Assert.AreEqual(1, dl.TimesWithParamsCalled);
+        }
+
+        [Test]
+        public void Initialize_OneSlashInURL_ArgumentsSet()
+        {
+            linkingService.AddDeepLinkListener(dl);
+
+            A.CallTo(() => appFake.AbsoluteURL).Returns("test:/withParams?value=123");
+
+            linkingService.Initialize(A.Fake<IServiceManager>());
+
+            Assert.AreEqual("123", dl.DeepLinkArgs.Parameters["value"]);
+        }
     }
 }

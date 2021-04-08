@@ -1,4 +1,5 @@
 ﻿using AOT;
+using i5.Toolkit.Core.DeepLinkAPI;
 using i5.Toolkit.Core.ServiceCore;
 using i5.Toolkit.Core.Utilities;
 using System;
@@ -67,48 +68,43 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         /// </summary>
         public event EventHandler LogoutCompleted;
 
-        /// <summary>
-        /// Cached event arguments of the last received redirect
-        /// </summary>
+        // Cached event arguments of the last received redirect
         private RedirectReceivedEventArgs eventArgs;
 
-#if ENABLE_WINMD_SUPPORT && UNITY_WSA
-        [DllImport("__Internal")]
-        extern static void SetupActivatedEventCallback(AppActivatedDelegate callback);
+        private IDeepLinkingService deepLinker = new DeepLinkingService();
 
-        delegate void AppActivatedDelegate(IActivatedEventArgs activatedArgs);
+        //#if ENABLE_WINMD_SUPPORT && UNITY_WSA
+        //        [DllImport("__Internal")]
+        //        extern static void SetupActivatedEventCallback(AppActivatedDelegate callback);
 
-        [MonoPInvokeCallback(typeof(AppActivatedDelegate))]
-        static void OnAppActivated(IActivatedEventArgs activatedArgs)
+        //        delegate void AppActivatedDelegate(IActivatedEventArgs activatedArgs);
+
+        //        [MonoPInvokeCallback(typeof(AppActivatedDelegate))]
+        //        static void OnAppActivated(IActivatedEventArgs activatedArgs)
+        //        {
+        //            if (UnityEngine.WSA.Application.RunningOnAppThread())
+        //            {
+        //                HandleActivation(activatedArgs);
+        //            }
+        //            else
+        //            {
+        //                UnityEngine.WSA.Application.InvokeOnAppThread(() =>
+        //                {
+        //                    HandleActivation(activatedArgs);
+        //                }, false);
+        //            }
+        //        }
+
+        [DeepLink("login")]
+        [DeepLink("")]
+        public void HandleActivation(DeepLinkArgs deepLinkArgs)
         {
-            if (UnityEngine.WSA.Application.RunningOnAppThread())
-            {
-                HandleActivation(activatedArgs);
-            }
-            else
-            {
-                UnityEngine.WSA.Application.InvokeOnAppThread(() =>
-                {
-                    HandleActivation(activatedArgs);
-                }, false);
-            }
+            ServerListener_RedirectReceived(
+                    this,
+                    new RedirectReceivedEventArgs(deepLinkArgs.Parameters, RedirectURI));
         }
 
-        static void HandleActivation(IActivatedEventArgs activatedArgs)
-        {
-            if (activatedArgs.Kind == ActivationKind.Protocol)
-            {
-                var protocolArgs = (ProtocolActivatedEventArgs)activatedArgs;
-                Debug.Log("Protocol received: " + protocolArgs.Uri);
-                Dictionary<string, string> fragments = UriUtils.GetUriParameters(protocolArgs.Uri);
-                OpenIDConnectService oidcService = ServiceManager.GetService<OpenIDConnectService>();
-                oidcService.ServerListener_RedirectReceived(
-                    null,
-                    new RedirectReceivedEventArgs(fragments, oidcService.RedirectURI));
-            }
-        }
-
-#endif
+        //#endif
 
         /// <summary>
         /// Creates a new instance of the OpenID Connect service
@@ -124,15 +120,8 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         /// <param name="owner">The service manager that owns this service</param>
         public void Initialize(IServiceManager owner)
         {
-#if ENABLE_WINMD_SUPPORT && UNITY_WSA
-        SetupActivatedEventCallback(OnAppActivated);
-#endif
-
-            // check if the platform is supported
-#if !UNITY_EDITOR && !UNITY_STANDALONE && !UNITY_WSA
-            throw new PlatformNotSupportedException(
-            "The OpenID Connect service only supports standalone, editor and UWP builds.");
-#endif
+            deepLinker.Initialize(owner);
+            deepLinker.AddDeepLinkListener(this);
         }
 
         /// <summary>
@@ -150,6 +139,9 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
             {
                 Logout();
             }
+
+            deepLinker.RemoveDeepLinkListener(this);
+            deepLinker.Cleanup();
         }
 
         /// <summary>
@@ -164,7 +156,8 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
                 return;
             }
 
-#if !ENABLE_WINMD_SUPPORT || !UNITY_WSA
+            // for all non-native apps: create a listener server
+#if UNITY_EDITOR || UNITY_STANDALONE
 
             if (ServerListener == null)
             {
@@ -196,13 +189,14 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
 
                 OidcProvider.OpenLoginPage(Scopes, ServerListener.ListeningUri);
             }
-#else
-            if (RedirectURI.EndsWith("://"))
-            {
-                i5Debug.LogWarning("The redirect seems to be a custom uri scheme that ends with :// instead of :/.\n" +
-                    "Consider using a custom uri schema that ends with :/ since :// can cause problems with the redirect.", this);
-            }
+
+            // for native apps use deep linking
+#elif UNITY_IOS || UNITY_ANDROID || UNITY_WSA
             OidcProvider.OpenLoginPage(Scopes, RedirectURI);
+
+            // unsupported platforms get an error message
+#else
+            throw new PlatformNotSupportedException("This platform is not supported.");
 #endif
         }
 

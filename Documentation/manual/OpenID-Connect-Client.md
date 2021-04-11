@@ -25,6 +25,8 @@ The OpenID Connect client currently works on the following platforms:
 - Unity editor (for testing)
 - Standalone builds
 - UWP (IL2CPP only; scripting runtime version must be set to ".NET 4.x Equivalent")
+- Android
+- iOS
 
 ## Usage
 
@@ -127,14 +129,18 @@ Optional: If you require a workflow where the OpenID Connect redirect has to go 
 ServiceManager.GetService<OpenIDConnectService>().ServerListener.ListeningUri = "http://127.0.0.1:8080";
 ```
 
-#### UWP
+#### Native Apps (UWP, Android, iOS)
 
-> UWP builds require a redirect URI which needs to be set to a custom URI schema.
+> Native app builds require a redirect URI which needs to be set to a custom URI schema.
 > The custom URI schema must be registered in the provider's client configuration and in Unity's player settings.
 
-In UWP builds, the redirect URI is essential.
+In native app builds, the redirect URI is essential.
 Set it to a custom URI scheme, e.g. `i5:/`.
-After that, go to the player settings (Edit > Project Settings and select the player tab).
+You can use either an empty path, so `i5:/` or the path "login" as in `i5:/login`.
+
+**UWP**
+
+Go to the player settings (Edit > Project Settings and select the player tab).
 Make sure that you are in the UWP settings (the tab with the Windows logo) and navigate to the "Publishing Settings".
 There is an entry "protocol" where you can enter the custom URI scheme.
 So, in this example, you would enter "i5" - so omit the ":/" part here.
@@ -170,7 +176,7 @@ After the login, the Web browser redirects to a URI to which the app listens and
 This is usually a custom app protocol or the loopback address where a local server is listening.
 However, in some cases, the application has to make sure that it gets back into focus after the login.
 
-#### UWP
+#### Native Apps (UWP, Android, iOS)
 
 On UWP, the application is automatically brought back into focus if you have specified the custom URI schema as the service's <xref:i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.RedirectURI> and if you have added it as a protocol in the player settings.
 Using a custom URI schema as a redirect URI is mandatory for this platform since the redirect contains the necessary data to finish the login.

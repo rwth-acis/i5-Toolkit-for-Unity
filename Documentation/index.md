@@ -18,7 +18,7 @@ The i5 Toolkit provides a series of modules and features that can be used in pro
 <table style="text-align: center; vertical-align: middle">
     <tr>
         <td><a href="manual/App-Console.md"><img src="resources/Logos/AppConsole.svg" alt="App Console" style="width:200px"/><br/>App Console</a></td>
-        <td><a href="manual/Deep-Linking.md"><img src="resources/Logos/DeepLink.svg" alt="Deep Link" style="width:200px"/><br/>App Console</a></td>
+        <td><a href="manual/Deep-Linking.md"><img src="resources/Logos/DeepLink.svg" alt="Deep Link" style="width:200px"/><br/>Deep Link</a></td>
         <td><a href="manual/Modified-3D-Objects.md"><img src="resources/Logos/RoundedCorners.svg" alt="Modified 3D Objects" style="width:200px"/><br/>Modified 3D Models</a></td>
     </tr>
     <tr>

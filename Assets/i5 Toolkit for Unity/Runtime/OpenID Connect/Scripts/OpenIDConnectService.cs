@@ -71,30 +71,14 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         // Cached event arguments of the last received redirect
         private RedirectReceivedEventArgs eventArgs;
 
+        // this service has its own private instance of a deep linking service
         private IDeepLinkingService deepLinker = new DeepLinkingService();
 
-        //#if ENABLE_WINMD_SUPPORT && UNITY_WSA
-        //        [DllImport("__Internal")]
-        //        extern static void SetupActivatedEventCallback(AppActivatedDelegate callback);
-
-        //        delegate void AppActivatedDelegate(IActivatedEventArgs activatedArgs);
-
-        //        [MonoPInvokeCallback(typeof(AppActivatedDelegate))]
-        //        static void OnAppActivated(IActivatedEventArgs activatedArgs)
-        //        {
-        //            if (UnityEngine.WSA.Application.RunningOnAppThread())
-        //            {
-        //                HandleActivation(activatedArgs);
-        //            }
-        //            else
-        //            {
-        //                UnityEngine.WSA.Application.InvokeOnAppThread(() =>
-        //                {
-        //                    HandleActivation(activatedArgs);
-        //                }, false);
-        //            }
-        //        }
-
+        /// <summary>
+        /// Handles the activation by deep links
+        /// Allows both the login path, e.g. i5:/login or i5:/ for backwards compatibility.
+        /// </summary>
+        /// <param name="deepLinkArgs">The parameters of the deep link activation</param>
         [DeepLink("login")]
         [DeepLink("")]
         public void HandleActivation(DeepLinkArgs deepLinkArgs)
@@ -103,8 +87,6 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
                     this,
                     new RedirectReceivedEventArgs(deepLinkArgs.Parameters, RedirectURI));
         }
-
-        //#endif
 
         /// <summary>
         /// Creates a new instance of the OpenID Connect service

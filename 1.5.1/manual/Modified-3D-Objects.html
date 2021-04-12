@@ -1,0 +1,165 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Modified 3D Objects | i5 Toolkit Documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Modified 3D Objects | i5 Toolkit Documentation ">
+    <meta name="generator" content="docfx 2.56.2.0">
+    
+    <link rel="shortcut icon" href="../resources/Logos/Logo_whiteBg.svg">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../resources/Logos/Logo_whiteBg.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="modified-3d-objects">Modified 3D Objects</h1>
+
+<p><img src="../resources/Logos/RoundedCorners.svg" alt="Rounded Corners"></p>
+<h2 id="rounded-corners">Rounded Corners</h2>
+<p>The rounded corners object is an extruded rectangle with rounded corners.
+It can be used for 3D UI elements, e.g. to create menus or buttons with rounded edges.</p>
+<h3 id="usage">Usage</h3>
+<p>To use the rounded corners object, instantiate the prefab located under &quot;i5 Toolkit/Runtime/Modified 3D Objects/Prefabs/Rounded Corners.prefab&quot; in the scene.
+The prefab has a <em>Rounded Corners</em> component where options such as the size, depth and corner radius can be set.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Width</td>
+<td>Specifies the width of the object</td>
+</tr>
+<tr>
+<td>Height</td>
+<td>Specifies the height of the object</td>
+</tr>
+<tr>
+<td>Depth</td>
+<td>Specifies the depth/thickness of the object</td>
+</tr>
+<tr>
+<td>Corner Radius</td>
+<td>Specifies how large the rounded corners should be. The value is relative to the edge length and should be between 0 (no rounded edges) and 0.5 (elliptic shape). Values outside of this range are automatically clamped. It is not recommended to use the exact extreme values 0 and 0.5 since they lead to overlapping vertices.</td>
+</tr>
+<tr>
+<td>Subdivisions</td>
+<td>Specifies how many vertices make up the rounded corner. Smaller values lead to a more lightweight mesh and better performance but the corners will appear jagged rounded. Higher values smooth the curvature of the corner but create denser meshes with higher performance impact. Usually, a value of 3 should be sufficient.</td>
+</tr>
+<tr>
+<td>Exact Colliders</td>
+<td>If deactivated, a box collider is used to approximate the shape of this object. If you require exact collision detection on the rounded corners, activate this setting. It will replace the box collider with a mesh collider. However, mesh colliders have a higher performance impact, so activate this option only if necessary.</td>
+</tr>
+</tbody>
+</table>
+<p>Do not scale the object by its transform since this will stretch the corners.
+Instead, use the width, height and depth settings since they preserve the circular corners.</p>
+<h3 id="test-scene">Test Scene</h3>
+<p>There is a test scene where the settings of the prefab are demonstrated.</p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/rwth-acis/i5-Toolkit-for-Unity/blob/develop/Documentation/manual/Modified-3D-Objects.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            i5 Toolkit Documentation
+            
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

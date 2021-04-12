@@ -29,13 +29,71 @@ Deep links can only be registered for installed apps, e.g. on the following plat
 
 In particular, this feature does not supported testing in the Unity editor and on Standalone builds.
 
+## Registering Deep Links
+
+### UWP
+
+Go to the player settings (Edit > Project Settings and select the player tab).
+Make sure that you are in the UWP settings (the tab with the Windows logo) and navigate to the "Publishing Settings".
+There is an entry "protocol" where you can enter the custom URI scheme.
+So, in this example, you would enter "i5" - so omit the ":/" part here.
+When this is done, the built app will open whenever an URI that starts with i5:/ is called.
+
+Make sure that in the player settings under "Other Settings", the scripting runtime version is set to .NET 4.x Equivalent and the scripting backend is IL2CPP.
+To retrieve the data that is contained in the login redirect, the i5 Toolkit has an OIDC patcher which will post-process the built IL2CPP.
+When building the app, there should be an entry in the log console about the OIDC patcher running successfully.
+The patcher will add a hook to the generated C++ files which links the received redirect data back into the Unity C# world.
+
+The redirect from the login page to the custom URI schema only works if you add the custom URI schema to the list of allowed redirect URIs in the client's configuration on the provider's Web page.
+So, in our example, you need to add "i5:/" as an allowed redirect URI, e.g. at the Learning Layers client configuration page.
+
+### Android
+
+On Android, it is necessary to overwrite the `AndroidManifest.xml` file that defines the properties of the app.
+To do this, place the following file in the folder `Assets/Plugins/Android`:
+
+```
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+  <application>
+    <activity android:name="com.unity3d.player.UnityPlayerActivity" android:theme="@style/UnityThemeSelector" >
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+        <category android:name="android.intent.category.LAUNCHER" />
+      </intent-filter>
+      <intent-filter>
+        <action android:name="android.intent.action.VIEW" />
+        <category android:name="android.intent.category.DEFAULT" />
+        <category android:name="android.intent.category.BROWSABLE" />
+        <data android:scheme="myScheme" />
+      </intent-filter>
+    </activity>
+  </application>
+</manifest>
+```
+
+Replace `myScheme` with the scheme that you want to register with your app, e.g. `i5` for i5:/.
+If you want to associate multiple schemes with the app, create multiple intent-filters.
+In each one, enter one scheme that you want to register with the app.
+
+### iOS
+
+For the iOS target platform, the deep link scheme is registered in the Player Settings.
+Make sure that you are in the iOS tab and then go to the "Other" category.
+There is a section "Configuration".
+It contains a collapsible section "Supported URL schemes".
+In this list, you can enter all schemes that should be associated with the app, e.g. `i5` for i5:/.
+
+### Further Information
+
+More information can be found in [Unity's documentation](https://docs.unity3d.com/Manual/enabling-deep-linking.html).
+   You only need to follow the the instructions for your specific platform - the code examples are already handled by the given deep linking service.
+
 ## Usage
 
 Follow these steps to integrate deep linking into your application:
 
-1. In the Player Settings of your target platform, register the deep link scheme.
-   More information can be found in [Unity's documentation](https://docs.unity3d.com/Manual/enabling-deep-linking.html).
-   You only need to follow the the instructions for your specific platform - the code examples are already handled by the given deep linking service.
+1. Register the deep link as described in the [previous section](#registering-deep-links)
 2. Add a <xref:i5.Toolkit.Core.DeepLinkAPI.DeepLinkingService> to your application, e.g. in a [service bootstrapper](Service-Core.md#bootstrappers).
    
    ```[C#]

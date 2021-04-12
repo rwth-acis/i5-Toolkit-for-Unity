@@ -154,6 +154,43 @@ The patcher will add a hook to the generated C++ files which links the received 
 The redirect from the login page to the custom URI schema only works if you add the custom URI schema to the list of allowed redirect URIs in the client's configuration on the provider's Web page.
 So, in our example, you need to add "i5:/" as an allowed redirect URI, e.g. at the Learning Layers client configuration page.
 
+**Android**
+
+On Android, it is necessary to overwrite the `AndroidManifest.xml` file that defines the properties of the app.
+To do this, place the following file in the folder `Assets/Plugins/Android`:
+
+```
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+  <application>
+    <activity android:name="com.unity3d.player.UnityPlayerActivity" android:theme="@style/UnityThemeSelector" >
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+        <category android:name="android.intent.category.LAUNCHER" />
+      </intent-filter>
+      <intent-filter>
+        <action android:name="android.intent.action.VIEW" />
+        <category android:name="android.intent.category.DEFAULT" />
+        <category android:name="android.intent.category.BROWSABLE" />
+        <data android:scheme="myScheme" />
+      </intent-filter>
+    </activity>
+  </application>
+</manifest>
+```
+
+Replace `myScheme` with the scheme that you want to register with your app, e.g. `i5` for i5:/.
+If you want to associate multiple schemes with the app, create multiple intent-filters.
+In each one, enter one scheme that you want to register with the app.
+
+**iOS**
+
+For the iOS target platform, the deep link scheme is registered in the Player Settings.
+Make sure that you are in the iOS tab and then go to the "Other" category.
+There is a section "Configuration".
+It contains a collapsible section "Supported URL schemes".
+In this list, you can enter all schemes that should be associated with the app, e.g. `i5` for i5:/.
+
 ### Starting the Login Process
 
 First, make sure that an OpenID Connect provider has been set.
@@ -178,7 +215,7 @@ However, in some cases, the application has to make sure that it gets back into 
 
 #### Native Apps (UWP, Android, iOS)
 
-On UWP, the application is automatically brought back into focus if you have specified the custom URI schema as the service's <xref:i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.RedirectURI> and if you have added it as a protocol in the player settings.
+On native apps on UWP, Android or iOS, the application is automatically brought back into focus if you have specified the custom URI schema as the service's <xref:i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.RedirectURI> and if you have added it as a protocol in the player settings.
 Using a custom URI schema as a redirect URI is mandatory for this platform since the redirect contains the necessary data to finish the login.
 
 #### Editor & Standalone

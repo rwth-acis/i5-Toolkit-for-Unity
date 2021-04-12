@@ -2,6 +2,16 @@
 
 This document keeps track of the changes between versions of the toolkit.
 
+## 1.5.1 (2021-04-12)
+
+### Added
+
+- Added support for Android and iOS for the OpenID Connect Service
+
+### Changed
+
+- Refactored the OpenID Connect Service so that it uses the Deep Linking Service internally
+
 ## 1.5.0 (2021-04-08)
 
 ### Added

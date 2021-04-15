@@ -1,8 +1,10 @@
 ﻿using i5.Toolkit.Core.Utilities;
 using System;
 using System.Collections.Generic;
+using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Networking;
 
 namespace i5.Toolkit.Core.ExperienceAPI
 {
@@ -47,7 +49,8 @@ namespace i5.Toolkit.Core.ExperienceAPI
             };
             i5Debug.Log($"{TargetUri}/statements", this);
             i5Debug.Log(json, this);
-            WebResponse<string> resp = await WebConnector.PostAsync($"{TargetUri}/statements", json, headers);
+            byte[] bodyRaw = Encoding.UTF8.GetBytes(json);
+            WebResponse<string> resp = await WebConnector.PostAsync($"{TargetUri}/statements", bodyRaw, headers);
             return resp;
         }
     }

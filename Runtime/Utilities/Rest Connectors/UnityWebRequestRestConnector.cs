@@ -61,6 +61,28 @@ namespace i5.Toolkit.Core.Utilities
             }
         }
 
+        public async Task<WebResponse<string>> PostAsync(string uri, byte[] postData, Dictionary<string, string> headers = null)
+        {
+            using (UnityWebRequest req = new UnityWebRequest(uri, "POST"))
+            {
+                req.uploadHandler = new UploadHandlerRaw(postData);
+                req.downloadHandler = new DownloadHandlerBuffer();
+
+                AddHeaders(req, headers);
+
+                await req.SendWebRequest();
+
+                if (req.isHttpError || req.isNetworkError)
+                {
+                    return new WebResponse<string>(false, req.downloadHandler.text, req.downloadHandler.data, req.responseCode, req.error);
+                }
+                else
+                {
+                    return new WebResponse<string>(req.downloadHandler.text, req.downloadHandler.data, req.responseCode);
+                }
+            }
+        }
+
         public async Task<WebResponse<string>> PutAsync(string uri, string postData, Dictionary<string, string> headers = null)
         {
             using (UnityWebRequest req = UnityWebRequest.Put(uri, postData))

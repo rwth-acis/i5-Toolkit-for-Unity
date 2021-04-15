@@ -12,7 +12,7 @@ namespace i5.Toolkit.Core.Examples.ExperienceAPI
         {
             if (Input.GetKeyDown(KeyCode.F5))
             {
-                Statement statement = new Statement("mailto:test2@example.org", "http://www.example.org/verb", "http://www.example.org/activity");
+                Statement statement = new Statement("mailto:tester@i5toolkit.com", "http://www.example.org/test", "http://www.example.org/xApiClient");
                 ExperienceAPIClient client = new ExperienceAPIClient()
                 {
                     Version = "1.0.3",

@@ -27,7 +27,6 @@ namespace i5.Toolkit.Core.Tests.ExperienceAPI
         [SetUp]
         public void Setup()
         {
-            EditModeTestUtilities.ResetScene();
             webConnector = A.Fake<IRestConnector>();
             client = new ExperienceAPIClient(new Uri(apiTarget), authToken, "1.2.3");
             client.WebConnector = webConnector;

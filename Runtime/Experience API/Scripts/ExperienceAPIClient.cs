@@ -43,12 +43,12 @@ namespace i5.Toolkit.Core.ExperienceAPI
         /// <summary>
         /// Creates a new xAPI client
         /// </summary>
-        /// <param name="targetUri">The target URI of the xAPI</param>
+        /// <param name="xApiEndpoint">The target URI of the xAPI</param>
         /// <param name="authorizationToken">The authorization token to allow the client to access the xAPI</param>
         /// <param name="version">The version of the xAPI</param>
-        public ExperienceAPIClient(Uri targetUri, string authorizationToken, string version) : this()
+        public ExperienceAPIClient(Uri xApiEndpoint, string authorizationToken, string version) : this()
         {
-            XApiEndpoint = targetUri;
+            XApiEndpoint = xApiEndpoint;
             Version = version;
             AuthorizationToken = authorizationToken;
         }

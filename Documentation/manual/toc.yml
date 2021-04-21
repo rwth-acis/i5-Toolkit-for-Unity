@@ -2,6 +2,8 @@
   href: App-Console.md
 - name: Deep Linking
   href: Deep-Linking.md
+- name: Experience API
+  href: Experience-API.md
 - name: Modified 3D Objects
   href: Modified-3D-Objects.md
 - name: Object Pool

@@ -14,6 +14,7 @@ namespace i5.Toolkit.Core.Examples.ExperienceAPI
         // e.g. its authorization token should be stored outside of the source control
         [SerializeField]
         private ExperienceAPIClientCredentials credentials;
+        [SerializeField] private string xApiEndpoint = "https://lrs.tech4comp.dbis.rwth-aachen.de/data/xAPI";
 
         private async void Update()
         {
@@ -26,14 +27,14 @@ namespace i5.Toolkit.Core.Examples.ExperienceAPI
                 {
                     Version = "1.0.3",
                     AuthorizationToken = credentials.authToken,
-                    XApiEndpoint = new Uri("https://lrs.tech4comp.dbis.rwth-aachen.de/data/xAPI")
+                    XApiEndpoint = new Uri(xApiEndpoint)
                 };
 
                 // create the statement that you want to send
                 Statement statement = new Statement("mailto:tester@i5toolkit.com", "http://www.example.org/test", "http://www.example.org/xApiClient");
 
                 // send the statement
-                WebResponse<string> resp = await client.SendStatement(statement);
+                WebResponse<string> resp = await client.SendStatementAsync(statement);
 
                 // you can look up if the result was successful and get the API's response
                 if (resp.Successful)

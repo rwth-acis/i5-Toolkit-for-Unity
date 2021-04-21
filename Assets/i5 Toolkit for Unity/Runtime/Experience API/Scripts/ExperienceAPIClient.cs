@@ -60,9 +60,9 @@ namespace i5.Toolkit.Core.ExperienceAPI
         /// <param name="verbUrl">The id of the statement's verb (should be a url)</param>
         /// <param name="objectUrl">The id of the statement's object</param>
         /// <returns>Returns the result of the Web query; if successful, this contains the generated statement id</returns>
-        public async Task<WebResponse<string>> SendStatement(string actorMail, string verbUrl, string objectUrl)
+        public async Task<WebResponse<string>> SendStatementAsync(string actorMail, string verbUrl, string objectUrl)
         {
-            return await SendStatement(new Statement(actorMail, verbUrl, objectUrl));
+            return await SendStatementAsync(new Statement(actorMail, verbUrl, objectUrl));
         }
 
         /// <summary>
@@ -72,9 +72,9 @@ namespace i5.Toolkit.Core.ExperienceAPI
         /// <param name="verb">The verb of the statement</param>
         /// <param name="obj">The object of the statement</param>
         /// <returns>Returns the result of the Web query; if successful, this contains the generated statement id</returns>
-        public async Task<WebResponse<string>> SendStatement(Actor actor, Verb verb, XApiObject obj)
+        public async Task<WebResponse<string>> SendStatementAsync(Actor actor, Verb verb, XApiObject obj)
         {
-            return await SendStatement(new Statement()
+            return await SendStatementAsync(new Statement()
             {
                 actor = actor,
                 verb = verb,
@@ -87,7 +87,7 @@ namespace i5.Toolkit.Core.ExperienceAPI
         /// </summary>
         /// <param name="statement">The xAPI statement that should be sent</param>
         /// <returns>Returns the result of the Web query; if successful, this contains the generated statement id</returns>
-        public async Task<WebResponse<string>> SendStatement(Statement statement)
+        public async Task<WebResponse<string>> SendStatementAsync(Statement statement)
         {
             string json = JsonUtility.ToJson(statement);
             Dictionary<string, string> headers = new Dictionary<string, string>()

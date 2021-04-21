@@ -67,7 +67,7 @@ namespace i5.Toolkit.Core.Tests.ExperienceAPI
                     Assert.AreEqual($"mailto:{mailAddress}", res.actor.mbox);
                 });
 
-            Task<WebResponse<string>> task = client.SendStatement(mailAddress, "", "");
+            Task<WebResponse<string>> task = client.SendStatementAsync(mailAddress, "", "");
 
             AsyncTest.WaitForTask(task);
 
@@ -94,7 +94,7 @@ namespace i5.Toolkit.Core.Tests.ExperienceAPI
                     Assert.AreEqual(mailAddress, res.actor.mbox);
                 });
 
-            Task<WebResponse<string>> task = client.SendStatement(mailAddress, "", "");
+            Task<WebResponse<string>> task = client.SendStatementAsync(mailAddress, "", "");
 
             AsyncTest.WaitForTask(task);
 
@@ -121,7 +121,7 @@ namespace i5.Toolkit.Core.Tests.ExperienceAPI
                     Assert.AreEqual(verbId, res.verb.id);
                 });
 
-            Task<WebResponse<string>> task = client.SendStatement("", verbId, "");
+            Task<WebResponse<string>> task = client.SendStatementAsync("", verbId, "");
 
             AsyncTest.WaitForTask(task);
 
@@ -148,7 +148,7 @@ namespace i5.Toolkit.Core.Tests.ExperienceAPI
                     Assert.AreEqual(objectId, res.@object.id);
                 });
 
-            Task<WebResponse<string>> task = client.SendStatement("", "", objectId);
+            Task<WebResponse<string>> task = client.SendStatementAsync("", "", objectId);
 
             AsyncTest.WaitForTask(task);
 
@@ -178,7 +178,7 @@ namespace i5.Toolkit.Core.Tests.ExperienceAPI
                     Assert.AreEqual(actor, res.actor);
                 });
 
-            Task<WebResponse<string>> task = client.SendStatement(actor, new Verb(), new XApiObject());
+            Task<WebResponse<string>> task = client.SendStatementAsync(actor, new Verb(), new XApiObject());
 
             AsyncTest.WaitForTask(task);
 
@@ -208,7 +208,7 @@ namespace i5.Toolkit.Core.Tests.ExperienceAPI
                     Assert.AreEqual(verb, res.verb);
                 });
 
-            Task<WebResponse<string>> task = client.SendStatement(new Actor(), verb, new XApiObject());
+            Task<WebResponse<string>> task = client.SendStatementAsync(new Actor(), verb, new XApiObject());
 
             AsyncTest.WaitForTask(task);
 
@@ -238,7 +238,7 @@ namespace i5.Toolkit.Core.Tests.ExperienceAPI
                     Assert.AreEqual(obj, res.@object);
                 });
 
-            Task<WebResponse<string>> task = client.SendStatement(new Actor(), new Verb(), obj);
+            Task<WebResponse<string>> task = client.SendStatementAsync(new Actor(), new Verb(), obj);
 
             AsyncTest.WaitForTask(task);
 
@@ -268,7 +268,7 @@ namespace i5.Toolkit.Core.Tests.ExperienceAPI
                     Assert.AreEqual(statement, res);
                 });
 
-            Task<WebResponse<string>> task = client.SendStatement(statement);
+            Task<WebResponse<string>> task = client.SendStatementAsync(statement);
 
             AsyncTest.WaitForTask(task);
 

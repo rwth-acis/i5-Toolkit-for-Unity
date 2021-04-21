@@ -47,6 +47,10 @@ In the end, they all create a <xref:i5.Toolkit.Core.ExperienceAPI.Statement>, co
 As a result, you get back the Learning Record Store's response message.
 If the response was successful, you will receive the ID of the statement in the response's body.
 
+Internally, the actor ID always needs to start with `mailto:`, followed by the mail address that identifies the actor.
+The <xref:i5.Toolkit.Core.ExperienceAPI.Actor> class is able to recognize if the prefix was already added.
+If the actor ID does not start with `mailto:`, this prefix is automatically added.
+
 > In order to end up with a clean architecture, it is recommended to use the [observer pattern](https://en.wikipedia.org/wiki/Observer_pattern).
 > Write a class that observes the values that could trigger an xAPI call.
 > If the values change to a certain value, trigger the xAPI call using this observer class.

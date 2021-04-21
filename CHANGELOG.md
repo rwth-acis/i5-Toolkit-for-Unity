@@ -2,6 +2,20 @@
 
 This document keeps track of the changes between versions of the toolkit.
 
+## 1.6.0 (Unreleased)
+
+### Added
+
+- Added an xAPI module which can be integrated into Unity applications to send analytics statements to Learning Record Stores
+
+### Changed
+
+- Changed the IRestConnector interface by adding a `PostAsync` method that can also take raw byte data as a payload.
+
+### Update Guide
+
+- If you are using custom classes that implement the IRestConnector interface, add the the new `PostAsync` method to the class' implementation.
+
 ## 1.5.1 (2021-04-12)
 
 ### Added

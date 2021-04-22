@@ -12,6 +12,10 @@ This document keeps track of the changes between versions of the toolkit.
 
 - Changed the IRestConnector interface by adding a `PostAsync` method that can also take raw byte data as a payload.
 
+### Removed
+
+- Removed the old OpenID Connect patcher that injected C++ code into the built IL2CPP applications as it became obsolete with the refactored internal logic of the OpenID Connect Service
+
 ### Update Guide
 
 - If you are using custom classes that implement the IRestConnector interface, add the the new `PostAsync` method to the class' implementation.

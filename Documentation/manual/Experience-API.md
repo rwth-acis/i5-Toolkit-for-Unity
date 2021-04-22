@@ -12,7 +12,7 @@ Further information about xAPI can be found [here](https://xapi.com/).
 
 ## Usage
 
-To access the xAPI conventiently, use a <xref:i5.Toolkit.Core.ExperienceAPI.ExperienceAPIClient> object.
+To access the xAPI conveniently, use a <xref:i5.Toolkit.Core.ExperienceAPI.ExperienceAPIClient> object.
 
 ### Client Setup
 
@@ -21,7 +21,7 @@ Specify the <xref:System.Uri> of your xAPI.
 The important part here is to make sure that the Uri actually points to the xAPI base endpoint instead of your general Uri.
 So specify something like `https://lrs.example.org/xAPI`.
 
-As the second initialization paramter that needs to be set before using the object, enter an authorization token.
+As the second initialization parameter that needs to be set before using the object, enter an authorization token.
 The authorization token is generated when you register a new client in your learning record store's administration settings.
 
 > Your authorization token is a secret, so it should not be stored in the source control.

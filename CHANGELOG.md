@@ -2,7 +2,7 @@
 
 This document keeps track of the changes between versions of the toolkit.
 
-## 1.6.0 (Unreleased)
+## 1.6.0 (2021-04-22)
 
 ### Added
 

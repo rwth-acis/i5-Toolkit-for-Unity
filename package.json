@@ -28,7 +28,12 @@
         {
             "displayName": "Deep Links",
             "description": "Example scene which shows how to react to mobile deep links",
-            "path":  "Samples~/Deep Link API"
+            "path": "Samples~/Deep Link API"
+        },
+        {
+            "displayName": "Experience API",
+            "description": "Example scene which shows how to set up an xAPI client and how to send analytics statements",
+            "path": "Samples~/Experience API"
         },
         {
             "displayName": "Mesh Pool",

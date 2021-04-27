@@ -147,7 +147,7 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
             }
             else
             {
-                i5Debug.LogError("Error fetching the user info: " + webResponse.ErrorMessage, this);
+                i5Debug.LogError($"Error fetching the user info: {webResponse.ErrorMessage}\n{webResponse.Content}", this);
                 return default;
             }
         }

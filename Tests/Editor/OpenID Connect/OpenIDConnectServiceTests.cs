@@ -178,6 +178,8 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
             OpenIDConnectService oidc = new OpenIDConnectService();
             IOidcProvider oidcProvider = A.Fake<IOidcProvider>();
             A.CallTo(() => oidcProvider.AuthorizationFlow).Returns(AuthorizationFlow.AUTHORIZATION_CODE);
+            A.CallTo(() => oidcProvider.GetAccessTokenFromCodeAsync(A<string>.Ignored, A<string>.Ignored))
+                .Returns(Task.FromResult("myAccessToken"));
             oidc.OidcProvider = oidcProvider;
             IRedirectServerListener serverListener = A.Fake<IRedirectServerListener>();
             oidc.ServerListener = serverListener;
@@ -269,6 +271,8 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
         {
             OpenIDConnectService oidc = new OpenIDConnectService();
             IOidcProvider oidcProvider = A.Fake<IOidcProvider>();
+            A.CallTo(() => oidcProvider.GetAccessTokenFromCodeAsync(A<string>.Ignored, A<string>.Ignored))
+                .Returns(Task.FromResult("myAccessToken"));
             oidc.OidcProvider = oidcProvider;
             IRedirectServerListener serverListener = A.Fake<IRedirectServerListener>();
             oidc.ServerListener = serverListener;

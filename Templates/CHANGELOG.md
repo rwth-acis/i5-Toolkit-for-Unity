@@ -2,6 +2,12 @@
 
 This document keeps track of the changes between versions of the toolkit.
 
+## 1.6.1 (Unreleased)
+
+### Changed
+
+- Updated Learning Layers OpenID Connect Provider in order to adapt it to their update to Keycloak
+
 ## 1.6.0 (2021-04-22)
 
 ### Added

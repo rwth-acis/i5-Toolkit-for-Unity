@@ -8,22 +8,22 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
 {
     /// <summary>
     /// Implementation of the OpenID Connect Learning Layers Provider
-    /// More information can be found here: https://api.learning-layers.eu/o/oauth2/
+    /// More information can be found here: https://api.learning-layers.eu/auth/
     /// </summary>
     public class LearningLayersOidcProvider : IOidcProvider
     {
         /// <summary>
         /// The endpoint for the log in
         /// </summary>
-        private const string authorizationEndpoint = "https://api.learning-layers.eu/o/oauth2/authorize";
+        private const string authorizationEndpoint = "https://api.learning-layers.eu/auth/realms/main/protocol/openid-connect/auth";
         /// <summary>
         /// The end point where the access token can be requested
         /// </summary>
-        private const string tokenEndpoint = "https://api.learning-layers.eu/o/oauth2/token";
+        private const string tokenEndpoint = "https://api.learning-layers.eu/auth/realms/main/protocol/openid-connect/token";
         /// <summary>
         /// The end point where user information can be requested
         /// </summary>
-        private const string userInfoEndpoint = "https://api.learning-layers.eu/o/oauth2/userinfo";
+        private const string userInfoEndpoint = "https://api.learning-layers.eu/auth/realms/main/protocol/openid-connect/userinfo";
 
         /// <summary>
         /// Gets or sets the used authorization flow
@@ -75,9 +75,18 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
                 return "";
             }
 
-            string uri = tokenEndpoint + $"?code={code}&client_id={ClientData.ClientId}" +
-                $"&client_secret={ClientData.ClientSecret}&redirect_uri={redirectUri}&grant_type=authorization_code";
-            WebResponse<string> response = await RestConnector.PostAsync(uri, "");
+            WWWForm form = new WWWForm();
+            form.AddField("client_id", ClientData.ClientId);
+            form.AddField("client_secret", ClientData.ClientSecret);
+            form.AddField("grant_type", "authorization_code");
+            form.AddField("redirect_uri", redirectUri);
+            form.AddField("code", code);
+
+            Dictionary<string, string> headers = new Dictionary<string, string>()
+            {
+                { "Content-Type", "application/x-www-form-urlencoded" }
+            };
+            WebResponse<string> response = await RestConnector.PostAsync(tokenEndpoint, form.data, headers);
             if (response.Successful)
             {
                 LearningLayersAuthorizationFlowAnswer answer =
@@ -122,7 +131,11 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         /// <returns>Returns information about the logged in user if the request was successful, otherwise null</returns>
         public async Task<IUserInfo> GetUserInfoAsync(string accessToken)
         {
-            WebResponse<string> webResponse = await RestConnector.GetAsync(userInfoEndpoint + "?access_token=" + accessToken);
+            Dictionary<string, string> headers = new Dictionary<string, string>()
+            {
+                {"Authorization", $"Bearer {accessToken}" }
+            };
+            WebResponse<string> webResponse = await RestConnector.GetAsync(userInfoEndpoint, headers);
             if (webResponse.Successful)
             {
                 LearningLayersUserInfo userInfo = JsonSerializer.FromJson<LearningLayersUserInfo>(webResponse.Content);

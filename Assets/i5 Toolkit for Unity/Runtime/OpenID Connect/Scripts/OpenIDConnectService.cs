@@ -271,7 +271,14 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
                 AccessToken = OidcProvider.GetAccessToken(eventArgs.RedirectParameters);
             }
             eventArgs = null;
-            LoginCompleted?.Invoke(this, EventArgs.Empty);
+            if (!string.IsNullOrEmpty(AccessToken))
+            {
+                LoginCompleted?.Invoke(this, EventArgs.Empty);
+            }
+            else
+            {
+                i5Debug.LogError("An error occurred during the login process. The access token is empty.", this);
+            }
         }
     }
 }

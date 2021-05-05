@@ -67,7 +67,6 @@ crashlytics-build.properties
 /_site/
 /**/DROP/
 /**/TEMP/
-/**/packages/
 /**/bin/
 /**/obj/
 reference

@@ -211,35 +211,80 @@ Once you have obtained the client credentials, [add them to the client](#adding-
 
 ### Creating a Learning Layers Client
 
-To register a learning layers client, follow these steps:
-1. Go to [https://api.learning-layers.eu/o/oauth2/](https://api.learning-layers.eu/o/oauth2/).
-2. Click the "Log in" button.
-3. Login with your user credentials or create a new account if you do not have one.
-4. In the left side bar, select "Self-service client registration".
-5. Click the button "Register a new client".
-6. Enter a client name.
-7. Add redirect URIs, e.g. http://127.0.0.1.
-   If your app uses a custom URI schema, you must add the redirect URI to the list, e.g. mySchema:/.
-8. If you want to, you can customize the approval page that is shown to the user when the OpenID Connect scopes have to be authorized.
-   You can add a logo and links to Web pages of the terms of service, policy and home page.
-   Moreover, you can add further e-mail contacts apart from your own one to indicate who is responsible for this client.
-   All configurations from this step are optional and do not influence the functionality of the OpenID Connect workflow.
-9. Scroll up again and select the "Access" tab on the page.
-10. Add the scopes that you need to the list of scopes.
-    Only the scopes which are listed here can be requested by the client.
-11. Make sure that "Grant Types" is set to "authorization code".
-12. Go to the "Other" tab.
-    Change the default max age to 1440000 so that the access token is valid for a longer time.
-13. Leave all other settings at their default values.
-    Click the "Save" button at the top or bottom to finalize the client generation.
-14. You will now be presented with the client credentials.
-    Copy the values in the fields "Client ID", "Client Secret", "Client Configuration URL" and "Registration Access Token" and save them somewhere on your hard drive.
-    It is important that you keep these values secret and you need them to authorize the client.
-    The values are also required if you later want to edit the client's settings.
-    
-To change settings at a later point, enter the asked values on the right under "Self-service client registration".
+To register a learning layers client, contact an administrator for the Learning Layers login.
+If you are working on a thesis at the Chair of Computer Science 5, RWTH Aachen University, you can contact your advisor.
+and send them the following JSON string.
+Fill out the client ID, the name, the description and the redirectUris.
+For the client ID, choose a unique name for your app.
 
-To use the client credentials in the application, proceed with the section [Adding the Client Credentials](#adding-the-client-credentials).
+```
+{
+    "clientId": "An ID for your client",
+    "name": "Your app name",
+    "description": "A description of your app",
+    "baseUrl": "",
+    "surrogateAuthRequired": false,
+    "enabled": true,
+    "alwaysDisplayInConsole": false,
+    "clientAuthenticatorType": "client-secret",
+    "redirectUris": [
+        "http://127.0.0.1:*",
+        "myScheme:/"
+    ],
+    "webOrigins": [
+        "http://127.0.0.1"
+    ],
+    "notBefore": 0,
+    "bearerOnly": false,
+    "consentRequired": false,
+    "standardFlowEnabled": true,
+    "implicitFlowEnabled": false,
+    "directAccessGrantsEnabled": false,
+    "serviceAccountsEnabled": false,
+    "publicClient": false,
+    "frontchannelLogout": false,
+    "protocol": "openid-connect",
+    "attributes": {
+        "saml.assertion.signature": "false",
+        "saml.force.post.binding": "false",
+        "saml.multivalued.roles": "false",
+        "saml.encrypt": "false",
+        "backchannel.logout.revoke.offline.tokens": "false",
+        "saml.server.signature": "false",
+        "saml.server.signature.keyinfo.ext": "false",
+        "exclude.session.state.from.auth.response": "false",
+        "backchannel.logout.session.required": "true",
+        "client_credentials.use_refresh_token": "false",
+        "saml_force_name_id_format": "false",
+        "saml.client.signature": "false",
+        "tls.client.certificate.bound.access.tokens": "false",
+        "saml.authnstatement": "false",
+        "display.on.consent.screen": "false",
+        "saml.onetimeuse.condition": "false"
+    },
+    "authenticationFlowBindingOverrides": {},
+    "fullScopeAllowed": true,
+    "nodeReRegistrationTimeout": -1,
+    "defaultClientScopes": [
+        "web-origins",
+        "role_list",
+        "roles",
+        "profile",
+        "email"
+    ],
+    "optionalClientScopes": [
+        "address",
+        "phone",
+        "offline_access",
+        "microprofile-jwt"
+    ],
+    "access": {
+        "view": true,
+        "configure": true,
+        "manage": true
+    }
+}
+```
 
 ### Creating a GitHub client
 

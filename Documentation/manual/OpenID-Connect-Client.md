@@ -185,7 +185,7 @@ There is also an event <xref:i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectSe
 
 This section describes how to provide parallel logins that allow your user to be logged in at multiple providers in parallel, e.g. at Learning Layers and GitHub.
 The initial problem is that there is only one <xref:i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService> which only provides one <xref:i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.OidcProvider>.
-The <i5.Toolkit.Core.ServiceCore.ServiceManager> also only allows to register one instance of each class.
+The <i5.Toolkit.Core.ServiceCore.ServiceManager> also only allows registering one instance of each class.
 
 Hence, the solution is to create a new class for each provider that you have and let it inherit from the <xref:i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService>.
 This way, you can register e.g. a `LearnignLayersOIDCService` and a `GitHubOIDCService` at the same time.
@@ -213,9 +213,10 @@ Once you have obtained the client credentials, [add them to the client](#adding-
 
 To register a learning layers client, contact an administrator for the Learning Layers login.
 If you are working on a thesis at the Chair of Computer Science 5, RWTH Aachen University, you can contact your advisor.
-and send them the following JSON string.
+Send the admin/advisor the following JSON string.
 Fill out the client ID, the name, the description and the redirectUris.
 For the client ID, choose a unique name for your app.
+The admin/advisor will answer with a mail that contains the client ID and client secret that you can then use for the login process.
 
 ```
 {
@@ -329,7 +330,7 @@ Create the second OAuth client with your deep link protocol if you want to deplo
 
 Once the client credentials are created, right click in Unity's Asset browser and choose "Create > i5 Toolkit > OpenID Connect Client Data".
 After that, enter the client credentials that you just created.
-If you created two client, you need two OpenID Connect Client data files.
+If you created two clients, you need two OpenID Connect Client data files.
 
 After that, select the "Service Bootstrapper" object in the example scene and assign the client data files in its bootstrapper component.
 This can be done by dragging and dropping the client data file from the Asset browser into the component's field in the inspector.

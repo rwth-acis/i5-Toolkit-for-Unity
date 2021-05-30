@@ -1,6 +1,4 @@
 ﻿#if UNITY_EDITOR
-using System.Collections;
-using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
@@ -45,6 +43,11 @@ namespace i5.Toolkit.Core.Utilities
                 cachedPath = "Packages/" + packageIdentifier + "/";
                 return cachedPath;
             }
+        }
+
+        public static string GetProjectPath()
+        {
+            return Directory.GetParent(Application.dataPath)?.FullName;
         }
     }
 }

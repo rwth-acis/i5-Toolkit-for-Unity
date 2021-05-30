@@ -660,9 +660,17 @@ PlayerSettings:
   webGLThreadsSupport: 0
   webGLWasmStreaming: 0
   scriptingDefineSymbols:
-    4: 
-    7: 
-    14: 
+    1: EXTERNAL_NUGET
+    4: EXTERNAL_NUGET
+    7: EXTERNAL_NUGET
+    13: EXTERNAL_NUGET
+    14: EXTERNAL_NUGET
+    19: EXTERNAL_NUGET
+    21: EXTERNAL_NUGET
+    25: EXTERNAL_NUGET
+    27: EXTERNAL_NUGET
+    28: EXTERNAL_NUGET
+    29: EXTERNAL_NUGET
   platformArchitecture: {}
   scriptingBackend: {}
   il2cppCompilerConfiguration: {}

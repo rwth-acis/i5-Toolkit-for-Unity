@@ -8,7 +8,7 @@ using UnityEngine;
 
 public static class ExternalNugetSetup
 {
-    private const string packageDirName = "ExternalNugetPackages";
+    public const string packageDirName = "ExternalNugetPackages";
 
 #if !EXTERNAL_NUGET
     [MenuItem("i5 Toolkit/External NuGet Packages/Enable")]
@@ -25,6 +25,9 @@ public static class ExternalNugetSetup
         }
         existingDefines += "EXTERNAL_NUGET;";
         SetDefinesForAllGroups(existingDefines);
+
+
+
         AssetDatabase.SaveAssets();
         AssetDatabase.Refresh();
     }
@@ -49,10 +52,10 @@ public static class ExternalNugetSetup
     {
         DisableExternalNuget();
 
-        string externalNugetDir = Path.Combine(Directory.GetCurrentDirectory(), packageDirName);
+        string externalNugetDir = Path.Combine(PathUtils.GetProjectPath(), packageDirName);
         if (Directory.Exists(externalNugetDir))
         {
-            Directory.Delete(externalNugetDir);
+            Directory.Delete(externalNugetDir, true);
         }
     }
 
@@ -73,7 +76,6 @@ public static class ExternalNugetSetup
 
     private static void CreateNugetConfigFile()
     {
-        string currentDir = Directory.GetCurrentDirectory();
         XDocument document = new XDocument(
             new XElement("configuration",
                 new XElement("config",
@@ -83,13 +85,12 @@ public static class ExternalNugetSetup
                     )
                 )
             );
-        document.Save(Path.Combine(currentDir,"nuget.config"));
+        document.Save(Path.Combine(PathUtils.GetProjectPath(),"nuget.config"));
     }
 
     private static void CleanupNugetConfigFile()
     {
-        string currentDir = Directory.GetCurrentDirectory();
-        string nugetConfigPath = Path.Combine(currentDir, "nuget.config");
+        string nugetConfigPath = Path.Combine(PathUtils.GetProjectPath(), "nuget.config");
         if (File.Exists(nugetConfigPath))
         {
             XDocument document = XDocument.Load(nugetConfigPath);
@@ -106,7 +107,7 @@ public static class ExternalNugetSetup
 
     private static void CreateNugetFolder()
     {
-        string folderPath = Path.Combine(Directory.GetCurrentDirectory(), packageDirName);
+        string folderPath = Path.Combine(PathUtils.GetProjectPath(), packageDirName);
         if (!Directory.Exists(folderPath))
         {
             Directory.CreateDirectory(folderPath);

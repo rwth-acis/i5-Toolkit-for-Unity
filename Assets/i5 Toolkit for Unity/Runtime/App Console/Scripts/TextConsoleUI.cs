@@ -1,4 +1,4 @@
-﻿using i5.Toolkit.Core.Utilities.UnityAdapters;
+﻿using i5.Toolkit.Core.Utilities.UnityWrappers;
 using System;
 using TMPro;
 

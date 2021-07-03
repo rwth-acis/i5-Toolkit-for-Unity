@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-namespace i5.Toolkit.Core.Utilities.UnityAdapters
+namespace i5.Toolkit.Core.Utilities.UnityWrappers
 {
     public class TextMeshProTextAdapter : ITextDisplay
     {

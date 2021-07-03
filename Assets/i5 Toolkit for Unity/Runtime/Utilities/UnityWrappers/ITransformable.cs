@@ -4,8 +4,8 @@ using UnityEngine;
 
 namespace i5.Toolkit.Core.Utilities.UnityWrappers
 {
-    public interface IScrollView
+    public interface ITransformable
     {
-        Vector2 NormalizedPosition { get; set; }
+        
     }
 }

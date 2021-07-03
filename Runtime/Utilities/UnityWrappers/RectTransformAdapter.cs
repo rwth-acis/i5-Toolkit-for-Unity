@@ -4,9 +4,9 @@ using UnityEngine;
 
 namespace i5.Toolkit.Core.Utilities.UnityWrappers
 {
-    public class RectTransformAdapter : IRectangle
+    public class RectTransformAdapter : TransformAdapter, IRectangle
     {
-        public RectTransform Adaptee { get; private set; }
+        public new RectTransform Adaptee { get => (RectTransform)base.Adaptee; private set => base.Adaptee = value; }
 
         public Vector2 Size
         {
@@ -21,9 +21,8 @@ namespace i5.Toolkit.Core.Utilities.UnityWrappers
             }
         }
 
-        public RectTransformAdapter(RectTransform adaptee)
+        public RectTransformAdapter(RectTransform adaptee) : base(adaptee)
         {
-            Adaptee = adaptee;
         }
     }
 }

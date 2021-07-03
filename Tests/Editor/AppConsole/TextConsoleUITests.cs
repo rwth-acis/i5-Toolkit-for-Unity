@@ -1,7 +1,7 @@
 ﻿using FakeItEasy;
 using i5.Toolkit.Core.AppConsole;
 using i5.Toolkit.Core.Editor.TestHelpers;
-using i5.Toolkit.Core.Utilities.UnityAdapters;
+using i5.Toolkit.Core.Utilities.UnityWrappers;
 using NUnit.Framework;
 
 namespace i5.Toolkit.Core.Tests.AppConsole

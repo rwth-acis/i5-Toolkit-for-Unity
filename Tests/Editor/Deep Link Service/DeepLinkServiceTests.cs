@@ -2,7 +2,7 @@
 using i5.Toolkit.Core.DeepLinkAPI;
 using i5.Toolkit.Core.Editor.TestHelpers;
 using i5.Toolkit.Core.ServiceCore;
-using i5.Toolkit.Core.Utilities.UnityAdapters;
+using i5.Toolkit.Core.Utilities.UnityWrappers;
 using NUnit.Framework;
 using System;
 using System.Text.RegularExpressions;

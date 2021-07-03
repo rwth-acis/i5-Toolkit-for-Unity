@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace i5.Toolkit.Core.Utilities.UnityAdapters
+namespace i5.Toolkit.Core.Utilities.UnityWrappers
 {
     /// <summary>
     /// Wrapper for Unity's <see cref="Application"/>

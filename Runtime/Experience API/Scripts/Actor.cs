@@ -1,4 +1,5 @@
 ﻿using System;
+using Newtonsoft.Json.Linq;
 
 namespace i5.Toolkit.Core.ExperienceAPI
 {
@@ -8,6 +9,16 @@ namespace i5.Toolkit.Core.ExperienceAPI
     [Serializable]
     public class Actor
     {
+        /// <summary>
+        /// The mail address in the mailto: scheme. Required
+        /// </summary>
+        public string mbox;
+
+        /// <summary>
+        /// The name of the actor. Optional.
+        /// </summary>
+        public string name;
+
         /// <summary>
         /// Creates a new actor instance
         /// </summary>
@@ -26,10 +37,20 @@ namespace i5.Toolkit.Core.ExperienceAPI
             }
             mbox = mail;
         }
+        public JObject ToJObject()
+        {
+            JObject retVal = new JObject();
+            // Add mbox
+            retVal.Add("mbox", mbox);
+            // Add object type
+            retVal.Add("objectType", "Agent");
+            // Add name if available
+            if (name != null)
+            {
+                retVal.Add("name", name);
+            }
 
-        /// <summary>
-        /// The mail address in the mailto: scheme
-        /// </summary>
-        public string mbox;
+            return retVal;
+        }
     }
 }

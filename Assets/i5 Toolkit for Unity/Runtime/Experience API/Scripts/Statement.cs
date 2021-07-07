@@ -1,4 +1,5 @@
 ﻿using System;
+using Newtonsoft.Json.Linq;
 
 namespace i5.Toolkit.Core.ExperienceAPI
 {
@@ -20,6 +21,11 @@ namespace i5.Toolkit.Core.ExperienceAPI
         /// The object of the xAPI statement
         /// </summary>
         public XApiObject @object;
+        /// <summary>
+        /// The result of the xAPI statement.
+        /// An optional property that represents a measured outcome related to the Statement in which it is included.
+        /// </summary>
+        public Result result;
 
         /// <summary>
         /// Creates a new instance of an xAPI statement
@@ -43,6 +49,37 @@ namespace i5.Toolkit.Core.ExperienceAPI
             {
                 id = objectUrl
             };
+        }
+
+        public JObject ToJObject()
+        {
+            JObject retVal = new JObject();
+
+            // Add actor
+            JObject actorJSON = actor.ToJObject();
+            retVal.Add("actor", actorJSON);
+
+            // Add verb
+            JObject verbJSON = verb.ToJObject();
+            retVal.Add("verb", verbJSON);
+
+            // Add object
+            JObject objectJSON = @object.ToJObject();
+            retVal.Add("object", objectJSON);
+
+            // Add result if available
+            if (result != null)
+            {
+                JObject resultJSON = result.ToJObject();
+                retVal.Add("result", resultJSON);
+            }
+
+            return retVal;
+        }
+
+        public string ToJSONString()
+        {
+            return this.ToJObject().ToString();
         }
     }
 }

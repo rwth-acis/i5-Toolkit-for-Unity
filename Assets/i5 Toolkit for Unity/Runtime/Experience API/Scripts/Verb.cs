@@ -28,21 +28,32 @@ namespace i5.Toolkit.Core.ExperienceAPI
             displayLanguageDictionary = new Dictionary<string, string>();
         }
 
+        public static string cutToVerbName(string verbID)
+        {
+            string[] parts = verbID.Split('/');
+            return parts[parts.Length - 1];
+        }
+
         public JObject ToJObject()
         {
             JObject retVal = new JObject();
             // Add id
             retVal.Add("id", id);
-            // Add display descriptions if available
+            // Add display descriptions if available, if not try and get name from ID
+            JObject display = new JObject();
             if (displayLanguageDictionary.Count > 0)
             {
-                JObject display = new JObject();
                 foreach (KeyValuePair<string, string> kvp in displayLanguageDictionary)
                 {
                     display.Add(kvp.Key, kvp.Value);
                 }
-                retVal.Add("display", display);
             }
+            else
+            {
+                display.Add("en-us", cutToVerbName(id));
+            }
+            retVal.Add("display", display);
+
             return retVal;
         }
     }

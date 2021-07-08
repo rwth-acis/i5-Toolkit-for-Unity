@@ -26,6 +26,11 @@ namespace i5.Toolkit.Core.ExperienceAPI
         /// An optional property that represents a measured outcome related to the Statement in which it is included.
         /// </summary>
         public Result result;
+        /// <summary>
+        /// The context of the xAPI statement.
+        /// An optional property that provides a place to add contextual information to a Statement.
+        /// </summary>
+        public Context context;
 
         /// <summary>
         /// Creates a new instance of an xAPI statement
@@ -72,6 +77,13 @@ namespace i5.Toolkit.Core.ExperienceAPI
             {
                 JObject resultJSON = result.ToJObject();
                 retVal.Add("result", resultJSON);
+            }
+
+            // Add context if available
+            if (context != null)
+            {
+                JObject contextJSON = context.ToJObject();
+                retVal.Add("context", contextJSON);
             }
 
             return retVal;

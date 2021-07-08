@@ -89,7 +89,6 @@ namespace i5.Toolkit.Core.ExperienceAPI
         /// <returns>Returns the result of the Web query; if successful, this contains the generated statement id</returns>
         public async Task<WebResponse<string>> SendStatementAsync(Statement statement)
         {
-            //string json = JsonUtility.ToJson(statement);
             string json = statement.ToJSONString();
 
             Debug.Log(json);

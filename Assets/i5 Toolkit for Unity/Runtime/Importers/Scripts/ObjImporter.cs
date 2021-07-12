@@ -93,7 +93,22 @@ namespace i5.Toolkit.Core.ModelImporters
                 // check that the referenced mtl library is already loaded; if not: load it
                 if (!MtlLibrary.LibraryLoaded(parseResult.LibraryPath))
                 {
-                    string mtlUri = System.IO.Path.ChangeExtension(path, ".mtl");
+                    string mtlUri;
+
+                    if (System.IO.File.Exists(path))
+                    {
+                        string baseDirectory = System.IO.Path.GetDirectoryName(path);
+                        string relativePath = parseResult.LibraryPath;
+                        mtlUri = System.IO.Path.Combine(baseDirectory, relativePath);
+                    }
+                    else
+                    {
+                        //Try to interprete as web uri
+                        Uri uri = new Uri(path);
+                        mtlUri = UriUtils.RewriteFileUriPath(uri, parseResult.LibraryPath);
+                    }
+                    
+
                     string libraryName = System.IO.Path.GetFileNameWithoutExtension(path);
                     bool successful = await MtlLibrary.LoadLibraryAsyc(new Uri(mtlUri, UriKind.Absolute), libraryName);
                     if (!successful)

@@ -94,18 +94,40 @@ namespace i5.Toolkit.Core.ModelImporters
                 if (!MtlLibrary.LibraryLoaded(parseResult.LibraryPath))
                 {
                     string mtlUri;
-
+                    // check if the path is a local path or an web uri
                     if (System.IO.File.Exists(path))
                     {
                         string baseDirectory = System.IO.Path.GetDirectoryName(path);
-                        string relativePath = parseResult.LibraryPath;
-                        mtlUri = System.IO.Path.Combine(baseDirectory, relativePath);
+                        string materialPath = parseResult.LibraryPath;
+                        // check whether material path is given relative to the obj path or fully qualified
+                        if (System.IO.File.Exists(materialPath))
+                        {
+                            // material path is absolute
+                            mtlUri = materialPath;
+                        }
+                        else
+                        {
+                            // material path is relative
+                            mtlUri = System.IO.Path.Combine(baseDirectory, materialPath);
+                        }
+                        mtlUri = System.IO.Path.Combine(baseDirectory, materialPath);
                     }
                     else
                     {
-                        //Try to interprete as web uri
-                        Uri uri = new Uri(path);
-                        mtlUri = UriUtils.RewriteFileUriPath(uri, parseResult.LibraryPath);
+                        // try to interprete as web uri
+                        Uri uri;
+                        // check wether material path is absolute or relative
+                        if (Uri.TryCreate(parseResult.LibraryPath, UriKind.Absolute, out uri))
+                        {
+                            // material path is absolute
+                            mtlUri = uri.AbsoluteUri;
+                        }
+                        else
+                        {
+                            // material path is relative
+                            uri = new Uri(path);
+                            mtlUri = UriUtils.RewriteFileUriPath(uri, parseResult.LibraryPath);
+                        }
                     }
                     
 

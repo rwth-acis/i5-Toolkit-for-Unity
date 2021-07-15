@@ -13,29 +13,28 @@ namespace i5.Toolkit.Core.ExperienceAPI
         /// The actor of the xAPI statement
         /// </summary>
         public Actor actor;
+
         /// <summary>
         /// The verb of the xAPI statement
         /// </summary>
         public Verb verb;
+
         /// <summary>
         /// The object of the xAPI statement
         /// </summary>
         public XApiObject @object;
+
         /// <summary>
         /// The result of the xAPI statement.
         /// An optional property that represents a measured outcome related to the Statement in which it is included.
         /// </summary>
         public Result result;
+
         /// <summary>
         /// The context of the xAPI statement.
         /// An optional property that provides a place to add contextual information to a Statement.
         /// </summary>
         public Context context;
-
-        /// <summary>
-        /// Creates a new instance of an xAPI statement
-        /// </summary>
-        public Statement() { }
 
         /// <summary>
         /// Creates a new instance of an xAPI statement
@@ -46,14 +45,21 @@ namespace i5.Toolkit.Core.ExperienceAPI
         public Statement(string actorMail, string verbUrl, string objectUrl)
         {
             actor = new Actor(actorMail);
-            verb = new Verb()
-            {
-                id = verbUrl
-            };
-            @object = new XApiObject()
-            {
-                id = objectUrl
-            };
+            verb = new Verb(verbUrl);
+            @object = new XApiObject(objectUrl);
+        }
+
+        /// <summary>
+        /// Creates a new instance of an xAPI Statement.
+        /// </summary>
+        /// <param name="actor">The Actor object of the statement.</param>
+        /// <param name="verb">The Verb object of the statement.</param>
+        /// <param name="xapiObject">The XApiObject of the statement.</param>
+        public Statement(Actor actor, Verb verb, XApiObject xapiObject)
+        {
+            this.actor = actor;
+            this.verb = verb;
+            this.@object = xapiObject;
         }
 
         public JObject ToJObject()

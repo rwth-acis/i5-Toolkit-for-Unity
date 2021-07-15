@@ -16,10 +16,23 @@ namespace i5.Toolkit.Core.ExperienceAPI
 		/// </summary>
 		public List<string> parentActivityIDs;
 
+		/// <summary>
+		/// Adds parent activity to the context.
+		/// </summary>
+		/// <param name="parentActivityId">The ID of the parent activity</param>
+		public void AddParentActivity(string parentActivityId)
+		{
+			if (parentActivityId != null && parentActivityId != "")
+			{
+				parentActivityIDs.Add(parentActivityId);
+			}
+		}
+
 		public Context()
 		{
 			parentActivityIDs = new List<string>();
 		}
+
 
 		public JObject ToJObject()
         {

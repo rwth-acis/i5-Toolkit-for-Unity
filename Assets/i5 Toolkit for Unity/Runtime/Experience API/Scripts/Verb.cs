@@ -23,9 +23,14 @@ namespace i5.Toolkit.Core.ExperienceAPI
         /// </summary>
         public Dictionary<string, string> displayLanguageDictionary;
 
-        public Verb()
+        /// <summary>
+        /// Creates a Verb instance.
+        /// </summary>
+        /// <param name="verbID">The verb ID as a URI.</param>
+        public Verb(string verbID)
         {
             displayLanguageDictionary = new Dictionary<string, string>();
+            this.id = verbID;
         }
 
         public static string cutToVerbName(string verbID)

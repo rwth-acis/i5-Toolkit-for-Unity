@@ -12,20 +12,29 @@ namespace i5.Toolkit.Core.ExperienceAPI
         /// <summary>
         /// The mail address in the mailto: scheme. Required
         /// </summary>
-        public string mbox;
+        private string mbox;
 
         /// <summary>
         /// The name of the actor. Optional.
         /// </summary>
         public string name;
 
-        /// <summary>
-        /// Creates a new actor instance
-        /// </summary>
-        public Actor() { }
+        public string Mbox
+        {
+            get { return mbox; }
+            set
+            {
+                string tmp = value;
+                if (!tmp.StartsWith("mailto:"))
+                {
+                    tmp = $"mailto:{tmp}";
+                }
+                mbox = tmp;
+            }
+        }
 
         /// <summary>
-        /// Creates a new actor instance
+        /// Creates a new actor instance.
         /// </summary>
         /// <param name="mail">The mail address of the actor</param>
         public Actor(string mail)
@@ -35,19 +44,39 @@ namespace i5.Toolkit.Core.ExperienceAPI
             {
                 mail = $"mailto:{mail}";
             }
-            mbox = mail;
+            Mbox = mail;
         }
+
+        /// <summary>
+        /// Creates a new actor instance.
+        /// </summary>
+        /// <param name="mail">The mail address of the actor.</param>
+        /// <param name="name">The name of the actor.</param>
+        public Actor(string mail, string name)
+        {
+            // mail must have a mailto scheme
+            if (!mail.StartsWith("mailto:"))
+            {
+                mail = $"mailto:{mail}";
+            }
+            Mbox = mail;
+            this.name = name;
+        }
+
         public JObject ToJObject()
         {
             JObject retVal = new JObject();
             // Add mbox
-            retVal.Add("mbox", mbox);
+            retVal.Add("mbox", Mbox);
             // Add object type
             retVal.Add("objectType", "Agent");
             // Add name if available
             if (name != null)
             {
-                retVal.Add("name", name);
+                if (name != "")
+                {
+                    retVal.Add("name", name);
+                }
             }
 
             return retVal;

@@ -24,6 +24,19 @@ namespace i5.Toolkit.Core.ExperienceAPI
         public Dictionary<string, string> nameDisplay;
 
         /// <summary>
+        /// Add a display name for an object in the desired language.
+        /// </summary>
+        /// <param name="name">The name of the object in the desired language.</param>
+        /// <param name="languageCode">Language/region codes such as 'en-us', 'en-uk', 'es'... Default value is 'en-us'.</param>
+        public void AddName(string name, string languageCode = "en-us")
+        {
+            if (name != "" && name != null)
+            {
+                nameDisplay.Add(languageCode, name);
+            }
+        }
+
+        /// <summary>
         /// Dictionary that holds the descriptions of the activity in various languages.
         /// Keys are language/region codes (e.g. en-us, es, ...).
         /// Values are the names of the object in that language.
@@ -32,14 +45,28 @@ namespace i5.Toolkit.Core.ExperienceAPI
         public Dictionary<string, string> descriptionDisplay;
 
         /// <summary>
+        /// Add a display description for an object in the desired language
+        /// </summary>
+        /// <param name="languageCode">Language/region codes such as 'en-us', 'en-uk', 'es'... Default value is 'en-us'.</param>
+        /// <param name="name">The description of the object in the desired language.</param>
+        public void AddDescription(string description, string languageCode = "en-us")
+        {
+            if (description != "" && description != null)
+            {
+                descriptionDisplay.Add(languageCode, description);
+            }
+        }
+
+        /// <summary>
         /// The defined type of an activity. MUST be an IRI. Optional.
         /// </summary>
         public string type;
 
-        public XApiObject()
+        public XApiObject(string objectID)
         {
             nameDisplay = new Dictionary<string, string>();
             descriptionDisplay = new Dictionary<string, string>();
+            this.id = objectID;
         }
 
         public JObject ToJObject()
@@ -55,7 +82,10 @@ namespace i5.Toolkit.Core.ExperienceAPI
             // Add definition type if available
             if (type != null)
             {
-                definition.Add("type", type);
+                if (type != "")
+                {
+                    definition.Add("type", type);
+                }
             }
             // Add definition names if there are any
             if (nameDisplay.Count > 0)
@@ -63,9 +93,15 @@ namespace i5.Toolkit.Core.ExperienceAPI
                 JObject names = new JObject();
                 foreach (KeyValuePair<string, string> kvp in nameDisplay)
                 {
-                    names.Add(kvp.Key, kvp.Value);
+                    if (kvp.Value != "")
+                    {
+                        names.Add(kvp.Key, kvp.Value);
+                    }
                 }
-                definition.Add("name", names);
+                if (names.Count > 0)
+                {
+                    definition.Add("name", names);
+                }
             }
             // Add definition descriptions if there are any
             if (descriptionDisplay.Count > 0)

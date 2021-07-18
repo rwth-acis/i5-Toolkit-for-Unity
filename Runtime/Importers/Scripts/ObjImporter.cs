@@ -4,6 +4,7 @@ using i5.Toolkit.Core.Utilities;
 using i5.Toolkit.Core.Utilities.ContentLoaders;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 using UnityEngine;
 
@@ -95,12 +96,11 @@ namespace i5.Toolkit.Core.ModelImporters
                 {
                     string mtlUri;
                     // check if the path is a local path or an web uri
-                    if (System.IO.File.Exists(path))
+                    if (new Uri(path).IsFile)
                     {
-                        string baseDirectory = System.IO.Path.GetDirectoryName(path);
                         string materialPath = parseResult.LibraryPath;
                         // check whether material path is given relative to the obj path or fully qualified
-                        if (System.IO.File.Exists(materialPath))
+                        if (Path.IsPathRooted(materialPath))
                         {
                             // material path is absolute
                             mtlUri = materialPath;
@@ -108,7 +108,8 @@ namespace i5.Toolkit.Core.ModelImporters
                         else
                         {
                             // material path is relative
-                            mtlUri = System.IO.Path.Combine(baseDirectory, materialPath);
+                            string baseDirectory = Path.GetDirectoryName(path);
+                            mtlUri = Path.Combine(baseDirectory, materialPath);
                         }
                     }
                     else

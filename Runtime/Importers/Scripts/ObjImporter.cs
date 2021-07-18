@@ -62,16 +62,15 @@ namespace i5.Toolkit.Core.ModelImporters
         }
 
         /// <summary>
-        /// Asynchronously imports the given .obj file from the specified url
+        /// Asynchronously imports the given .obj file from the specified url either from the local file system or the web.
         /// </summary>
-        /// <param name="url">The url to the .obj file</param>
+        /// <param name="path">The path to the .obj file that is either stored online or on the local file system</param>
         /// <returns>The GameObject that was created for the imported .obj</returns>
-        public async Task<GameObject> ImportAsync(string url)
+        public async Task<GameObject> ImportAsync(string path)
         {
             i5Debug.Log("Starting import", this);
-            Uri uri = new Uri(url);
             // fetch the model
-            WebResponse<string> resp = await FetchModelAsync(uri);
+            WebResponse<string> resp = await FetchModelAsync(path);
 
             // if there was an error, we cannot create anything
             if (!resp.Successful)
@@ -83,7 +82,7 @@ namespace i5.Toolkit.Core.ModelImporters
             // create the parent object
             // it is a standard GameObject; its only purpose is to bundle the child objects
             GameObject parentObject = ObjectPool<GameObject>.RequestResource(() => { return new GameObject(); });
-            parentObject.name = System.IO.Path.GetFileNameWithoutExtension(uri.LocalPath);
+            parentObject.name = System.IO.Path.GetFileNameWithoutExtension(path);
 
             // parse the .obj file
             List<ObjParseResult> parseResults = await ParseModelAsync(resp.Content);
@@ -94,9 +93,46 @@ namespace i5.Toolkit.Core.ModelImporters
                 // check that the referenced mtl library is already loaded; if not: load it
                 if (!MtlLibrary.LibraryLoaded(parseResult.LibraryPath))
                 {
-                    string mtlUri = UriUtils.RewriteFileUriPath(uri, parseResult.LibraryPath);
-                    string libraryName = System.IO.Path.GetFileNameWithoutExtension(uri.LocalPath);
-                    bool successful = await MtlLibrary.LoadLibraryAsyc(new Uri(mtlUri), libraryName);
+                    string mtlUri;
+                    // check if the path is a local path or an web uri
+                    if (System.IO.File.Exists(path))
+                    {
+                        string baseDirectory = System.IO.Path.GetDirectoryName(path);
+                        string materialPath = parseResult.LibraryPath;
+                        // check whether material path is given relative to the obj path or fully qualified
+                        if (System.IO.File.Exists(materialPath))
+                        {
+                            // material path is absolute
+                            mtlUri = materialPath;
+                        }
+                        else
+                        {
+                            // material path is relative
+                            mtlUri = System.IO.Path.Combine(baseDirectory, materialPath);
+                        }
+                        mtlUri = System.IO.Path.Combine(baseDirectory, materialPath);
+                    }
+                    else
+                    {
+                        // try to interprete as web uri
+                        Uri uri;
+                        // check wether material path is absolute or relative
+                        if (Uri.TryCreate(parseResult.LibraryPath, UriKind.Absolute, out uri))
+                        {
+                            // material path is absolute
+                            mtlUri = uri.AbsoluteUri;
+                        }
+                        else
+                        {
+                            // material path is relative
+                            uri = new Uri(path);
+                            mtlUri = UriUtils.RewriteFileUriPath(uri, parseResult.LibraryPath);
+                        }
+                    }
+                    
+
+                    string libraryName = System.IO.Path.GetFileNameWithoutExtension(path);
+                    bool successful = await MtlLibrary.LoadLibraryAsyc(new Uri(mtlUri, UriKind.Absolute), libraryName);
                     if (!successful)
                     {
                         i5Debug.LogError("Could not load .mtl file " + parseResult.LibraryPath, this);
@@ -105,7 +141,7 @@ namespace i5.Toolkit.Core.ModelImporters
 
                 // get the material constructor of the sub-object
                 MaterialConstructor mat = MtlLibrary.GetMaterialConstructor(
-                    System.IO.Path.GetFileNameWithoutExtension(uri.LocalPath),
+                    System.IO.Path.GetFileNameWithoutExtension(path),
                     parseResult.MaterialName);
 
                 if (mat != null)
@@ -128,13 +164,13 @@ namespace i5.Toolkit.Core.ModelImporters
         /// </summary>
         /// <param name="uri">The uri where the .obj file is stored</param>
         /// <returns>Returns a Web Response which contains the contents of the .obj file</returns>
-        private async Task<WebResponse<string>> FetchModelAsync(Uri uri)
+        private async Task<WebResponse<string>> FetchModelAsync(string path)
         {
-            if (!System.IO.Path.GetExtension(uri.LocalPath).Equals(".obj"))
+            if (!System.IO.Path.GetExtension(path).Equals(".obj"))
             {
                 i5Debug.LogWarning("The given url does not seem to be a .obj file", this);
             }
-            WebResponse<string> resp = await ContentLoader.LoadAsync(uri.ToString());
+            WebResponse<string> resp = await ContentLoader.LoadAsync(path);
             return resp;
         }
 

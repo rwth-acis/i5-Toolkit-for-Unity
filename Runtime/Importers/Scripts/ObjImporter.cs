@@ -110,14 +110,12 @@ namespace i5.Toolkit.Core.ModelImporters
                             // material path is relative
                             mtlUri = System.IO.Path.Combine(baseDirectory, materialPath);
                         }
-                        mtlUri = System.IO.Path.Combine(baseDirectory, materialPath);
                     }
                     else
                     {
                         // try to interprete as web uri
-                        Uri uri;
                         // check wether material path is absolute or relative
-                        if (Uri.TryCreate(parseResult.LibraryPath, UriKind.Absolute, out uri))
+                        if (Uri.TryCreate(parseResult.LibraryPath, UriKind.Absolute, out Uri uri))
                         {
                             // material path is absolute
                             mtlUri = uri.AbsoluteUri;

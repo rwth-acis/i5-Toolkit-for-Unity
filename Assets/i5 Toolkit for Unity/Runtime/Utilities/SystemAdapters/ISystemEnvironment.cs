@@ -1,4 +1,4 @@
-﻿namespace i5.Toolkit.Core.Utilities.SystemAdapters
+﻿namespace i5.Toolkit.Core.Utilities.SystemWrappers
 {
     public interface ISystemEnvironment
     {

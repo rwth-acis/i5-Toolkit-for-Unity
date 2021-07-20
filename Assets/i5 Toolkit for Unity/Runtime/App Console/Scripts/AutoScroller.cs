@@ -1,4 +1,4 @@
-﻿using i5.Toolkit.Core.Utilities.UnityWrappers;
+﻿using i5.Toolkit.Core.Utilities.UnityAdapters;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

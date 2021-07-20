@@ -1,12 +1,12 @@
 ﻿using System;
 using UnityEngine;
 
-namespace i5.Toolkit.Core.Utilities.UnityWrappers
+namespace i5.Toolkit.Core.Utilities.UnityAdapters
 {
     /// <summary>
-    /// Wrapper for Unity's <see cref="Application"/>
+    /// Adapter for Unity's <see cref="Application"/>
     /// </summary>
-    public class ApplicationWrapper : IApplication
+    public class ApplicationAdapter : IApplication
     {
         /// <summary>
         /// Connects to Application.absoluteURL
@@ -21,7 +21,7 @@ namespace i5.Toolkit.Core.Utilities.UnityWrappers
         /// <summary>
         /// Creates a new instance of the ApplicationWrapper
         /// </summary>
-        public ApplicationWrapper()
+        public ApplicationAdapter()
         {
             Application.deepLinkActivated += OnDeepLinkActivated;
         }

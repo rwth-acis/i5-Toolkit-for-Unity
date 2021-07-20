@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace i5.Toolkit.Core.Utilities.SystemAdapters
+namespace i5.Toolkit.Core.Utilities.SystemWrappers
 {
     public class SystemEnvironmentAdapter : ISystemEnvironment
     {

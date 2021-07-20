@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 namespace i5.Toolkit.Core.Utilities.UnityAdapters
 {
-    public class SceneManagerWrapper : ISceneManager
+    public class SceneManagerAdapter : ISceneManager
     {
         public Scene GetSceneByBuildIndex(int index)
         {

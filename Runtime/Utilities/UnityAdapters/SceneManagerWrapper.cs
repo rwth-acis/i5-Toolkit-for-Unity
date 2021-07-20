@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace i5.Toolkit.Core.Utilities.UnityWrappers
+namespace i5.Toolkit.Core.Utilities.UnityAdapters
 {
     public class SceneManagerWrapper : ISceneManager
     {

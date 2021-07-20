@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace i5.Toolkit.Core.Utilities.UnityWrappers
+namespace i5.Toolkit.Core.Utilities.UnityAdapters
 {
     public class ScrollRectAdapter : IScrollView
     {

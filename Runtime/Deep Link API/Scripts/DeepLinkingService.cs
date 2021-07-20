@@ -1,6 +1,6 @@
 ﻿using i5.Toolkit.Core.ServiceCore;
 using i5.Toolkit.Core.Utilities;
-using i5.Toolkit.Core.Utilities.UnityWrappers;
+using i5.Toolkit.Core.Utilities.UnityAdapters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +23,7 @@ namespace i5.Toolkit.Core.DeepLinkAPI
         /// Reference to an application wrapper.
         /// In production, this is initialized with Unity's <see cref="Application"/>.
         /// </summary>
-        public IApplication ApplicationAPI { get; set; } = new ApplicationWrapper();
+        public IApplication ApplicationAPI { get; set; } = new ApplicationAdapter();
 
         /// <summary>
         /// The number of objects that will be searched for deep link targets

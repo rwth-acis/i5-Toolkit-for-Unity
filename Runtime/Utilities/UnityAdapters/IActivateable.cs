@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace i5.Toolkit.Core.Utilities.UnityWrappers
+namespace i5.Toolkit.Core.Utilities.UnityAdapters
 {
     public interface IActivateable
     {

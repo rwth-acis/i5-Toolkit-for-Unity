@@ -23,7 +23,7 @@ namespace i5.Toolkit.Core.ModelImporters
         /// <summary>
         /// instance of the MtlLibrary
         /// </summary>
-        public MtlLibrary MtlLibrary { get; private set; }
+        public IMtlLibrary MtlLibrary { get; private set; }
 
         /// <summary>
         /// If set to true, additional information, e.g. comments in the .obj file, are logged
@@ -83,7 +83,7 @@ namespace i5.Toolkit.Core.ModelImporters
             // create the parent object
             // it is a standard GameObject; its only purpose is to bundle the child objects
             GameObject parentObject = ObjectPool<GameObject>.RequestResource(() => { return new GameObject(); });
-            parentObject.name = System.IO.Path.GetFileNameWithoutExtension(path);
+            parentObject.name = Path.GetFileNameWithoutExtension(path);
 
             // parse the .obj file
             List<ObjParseResult> parseResults = await ParseModelAsync(resp.Content);

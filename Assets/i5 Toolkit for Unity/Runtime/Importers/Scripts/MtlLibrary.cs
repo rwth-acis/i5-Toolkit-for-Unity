@@ -12,7 +12,7 @@ namespace i5.Toolkit.Core.ModelImporters
     /// <summary>
     /// Class for parsing and storing material libraries from .mtl files
     /// </summary>
-    public class MtlLibrary
+    public class MtlLibrary : IMtlLibrary
     {
         /// <summary>
         /// Dictionary of loaded material libraries

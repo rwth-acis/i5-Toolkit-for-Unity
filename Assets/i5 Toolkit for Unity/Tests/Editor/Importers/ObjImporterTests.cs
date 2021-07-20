@@ -98,6 +98,32 @@ namespace i5.Toolkit.Core.Tests.ModelImporters
         }
 
         /// <summary>
+        /// Checks that hte obj importer creates a new pool
+        /// </summary>
+        [Test]
+        public void Initialize_CreatesNewPool()
+        {
+            ObjImporter objImporter = new ObjImporter();
+            IServiceManager serviceManager = A.Fake<IServiceManager>();
+            int poolCount = ObjectPool<GameObject>.CountPools();
+            objImporter.Initialize(serviceManager);
+            Assert.AreEqual(poolCount + 1, ObjectPool<GameObject>.CountPools());
+        }
+
+        [Test]
+        public void Cleanup_RemovesPool()
+        {
+            ObjImporter objImporter = new ObjImporter();
+            IServiceManager serviceManager = A.Fake<IServiceManager>();
+            int poolCount = ObjectPool<GameObject>.CountPools();
+            objImporter.Initialize(serviceManager);
+            Assert.AreEqual(poolCount + 1, ObjectPool<GameObject>.CountPools());
+
+            objImporter.Cleanup();
+            Assert.AreEqual(poolCount, ObjectPool<GameObject>.CountPools());
+        }
+
+        /// <summary>
         /// Checks that ImportAsync returns null if the web request failed
         /// </summary>
         /// <returns></returns>

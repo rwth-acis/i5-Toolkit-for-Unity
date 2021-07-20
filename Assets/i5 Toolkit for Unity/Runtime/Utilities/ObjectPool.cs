@@ -17,6 +17,11 @@ namespace i5.Toolkit.Core.Utilities
 
         private static int id = 1;
 
+        public static int CountPools()
+        {
+            return pools.Count;
+        }
+
         /// <summary>
         /// Opens a new pool and returns the id of the pool
         /// </summary>

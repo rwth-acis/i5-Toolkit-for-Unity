@@ -7,7 +7,8 @@
         "i5.Toolkit.Core.Editor.TestHelpers",
         "i5.Toolkit.Core.TestHelpers",
         "UnityEngine.TestRunner",
-        "UnityEditor.TestRunner"
+        "UnityEditor.TestRunner",
+        "Unity.TextMeshPro"
     ],
     "includePlatforms": [
         "Editor"

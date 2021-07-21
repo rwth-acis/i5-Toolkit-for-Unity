@@ -8,6 +8,7 @@ This document keeps track of the changes between versions of the toolkit.
 
 - Added support for local paths in the Obj Importer
 - Added Unity adapters. This module is still in experimental stage as its interfaces will be extended in future releases
+- Added utility functions for Vector3 component-wise operations and composed bounds calculation
 - Added further unit tests
 
 ### Documentation

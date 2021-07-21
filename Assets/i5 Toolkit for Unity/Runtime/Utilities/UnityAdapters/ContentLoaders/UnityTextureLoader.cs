@@ -6,7 +6,7 @@ using i5.Toolkit.Core.Utilities.Async;
 namespace i5.Toolkit.Core.Utilities.ContentLoaders
 {
     /// <summary>
-    /// Wrapper class which loads textures using Unity's WebRequestsTexture
+    /// Adapter class which loads textures using Unity's WebRequestsTexture
     /// </summary>
     public class UnityTextureLoader : IContentLoader<Texture2D>
     {

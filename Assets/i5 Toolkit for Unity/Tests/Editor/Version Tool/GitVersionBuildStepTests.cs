@@ -1,6 +1,6 @@
 ﻿using FakeItEasy;
 using i5.Toolkit.Core.Editor.TestHelpers;
-using i5.Toolkit.Core.Utilities.SystemWrappers;
+using i5.Toolkit.Core.Utilities.SystemAdapters;
 using i5.Toolkit.Core.VersionTool;
 using NUnit.Framework;
 using System;

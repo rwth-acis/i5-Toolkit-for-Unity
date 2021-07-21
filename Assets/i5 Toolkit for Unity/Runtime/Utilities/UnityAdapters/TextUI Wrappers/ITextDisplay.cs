@@ -1,4 +1,4 @@
-﻿namespace i5.Toolkit.Core.Utilities.UnityAdapters
+﻿namespace i5.Toolkit.Core.Experimental.UnityAdapters
 {
     public interface ITextDisplay
     {

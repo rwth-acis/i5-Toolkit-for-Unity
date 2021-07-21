@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace i5.Toolkit.Core.Utilities.UnityAdapters
+namespace i5.Toolkit.Core.Experimental.UnityAdapters
 {
     public class TransformAdapter : ITransformable
     {

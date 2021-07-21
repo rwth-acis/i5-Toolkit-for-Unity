@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace i5.Toolkit.Core.Utilities.UnityAdapters
+namespace i5.Toolkit.Core.Experimental.UnityAdapters
 {
     public class TextMeshTextAdapter : ITextDisplay
     {

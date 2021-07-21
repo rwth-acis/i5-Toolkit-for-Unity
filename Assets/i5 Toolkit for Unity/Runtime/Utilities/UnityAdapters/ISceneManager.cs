@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace i5.Toolkit.Core.Utilities.UnityAdapters
+namespace i5.Toolkit.Core.Experimental.UnityAdapters
 {
     public interface ISceneManager
     {

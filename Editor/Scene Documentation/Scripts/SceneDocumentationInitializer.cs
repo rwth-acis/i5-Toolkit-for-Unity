@@ -26,7 +26,7 @@ namespace i5.Toolkit.Core.SceneDocumentation
                 Debug.Log("[SceneDocumentationInitializer] Created Gizmos folder");
             }
 
-            string packageLocation = PathUtils.GetPackagePath();
+            string packageLocation = PackagePathUtils.GetPackagePath();
 
             EnsureFile(packageLocation, "Bug.png");
             EnsureFile(packageLocation, "Todo.png");

@@ -94,44 +94,10 @@ namespace i5.Toolkit.Core.ModelImporters
                 // check that the referenced mtl library is already loaded; if not: load it
                 if (!MtlLibrary.LibraryLoaded(parseResult.LibraryPath))
                 {
-                    string mtlUri;
-                    // check if the path is a local path or an web uri
-                    if (new Uri(path).IsFile)
-                    {
-                        string materialPath = parseResult.LibraryPath;
-                        // check whether material path is given relative to the obj path or fully qualified
-                        if (Path.IsPathRooted(materialPath))
-                        {
-                            // material path is absolute
-                            mtlUri = materialPath;
-                        }
-                        else
-                        {
-                            // material path is relative
-                            string baseDirectory = Path.GetDirectoryName(path);
-                            mtlUri = Path.Combine(baseDirectory, materialPath);
-                        }
-                    }
-                    else
-                    {
-                        // try to interprete as web uri
-                        // check wether material path is absolute or relative
-                        if (Uri.TryCreate(parseResult.LibraryPath, UriKind.Absolute, out Uri uri))
-                        {
-                            // material path is absolute
-                            mtlUri = uri.AbsoluteUri;
-                        }
-                        else
-                        {
-                            // material path is relative
-                            uri = new Uri(path);
-                            mtlUri = UriUtils.RewriteFileUriPath(uri, parseResult.LibraryPath);
-                        }
-                    }
-                    
+                    string mtlAbsolutePath = PathUtils.RewriteToAbsolutePath(path, parseResult.LibraryPath);
 
-                    string libraryName = System.IO.Path.GetFileNameWithoutExtension(path);
-                    bool successful = await MtlLibrary.LoadLibraryAsyc(new Uri(mtlUri, UriKind.Absolute), libraryName);
+                    string libraryName = Path.GetFileNameWithoutExtension(path);
+                    bool successful = await MtlLibrary.LoadLibraryAsyc(mtlAbsolutePath, libraryName);
                     if (!successful)
                     {
                         i5Debug.LogError("Could not load .mtl file " + parseResult.LibraryPath, this);

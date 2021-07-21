@@ -40,7 +40,7 @@ namespace i5.Toolkit.Core.Tests.ModelImporters
         [OneTimeSetUp]
         public void Initialize()
         {
-            content = File.ReadAllText(PathUtils.GetPackagePath() + "Tests/Editor/Importers/Data/MatLib.mtl");
+            content = File.ReadAllText(PackagePathUtils.GetPackagePath() + "Tests/Editor/Importers/Data/MatLib.mtl");
         }
 
         /// <summary>
@@ -229,7 +229,7 @@ namespace i5.Toolkit.Core.Tests.ModelImporters
         /// <returns></returns>
         private async Task LoadLibrary()
         {
-            Uri testUri = new Uri("http://www.test.org/MatLib.mtl");
+            string testUri = "http://www.test.org/MatLib.mtl";
             await mtlLibrary.LoadLibraryAsyc(testUri, libraryName);
         }
     }

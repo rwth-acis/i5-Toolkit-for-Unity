@@ -71,10 +71,10 @@ namespace i5.Toolkit.Core.ModelImporters
         /// <summary>
         /// Asynchronously loads a material library from the specified URI
         /// </summary>
-        /// <param name="uri">Full uri to the .mtl file</param>
+        /// <param name="absolutePath">Absolute path or uri to the .mtl file</param>
         /// <param name="libraryName">The name of the library</param>
         /// <returns>Returns true if the library could be loaded</returns>
-        public async Task<bool> LoadLibraryAsyc(Uri uri, string libraryName)
+        public async Task<bool> LoadLibraryAsyc(string absolutePath, string libraryName)
         {
             // if we have already cached the library, do not load it again
             if (libraries.ContainsKey(libraryName))
@@ -83,7 +83,7 @@ namespace i5.Toolkit.Core.ModelImporters
                 return true;
             }
 
-            WebResponse<string> matLibResponse = await ContentLoader.LoadAsync(uri.ToString());
+            WebResponse<string> matLibResponse = await ContentLoader.LoadAsync(absolutePath);
             if (matLibResponse.Successful)
             {
                 // we now have the entire content of the library
@@ -91,7 +91,7 @@ namespace i5.Toolkit.Core.ModelImporters
                     new[] { "\r\n", "\r", "\n" },
                     StringSplitOptions.None);
                 // parse the lines to get a list of MaterialData which are described in the library
-                List<MaterialConstructor> materialsInLibrary = ParseMaterialLibrary(uri, libraryContent);
+                List<MaterialConstructor> materialsInLibrary = ParseMaterialLibrary(absolutePath, libraryContent);
                 // create the entry for the material library
                 libraries.Add(libraryName, new Dictionary<string, MaterialConstructor>());
                 // create the material entries for each material in the library
@@ -111,10 +111,10 @@ namespace i5.Toolkit.Core.ModelImporters
         /// <summary>
         /// Parses the contents of a .mtl file
         /// </summary>
-        /// <param name="uri">The full URI where the .mtl file is stored</param>
+        /// <param name="absolutePath">The absolute path or uri where the .mtl file is stored</param>
         /// <param name="libraryContent">The line array of the file's content</param>
         /// <returns>A list a material constructor for each material in the library</returns>
-        private List<MaterialConstructor> ParseMaterialLibrary(Uri uri, string[] libraryContent)
+        private List<MaterialConstructor> ParseMaterialLibrary(string absolutePath, string[] libraryContent)
         {
             List<MaterialConstructor> materials = new List<MaterialConstructor>();
             MaterialConstructor current = null;
@@ -213,8 +213,8 @@ namespace i5.Toolkit.Core.ModelImporters
                         {
                             string texturePath = trimmedLine.Substring(6).TrimStart();
                             // rewrite the URI to the texture's path and then add a texture constructor to the material
-                            string fullUri = UriUtils.RewriteFileUriPath(uri, texturePath);
-                            current.SetTexture("_MainTex", new TextureConstructor(fullUri));
+                            string fullPath = PathUtils.RewriteToAbsolutePath(absolutePath, texturePath);
+                            current.SetTexture("_MainTex", new TextureConstructor(fullPath));
                         }
                     }
                     else

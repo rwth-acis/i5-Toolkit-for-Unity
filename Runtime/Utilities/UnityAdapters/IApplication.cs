@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace i5.Toolkit.Core.Utilities.UnityAdapters
+namespace i5.Toolkit.Core.Experimental.UnityAdapters
 {
     /// <summary>
     /// Interface for the application run-time data

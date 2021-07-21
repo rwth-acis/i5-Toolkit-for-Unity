@@ -1,6 +1,6 @@
 ﻿using i5.Toolkit.Core.ServiceCore;
 using i5.Toolkit.Core.Utilities;
-using i5.Toolkit.Core.Utilities.UnityAdapters;
+using i5.Toolkit.Core.Experimental.UnityAdapters;
 using System;
 using System.Collections.Generic;
 using System.Linq;

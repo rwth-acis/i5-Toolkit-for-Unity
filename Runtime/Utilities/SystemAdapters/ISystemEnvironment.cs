@@ -1,4 +1,4 @@
-﻿namespace i5.Toolkit.Core.Utilities.SystemAdapters
+﻿namespace i5.Toolkit.Core.Experimental.SystemAdapters
 {
     public interface ISystemEnvironment
     {

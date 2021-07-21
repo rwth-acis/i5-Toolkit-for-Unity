@@ -1,5 +1,5 @@
 ﻿using i5.Toolkit.Core.Editor.TestHelpers;
-using i5.Toolkit.Core.Utilities.UnityAdapters;
+using i5.Toolkit.Core.Experimental.UnityAdapters;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace i5.Toolkit.Core.Tests.Utilities.UnityAdapters
+namespace i5.Toolkit.Core.Tests.Experimental.UnityAdapters
 {
     public class TransformAdapterTests
     {

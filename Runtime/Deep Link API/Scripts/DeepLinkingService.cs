@@ -20,7 +20,7 @@ namespace i5.Toolkit.Core.DeepLinkAPI
         private List<WeakReference<object>> registeredListeners = new List<WeakReference<object>>();
 
         /// <summary>
-        /// Reference to an application wrapper.
+        /// Reference to an application adapter.
         /// In production, this is initialized with Unity's <see cref="Application"/>.
         /// </summary>
         public IApplication ApplicationAPI { get; set; } = new ApplicationAdapter();

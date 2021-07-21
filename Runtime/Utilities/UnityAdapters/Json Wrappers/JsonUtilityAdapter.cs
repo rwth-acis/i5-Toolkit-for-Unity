@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace i5.Toolkit.Core.Utilities
 {
-    public class JsonUtilityWrapper : IJsonSerializer
+    public class JsonUtilityAdapter : IJsonSerializer
     {
         public T FromJson<T>(string json)
         {

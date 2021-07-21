@@ -1,5 +1,5 @@
 ﻿using i5.Toolkit.Core.Utilities;
-using i5.Toolkit.Core.Utilities.SystemWrappers;
+using i5.Toolkit.Core.Utilities.SystemAdapters;
 using System;
 
 namespace i5.Toolkit.Core.VersionTool

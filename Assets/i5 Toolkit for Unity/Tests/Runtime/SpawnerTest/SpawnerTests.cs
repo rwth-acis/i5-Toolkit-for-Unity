@@ -35,7 +35,7 @@ namespace i5.Toolkit.Core.Tests.Spawners
         /// <returns>The spawner component which has been created in the scene</returns>
         private Spawner PreTestSetup(string spawnerName)
         {
-            string testBasePath = PathUtils.GetPackagePath() + "Tests/Runtime/SpawnerTest";
+            string testBasePath = PackagePathUtils.GetPackagePath() + "Tests/Runtime/SpawnerTest";
             GameObject spawnerPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(testBasePath + "/" + spawnerName + ".prefab");
             Spawner spawner = GameObject.Instantiate(spawnerPrefab).GetComponent<Spawner>();
             return spawner;

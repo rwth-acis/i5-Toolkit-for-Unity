@@ -9,7 +9,7 @@ namespace i5.Toolkit.Core.Utilities
     /// <summary>
     /// Utilities for paths
     /// </summary>
-    public class PathUtils
+    public class PackagePathUtils
     {
         /// <summary>
         /// The name of the package

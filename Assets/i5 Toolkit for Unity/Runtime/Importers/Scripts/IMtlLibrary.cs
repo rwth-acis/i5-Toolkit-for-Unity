@@ -15,6 +15,6 @@ namespace i5.Toolkit.Core.ModelImporters
 
         bool LibraryLoaded(string name);
 
-        Task<bool> LoadLibraryAsyc(Uri uri, string libraryName);
+        Task<bool> LoadLibraryAsyc(string absolutePath, string libraryName);
     }
 }

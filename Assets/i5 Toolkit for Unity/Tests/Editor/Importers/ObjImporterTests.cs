@@ -39,12 +39,12 @@ namespace i5.Toolkit.Core.Tests.ModelImporters
         public void LoadData()
         {
             string basePath = "Tests/Editor/Importers/Data/";
-            cubeObj = File.ReadAllText(PathUtils.GetPackagePath() + basePath + "Cube.obj");
-            emptyObj = File.ReadAllText(PathUtils.GetPackagePath() +  basePath + "EmptyObj.obj");
-            threeObj = File.ReadAllText(PathUtils.GetPackagePath() + basePath + "ThreeObj.obj");
-            cubeMtl = File.ReadAllText(PathUtils.GetPackagePath() + basePath + "Cube.mtl");
-            emptyMtl = File.ReadAllText(PathUtils.GetPackagePath() + basePath + "EmptyObj.mtl");
-            threeMtl = File.ReadAllText(PathUtils.GetPackagePath() + basePath + "ThreeObj.mtl");
+            cubeObj = File.ReadAllText(PackagePathUtils.GetPackagePath() + basePath + "Cube.obj");
+            emptyObj = File.ReadAllText(PackagePathUtils.GetPackagePath() +  basePath + "EmptyObj.obj");
+            threeObj = File.ReadAllText(PackagePathUtils.GetPackagePath() + basePath + "ThreeObj.obj");
+            cubeMtl = File.ReadAllText(PackagePathUtils.GetPackagePath() + basePath + "Cube.mtl");
+            emptyMtl = File.ReadAllText(PackagePathUtils.GetPackagePath() + basePath + "EmptyObj.mtl");
+            threeMtl = File.ReadAllText(PackagePathUtils.GetPackagePath() + basePath + "ThreeObj.mtl");
         }
 
         /// <summary>

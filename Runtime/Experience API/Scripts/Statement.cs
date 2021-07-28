@@ -37,6 +37,12 @@ namespace i5.Toolkit.Core.ExperienceAPI
         public Context context;
 
         /// <summary>
+        /// The time at which the experience occured. Optional, but if not provided will be given
+        /// by the LRS upon receipt/storing.
+        /// </summary>
+        public DateTime timestamp;
+
+        /// <summary>
         /// Creates a new instance of an xAPI statement
         /// </summary>
         /// <param name="actorMail">The mail address of the actor</param>
@@ -90,6 +96,13 @@ namespace i5.Toolkit.Core.ExperienceAPI
             {
                 JObject contextJSON = context.ToJObject();
                 retVal.Add("context", contextJSON);
+            }
+
+            // Transform timestamp into required format (ISO 8601)
+            if (timestamp != null)
+            {
+                string formattedTimestamp = timestamp.ToString("O");
+                retVal.Add("timestamp", formattedTimestamp);
             }
 
             return retVal;

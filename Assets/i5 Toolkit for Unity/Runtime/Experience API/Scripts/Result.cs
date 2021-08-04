@@ -50,10 +50,11 @@ namespace i5.Toolkit.Core.ExperienceAPI
 		/// Adds a measurement attempt as a result of an activity.
 		/// Realised as an extenstion of the Result field.
 		/// </summary>
+		/// <param name="measurementIRI">The IRI to be used to define the result extension.</param>
 		/// <param name="measuredValue">The value of the measurement.</param>
-		public void AddMeasurementAtempt(string measuredValue)
+		public void AddMeasurementAtempt(string measurementIRI, string measuredValue)
         {
-			extensions.Add("http://mirage-xr.com/measuredValue", measuredValue);
+			extensions.Add(measurementIRI, measuredValue);
         }
 
 		public Result()

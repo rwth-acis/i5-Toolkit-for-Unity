@@ -55,7 +55,7 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         public GitHubOidcProvider()
         {
             RestConnector = new UnityWebRequestRestConnector();
-            JsonSerializer = new JsonUtilityWrapper();
+            JsonSerializer = new JsonUtilityAdapter();
             Browser = new Browser();
         }
 

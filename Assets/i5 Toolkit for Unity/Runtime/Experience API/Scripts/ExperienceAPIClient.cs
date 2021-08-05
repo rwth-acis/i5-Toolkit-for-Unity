@@ -74,12 +74,7 @@ namespace i5.Toolkit.Core.ExperienceAPI
         /// <returns>Returns the result of the Web query; if successful, this contains the generated statement id</returns>
         public async Task<WebResponse<string>> SendStatementAsync(Actor actor, Verb verb, XApiObject obj)
         {
-            return await SendStatementAsync(new Statement()
-            {
-                actor = actor,
-                verb = verb,
-                @object = obj
-            });
+            return await SendStatementAsync(new Statement(actor, verb, obj));
         }
 
         /// <summary>
@@ -89,14 +84,17 @@ namespace i5.Toolkit.Core.ExperienceAPI
         /// <returns>Returns the result of the Web query; if successful, this contains the generated statement id</returns>
         public async Task<WebResponse<string>> SendStatementAsync(Statement statement)
         {
-            string json = JsonUtility.ToJson(statement);
+            string json = statement.ToJSONString();
+
+            Debug.Log(json);
+
             Dictionary<string, string> headers = new Dictionary<string, string>()
             {
                 { "Authorization", AuthorizationToken },
                 {"X-Experience-API-Version", Version },
                 {"Content-Type", "application/json" }
             };
-            i5Debug.Log($"Sending xAPI statement {statement.actor.mbox}" +
+            i5Debug.Log($"Sending xAPI statement {statement.actor.Mbox}" +
                 $" : {statement.verb.id} : {statement.@object.id}", this);
             byte[] bodyRaw = Encoding.UTF8.GetBytes(json);
             WebResponse<string> resp = await WebConnector.PostAsync($"{XApiEndpoint}/statements", bodyRaw, headers);

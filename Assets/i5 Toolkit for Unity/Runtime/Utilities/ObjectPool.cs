@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,6 +15,11 @@ namespace i5.Toolkit.Core.Utilities
         private static Dictionary<int, Queue<T>> pools = new Dictionary<int, Queue<T>>();
 
         private static int id = 1;
+
+        public static int CountPools()
+        {
+            return pools.Count;
+        }
 
         /// <summary>
         /// Opens a new pool and returns the id of the pool

@@ -64,7 +64,7 @@ namespace i5.Toolkit.Core.Tests.ExperienceAPI
                     Debug.Log("Checked web call");
                     string json = Encoding.UTF8.GetString(bytes);
                     Statement res = JsonUtility.FromJson<Statement>(json);
-                    Assert.AreEqual($"mailto:{mailAddress}", res.actor.mbox);
+                    Assert.AreEqual($"mailto:{mailAddress}", res.actor.Mbox);
                 });
 
             Task<WebResponse<string>> task = client.SendStatementAsync(mailAddress, "", "");
@@ -91,7 +91,7 @@ namespace i5.Toolkit.Core.Tests.ExperienceAPI
                     Debug.Log("Checked web call");
                     string json = Encoding.UTF8.GetString(bytes);
                     Statement res = JsonUtility.FromJson<Statement>(json);
-                    Assert.AreEqual(mailAddress, res.actor.mbox);
+                    Assert.AreEqual(mailAddress, res.actor.Mbox);
                 });
 
             Task<WebResponse<string>> task = client.SendStatementAsync(mailAddress, "", "");
@@ -161,10 +161,9 @@ namespace i5.Toolkit.Core.Tests.ExperienceAPI
         [Test]
         public void SendStatement_ObjectParams_ActorCorrect()
         {
-            Actor actor = new Actor()
-            {
-                mbox = "mailto:tester@i5toolkit.com"
-            };
+            Actor actor = new Actor("mailto:tester@i5toolkit.com");
+            Verb verb = new Verb("http://test.org/myVerbId");
+            XApiObject obj = new XApiObject("http://test.org/myObjectId");
 
             A.CallTo(() => webConnector.PostAsync(A<string>.Ignored,
                 A<byte[]>.Ignored,
@@ -178,7 +177,7 @@ namespace i5.Toolkit.Core.Tests.ExperienceAPI
                     Assert.AreEqual(actor, res.actor);
                 });
 
-            Task<WebResponse<string>> task = client.SendStatementAsync(actor, new Verb(), new XApiObject());
+            Task<WebResponse<string>> task = client.SendStatementAsync(actor, verb, obj);
 
             AsyncTest.WaitForTask(task);
 
@@ -191,10 +190,9 @@ namespace i5.Toolkit.Core.Tests.ExperienceAPI
         [Test]
         public void SendStatement_ObjectParams_VerbCorrect()
         {
-            Verb verb = new Verb()
-            {
-                id = "http://test.org/myVerbId"
-            };
+            Actor actor = new Actor("mailto:tester@i5toolkit.com");
+            Verb verb = new Verb("http://test.org/myVerbId");
+            XApiObject obj = new XApiObject("http://test.org/myObjectId");
 
             A.CallTo(() => webConnector.PostAsync(A<string>.Ignored,
                 A<byte[]>.Ignored,
@@ -208,7 +206,7 @@ namespace i5.Toolkit.Core.Tests.ExperienceAPI
                     Assert.AreEqual(verb, res.verb);
                 });
 
-            Task<WebResponse<string>> task = client.SendStatementAsync(new Actor(), verb, new XApiObject());
+            Task<WebResponse<string>> task = client.SendStatementAsync(actor, verb, obj);
 
             AsyncTest.WaitForTask(task);
 
@@ -221,10 +219,9 @@ namespace i5.Toolkit.Core.Tests.ExperienceAPI
         [Test]
         public void SendStatement_ObjectParams_ObjectCorrect()
         {
-            XApiObject obj = new XApiObject()
-            {
-                id = "http://test.org/myObjectId"
-            };
+            Actor actor = new Actor("mailto:tester@i5toolkit.com");
+            Verb verb = new Verb("http://test.org/myVerbId");
+            XApiObject obj = new XApiObject("http://test.org/myObjectId");
 
             A.CallTo(() => webConnector.PostAsync(A<string>.Ignored,
                 A<byte[]>.Ignored,
@@ -238,7 +235,7 @@ namespace i5.Toolkit.Core.Tests.ExperienceAPI
                     Assert.AreEqual(obj, res.@object);
                 });
 
-            Task<WebResponse<string>> task = client.SendStatementAsync(new Actor(), new Verb(), obj);
+            Task<WebResponse<string>> task = client.SendStatementAsync(actor, verb, obj);
 
             AsyncTest.WaitForTask(task);
 

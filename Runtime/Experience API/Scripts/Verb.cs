@@ -33,6 +33,13 @@ namespace i5.Toolkit.Core.ExperienceAPI
             this.id = verbID;
         }
 
+        /// <summary>
+        /// Retreives the verb name from a verb IRI. As it is standard to put the verb name at the end
+        /// of an IRI, it is then possible to be retreived. E.g. 'http://test.org/x/y/z/.../verbName'
+        /// gives 'verbName'.
+        /// </summary>
+        /// <param name="verbID"></param>
+        /// <returns></returns>
         public static string cutToVerbName(string verbID)
         {
             string[] parts = verbID.Split('/');

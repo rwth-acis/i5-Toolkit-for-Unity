@@ -30,12 +30,19 @@ namespace i5.Toolkit.Core.ExperienceAPI
 			}
 		}
 
+		/// <summary>
+		/// Creates a new context instance
+		/// </summary>
 		public Context()
 		{
 			parentActivityIDs = new List<string>();
 		}
 
 #if NEWTONSOFT_JSON
+		/// <summary>
+		/// Converts the context data into a serialized JSON string
+		/// </summary>
+		/// <returns>Returns the serialized JSON string</returns>
 		public JObject ToJObject()
         {
 			JObject retVal = new JObject();

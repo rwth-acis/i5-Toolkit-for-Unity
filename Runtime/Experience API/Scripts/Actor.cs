@@ -2,6 +2,7 @@
 #if NEWTONSOFT_JSON
 using Newtonsoft.Json.Linq;
 #endif
+using UnityEngine;
 
 namespace i5.Toolkit.Core.ExperienceAPI
 {
@@ -11,23 +12,26 @@ namespace i5.Toolkit.Core.ExperienceAPI
     [Serializable]
     public class Actor
     {
-        /// <summary>
-        /// The mail address in the mailto: scheme. Required
-        /// </summary>
-        private string mbox;
+        
+        // The mail address in the mailto: scheme. Required
+        [SerializeField] private string mbox;
 
         /// <summary>
         /// The name of the actor. Optional.
         /// </summary>
         public string name;
 
+        /// <summary>
+        /// The mail address in the mailto: scheme. Required
+        /// </summary>
         public string Mbox
         {
             get { return mbox; }
             set
             {
+                // mail must have a mailto scheme
                 string tmp = value;
-                if (!tmp.StartsWith("mailto:"))
+                if (!value.StartsWith("mailto:"))
                 {
                     tmp = $"mailto:{tmp}";
                 }
@@ -41,11 +45,6 @@ namespace i5.Toolkit.Core.ExperienceAPI
         /// <param name="mail">The mail address of the actor</param>
         public Actor(string mail)
         {
-            // mail must have a mailto scheme
-            if (!mail.StartsWith("mailto:"))
-            {
-                mail = $"mailto:{mail}";
-            }
             Mbox = mail;
         }
 
@@ -56,16 +55,15 @@ namespace i5.Toolkit.Core.ExperienceAPI
         /// <param name="name">The name of the actor.</param>
         public Actor(string mail, string name)
         {
-            // mail must have a mailto scheme
-            if (!mail.StartsWith("mailto:"))
-            {
-                mail = $"mailto:{mail}";
-            }
             Mbox = mail;
             this.name = name;
         }
 
 #if NEWTONSOFT_JSON
+        /// <summary>
+        /// Converts the actor data to a JSON string
+        /// </summary>
+        /// <returns>Returns the serialized JSON string</returns>
         public JObject ToJObject()
         {
             JObject retVal = new JObject();
@@ -76,12 +74,11 @@ namespace i5.Toolkit.Core.ExperienceAPI
             // Add name if available
             if (name != null)
             {
-                if (name != "")
+                if (!string.IsNullOrWhiteSpace(name))
                 {
                     retVal.Add("name", name);
                 }
             }
-
             return retVal;
         }
 #endif

@@ -11,10 +11,8 @@ namespace i5.Toolkit.Core.ExperienceAPI
 	/// </summary>
 	public class Result
 	{
-		///// <summary>
-		///// ScoreObject of a result. Requires further implementation (a separate class).
-		///// The score of the Agent in relation to the success or quality of the experience.
-		///// </summary>
+		// ScoreObject of a result. Requires further implementation (a separate class).
+		// The score of the Agent in relation to the success or quality of the experience.
 		//public Object score;
 
 		/// <summary>
@@ -58,12 +56,19 @@ namespace i5.Toolkit.Core.ExperienceAPI
 			extensions.Add(measurementIRI, measuredValue);
         }
 
+		/// <summary>
+		/// Creates a new xAPI result instance
+		/// </summary>
 		public Result()
         {
 			this.extensions = new Dictionary<string, string>();
         }
 
 #if NEWTONSOFT_JSON
+		/// <summary>
+		/// Converts the result data into a JSON string
+		/// </summary>
+		/// <returns>Returns the serialized JSON string</returns>
 		public JObject ToJObject()
         {
 			JObject retVal = new JObject();

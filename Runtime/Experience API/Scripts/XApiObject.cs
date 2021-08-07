@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+#if NEWTONSOFT_JSON
 using Newtonsoft.Json.Linq;
+#endif
 
 namespace i5.Toolkit.Core.ExperienceAPI
 {
@@ -69,6 +71,7 @@ namespace i5.Toolkit.Core.ExperienceAPI
             this.id = objectID;
         }
 
+#if NEWTONSOFT_JSON
         public JObject ToJObject()
         {
             JObject retVal = new JObject();
@@ -121,8 +124,6 @@ namespace i5.Toolkit.Core.ExperienceAPI
 
             return retVal;
         }
-
-
-
+#endif
     }
 }

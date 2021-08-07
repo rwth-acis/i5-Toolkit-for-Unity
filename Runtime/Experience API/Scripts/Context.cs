@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+#if NEWTONSOFT_JSON
 using Newtonsoft.Json.Linq;
+#endif
 
 namespace i5.Toolkit.Core.ExperienceAPI
 {
@@ -33,7 +35,7 @@ namespace i5.Toolkit.Core.ExperienceAPI
 			parentActivityIDs = new List<string>();
 		}
 
-
+#if NEWTONSOFT_JSON
 		public JObject ToJObject()
         {
 			JObject retVal = new JObject();
@@ -55,5 +57,6 @@ namespace i5.Toolkit.Core.ExperienceAPI
 
 			return retVal;
         }
+#endif
 	}
 }

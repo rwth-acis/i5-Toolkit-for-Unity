@@ -86,8 +86,6 @@ namespace i5.Toolkit.Core.ExperienceAPI
         {
             string json = statement.ToJSONString();
 
-            Debug.Log(json);
-
             Dictionary<string, string> headers = new Dictionary<string, string>()
             {
                 { "Authorization", AuthorizationToken },

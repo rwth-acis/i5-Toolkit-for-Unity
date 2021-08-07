@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+#if NEWTONSOFT_JSON
 using Newtonsoft.Json.Linq;
+#endif
 
 namespace i5.Toolkit.Core.ExperienceAPI
 {
@@ -40,12 +42,13 @@ namespace i5.Toolkit.Core.ExperienceAPI
         /// </summary>
         /// <param name="verbID"></param>
         /// <returns></returns>
-        public static string cutToVerbName(string verbID)
+        public static string CutToVerbName(string verbID)
         {
             string[] parts = verbID.Split('/');
             return parts[parts.Length - 1];
         }
 
+#if NEWTONSOFT_JSON
         public JObject ToJObject()
         {
             JObject retVal = new JObject();
@@ -62,11 +65,12 @@ namespace i5.Toolkit.Core.ExperienceAPI
             }
             else
             {
-                display.Add("en-us", cutToVerbName(id));
+                display.Add("en-us", CutToVerbName(id));
             }
             retVal.Add("display", display);
 
             return retVal;
         }
+#endif
     }
 }

@@ -1,5 +1,9 @@
-﻿using System;
+﻿using i5.Toolkit.Core.Utilities;
+using System;
+using UnityEngine;
+#if NEWTONSOFT_JSON
 using Newtonsoft.Json.Linq;
+#endif
 
 namespace i5.Toolkit.Core.ExperienceAPI
 {
@@ -40,7 +44,7 @@ namespace i5.Toolkit.Core.ExperienceAPI
         /// The time at which the experience occured. Optional, but if not provided will be given
         /// by the LRS upon receipt/storing.
         /// </summary>
-        public DateTime timestamp;
+        public DateTime? timestamp;
 
         /// <summary>
         /// Creates a new instance of an xAPI statement
@@ -68,6 +72,7 @@ namespace i5.Toolkit.Core.ExperienceAPI
             this.@object = xapiObject;
         }
 
+#if NEWTONSOFT_JSON
         public JObject ToJObject()
         {
             JObject retVal = new JObject();
@@ -101,16 +106,26 @@ namespace i5.Toolkit.Core.ExperienceAPI
             // Transform timestamp into required format (ISO 8601)
             if (timestamp != null)
             {
-                string formattedTimestamp = timestamp.ToString("O");
+                string formattedTimestamp = timestamp.Value.ToString("O");
                 retVal.Add("timestamp", formattedTimestamp);
             }
 
             return retVal;
         }
+#endif
 
         public string ToJSONString()
         {
+#if NEWTONSOFT_JSON
             return this.ToJObject().ToString();
+#else
+            i5Debug.LogWarning("Running in limited mode since the project does not contain " +
+                "the required Newtonsoft JSON library for advanced features.\n" +
+                "In limited mode you can only send straightforward Actor-Verb-Object statements.\n" +
+                "To use advanced features, install the Newtonsoft JSON library from https://github.com/jilleJr/Newtonsoft.Json-for-Unity. \n",
+                this);
+            return JsonUtility.ToJson(this);
+#endif
         }
     }
 }

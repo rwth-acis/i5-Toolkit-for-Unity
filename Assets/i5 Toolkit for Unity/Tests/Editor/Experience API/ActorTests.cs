@@ -12,7 +12,7 @@ namespace i5.Toolkit.Core.Tests.ExperienceAPI
         {
             Actor actor = new Actor(mailAddress);
 
-            Assert.AreEqual($"mailto:{mailAddress}", actor.mbox);
+            Assert.AreEqual($"mailto:{mailAddress}", actor.Mbox);
         }
 
         [Test]
@@ -22,7 +22,7 @@ namespace i5.Toolkit.Core.Tests.ExperienceAPI
 
             Actor actor = new Actor(mailto);
 
-            Assert.AreEqual(mailto, actor.mbox);
+            Assert.AreEqual(mailto, actor.Mbox);
         }
     }
 }

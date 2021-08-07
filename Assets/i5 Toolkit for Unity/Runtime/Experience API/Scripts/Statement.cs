@@ -1,4 +1,5 @@
 ﻿using System;
+using Newtonsoft.Json.Linq;
 
 namespace i5.Toolkit.Core.ExperienceAPI
 {
@@ -12,19 +13,34 @@ namespace i5.Toolkit.Core.ExperienceAPI
         /// The actor of the xAPI statement
         /// </summary>
         public Actor actor;
+
         /// <summary>
         /// The verb of the xAPI statement
         /// </summary>
         public Verb verb;
+
         /// <summary>
         /// The object of the xAPI statement
         /// </summary>
         public XApiObject @object;
 
         /// <summary>
-        /// Creates a new instance of an xAPI statement
+        /// The result of the xAPI statement.
+        /// An optional property that represents a measured outcome related to the Statement in which it is included.
         /// </summary>
-        public Statement() { }
+        public Result result;
+
+        /// <summary>
+        /// The context of the xAPI statement.
+        /// An optional property that provides a place to add contextual information to a Statement.
+        /// </summary>
+        public Context context;
+
+        /// <summary>
+        /// The time at which the experience occured. Optional, but if not provided will be given
+        /// by the LRS upon receipt/storing.
+        /// </summary>
+        public DateTime timestamp;
 
         /// <summary>
         /// Creates a new instance of an xAPI statement
@@ -35,14 +51,66 @@ namespace i5.Toolkit.Core.ExperienceAPI
         public Statement(string actorMail, string verbUrl, string objectUrl)
         {
             actor = new Actor(actorMail);
-            verb = new Verb()
+            verb = new Verb(verbUrl);
+            @object = new XApiObject(objectUrl);
+        }
+
+        /// <summary>
+        /// Creates a new instance of an xAPI Statement.
+        /// </summary>
+        /// <param name="actor">The Actor object of the statement.</param>
+        /// <param name="verb">The Verb object of the statement.</param>
+        /// <param name="xapiObject">The XApiObject of the statement.</param>
+        public Statement(Actor actor, Verb verb, XApiObject xapiObject)
+        {
+            this.actor = actor;
+            this.verb = verb;
+            this.@object = xapiObject;
+        }
+
+        public JObject ToJObject()
+        {
+            JObject retVal = new JObject();
+
+            // Add actor
+            JObject actorJSON = actor.ToJObject();
+            retVal.Add("actor", actorJSON);
+
+            // Add verb
+            JObject verbJSON = verb.ToJObject();
+            retVal.Add("verb", verbJSON);
+
+            // Add object
+            JObject objectJSON = @object.ToJObject();
+            retVal.Add("object", objectJSON);
+
+            // Add result if available
+            if (result != null)
             {
-                id = verbUrl
-            };
-            @object = new XApiObject()
+                JObject resultJSON = result.ToJObject();
+                retVal.Add("result", resultJSON);
+            }
+
+            // Add context if available
+            if (context != null)
             {
-                id = objectUrl
-            };
+                JObject contextJSON = context.ToJObject();
+                retVal.Add("context", contextJSON);
+            }
+
+            // Transform timestamp into required format (ISO 8601)
+            if (timestamp != null)
+            {
+                string formattedTimestamp = timestamp.ToString("O");
+                retVal.Add("timestamp", formattedTimestamp);
+            }
+
+            return retVal;
+        }
+
+        public string ToJSONString()
+        {
+            return this.ToJObject().ToString();
         }
     }
 }

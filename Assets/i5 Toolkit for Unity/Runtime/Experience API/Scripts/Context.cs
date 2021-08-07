@@ -16,7 +16,7 @@ namespace i5.Toolkit.Core.ExperienceAPI
 		/// There is usually just one parent activity, but the standard allows for more.
 		/// The IDs need to be IRIs, the same ones used in xAPI Object IDs.
 		/// </summary>
-		public List<string> parentActivityIDs;
+		public List<string> ParentActivityIDs { get; set; }
 
 		/// <summary>
 		/// Adds parent activity to the context.
@@ -24,9 +24,9 @@ namespace i5.Toolkit.Core.ExperienceAPI
 		/// <param name="parentActivityId">The ID of the parent activity</param>
 		public void AddParentActivity(string parentActivityId)
 		{
-			if (parentActivityId != null && parentActivityId != "")
+			if (!string.IsNullOrWhiteSpace(parentActivityId))
 			{
-				parentActivityIDs.Add(parentActivityId);
+				ParentActivityIDs.Add(parentActivityId);
 			}
 		}
 
@@ -35,7 +35,7 @@ namespace i5.Toolkit.Core.ExperienceAPI
 		/// </summary>
 		public Context()
 		{
-			parentActivityIDs = new List<string>();
+			ParentActivityIDs = new List<string>();
 		}
 
 #if NEWTONSOFT_JSON
@@ -48,11 +48,11 @@ namespace i5.Toolkit.Core.ExperienceAPI
 			JObject retVal = new JObject();
 
 			// Add context activities - parent
-			if (parentActivityIDs.Count > 0)
+			if (ParentActivityIDs.Count > 0)
 			{
 				JObject contextActivities = new JObject();
 				JArray parentArray = new JArray();
-				foreach (string parentID in parentActivityIDs)
+				foreach (string parentID in ParentActivityIDs)
                 {
 					JObject parentJSON = new JObject();
 					parentJSON.Add("id", parentID);

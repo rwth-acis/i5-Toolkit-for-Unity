@@ -12,7 +12,7 @@ namespace i5.Toolkit.Core.ExperienceAPI
     [Serializable]
     public class Actor
     {
-        
+
         // The mail address in the mailto: scheme. Required
         [SerializeField] private string mbox;
 
@@ -72,12 +72,9 @@ namespace i5.Toolkit.Core.ExperienceAPI
             // Add object type
             retVal.Add("objectType", "Agent");
             // Add name if available
-            if (name != null)
+            if (!string.IsNullOrWhiteSpace(name))
             {
-                if (!string.IsNullOrWhiteSpace(name))
-                {
-                    retVal.Add("name", name);
-                }
+                retVal.Add("name", name);
             }
             return retVal;
         }

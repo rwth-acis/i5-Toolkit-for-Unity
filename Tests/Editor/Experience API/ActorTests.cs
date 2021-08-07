@@ -1,5 +1,7 @@
 ﻿using i5.Toolkit.Core.ExperienceAPI;
+#if NEWTONSOFT_JSON
 using Newtonsoft.Json.Linq;
+#endif
 using NUnit.Framework;
 
 namespace i5.Toolkit.Core.Tests.ExperienceAPI

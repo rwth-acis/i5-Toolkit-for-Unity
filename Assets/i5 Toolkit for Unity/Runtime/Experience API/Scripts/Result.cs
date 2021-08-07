@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+#if NEWTONSOFT_JSON
 using Newtonsoft.Json.Linq;
+#endif
 
 namespace i5.Toolkit.Core.ExperienceAPI
 {
 	/// <summary>
 	/// xAPI statement Result class. Optional.
 	/// </summary>
-	[Serializable]
 	public class Result
 	{
 		///// <summary>
@@ -62,6 +63,7 @@ namespace i5.Toolkit.Core.ExperienceAPI
 			this.extensions = new Dictionary<string, string>();
         }
 
+#if NEWTONSOFT_JSON
 		public JObject ToJObject()
         {
 			JObject retVal = new JObject();
@@ -98,6 +100,6 @@ namespace i5.Toolkit.Core.ExperienceAPI
 
 			return retVal;
         }
+#endif
 	}
-
 }

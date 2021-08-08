@@ -33,7 +33,7 @@ namespace i5.Toolkit.Core.ExperienceAPI
         public string AuthorizationToken { get; set; }
 
         /// <summary>
-        /// States whether the client operates in advanced mode or limited mode.
+        /// States whether the client operates in advanced mode or standard mode.
         /// In advanced mode, more complex statements can be serialized.
         /// To enable advanced mode, load the Newtonsoft JSON library for Unity under https://github.com/jilleJr/Newtonsoft.Json-for-Unity.
         /// </summary>

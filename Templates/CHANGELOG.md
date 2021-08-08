@@ -2,6 +2,19 @@
 
 This document keeps track of the changes between versions of the toolkit.
 
+## 1.6.3 (2021-08-08)
+
+### Added
+
+- Extended functionality of Experience API module:
+  Added the ability to specify contexts and results in xAPI statements using an advanced mode
+
+### Changed
+
+- Divided Experience API module into a standard and an advanced mode
+- The advanced mode requires the Newtonsoft JSON library.
+  If it is not added to the project, the module will fall back to the previous implementation that uses Unity's JsonUtiltiy serializer
+
 ## 1.6.2 (2021-07-21)
 
 ### Added

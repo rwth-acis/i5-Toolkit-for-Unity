@@ -14,12 +14,17 @@ Further information about xAPI can be found [here](https://xapi.com/).
 
 To access the xAPI conveniently, use an <xref:i5.Toolkit.Core.ExperienceAPI.ExperienceAPIClient> object.
 
-### Advanced Mode
+### Standard & Advanced Mode
 
-The xAPI module ships with a limited and an advanced mode.
-In the limited mode, no additional dependencies are required as the JSON serialization happens using Unity's build-in <xref:UnityEngine.JsonUtility>.
+The xAPI module ships with a standard and an advanced mode.
+
+#### Standard Mode
+
+In the standard mode, no additional dependencies are required as the JSON serialization happens using Unity's build-in <xref:UnityEngine.JsonUtility>.
 Here, limited statements that only make use of the actor, verb and object are allowed.
 This is sufficient for statements like "Person X viewed Object Y".
+
+#### Advanced Mode
 
 In order to enable advanced features such as adding contexts, results etc. to the statement, you need to install a Newtonsoft JSON library.
 It is recommended to use the [Unity package by jilleJr](https://github.com/jilleJr/Newtonsoft.Json-for-Unity).

@@ -21,7 +21,7 @@ namespace i5.Toolkit.Core.DeepLinkAPI
 
         /// <summary>
         /// Reference to an application adapter.
-        /// In production, this is initialized with Unity's <see cref="Application"/>.
+        /// In production, this is initialized with an adapter to Unity's Application/>.
         /// </summary>
         public IApplication ApplicationAPI { get; set; } = new ApplicationAdapter();
 

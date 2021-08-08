@@ -119,9 +119,9 @@ namespace i5.Toolkit.Core.ExperienceAPI
 #if NEWTONSOFT_JSON
             return this.ToJObject().ToString();
 #else
-            i5Debug.LogWarning("Running in limited mode since the project does not contain " +
+            i5Debug.LogWarning("Running in standard mode since the project does not contain " +
                 "the required Newtonsoft JSON library for advanced features.\n" +
-                "In limited mode you can only send straightforward Actor-Verb-Object statements.\n" +
+                "In standard mode you can only send straightforward Actor-Verb-Object statements.\n" +
                 "To use advanced features, install the Newtonsoft JSON library from https://github.com/jilleJr/Newtonsoft.Json-for-Unity. \n",
                 this);
             return JsonUtility.ToJson(this);

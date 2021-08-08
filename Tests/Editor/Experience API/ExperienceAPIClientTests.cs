@@ -50,6 +50,20 @@ namespace i5.Toolkit.Core.Tests.ExperienceAPI
             Assert.AreEqual(version, client.Version);
         }
 
+#if NEWTONSOFT_JSON
+        [Test]
+        public void IsInAdvancedMode_ReturnsTrue()
+        {
+            Assert.True(client.IsInAdvancedMode);
+        }
+#else
+        [Test]
+        public void IsInAdvancedMode_ReturnsFalse()
+        {
+            Assert.False(client.IsInAdvancedMode);
+        }
+#endif
+
         [Test]
         public void SendStatement_PrimitiveParamsOnlyMail_ActorMailCorrect()
         {

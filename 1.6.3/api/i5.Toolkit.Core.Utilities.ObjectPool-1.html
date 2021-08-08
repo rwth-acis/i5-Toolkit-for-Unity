@@ -1,0 +1,517 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class ObjectPool&lt;T&gt;
+   | i5 Toolkit Documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class ObjectPool&lt;T&gt;
+   | i5 Toolkit Documentation ">
+    <meta name="generator" content="docfx 2.56.2.0">
+    
+    <link rel="shortcut icon" href="../resources/Logos/Logo_whiteBg.svg">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../resources/Logos/Logo_whiteBg.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="i5.Toolkit.Core.Utilities.ObjectPool`1">
+  
+  
+  <h1 id="i5_Toolkit_Core_Utilities_ObjectPool_1" data-uid="i5.Toolkit.Core.Utilities.ObjectPool`1" class="text-break">Class ObjectPool&lt;T&gt;
+  </h1>
+  <div class="markdown level0 summary"><p>Object pool which can store instances so that they can be reused
+This is useful for objects like GameObjects or Meshes where the creation and destruction drops the performance
+This should definitely be used for meshes since they are not automatically cleaned up by the garbage collector</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></div>
+    <div class="level1"><span class="xref">ObjectPool&lt;T&gt;</span></div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="i5.Toolkit.Core.Utilities.html">i5.Toolkit.Core.Utilities</a></h6>
+  <h6><strong>Assembly</strong>: cs.temp.dll.dll</h6>
+  <h5 id="i5_Toolkit_Core_Utilities_ObjectPool_1_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static class ObjectPool&lt;T&gt;</code></pre>
+  </div>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The object type which should be stored in the pool</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  
+  
+  <a id="i5_Toolkit_Core_Utilities_ObjectPool_1_ClearPool_" data-uid="i5.Toolkit.Core.Utilities.ObjectPool`1.ClearPool*"></a>
+  <h4 id="i5_Toolkit_Core_Utilities_ObjectPool_1_ClearPool_Action__0__" data-uid="i5.Toolkit.Core.Utilities.ObjectPool`1.ClearPool(Action{`0})">ClearPool(Action&lt;T&gt;)</h4>
+  <div class="markdown level1 summary"><p>Clears the default pool by removing every instance in the queue
+Performs the given destroyAction on each instance to destroy it
+You probably want to use Destroy() inside the destroyAction</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void ClearPool(Action&lt;T&gt; destroyAction = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Action</span>&lt;T&gt;</td>
+        <td><span class="parametername">destroyAction</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="i5_Toolkit_Core_Utilities_ObjectPool_1_ClearPool_" data-uid="i5.Toolkit.Core.Utilities.ObjectPool`1.ClearPool*"></a>
+  <h4 id="i5_Toolkit_Core_Utilities_ObjectPool_1_ClearPool_System_Int32_Action__0__" data-uid="i5.Toolkit.Core.Utilities.ObjectPool`1.ClearPool(System.Int32,Action{`0})">ClearPool(Int32, Action&lt;T&gt;)</h4>
+  <div class="markdown level1 summary"><p>Clears the pool by removing every instance in the queue
+Performs the given destroyAction on each instance to destroy it
+You probably want to use Destroy() inside the destroyAction</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void ClearPool(int poolId, Action&lt;T&gt; destroyAction = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">poolId</span></td>
+        <td><p>The id of the pool which should be cleared</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Action</span>&lt;T&gt;</td>
+        <td><span class="parametername">destroyAction</span></td>
+        <td><p>The action which should be performed to destroy on object</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="i5_Toolkit_Core_Utilities_ObjectPool_1_CountPools_" data-uid="i5.Toolkit.Core.Utilities.ObjectPool`1.CountPools*"></a>
+  <h4 id="i5_Toolkit_Core_Utilities_ObjectPool_1_CountPools" data-uid="i5.Toolkit.Core.Utilities.ObjectPool`1.CountPools">CountPools()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int CountPools()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="i5_Toolkit_Core_Utilities_ObjectPool_1_CreateNewPool_" data-uid="i5.Toolkit.Core.Utilities.ObjectPool`1.CreateNewPool*"></a>
+  <h4 id="i5_Toolkit_Core_Utilities_ObjectPool_1_CreateNewPool" data-uid="i5.Toolkit.Core.Utilities.ObjectPool`1.CreateNewPool">CreateNewPool()</h4>
+  <div class="markdown level1 summary"><p>Opens a new pool and returns the id of the pool</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int CreateNewPool()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><p>The id of the created pool</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="i5_Toolkit_Core_Utilities_ObjectPool_1_CreateNewPool_" data-uid="i5.Toolkit.Core.Utilities.ObjectPool`1.CreateNewPool*"></a>
+  <h4 id="i5_Toolkit_Core_Utilities_ObjectPool_1_CreateNewPool_System_Int32_" data-uid="i5.Toolkit.Core.Utilities.ObjectPool`1.CreateNewPool(System.Int32)">CreateNewPool(Int32)</h4>
+  <div class="markdown level1 summary"><p>Opens a new pool and returns the id of the pool</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int CreateNewPool(int capacity)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">capacity</span></td>
+        <td><p>Define a (soft) capacity of the pool for which memory is allocated in advance</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><p>The id of the created pool</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="i5_Toolkit_Core_Utilities_ObjectPool_1_ReleaseResource_" data-uid="i5.Toolkit.Core.Utilities.ObjectPool`1.ReleaseResource*"></a>
+  <h4 id="i5_Toolkit_Core_Utilities_ObjectPool_1_ReleaseResource__0_" data-uid="i5.Toolkit.Core.Utilities.ObjectPool`1.ReleaseResource(`0)">ReleaseResource(T)</h4>
+  <div class="markdown level1 summary"><p>Returns the resource to the default pool so that it can be requested again
+This should return all control over this object back to the pool</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void ReleaseResource(T resource)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">resource</span></td>
+        <td><p>The resource which is returned to the pool</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="i5_Toolkit_Core_Utilities_ObjectPool_1_ReleaseResource_" data-uid="i5.Toolkit.Core.Utilities.ObjectPool`1.ReleaseResource*"></a>
+  <h4 id="i5_Toolkit_Core_Utilities_ObjectPool_1_ReleaseResource_System_Int32__0_" data-uid="i5.Toolkit.Core.Utilities.ObjectPool`1.ReleaseResource(System.Int32,`0)">ReleaseResource(Int32, T)</h4>
+  <div class="markdown level1 summary"><p>Returns the resource to the pool so that it can be requested again
+This should return all control over this object back to the pool</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void ReleaseResource(int poolId, T resource)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">poolId</span></td>
+        <td><p>The id of the pool</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">resource</span></td>
+        <td><p>The resource which is returned to the pool</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="i5_Toolkit_Core_Utilities_ObjectPool_1_RemovePool_" data-uid="i5.Toolkit.Core.Utilities.ObjectPool`1.RemovePool*"></a>
+  <h4 id="i5_Toolkit_Core_Utilities_ObjectPool_1_RemovePool_System_Int32_Action__0__" data-uid="i5.Toolkit.Core.Utilities.ObjectPool`1.RemovePool(System.Int32,Action{`0})">RemovePool(Int32, Action&lt;T&gt;)</h4>
+  <div class="markdown level1 summary"><p>First cleans and then removes the pool with the given id</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void RemovePool(int poolId, Action&lt;T&gt; destroyAction = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">poolId</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">Action</span>&lt;T&gt;</td>
+        <td><span class="parametername">destroyAction</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="i5_Toolkit_Core_Utilities_ObjectPool_1_RequestResource_" data-uid="i5.Toolkit.Core.Utilities.ObjectPool`1.RequestResource*"></a>
+  <h4 id="i5_Toolkit_Core_Utilities_ObjectPool_1_RequestResource_Func__0__" data-uid="i5.Toolkit.Core.Utilities.ObjectPool`1.RequestResource(Func{`0})">RequestResource(Func&lt;T&gt;)</h4>
+  <div class="markdown level1 summary"><p>Requests a resource from the default pool
+If no resource is left, the code in the creationFactory function will be executed to create a new object
+The creationFactory should probably use Unity&apos;s Instantiate method</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static T RequestResource(Func&lt;T&gt; creationFactory)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Func</span>&lt;T&gt;</td>
+        <td><span class="parametername">creationFactory</span></td>
+        <td><p>Function which should create a new instance of the pooled object</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><p>An instance of the object from the pool</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="i5_Toolkit_Core_Utilities_ObjectPool_1_RequestResource_" data-uid="i5.Toolkit.Core.Utilities.ObjectPool`1.RequestResource*"></a>
+  <h4 id="i5_Toolkit_Core_Utilities_ObjectPool_1_RequestResource_System_Int32_Func__0__" data-uid="i5.Toolkit.Core.Utilities.ObjectPool`1.RequestResource(System.Int32,Func{`0})">RequestResource(Int32, Func&lt;T&gt;)</h4>
+  <div class="markdown level1 summary"><p>Requests a resource from the pool
+If no resource is left, the code in the creationFactory function will be executed to create a new object
+The creationFactory should probably use Unity&apos;s Instantiate method</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static T RequestResource(int poolId, Func&lt;T&gt; creationFactory)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">poolId</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">Func</span>&lt;T&gt;</td>
+        <td><span class="parametername">creationFactory</span></td>
+        <td><p>Function which should create a new instance of the pooled object</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><p>An instance of the object from the pool</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            i5 Toolkit Documentation
+            
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

@@ -4,7 +4,7 @@ using UnityEngine;
 namespace i5.Toolkit.Core.Experimental.UnityAdapters
 {
     /// <summary>
-    /// Adapter for Unity's <see cref="Application"/>
+    /// Adapter for Unity's Application
     /// </summary>
     public class ApplicationAdapter : IApplication
     {

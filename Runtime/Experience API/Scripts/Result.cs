@@ -41,8 +41,8 @@ namespace i5.Toolkit.Core.ExperienceAPI
         public TimeSpan? duration;
 
         /// <summary>
-        /// Extensions property of a Result. Keys MUST be IRIs. 
-        /// </summary
+        /// Extensions property of a Result. Keys MUST be IRIs.
+        /// </summary>
         public Dictionary<string, string> extensions;
 
         /// <summary>

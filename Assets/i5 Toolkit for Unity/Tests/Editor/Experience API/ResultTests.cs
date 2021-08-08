@@ -104,7 +104,7 @@ namespace i5.Toolkit.Core.Tests.ExperienceAPI
         }
 
         [Test]
-        public void TJObject_ResponseSet_ValueCorrect()
+        public void ToJObject_ResponseSet_ValueCorrect()
         {
             result.response = "myResp";
             JObject json = result.ToJObject();
@@ -130,7 +130,7 @@ namespace i5.Toolkit.Core.Tests.ExperienceAPI
         }
 
         [Test]
-        public void TJObject_DurationSet_ValueCorrect()
+        public void ToJObject_DurationSet_ValueCorrect()
         {
             result.duration = new TimeSpan(0, 15, 0);
             JObject json = result.ToJObject();
@@ -139,7 +139,7 @@ namespace i5.Toolkit.Core.Tests.ExperienceAPI
         }
 
         [Test]
-        public void TJObject_NoExtensions_NotAdded()
+        public void ToJObject_NoExtensions_NotAdded()
         {
             JObject json = result.ToJObject();
 
@@ -147,7 +147,7 @@ namespace i5.Toolkit.Core.Tests.ExperienceAPI
         }
 
         [Test]
-        public void TJObject_ExtensionSet_Added()
+        public void ToJObject_ExtensionSet_Added()
         {
             result.extensions.Add("myKey", "myValue");
             JObject json = result.ToJObject();
@@ -156,7 +156,7 @@ namespace i5.Toolkit.Core.Tests.ExperienceAPI
         }
 
         [Test]
-        public void TJObject_ExtensionSet_CountCorrect()
+        public void ToJObject_ExtensionSet_CountCorrect()
         {
             result.extensions.Add("myKey", "myValue");
             JObject json = result.ToJObject();

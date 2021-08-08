@@ -26,17 +26,9 @@ namespace i5.Toolkit.Core.ExperienceAPI
         public Dictionary<string, string> nameDisplay;
 
         /// <summary>
-        /// Add a display name for an object in the desired language.
+        /// The defined type of an activity. MUST be an IRI. Optional.
         /// </summary>
-        /// <param name="name">The name of the object in the desired language.</param>
-        /// <param name="languageCode">Language/region codes such as 'en-us', 'en-uk', 'es'... Default value is 'en-us'.</param>
-        public void AddName(string name, string languageCode = "en-us")
-        {
-            if (name != "" && name != null)
-            {
-                nameDisplay.Add(languageCode, name);
-            }
-        }
+        public string type;
 
         /// <summary>
         /// Dictionary that holds the descriptions of the activity in various languages.
@@ -46,6 +38,26 @@ namespace i5.Toolkit.Core.ExperienceAPI
         /// </summary>
         public Dictionary<string, string> descriptionDisplay;
 
+        public XApiObject(string objectID)
+        {
+            nameDisplay = new Dictionary<string, string>();
+            descriptionDisplay = new Dictionary<string, string>();
+            this.id = objectID;
+        }
+
+        /// <summary>
+        /// Add a display name for an object in the desired language.
+        /// </summary>
+        /// <param name="name">The name of the object in the desired language.</param>
+        /// <param name="languageCode">Language/region codes such as 'en-us', 'en-uk', 'es'... Default value is 'en-us'.</param>
+        public void AddName(string name, string languageCode = "en-us")
+        {
+            if (!string.IsNullOrWhiteSpace(name) && !string.IsNullOrWhiteSpace(languageCode))
+            {
+                nameDisplay.Add(languageCode, name);
+            }
+        }
+
         /// <summary>
         /// Add a display description for an object in the desired language
         /// </summary>
@@ -53,22 +65,10 @@ namespace i5.Toolkit.Core.ExperienceAPI
         /// <param name="name">The description of the object in the desired language.</param>
         public void AddDescription(string description, string languageCode = "en-us")
         {
-            if (description != "" && description != null)
+            if (!string.IsNullOrWhiteSpace(description) && !string.IsNullOrWhiteSpace(languageCode))
             {
                 descriptionDisplay.Add(languageCode, description);
             }
-        }
-
-        /// <summary>
-        /// The defined type of an activity. MUST be an IRI. Optional.
-        /// </summary>
-        public string type;
-
-        public XApiObject(string objectID)
-        {
-            nameDisplay = new Dictionary<string, string>();
-            descriptionDisplay = new Dictionary<string, string>();
-            this.id = objectID;
         }
 
 #if NEWTONSOFT_JSON
@@ -83,12 +83,9 @@ namespace i5.Toolkit.Core.ExperienceAPI
 
             JObject definition = new JObject();
             // Add definition type if available
-            if (type != null)
+            if (!string.IsNullOrWhiteSpace(type))
             {
-                if (type != "")
-                {
-                    definition.Add("type", type);
-                }
+                definition.Add("type", type);
             }
             // Add definition names if there are any
             if (nameDisplay.Count > 0)
@@ -96,7 +93,7 @@ namespace i5.Toolkit.Core.ExperienceAPI
                 JObject names = new JObject();
                 foreach (KeyValuePair<string, string> kvp in nameDisplay)
                 {
-                    if (kvp.Value != "")
+                    if (!string.IsNullOrWhiteSpace(kvp.Value))
                     {
                         names.Add(kvp.Key, kvp.Value);
                     }

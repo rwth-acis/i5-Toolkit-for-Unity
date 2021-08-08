@@ -12,7 +12,7 @@ Further information about xAPI can be found [here](https://xapi.com/).
 
 ## Usage
 
-To access the xAPI conveniently, use a <xref:i5.Toolkit.Core.ExperienceAPI.ExperienceAPIClient> object.
+To access the xAPI conveniently, use an <xref:i5.Toolkit.Core.ExperienceAPI.ExperienceAPIClient> object.
 
 ### Advanced Mode
 
@@ -71,68 +71,98 @@ If the actor ID does not start with `mailto:`, this prefix is automatically adde
 
 ## xAPI Element Model
 The library uses a custom implementation of the xAPI Standard data elements that can be found [here](https://github.com/adlnet/xAPI-Spec/blob/master/xAPI-Data.md#parttwo).
-The fields in the defined classes correspond closely to the standard itself. Each has its own ToJObject() method, which handles conversions to JSON.
+The fields in the defined classes correspond closely to the standard itself.
+Each has its own ToJObject() method, which handles conversions to JSON.
 The following elements are used for the implementation:
 
 ### Actor
-The Actor defines who performed the action. The class file _Actor.cs_ implements the Actor element. It has two fields:
-+ **Mbox** - Corresponds to the IRI of the Actor element, which in this implementation corresponds to the format _"mailto:actor@email.com"_. The setter of this field makes sure that the field value starts with _"mailto:"_, so that it conforms with the standard. This field is required for a valid Actor element.
-+ **name** - The name of the actor. Optional.
+The Actor defines who performed the action.
+The class file <xref:i5.Toolkit.Core.ExperienceAPI.Actor> implements the Actor element.
+It has two fields:
++ **<xref:i5.Toolkit.Core.ExperienceAPI.Actor.Mbox>** - Corresponds to the IRI of the Actor element, which in this implementation corresponds to the format "mailto:actor@email.com".
+  The setter of this field makes sure that the field value starts with _"mailto:"_, so that it conforms with the standard.
+  This field is required for a valid Actor element.
++ **<xref:i5.Toolkit.Core.ExperienceAPI.Actor.name>** - The name of the actor. Optional.
 
-Additional steps when converting to a JObject (using the ToJObject method):
+Additional steps when converting to a JObject (using the `ToJObject()` method):
 + The property **"objectType": "Agent"** is added.
 
 ### Verb
-The Verb defines the action between an Actor and an Object. The class file _Verb.cs_ implements the Verb element. It has two fields:
-+ **id** - Corresponds to the IRI of the Verb element, which must be of the format defined in the standard to be accepted by a LRS. The library does not validate conformity to the format. Required.
-+ **displayLanguageDictionary** - An implementation of the _"display"_ property in the standard. Holds <k,v> pairs where the key is the language code and the value is the name of the Verb in that language. Optional, the dictionary may be empty. When converting to JSON, a name will be added with the default "en-us" language code if none is provided (using the **cutToVerbName** method).
+The Verb defines the action between an Actor and an Object.
+The class file <xref:i5.Toolkit.Core.ExperienceAPI.Verb> implements the Verb element.
+It has two fields:
++ **<xref:i5.Toolkit.Core.ExperienceAPI.Verb.id>** - Corresponds to the IRI of the Verb element, which must be of the format defined in the standard to be accepted by a LRS.
+  The library does not validate conformity to the format. Required.
++ **<xref:i5.Toolkit.Core.ExperienceAPI.Verb.displayLanguageDictionary>** - An implementation of the "display" property in the standard.
+  Holds <k,v> pairs where the key is the language code and the value is the name of the Verb in that language.
+  Optional, the dictionary may be empty. When converting to JSON, a name will be added with the default "en-us" language code if none is provided (using the <xref:i5.Toolkit.Core.ExperienceAPI.Verb.CutToVerbName*> method).
 
 It also has one notable method:
-+ **cutToVerbName(verbID)** - This method can be used to extract the final part of a verb IRI, where the verb name is expected to be. E.g. from  'http://test.org/x/y/z/.../verbName', 'verbName' is retrieved.
++ **<xref:i5.Toolkit.Core.ExperienceAPI.Verb.CutToVerbName*>** - This method can be used to extract the final part of a verb IRI, where the verb name is expected to be.
+  For instance, from  'http://test.org/x/y/z/.../verbName', 'verbName' is retrieved.
 
-Additional steps when converting to a JObject (using the ToJObject method):
-+ If the _displayLanguageDictionary_ is empty, a name is extracted from the verb ID using the _cutToVerbName_ method.
+Additional steps when converting to a JObject (using the `ToJObject()` method):
++ If the <xref:i5.Toolkit.Core.ExperienceAPI.Verb.displayLanguageDictionary> is empty, a name is extracted from the verb ID using the <xref:i5.Toolkit.Core.ExperienceAPI.Verb.CutToVerbName*> method.
 
 
 ### Object
-The Object defines the thing that was acted on. The class file _XApiObject.cs_ implements the Object element. The name of the class is in this format as _object_ is a reserved name in C#. The class implements the Object **only as an Activity** (objectType = Activity in the standard). It has several fields:
-+ **id** - Corresponds to the IRI of the Object element, which must be of the format defined in the standard to be accepted by a LRS. The library does not validate conformity to the format. Required.
-+ **nameDisplay** - Dictionary that implements the _name_ language map from the standard. Holds <k,v> pairs where the key is the language code and the value is the name of the Object in that language. Optional, the dictionary may be empty.
-+ **descriptionDisplay** - Dictionary that implements the _description_ language map from the standard. Holds <k,v> pairs where the key is the language code and the value is the description of the Object in that language. Optional, the dictionary may be empty.
-+ **type** - The type of the Activity. Optional.
+The Object defines the thing that was acted on.
+The class file <xref:i5.Toolkit.Core.ExperienceAPI.XApiObject> implements the Object element.
+The name of the class is in this format as _object_ is a reserved name in C#.
+The class implements the Object **only as an Activity** (objectType = Activity in the standard).
+It has several fields:
++ **<xref:i5.Toolkit.Core.ExperienceAPI.XApiObject.id>** - Corresponds to the IRI of the Object element, which must be of the format defined in the standard to be accepted by a LRS.
+  The library does not validate conformity to the format. Required.
++ **<xref:i5.Toolkit.Core.ExperienceAPI.XApiObject.nameDisplay>** - Dictionary that implements the _name_ language map from the standard.
+  Holds <k,v> pairs where the key is the language code and the value is the name of the Object in that language.
+  Optional, the dictionary may be empty.
++ **<xref:i5.Toolkit.Core.ExperienceAPI.XApiObject.descriptionDisplay>** - Dictionary that implements the _description_ language map from the standard.
+  Holds <k,v> pairs where the key is the language code and the value is the description of the Object in that language.
+  Optional, the dictionary may be empty.
++ **<xref:i5.Toolkit.Core.ExperienceAPI.XApiObject.type>** - The type of the Activity. Optional.
 
-Additional steps when converting to a JObject (using the ToJObject method):
+Additional steps when converting to a JObject (using the `ToJObject()` method):
 + The **objectType** is set to _"Activity"_
 + Names and descriptions are only taken from the dictionaries if their values are valid, i.e. not empty strings ("").
 
 ### Result
-An optional property that represents a measured outcome related to the Statement in which it is included. The class file _Result.cs_ implements the Result element.
+An optional property that represents a measured outcome related to the Statement in which it is included.
+The class file <xref:i5.Toolkit.Core.ExperienceAPI.Result> implements the Result element.
 It has the following fields, all of which are optional:
-+ **success** - Indicates whether or not the attempt on the Activity was successful.
-+ **completion** - Indicates whether or not the Activity was completed.
-+ **response** - A string message appropriately formatted for the given Activity.
-+ **duration** - Period of time over which the Statement occurred. Must be ISO 8601 Duration compatible.
-+ **extensions** - Implementation of the Result extensions as defined in the standard. Holds <k,v> pairs where the key is the extension key (must be a IRI) and the value is any meaningful string. Currently only strings as values for these extensions are supported.
++ **<xref:i5.Toolkit.Core.ExperienceAPI.Result.success>** - Indicates whether or not the attempt on the Activity was successful.
++ **<xref:i5.Toolkit.Core.ExperienceAPI.Result.completion>** - Indicates whether or not the Activity was completed.
++ **<xref:i5.Toolkit.Core.ExperienceAPI.Result.response>** - A string message appropriately formatted for the given Activity.
++ **<xref:i5.Toolkit.Core.ExperienceAPI.Result.duration>** - Period of time over which the Statement occurred. Must be ISO 8601 Duration compatible.
++ **<xref:i5.Toolkit.Core.ExperienceAPI.Result.extensions>** - Implementation of the Result extensions as defined in the standard.
+  Holds <k,v> pairs where the key is the extension key (must be a IRI) and the value is any meaningful string.
+  Currently only strings as values for these extensions are supported.
 
 It also has one notable method:
-+ **AddMeasurementAtempt(measurementIRI, measurementValue)** - This method can be used if a measurement attempt wants to be recorded, that is to record a value that the user measured in some way. This is realised through the _extensions_ dictionary, which is why an IRI is needed besides the measurement value, both of which must be strings.
++ **<xref:i5.Toolkit.Core.ExperienceAPI.Result.AddMeasurementAttempt*>** - This method can be used if a measurement attempt wants to be recorded, that is to record a value that the user measured in some way.
+  This is realized through the _extensions_ dictionary, which is why an IRI is needed besides the measurement value, both of which must be strings.
 
 ### Context
-An optional property that provides a place to add contextual information to a Statement. Currently, the library only supports adding parent activities as Context to the Statement activity. The class file _Context.cs_ implements the Context element. It has one field:
-+ **parentActivityIDs** - A list holding the IDs of activities that serve as context-parent to this Statement. There is usually just one parent activity, but the standard allows for more. Optional.
+An optional property that provides a place to add contextual information to a Statement.
+Currently, the library only supports adding parent activities as Context to the Statement activity.
+The class file <xref:i5.Toolkit.Core.ExperienceAPI.Context> implements the Context element.
+It has one field:
++ **<xref:i5.Toolkit.Core.ExperienceAPI.Context.ParentActivityIDs>** - A list holding the IDs of activities that serve as context-parent to this Statement.
+  There is usually just one parent activity, but the standard allows for more. Optional.
 
 ### Statement
-The complete xAPI Statement. It is implemented by the _Statement.cs_ class file. The following fields are defined:
-+ **actor** - The Actor of the Statement. The type _Actor_ is defined above. Required.
-+ **verb** - The Verb of the Statement. The type _Verb_ is defined above. Required.
-+ **@object** - The Object of the Statement. The type _XApiObject_ is defined above. Required.
-+ **result** - The Result of the Statement. The type _Result_ is defined above. Optional.
-+ **context** - The Context of the Statement. The type _Context_ is defined above. Optional.
-+ **timestamp** - Defines when the experience occured.
+The complete xAPI Statement.
+It is implemented by the <xref:i5.Toolkit.Core.ExperienceAPI.Statement> class file.
+The following fields are defined:
++ **<xref:i5.Toolkit.Core.ExperienceAPI.Statement.actor>** - The Actor of the Statement. The type _Actor_ is defined above. Required.
++ **<xref:i5.Toolkit.Core.ExperienceAPI.Statement.verb>** - The Verb of the Statement. The type _Verb_ is defined above. Required.
++ **<xref:i5.Toolkit.Core.ExperienceAPI.Statement.object>** - The Object of the Statement. The type _XApiObject_ is defined above. Required.
++ **<xref:i5.Toolkit.Core.ExperienceAPI.Statement.result>** - The Result of the Statement. The type _Result_ is defined above. Optional.
++ **<xref:i5.Toolkit.Core.ExperienceAPI.Statement.context>** - The Context of the Statement. The type _Context_ is defined above. Optional.
++ **<xref:i5.Toolkit.Core.ExperienceAPI.Statement.timestamp>** - Defines when the experience occurred.
 
 When constructing a statement either complete objects of Actor, Verb, and Object or their respective IRIs can be used.
 
-Additional steps when converting to a JObject (using the ToJObject method):
+Additional steps when converting to a JObject (using the `ToJObject()` method):
 + The timestamp is formatted to the required ISO 8601 format.
 
 ## Example Scene

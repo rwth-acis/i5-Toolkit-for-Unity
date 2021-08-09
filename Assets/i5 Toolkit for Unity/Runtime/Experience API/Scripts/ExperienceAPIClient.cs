@@ -33,7 +33,24 @@ namespace i5.Toolkit.Core.ExperienceAPI
         public string AuthorizationToken { get; set; }
 
         /// <summary>
-        /// Creates a new xAPI client
+        /// States whether the client operates in advanced mode or standard mode.
+        /// In advanced mode, more complex statements can be serialized.
+        /// To enable advanced mode, load the Newtonsoft JSON library for Unity under https://github.com/jilleJr/Newtonsoft.Json-for-Unity.
+        /// </summary>
+        public bool IsInAdvancedMode
+        {
+            get
+            {
+#if NEWTONSOFT_JSON
+                return true;
+#else
+                return false;
+#endif
+            }
+        }
+
+        /// <summary>
+        /// Creates a new xAPI client with default settings
         /// </summary>
         public ExperienceAPIClient()
         {
@@ -41,7 +58,7 @@ namespace i5.Toolkit.Core.ExperienceAPI
         }
 
         /// <summary>
-        /// Creates a new xAPI client
+        /// Creates a new xAPI client with the given configuration
         /// </summary>
         /// <param name="xApiEndpoint">The target URI of the xAPI</param>
         /// <param name="authorizationToken">The authorization token to allow the client to access the xAPI</param>
@@ -55,6 +72,7 @@ namespace i5.Toolkit.Core.ExperienceAPI
 
         /// <summary>
         /// Sends a new statement to the xAPI repository
+        /// Initializes the statement with the given actor, verb and object ids
         /// </summary>
         /// <param name="actorMail">The mail address of the statement's actor</param>
         /// <param name="verbUrl">The id of the statement's verb (should be a url)</param>
@@ -66,7 +84,8 @@ namespace i5.Toolkit.Core.ExperienceAPI
         }
 
         /// <summary>
-        /// Sends a new statement to the xAPI repository 
+        /// Sends a new statement to the xAPI repository
+        /// Initializes the statement with the given actor, verb and object
         /// </summary>
         /// <param name="actor">The actor of the statement</param>
         /// <param name="verb">The verb of the statement</param>
@@ -74,12 +93,7 @@ namespace i5.Toolkit.Core.ExperienceAPI
         /// <returns>Returns the result of the Web query; if successful, this contains the generated statement id</returns>
         public async Task<WebResponse<string>> SendStatementAsync(Actor actor, Verb verb, XApiObject obj)
         {
-            return await SendStatementAsync(new Statement()
-            {
-                actor = actor,
-                verb = verb,
-                @object = obj
-            });
+            return await SendStatementAsync(new Statement(actor, verb, obj));
         }
 
         /// <summary>
@@ -89,14 +103,15 @@ namespace i5.Toolkit.Core.ExperienceAPI
         /// <returns>Returns the result of the Web query; if successful, this contains the generated statement id</returns>
         public async Task<WebResponse<string>> SendStatementAsync(Statement statement)
         {
-            string json = JsonUtility.ToJson(statement);
+            string json = statement.ToJSONString();
+
             Dictionary<string, string> headers = new Dictionary<string, string>()
             {
                 { "Authorization", AuthorizationToken },
                 {"X-Experience-API-Version", Version },
                 {"Content-Type", "application/json" }
             };
-            i5Debug.Log($"Sending xAPI statement {statement.actor.mbox}" +
+            i5Debug.Log($"Sending xAPI statement {statement.actor.Mbox}" +
                 $" : {statement.verb.id} : {statement.@object.id}", this);
             byte[] bodyRaw = Encoding.UTF8.GetBytes(json);
             WebResponse<string> resp = await WebConnector.PostAsync($"{XApiEndpoint}/statements", bodyRaw, headers);

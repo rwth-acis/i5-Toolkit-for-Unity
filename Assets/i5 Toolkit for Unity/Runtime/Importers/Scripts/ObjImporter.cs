@@ -45,7 +45,8 @@ namespace i5.Toolkit.Core.ModelImporters
             // initialize the content loader
             if (ContentLoader == null)
             {
-                ContentLoader = new UnityWebRequestLoader();
+                //ContentLoader = new UnityWebRequestLoader();
+                ContentLoader = new CachAwareContentLoader();
             }
 
             // reserve a mesh object pool id

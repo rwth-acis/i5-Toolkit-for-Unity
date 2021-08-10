@@ -10,7 +10,7 @@ namespace i5.Toolkit.Core.Editor.TestHelpers
         public static void ResetScene()
         {
             Assert.IsTrue(Application.isEditor, "This scene reset only works in edit mode tests");
-            EditorSceneManager.OpenScene(PathUtils.GetPackagePath() + "Tests/TestResources/SetupTestScene.unity");
+            EditorSceneManager.OpenScene(PackagePathUtils.GetPackagePath() + "Tests/TestResources/SetupTestScene.unity");
         }
     }
 }

@@ -39,12 +39,12 @@ namespace i5.Toolkit.Core.Tests.ModelImporters
         public void LoadData()
         {
             string basePath = "Tests/Editor/Importers/Data/";
-            cubeObj = File.ReadAllText(PathUtils.GetPackagePath() + basePath + "Cube.obj");
-            emptyObj = File.ReadAllText(PathUtils.GetPackagePath() +  basePath + "EmptyObj.obj");
-            threeObj = File.ReadAllText(PathUtils.GetPackagePath() + basePath + "ThreeObj.obj");
-            cubeMtl = File.ReadAllText(PathUtils.GetPackagePath() + basePath + "Cube.mtl");
-            emptyMtl = File.ReadAllText(PathUtils.GetPackagePath() + basePath + "EmptyObj.mtl");
-            threeMtl = File.ReadAllText(PathUtils.GetPackagePath() + basePath + "ThreeObj.mtl");
+            cubeObj = File.ReadAllText(PackagePathUtils.GetPackagePath() + basePath + "Cube.obj");
+            emptyObj = File.ReadAllText(PackagePathUtils.GetPackagePath() +  basePath + "EmptyObj.obj");
+            threeObj = File.ReadAllText(PackagePathUtils.GetPackagePath() + basePath + "ThreeObj.obj");
+            cubeMtl = File.ReadAllText(PackagePathUtils.GetPackagePath() + basePath + "Cube.mtl");
+            emptyMtl = File.ReadAllText(PackagePathUtils.GetPackagePath() + basePath + "EmptyObj.mtl");
+            threeMtl = File.ReadAllText(PackagePathUtils.GetPackagePath() + basePath + "ThreeObj.mtl");
         }
 
         /// <summary>
@@ -95,6 +95,32 @@ namespace i5.Toolkit.Core.Tests.ModelImporters
             IServiceManager serviceManager = A.Fake<IServiceManager>();
             objImporter.Initialize(serviceManager);
             Assert.NotNull(objImporter.MtlLibrary);
+        }
+
+        /// <summary>
+        /// Checks that hte obj importer creates a new pool
+        /// </summary>
+        [Test]
+        public void Initialize_CreatesNewPool()
+        {
+            ObjImporter objImporter = new ObjImporter();
+            IServiceManager serviceManager = A.Fake<IServiceManager>();
+            int poolCount = ObjectPool<GameObject>.CountPools();
+            objImporter.Initialize(serviceManager);
+            Assert.AreEqual(poolCount + 1, ObjectPool<GameObject>.CountPools());
+        }
+
+        [Test]
+        public void Cleanup_RemovesPool()
+        {
+            ObjImporter objImporter = new ObjImporter();
+            IServiceManager serviceManager = A.Fake<IServiceManager>();
+            int poolCount = ObjectPool<GameObject>.CountPools();
+            objImporter.Initialize(serviceManager);
+            Assert.AreEqual(poolCount + 1, ObjectPool<GameObject>.CountPools());
+
+            objImporter.Cleanup();
+            Assert.AreEqual(poolCount, ObjectPool<GameObject>.CountPools());
         }
 
         /// <summary>

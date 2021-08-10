@@ -7,7 +7,8 @@
         "i5.Toolkit.Core.Editor.TestHelpers",
         "i5.Toolkit.Core.TestHelpers",
         "UnityEngine.TestRunner",
-        "UnityEditor.TestRunner"
+        "UnityEditor.TestRunner",
+        "Unity.TextMeshPro"
     ],
     "includePlatforms": [
         "Editor"
@@ -17,12 +18,19 @@
     "overrideReferences": true,
     "precompiledReferences": [
         "nunit.framework.dll",
-        "FakeItEasy.dll"
+        "FakeItEasy.dll",
+        "Newtonsoft.Json.dll"
     ],
     "autoReferenced": false,
     "defineConstraints": [
         "UNITY_INCLUDE_TESTS"
     ],
-    "versionDefines": [],
+    "versionDefines": [
+        {
+            "name": "jillejr.newtonsoft.json-for-unity",
+            "expression": "12.0",
+            "define": "NEWTONSOFT_JSON"
+        }
+    ],
     "noEngineReferences": false
 }

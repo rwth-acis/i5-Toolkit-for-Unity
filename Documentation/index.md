@@ -7,7 +7,7 @@ It is a foundation for new projects, kickstarting the development with already c
 
 ![Continuous Integration](https://github.com/rwth-acis/i5-Toolkit-for-Unity/workflows/Continuous%20Integration/badge.svg)
 
-![1.6.1](https://img.shields.io/badge/version-1.6.1-blue)
+![1.6.3](https://img.shields.io/badge/version-1.6.3-blue)
 
 [![openupm](https://img.shields.io/npm/v/com.i5.toolkit.core?label=openupm&registry_uri=https://package.openupm.com)](https://openupm.com/packages/com.i5.toolkit.core/)
 
@@ -63,7 +63,7 @@ To do this, add an entry to the dependency file:
    }
    ```
 
-4. To add a specific version of the tool to the dependencies, add the following line inside of the "dependencies" object and replace [version] by the release number, e.g. "1.6.1".
+4. To add a specific version of the tool to the dependencies, add the following line inside of the "dependencies" object and replace [version] by the release number, e.g. "1.6.3".
    `"com.i5.toolkit.core": "[version]",`
    After that, Unity will automatically download and import the package.
 
@@ -82,7 +82,7 @@ So, after completing these steps you should have a manifest.json file which look
     ... some more scoped registries
     ],
     "dependencies": {
-        "com.i5.toolkit.core":  "1.6.1",
+        "com.i5.toolkit.core":  "1.6.3",
         ... some more packages
     }
 }
@@ -96,7 +96,7 @@ It can be included in new projects by referencing the git-repository on GitHub i
 1. Open your project's root folder in a file explorer.
 2. Navigate to the Packages folder and open the file manifest.json.
    It contains a list of package dependencies which are loaded into the project.
-3. To add a specific version of the tool to the dependencies, add the following line inside of the "dependencies" object and replace [version] with "v", followed by the release number, e.g. "v1.6.1".
+3. To add a specific version of the tool to the dependencies, add the following line inside of the "dependencies" object and replace [version] with "v", followed by the release number, e.g. "v1.6.3".
    To receive the latest version, replace [version] with upm.
    `"com.i5.toolkit.core": "https://github.com/rwth-acis/i5-Toolkit-for-Unity.git#[version]",`
    After that, Unity will automatically download and import the package.
@@ -111,7 +111,7 @@ The package can be downloaded from a git-repository in the package manager's UI.
 
 1. In Unity, go to Window > Package Manger.
 2. Click on the plus-button in the top left corner of the package manager and select "add".
-3. Enter https://github.com/rwth-acis/i5-Toolkit-for-Unity.git#[version] into the text field where [version] is replaced with "v", followed by the release number, e.g. "v1.6.1" or upm for the latest version.
+3. Enter https://github.com/rwth-acis/i5-Toolkit-for-Unity.git#[version] into the text field where [version] is replaced with "v", followed by the release number, e.g. "v1.6.3" or upm for the latest version.
    Confirm the download by clicking on the "add" button.
 
 If you specify "upm" to get the latest version, be aware that the package is not automatically updated.

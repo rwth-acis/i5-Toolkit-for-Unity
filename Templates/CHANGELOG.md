@@ -2,6 +2,34 @@
 
 This document keeps track of the changes between versions of the toolkit.
 
+## 1.6.3 (2021-08-08)
+
+### Added
+
+- Extended functionality of Experience API module:
+  Added the ability to specify contexts and results in xAPI statements using an advanced mode
+
+### Changed
+
+- Divided Experience API module into a standard and an advanced mode
+- The advanced mode requires the Newtonsoft JSON library.
+  If it is not added to the project, the module will fall back to the previous implementation that uses Unity's JsonUtiltiy serializer
+
+## 1.6.2 (2021-07-21)
+
+### Added
+
+- Added support for local paths in the Obj Importer
+- Added Unity adapters. This module is still in experimental stage as its interfaces will be extended in future releases
+- Added utility functions for Vector3 component-wise operations and composed bounds calculation
+- Added utility function to rewrite two paths into an absolute path
+- Added further unit tests
+- Extended documentation for the Object Pool module
+
+### Changed
+
+- Renamed `PathUtils` that fetch the package's path into `PackagePathUtils`
+
 ## 1.6.1 (2021-05-11)
 
 ### Changed

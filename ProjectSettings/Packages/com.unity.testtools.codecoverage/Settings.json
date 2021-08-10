@@ -19,6 +19,11 @@
                 "value": "{\"m_Value\":\"i5.Toolkit.Core.Editor,i5.Toolkit.Core.Runtime\"}"
             },
             {
+                "type": "System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                "key": "PathsToExclude",
+                "value": "{\"m_Value\":\"{ProjectPath}/Assets/i5 Toolkit for Unity/Runtime/Utilities/Async/*\"}"
+            },
+            {
                 "type": "System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
                 "key": "EnableCodeCoverage",
                 "value": "{\"m_Value\":true}"

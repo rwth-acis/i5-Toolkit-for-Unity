@@ -4,6 +4,7 @@ using i5.Toolkit.Core.Utilities;
 using i5.Toolkit.Core.Utilities.ContentLoaders;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 using UnityEngine;
 
@@ -22,7 +23,7 @@ namespace i5.Toolkit.Core.ModelImporters
         /// <summary>
         /// instance of the MtlLibrary
         /// </summary>
-        public MtlLibrary MtlLibrary { get; private set; }
+        public IMtlLibrary MtlLibrary { get; private set; }
 
         /// <summary>
         /// If set to true, additional information, e.g. comments in the .obj file, are logged
@@ -83,7 +84,7 @@ namespace i5.Toolkit.Core.ModelImporters
             // create the parent object
             // it is a standard GameObject; its only purpose is to bundle the child objects
             GameObject parentObject = ObjectPool<GameObject>.RequestResource(() => { return new GameObject(); });
-            parentObject.name = System.IO.Path.GetFileNameWithoutExtension(path);
+            parentObject.name = Path.GetFileNameWithoutExtension(path);
 
             // parse the .obj file
             List<ObjParseResult> parseResults = await ParseModelAsync(resp.Content);
@@ -94,46 +95,10 @@ namespace i5.Toolkit.Core.ModelImporters
                 // check that the referenced mtl library is already loaded; if not: load it
                 if (!MtlLibrary.LibraryLoaded(parseResult.LibraryPath))
                 {
-                    string mtlUri;
-                    // check if the path is a local path or an web uri
-                    if (System.IO.File.Exists(path))
-                    {
-                        string baseDirectory = System.IO.Path.GetDirectoryName(path);
-                        string materialPath = parseResult.LibraryPath;
-                        // check whether material path is given relative to the obj path or fully qualified
-                        if (System.IO.File.Exists(materialPath))
-                        {
-                            // material path is absolute
-                            mtlUri = materialPath;
-                        }
-                        else
-                        {
-                            // material path is relative
-                            mtlUri = System.IO.Path.Combine(baseDirectory, materialPath);
-                        }
-                        mtlUri = System.IO.Path.Combine(baseDirectory, materialPath);
-                    }
-                    else
-                    {
-                        // try to interprete as web uri
-                        Uri uri;
-                        // check wether material path is absolute or relative
-                        if (Uri.TryCreate(parseResult.LibraryPath, UriKind.Absolute, out uri))
-                        {
-                            // material path is absolute
-                            mtlUri = uri.AbsoluteUri;
-                        }
-                        else
-                        {
-                            // material path is relative
-                            uri = new Uri(path);
-                            mtlUri = UriUtils.RewriteFileUriPath(uri, parseResult.LibraryPath);
-                        }
-                    }
-                    
+                    string mtlAbsolutePath = PathUtils.RewriteToAbsolutePath(path, parseResult.LibraryPath);
 
-                    string libraryName = System.IO.Path.GetFileNameWithoutExtension(path);
-                    bool successful = await MtlLibrary.LoadLibraryAsyc(new Uri(mtlUri, UriKind.Absolute), libraryName);
+                    string libraryName = Path.GetFileNameWithoutExtension(path);
+                    bool successful = await MtlLibrary.LoadLibraryAsyc(mtlAbsolutePath, libraryName);
                     if (!successful)
                     {
                         i5Debug.LogError("Could not load .mtl file " + parseResult.LibraryPath, this);

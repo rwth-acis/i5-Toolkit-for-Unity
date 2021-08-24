@@ -46,7 +46,10 @@ namespace i5.Toolkit.Core.ModelImporters
             // initialize the content loader
             if (ContentLoader == null)
             {
+<<<<<<< Updated upstream
                 //ContentLoader = new UnityWebRequestLoader();
+=======
+>>>>>>> Stashed changes
                 ContentLoader = new CachAwareContentLoader();
             }
 

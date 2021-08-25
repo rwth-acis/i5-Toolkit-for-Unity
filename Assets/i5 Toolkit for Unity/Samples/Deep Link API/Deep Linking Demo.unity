@@ -164,7 +164,7 @@ MonoBehaviour:
     open the browser type yourSchema://changeColor?color=#000000 to change the color
     of the cube to black.'
   type: 0
-  url: 
+  url: https://rwth-acis.github.io/i5-Toolkit-for-Unity/upm/manual/Deep-Linking.html
 --- !u!4 &34808989
 Transform:
   m_ObjectHideFlags: 0

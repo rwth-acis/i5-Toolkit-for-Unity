@@ -1,0 +1,486 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class ExperienceAPIClient
+   | i5 Toolkit Documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class ExperienceAPIClient
+   | i5 Toolkit Documentation ">
+    <meta name="generator" content="docfx 2.56.2.0">
+    
+    <link rel="shortcut icon" href="../resources/Logos/Logo_whiteBg.svg">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../resources/Logos/Logo_whiteBg.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="i5.Toolkit.Core.ExperienceAPI.ExperienceAPIClient">
+  
+  
+  <h1 id="i5_Toolkit_Core_ExperienceAPI_ExperienceAPIClient" data-uid="i5.Toolkit.Core.ExperienceAPI.ExperienceAPIClient" class="text-break">Class ExperienceAPIClient
+  </h1>
+  <div class="markdown level0 summary"><p>A client for connecting to the xAPI Web service</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></div>
+    <div class="level1"><span class="xref">ExperienceAPIClient</span></div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="i5.Toolkit.Core.ExperienceAPI.html">i5.Toolkit.Core.ExperienceAPI</a></h6>
+  <h6><strong>Assembly</strong>: cs.temp.dll.dll</h6>
+  <h5 id="i5_Toolkit_Core_ExperienceAPI_ExperienceAPIClient_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class ExperienceAPIClient</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  
+  
+  <a id="i5_Toolkit_Core_ExperienceAPI_ExperienceAPIClient__ctor_" data-uid="i5.Toolkit.Core.ExperienceAPI.ExperienceAPIClient.#ctor*"></a>
+  <h4 id="i5_Toolkit_Core_ExperienceAPI_ExperienceAPIClient__ctor" data-uid="i5.Toolkit.Core.ExperienceAPI.ExperienceAPIClient.#ctor">ExperienceAPIClient()</h4>
+  <div class="markdown level1 summary"><p>Creates a new xAPI client with default settings</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ExperienceAPIClient()</code></pre>
+  </div>
+  
+  
+  <a id="i5_Toolkit_Core_ExperienceAPI_ExperienceAPIClient__ctor_" data-uid="i5.Toolkit.Core.ExperienceAPI.ExperienceAPIClient.#ctor*"></a>
+  <h4 id="i5_Toolkit_Core_ExperienceAPI_ExperienceAPIClient__ctor_Uri_System_String_System_String_" data-uid="i5.Toolkit.Core.ExperienceAPI.ExperienceAPIClient.#ctor(Uri,System.String,System.String)">ExperienceAPIClient(Uri, String, String)</h4>
+  <div class="markdown level1 summary"><p>Creates a new xAPI client with the given configuration</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ExperienceAPIClient(Uri xApiEndpoint, string authorizationToken, string version)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Uri</span></td>
+        <td><span class="parametername">xApiEndpoint</span></td>
+        <td><p>The target URI of the xAPI</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">authorizationToken</span></td>
+        <td><p>The authorization token to allow the client to access the xAPI</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">version</span></td>
+        <td><p>The version of the xAPI</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  
+  
+  <a id="i5_Toolkit_Core_ExperienceAPI_ExperienceAPIClient_AuthorizationToken_" data-uid="i5.Toolkit.Core.ExperienceAPI.ExperienceAPIClient.AuthorizationToken*"></a>
+  <h4 id="i5_Toolkit_Core_ExperienceAPI_ExperienceAPIClient_AuthorizationToken" data-uid="i5.Toolkit.Core.ExperienceAPI.ExperienceAPIClient.AuthorizationToken">AuthorizationToken</h4>
+  <div class="markdown level1 summary"><p>The authorization token to allow the client to access the xAPI</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string AuthorizationToken { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="i5_Toolkit_Core_ExperienceAPI_ExperienceAPIClient_IsInAdvancedMode_" data-uid="i5.Toolkit.Core.ExperienceAPI.ExperienceAPIClient.IsInAdvancedMode*"></a>
+  <h4 id="i5_Toolkit_Core_ExperienceAPI_ExperienceAPIClient_IsInAdvancedMode" data-uid="i5.Toolkit.Core.ExperienceAPI.ExperienceAPIClient.IsInAdvancedMode">IsInAdvancedMode</h4>
+  <div class="markdown level1 summary"><p>States whether the client operates in advanced mode or standard mode.
+In advanced mode, more complex statements can be serialized.
+To enable advanced mode, load the Newtonsoft JSON library for Unity under <a href="https://github.com/jilleJr/Newtonsoft.Json-for-Unity">https://github.com/jilleJr/Newtonsoft.Json-for-Unity</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsInAdvancedMode { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="i5_Toolkit_Core_ExperienceAPI_ExperienceAPIClient_Version_" data-uid="i5.Toolkit.Core.ExperienceAPI.ExperienceAPIClient.Version*"></a>
+  <h4 id="i5_Toolkit_Core_ExperienceAPI_ExperienceAPIClient_Version" data-uid="i5.Toolkit.Core.ExperienceAPI.ExperienceAPIClient.Version">Version</h4>
+  <div class="markdown level1 summary"><p>The API version. By default 1.0.3</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Version { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="i5_Toolkit_Core_ExperienceAPI_ExperienceAPIClient_WebConnector_" data-uid="i5.Toolkit.Core.ExperienceAPI.ExperienceAPIClient.WebConnector*"></a>
+  <h4 id="i5_Toolkit_Core_ExperienceAPI_ExperienceAPIClient_WebConnector" data-uid="i5.Toolkit.Core.ExperienceAPI.ExperienceAPIClient.WebConnector">WebConnector</h4>
+  <div class="markdown level1 summary"><p>The Web connector that determines how the API is queried</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IRestConnector WebConnector { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IRestConnector</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="i5_Toolkit_Core_ExperienceAPI_ExperienceAPIClient_XApiEndpoint_" data-uid="i5.Toolkit.Core.ExperienceAPI.ExperienceAPIClient.XApiEndpoint*"></a>
+  <h4 id="i5_Toolkit_Core_ExperienceAPI_ExperienceAPIClient_XApiEndpoint" data-uid="i5.Toolkit.Core.ExperienceAPI.ExperienceAPIClient.XApiEndpoint">XApiEndpoint</h4>
+  <div class="markdown level1 summary"><p>The target uri where the xAPI can be found</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Uri XApiEndpoint { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Uri</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  
+  
+  <a id="i5_Toolkit_Core_ExperienceAPI_ExperienceAPIClient_SendStatementAsync_" data-uid="i5.Toolkit.Core.ExperienceAPI.ExperienceAPIClient.SendStatementAsync*"></a>
+  <h4 id="i5_Toolkit_Core_ExperienceAPI_ExperienceAPIClient_SendStatementAsync_i5_Toolkit_Core_ExperienceAPI_Actor_i5_Toolkit_Core_ExperienceAPI_Verb_i5_Toolkit_Core_ExperienceAPI_XApiObject_" data-uid="i5.Toolkit.Core.ExperienceAPI.ExperienceAPIClient.SendStatementAsync(i5.Toolkit.Core.ExperienceAPI.Actor,i5.Toolkit.Core.ExperienceAPI.Verb,i5.Toolkit.Core.ExperienceAPI.XApiObject)">SendStatementAsync(Actor, Verb, XApiObject)</h4>
+  <div class="markdown level1 summary"><p>Sends a new statement to the xAPI repository
+Initializes the statement with the given actor, verb and object</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;WebResponse&lt;string&gt;&gt; SendStatementAsync(Actor actor, Verb verb, XApiObject obj)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="i5.Toolkit.Core.ExperienceAPI.Actor.html">Actor</a></td>
+        <td><span class="parametername">actor</span></td>
+        <td><p>The actor of the statement</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="i5.Toolkit.Core.ExperienceAPI.Verb.html">Verb</a></td>
+        <td><span class="parametername">verb</span></td>
+        <td><p>The verb of the statement</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="i5.Toolkit.Core.ExperienceAPI.XApiObject.html">XApiObject</a></td>
+        <td><span class="parametername">obj</span></td>
+        <td><p>The object of the statement</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span>&lt;<span class="xref">WebResponse</span>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a>&gt;&gt;</td>
+        <td><p>Returns the result of the Web query; if successful, this contains the generated statement id</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="i5_Toolkit_Core_ExperienceAPI_ExperienceAPIClient_SendStatementAsync_" data-uid="i5.Toolkit.Core.ExperienceAPI.ExperienceAPIClient.SendStatementAsync*"></a>
+  <h4 id="i5_Toolkit_Core_ExperienceAPI_ExperienceAPIClient_SendStatementAsync_i5_Toolkit_Core_ExperienceAPI_Statement_" data-uid="i5.Toolkit.Core.ExperienceAPI.ExperienceAPIClient.SendStatementAsync(i5.Toolkit.Core.ExperienceAPI.Statement)">SendStatementAsync(Statement)</h4>
+  <div class="markdown level1 summary"><p>Sends a new statement to the xAPI repository</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;WebResponse&lt;string&gt;&gt; SendStatementAsync(Statement statement)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="i5.Toolkit.Core.ExperienceAPI.Statement.html">Statement</a></td>
+        <td><span class="parametername">statement</span></td>
+        <td><p>The xAPI statement that should be sent</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span>&lt;<span class="xref">WebResponse</span>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a>&gt;&gt;</td>
+        <td><p>Returns the result of the Web query; if successful, this contains the generated statement id</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="i5_Toolkit_Core_ExperienceAPI_ExperienceAPIClient_SendStatementAsync_" data-uid="i5.Toolkit.Core.ExperienceAPI.ExperienceAPIClient.SendStatementAsync*"></a>
+  <h4 id="i5_Toolkit_Core_ExperienceAPI_ExperienceAPIClient_SendStatementAsync_System_String_System_String_System_String_" data-uid="i5.Toolkit.Core.ExperienceAPI.ExperienceAPIClient.SendStatementAsync(System.String,System.String,System.String)">SendStatementAsync(String, String, String)</h4>
+  <div class="markdown level1 summary"><p>Sends a new statement to the xAPI repository
+Initializes the statement with the given actor, verb and object ids</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;WebResponse&lt;string&gt;&gt; SendStatementAsync(string actorMail, string verbUrl, string objectUrl)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">actorMail</span></td>
+        <td><p>The mail address of the statement&apos;s actor</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">verbUrl</span></td>
+        <td><p>The id of the statement&apos;s verb (should be a url)</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">objectUrl</span></td>
+        <td><p>The id of the statement&apos;s object</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span>&lt;<span class="xref">WebResponse</span>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a>&gt;&gt;</td>
+        <td><p>Returns the result of the Web query; if successful, this contains the generated statement id</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            i5 Toolkit Documentation
+            
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,182 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>App Console | i5 Toolkit Documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="App Console | i5 Toolkit Documentation ">
+    <meta name="generator" content="docfx 2.56.2.0">
+    
+    <link rel="shortcut icon" href="../resources/Logos/Logo_whiteBg.svg">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../resources/Logos/Logo_whiteBg.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="app-console">App Console</h1>
+
+<p><img src="../resources/Logos/AppConsole.svg" alt="App Console"></p>
+<h2 id="use-case">Use Case</h2>
+<p>When deploying compiled applications to devices, the application may behave slightly different to the editor simulation.
+For instance, erros could happen where a resource is not available on the device but is automatically available in the editor.
+In such cases, it is difficult to debug the problem since the application has e.g. with UWP apps been converted to C++ sources using IL2CPP.
+Since exceptions in Unity scripts stop the script silently, problems may not even come to attention immeditaly.
+Therefore, the app console of the i5 Toolkit provides a way to monitor the log outputs and error logs of scripts in the deployed application.</p>
+<h2 id="usage">Usage</h2>
+<p>Under &quot;i5 Toolkit for Unity/Runtime/App Console/Prefabs&quot;, there are pre-made consoles available.
+Drag-and-drop a prefab into the scene and it will automatically work.</p>
+<p>A console prefab has a console UI component (there are different variants of this component for different displays like TextMesh vs. TextMeshPro).
+On this console UI, a checkbox <em>Capture In Background</em> is available.
+If it is checked (default state), the console will still register logs even if it is deactivated.
+In its unchecked state, it will unsubscribe from the application&#39;s log feed if it is deactivated.</p>
+<h3 id="notes">Notes</h3>
+<p>The app console is meant as a development tool for debugging purposes.
+It should only be used in development editions of applications and should not be included in the final application for production.
+The console has a noticable performance impact each time a log message is received.
+Therefore, reduce the log output to the necessary parts that need to be visible and avoid many logs in Update calls.</p>
+<h2 id="creating-own-console-prefabs">Creating Own Console Prefabs</h2>
+<p>To create own console prefabs, first construct the GameObjects.
+The main thing which is required is a text display of some sort, e.g. a TextMesh or a TextMeshPro.
+After that, create a UI component for the console.
+The UI component must inherit from <a class="xref" href="../api/i5.Toolkit.Core.AppConsole.ConsoleUIBehaviour.html">ConsoleUIBehaviour</a>.
+This base class provides a member <a class="xref" href="../api/i5.Toolkit.Core.AppConsole.ConsoleUIBehaviour.html#i5_Toolkit_Core_AppConsole_ConsoleUIBehaviour_consoleUI">consoleUI</a>.
+Override the <a class="xref" href="../api/i5.Toolkit.Core.AppConsole.ConsoleUIBehaviour.html#i5_Toolkit_Core_AppConsole_ConsoleUIBehaviour_Awake">Awake()</a> method and initialize the text console UI member.
+Example from the <a class="xref" href="../api/i5.Toolkit.Core.AppConsole.TextMeshProUGUIConsoleUI.html">TextMeshProUGUIConsoleUI</a>:</p>
+<pre><code class="lang-[C#]">[Tooltip(&quot;The text display which should show the messages&quot;)]
+[SerializeField] private TextMeshProUGUI consoleTextDisplay;
+[Tooltip(&quot;The formatter configuration which defines how messages are formatted&quot;)]
+[SerializeField] protected LogFormatterConfiguration logFormatterConfiguration;
+
+// initializes the text console UI
+protected override void Awake()
+{
+    ITextDisplay textMeshProUGUIAdapter = new TextMeshProUGUITextAdapter(consoleTextDisplay);
+    consoleUI = new TextConsoleUI(textMeshProUGUIAdapter, logFormatterConfiguration);
+
+    base.Awake();
+}
+</code></pre><p>To initialize the console UI member, you need to provide a text display.
+This is an adapter object that implements the &lt;xref:i5.Toolkit.Core.Utilities.UnityAdapters.ITextDisplay&gt; interface.
+The toolkit already provides adapter objects for the following text display components which can be used:</p>
+<ul>
+<li>TextMesh: &lt;xref:i5.Toolkit.Core.Utilities.UnityAdapters.TextMeshTextAdapter&gt;</li>
+<li>TextMeshPro: &lt;xref:i5.Toolkit.Core.Utilities.UnityAdapters.TextMeshProTextAdapter&gt;</li>
+<li>TextMeshProUGUI: &lt;xref:i5.Toolkit.Core.Utilities.UnityAdapters.TextMeshProUGUITextAdapter&gt;</li>
+</ul>
+<p>For other kinds of text displays, implement an own &lt;xref:i5.Toolkit.Core.Utilities.UnityAdapters.ITextDisplay&gt; adapter.</p>
+<p>The <a class="xref" href="../api/i5.Toolkit.Core.AppConsole.ConsoleUIBehaviour.html#i5_Toolkit_Core_AppConsole_ConsoleUIBehaviour_consoleUI">consoleUI</a> can also be initialized with a log formatter configuration object.</p>
+<p>You can add additional functionality to the console UI, e.g. logic to show and hide the console or to add scrolling to the console&#39;s text.</p>
+<h2 id="example-scene">Example Scene</h2>
+<p>The package&#39;s examples contain a scene with a console prefab.
+When executing the scene, press the the buttons F1 - F4 to generate log messages.
+Each key prints a different type of log message:</p>
+<ul>
+<li>F1: Regular log that is generated using <code>Debug.Log</code></li>
+<li>F2: Warning log that is generated using <code>Debug.LogWarning</code></li>
+<li>F3: Error log that is generated using <code>Debug.LogError</code></li>
+<li>F4: Exception log that is generated when an exception is thrown</li>
+</ul>
+<p>If you press F5, you can toggle the visibility of the console.</p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/rwth-acis/i5-Toolkit-for-Unity/blob/develop/Documentation/manual/App-Console.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            i5 Toolkit Documentation
+            
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

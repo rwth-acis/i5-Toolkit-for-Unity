@@ -340,6 +340,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   credentials: {fileID: 11400000, guid: 3b96ffc4f905bc941b224d94a7433734, type: 2}
+  xApiEndpoint: https://lrs.tech4comp.dbis.rwth-aachen.de/data/xAPI
 --- !u!1 &1280700018
 GameObject:
   m_ObjectHideFlags: 0
@@ -374,7 +375,7 @@ MonoBehaviour:
     and your xAPI URL. After that, start the application. Each time you press F5
     in the running sample scene, a statement is sent to your xAPI.
   type: 0
-  url: 
+  url: https://rwth-acis.github.io/i5-Toolkit-for-Unity/upm/manual/Experience-API.html
 --- !u!4 &1280700020
 Transform:
   m_ObjectHideFlags: 0

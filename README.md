@@ -7,7 +7,7 @@ It is a foundation for new projects, kickstarting the development with already c
 
 ![Continuous Integration](https://github.com/rwth-acis/i5-Toolkit-for-Unity/workflows/Continuous%20Integration/badge.svg)
 
-![1.6.3](https://img.shields.io/badge/version-1.6.3-blue)
+![1.6.4](https://img.shields.io/badge/version-1.6.4-blue)
 
 [![openupm](https://img.shields.io/npm/v/com.i5.toolkit.core?label=openupm&registry_uri=https://package.openupm.com)](https://openupm.com/packages/com.i5.toolkit.core/)
 
@@ -17,24 +17,24 @@ The i5 Toolkit provides a series of modules and features that can be used in pro
 
 <table style="text-align: center; vertical-align: middle">
     <tr>
-        <td><a href="https://rwth-acis.github.io/i5-Toolkit-for-Unity/1.6.3/manual/App-Console.html"><img src="Documentation/resources/Logos/AppConsole.svg" alt="App Console" style="width:200px"/><br/>App Console</a></td>
-        <td><a href="https://rwth-acis.github.io/i5-Toolkit-for-Unity/1.6.3/manual/Deep-Linking.html"><img src="Documentation/resources/Logos/DeepLink.svg" alt="Deep Link" style="width:200px"/><br/>Deep Link</a></td>
-        <td><a href="https://rwth-acis.github.io/i5-Toolkit-for-Unity/1.6.3/manual/Experience-API.html"><img src="Documentation/resources/Logos/ExperienceAPI.svg" alt="Experience API" style="width:200px"/><br/>Experience API</a></td>
+        <td><a href="https://rwth-acis.github.io/i5-Toolkit-for-Unity/1.6.4/manual/App-Console.html"><img src="Documentation/resources/Logos/AppConsole.svg" alt="App Console" style="width:200px"/><br/>App Console</a></td>
+        <td><a href="https://rwth-acis.github.io/i5-Toolkit-for-Unity/1.6.4/manual/Deep-Linking.html"><img src="Documentation/resources/Logos/DeepLink.svg" alt="Deep Link" style="width:200px"/><br/>Deep Link</a></td>
+        <td><a href="https://rwth-acis.github.io/i5-Toolkit-for-Unity/1.6.4/manual/Experience-API.html"><img src="Documentation/resources/Logos/ExperienceAPI.svg" alt="Experience API" style="width:200px"/><br/>Experience API</a></td>
     </tr>
     <tr>
-        <td><a href="https://rwth-acis.github.io/i5-Toolkit-for-Unity/1.6.3/manual/Modified-3D-Objects.html"><img src="Documentation/resources/Logos/RoundedCorners.svg" alt="Modified 3D Objects" style="width:200px"/><br/>Modified 3D Models</a></td>
-        <td><a href="https://rwth-acis.github.io/i5-Toolkit-for-Unity/1.6.3/manual/Object-Pool.html"><img src="Documentation/resources/Logos/ObjectPool.svg" alt="Object Pool" style="width:200px"/><br/>Object Pool</a></td>
-        <td><a href="https://rwth-acis.github.io/i5-Toolkit-for-Unity/1.6.3/manual/Obj-Importer.html"><img src="Documentation/resources/Logos/ObjImporter.svg" alt="Obj Importer" style="width:200px"/><br/>Obj Importer</a></td>
+        <td><a href="https://rwth-acis.github.io/i5-Toolkit-for-Unity/1.6.4/manual/Modified-3D-Objects.html"><img src="Documentation/resources/Logos/RoundedCorners.svg" alt="Modified 3D Objects" style="width:200px"/><br/>Modified 3D Models</a></td>
+        <td><a href="https://rwth-acis.github.io/i5-Toolkit-for-Unity/1.6.4/manual/Object-Pool.html"><img src="Documentation/resources/Logos/ObjectPool.svg" alt="Object Pool" style="width:200px"/><br/>Object Pool</a></td>
+        <td><a href="https://rwth-acis.github.io/i5-Toolkit-for-Unity/1.6.4/manual/Obj-Importer.html"><img src="Documentation/resources/Logos/ObjImporter.svg" alt="Obj Importer" style="width:200px"/><br/>Obj Importer</a></td>
     </tr>
     <tr>
-        <td><a href="https://rwth-acis.github.io/i5-Toolkit-for-Unity/1.6.3/manual/OpenID-Connect-Client.html"><img src="Documentation/resources/Logos/OpenIDConnectClient.svg" alt="OpenID Connect Client" style="width:200px"/><br/>OpenID Connect Client</a></td>
-        <td><a href="https://rwth-acis.github.io/i5-Toolkit-for-Unity/1.6.3/manual/Procedural-Geometry.html"><img src="Documentation/resources/Logos/ProceduralGeometry.svg" alt="Procedural Geometry" style="width:200px"/><br/>Procedural Geometry</a></td>
-        <td><a href="https://rwth-acis.github.io/i5-Toolkit-for-Unity/1.6.3/manual/Scene-Documentation.html"><img src="Documentation/resources/Logos/SceneDocumentation.svg" alt="Scene Documentation" style="width:200px"/><br/>Scene Documentation</a></td>
+        <td><a href="https://rwth-acis.github.io/i5-Toolkit-for-Unity/1.6.4/manual/OpenID-Connect-Client.html"><img src="Documentation/resources/Logos/OpenIDConnectClient.svg" alt="OpenID Connect Client" style="width:200px"/><br/>OpenID Connect Client</a></td>
+        <td><a href="https://rwth-acis.github.io/i5-Toolkit-for-Unity/1.6.4/manual/Procedural-Geometry.html"><img src="Documentation/resources/Logos/ProceduralGeometry.svg" alt="Procedural Geometry" style="width:200px"/><br/>Procedural Geometry</a></td>
+        <td><a href="https://rwth-acis.github.io/i5-Toolkit-for-Unity/1.6.4/manual/Scene-Documentation.html"><img src="Documentation/resources/Logos/SceneDocumentation.svg" alt="Scene Documentation" style="width:200px"/><br/>Scene Documentation</a></td>
     </tr>
     <tr>
-        <td><a href="https://rwth-acis.github.io/i5-Toolkit-for-Unity/1.6.3/manual/Service-Core.html"><img src="Documentation/resources/Logos/ServiceCore.svg" alt="Service Core" style="width:200px"/><br/>Service Core</a></td>
-        <td><a href="https://rwth-acis.github.io/i5-Toolkit-for-Unity/1.6.3/manual/Spawner.html"><img src="Documentation/resources/Logos/Spawner.svg" alt="Spawner" style="width:200px"/><br/>Spawner</a></td>
-        <td><a href="https://rwth-acis.github.io/i5-Toolkit-for-Unity/1.6.3/manual/Version-Tool.html"><img src="Documentation/resources/Logos/Version-Tool.svg" alt="Version Tool" style="width:200px"/><br/>Version Tool</a></td>
+        <td><a href="https://rwth-acis.github.io/i5-Toolkit-for-Unity/1.6.4/manual/Service-Core.html"><img src="Documentation/resources/Logos/ServiceCore.svg" alt="Service Core" style="width:200px"/><br/>Service Core</a></td>
+        <td><a href="https://rwth-acis.github.io/i5-Toolkit-for-Unity/1.6.4/manual/Spawner.html"><img src="Documentation/resources/Logos/Spawner.svg" alt="Spawner" style="width:200px"/><br/>Spawner</a></td>
+        <td><a href="https://rwth-acis.github.io/i5-Toolkit-for-Unity/1.6.4/manual/Version-Tool.html"><img src="Documentation/resources/Logos/Version-Tool.svg" alt="Version Tool" style="width:200px"/><br/>Version Tool</a></td>
     </tr>
 </table>
 
@@ -63,7 +63,7 @@ To do this, add an entry to the dependency file:
    }
    ```
 
-4. To add a specific version of the tool to the dependencies, add the following line inside of the "dependencies" object and replace [version] by the release number, e.g. "1.6.3".
+4. To add a specific version of the tool to the dependencies, add the following line inside of the "dependencies" object and replace [version] by the release number, e.g. "1.6.4".
    `"com.i5.toolkit.core": "[version]",`
    After that, Unity will automatically download and import the package.
 
@@ -82,7 +82,7 @@ So, after completing these steps you should have a manifest.json file which look
     ... some more scoped registries
     ],
     "dependencies": {
-        "com.i5.toolkit.core":  "1.6.3",
+        "com.i5.toolkit.core":  "1.6.4",
         ... some more packages
     }
 }
@@ -96,7 +96,7 @@ It can be included in new projects by referencing the git-repository on GitHub i
 1. Open your project's root folder in a file explorer.
 2. Navigate to the Packages folder and open the file manifest.json.
    It contains a list of package dependencies which are loaded into the project.
-3. To add a specific version of the tool to the dependencies, add the following line inside of the "dependencies" object and replace [version] with "v", followed by the release number, e.g. "v1.6.3".
+3. To add a specific version of the tool to the dependencies, add the following line inside of the "dependencies" object and replace [version] with "v", followed by the release number, e.g. "v1.6.4".
    To receive the latest version, replace [version] with upm.
    `"com.i5.toolkit.core": "https://github.com/rwth-acis/i5-Toolkit-for-Unity.git#[version]",`
    After that, Unity will automatically download and import the package.
@@ -111,7 +111,7 @@ The package can be downloaded from a git-repository in the package manager's UI.
 
 1. In Unity, go to Window > Package Manger.
 2. Click on the plus-button in the top left corner of the package manager and select "add".
-3. Enter https://github.com/rwth-acis/i5-Toolkit-for-Unity.git#[version] into the text field where [version] is replaced with "v", followed by the release number, e.g. "v1.6.3" or upm for the latest version.
+3. Enter https://github.com/rwth-acis/i5-Toolkit-for-Unity.git#[version] into the text field where [version] is replaced with "v", followed by the release number, e.g. "v1.6.4" or upm for the latest version.
    Confirm the download by clicking on the "add" button.
 
 If you specify "upm" to get the latest version, be aware that the package is not automatically updated.

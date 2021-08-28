@@ -2,6 +2,17 @@
 
 This document keeps track of the changes between versions of the toolkit.
 
+## 1.6.4 (2021-08-26)
+
+### Added
+- Example scene showing how to use the ObjectPool with GameObjects
+
+### Changed
+- Updated documentation links in example scenes
+
+### Fixed
+- Fixed an error in the Obj Importer that occurred if an obj file without a linked mtl file was loaded
+
 ## 1.6.3 (2021-08-08)
 
 ### Added

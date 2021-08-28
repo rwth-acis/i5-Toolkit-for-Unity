@@ -21,7 +21,7 @@ namespace i5.Toolkit.Core.Examples.AppConsole
             }
             else if (Input.GetKeyDown(KeyCode.F4))
             {
-                throw new NotImplementedException("This is an excpetion");
+                throw new NotImplementedException("This is an exception");
             }
         }
     }

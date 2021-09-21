@@ -183,5 +183,10 @@ namespace i5.Toolkit.Core.ModelImporters
                 }
             }
         }
+
+        public int filesInCache()
+        {
+            return cachedFileLocation.Count;
+        }
     }
 }

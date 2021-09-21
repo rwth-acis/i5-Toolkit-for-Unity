@@ -7,6 +7,7 @@ using i5.Toolkit.Core.TestUtilities;
 using i5.Toolkit.Core.Utilities;
 using i5.Toolkit.Core.Utilities.ContentLoaders;
 using NUnit.Framework;
+using System;
 using System.Collections;
 using System.IO;
 using System.Text.RegularExpressions;
@@ -31,6 +32,8 @@ namespace i5.Toolkit.Core.Tests.ModelImporters
         /// There is a file with no material, one material and three materials
         /// </summary>
         private static string emptyMtl, cubeMtl, threeMtl;
+
+        private static string onlineObjPath = "https://people.sc.fsu.edu/~jburkardt/data/obj/airboat.obj";
 
         /// <summary>
         /// Called one time to load the contents of the .obj and .mtl files
@@ -70,6 +73,20 @@ namespace i5.Toolkit.Core.Tests.ModelImporters
             objImporter.ContentLoader = FakeContentLoaderFactory.CreateFakeLoader(objContent);
             objImporter.MtlLibrary.ContentLoader = FakeContentLoaderFactory.CreateFakeLoader(mtlContent);
             return objImporter;
+        }
+
+        /// <summary>
+        /// Reusable function to set up the ObjImporter service that uses a Cache and to register it at the service manager
+        /// </summary>
+        /// <returns></returns>
+        private Tuple<ObjImporter, FileCache> SetUpObjImporterWithCache()
+        {
+            IServiceManager serviceManager = A.Fake<IServiceManager>();
+            FileCache fCache = new FileCache();
+            fCache.Initialize(serviceManager);
+            ObjImporter objImporter = new ObjImporter();
+            objImporter.Initialize(serviceManager);
+            return new Tuple<ObjImporter, FileCache>(objImporter, fCache);
         }
 
         /// <summary>
@@ -121,6 +138,16 @@ namespace i5.Toolkit.Core.Tests.ModelImporters
 
             objImporter.Cleanup();
             Assert.AreEqual(poolCount, ObjectPool<GameObject>.CountPools());
+        }
+
+        [Test]
+        public void Cachawarecontent_When_Setup_With_Cache()
+        {
+            Tuple<ObjImporter, FileCache> setup = SetUpObjImporterWithCache();
+            ObjImporter objImporter = setup.Item1;
+            FileCache fileCache = setup.Item2;
+
+            Assert.IsTrue(objImporter.ContentLoader.GetType() == typeof(CachAwareContentLoader));
         }
 
         /// <summary>
@@ -301,6 +328,35 @@ namespace i5.Toolkit.Core.Tests.ModelImporters
             Assert.AreEqual(1, res.transform.childCount);
             MeshRenderer mr = res.transform.GetChild(0).GetComponent<MeshRenderer>();
             Assert.AreEqual("New Material", mr.sharedMaterial.name);
+        }
+
+
+        [UnityTest]
+        public IEnumerator ImportAsync_Loading_Web_With_Cache_Enabled()
+        {
+            ObjImporter objImporter = SetUpObjImporterWithCache().Item1;
+            
+            Task<GameObject> task = objImporter.ImportAsync(onlineObjPath);
+            yield return AsyncTest.WaitForTask(task);
+            GameObject res = task.Result;
+
+            Assert.NotNull(res);
+        }
+
+        [UnityTest]
+        public IEnumerator ImportAsync_Cached_When_Loading_Twice()
+        {
+            Tuple<ObjImporter, FileCache> setup = SetUpObjImporterWithCache();
+            ObjImporter objImporter = setup.Item1;
+            FileCache fileCache = setup.Item2;
+
+            Task<GameObject> task = objImporter.ImportAsync(onlineObjPath);
+            yield return AsyncTest.WaitForTask(task);
+
+            string cachResult = fileCache.getCachedFileLocation(onlineObjPath);
+            
+            //LogAssert.Expect(LogType.Log, "Cache hit");
+            Assert.IsNotEmpty(cachResult);
         }
     }
 }

@@ -8,12 +8,19 @@ using i5.Toolkit.Core.ServiceCore;
 using i5.Toolkit.Core.ModelImporters;
 using i5.Toolkit.Core.Caching;
 
-namespace i5.Toolkit.Core.ModelImporters
+namespace i5.Toolkit.Core.Caching
 {
-    public class CachAwareContentLoader : IContentLoader<string>
+    public class CacheAwareContentLoader : IContentLoader<string>
     {
         private IContentLoader<string> internContentLoader { get; set; }
 
+        private FileCache fixedFileCache;
+
+        /// <summary>
+        /// Load the file that is specified by the uri. Uses the chache when possible.
+        /// </summary>
+        /// <param name="uri">Path to the file that should be loaded.</param>
+        /// <returns></returns>
         public async Task<WebResponse<string>> LoadAsync(string uri)
         {
             // initialize the content loader
@@ -23,9 +30,14 @@ namespace i5.Toolkit.Core.ModelImporters
             }
             WebResponse<string> response;
             //Check for cached files
-            if (ServiceManager.ServiceExists<FileCache>())
+            if (fixedFileCache != null || ServiceManager.ServiceExists<FileCache>())
             {
-                FileCache objCache = ServiceManager.GetService<FileCache>();
+                FileCache objCache = fixedFileCache;
+                if (objCache == null)
+                {
+                    //when no fixed cache is set then load one from the ServiceManager
+                    objCache = ServiceManager.GetService<FileCache>();
+                }
                 string cachePath;
                 if (objCache.isFileInCache(uri))
                 {
@@ -50,6 +62,11 @@ namespace i5.Toolkit.Core.ModelImporters
                 response = await internContentLoader.LoadAsync(uri);
             }
             return response;
+        }
+
+        public void setFixedFileCache(FileCache filecache)
+        {
+            fixedFileCache = filecache;
         }
     }
 }

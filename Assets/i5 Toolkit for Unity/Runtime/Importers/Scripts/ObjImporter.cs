@@ -68,7 +68,7 @@ namespace i5.Toolkit.Core.ModelImporters
         /// </summary>
         public void activateChache()
         {
-            ContentLoader = new CachAwareContentLoader();
+            ContentLoader = new CacheAwareContentLoader();
             if (!ServiceManager.ServiceExists<FileCache>())
             {
                 i5Debug.LogWarning("The chache of the ObjImporter is activated but there is no FileCache service registered yet.", this);

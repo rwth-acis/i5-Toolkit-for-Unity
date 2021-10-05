@@ -79,5 +79,55 @@ namespace i5.Toolkit.Core.Tests.Caching
             Assert.IsTrue(res == "");
             
         }
+
+        /// <summary>
+        /// Check that the isFileinCache function detects files that were loaded before
+        /// </summary>
+        /// <returns></returns>
+        [UnityTest]
+        public IEnumerator isFileInCache_True_when_loaded()
+        {
+            FileCache fileCache = new FileCache();
+            IServiceManager serviceManager = A.Fake<IServiceManager>();
+            fileCache.Initialize(serviceManager);
+
+            Task<string> task = fileCache.addOrUpdateInCache("https://people.sc.fsu.edu/~jburkardt/data/obj/airboat.obj");
+
+            yield return AsyncTest.WaitForTask(task);
+
+            Assert.IsTrue(fileCache.isFileInCache("https://people.sc.fsu.edu/~jburkardt/data/obj/airboat.obj"));
+        }
+
+        /// <summary>
+        /// Check that the isFileinCache function detects when a files was not loaded before
+        /// </summary>
+        /// <returns></returns>
+        [UnityTest]
+        public IEnumerator isFileInCache_Fasle_when_not_loaded()
+        {
+            FileCache fileCache = new FileCache();
+            IServiceManager serviceManager = A.Fake<IServiceManager>();
+            fileCache.Initialize(serviceManager);
+
+            Task<string> task = fileCache.addOrUpdateInCache("https://people.sc.fsu.edu/~jburkardt/data/obj/airboat.obj");
+
+            yield return AsyncTest.WaitForTask(task);
+
+            Assert.IsFalse(fileCache.isFileInCache("other.obj"));
+        }
+
+        /// <summary>
+        /// Check that the isFileinCache function detects when no files were ever loaded before
+        /// </summary>
+        /// <returns></returns>
+        [Test]
+        public void isFileInCache_Fasle_when_nothing_loaded()
+        {
+            FileCache fileCache = new FileCache();
+            IServiceManager serviceManager = A.Fake<IServiceManager>();
+            fileCache.Initialize(serviceManager);
+
+            Assert.IsFalse(fileCache.isFileInCache("other.obj"));
+        }
     }
 }

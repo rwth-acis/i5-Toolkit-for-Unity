@@ -12,7 +12,7 @@ using System.Security.Cryptography;
 using System;
 using System.Linq;
 
-namespace i5.Toolkit.Core.ModelImporters
+namespace i5.Toolkit.Core.Caching
 {
     public class FileCache : IService
     {

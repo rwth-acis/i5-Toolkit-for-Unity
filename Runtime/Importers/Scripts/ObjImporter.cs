@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using UnityEngine;
+using i5.Toolkit.Core.Caching;
 
 namespace i5.Toolkit.Core.ModelImporters
 {
@@ -46,7 +47,7 @@ namespace i5.Toolkit.Core.ModelImporters
             // initialize the content loader
             if (ContentLoader == null)
             {
-                ContentLoader = new CachAwareContentLoader();
+                ContentLoader = new UnityWebRequestLoader();
             }
 
             // reserve a mesh object pool id
@@ -60,6 +61,26 @@ namespace i5.Toolkit.Core.ModelImporters
         {
             // give back the pool
             ObjectPool<GameObject>.RemovePool(meshObjectPoolId, (go) => { GameObject.Destroy(go); });
+        }
+
+        /// <summary>
+        /// Sets the ObjImporter up to use a FileChache if one is registered at the service manager.
+        /// </summary>
+        public void activateChache()
+        {
+            ContentLoader = new CachAwareContentLoader();
+            if (!ServiceManager.ServiceExists<FileCache>())
+            {
+                i5Debug.LogWarning("The chache of the ObjImporter is activated but there is no FileCache service registered yet.", this);
+            }
+        }
+
+        /// <summary>
+        /// Sets the ObjImporter up to not use a FileChache.
+        /// </summary>
+        public void deactivateCache()
+        {
+            ContentLoader = new UnityWebRequestLoader();
         }
 
         /// <summary>

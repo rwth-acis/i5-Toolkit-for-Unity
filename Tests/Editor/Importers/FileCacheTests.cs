@@ -69,13 +69,15 @@ namespace i5.Toolkit.Core.Tests.Caching
             IServiceManager serviceManager = A.Fake<IServiceManager>();
             fileCache.Initialize(serviceManager);
 
+            LogAssert.Expect(LogType.Error, "[i5.Toolkit.Core.Utilities.ContentLoaders.UnityWebRequestLoader] Get request to: notcorrectadress returned with error Cannot connect to destination host");
             Task<string> task = fileCache.addOrUpdateInCache("notcorrectadress");
 
             yield return AsyncTest.WaitForTask(task);
 
             string res = task.Result;
 
-            Assert.AreEqual("", res);
+            Assert.IsTrue(res == "");
+            
         }
     }
 }

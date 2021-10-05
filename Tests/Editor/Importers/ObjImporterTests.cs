@@ -85,10 +85,20 @@ namespace i5.Toolkit.Core.Tests.ModelImporters
             IServiceManager serviceManager = A.Fake<IServiceManager>();
             FileCache fCache = new FileCache();
             fCache.Initialize(serviceManager);
+
             ObjImporter objImporter = new ObjImporter();
-            objImporter.activateChache();
             objImporter.Initialize(serviceManager);
+            objImporter.activateChache();
+            //set fixed FileCache for the ObjImporter for testing because the ServiceManager can not be used
+            ((CacheAwareContentLoader)objImporter.ContentLoader).setFixedFileCache(fCache);
             return new Tuple<ObjImporter, FileCache>(objImporter, fCache);
+
+            //FileCache fCache = new FileCache();
+            //ServiceManager.RegisterService(fCache);
+            //ObjImporter objImporter = new ObjImporter();
+            //ServiceManager.RegisterService(objImporter);
+            //objImporter.activateChache();
+            //return new Tuple<ObjImporter, FileCache>(objImporter, fCache);
         }
 
         /// <summary>
@@ -146,13 +156,13 @@ namespace i5.Toolkit.Core.Tests.ModelImporters
         /// Checks that the cacheaware content loader is used as the content loader when caching is enabled.
         /// </summary>
         [Test]
-        public void Cachawarecontent_When_Setup_With_Cache()
+        public void Cacheawarecontent_When_Setup_With_Cache()
         {
             Tuple<ObjImporter, FileCache> setup = SetUpObjImporterWithCache();
             ObjImporter objImporter = setup.Item1;
             FileCache fileCache = setup.Item2;
 
-            Assert.IsTrue(objImporter.ContentLoader.GetType() == typeof(CachAwareContentLoader));
+            Assert.IsTrue(objImporter.ContentLoader is CacheAwareContentLoader);
         }
 
         /// <summary>

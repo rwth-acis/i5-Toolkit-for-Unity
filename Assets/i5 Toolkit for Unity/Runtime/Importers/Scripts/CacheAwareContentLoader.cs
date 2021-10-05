@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using i5.Toolkit.Core.Utilities;
 using i5.Toolkit.Core.ServiceCore;
 using i5.Toolkit.Core.ModelImporters;
+using i5.Toolkit.Core.Caching;
 
 namespace i5.Toolkit.Core.ModelImporters
 {

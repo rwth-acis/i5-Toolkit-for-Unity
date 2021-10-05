@@ -9,6 +9,7 @@ using i5.Toolkit.Core.ModelImporters;
 using i5.Toolkit.Core.ServiceCore;
 using System.Threading.Tasks;
 using i5.Toolkit.Core.TestHelpers;
+using i5.Toolkit.Core.Caching;
 
 namespace i5.Toolkit.Core.Tests.Caching
 {
@@ -24,7 +25,7 @@ namespace i5.Toolkit.Core.Tests.Caching
         }
 
         /// <summary>
-        /// 
+        /// Check that the file cache is empty when being initialized with default values.
         /// </summary>
         [Test]
         public void FileCache_Initializes_With_Empty_Cache_Default()
@@ -36,8 +37,12 @@ namespace i5.Toolkit.Core.Tests.Caching
             Assert.IsTrue(fileCache.filesInCache() == 0);
         }
 
+        /// <summary>
+        /// Check that loading a file from the web works.
+        /// </summary>
+        /// <returns></returns>
         [UnityTest]
-        public IEnumerator AddOrUpdateInCache_Loads_File()
+        public IEnumerator AddOrUpdateInCache_Load_Web_File()
         {
             FileCache fileCache = new FileCache();
             IServiceManager serviceManager = A.Fake<IServiceManager>();
@@ -53,6 +58,10 @@ namespace i5.Toolkit.Core.Tests.Caching
             FileAssert.Exists(res);
         }
 
+        /// <summary>
+        /// Checks that empty string is retuned when the given file does not exist.
+        /// </summary>
+        /// <returns></returns>
         [UnityTest]
         public IEnumerator AddOrUpdateInCache_Returns_Empty_String_When_File_Not_Exist()
         {

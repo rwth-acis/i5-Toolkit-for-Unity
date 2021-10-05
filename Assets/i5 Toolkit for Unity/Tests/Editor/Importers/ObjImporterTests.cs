@@ -14,6 +14,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.TestTools;
+using i5.Toolkit.Core.Caching;
 
 namespace i5.Toolkit.Core.Tests.ModelImporters
 {
@@ -85,6 +86,7 @@ namespace i5.Toolkit.Core.Tests.ModelImporters
             FileCache fCache = new FileCache();
             fCache.Initialize(serviceManager);
             ObjImporter objImporter = new ObjImporter();
+            objImporter.activateChache();
             objImporter.Initialize(serviceManager);
             return new Tuple<ObjImporter, FileCache>(objImporter, fCache);
         }
@@ -140,6 +142,9 @@ namespace i5.Toolkit.Core.Tests.ModelImporters
             Assert.AreEqual(poolCount, ObjectPool<GameObject>.CountPools());
         }
 
+        /// <summary>
+        /// Checks that the cacheaware content loader is used as the content loader when caching is enabled.
+        /// </summary>
         [Test]
         public void Cachawarecontent_When_Setup_With_Cache()
         {
@@ -330,7 +335,10 @@ namespace i5.Toolkit.Core.Tests.ModelImporters
             Assert.AreEqual("New Material", mr.sharedMaterial.name);
         }
 
-
+        /// <summary>
+        /// Checks that gameobject can be loaded from the web when the cache is activated.
+        /// </summary>
+        /// <returns></returns>
         [UnityTest]
         public IEnumerator ImportAsync_Loading_Web_With_Cache_Enabled()
         {
@@ -343,6 +351,10 @@ namespace i5.Toolkit.Core.Tests.ModelImporters
             Assert.NotNull(res);
         }
 
+        /// <summary>
+        /// Importing objects asynchronous is checked to use the cache.
+        /// </summary>
+        /// <returns></returns>
         [UnityTest]
         public IEnumerator ImportAsync_Cached_When_Loading_Twice()
         {

@@ -6,50 +6,48 @@ Importing 3D assets and other ressources from the web at runtime is a great way 
 
 ## Usage
 
-The file cache itself is just a service that can be registered at the Service Manger. This service can then handle the caching of files. To further improve the usability of the service there exist also a ContentLoader called CacheAwareContentLoader that provides an easy interface to interact with the file cach service. Moreover the ObjImporter supports the usage of the file cache as well. The following example walks you through the process of using the ObjImporter with the file cache.
+The File Cache itself is just a service that can be registered at the Service Manger. This service can then handle the caching of files. To further improve the usability of the service there exist also a ContentLoader called CacheAwareContentLoader that provides an easy interface to interact with the file cach service. Moreover the ObjImporter supports the usage of the File Cache as well. The following example walks you through the process of using the ObjImporter with the File Cache.
 
 ### Notes
 
-The file cache is in the namespace i5.Toolkit.Core.ModelImporters.
+The File Cache is in the namespace i5.Toolkit.Core.Caching.
 
 ## Example
 
-This explaination will walk you through the process of setting up an Object Importer that uses the file cache.
+This explaination will walk you through the process of using the CacheAwareContentLoader to download files and use the File Cache.
 
-First of all we need to use the namespace for the cache, the importer and the genereal service core. The file cache and the importer are both in the same namespace.
+First of all we need to use the namespace for the cache and the genereal service core.
 
 ```[C#]
-using i5.Toolkit.Core.ModelImporters;
+using i5.Toolkit.Core.Caching;
 using i5.Toolkit.Core.ServiceCore;
 ```
 
-Before we are able to use the file cache we first of all need to instaziate this service and add it the service manager. Since we only need to do this once, one will most likely do this in the start method of a unity MonoBehaviour class. The same holds for registering the ObjImporter at the service manager.
+Before we are able to use the File Cache we first of all need to instaziate this service and add it the service manager. Since we only need to do this once, one will most likely do this in the start method of a unity MonoBehaviour class. After the File Cache is reistered we can instanziate the CacheAwareContentLoader.
 
 ```[C#]
 void Start()
     {
-        //Register the file cache
-        FileCache objCache = new FileCache();
-        ServiceManager.RegisterService(objCache);
+        //Register the File Cache
+        FileCache fileCache = new FileCache();
+        ServiceManager.RegisterService(fileCache);
 
-        //Register the object importer
-        ObjImporter importer = new ObjImporter();
-        ServiceManager.RegisterService(importer);
+        CachAwareContentLoader contentLoader = new CachAwareContentLoader();
     }
 ```
 
-This is all the setup that is required. Afterwards one can use the obj importer normally. For example we will write an update method that loads a obj file file from a web adress when the user hits F5.
+This is all the setup that is required. Afterwards one can use the ContentLoader normally. For example we will write an update method that loads a file from a web adress (here stored in the variable path) when the user hits F5.
 
 ```[C#]
 private async void Update()
     {
         if (Input.GetKeyDown(KeyCode.F5))
         {
-            GameObject obj = await ServiceManager.GetService<ObjImporter>().ImportAsync("example.com/file.obj");
+            WebResponse<string> resp = await ContentLoader.LoadAsync(path);
 
-            //do what ever you want to witht the obj
+            //do what ever you want to with the dowloaded file in the WebResponse
         }
     }
 ```
 
-When hitting F5 the second the time the ObjImporter will use the cached file and therefore load the obj faster.
+When hitting F5 the second the time the CachAwareContentLoader will use the cached file and therefore load the obj faster.

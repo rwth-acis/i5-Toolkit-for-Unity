@@ -12,6 +12,24 @@ The File Cache itself is just a service that can be registered at the Service Ma
 
 The File Cache is in the namespace i5.Toolkit.Core.Caching.
 
+### Settings
+
+There are four settings that can be done when initializing a File Cache.
+
+If the parameter `sessionPersistence` is set to `true` the Cache will reload the cache state of the last session. The default value is `false`.
+
+The parameter `useSaveMode` activates the check of a MD5 checksum before loading a file from cache. This is intended to lower the risk of loading a modified file from cache. The default value is `false`.
+
+With the parameter `cacheLocationOverride` one can set a different location to store the cache data in. The default value is `null`.
+
+The parameter `daysValid` sets the threshold for how old a file is alowed to be until it should not be used any more by the cache. The default is 365 days.
+
+All those parameters can be set when initializing the File Cache:
+
+```[C#]
+FileCache fc = new FileCache(sessionPersistence: false, useSaveMode: true, cacheLocationOverride: null, daysValid: 365)
+```
+
 ## Example
 
 This explaination will walk you through the process of using the CacheAwareContentLoader to download files and use the File Cache.

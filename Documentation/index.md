@@ -38,8 +38,8 @@ The i5 Toolkit provides a series of modules and features that can be used in pro
     </tr>
     <tr>
       <td><a href="manual/File-Cache.md"><img src="resources/Logos/FileCache.svg" alt="File Cache" style="width:200px"/><br/>File Cache</a></td>
-      <td></td>
-      <td></td>
+      <td style="width:200px"></td>
+      <td style="width:200px"></td>
     </tr>
 </table>
 

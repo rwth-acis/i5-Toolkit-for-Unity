@@ -16,6 +16,11 @@ namespace i5.Toolkit.Core.Caching
 {
     public class FileCache : IService
     {
+        /// <summary>
+        /// Module that should be used for fetching the .obj file's content
+        /// </summary>
+        public IContentLoader<string> ContentLoader { get; set; }
+
         private const string persistentFileName = "i5cache.json";
 
         private bool sessionPersistence;
@@ -27,6 +32,7 @@ namespace i5.Toolkit.Core.Caching
 
         public FileCache(bool sessionPersistence = false, bool useSaveMode = true, string cacheLocationOverride=null, double daysValid=365)
         {
+            ContentLoader = new UnityWebRequestLoader();
             this.sessionPersistence = sessionPersistence;
             this.useSaveMode = useSaveMode;
             if(cacheLocationOverride != null && Directory.Exists(cacheLocationOverride))
@@ -108,7 +114,6 @@ namespace i5.Toolkit.Core.Caching
                 i++;
             }
 
-            UnityWebRequestLoader ContentLoader = new UnityWebRequestLoader();
             WebResponse<string> fileRequestResponse = await ContentLoader.LoadAsync(path);
             if (fileRequestResponse.Successful)
             {

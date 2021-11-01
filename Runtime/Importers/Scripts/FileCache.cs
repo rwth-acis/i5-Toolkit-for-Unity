@@ -51,10 +51,10 @@ namespace i5.Toolkit.Core.Caching
             if (sessionPersistence)
             {
                 //try to load cachedFileLocation from file
-                if(File.Exists(string.Format("{0}/{1}", cacheLocation, persistentFileName)))
+                if (File.Exists(Path.Combine(cacheLocation, persistentFileName)))
                 {
-                    i5Debug.Log(string.Format("{0}/{1}", cacheLocation, persistentFileName), this);
-                    string serializedFileInfo = File.ReadAllText(string.Format("{0}/{1}", cacheLocation, persistentFileName));
+                    i5Debug.Log(Path.Combine(cacheLocation, persistentFileName), this);
+                    string serializedFileInfo = File.ReadAllText(Path.Combine(cacheLocation, persistentFileName));
                     cachedFileLocation = JsonConvert.DeserializeObject<Dictionary<string, CacheEntry>>(serializedFileInfo);
                     //check loaded dictonary
                     var itemsToRemove = cachedFileLocation.Where(fileInfo => !File.Exists(fileInfo.Value.localFileName)).ToArray();
@@ -80,7 +80,7 @@ namespace i5.Toolkit.Core.Caching
             {
                 try
                 {
-                    File.WriteAllText(string.Format("{0}/{1}", cacheLocation, persistentFileName), JsonConvert.SerializeObject(cachedFileLocation));
+                    File.WriteAllText(Path.Combine(cacheLocation, persistentFileName), JsonConvert.SerializeObject(cachedFileLocation));
                 }
                 catch
                 {
@@ -106,11 +106,11 @@ namespace i5.Toolkit.Core.Caching
 
         public async Task<string> addOrUpdateInCache(string path)
         {
-            string savePath = string.Format("{0}/{1}{2}", cacheLocation, Path.GetFileNameWithoutExtension(path), Path.GetExtension(path));
+            string savePath = Path.Combine(cacheLocation, Path.GetFileNameWithoutExtension(path) + Path.GetExtension(path));
             int i = 2;
             while (File.Exists(savePath))
             {
-                savePath = string.Format("{0}/{1}{2}", cacheLocation, Path.GetFileNameWithoutExtension(path) + i.ToString(), Path.GetExtension(path));
+                savePath = Path.Combine(cacheLocation, Path.GetFileNameWithoutExtension(path) + i.ToString() + Path.GetExtension(path));
                 i++;
             }
 

@@ -1,41 +1,38 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Networking;
-using System.IO;
-using i5.Toolkit.Core.ServiceCore;
-using i5.Toolkit.Core.Utilities.ContentLoaders;
+﻿using i5.Toolkit.Core.ServiceCore;
 using i5.Toolkit.Core.Utilities;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-using System.Security.Cryptography;
+using i5.Toolkit.Core.Utilities.ContentLoaders;
 using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Threading.Tasks;
+using UnityEngine;
 
 namespace i5.Toolkit.Core.Caching
 {
     public class FileCache : IService
     {
         /// <summary>
-        /// Module that should be used for fetching the .obj file's content
+        /// Module that should be used for fetching the file's content
         /// </summary>
         public IContentLoader<string> ContentLoader { get; set; }
 
         private const string persistentFileName = "i5cache.json";
 
         private bool sessionPersistence;
-        private bool useSaveMode;
+        private bool useSafeMode;
         private string cacheLocation;
         private double daysValid;
 
         private Dictionary<string, CacheEntry> cachedFileLocation = new Dictionary<string, CacheEntry>();
 
-        public FileCache(bool sessionPersistence = false, bool useSaveMode = true, string cacheLocationOverride=null, double daysValid=365)
+        public FileCache(bool sessionPersistence = false, bool useSaveMode = true, string cacheLocationOverride = null, double daysValid = 365)
         {
             ContentLoader = new UnityWebRequestLoader();
             this.sessionPersistence = sessionPersistence;
-            this.useSaveMode = useSaveMode;
-            if(cacheLocationOverride != null && Directory.Exists(cacheLocationOverride))
+            this.useSafeMode = useSaveMode;
+            if (cacheLocationOverride != null && Directory.Exists(cacheLocationOverride))
             {
                 this.cacheLocation = cacheLocationOverride;
             }
@@ -50,27 +47,23 @@ namespace i5.Toolkit.Core.Caching
         {
             if (sessionPersistence)
             {
-                //try to load cachedFileLocation from file
+                // try to load cachedFileLocation from file
                 if (File.Exists(Path.Combine(cacheLocation, persistentFileName)))
                 {
                     i5Debug.Log(Path.Combine(cacheLocation, persistentFileName), this);
                     string serializedFileInfo = File.ReadAllText(Path.Combine(cacheLocation, persistentFileName));
-                    cachedFileLocation = JsonConvert.DeserializeObject<Dictionary<string, CacheEntry>>(serializedFileInfo);
-                    //check loaded dictonary
+                    cachedFileLocation = JsonDictionaryUtility.FromJson<string, CacheEntry>(serializedFileInfo);
+                    // check loaded dictonary
                     var itemsToRemove = cachedFileLocation.Where(fileInfo => !File.Exists(fileInfo.Value.localFileName)).ToArray();
                     foreach (var item in itemsToRemove)
                         cachedFileLocation.Remove(item.Key);
-                    
+
                     i5Debug.Log("The cache state from a previous session was restored successfully.", this);
                 }
                 else
                 {
                     i5Debug.Log("No previous cache session detected. A new one is created.", this);
                 }
-            }
-            else
-            {
-                i5Debug.Log("The cache failed to restore the state of a previous session.", this);
             }
         }
 
@@ -80,11 +73,11 @@ namespace i5.Toolkit.Core.Caching
             {
                 try
                 {
-                    File.WriteAllText(Path.Combine(cacheLocation, persistentFileName), JsonConvert.SerializeObject(cachedFileLocation));
+                    File.WriteAllText(Path.Combine(cacheLocation, persistentFileName), JsonDictionaryUtility.ToJson(cachedFileLocation));
                 }
                 catch
                 {
-                    i5Debug.Log("The current cach was not able to store its state to a persistent file.", this);
+                    i5Debug.Log("The current cache was not able to store its state to a persistent file.", this);
                 }
             }
             else
@@ -98,13 +91,13 @@ namespace i5.Toolkit.Core.Caching
                     }
                     catch
                     {
-
+                        i5Debug.LogWarning("Could not delete cache", this);
                     }
                 }
             }
         }
 
-        public async Task<string> addOrUpdateInCache(string path)
+        public async Task<string> AddOrUpdateInCache(string path)
         {
             string savePath = Path.Combine(cacheLocation, Path.GetFileNameWithoutExtension(path) + Path.GetExtension(path));
             int i = 2;
@@ -119,15 +112,15 @@ namespace i5.Toolkit.Core.Caching
             {
                 File.WriteAllText(savePath, fileRequestResponse.Content);
                 //save in dictonary
-                if (useSaveMode)
+                if (useSafeMode)
                 {
-                    cachedFileLocation[path] = new CacheEntry(savePath, calculateMD5Hash(savePath), DateTime.Now);
+                    cachedFileLocation[path] = new CacheEntry(savePath, CalculateMD5Hash(savePath), DateTime.Now);
                 }
                 else
                 {
                     cachedFileLocation[path] = new CacheEntry(savePath, "", DateTime.Now);
                 }
-                
+
                 return savePath;
             }
             else
@@ -136,17 +129,17 @@ namespace i5.Toolkit.Core.Caching
             }
         }
 
-        public bool isFileInCache(string path)
+        public bool IsFileInCache(string path)
         {
             CacheEntry entry;
             if (cachedFileLocation.TryGetValue(path, out entry))
             {
-                if (useSaveMode && File.Exists(entry.localFileName) && (calculateMD5Hash(entry.localFileName) == entry.fileHash) && (entry.cacheDate >= DateTime.Now.AddDays(-1*daysValid)))
+                if (useSafeMode && File.Exists(entry.localFileName) && (CalculateMD5Hash(entry.localFileName) == entry.fileHash) && (entry.CacheDate >= DateTime.Now.AddDays(-1 * daysValid)))
                 {
                     return true;
                 }
-                
-                if(!useSaveMode && File.Exists(entry.localFileName) && (entry.cacheDate >= DateTime.Now.AddDays(-1*daysValid)))
+
+                if (!useSafeMode && File.Exists(entry.localFileName) && (entry.CacheDate >= DateTime.Now.AddDays(-1 * daysValid)))
                 {
                     return File.Exists(entry.localFileName);
                 }
@@ -154,17 +147,17 @@ namespace i5.Toolkit.Core.Caching
             return false;
         }
 
-        public string getCachedFileLocation(string path)
+        public string GetCachedFileLocation(string path)
         {
             CacheEntry entry;
             if (cachedFileLocation.TryGetValue(path, out entry))
             {
-                if (useSaveMode && File.Exists(entry.localFileName) && (calculateMD5Hash(entry.localFileName) == entry.fileHash) && (entry.cacheDate >= DateTime.Now.AddDays(-1*daysValid)))
+                if (useSafeMode && File.Exists(entry.localFileName) && (CalculateMD5Hash(entry.localFileName) == entry.fileHash) && (entry.CacheDate >= DateTime.Now.AddDays(-1 * daysValid)))
                 {
                     i5Debug.Log("Cache hit", this);
                     return entry.localFileName;
                 }
-                if (!useSaveMode && File.Exists(entry.localFileName) && (entry.cacheDate >= DateTime.Now.AddDays(-1*daysValid)))
+                if (!useSafeMode && File.Exists(entry.localFileName) && (entry.CacheDate >= DateTime.Now.AddDays(-1 * daysValid)))
                 {
                     i5Debug.Log("Cache hit", this);
                     return entry.localFileName;
@@ -176,8 +169,8 @@ namespace i5.Toolkit.Core.Caching
                 return "";
             }
         }
-        
-        private string calculateMD5Hash(string filename)
+
+        private string CalculateMD5Hash(string filename)
         {
             using (var md5 = MD5.Create())
             {
@@ -189,9 +182,12 @@ namespace i5.Toolkit.Core.Caching
             }
         }
 
-        public int filesInCache()
+        public int FileCount
         {
-            return cachedFileLocation.Count;
+            get
+            {
+                return cachedFileLocation.Count;
+            }
         }
     }
 }

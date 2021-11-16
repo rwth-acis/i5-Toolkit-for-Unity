@@ -88,9 +88,9 @@ namespace i5.Toolkit.Core.Tests.ModelImporters
 
             ObjImporter objImporter = new ObjImporter();
             objImporter.Initialize(serviceManager);
-            objImporter.activateChache();
+            objImporter.ActivateChache();
             //set fixed FileCache for the ObjImporter for testing because the ServiceManager can not be used
-            ((CacheAwareContentLoader)objImporter.ContentLoader).setFixedFileCache(fCache);
+            ((CacheAwareContentLoader)objImporter.ContentLoader).Cache = fCache;
             return new Tuple<ObjImporter, FileCache>(objImporter, fCache);
 
             //FileCache fCache = new FileCache();
@@ -375,7 +375,7 @@ namespace i5.Toolkit.Core.Tests.ModelImporters
             Task<GameObject> task = objImporter.ImportAsync(onlineObjPath);
             yield return AsyncTest.WaitForTask(task);
 
-            string cachResult = fileCache.getCachedFileLocation(onlineObjPath);
+            string cachResult = fileCache.GetCachedFileLocation(onlineObjPath);
             
             //LogAssert.Expect(LogType.Log, "Cache hit");
             Assert.IsNotEmpty(cachResult);

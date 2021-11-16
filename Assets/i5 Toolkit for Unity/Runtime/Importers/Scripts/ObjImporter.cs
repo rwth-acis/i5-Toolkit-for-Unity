@@ -66,19 +66,19 @@ namespace i5.Toolkit.Core.ModelImporters
         /// <summary>
         /// Sets the ObjImporter up to use a FileChache if one is registered at the service manager.
         /// </summary>
-        public void activateChache()
+        public void ActivateChache()
         {
-            ContentLoader = new CacheAwareContentLoader();
             if (!ServiceManager.ServiceExists<FileCache>())
             {
                 i5Debug.LogWarning("The chache of the ObjImporter is activated but there is no FileCache service registered yet.", this);
             }
+            ContentLoader = new CacheAwareContentLoader(ServiceManager.GetService<FileCache>());
         }
 
         /// <summary>
         /// Sets the ObjImporter up to not use a FileChache.
         /// </summary>
-        public void deactivateCache()
+        public void DeactivateCache()
         {
             ContentLoader = new UnityWebRequestLoader();
         }

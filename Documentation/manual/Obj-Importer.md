@@ -48,6 +48,35 @@ If it is set to `true`, the ObjImporter gives more detailed log outputs about th
 ServiceManager.GetService<ObjImporter>().ExtendedLogging = true;
 ```
 
+### Activate Caching
+
+To increase the loading speed of 3D objects that are loaded multiple times, one can activate caching. When using the Cache, objects are stored locally once they are downloaded so that another request of that resource can be answered directly from the local file system. To be able to use the File Cache and the ObjImporter together the following name spaces must be included.
+
+```[C#]
+using i5.Toolkit.Core.Caching;
+using i5.Toolkit.Core.ModelImporters;
+using i5.Toolkit.Core.ServiceCore;
+```
+
+Before we activate the Cache of the ObjImporter there must be a File Cache service registered at the servie manager.
+
+```[C#]
+void Start()
+    {
+        //Register the file cache
+        FileCache objCache = new FileCache();
+        ServiceManager.RegisterService(objCache);
+
+        //Register the object importer
+        ObjImporter importer = new ObjImporter();
+        importer.activateChache();
+        ServiceManager.RegisterService(importer);
+
+        //then use the normal ImportAsync(url) method to import objects
+    }
+```
+This code example above uses the default settings of the File Cache. To see how to specify the behaviour of the File Cache please use the File Cache documentation.
+
 ## Example Scene
 
 The example scene shows how to load different .obj files.

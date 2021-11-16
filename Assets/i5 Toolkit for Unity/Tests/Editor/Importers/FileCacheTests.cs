@@ -30,7 +30,7 @@ namespace i5.Toolkit.Core.Tests.Caching
         [Test]
         public void FileCache_Initializes_With_Empty_Cache_Default()
         {
-            FileCache fileCache = new FileCache();
+            FileCacheService fileCache = new FileCacheService();
             IServiceManager serviceManager = A.Fake<IServiceManager>();
             fileCache.Initialize(serviceManager);
             Assert.NotNull(fileCache);
@@ -44,7 +44,7 @@ namespace i5.Toolkit.Core.Tests.Caching
         [UnityTest]
         public IEnumerator AddOrUpdateInCache_Load_Web_File()
         {
-            FileCache fileCache = new FileCache();
+            FileCacheService fileCache = new FileCacheService();
             IServiceManager serviceManager = A.Fake<IServiceManager>();
             fileCache.Initialize(serviceManager);
 
@@ -65,7 +65,7 @@ namespace i5.Toolkit.Core.Tests.Caching
         [UnityTest]
         public IEnumerator AddOrUpdateInCache_Returns_Empty_String_When_File_Not_Exist()
         {
-            FileCache fileCache = new FileCache();
+            FileCacheService fileCache = new FileCacheService();
             IServiceManager serviceManager = A.Fake<IServiceManager>();
             fileCache.Initialize(serviceManager);
 
@@ -87,7 +87,7 @@ namespace i5.Toolkit.Core.Tests.Caching
         [UnityTest]
         public IEnumerator isFileInCache_True_when_loaded()
         {
-            FileCache fileCache = new FileCache();
+            FileCacheService fileCache = new FileCacheService();
             IServiceManager serviceManager = A.Fake<IServiceManager>();
             fileCache.Initialize(serviceManager);
 
@@ -105,7 +105,7 @@ namespace i5.Toolkit.Core.Tests.Caching
         [UnityTest]
         public IEnumerator isFileInCache_Fasle_when_not_loaded()
         {
-            FileCache fileCache = new FileCache();
+            FileCacheService fileCache = new FileCacheService();
             IServiceManager serviceManager = A.Fake<IServiceManager>();
             fileCache.Initialize(serviceManager);
 
@@ -123,7 +123,7 @@ namespace i5.Toolkit.Core.Tests.Caching
         [Test]
         public void isFileInCache_Fasle_when_nothing_loaded()
         {
-            FileCache fileCache = new FileCache();
+            FileCacheService fileCache = new FileCacheService();
             IServiceManager serviceManager = A.Fake<IServiceManager>();
             fileCache.Initialize(serviceManager);
 

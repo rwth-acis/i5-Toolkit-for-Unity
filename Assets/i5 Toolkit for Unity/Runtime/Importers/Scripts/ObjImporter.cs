@@ -113,7 +113,8 @@ namespace i5.Toolkit.Core.ModelImporters
             foreach (ObjParseResult parseResult in parseResults)
             {
                 // check that the referenced mtl library is already loaded; if not: load it
-                if (!MtlLibrary.LibraryLoaded(parseResult.LibraryPath))
+                if (!string.IsNullOrEmpty(parseResult.LibraryPath) &&
+                    !MtlLibrary.LibraryLoaded(parseResult.LibraryPath))
                 {
                     string mtlAbsolutePath = PathUtils.RewriteToAbsolutePath(path, parseResult.LibraryPath);
 

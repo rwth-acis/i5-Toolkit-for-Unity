@@ -1,0 +1,17 @@
+{
+    "name": "i5.Toolkit.Core.Examples",
+    "references": [
+        "i5.Toolkit.Core.Editor",
+        "i5.Toolkit.Core.Runtime",
+        "Unity.TextMeshPro"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

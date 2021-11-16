@@ -1,23 +1,34 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class CacheEntry
+namespace i5.Toolkit.Core.Caching
 {
-    public string localFileName { get; set; }
-    public string fileHash { get; set; }
-    public DateTime cacheDate { get; set; }
-
-    public CacheEntry()
+    [Serializable]
+    public class CacheEntry
     {
+        public string localFileName;
+        public string fileHash;
 
-    }
+        [SerializeField] private string cacheDate;
 
-    public CacheEntry(string localFileName, string fileHash, DateTime cacheDate)
-    {
-        this.localFileName = localFileName;
-        this.fileHash = fileHash;
-        this.cacheDate = cacheDate;
+
+        public DateTime CacheDate
+        {
+            get
+            {
+                return DateTime.Parse(cacheDate);
+            }
+            set
+            {
+                cacheDate = value.ToString();
+            }
+        }
+
+        public CacheEntry(string localFileName, string fileHash, DateTime cacheDate)
+        {
+            this.localFileName = localFileName;
+            this.fileHash = fileHash;
+            this.CacheDate = cacheDate;
+        }
     }
 }

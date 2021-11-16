@@ -34,7 +34,7 @@ namespace i5.Toolkit.Core.Tests.Caching
             IServiceManager serviceManager = A.Fake<IServiceManager>();
             fileCache.Initialize(serviceManager);
             Assert.NotNull(fileCache);
-            Assert.IsTrue(fileCache.filesInCache() == 0);
+            Assert.IsTrue(fileCache.FileCount == 0);
         }
 
         /// <summary>
@@ -48,7 +48,7 @@ namespace i5.Toolkit.Core.Tests.Caching
             IServiceManager serviceManager = A.Fake<IServiceManager>();
             fileCache.Initialize(serviceManager);
 
-            Task<string> task = fileCache.addOrUpdateInCache("https://people.sc.fsu.edu/~jburkardt/data/obj/airboat.obj");
+            Task<string> task = fileCache.AddOrUpdateInCache("https://people.sc.fsu.edu/~jburkardt/data/obj/airboat.obj");
 
             yield return AsyncTest.WaitForTask(task);
 
@@ -70,7 +70,7 @@ namespace i5.Toolkit.Core.Tests.Caching
             fileCache.Initialize(serviceManager);
 
             LogAssert.Expect(LogType.Error, "[i5.Toolkit.Core.Utilities.ContentLoaders.UnityWebRequestLoader] Get request to: notcorrectadress returned with error Cannot connect to destination host");
-            Task<string> task = fileCache.addOrUpdateInCache("notcorrectadress");
+            Task<string> task = fileCache.AddOrUpdateInCache("notcorrectadress");
 
             yield return AsyncTest.WaitForTask(task);
 
@@ -91,11 +91,11 @@ namespace i5.Toolkit.Core.Tests.Caching
             IServiceManager serviceManager = A.Fake<IServiceManager>();
             fileCache.Initialize(serviceManager);
 
-            Task<string> task = fileCache.addOrUpdateInCache("https://people.sc.fsu.edu/~jburkardt/data/obj/airboat.obj");
+            Task<string> task = fileCache.AddOrUpdateInCache("https://people.sc.fsu.edu/~jburkardt/data/obj/airboat.obj");
 
             yield return AsyncTest.WaitForTask(task);
 
-            Assert.IsTrue(fileCache.isFileInCache("https://people.sc.fsu.edu/~jburkardt/data/obj/airboat.obj"));
+            Assert.IsTrue(fileCache.IsFileInCache("https://people.sc.fsu.edu/~jburkardt/data/obj/airboat.obj"));
         }
 
         /// <summary>
@@ -109,11 +109,11 @@ namespace i5.Toolkit.Core.Tests.Caching
             IServiceManager serviceManager = A.Fake<IServiceManager>();
             fileCache.Initialize(serviceManager);
 
-            Task<string> task = fileCache.addOrUpdateInCache("https://people.sc.fsu.edu/~jburkardt/data/obj/airboat.obj");
+            Task<string> task = fileCache.AddOrUpdateInCache("https://people.sc.fsu.edu/~jburkardt/data/obj/airboat.obj");
 
             yield return AsyncTest.WaitForTask(task);
 
-            Assert.IsFalse(fileCache.isFileInCache("other.obj"));
+            Assert.IsFalse(fileCache.IsFileInCache("other.obj"));
         }
 
         /// <summary>
@@ -127,7 +127,7 @@ namespace i5.Toolkit.Core.Tests.Caching
             IServiceManager serviceManager = A.Fake<IServiceManager>();
             fileCache.Initialize(serviceManager);
 
-            Assert.IsFalse(fileCache.isFileInCache("other.obj"));
+            Assert.IsFalse(fileCache.IsFileInCache("other.obj"));
         }
     }
 }

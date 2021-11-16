@@ -28,7 +28,7 @@ public class ObjImportTestSceneHandler : MonoBehaviour
     {
         if (useCache)
         {
-            FileCache objCache = new FileCache(sessionPersistence: persistentSessions);
+            FileCacheService objCache = new FileCacheService(sessionPersistence: persistentSessions);
             ServiceManager.RegisterService(objCache);
         }
         ObjImporter importer = new ObjImporter();

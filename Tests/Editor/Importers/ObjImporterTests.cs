@@ -80,10 +80,10 @@ namespace i5.Toolkit.Core.Tests.ModelImporters
         /// Reusable function to set up the ObjImporter service that uses a Cache and to register it at the service manager
         /// </summary>
         /// <returns></returns>
-        private Tuple<ObjImporter, FileCache> SetUpObjImporterWithCache()
+        private Tuple<ObjImporter, FileCacheService> SetUpObjImporterWithCache()
         {
             IServiceManager serviceManager = A.Fake<IServiceManager>();
-            FileCache fCache = new FileCache();
+            FileCacheService fCache = new FileCacheService();
             fCache.Initialize(serviceManager);
 
             ObjImporter objImporter = new ObjImporter();
@@ -91,7 +91,7 @@ namespace i5.Toolkit.Core.Tests.ModelImporters
             objImporter.ActivateChache();
             //set fixed FileCache for the ObjImporter for testing because the ServiceManager can not be used
             ((CacheAwareContentLoader)objImporter.ContentLoader).Cache = fCache;
-            return new Tuple<ObjImporter, FileCache>(objImporter, fCache);
+            return new Tuple<ObjImporter, FileCacheService>(objImporter, fCache);
 
             //FileCache fCache = new FileCache();
             //ServiceManager.RegisterService(fCache);
@@ -158,9 +158,9 @@ namespace i5.Toolkit.Core.Tests.ModelImporters
         [Test]
         public void Cacheawarecontent_When_Setup_With_Cache()
         {
-            Tuple<ObjImporter, FileCache> setup = SetUpObjImporterWithCache();
+            Tuple<ObjImporter, FileCacheService> setup = SetUpObjImporterWithCache();
             ObjImporter objImporter = setup.Item1;
-            FileCache fileCache = setup.Item2;
+            FileCacheService fileCache = setup.Item2;
 
             Assert.IsTrue(objImporter.ContentLoader is CacheAwareContentLoader);
         }
@@ -368,9 +368,9 @@ namespace i5.Toolkit.Core.Tests.ModelImporters
         [UnityTest]
         public IEnumerator ImportAsync_Cached_When_Loading_Twice()
         {
-            Tuple<ObjImporter, FileCache> setup = SetUpObjImporterWithCache();
+            Tuple<ObjImporter, FileCacheService> setup = SetUpObjImporterWithCache();
             ObjImporter objImporter = setup.Item1;
-            FileCache fileCache = setup.Item2;
+            FileCacheService fileCache = setup.Item2;
 
             Task<GameObject> task = objImporter.ImportAsync(onlineObjPath);
             yield return AsyncTest.WaitForTask(task);

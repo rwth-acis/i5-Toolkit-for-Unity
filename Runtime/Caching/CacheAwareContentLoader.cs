@@ -9,9 +9,9 @@ namespace i5.Toolkit.Core.Caching
     {
         public IContentLoader<string> InternContentLoader { get; set; }
 
-        public FileCache Cache { get; set; }
+        public FileCacheService Cache { get; set; }
 
-        public CacheAwareContentLoader(FileCache cache)
+        public CacheAwareContentLoader(FileCacheService cache)
         {
             this.Cache = cache;
         }
@@ -31,13 +31,13 @@ namespace i5.Toolkit.Core.Caching
 
             WebResponse<string> response;
             //Check for cached files
-            if (Cache != null || ServiceManager.ServiceExists<FileCache>())
+            if (Cache != null || ServiceManager.ServiceExists<FileCacheService>())
             {
-                FileCache objCache = Cache;
+                FileCacheService objCache = Cache;
                 if (objCache == null)
                 {
                     //when no fixed cache is set then load one from the ServiceManager
-                    objCache = ServiceManager.GetService<FileCache>();
+                    objCache = ServiceManager.GetService<FileCacheService>();
                 }
                 string cachePath;
                 if (objCache.IsFileInCache(uri))

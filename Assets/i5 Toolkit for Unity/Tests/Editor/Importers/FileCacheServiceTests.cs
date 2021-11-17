@@ -16,7 +16,7 @@ using UnityEngine.TestTools;
 
 namespace i5.Toolkit.Core.Tests.Caching
 {
-    public class FileCacheTests
+    public class FileCacheServiceTests
     {
         private FileCacheService fileCache;
 

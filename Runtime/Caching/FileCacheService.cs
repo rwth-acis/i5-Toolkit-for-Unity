@@ -34,12 +34,12 @@ namespace i5.Toolkit.Core.Caching
 
         public IFileHasher FileHasher { get; set; } = new FileHasher();
 
-        private const string persistentCacheFileName = "i5cache.json";
+        public const string persistentCacheFileName = "i5cache.json";
 
         public bool SessionPersistence { get; private set; }
         public bool UseSafeMode { get; private set; }
         public string CacheLocation { get; private set; }
-        public double DaysValid { get; private set; }
+        public float DaysValid { get; private set; }
 
         private Dictionary<string, CacheEntry> cacheContent = new Dictionary<string, CacheEntry>();
 
@@ -136,7 +136,7 @@ namespace i5.Toolkit.Core.Caching
                 }
                 catch
                 {
-                    i5Debug.Log($"The current cache was not able to store its state to a persistent file under {pathToCache}.", this);
+                    i5Debug.LogError($"The current cache was not able to store its state to a persistent file under {pathToCache}.", this);
                 }
             }
             else

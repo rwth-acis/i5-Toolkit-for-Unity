@@ -109,6 +109,23 @@ namespace i5.Toolkit.Core.Tests.Caching
             Assert.IsTrue(string.IsNullOrEmpty(res));
         }
 
+        [UnityTest]
+        public IEnumerator AddOrUpdateInCache_FileAlreadyCache_SavesWithIncreasedIndex()
+        {
+            string existingSavePath = Path.Combine(Application.temporaryCachePath, "myfile.obj");
+            string expectedSavePath = Path.Combine(Application.temporaryCachePath, "myfile2.obj");
+            // fake that file exists
+            A.CallTo(() => fileCache.FileAccessor.Exists(existingSavePath)).Returns(true);
+
+            Task<string> task = fileCache.AddOrUpdateInCache(url);
+
+            yield return AsyncTest.WaitForTask(task);
+
+            string res = task.Result;
+
+            Assert.AreEqual(expectedSavePath, res);
+        }
+
         /// <summary>
         /// Check that the IsFileinCache function detects files that were loaded before
         /// </summary>
@@ -137,6 +154,32 @@ namespace i5.Toolkit.Core.Tests.Caching
         {
             Assert.IsFalse(fileCache.IsFileInCache(url));
             Assert.IsFalse(fileCache.IsFileInCache("other.obj"));
+        }
+
+        [UnityTest]
+        public IEnumerator Cleanup_NotPersistent_DeletesFiles()
+        {
+            Task<string> task = fileCache.AddOrUpdateInCache("https://test.org/myfile.obj");
+
+            yield return AsyncTest.WaitForTask(task);
+
+            fileCache.Cleanup();
+
+            A.CallTo(() => fileCache.FileAccessor.Delete(task.Result)).MustHaveHappened();
+        }
+
+        [UnityTest]
+        public IEnumerator Cleanup_NotPersistentDeletionError_LogsWarning()
+        {
+            LogAssert.Expect(LogType.Warning, new Regex(@"\w*Could not delete cache file\w*"));
+
+            A.CallTo(() => fileCache.FileAccessor.Delete(A<string>.Ignored)).Throws<IOException>();
+
+            Task<string> task = fileCache.AddOrUpdateInCache("https://test.org/myfile.obj");
+
+            yield return AsyncTest.WaitForTask(task);
+
+            fileCache.Cleanup();
         }
     }
 }

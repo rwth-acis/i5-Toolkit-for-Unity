@@ -7,7 +7,7 @@ namespace i5.Toolkit.Core.Caching
 {
     public class CacheAwareContentLoader : IContentLoader<string>
     {
-        public IContentLoader<string> InternContentLoader { get; set; }
+        public IContentLoader<string> InternalContentLoader { get; set; }
 
         public FileCacheService Cache { get; set; }
 
@@ -24,9 +24,9 @@ namespace i5.Toolkit.Core.Caching
         public async Task<WebResponse<string>> LoadAsync(string uri)
         {
             // initialize the content loader
-            if (InternContentLoader == null)
+            if (InternalContentLoader == null)
             {
-                InternContentLoader = new UnityWebRequestLoader();
+                InternalContentLoader = new UnityWebRequestLoader();
             }
 
             WebResponse<string> response;
@@ -56,11 +56,11 @@ namespace i5.Toolkit.Core.Caching
                         cachePath = uri;
                     }
                 }
-                response = await InternContentLoader.LoadAsync(cachePath);
+                response = await InternalContentLoader.LoadAsync(cachePath);
             }
             else
             {
-                response = await InternContentLoader.LoadAsync(uri);
+                response = await InternalContentLoader.LoadAsync(uri);
             }
             return response;
         }

@@ -1,4 +1,5 @@
-﻿using i5.Toolkit.Core.ServiceCore;
+﻿using i5.Toolkit.Core.Experimental.SystemAdapters;
+using i5.Toolkit.Core.ServiceCore;
 using i5.Toolkit.Core.Utilities;
 using i5.Toolkit.Core.Utilities.ContentLoaders;
 using System;
@@ -19,14 +20,26 @@ namespace i5.Toolkit.Core.Caching
         /// <summary>
         /// Module that should be used for fetching the file's content
         /// </summary>
-        public IContentLoader<string> ContentLoader { get; set; }
+        public IContentLoader<string> ContentLoader { get; set; } = new UnityWebRequestLoader();
+
+        /// <summary>
+        /// Module that should be used for accessing files
+        /// </summary>
+        public IFileAccessor FileAccessor { get; set; } = new FileAccessorAdapter();
+
+        /// <summary>
+        /// Module should should be used for accessing directories
+        /// </summary>
+        public IDirectoryAccessor DirectoryAccessor { get; set; } = new DirectoryAccessorAdapter();
+
+        public IFileHasher FileHasher { get; set; } = new FileHasher();
 
         private const string persistentCacheFileName = "i5cache.json";
 
-        private bool sessionPersistence;
-        private bool useSafeMode;
-        private string cacheLocation;
-        private double daysValid;
+        public bool SessionPersistence { get; private set; }
+        public bool UseSafeMode { get; private set; }
+        public string CacheLocation { get; private set; }
+        public double DaysValid { get; private set; }
 
         private Dictionary<string, CacheEntry> cacheContent = new Dictionary<string, CacheEntry>();
 
@@ -48,21 +61,21 @@ namespace i5.Toolkit.Core.Caching
         /// <param name="useSafeMode">If true, files are hashed, meaning that cached content cannot be switched out by external influences</param>
         /// <param name="cacheLocationOverride">If set, the cache will be stored in the given place instead of the default path</param>
         /// <param name="daysValid">Number of days that an entry in the cache should stay valid before requiring a re-download</param>
-        public FileCacheService(bool sessionPersistence = false, bool useSafeMode = true, string cacheLocationOverride = null, double daysValid = 365)
+        public FileCacheService(bool sessionPersistence = false, bool useSafeMode = true, string cacheLocationOverride = null, float daysValid = 365, IDirectoryAccessor directoryAccessor = null)
         {
-            // initialize the content loader if it is not set up
-            if (ContentLoader == null)
+            if (directoryAccessor != null)
             {
-                ContentLoader = new UnityWebRequestLoader();
+                DirectoryAccessor = directoryAccessor;
             }
-            this.sessionPersistence = sessionPersistence;
-            this.useSafeMode = useSafeMode;
+
+            this.SessionPersistence = sessionPersistence;
+            this.UseSafeMode = useSafeMode;
             if (!string.IsNullOrEmpty(cacheLocationOverride))
             {
                 // first check if the cache location exists
-                if (Directory.Exists(cacheLocationOverride))
+                if (DirectoryAccessor.Exists(cacheLocationOverride))
                 {
-                    this.cacheLocation = cacheLocationOverride;
+                    this.CacheLocation = cacheLocationOverride;
                 }
                 else
                 {
@@ -71,11 +84,11 @@ namespace i5.Toolkit.Core.Caching
             }
 
             // if the cache location is still uninitialized, fill it with the default cache path
-            if (string.IsNullOrEmpty(this.cacheLocation))
+            if (string.IsNullOrEmpty(this.CacheLocation))
             {
-                this.cacheLocation = Application.temporaryCachePath;
+                this.CacheLocation = Application.temporaryCachePath;
             }
-            this.daysValid = daysValid;
+            this.DaysValid = Mathf.Max(1, daysValid);
         }
 
         /// <summary>
@@ -84,17 +97,17 @@ namespace i5.Toolkit.Core.Caching
         /// <param name="owner">The service manager which now owns the service</param>
         public void Initialize(IServiceManager owner)
         {
-            if (sessionPersistence)
+            if (SessionPersistence)
             {
                 // try to load cachedFileLocation from file
-                string pathToCache = Path.Combine(cacheLocation, persistentCacheFileName);
-                if (File.Exists(pathToCache))
+                string pathToCache = Path.Combine(CacheLocation, persistentCacheFileName);
+                if (FileAccessor.Exists(pathToCache))
                 {
                     i5Debug.Log($"Loading cache from {pathToCache}", this);
-                    string serializedFileInfo = File.ReadAllText(pathToCache);
+                    string serializedFileInfo = FileAccessor.ReadAllText(pathToCache);
                     cacheContent = JsonDictionaryUtility.FromJson<string, CacheEntry>(serializedFileInfo);
                     // check loaded dictonary and remove entries for deleted files
-                    var itemsToRemove = cacheContent.Where(fileInfo => !File.Exists(fileInfo.Value.localFileName)).ToArray();
+                    var itemsToRemove = cacheContent.Where(fileInfo => !FileAccessor.Exists(fileInfo.Value.localFileName)).ToArray();
                     foreach (var item in itemsToRemove)
                     {
                         cacheContent.Remove(item.Key);
@@ -114,12 +127,12 @@ namespace i5.Toolkit.Core.Caching
         /// </summary>
         public void Cleanup()
         {
-            if (sessionPersistence)
+            if (SessionPersistence)
             {
-                string pathToCache = Path.Combine(cacheLocation, persistentCacheFileName);
+                string pathToCache = Path.Combine(CacheLocation, persistentCacheFileName);
                 try
                 {
-                    File.WriteAllText(pathToCache, JsonDictionaryUtility.ToJson(cacheContent));
+                    FileAccessor.WriteAllText(pathToCache, JsonDictionaryUtility.ToJson(cacheContent));
                 }
                 catch
                 {
@@ -133,7 +146,7 @@ namespace i5.Toolkit.Core.Caching
                 {
                     try
                     {
-                        File.Delete(fileInfo.Value.localFileName);
+                        FileAccessor.Delete(fileInfo.Value.localFileName);
                     }
                     catch (Exception e)
                     {
@@ -145,22 +158,22 @@ namespace i5.Toolkit.Core.Caching
 
         public async Task<string> AddOrUpdateInCache(string path)
         {
-            string savePath = Path.Combine(cacheLocation, Path.GetFileNameWithoutExtension(path) + Path.GetExtension(path));
+            string savePath = Path.Combine(CacheLocation, Path.GetFileNameWithoutExtension(path) + Path.GetExtension(path));
             int i = 2;
-            while (File.Exists(savePath))
+            while (FileAccessor.Exists(savePath))
             {
-                savePath = Path.Combine(cacheLocation, Path.GetFileNameWithoutExtension(path) + i.ToString() + Path.GetExtension(path));
+                savePath = Path.Combine(CacheLocation, Path.GetFileNameWithoutExtension(path) + i.ToString() + Path.GetExtension(path));
                 i++;
             }
 
             WebResponse<string> fileRequestResponse = await ContentLoader.LoadAsync(path);
             if (fileRequestResponse.Successful)
             {
-                File.WriteAllText(savePath, fileRequestResponse.Content);
+                FileAccessor.WriteAllText(savePath, fileRequestResponse.Content);
                 //save in dictonary
-                if (useSafeMode)
+                if (UseSafeMode)
                 {
-                    cacheContent[path] = new CacheEntry(savePath, CalculateMD5Hash(savePath), DateTime.Now);
+                    cacheContent[path] = new CacheEntry(savePath, FileHasher.CalculateMD5Hash(savePath), DateTime.Now);
                 }
                 else
                 {
@@ -171,6 +184,7 @@ namespace i5.Toolkit.Core.Caching
             }
             else
             {
+                Debug.LogError("Could not retrieve file\n" + fileRequestResponse.ErrorMessage);
                 return string.Empty;
             }
         }
@@ -179,14 +193,14 @@ namespace i5.Toolkit.Core.Caching
         {
             if (cacheContent.TryGetValue(path, out CacheEntry entry))
             {
-                if (useSafeMode && File.Exists(entry.localFileName) && (CalculateMD5Hash(entry.localFileName) == entry.fileHash) && (entry.CacheDate >= DateTime.Now.AddDays(-1 * daysValid)))
+                if (UseSafeMode && FileAccessor.Exists(entry.localFileName) && (FileHasher.CalculateMD5Hash(entry.localFileName) == entry.fileHash) && (entry.CacheDate >= DateTime.Now.AddDays(-1 * DaysValid)))
                 {
                     return true;
                 }
 
-                if (!useSafeMode && File.Exists(entry.localFileName) && (entry.CacheDate >= DateTime.Now.AddDays(-1 * daysValid)))
+                if (!UseSafeMode && FileAccessor.Exists(entry.localFileName) && (entry.CacheDate >= DateTime.Now.AddDays(-1 * DaysValid)))
                 {
-                    return File.Exists(entry.localFileName);
+                    return FileAccessor.Exists(entry.localFileName);
                 }
             }
             return false;
@@ -197,12 +211,12 @@ namespace i5.Toolkit.Core.Caching
             CacheEntry entry;
             if (cacheContent.TryGetValue(path, out entry))
             {
-                if (useSafeMode && File.Exists(entry.localFileName) && (CalculateMD5Hash(entry.localFileName) == entry.fileHash) && (entry.CacheDate >= DateTime.Now.AddDays(-1 * daysValid)))
+                if (UseSafeMode && FileAccessor.Exists(entry.localFileName) && (FileHasher.CalculateMD5Hash(entry.localFileName) == entry.fileHash) && (entry.CacheDate >= DateTime.Now.AddDays(-1 * DaysValid)))
                 {
                     i5Debug.Log("Cache hit", this);
                     return entry.localFileName;
                 }
-                if (!useSafeMode && File.Exists(entry.localFileName) && (entry.CacheDate >= DateTime.Now.AddDays(-1 * daysValid)))
+                if (!UseSafeMode && FileAccessor.Exists(entry.localFileName) && (entry.CacheDate >= DateTime.Now.AddDays(-1 * DaysValid)))
                 {
                     i5Debug.Log("Cache hit", this);
                     return entry.localFileName;
@@ -212,23 +226,6 @@ namespace i5.Toolkit.Core.Caching
             else
             {
                 return "";
-            }
-        }
-
-        /// <summary>
-        /// Calculates a hash for the given file
-        /// </summary>
-        /// <param name="filePath">The path to the file</param>
-        /// <returns>Returns the MD5 hash of the given file</returns>
-        private string CalculateMD5Hash(string filePath)
-        {
-            using (var md5 = MD5.Create())
-            {
-                using (var stream = File.OpenRead(filePath))
-                {
-                    var hash = md5.ComputeHash(stream);
-                    return BitConverter.ToString(hash).Replace("-", "").ToLowerInvariant();
-                }
             }
         }
     }

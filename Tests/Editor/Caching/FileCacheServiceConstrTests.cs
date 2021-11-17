@@ -9,7 +9,7 @@ using UnityEngine.TestTools;
 
 namespace i5.Toolkit.Core.Tests.Caching
 {
-    public class FileCacheConstrTests
+    public class FileCacheServiceConstrTests
     {
         [SetUp]
         public void SetUp()

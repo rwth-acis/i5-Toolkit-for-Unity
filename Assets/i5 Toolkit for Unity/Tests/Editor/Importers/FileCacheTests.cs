@@ -1,132 +1,141 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using FakeItEasy;
+using i5.Toolkit.Core.Caching;
+using i5.Toolkit.Core.Editor.TestHelpers;
+using i5.Toolkit.Core.Experimental.SystemAdapters;
+using i5.Toolkit.Core.ServiceCore;
+using i5.Toolkit.Core.TestHelpers;
+using i5.Toolkit.Core.Utilities;
+using i5.Toolkit.Core.Utilities.ContentLoaders;
 using NUnit.Framework;
+using System.Collections;
+using System.IO;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.TestTools;
-using FakeItEasy;
-using i5.Toolkit.Core.Editor.TestHelpers;
-using i5.Toolkit.Core.ModelImporters;
-using i5.Toolkit.Core.ServiceCore;
-using System.Threading.Tasks;
-using i5.Toolkit.Core.TestHelpers;
-using i5.Toolkit.Core.Caching;
 
 namespace i5.Toolkit.Core.Tests.Caching
 {
     public class FileCacheTests
     {
+        private FileCacheService fileCache;
+
+        private const string expectedContent = "content";
+        private const string url = "https://test.org/myfile.obj";
+
         /// <summary>
         /// Resets the scene to the standard test scene before executed each test
         /// </summary>
         [SetUp]
-        public void ResetScene()
+        public void SetUp()
         {
             EditModeTestUtilities.ResetScene();
+
+            fileCache = new FileCacheService();
+            IServiceManager serviceManager = A.Fake<IServiceManager>();
+            fileCache.Initialize(serviceManager);
+
+            fileCache.FileAccessor = A.Fake<IFileAccessor>();
+            fileCache.DirectoryAccessor = A.Fake<IDirectoryAccessor>();
+            fileCache.ContentLoader = A.Fake<IContentLoader<string>>();
+            A.CallTo(() => fileCache.ContentLoader.LoadAsync(A<string>.Ignored))
+                .Returns(Task.FromResult(new WebResponse<string>(expectedContent, null, 200)));
+            fileCache.FileHasher = A.Fake<IFileHasher>();
+            A.CallTo(() => fileCache.FileHasher.CalculateMD5Hash(A<string>.Ignored)).Returns("myhash");
         }
 
         /// <summary>
-        /// Check that the file cache is empty when being initialized with default values.
+        /// Checks that the file cache is empty when being initialized with default values.
         /// </summary>
         [Test]
-        public void FileCache_Initializes_With_Empty_Cache_Default()
+        public void Initialize_WithEmptyCache_DefaultValue()
         {
-            FileCacheService fileCache = new FileCacheService();
-            IServiceManager serviceManager = A.Fake<IServiceManager>();
-            fileCache.Initialize(serviceManager);
             Assert.NotNull(fileCache);
             Assert.IsTrue(fileCache.FileCount == 0);
         }
 
         /// <summary>
-        /// Check that loading a file from the web works.
+        /// Checks that the correct path is returned.
         /// </summary>
         /// <returns></returns>
         [UnityTest]
-        public IEnumerator AddOrUpdateInCache_Load_Web_File()
+        public IEnumerator AddOrUpdateInCache_LoadWebFile_ReturnsPath()
         {
-            FileCacheService fileCache = new FileCacheService();
-            IServiceManager serviceManager = A.Fake<IServiceManager>();
-            fileCache.Initialize(serviceManager);
+            string url = "https://test.org/myfile.obj";
 
-            Task<string> task = fileCache.AddOrUpdateInCache("https://people.sc.fsu.edu/~jburkardt/data/obj/airboat.obj");
+            Task<string> task = fileCache.AddOrUpdateInCache(url);
 
             yield return AsyncTest.WaitForTask(task);
 
             string res = task.Result;
 
-            Assert.AreNotEqual(res, "");
-            FileAssert.Exists(res);
+            Assert.AreEqual(Path.Combine(Application.temporaryCachePath, "myfile.obj"), res);
         }
 
         /// <summary>
-        /// Checks that empty string is retuned when the given file does not exist.
+        /// Checks that the file is written to storage
         /// </summary>
         /// <returns></returns>
         [UnityTest]
-        public IEnumerator AddOrUpdateInCache_Returns_Empty_String_When_File_Not_Exist()
+        public IEnumerator AddOrUpdateInCache_LoadWebFile_WritesFile()
         {
-            FileCacheService fileCache = new FileCacheService();
-            IServiceManager serviceManager = A.Fake<IServiceManager>();
-            fileCache.Initialize(serviceManager);
-
-            LogAssert.Expect(LogType.Error, "[i5.Toolkit.Core.Utilities.ContentLoaders.UnityWebRequestLoader] Get request to: notcorrectadress returned with error Cannot connect to destination host");
-            Task<string> task = fileCache.AddOrUpdateInCache("notcorrectadress");
+            Task<string> task = fileCache.AddOrUpdateInCache(url);
 
             yield return AsyncTest.WaitForTask(task);
 
             string res = task.Result;
 
-            Assert.IsTrue(res == "");
-            
+            A.CallTo(() => fileCache.FileAccessor.WriteAllText(res, expectedContent)).MustHaveHappenedOnceExactly();
         }
 
         /// <summary>
-        /// Check that the isFileinCache function detects files that were loaded before
+        /// Checks that empty string is retuned when the given file cannot be retrieved
         /// </summary>
         /// <returns></returns>
         [UnityTest]
-        public IEnumerator isFileInCache_True_when_loaded()
+        public IEnumerator AddOrUpdateInCache_WebError_ReturnsEmptyPath()
         {
-            FileCacheService fileCache = new FileCacheService();
-            IServiceManager serviceManager = A.Fake<IServiceManager>();
-            fileCache.Initialize(serviceManager);
+            LogAssert.Expect(LogType.Error, new Regex(@"\w*Could not retrieve file\w*"));
 
-            Task<string> task = fileCache.AddOrUpdateInCache("https://people.sc.fsu.edu/~jburkardt/data/obj/airboat.obj");
+            A.CallTo(() => fileCache.ContentLoader.LoadAsync(A<string>.Ignored))
+                .Returns(Task.FromResult(new WebResponse<string>("myerror", 400)));
+
+            Task<string> task = fileCache.AddOrUpdateInCache(url);
 
             yield return AsyncTest.WaitForTask(task);
 
-            Assert.IsTrue(fileCache.IsFileInCache("https://people.sc.fsu.edu/~jburkardt/data/obj/airboat.obj"));
+            string res = task.Result;
+
+            Assert.IsTrue(string.IsNullOrEmpty(res));
         }
 
         /// <summary>
-        /// Check that the isFileinCache function detects when a files was not loaded before
+        /// Check that the IsFileinCache function detects files that were loaded before
         /// </summary>
         /// <returns></returns>
         [UnityTest]
-        public IEnumerator isFileInCache_Fasle_when_not_loaded()
+        public IEnumerator IsFileInCache_FileExists_ReturnsTrue()
         {
-            FileCacheService fileCache = new FileCacheService();
-            IServiceManager serviceManager = A.Fake<IServiceManager>();
-            fileCache.Initialize(serviceManager);
-
-            Task<string> task = fileCache.AddOrUpdateInCache("https://people.sc.fsu.edu/~jburkardt/data/obj/airboat.obj");
+            Task<string> task = fileCache.AddOrUpdateInCache(url);
 
             yield return AsyncTest.WaitForTask(task);
 
-            Assert.IsFalse(fileCache.IsFileInCache("other.obj"));
+            string path = task.Result;
+
+            // fake that the file is saved
+            A.CallTo(() => fileCache.FileAccessor.Exists(path)).Returns(true);
+
+            Assert.IsTrue(fileCache.IsFileInCache(url));
         }
 
         /// <summary>
-        /// Check that the isFileinCache function detects when no files were ever loaded before
+        /// Check that the IsFileinCache function detects when a files was not loaded before
         /// </summary>
         /// <returns></returns>
         [Test]
-        public void isFileInCache_Fasle_when_nothing_loaded()
+        public void IsFileInCache_FileDoesNotExist_ReturnsFalse()
         {
-            FileCacheService fileCache = new FileCacheService();
-            IServiceManager serviceManager = A.Fake<IServiceManager>();
-            fileCache.Initialize(serviceManager);
-
+            Assert.IsFalse(fileCache.IsFileInCache(url));
             Assert.IsFalse(fileCache.IsFileInCache("other.obj"));
         }
     }

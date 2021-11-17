@@ -191,42 +191,25 @@ namespace i5.Toolkit.Core.Caching
 
         public bool IsFileInCache(string path)
         {
-            if (cacheContent.TryGetValue(path, out CacheEntry entry))
-            {
-                if (UseSafeMode && FileAccessor.Exists(entry.localFileName) && (FileHasher.CalculateMD5Hash(entry.localFileName) == entry.fileHash) && (entry.CacheDate >= DateTime.Now.AddDays(-1 * DaysValid)))
-                {
-                    return true;
-                }
-
-                if (!UseSafeMode && FileAccessor.Exists(entry.localFileName) && (entry.CacheDate >= DateTime.Now.AddDays(-1 * DaysValid)))
-                {
-                    return FileAccessor.Exists(entry.localFileName);
-                }
-            }
-            return false;
+            return !string.IsNullOrEmpty(GetCachedFileLocation(path));
         }
 
         public string GetCachedFileLocation(string path)
         {
-            CacheEntry entry;
-            if (cacheContent.TryGetValue(path, out entry))
+            if (cacheContent.TryGetValue(path, out CacheEntry entry))
             {
-                if (UseSafeMode && FileAccessor.Exists(entry.localFileName) && (FileHasher.CalculateMD5Hash(entry.localFileName) == entry.fileHash) && (entry.CacheDate >= DateTime.Now.AddDays(-1 * DaysValid)))
+                bool fileExists = FileAccessor.Exists(entry.localFileName);
+                bool entryStillValid = entry.CacheDate >= DateTime.Now.AddDays(-1 * DaysValid);
+                bool hashMatches = !UseSafeMode || (FileHasher.CalculateMD5Hash(entry.localFileName) == entry.fileHash);
+
+                if (fileExists && entryStillValid && hashMatches)
                 {
                     i5Debug.Log("Cache hit", this);
                     return entry.localFileName;
                 }
-                if (!UseSafeMode && FileAccessor.Exists(entry.localFileName) && (entry.CacheDate >= DateTime.Now.AddDays(-1 * DaysValid)))
-                {
-                    i5Debug.Log("Cache hit", this);
-                    return entry.localFileName;
-                }
-                return "";
             }
-            else
-            {
-                return "";
-            }
+
+            return "";
         }
     }
 }

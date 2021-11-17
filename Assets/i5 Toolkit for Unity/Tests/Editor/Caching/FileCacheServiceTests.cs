@@ -159,7 +159,7 @@ namespace i5.Toolkit.Core.Tests.Caching
         [UnityTest]
         public IEnumerator Cleanup_NotPersistent_DeletesFiles()
         {
-            Task<string> task = fileCache.AddOrUpdateInCache("https://test.org/myfile.obj");
+            Task<string> task = fileCache.AddOrUpdateInCache(url);
 
             yield return AsyncTest.WaitForTask(task);
 
@@ -175,11 +175,31 @@ namespace i5.Toolkit.Core.Tests.Caching
 
             A.CallTo(() => fileCache.FileAccessor.Delete(A<string>.Ignored)).Throws<IOException>();
 
-            Task<string> task = fileCache.AddOrUpdateInCache("https://test.org/myfile.obj");
+            Task<string> task = fileCache.AddOrUpdateInCache(url);
 
             yield return AsyncTest.WaitForTask(task);
 
             fileCache.Cleanup();
+        }
+
+        [Test]
+        public void GetCachedFileLocation_NotFound_ReturnsEmptyString()
+        {
+            Assert.IsTrue(string.IsNullOrEmpty(fileCache.GetCachedFileLocation(url)));
+        }
+
+        [UnityTest]
+        public IEnumerator GetCachedFileLocation_Found_Correct()
+        {
+            Task<string> task = fileCache.AddOrUpdateInCache(url);
+
+            yield return AsyncTest.WaitForTask(task);
+
+            A.CallTo(() => fileCache.FileAccessor.Exists(task.Result)).Returns(true);
+
+            string result = fileCache.GetCachedFileLocation(url);
+
+            Assert.AreEqual(task.Result, result);
         }
     }
 }

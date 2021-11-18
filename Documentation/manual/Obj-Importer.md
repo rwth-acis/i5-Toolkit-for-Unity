@@ -65,18 +65,18 @@ After that, exchange the <xref:i5.Toolkit.Core.ModelImporters.ObjImporter.Conten
 
 ```[C#]
 void Start()
-    {
-        //Register the file cache
-        FileCacheService objCache = new FileCacheService();
-        ServiceManager.RegisterService(objCache);
+{
+    //Register the file cache
+    FileCacheService objCache = new FileCacheService();
+    ServiceManager.RegisterService(objCache);
 
-        //Register the object importer; set its content loader to the cache aware loader
-        ObjImporter importer = new ObjImporter();
-        importer.ContentLoader = new CacheAwareContentLoader();
-        ServiceManager.RegisterService(importer);
+    //Register the object importer; set its content loader to the cache aware loader
+    ObjImporter importer = new ObjImporter();
+    importer.ContentLoader = new CacheAwareContentLoader();
+    ServiceManager.RegisterService(importer);
 
-        //then use the normal ImportAsync(url) method to import objects
-    }
+    //then use the normal ImportAsync(url) method to import objects
+}
 ```
 This code example above uses the default settings of the <xref:i5.Toolkit.Core.Caching.FileCacheService>.
 To see how to specify the behaviour of the file cache, please, use the [File Cache](File-Cache.md) documentation.

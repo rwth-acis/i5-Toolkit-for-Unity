@@ -31,11 +31,13 @@ There are four settings that can be configured when initializing a <xref:i5.Tool
   The default value is `false`.
 - The parameter `useSafeMode` activates the check of a MD5 checksum before loading a file from cache.
   It ensures that cached files cannot be swapped out as their checksum will change.
-  The default value is `false`.
+  The default value is `true`.
 - With the parameter `cacheLocationOverride` one can set a different location to store the cache data in.
   The default value is `null`.
 - The parameter `daysValid` sets the threshold for how old a file is alowed to be until it should not be used any more by the cache.
   The default is 365 days.
+- The parameter `directoryAccessor` can be used to configure how the file directories are accessed.
+  In a productive environment, it is advised to leave this option untouched but it can e.g. be used in tests to fake a directory system.
 
 All those parameters can be set when initializing the file cache:
 
@@ -91,4 +93,4 @@ private async void Update()
 
 When hitting F5 the second time, the <xref:i5.Toolkit.Core.Caching.CacheAwareContentLoader> will use the cached file and therefore load it faster.
 
-Another usage example can be found in the documentation of the [Obj Importer](Obj-Importer.md).
+Another usage example can be found in the documentation of the [Obj Importer](Obj-Importer.md) and in the example scene of the Obj Importer.

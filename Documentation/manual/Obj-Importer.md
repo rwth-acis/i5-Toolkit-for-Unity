@@ -78,7 +78,8 @@ void Start()
         //then use the normal ImportAsync(url) method to import objects
     }
 ```
-This code example above uses the default settings of the File Cache. To see how to specify the behaviour of the File Cache please use the File Cache documentation.
+This code example above uses the default settings of the <xref:i5.Toolkit.Core.Caching.FileCacheService>.
+To see how to specify the behaviour of the file cache, please, use the [File Cache](File-Cache.md) documentation.
 
 ## Example Scene
 

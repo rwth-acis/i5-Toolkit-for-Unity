@@ -26,7 +26,7 @@ namespace i5.Toolkit.Core.ModelImporters
         /// <summary>
         /// instance of the MtlLibrary
         /// </summary>
-        public IMtlLibrary MtlLibrary { get; private set; }
+        public IMtlLibrary MtlLibrary { get; private set; } = new MtlLibrary();
 
         /// <summary>
         /// If set to true, additional information, e.g. comments in the .obj file, are logged
@@ -43,7 +43,10 @@ namespace i5.Toolkit.Core.ModelImporters
             {
                 contentLoader = value;
                 // also update content loader of mtl library, so that they use the same
-                MtlLibrary.ContentLoader = value;
+                if (MtlLibrary != null)
+                {
+                    MtlLibrary.ContentLoader = value;
+                }
             }
         }
 
@@ -53,8 +56,6 @@ namespace i5.Toolkit.Core.ModelImporters
         /// <param name="owner">The service manager that owns this service</param>
         public void Initialize(IServiceManager owner)
         {
-            MtlLibrary = new MtlLibrary();
-
             // initialize the content loader
             if (ContentLoader == null)
             {

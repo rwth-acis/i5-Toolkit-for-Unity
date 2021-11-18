@@ -22,19 +22,24 @@ The i5 Toolkit provides a series of modules and features that can be used in pro
         <td><a href="https://rwth-acis.github.io/i5-Toolkit-for-Unity/1.6.4/manual/Experience-API.html"><img src="Documentation/resources/Logos/ExperienceAPI.svg" alt="Experience API" style="width:200px"/><br/>Experience API</a></td>
     </tr>
     <tr>
+        <td><a href="https://rwth-acis.github.io/i5-Toolkit-for-Unity/1.6.4/manual/File-Cache.html"><img src="Documentation/resources/Logos/FileCache.svg" alt="File Cache" style="width:200px"/><br/>File Cache</a></td>
         <td><a href="https://rwth-acis.github.io/i5-Toolkit-for-Unity/1.6.4/manual/Modified-3D-Objects.html"><img src="Documentation/resources/Logos/RoundedCorners.svg" alt="Modified 3D Objects" style="width:200px"/><br/>Modified 3D Models</a></td>
         <td><a href="https://rwth-acis.github.io/i5-Toolkit-for-Unity/1.6.4/manual/Object-Pool.html"><img src="Documentation/resources/Logos/ObjectPool.svg" alt="Object Pool" style="width:200px"/><br/>Object Pool</a></td>
-        <td><a href="https://rwth-acis.github.io/i5-Toolkit-for-Unity/1.6.4/manual/Obj-Importer.html"><img src="Documentation/resources/Logos/ObjImporter.svg" alt="Obj Importer" style="width:200px"/><br/>Obj Importer</a></td>
     </tr>
     <tr>
+        <td><a href="https://rwth-acis.github.io/i5-Toolkit-for-Unity/1.6.4/manual/Obj-Importer.html"><img src="Documentation/resources/Logos/ObjImporter.svg" alt="Obj Importer" style="width:200px"/><br/>Obj Importer</a></td>
         <td><a href="https://rwth-acis.github.io/i5-Toolkit-for-Unity/1.6.4/manual/OpenID-Connect-Client.html"><img src="Documentation/resources/Logos/OpenIDConnectClient.svg" alt="OpenID Connect Client" style="width:200px"/><br/>OpenID Connect Client</a></td>
         <td><a href="https://rwth-acis.github.io/i5-Toolkit-for-Unity/1.6.4/manual/Procedural-Geometry.html"><img src="Documentation/resources/Logos/ProceduralGeometry.svg" alt="Procedural Geometry" style="width:200px"/><br/>Procedural Geometry</a></td>
-        <td><a href="https://rwth-acis.github.io/i5-Toolkit-for-Unity/1.6.4/manual/Scene-Documentation.html"><img src="Documentation/resources/Logos/SceneDocumentation.svg" alt="Scene Documentation" style="width:200px"/><br/>Scene Documentation</a></td>
     </tr>
     <tr>
+        <td><a href="https://rwth-acis.github.io/i5-Toolkit-for-Unity/1.6.4/manual/Scene-Documentation.html"><img src="Documentation/resources/Logos/SceneDocumentation.svg" alt="Scene Documentation" style="width:200px"/><br/>Scene Documentation</a></td>
         <td><a href="https://rwth-acis.github.io/i5-Toolkit-for-Unity/1.6.4/manual/Service-Core.html"><img src="Documentation/resources/Logos/ServiceCore.svg" alt="Service Core" style="width:200px"/><br/>Service Core</a></td>
         <td><a href="https://rwth-acis.github.io/i5-Toolkit-for-Unity/1.6.4/manual/Spawner.html"><img src="Documentation/resources/Logos/Spawner.svg" alt="Spawner" style="width:200px"/><br/>Spawner</a></td>
+    </tr>
+    <tr>
         <td><a href="https://rwth-acis.github.io/i5-Toolkit-for-Unity/1.6.4/manual/Version-Tool.html"><img src="Documentation/resources/Logos/Version-Tool.svg" alt="Version Tool" style="width:200px"/><br/>Version Tool</a></td>
+        <td></td>
+        <td></td>
     </tr>
 </table>
 

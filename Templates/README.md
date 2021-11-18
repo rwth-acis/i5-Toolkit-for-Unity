@@ -22,29 +22,24 @@ The i5 Toolkit provides a series of modules and features that can be used in pro
         <td><a href="${docPath}manual/Experience-API.${docExtension}"><img src="${docImgPath}resources/Logos/ExperienceAPI.svg" alt="Experience API" style="width:200px"/><br/>Experience API</a></td>
     </tr>
     <tr>
+        <td><a href="${docPath}manual/File-Cache.${docExtension}"><img src="${docImgPath}resources/Logos/FileCache.svg" alt="File Cache" style="width:200px"/><br/>File Cache</a></td>
         <td><a href="${docPath}manual/Modified-3D-Objects.${docExtension}"><img src="${docImgPath}resources/Logos/RoundedCorners.svg" alt="Modified 3D Objects" style="width:200px"/><br/>Modified 3D Models</a></td>
         <td><a href="${docPath}manual/Object-Pool.${docExtension}"><img src="${docImgPath}resources/Logos/ObjectPool.svg" alt="Object Pool" style="width:200px"/><br/>Object Pool</a></td>
-        <td><a href="${docPath}manual/Obj-Importer.${docExtension}"><img src="${docImgPath}resources/Logos/ObjImporter.svg" alt="Obj Importer" style="width:200px"/><br/>Obj Importer</a></td>
     </tr>
     <tr>
+        <td><a href="${docPath}manual/Obj-Importer.${docExtension}"><img src="${docImgPath}resources/Logos/ObjImporter.svg" alt="Obj Importer" style="width:200px"/><br/>Obj Importer</a></td>
         <td><a href="${docPath}manual/OpenID-Connect-Client.${docExtension}"><img src="${docImgPath}resources/Logos/OpenIDConnectClient.svg" alt="OpenID Connect Client" style="width:200px"/><br/>OpenID Connect Client</a></td>
         <td><a href="${docPath}manual/Procedural-Geometry.${docExtension}"><img src="${docImgPath}resources/Logos/ProceduralGeometry.svg" alt="Procedural Geometry" style="width:200px"/><br/>Procedural Geometry</a></td>
-        <td><a href="${docPath}manual/Scene-Documentation.${docExtension}"><img src="${docImgPath}resources/Logos/SceneDocumentation.svg" alt="Scene Documentation" style="width:200px"/><br/>Scene Documentation</a></td>
     </tr>
     <tr>
+        <td><a href="${docPath}manual/Scene-Documentation.${docExtension}"><img src="${docImgPath}resources/Logos/SceneDocumentation.svg" alt="Scene Documentation" style="width:200px"/><br/>Scene Documentation</a></td>
         <td><a href="${docPath}manual/Service-Core.${docExtension}"><img src="${docImgPath}resources/Logos/ServiceCore.svg" alt="Service Core" style="width:200px"/><br/>Service Core</a></td>
         <td><a href="${docPath}manual/Spawner.${docExtension}"><img src="${docImgPath}resources/Logos/Spawner.svg" alt="Spawner" style="width:200px"/><br/>Spawner</a></td>
+    </tr>
+    <tr>
         <td><a href="${docPath}manual/Version-Tool.${docExtension}"><img src="${docImgPath}resources/Logos/Version-Tool.svg" alt="Version Tool" style="width:200px"/><br/>Version Tool</a></td>
-    </tr>
-    <tr>
-         <td><a href="manual/Service-Core.md"><img src="resources/Logos/ServiceCore.svg" alt="Service Core" style="width:200px"/><br/>Service Core</a></td>
-         <td><a href="manual/Spawner.md"><img src="resources/Logos/Spawner.svg" alt="Spawner" style="width:200px"/><br/>Spawner</a></td>
-         <td><a href="manual/Version-Tool.md"><img src="resources/Logos/Version-Tool.svg" alt="Version Tool" style="width:200px"/><br/>Version Tool</a></td>
-    </tr>
-    <tr>
-         <td><a href="${docPath}/manual/File-Cache.${docExtension}"><img src="${docImgPath}resources/Logos/FileCache.svg" alt="File Cache" style="width:200px"/><br/>File Cache</a></td>
-         <td></td>
-         <td></td>
+        <td></td>
+        <td></td>
     </tr>
 </table>
 

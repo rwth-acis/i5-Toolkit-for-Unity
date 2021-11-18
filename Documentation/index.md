@@ -22,29 +22,24 @@ The i5 Toolkit provides a series of modules and features that can be used in pro
         <td><a href="manual/Experience-API.md"><img src="resources/Logos/ExperienceAPI.svg" alt="Experience API" style="width:200px"/><br/>Experience API</a></td>
     </tr>
     <tr>
+        <td><a href="manual/File-Cache.md"><img src="resources/Logos/FileCache.svg" alt="File Cache" style="width:200px"/><br/>File Cache</a></td>
         <td><a href="manual/Modified-3D-Objects.md"><img src="resources/Logos/RoundedCorners.svg" alt="Modified 3D Objects" style="width:200px"/><br/>Modified 3D Models</a></td>
         <td><a href="manual/Object-Pool.md"><img src="resources/Logos/ObjectPool.svg" alt="Object Pool" style="width:200px"/><br/>Object Pool</a></td>
-        <td><a href="manual/Obj-Importer.md"><img src="resources/Logos/ObjImporter.svg" alt="Obj Importer" style="width:200px"/><br/>Obj Importer</a></td>
     </tr>
     <tr>
+        <td><a href="manual/Obj-Importer.md"><img src="resources/Logos/ObjImporter.svg" alt="Obj Importer" style="width:200px"/><br/>Obj Importer</a></td>
         <td><a href="manual/OpenID-Connect-Client.md"><img src="resources/Logos/OpenIDConnectClient.svg" alt="OpenID Connect Client" style="width:200px"/><br/>OpenID Connect Client</a></td>
         <td><a href="manual/Procedural-Geometry.md"><img src="resources/Logos/ProceduralGeometry.svg" alt="Procedural Geometry" style="width:200px"/><br/>Procedural Geometry</a></td>
-        <td><a href="manual/Scene-Documentation.md"><img src="resources/Logos/SceneDocumentation.svg" alt="Scene Documentation" style="width:200px"/><br/>Scene Documentation</a></td>
     </tr>
     <tr>
+        <td><a href="manual/Scene-Documentation.md"><img src="resources/Logos/SceneDocumentation.svg" alt="Scene Documentation" style="width:200px"/><br/>Scene Documentation</a></td>
         <td><a href="manual/Service-Core.md"><img src="resources/Logos/ServiceCore.svg" alt="Service Core" style="width:200px"/><br/>Service Core</a></td>
         <td><a href="manual/Spawner.md"><img src="resources/Logos/Spawner.svg" alt="Spawner" style="width:200px"/><br/>Spawner</a></td>
+    </tr>
+    <tr>
         <td><a href="manual/Version-Tool.md"><img src="resources/Logos/Version-Tool.svg" alt="Version Tool" style="width:200px"/><br/>Version Tool</a></td>
-    </tr>
-    <tr>
-         <td><a href="manual/Service-Core.md"><img src="resources/Logos/ServiceCore.svg" alt="Service Core" style="width:200px"/><br/>Service Core</a></td>
-         <td><a href="manual/Spawner.md"><img src="resources/Logos/Spawner.svg" alt="Spawner" style="width:200px"/><br/>Spawner</a></td>
-         <td><a href="manual/Version-Tool.md"><img src="resources/Logos/Version-Tool.svg" alt="Version Tool" style="width:200px"/><br/>Version Tool</a></td>
-    </tr>
-    <tr>
-         <td><a href="/manual/File-Cache.md"><img src="resources/Logos/FileCache.svg" alt="File Cache" style="width:200px"/><br/>File Cache</a></td>
-         <td></td>
-         <td></td>
+        <td></td>
+        <td></td>
     </tr>
 </table>
 

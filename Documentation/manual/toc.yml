@@ -4,6 +4,8 @@
   href: Deep-Linking.md
 - name: Experience API
   href: Experience-API.md
+- name: File Cache
+  href: File-Cache.md
 - name: Modified 3D Objects
   href: Modified-3D-Objects.md
 - name: Object Pool

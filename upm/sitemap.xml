@@ -2,1231 +2,1231 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.AppConsole.ActivationVisibilityManager.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.AppConsole.AutoScroller.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.AppConsole.AutoScrollerBehaviour.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.AppConsole.Console.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.AppConsole.ConsoleUI.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.AppConsole.ConsoleUIBehaviour.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.AppConsole.DefaultConsoleFormatter.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.AppConsole.IConsole.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.AppConsole.ILogColorFormatter.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.AppConsole.ILogFormatter.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.AppConsole.ILogMessage.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.AppConsole.IVisibilityManager.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.AppConsole.LogColorFormatterConfiguration.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.AppConsole.LogFormatterConfiguration.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.AppConsole.LogMessage.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.AppConsole.TextConsoleUI.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.AppConsole.TextMeshProUGUIConsoleUI.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.AppConsole.TMPLogColorFormatter.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.AppConsole.TMPLogColorFormatterConfiguration.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.AppConsole.VisibilityManager.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.AppConsole.VisibilitySetter.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.AppConsole.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.Caching.CacheAwareContentLoader.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.Caching.CacheEntry.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.Caching.FileCacheService.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.Caching.FileHasher.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.Caching.IFileCache.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.Caching.IFileHasher.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.Caching.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.DeepLinkAPI.DeepLinkArgs.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.DeepLinkAPI.DeepLinkAttribute.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.DeepLinkAPI.DeepLinkingService.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.DeepLinkAPI.IDeepLinkingService.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.DeepLinkAPI.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.Editor.TestHelpers.EditModeTestUtilities.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.Editor.TestHelpers.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.ExperienceAPI.Actor.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.ExperienceAPI.Context.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.ExperienceAPI.ExperienceAPIClient.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.ExperienceAPI.Result.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.ExperienceAPI.Statement.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.ExperienceAPI.Verb.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.ExperienceAPI.XApiObject.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.ExperienceAPI.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.Experimental.NotificationSystem.INotificationMessage.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.Experimental.NotificationSystem.INotificationService.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.Experimental.NotificationSystem.NotificationMessage.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.Experimental.NotificationSystem.NotificationService.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.Experimental.NotificationSystem.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.Experimental.SystemAdapters.DirectoryAccessorAdapter.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.Experimental.SystemAdapters.FileAccessorAdapter.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.Experimental.SystemAdapters.IDirectoryAccessor.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.Experimental.SystemAdapters.IFileAccessor.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.Experimental.SystemAdapters.ISystemEnvironment.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.Experimental.SystemAdapters.SystemEnvironmentAdapter.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.Experimental.SystemAdapters.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.Experimental.UnityAdapters.ApplicationAdapter.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.Experimental.UnityAdapters.BoxColliderAdapter.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.Experimental.UnityAdapters.GameObjectAdapter.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.Experimental.UnityAdapters.IActivateable.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.Experimental.UnityAdapters.IApplication.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.Experimental.UnityAdapters.IBoxVolume.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.Experimental.UnityAdapters.IRectangle.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.Experimental.UnityAdapters.ISceneManager.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.Experimental.UnityAdapters.IScrollView.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.Experimental.UnityAdapters.ITextDisplay.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.Experimental.UnityAdapters.ITransformable.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.Experimental.UnityAdapters.RectTransformAdapter.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.Experimental.UnityAdapters.SceneManagerAdapter.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.Experimental.UnityAdapters.ScrollRectAdapter.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.Experimental.UnityAdapters.TextMeshProTextAdapter.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.Experimental.UnityAdapters.TextMeshProUGUITextAdapter.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.Experimental.UnityAdapters.TextMeshTextAdapter.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.Experimental.UnityAdapters.TransformAdapter.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.Experimental.UnityAdapters.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.ModelImporters.IMtlLibrary.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.ModelImporters.MtlLibrary.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.ModelImporters.ObjImporter.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.ModelImporters.ObjParseResult.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.ModelImporters.VertexData.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.ModelImporters.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.Modified3DObjects.RoundedCorners.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.Modified3DObjects.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.OpenIDConnectClient.AuthorizationFlow.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.OpenIDConnectClient.ClientData.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.OpenIDConnectClient.ClientDataObject.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.OpenIDConnectClient.GitHubAuthorizationFlowAnswer.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.OpenIDConnectClient.GitHubOidcProvider.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.OpenIDConnectClient.GitHubUserInfo.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.OpenIDConnectClient.IOidcProvider.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.OpenIDConnectClient.IRedirectServerListener.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.OpenIDConnectClient.IUserInfo.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.OpenIDConnectClient.LearningLayersAuthorizationFlowAnswer.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.OpenIDConnectClient.LearningLayersOidcProvider.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.OpenIDConnectClient.LearningLayersUserInfo.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectTester.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.OpenIDConnectClient.RedirectReceivedEventArgs.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.OpenIDConnectClient.RedirectServerListener.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.OpenIDConnectClient.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.ProceduralGeometry.GeometryConstructor.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.ProceduralGeometry.ITextureConstructor.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.ProceduralGeometry.MaterialConstructor.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.ProceduralGeometry.ObjectConstructor.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.ProceduralGeometry.TextureConstructor.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.ProceduralGeometry.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.SceneDocumentation.DocumentationObject.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.SceneDocumentation.DocumentationType.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.SceneDocumentation.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.ServiceCore.AsyncThreadedWorkerService-1.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.ServiceCore.BaseServiceBootstrapper.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.ServiceCore.IOperation.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.ServiceCore.IRunnerReceiver.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.ServiceCore.IService.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.ServiceCore.IServiceManager.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.ServiceCore.IUpdateableService.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.ServiceCore.Operation-1.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.ServiceCore.OperationStatus.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.ServiceCore.ServiceManager.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.ServiceCore.ServiceManagerRunner.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.ServiceCore.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.Spawners.Spawner.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.Spawners.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.TestHelpers.AsyncTest.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.TestHelpers.InvalidPlatformException.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.TestHelpers.PlayModeTestUtilities.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.TestHelpers.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.TestUtilities.FakeContentLoaderFactory.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.TestUtilities.TestObject.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.TestUtilities.TestUpdateService.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.TestUtilities.UIOperator.UiElementNotFoundException.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.TestUtilities.UIOperator.UiOperator.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.TestUtilities.UIOperator.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.TestUtilities.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.Utilities.Async.AwaiterExtensions.SimpleCoroutineAwaiter.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.Utilities.Async.AwaiterExtensions.SimpleCoroutineAwaiter-1.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.Utilities.Async.AwaiterExtensions.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.Utilities.Async.SyncContextUtility.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.Utilities.Async.WaitForBackgroundThread.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.Utilities.Async.WaitForUpdate.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.Utilities.Async.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.Utilities.Browser.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.Utilities.ComponentUtilities.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.Utilities.ConstantMovement.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.Utilities.ConstantRotation.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.Utilities.ContentLoaders.IContentLoader-1.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.Utilities.ContentLoaders.UnityTextureLoader.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.Utilities.ContentLoaders.UnityWebRequestLoader.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.Utilities.ContentLoaders.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.Utilities.ConversionUtils.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.Utilities.Exceptions.PlatformNotSupportedException.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.Utilities.Exceptions.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.Utilities.GameObjectUtils.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.Utilities.i5Debug.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.Utilities.IBrowser.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.Utilities.IJsonSerializer.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.Utilities.IRestConnector.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.Utilities.JsonArrayUtility.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.Utilities.JsonDictionaryUtility.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.Utilities.JsonUtilityAdapter.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.Utilities.NameValueCollectionExtensions.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.Utilities.ObjectBounds.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.Utilities.ObjectPool-1.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.Utilities.ParserUtils.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.Utilities.PathUtils.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.Utilities.PersistenceScene.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.Utilities.SpecialDebugMessages.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.Utilities.UnityWebRequestRestConnector.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.Utilities.UriUtils.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.Utilities.Vector3Extensions.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.Utilities.WebResponse-1.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.Utilities.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.VersionTool.GitEditorMenu.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.VersionTool.GitRunner.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.VersionTool.GitVersionBuildStep.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.VersionTool.GitVersionCalculator.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.VersionTool.IGitRunner.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.VersionTool.IGitVersionCalculator.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.VersionTool.PostBuildVersionCleanup.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.VersionTool.PreBuildVersioning.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.VersionTool.VersionCache.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.VersionTool.VersionUtilities.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/api/i5.Toolkit.Core.VersionTool.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/index.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/manual/App-Console.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/manual/Deep-Linking.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/manual/Experience-API.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/manual/File-Cache.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/manual/Modified-3D-Objects.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/manual/Object-Pool.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/manual/Obj-Importer.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/manual/OpenID-Connect-Client.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/manual/Procedural-Geometry.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/manual/Scene-Documentation.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/manual/Service-Core.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/manual/Spawner.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/manual/TestHelpers/Async-Test.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/manual/Utilities/Component-Utilities.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/manual/Utilities/Constant-Rotation.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/manual/Utilities/i5Debug.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/manual/Utilities/Json-Array-Utility.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/manual/Utilities/Json-Dictionary-Utility.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/manual/Utilities/Persistent-Scene.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/manual/Utilities/Unity-Adapters.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://localhost/manual/Version-Tool.html</loc>
-    <lastmod>2021-11-18T08:04:07+01:00</lastmod>
+    <lastmod>2021-11-18T08:22:16+01:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>

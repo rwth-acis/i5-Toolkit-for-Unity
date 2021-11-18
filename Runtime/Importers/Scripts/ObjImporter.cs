@@ -64,26 +64,6 @@ namespace i5.Toolkit.Core.ModelImporters
         }
 
         /// <summary>
-        /// Sets the ObjImporter up to use a FileChache if one is registered at the service manager.
-        /// </summary>
-        public void ActivateChache()
-        {
-            if (!ServiceManager.ServiceExists<FileCacheService>())
-            {
-                i5Debug.LogWarning("The chache of the ObjImporter is activated but there is no FileCache service registered yet.", this);
-            }
-            ContentLoader = new CacheAwareContentLoader(ServiceManager.GetService<FileCacheService>());
-        }
-
-        /// <summary>
-        /// Sets the ObjImporter up to not use a FileChache.
-        /// </summary>
-        public void DeactivateCache()
-        {
-            ContentLoader = new UnityWebRequestLoader();
-        }
-
-        /// <summary>
         /// Asynchronously imports the given .obj file from the specified url either from the local file system or the web.
         /// </summary>
         /// <param name="path">The path to the .obj file that is either stored online or on the local file system</param>

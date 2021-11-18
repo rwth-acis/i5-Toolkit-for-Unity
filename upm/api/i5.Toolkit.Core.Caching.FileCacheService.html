@@ -1,0 +1,639 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class FileCacheService
+   | i5 Toolkit Documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class FileCacheService
+   | i5 Toolkit Documentation ">
+    <meta name="generator" content="docfx 2.56.2.0">
+    
+    <link rel="shortcut icon" href="../resources/Logos/Logo_whiteBg.svg">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../resources/Logos/Logo_whiteBg.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="i5.Toolkit.Core.Caching.FileCacheService">
+  
+  
+  <h1 id="i5_Toolkit_Core_Caching_FileCacheService" data-uid="i5.Toolkit.Core.Caching.FileCacheService" class="text-break">Class FileCacheService
+  </h1>
+  <div class="markdown level0 summary"><p>Service for caching files locally so that they do not need to be downloaded repeatedly</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></div>
+    <div class="level1"><span class="xref">FileCacheService</span></div>
+  </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="i5.Toolkit.Core.Caching.IFileCache.html">IFileCache</a></div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="i5.Toolkit.Core.Caching.html">i5.Toolkit.Core.Caching</a></h6>
+  <h6><strong>Assembly</strong>: cs.temp.dll.dll</h6>
+  <h5 id="i5_Toolkit_Core_Caching_FileCacheService_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class FileCacheService : IService, IFileCache</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  
+  
+  <a id="i5_Toolkit_Core_Caching_FileCacheService__ctor_" data-uid="i5.Toolkit.Core.Caching.FileCacheService.#ctor*"></a>
+  <h4 id="i5_Toolkit_Core_Caching_FileCacheService__ctor_System_Boolean_System_Boolean_System_String_System_Single_IDirectoryAccessor_" data-uid="i5.Toolkit.Core.Caching.FileCacheService.#ctor(System.Boolean,System.Boolean,System.String,System.Single,IDirectoryAccessor)">FileCacheService(Boolean, Boolean, String, Single, IDirectoryAccessor)</h4>
+  <div class="markdown level1 summary"><p>Creates a new file cache service</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FileCacheService(bool sessionPersistence = false, bool useSafeMode = true, string cacheLocationOverride = null, float daysValid = 365F, IDirectoryAccessor directoryAccessor = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><span class="parametername">sessionPersistence</span></td>
+        <td><p>If true, the tracked cache is stored and recovered in future application startups</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><span class="parametername">useSafeMode</span></td>
+        <td><p>If true, files are hashed, meaning that cached content cannot be switched out by external influences</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">cacheLocationOverride</span></td>
+        <td><p>If set, the cache will be stored in the given place instead of the default path</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.single">Single</a></td>
+        <td><span class="parametername">daysValid</span></td>
+        <td><p>Number of days that an entry in the cache should stay valid before requiring a re-download</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">IDirectoryAccessor</span></td>
+        <td><span class="parametername">directoryAccessor</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="fields">Fields
+  </h3>
+  
+  
+  <h4 id="i5_Toolkit_Core_Caching_FileCacheService_persistentCacheFileName" data-uid="i5.Toolkit.Core.Caching.FileCacheService.persistentCacheFileName">persistentCacheFileName</h4>
+  <div class="markdown level1 summary"><p>The name under which the cache registry is stored</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string persistentCacheFileName = &quot;i5cache.json&quot;</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  
+  
+  <a id="i5_Toolkit_Core_Caching_FileCacheService_CacheLocation_" data-uid="i5.Toolkit.Core.Caching.FileCacheService.CacheLocation*"></a>
+  <h4 id="i5_Toolkit_Core_Caching_FileCacheService_CacheLocation" data-uid="i5.Toolkit.Core.Caching.FileCacheService.CacheLocation">CacheLocation</h4>
+  <div class="markdown level1 summary"><p>Points to the folder where the cached files are stored and where the cache registry can be found</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string CacheLocation { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="i5_Toolkit_Core_Caching_FileCacheService_ContentLoader_" data-uid="i5.Toolkit.Core.Caching.FileCacheService.ContentLoader*"></a>
+  <h4 id="i5_Toolkit_Core_Caching_FileCacheService_ContentLoader" data-uid="i5.Toolkit.Core.Caching.FileCacheService.ContentLoader">ContentLoader</h4>
+  <div class="markdown level1 summary"><p>Module that should be used for fetching the file&apos;s content</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IContentLoader&lt;string&gt; ContentLoader { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IContentLoader</span>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="i5_Toolkit_Core_Caching_FileCacheService_DaysValid_" data-uid="i5.Toolkit.Core.Caching.FileCacheService.DaysValid*"></a>
+  <h4 id="i5_Toolkit_Core_Caching_FileCacheService_DaysValid" data-uid="i5.Toolkit.Core.Caching.FileCacheService.DaysValid">DaysValid</h4>
+  <div class="markdown level1 summary"><p>The amount of days for which a cached file is valid</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float DaysValid { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.single">Single</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="i5_Toolkit_Core_Caching_FileCacheService_DirectoryAccessor_" data-uid="i5.Toolkit.Core.Caching.FileCacheService.DirectoryAccessor*"></a>
+  <h4 id="i5_Toolkit_Core_Caching_FileCacheService_DirectoryAccessor" data-uid="i5.Toolkit.Core.Caching.FileCacheService.DirectoryAccessor">DirectoryAccessor</h4>
+  <div class="markdown level1 summary"><p>Module should should be used for accessing directories</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IDirectoryAccessor DirectoryAccessor { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IDirectoryAccessor</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="i5_Toolkit_Core_Caching_FileCacheService_FileAccessor_" data-uid="i5.Toolkit.Core.Caching.FileCacheService.FileAccessor*"></a>
+  <h4 id="i5_Toolkit_Core_Caching_FileCacheService_FileAccessor" data-uid="i5.Toolkit.Core.Caching.FileCacheService.FileAccessor">FileAccessor</h4>
+  <div class="markdown level1 summary"><p>Module that should be used for accessing files</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IFileAccessor FileAccessor { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IFileAccessor</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="i5_Toolkit_Core_Caching_FileCacheService_FileCount_" data-uid="i5.Toolkit.Core.Caching.FileCacheService.FileCount*"></a>
+  <h4 id="i5_Toolkit_Core_Caching_FileCacheService_FileCount" data-uid="i5.Toolkit.Core.Caching.FileCacheService.FileCount">FileCount</h4>
+  <div class="markdown level1 summary"><p>Number of files in which are tracked in the cache</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int FileCount { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="i5_Toolkit_Core_Caching_FileCacheService_FileHasher_" data-uid="i5.Toolkit.Core.Caching.FileCacheService.FileHasher*"></a>
+  <h4 id="i5_Toolkit_Core_Caching_FileCacheService_FileHasher" data-uid="i5.Toolkit.Core.Caching.FileCacheService.FileHasher">FileHasher</h4>
+  <div class="markdown level1 summary"><p>Module for generating hash ids for files</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IFileHasher FileHasher { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="i5.Toolkit.Core.Caching.IFileHasher.html">IFileHasher</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="i5_Toolkit_Core_Caching_FileCacheService_SessionPersistence_" data-uid="i5.Toolkit.Core.Caching.FileCacheService.SessionPersistence*"></a>
+  <h4 id="i5_Toolkit_Core_Caching_FileCacheService_SessionPersistence" data-uid="i5.Toolkit.Core.Caching.FileCacheService.SessionPersistence">SessionPersistence</h4>
+  <div class="markdown level1 summary"><p>If true, cache entries are stored persistently and read again on application startup</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool SessionPersistence { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="i5_Toolkit_Core_Caching_FileCacheService_UseSafeMode_" data-uid="i5.Toolkit.Core.Caching.FileCacheService.UseSafeMode*"></a>
+  <h4 id="i5_Toolkit_Core_Caching_FileCacheService_UseSafeMode" data-uid="i5.Toolkit.Core.Caching.FileCacheService.UseSafeMode">UseSafeMode</h4>
+  <div class="markdown level1 summary"><p>If true, cached files are hashed so that they cannot be switched out</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool UseSafeMode { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  
+  
+  <a id="i5_Toolkit_Core_Caching_FileCacheService_AddOrUpdateInCacheAsync_" data-uid="i5.Toolkit.Core.Caching.FileCacheService.AddOrUpdateInCacheAsync*"></a>
+  <h4 id="i5_Toolkit_Core_Caching_FileCacheService_AddOrUpdateInCacheAsync_System_String_" data-uid="i5.Toolkit.Core.Caching.FileCacheService.AddOrUpdateInCacheAsync(System.String)">AddOrUpdateInCacheAsync(String)</h4>
+  <div class="markdown level1 summary"><p>Caches a file and registers it in the cache.
+If the file is already cached, this method forces the download of the file again and updates the cache entry</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;string&gt; AddOrUpdateInCacheAsync(string path)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">path</span></td>
+        <td><p>The path to the remote file resource, most likely an URL</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
+        <td><p>Returns the path in local storage where the file was stored</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="i5_Toolkit_Core_Caching_FileCacheService_Cleanup_" data-uid="i5.Toolkit.Core.Caching.FileCacheService.Cleanup*"></a>
+  <h4 id="i5_Toolkit_Core_Caching_FileCacheService_Cleanup" data-uid="i5.Toolkit.Core.Caching.FileCacheService.Cleanup">Cleanup()</h4>
+  <div class="markdown level1 summary"><p>Called when the service is shut down</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Cleanup()</code></pre>
+  </div>
+  
+  
+  <a id="i5_Toolkit_Core_Caching_FileCacheService_GetCachedFileLocation_" data-uid="i5.Toolkit.Core.Caching.FileCacheService.GetCachedFileLocation*"></a>
+  <h4 id="i5_Toolkit_Core_Caching_FileCacheService_GetCachedFileLocation_System_String_" data-uid="i5.Toolkit.Core.Caching.FileCacheService.GetCachedFileLocation(System.String)">GetCachedFileLocation(String)</h4>
+  <div class="markdown level1 summary"><p>Returns the local file path where the file of the given URL path is cached
+If the file is not cached, it will return an empty string</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string GetCachedFileLocation(string path)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">path</span></td>
+        <td><p>The path to the remote file, probably an URL</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><p>Returns the path in local storage to the cached version; if no version is cached, an empty string is returned</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="i5_Toolkit_Core_Caching_FileCacheService_Initialize_" data-uid="i5.Toolkit.Core.Caching.FileCacheService.Initialize*"></a>
+  <h4 id="i5_Toolkit_Core_Caching_FileCacheService_Initialize_IServiceManager_" data-uid="i5.Toolkit.Core.Caching.FileCacheService.Initialize(IServiceManager)">Initialize(IServiceManager)</h4>
+  <div class="markdown level1 summary"><p>Called when the service is registered at the service manager</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Initialize(IServiceManager owner)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IServiceManager</span></td>
+        <td><span class="parametername">owner</span></td>
+        <td><p>The service manager which now owns the service</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="i5_Toolkit_Core_Caching_FileCacheService_IsFileInCache_" data-uid="i5.Toolkit.Core.Caching.FileCacheService.IsFileInCache*"></a>
+  <h4 id="i5_Toolkit_Core_Caching_FileCacheService_IsFileInCache_System_String_" data-uid="i5.Toolkit.Core.Caching.FileCacheService.IsFileInCache(System.String)">IsFileInCache(String)</h4>
+  <div class="markdown level1 summary"><p>Checks whether the remote file at the given URL path is already cached</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsFileInCache(string path)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">path</span></td>
+        <td><p>The path to the remote file, probably an URL</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p>Returns whether the file is already cached</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="i5.Toolkit.Core.Caching.IFileCache.html">IFileCache</a>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            i5 Toolkit Documentation
+            
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

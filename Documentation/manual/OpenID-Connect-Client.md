@@ -28,6 +28,11 @@ The OpenID Connect client currently works on the following platforms:
 - Android
 - iOS
 
+> There is a Unity bug in Unity 2020 for UWP platforms that crashes the application once it opens a Web page.
+> This means that the OpenID Connect client cannot be used when building an UWP app using Unity 2020.
+> The bug does not occur in Unity 2019.4 and should be fixed in Unity 2021.1.
+> For more information, check the corresponding [bug report](https://issuetracker.unity3d.com/issues/uwp-crash-with-exception-thrown-at-0x00007fffc01d7984-unityplayer-dot-dll-when-application-dot-openurl-is-called).
+
 ## Usage
 
 ### Service Initialization

@@ -2,10 +2,18 @@
 
 This document keeps track of the changes between versions of the toolkit.
 
+## 1.7.0 (2021-11-18)
+
+### Added
+- Added File Cache that allows the local storage of remote files to reduce load times in repeated requests
+- Added Box Volume utility for defining cuboid volumes
+- Added BoxCollider adapter to UnityAdapters namespace
+- Added File and Directory Accessor adapter classes to SystemAdapters namespace
+
 ## 1.6.4 (2021-08-26)
 
 ### Added
-- Example scene showing how to use the ObjectPool with GameObjects
+- Added example scene showing how to use the ObjectPool with GameObjects
 
 ### Changed
 - Updated documentation links in example scenes

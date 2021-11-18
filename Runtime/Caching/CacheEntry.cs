@@ -13,8 +13,9 @@ namespace i5.Toolkit.Core.Caching
         /// Name of the file
         /// </summary>
         public string localFileName;
+
         /// <summary>
-        /// Has of the file
+        /// Hash checksum of the file
         /// </summary>
         public string fileHash;
 

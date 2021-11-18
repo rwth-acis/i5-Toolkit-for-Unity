@@ -6,7 +6,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Security.Cryptography;
 using System.Threading.Tasks;
 using UnityEngine;
 
@@ -32,13 +31,34 @@ namespace i5.Toolkit.Core.Caching
         /// </summary>
         public IDirectoryAccessor DirectoryAccessor { get; set; } = new DirectoryAccessorAdapter();
 
+        /// <summary>
+        /// Module for generating hash ids for files
+        /// </summary>
         public IFileHasher FileHasher { get; set; } = new FileHasher();
 
+        /// <summary>
+        /// The name under which the cache registry is stored
+        /// </summary>
         public const string persistentCacheFileName = "i5cache.json";
 
+        /// <summary>
+        /// If true, cache entries are stored persistently and read again on application startup
+        /// </summary>
         public bool SessionPersistence { get; private set; }
+
+        /// <summary>
+        /// If true, cached files are hashed so that they cannot be switched out
+        /// </summary>
         public bool UseSafeMode { get; private set; }
+
+        /// <summary>
+        /// Points to the folder where the cached files are stored and where the cache registry can be found
+        /// </summary>
         public string CacheLocation { get; private set; }
+
+        /// <summary>
+        /// The amount of days for which a cached file is valid
+        /// </summary>
         public float DaysValid { get; private set; }
 
         private Dictionary<string, CacheEntry> cacheContent = new Dictionary<string, CacheEntry>();
@@ -156,9 +176,16 @@ namespace i5.Toolkit.Core.Caching
             }
         }
 
+        /// <summary>
+        /// Caches a file and registers it in the cache.
+        /// If the file is already cached, this method forces the download of the file again and updates the cache entry
+        /// </summary>
+        /// <param name="path">The path to the remote file resource, most likely an URL</param>
+        /// <returns>Returns the path in local storage where the file was stored</returns>
         public async Task<string> AddOrUpdateInCacheAsync(string path)
         {
             string savePath = Path.Combine(CacheLocation, Path.GetFileNameWithoutExtension(path) + Path.GetExtension(path));
+            // if the file already exists: create a new copy with an increased number; the old file stays as a backup
             int i = 2;
             while (FileAccessor.Exists(savePath))
             {
@@ -189,11 +216,22 @@ namespace i5.Toolkit.Core.Caching
             }
         }
 
+        /// <summary>
+        /// Checks whether the remote file at the given URL path is already cached
+        /// </summary>
+        /// <param name="path">The path to the remote file, probably an URL</param>
+        /// <returns>Returns whether the file is already cached</returns>
         public bool IsFileInCache(string path)
         {
             return !string.IsNullOrEmpty(GetCachedFileLocation(path));
         }
 
+        /// <summary>
+        /// Returns the local file path where the file of the given URL path is cached
+        /// If the file is not cached, it will return an empty string
+        /// </summary>
+        /// <param name="path">The path to the remote file, probably an URL</param>
+        /// <returns>Returns the path in local storage to the cached version; if no version is cached, an empty string is returned</returns>
         public string GetCachedFileLocation(string path)
         {
             if (cacheContent.TryGetValue(path, out CacheEntry entry))

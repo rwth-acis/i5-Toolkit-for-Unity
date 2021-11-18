@@ -5,12 +5,27 @@ using System.Threading.Tasks;
 
 namespace i5.Toolkit.Core.Caching
 {
+    /// <summary>
+    /// A content loader that integrates the cache functionality
+    /// Any file which is loaded via this content loader is stored in the cache and taken from there in future requests
+    /// </summary>
     public class CacheAwareContentLoader : IContentLoader<string>
     {
+        /// <summary>
+        /// The content loader which should be used for the actual access to the content
+        /// By default, it is initialized with the UnityWebRequestLoader
+        /// </summary>
         public IContentLoader<string> InternalContentLoader { get; set; } = new UnityWebRequestLoader();
 
+        /// <summary>
+        /// The cache where the downloaded content is stored
+        /// </summary>
         public IFileCache Cache { get; set; }
 
+        /// <summary>
+        /// Creates a new cache aware content loader
+        /// </summary>
+        /// <param name="cache">A reference to the cache that should be used. If it is not set, it will be pulled via the service manager</param>
         public CacheAwareContentLoader(IFileCache cache = null)
         {
             this.Cache = cache;
@@ -24,7 +39,7 @@ namespace i5.Toolkit.Core.Caching
         public async Task<WebResponse<string>> LoadAsync(string uri)
         {
             WebResponse<string> response;
-            //Check for cached files
+            //Check if the cache is set
             if (Cache != null || ServiceManager.ServiceExists<FileCacheService>())
             {
                 if (Cache == null)
@@ -32,6 +47,7 @@ namespace i5.Toolkit.Core.Caching
                     // if no fixed cache is set then load one from the ServiceManager
                     Cache = ServiceManager.GetService<FileCacheService>();
                 }
+                // determine the cache path
                 string cachePath;
                 if (Cache.IsFileInCache(uri))
                 {
@@ -53,6 +69,10 @@ namespace i5.Toolkit.Core.Caching
             }
             else
             {
+                // no cache found: just use the internal content loader and ignore all cache functionality with a warning
+                i5Debug.LogWarning("Using the cache aware content loader but no cache is set up. " +
+                    "Hence, it will not use the cache functionality and just work like a normal content loader. " +
+                    "To fix this, either provide a cache to the service or register the FileCacheService at the service manager.", this);
                 response = await InternalContentLoader.LoadAsync(uri);
             }
             return response;

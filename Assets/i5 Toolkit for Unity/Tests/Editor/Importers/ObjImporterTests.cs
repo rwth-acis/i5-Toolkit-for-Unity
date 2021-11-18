@@ -77,31 +77,6 @@ namespace i5.Toolkit.Core.Tests.ModelImporters
         }
 
         /// <summary>
-        /// Reusable function to set up the ObjImporter service that uses a Cache and to register it at the service manager
-        /// </summary>
-        /// <returns></returns>
-        private Tuple<ObjImporter, FileCacheService> SetUpObjImporterWithCache()
-        {
-            IServiceManager serviceManager = A.Fake<IServiceManager>();
-            FileCacheService fCache = new FileCacheService();
-            fCache.Initialize(serviceManager);
-
-            ObjImporter objImporter = new ObjImporter();
-            objImporter.Initialize(serviceManager);
-            objImporter.ActivateChache();
-            //set fixed FileCache for the ObjImporter for testing because the ServiceManager can not be used
-            ((CacheAwareContentLoader)objImporter.ContentLoader).Cache = fCache;
-            return new Tuple<ObjImporter, FileCacheService>(objImporter, fCache);
-
-            //FileCache fCache = new FileCache();
-            //ServiceManager.RegisterService(fCache);
-            //ObjImporter objImporter = new ObjImporter();
-            //ServiceManager.RegisterService(objImporter);
-            //objImporter.activateChache();
-            //return new Tuple<ObjImporter, FileCache>(objImporter, fCache);
-        }
-
-        /// <summary>
         /// Checks that the ContentLoader is initialized with the UnityWebRequestLoader by default
         /// </summary>
         [Test]
@@ -150,19 +125,6 @@ namespace i5.Toolkit.Core.Tests.ModelImporters
 
             objImporter.Cleanup();
             Assert.AreEqual(poolCount, ObjectPool<GameObject>.CountPools());
-        }
-
-        /// <summary>
-        /// Checks that the cacheaware content loader is used as the content loader when caching is enabled.
-        /// </summary>
-        [Test]
-        public void Cacheawarecontent_When_Setup_With_Cache()
-        {
-            Tuple<ObjImporter, FileCacheService> setup = SetUpObjImporterWithCache();
-            ObjImporter objImporter = setup.Item1;
-            FileCacheService fileCache = setup.Item2;
-
-            Assert.IsTrue(objImporter.ContentLoader is CacheAwareContentLoader);
         }
 
         /// <summary>
@@ -343,42 +305,6 @@ namespace i5.Toolkit.Core.Tests.ModelImporters
             Assert.AreEqual(1, res.transform.childCount);
             MeshRenderer mr = res.transform.GetChild(0).GetComponent<MeshRenderer>();
             Assert.AreEqual("New Material", mr.sharedMaterial.name);
-        }
-
-        /// <summary>
-        /// Checks that gameobject can be loaded from the web when the cache is activated.
-        /// </summary>
-        /// <returns></returns>
-        [UnityTest]
-        public IEnumerator ImportAsync_Loading_Web_With_Cache_Enabled()
-        {
-            ObjImporter objImporter = SetUpObjImporterWithCache().Item1;
-            
-            Task<GameObject> task = objImporter.ImportAsync(onlineObjPath);
-            yield return AsyncTest.WaitForTask(task);
-            GameObject res = task.Result;
-
-            Assert.NotNull(res);
-        }
-
-        /// <summary>
-        /// Importing objects asynchronous is checked to use the cache.
-        /// </summary>
-        /// <returns></returns>
-        [UnityTest]
-        public IEnumerator ImportAsync_Cached_When_Loading_Twice()
-        {
-            Tuple<ObjImporter, FileCacheService> setup = SetUpObjImporterWithCache();
-            ObjImporter objImporter = setup.Item1;
-            FileCacheService fileCache = setup.Item2;
-
-            Task<GameObject> task = objImporter.ImportAsync(onlineObjPath);
-            yield return AsyncTest.WaitForTask(task);
-
-            string cachResult = fileCache.GetCachedFileLocation(onlineObjPath);
-            
-            //LogAssert.Expect(LogType.Log, "Cache hit");
-            Assert.IsNotEmpty(cachResult);
         }
     }
 }

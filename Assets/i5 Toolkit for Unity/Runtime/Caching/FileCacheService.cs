@@ -15,7 +15,7 @@ namespace i5.Toolkit.Core.Caching
     /// <summary>
     /// Service for caching files locally so that they do not need to be downloaded repeatedly
     /// </summary>
-    public class FileCacheService : IService
+    public class FileCacheService : IService, IFileCache
     {
         /// <summary>
         /// Module that should be used for fetching the file's content
@@ -156,7 +156,7 @@ namespace i5.Toolkit.Core.Caching
             }
         }
 
-        public async Task<string> AddOrUpdateInCache(string path)
+        public async Task<string> AddOrUpdateInCacheAsync(string path)
         {
             string savePath = Path.Combine(CacheLocation, Path.GetFileNameWithoutExtension(path) + Path.GetExtension(path));
             int i = 2;

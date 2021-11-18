@@ -90,11 +90,11 @@ namespace i5.Toolkit.Core.Tests.Caching
             A.CallTo(() => fileCache.FileAccessor.WriteAllText(A<string>.Ignored, A<string>.Ignored)).Invokes((x) => contentWrittenToFile = x.Arguments[1].ToString());
 
             fileCache.Initialize(A.Fake<IServiceManager>());
-            Task<string> task = fileCache.AddOrUpdateInCache("https://test.org/myfile.obj");
+            Task<string> task = fileCache.AddOrUpdateInCacheAsync("https://test.org/myfile.obj");
 
             yield return AsyncTest.WaitForTask(task);
 
-            task = fileCache.AddOrUpdateInCache("https://test.org/otherfile.txt");
+            task = fileCache.AddOrUpdateInCacheAsync("https://test.org/otherfile.txt");
 
             yield return AsyncTest.WaitForTask(task);
 

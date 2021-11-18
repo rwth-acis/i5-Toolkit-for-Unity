@@ -7,11 +7,11 @@ namespace i5.Toolkit.Core.Caching
 {
     public class CacheAwareContentLoader : IContentLoader<string>
     {
-        public IContentLoader<string> InternalContentLoader { get; set; }
+        public IContentLoader<string> InternalContentLoader { get; set; } = new UnityWebRequestLoader();
 
-        public FileCacheService Cache { get; set; }
+        public IFileCache Cache { get; set; }
 
-        public CacheAwareContentLoader(FileCacheService cache)
+        public CacheAwareContentLoader(IFileCache cache = null)
         {
             this.Cache = cache;
         }
@@ -23,32 +23,25 @@ namespace i5.Toolkit.Core.Caching
         /// <returns>Returns the loaded file, either from cache or the given uri</returns>
         public async Task<WebResponse<string>> LoadAsync(string uri)
         {
-            // initialize the content loader
-            if (InternalContentLoader == null)
-            {
-                InternalContentLoader = new UnityWebRequestLoader();
-            }
-
             WebResponse<string> response;
             //Check for cached files
             if (Cache != null || ServiceManager.ServiceExists<FileCacheService>())
             {
-                FileCacheService objCache = Cache;
-                if (objCache == null)
+                if (Cache == null)
                 {
-                    //when no fixed cache is set then load one from the ServiceManager
-                    objCache = ServiceManager.GetService<FileCacheService>();
+                    // if no fixed cache is set then load one from the ServiceManager
+                    Cache = ServiceManager.GetService<FileCacheService>();
                 }
                 string cachePath;
-                if (objCache.IsFileInCache(uri))
+                if (Cache.IsFileInCache(uri))
                 {
                     //use existing cache entry
-                    cachePath = objCache.GetCachedFileLocation(uri);
+                    cachePath = Cache.GetCachedFileLocation(uri);
                 }
                 else
                 {
                     // create new entry in cache
-                    cachePath = await objCache.AddOrUpdateInCache(uri);
+                    cachePath = await Cache.AddOrUpdateInCacheAsync(uri);
 
                     //in case of an empty string the cache was not able to cache the file correctly - therefore the fallback is to not use the cache for this file
                     if (string.IsNullOrEmpty(cachePath))

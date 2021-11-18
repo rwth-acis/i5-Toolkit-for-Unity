@@ -63,7 +63,7 @@ namespace i5.Toolkit.Core.Tests.Caching
         {
             string url = "https://test.org/myfile.obj";
 
-            Task<string> task = fileCache.AddOrUpdateInCache(url);
+            Task<string> task = fileCache.AddOrUpdateInCacheAsync(url);
 
             yield return AsyncTest.WaitForTask(task);
 
@@ -79,7 +79,7 @@ namespace i5.Toolkit.Core.Tests.Caching
         [UnityTest]
         public IEnumerator AddOrUpdateInCache_LoadWebFile_WritesFile()
         {
-            Task<string> task = fileCache.AddOrUpdateInCache(url);
+            Task<string> task = fileCache.AddOrUpdateInCacheAsync(url);
 
             yield return AsyncTest.WaitForTask(task);
 
@@ -100,7 +100,7 @@ namespace i5.Toolkit.Core.Tests.Caching
             A.CallTo(() => fileCache.ContentLoader.LoadAsync(A<string>.Ignored))
                 .Returns(Task.FromResult(new WebResponse<string>("myerror", 400)));
 
-            Task<string> task = fileCache.AddOrUpdateInCache(url);
+            Task<string> task = fileCache.AddOrUpdateInCacheAsync(url);
 
             yield return AsyncTest.WaitForTask(task);
 
@@ -117,7 +117,7 @@ namespace i5.Toolkit.Core.Tests.Caching
             // fake that file exists
             A.CallTo(() => fileCache.FileAccessor.Exists(existingSavePath)).Returns(true);
 
-            Task<string> task = fileCache.AddOrUpdateInCache(url);
+            Task<string> task = fileCache.AddOrUpdateInCacheAsync(url);
 
             yield return AsyncTest.WaitForTask(task);
 
@@ -133,7 +133,7 @@ namespace i5.Toolkit.Core.Tests.Caching
         [UnityTest]
         public IEnumerator IsFileInCache_FileExists_ReturnsTrue()
         {
-            Task<string> task = fileCache.AddOrUpdateInCache(url);
+            Task<string> task = fileCache.AddOrUpdateInCacheAsync(url);
 
             yield return AsyncTest.WaitForTask(task);
 
@@ -159,7 +159,7 @@ namespace i5.Toolkit.Core.Tests.Caching
         [UnityTest]
         public IEnumerator Cleanup_NotPersistent_DeletesFiles()
         {
-            Task<string> task = fileCache.AddOrUpdateInCache(url);
+            Task<string> task = fileCache.AddOrUpdateInCacheAsync(url);
 
             yield return AsyncTest.WaitForTask(task);
 
@@ -175,7 +175,7 @@ namespace i5.Toolkit.Core.Tests.Caching
 
             A.CallTo(() => fileCache.FileAccessor.Delete(A<string>.Ignored)).Throws<IOException>();
 
-            Task<string> task = fileCache.AddOrUpdateInCache(url);
+            Task<string> task = fileCache.AddOrUpdateInCacheAsync(url);
 
             yield return AsyncTest.WaitForTask(task);
 
@@ -191,7 +191,7 @@ namespace i5.Toolkit.Core.Tests.Caching
         [UnityTest]
         public IEnumerator GetCachedFileLocation_Found_Correct()
         {
-            Task<string> task = fileCache.AddOrUpdateInCache(url);
+            Task<string> task = fileCache.AddOrUpdateInCacheAsync(url);
 
             yield return AsyncTest.WaitForTask(task);
 

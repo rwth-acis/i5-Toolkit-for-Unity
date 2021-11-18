@@ -21,6 +21,8 @@ namespace i5.Toolkit.Core.ModelImporters
         // the id of the pool with GameObjects that are set up with a MeshFilter and Renderer
         private int meshObjectPoolId;
 
+        private IContentLoader<string> contentLoader;
+
         /// <summary>
         /// instance of the MtlLibrary
         /// </summary>
@@ -34,7 +36,16 @@ namespace i5.Toolkit.Core.ModelImporters
         /// <summary>
         /// Module that should be used for fetching the .obj file's content
         /// </summary>
-        public IContentLoader<string> ContentLoader { get; set; }
+        public IContentLoader<string> ContentLoader
+        {
+            get => contentLoader;
+            set
+            {
+                contentLoader = value;
+                // also update content loader of mtl library, so that they use the same
+                MtlLibrary.ContentLoader = value;
+            }
+        }
 
         /// <summary>
         /// Called by the service manager to initialize the service if it is started

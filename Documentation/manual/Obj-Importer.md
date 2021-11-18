@@ -50,7 +50,9 @@ ServiceManager.GetService<ObjImporter>().ExtendedLogging = true;
 
 ### Activate Caching
 
-To increase the loading speed of 3D objects that are loaded multiple times, one can activate caching. When using the Cache, objects are stored locally once they are downloaded so that another request of that resource can be answered directly from the local file system. To be able to use the File Cache and the ObjImporter together the following name spaces must be included.
+To increase the loading speed of 3D objects that are loaded multiple times, one can activate [caching](File-Cache.md).
+When using the cache, objects are stored locally once they are downloaded so that another request of that resource can be answered directly from the local file system.
+To be able to use the File Cache and the ObjImporter together the following name spaces must be included.
 
 ```[C#]
 using i5.Toolkit.Core.Caching;
@@ -58,18 +60,19 @@ using i5.Toolkit.Core.ModelImporters;
 using i5.Toolkit.Core.ServiceCore;
 ```
 
-Before we activate the Cache of the ObjImporter there must be a File Cache service registered at the servie manager.
+Before we activate the cache of the <xref:i5.Toolkit.Core.ModelImporters.ObjImporter> there must be a <xref:i5.Toolkit.Core.Caching.FileCacheService> registered at the servie manager.
+After that, exchange the <xref:i5.Toolkit.Core.ModelImporters.ObjImporter.ContentLoader> with the <xref:i5.Toolkit.Core.Caching.CacheAwareContentLoader>.
 
 ```[C#]
 void Start()
     {
         //Register the file cache
-        FileCache objCache = new FileCache();
+        FileCacheService objCache = new FileCacheService();
         ServiceManager.RegisterService(objCache);
 
-        //Register the object importer
+        //Register the object importer; set its content loader to the cache aware loader
         ObjImporter importer = new ObjImporter();
-        importer.activateChache();
+        importer.ContentLoader = new CacheAwareContentLoader();
         ServiceManager.RegisterService(importer);
 
         //then use the normal ImportAsync(url) method to import objects

@@ -2,6 +2,13 @@
 
 This document keeps track of the changes between versions of the toolkit.
 
+## Unreleased
+
+### Added
+- Added PlayerPref utilities for arrays, vectors and colors
+- Added Vector extensions for converting vectors to arrays and vice versa
+- Added Color extensions for converting colors to arrays and vice versa
+
 ## 1.7.0 (2021-11-18)
 
 ### Added

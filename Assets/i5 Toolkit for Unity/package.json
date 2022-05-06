@@ -69,6 +69,11 @@
             "displayName": "Spawner",
             "description": "Example how to use the spawners",
             "path": "Samples~/Spawner"
+        },
+        {
+            "displayName": "RocketChatClient",
+            "description": "Example scene with some basic methods; note: you need to set your own username, password and maybe hostAddress",
+            "path": "Samples~/RocketChatClient"
         }
     ]
 }

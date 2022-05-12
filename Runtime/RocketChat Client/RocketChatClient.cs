@@ -338,7 +338,7 @@ namespace i5.Toolkit.Core.RocketChatClient
                         return new WebResponse<string>("not logged in", -1);
                     }
                     request.SetRequestHeader("X-User-Id", userID);
-                    request.SetRequestHeader("Content-type", "application/json");
+                    request.SetRequestHeader("X-Auth-Token", authToken);
                 }
                 await request.SendWebRequest();
                 if (!string.IsNullOrEmpty(request.error))

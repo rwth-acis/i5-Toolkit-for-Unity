@@ -82,6 +82,7 @@ public class ClientBootstrapper : MonoBehaviour
     {
         WebResponse<string> response = await client.GetChannelListJoinedAsync();
         Debug.Log("Response Code: " + response.Code);
+        Debug.Log(response.Content);
     }
 
     public async void PostMessageAsync()

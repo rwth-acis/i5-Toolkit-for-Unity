@@ -74,8 +74,15 @@ public class ClientBootstrapper : MonoBehaviour
     public async void LoginAsync()
     {
         InstantiateClient();
-        WebResponse<string> response = await client.LoginAsync();
-        Debug.Log("Response Code: " + response.Code);
+        bool success = await client.LoginAsync();
+        if (success)
+        {
+            i5Debug.Log("Login was successful", this);
+        }
+        else
+        {
+            i5Debug.Log("Login failed", this);
+        }
     }
 
     public async void GetChannelListJoinedAsync()

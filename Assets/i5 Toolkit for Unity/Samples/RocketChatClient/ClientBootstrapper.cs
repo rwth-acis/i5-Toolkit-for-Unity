@@ -19,6 +19,7 @@ public class ClientBootstrapper : MonoBehaviour
     private TMP_InputField password;
     private Button login;
     private Button getChannelList;
+    private Button getGroupList;
     private TMP_InputField roomID;
     private TMP_InputField messageToPost;
     private Button postMessage;
@@ -35,6 +36,7 @@ public class ClientBootstrapper : MonoBehaviour
         password = DemoCanvas.transform.Find("Password").GetComponent<TMP_InputField>();
         login = DemoCanvas.transform.Find("Login").GetComponent<Button>();
         getChannelList = DemoCanvas.transform.Find("GetChannelListJoined").GetComponent<Button>();
+        getGroupList = DemoCanvas.transform.Find("GetGroupList").GetComponent<Button>();
         roomID = DemoCanvas.transform.Find("RoomID").GetComponent<TMP_InputField>();
         messageToPost = DemoCanvas.transform.Find("MessageToPost").GetComponent<TMP_InputField>();
         postMessage = DemoCanvas.transform.Find("PostMessage").GetComponent<Button>();
@@ -46,6 +48,7 @@ public class ClientBootstrapper : MonoBehaviour
     {
         login.onClick.AddListener(LoginAsync);
         getChannelList.onClick.AddListener(GetChannelListJoinedAsync);
+        getGroupList.onClick.AddListener(GetGroupListAsync);
         postMessage.onClick.AddListener(PostMessageAsync);
         subscribe.onClick.AddListener(SubscribeAsync);
         unsubscribe.onClick.AddListener(UnsubscribeAsync);
@@ -87,13 +90,24 @@ public class ClientBootstrapper : MonoBehaviour
 
     public async void GetChannelListJoinedAsync()
     {
-        Channel[] joinedChannels = await client.GetChannelListJoinedAsync();
+        ChannelGroup[] joinedChannels = await client.GetChannelListJoinedAsync();
         string result = "";
         for (int i=0;i<joinedChannels.Length;i++)
         {
             result += joinedChannels[i].name + "\n";
         }
         i5Debug.Log("Joined channels: \n" + result, this);
+    }
+
+    public async void GetGroupListAsync()
+    {
+        ChannelGroup[] joinedGroups = await client.GetGroupListAsync();
+        string result = "";
+        for (int i = 0; i < joinedGroups.Length; i++)
+        {
+            result += joinedGroups[i].name + "\n";
+        }
+        i5Debug.Log("Joined groups: \n" + result, this);
     }
 
     public async void PostMessageAsync()

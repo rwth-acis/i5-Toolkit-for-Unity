@@ -208,16 +208,28 @@ namespace i5.Toolkit.Core.RocketChatClient
         /// Note that this only includes public channels. For private channels, get the user's groups.
         /// See https://developer.rocket.chat/reference/api/rest-api/endpoints/team-collaboration-endpoints/channels-endpoints/list
         /// </summary>
-        public async Task<Channel[]> GetChannelListJoinedAsync()
+        public async Task<ChannelGroup[]> GetChannelListJoinedAsync()
         {
             WebResponse<string> response = await SendHttpRequestAsync(RequestType.GET, "/api/v1/channels.list.joined");
             if (!response.Successful)
             {
                 i5Debug.LogError("Could not retrieve channels", this);
-                return Array.Empty<Channel>();
+                return Array.Empty<ChannelGroup>();
             }
             ChannelsJoinedResponse channelsJoined = JsonSerializer.FromJson<ChannelsJoinedResponse>(response.Content);
             return channelsJoined.channels;
+        }
+
+        public async Task<ChannelGroup[]> GetGroupListAsync()
+        {
+            WebResponse<string> response = await SendHttpRequestAsync(RequestType.GET, "/api/v1/groups.list");
+            if (!response.Successful)
+            {
+                i5Debug.LogError("Could not retrieve groups", this);
+                //return Array.Empty<Channel>();
+            }
+            GroupsJoinedResponse groupsJoined = JsonSerializer.FromJson<GroupsJoinedResponse>(response.Content);
+            return groupsJoined.groups;
         }
 
         /// <summary>

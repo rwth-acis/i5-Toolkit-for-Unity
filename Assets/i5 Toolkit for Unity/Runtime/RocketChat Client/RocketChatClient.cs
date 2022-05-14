@@ -143,6 +143,7 @@ namespace i5.Toolkit.Core.RocketChatClient
         /// It prefers the AuthToken. If it is not given, it will use username and password, and set the AuthToken and UserID.
         /// See https://developer.rocket.chat/reference/api/rest-api/endpoints/other-important-endpoints/authentication-endpoints/login
         /// </summary>
+        /// <returns>Returns true if the login was successful, otherwise false</returns>
         public async Task<bool> LoginAsync()
         {
             string payload;
@@ -180,10 +181,17 @@ namespace i5.Toolkit.Core.RocketChatClient
         /// See https://developer.rocket.chat/reference/api/rest-api/endpoints/team-collaboration-endpoints/chat-endpoints/postmessage
         /// </summary>
         /// <param name="targetID">rid of the room, channel name (#) or user name (@)</param>
-        public async Task<WebResponse<string>> PostMessageAsync(string targetID, string text = "", string alias = "", string emoji = "", string avatar = "", string attachement = "")
+        /// <returns>Returns true if the message was successfully sent</returns>
+        public async Task<bool> PostMessageAsync(string targetID, string text = "", string alias = "", string emoji = "", string avatar = "", string attachement = "")
         {
             WebResponse<string> response = await SendEncodedPostRequestAsync($"https://{HostAddress}/api/v1/chat.postMessage", $"{{ \"channel\": \"{targetID}\", \"text\": \"{text}\" }}", true);
-            return response;
+            if (!response.Successful)
+            {
+                i5Debug.LogError("Could not send message", this);
+                return false;
+            }
+            MessageSentResponse messageSentResponse = JsonSerializer.FromJson<MessageSentResponse>(response.Content);
+            return messageSentResponse.success;
         }
 
         /// <summary>
@@ -200,9 +208,16 @@ namespace i5.Toolkit.Core.RocketChatClient
         /// Note that this only includes public channels. For private channels, get the user's groups.
         /// See https://developer.rocket.chat/reference/api/rest-api/endpoints/team-collaboration-endpoints/channels-endpoints/list
         /// </summary>
-        public async Task<WebResponse<string>> GetChannelListJoinedAsync()
+        public async Task<Channel[]> GetChannelListJoinedAsync()
         {
-            return await SendHttpRequestAsync(RequestType.GET, "/api/v1/channels.list.joined");
+            WebResponse<string> response = await SendHttpRequestAsync(RequestType.GET, "/api/v1/channels.list.joined");
+            if (!response.Successful)
+            {
+                i5Debug.LogError("Could not retrieve channels", this);
+                return Array.Empty<Channel>();
+            }
+            ChannelsJoinedResponse channelsJoined = JsonSerializer.FromJson<ChannelsJoinedResponse>(response.Content);
+            return channelsJoined.channels;
         }
 
         /// <summary>
@@ -251,11 +266,11 @@ namespace i5.Toolkit.Core.RocketChatClient
         {
             await WebSocketConnectAsync();
             await WebSocketLoginAsync(uniqueID);
-            //Subscribe
+            // Subscribe
             string subsribeRequest = $"{{\"msg\": \"sub\",\"id\": \"{uniqueID}\",\"name\": \"stream-room-messages\",\"params\":[\"{roomID}\",false]}}";
             await socket.SendAsync(new ArraySegment<byte>(Encoding.UTF8.GetBytes(subsribeRequest)), WebSocketMessageType.Binary, true, cancellationToken);
             isWebSocketSubscribed = true;
-            //ReceiveMessage
+            // ReceiveMessage
             StreamMessageAsync();
             Debug.Log("Subscribtion stream opened.");
         }
@@ -388,6 +403,10 @@ namespace i5.Toolkit.Core.RocketChatClient
                 var messageString = Encoding.UTF8.GetString(message);
                 Debug.Log(messageString);
             }
+            else
+            {
+                i5Debug.LogWarning("Web Socket is already connected", this);
+            }
         }
 
         // Login to the host
@@ -395,7 +414,7 @@ namespace i5.Toolkit.Core.RocketChatClient
         {
             if (!isWebSocketLoggedIn)
             {
-                if (authToken != "")
+                if (!string.IsNullOrEmpty(authToken))
                 {
                     string loginMessage = $"{{\"msg\": \"method\",\"method\": \"login\",\"id\":\"{uniqueID}\"," + $"\"params\":[{{\"resume\": \"{authToken}\"}}]}}";
                     await socket.SendAsync(new ArraySegment<byte>(Encoding.UTF8.GetBytes(loginMessage)), WebSocketMessageType.Binary, true, cancellationToken);
@@ -412,6 +431,10 @@ namespace i5.Toolkit.Core.RocketChatClient
                 await socket.ReceiveAsync(new ArraySegment<byte>(message), new CancellationToken());
                 var messageString = Encoding.UTF8.GetString(message);
                 Debug.Log(messageString);
+            }
+            else
+            {
+                i5Debug.LogWarning("Web socket is already logged in", this);
             }
         }
         #endregion

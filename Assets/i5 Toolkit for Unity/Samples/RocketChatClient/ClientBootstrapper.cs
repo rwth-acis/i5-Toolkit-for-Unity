@@ -25,7 +25,7 @@ public class ClientBootstrapper : MonoBehaviour
     private Button subscribe;
     private Button unsubscribe;
 
-    //Can be freely chosen.
+    // Can be freely chosen.
     private string subscribtionUniqueID = "1";
 
     void Awake()
@@ -87,15 +87,22 @@ public class ClientBootstrapper : MonoBehaviour
 
     public async void GetChannelListJoinedAsync()
     {
-        WebResponse<string> response = await client.GetChannelListJoinedAsync();
-        Debug.Log("Response Code: " + response.Code);
-        Debug.Log(response.Content);
+        Channel[] joinedChannels = await client.GetChannelListJoinedAsync();
+        string result = "";
+        for (int i=0;i<joinedChannels.Length;i++)
+        {
+            result += joinedChannels[i].name + "\n";
+        }
+        i5Debug.Log("Joined channels: \n" + result, this);
     }
 
     public async void PostMessageAsync()
     {
-        WebResponse<string> response = await client.PostMessageAsync(roomID.text, messageToPost.text);
-        Debug.Log("Response Code: " + response.Code);
+        bool success = await client.PostMessageAsync(roomID.text, messageToPost.text);
+        if (success)
+        {
+            i5Debug.Log("Message was successfully sent", this);
+        }
     }
 
     public async void SubscribeAsync()

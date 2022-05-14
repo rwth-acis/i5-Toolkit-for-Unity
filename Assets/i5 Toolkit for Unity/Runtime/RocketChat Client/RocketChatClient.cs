@@ -85,6 +85,8 @@ namespace i5.Toolkit.Core.RocketChatClient
             get => userID;
         }
 
+        public IJsonSerializer JsonSerializer { get; set; } = new JsonUtilityAdapter();
+
         #endregion
 
         #region IService Implementation
@@ -141,51 +143,36 @@ namespace i5.Toolkit.Core.RocketChatClient
         /// It prefers the AuthToken. If it is not given, it will use username and password, and set the AuthToken and UserID.
         /// See https://developer.rocket.chat/reference/api/rest-api/endpoints/other-important-endpoints/authentication-endpoints/login
         /// </summary>
-        public async Task<WebResponse<string>> LoginAsync()
+        public async Task<bool> LoginAsync()
         {
+            string payload;
+
+            // construct the payload by checking whether an authToken is given or whether credentials are given
             if (string.IsNullOrEmpty(authToken))
             {
-                WebResponse<string> response = await SendEncodedPostRequestAsync(
-                    $"https://{hostAddress}/api/v1/login",
-                    $"{{ \"username\": \"{username}\", \"password\": \"{password}\" }}",
-                    false);
-
-                if (!response.Successful)
-                {
-                    i5Debug.LogError("Could not log in", this);
-                    return response;
-                }
-
-                string[] strs = response.Content.Split('"');
-                if (userID == "")
-                {
-                    userID = strs[9];
-                }
-                if (authToken == "")
-                {
-                    authToken = strs[13];
-                }
-                Debug.Log($"userID is set to {userID}");
-                Debug.Log($"authToken is set to {authToken}");
-                return response;
+                payload = $"{{ \"username\": \"{username}\", \"password\": \"{password}\" }}";
             }
             else
             {
-                WebResponse<string> response = await SendEncodedPostRequestAsync(
-                    $"https://{HostAddress}/api/v1/login",
-                    $"{{\"resume\": \"{authToken}\"}}",
-                    false
-                    );
-
-                string[] strs = response.Content.Split('"');
-                if (string.IsNullOrEmpty(userID))
-                {
-                    userID = strs[9];
-                }
-                Debug.Log($"userID is set to {userID}");
-                Debug.Log($"authToken is set to {authToken}");
-                return response;
+                payload = $"{{\"resume\": \"{authToken}\"}}";
             }
+
+            WebResponse<string> response = await SendEncodedPostRequestAsync(
+                $"https://{hostAddress}/api/v1/login",
+                payload,
+                false);
+
+            if (!response.Successful)
+            {
+                i5Debug.LogError("Could not log in", this);
+                return false;
+            }
+
+            LoginResponse loginResponse = JsonSerializer.FromJson<LoginResponse>(response.Content);
+
+            userID = loginResponse.data.userId;
+            authToken = loginResponse.data.authToken;
+            return true;
         }
 
         /// <summary>
@@ -386,7 +373,7 @@ namespace i5.Toolkit.Core.RocketChatClient
             Debug.Log("Subscribtion stream closed");
         }
 
-        //Connect the socket to the host.
+        // Connect the socket to the host.
         private async Task WebSocketConnectAsync()
         {
             if (!isWebSocketConnected)
@@ -403,7 +390,7 @@ namespace i5.Toolkit.Core.RocketChatClient
             }
         }
 
-        //Login to the host
+        // Login to the host
         private async Task WebSocketLoginAsync(string uniqueID)
         {
             if (!isWebSocketLoggedIn)

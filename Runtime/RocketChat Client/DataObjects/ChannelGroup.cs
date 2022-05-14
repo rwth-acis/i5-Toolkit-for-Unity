@@ -3,7 +3,7 @@
 namespace i5.Toolkit.Core.RocketChatClient
 {
     [Serializable]
-    public class Channel
+    public class ChannelGroup
     {
         public string _id;
         public string fname;

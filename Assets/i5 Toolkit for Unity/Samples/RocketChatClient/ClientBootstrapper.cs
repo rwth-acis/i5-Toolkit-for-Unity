@@ -151,13 +151,4 @@ public class ClientBootstrapper : MonoBehaviour
         client.OnMessageReceived += message => Debug.Log("Message Received");
         ServiceManager.RegisterService(client);
     }
-
-    private async void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.F5))
-        {
-            WebResponse<string> response = await client.GetMeAsync();
-            Debug.Log(response.Content);
-        }
-    }
 }

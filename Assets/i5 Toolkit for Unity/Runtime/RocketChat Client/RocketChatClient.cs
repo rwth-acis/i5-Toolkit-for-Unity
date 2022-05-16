@@ -198,9 +198,16 @@ namespace i5.Toolkit.Core.RocketChatClient
         /// Get the user profile. Requires login first.
         /// See https://developer.rocket.chat/reference/api/rest-api/endpoints/other-important-endpoints/authentication-endpoints/me
         /// </summary>
-        public async Task<WebResponse<string>> GetMeAsync()
+        public async Task<WebResponse<UserInfo>> GetMeAsync()
         {
-            return await SendHttpRequestAsync(RequestType.GET, "/api/v1/me");
+            WebResponse<string> response = await SendHttpRequestAsync(RequestType.GET, "/api/v1/me");
+            if (!response.Successful)
+            {
+                i5Debug.LogError("Unable to get information about logged in user.\n" + response.ErrorMessage, this);
+                return new WebResponse<UserInfo>(response.ErrorMessage, response.Code);
+            }
+            UserInfo userInfo = JsonSerializer.FromJson<UserInfo>(response.Content);
+            return new WebResponse<UserInfo>(userInfo, response.ByteData, response.Code);
         }
 
         /// <summary>
@@ -397,7 +404,7 @@ namespace i5.Toolkit.Core.RocketChatClient
                     }
                 }
             }
-            Debug.Log("Subscribtion stream closed");
+            Debug.Log("Subscription stream closed");
         }
 
         // Connect the socket to the host.

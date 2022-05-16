@@ -182,16 +182,16 @@ namespace i5.Toolkit.Core.RocketChatClient
         /// </summary>
         /// <param name="targetID">rid of the room, channel name (#) or user name (@)</param>
         /// <returns>Returns true if the message was successfully sent</returns>
-        public async Task<bool> PostMessageAsync(string targetID, string text = "", string alias = "", string emoji = "", string avatar = "", string attachement = "")
+        public async Task<WebResponse<MessageSentResponse>> PostMessageAsync(string targetID, string text = "", string alias = "", string emoji = "", string avatar = "", string attachement = "")
         {
             WebResponse<string> response = await SendEncodedPostRequestAsync($"https://{HostAddress}/api/v1/chat.postMessage", $"{{ \"channel\": \"{targetID}\", \"text\": \"{text}\" }}", true);
             if (!response.Successful)
             {
                 i5Debug.LogError("Could not send message", this);
-                return false;
+                return new WebResponse<MessageSentResponse>(response.Content, response.Code);
             }
             MessageSentResponse messageSentResponse = JsonSerializer.FromJson<MessageSentResponse>(response.Content);
-            return messageSentResponse.success;
+            return new WebResponse<MessageSentResponse>(messageSentResponse, response.ByteData, response.Code);
         }
 
         /// <summary>
@@ -208,28 +208,28 @@ namespace i5.Toolkit.Core.RocketChatClient
         /// Note that this only includes public channels. For private channels, get the user's groups.
         /// See https://developer.rocket.chat/reference/api/rest-api/endpoints/team-collaboration-endpoints/channels-endpoints/list
         /// </summary>
-        public async Task<ChannelGroup[]> GetChannelListJoinedAsync()
+        public async Task<WebResponse<ChannelGroup[]>> GetChannelListJoinedAsync()
         {
             WebResponse<string> response = await SendHttpRequestAsync(RequestType.GET, "/api/v1/channels.list.joined");
             if (!response.Successful)
             {
                 i5Debug.LogError("Could not retrieve channels", this);
-                return Array.Empty<ChannelGroup>();
+                return new WebResponse<ChannelGroup[]>(response.Content, response.Code);
             }
             ChannelsJoinedResponse channelsJoined = JsonSerializer.FromJson<ChannelsJoinedResponse>(response.Content);
-            return channelsJoined.channels;
+            return new WebResponse<ChannelGroup[]>(channelsJoined.channels, response.ByteData, response.Code);
         }
 
-        public async Task<ChannelGroup[]> GetGroupListAsync()
+        public async Task<WebResponse<ChannelGroup[]>> GetGroupListAsync()
         {
             WebResponse<string> response = await SendHttpRequestAsync(RequestType.GET, "/api/v1/groups.list");
             if (!response.Successful)
             {
                 i5Debug.LogError("Could not retrieve groups", this);
-                //return Array.Empty<Channel>();
+                return new WebResponse<ChannelGroup[]>(response.Content, response.Code);
             }
             GroupsJoinedResponse groupsJoined = JsonSerializer.FromJson<GroupsJoinedResponse>(response.Content);
-            return groupsJoined.groups;
+            return new WebResponse<ChannelGroup[]>(groupsJoined.groups, response.ByteData, response.Code);
         }
 
         /// <summary>
@@ -273,7 +273,7 @@ namespace i5.Toolkit.Core.RocketChatClient
         /// See https://developer.rocket.chat/reference/api/realtime-api/subscriptions/stream-room-messages
         /// </summary>
         /// <param name="roomID">rid of the room</param>
-        /// <param name="uniqueID">a unique ID of this subscribtion</param>
+        /// <param name="uniqueID">a unique ID of this subscription</param>
         public async Task SubscribeRoomMessageAsync(string roomID, string uniqueID)
         {
             await WebSocketConnectAsync();
@@ -284,11 +284,11 @@ namespace i5.Toolkit.Core.RocketChatClient
             isWebSocketSubscribed = true;
             // ReceiveMessage
             StreamMessageAsync();
-            Debug.Log("Subscribtion stream opened.");
+            Debug.Log("Subscription stream opened.");
         }
 
         /// <summary>
-        /// Unsubscribe the messages of a room, given the ID of the former subscribtion.
+        /// Unsubscribe the messages of a room, given the ID of the former subscription.
         /// </summary>
         /// <param name="uniqueID">The subscribtion ID</param>
         public async Task UnsubscribeRoomMessageAsync(string uniqueID)
@@ -313,7 +313,7 @@ namespace i5.Toolkit.Core.RocketChatClient
         /// <param name="uniqueID">id of the request</param>
         /// <param name="message">message to send</param>
         /// <returns></returns>
-        public async Task SendWebSocketRequestAsync(string uniqueID, string message)
+        public async Task<WebResponse<string>> SendWebSocketRequestAsync(string uniqueID, string message)
         {
             await WebSocketConnectAsync();
             await WebSocketLoginAsync(uniqueID);
@@ -321,7 +321,7 @@ namespace i5.Toolkit.Core.RocketChatClient
             var response = new byte[1024];
             await socket.ReceiveAsync(new ArraySegment<byte>(response), new CancellationToken());
             var messageString = Encoding.UTF8.GetString(response);
-            Debug.Log(messageString);
+            return new WebResponse<string>(messageString, response, 200);
         }
 
         #endregion

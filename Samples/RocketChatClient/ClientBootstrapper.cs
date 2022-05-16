@@ -90,7 +90,13 @@ public class ClientBootstrapper : MonoBehaviour
 
     public async void GetChannelListJoinedAsync()
     {
-        ChannelGroup[] joinedChannels = await client.GetChannelListJoinedAsync();
+        WebResponse<ChannelGroup[]> response = await client.GetChannelListJoinedAsync();
+        if (!response.Successful)
+        {
+            i5Debug.LogError("Could not get joined channel list: " + response.ErrorMessage, this);
+            return;
+        }
+        ChannelGroup[] joinedChannels = response.Content;
         string result = "";
         for (int i=0;i<joinedChannels.Length;i++)
         {
@@ -101,7 +107,13 @@ public class ClientBootstrapper : MonoBehaviour
 
     public async void GetGroupListAsync()
     {
-        ChannelGroup[] joinedGroups = await client.GetGroupListAsync();
+        WebResponse<ChannelGroup[]> response = await client.GetGroupListAsync();
+        if(!response.Successful)
+        {
+            i5Debug.LogError("Could not get groups: " + response.ErrorMessage, this);
+            return;
+        }
+        ChannelGroup[] joinedGroups = response.Content;
         string result = "";
         for (int i = 0; i < joinedGroups.Length; i++)
         {
@@ -112,10 +124,14 @@ public class ClientBootstrapper : MonoBehaviour
 
     public async void PostMessageAsync()
     {
-        bool success = await client.PostMessageAsync(roomID.text, messageToPost.text);
-        if (success)
+        WebResponse<MessageSentResponse> response = await client.PostMessageAsync(roomID.text, messageToPost.text);
+        if (response.Successful && response.Content.success)
         {
             i5Debug.Log("Message was successfully sent", this);
+        }
+        else
+        {
+            i5Debug.LogError("Error sending message: " + response.ErrorMessage, this);
         }
     }
 
@@ -136,4 +152,12 @@ public class ClientBootstrapper : MonoBehaviour
         ServiceManager.RegisterService(client);
     }
 
+    private async void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.F5))
+        {
+            WebResponse<string> response = await client.GetMeAsync();
+            Debug.Log(response.Content);
+        }
+    }
 }

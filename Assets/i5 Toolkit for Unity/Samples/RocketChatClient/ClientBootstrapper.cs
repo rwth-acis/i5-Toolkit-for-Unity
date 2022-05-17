@@ -100,7 +100,7 @@ public class ClientBootstrapper : MonoBehaviour
         string result = "";
         for (int i=0;i<joinedChannels.Length;i++)
         {
-            result += joinedChannels[i].name + "\n";
+            result += $"{joinedChannels[i].name} ({joinedChannels[i]._id}\n";
         }
         i5Debug.Log("Joined channels: \n" + result, this);
     }
@@ -117,7 +117,7 @@ public class ClientBootstrapper : MonoBehaviour
         string result = "";
         for (int i = 0; i < joinedGroups.Length; i++)
         {
-            result += joinedGroups[i].name + "\n";
+            result += $"{joinedGroups[i].name} ({joinedGroups[i]._id})\n";
         }
         i5Debug.Log("Joined groups: \n" + result, this);
     }
@@ -148,7 +148,7 @@ public class ClientBootstrapper : MonoBehaviour
     private void InstantiateClient()
     {
         client = new RocketChatClient(hostAddress.text, username.text, password.text);
-        client.OnMessageReceived += message => Debug.Log("Message Received");
+        client.OnMessageReceived += messageArgs => i5Debug.Log($"Message Received by {messageArgs.Sender.name}: {messageArgs.MessageContent}", this);
         ServiceManager.RegisterService(client);
     }
 }

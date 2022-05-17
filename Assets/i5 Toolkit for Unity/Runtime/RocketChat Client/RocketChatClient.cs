@@ -44,7 +44,7 @@ namespace i5.Toolkit.Core.RocketChatClient
             private set => hostAddress = value;
         }
 
-        public delegate void ReceivedMessageHandler(string message);
+        public delegate void ReceivedMessageHandler(MessageFieldsArguments messageArgs);
 
         /// <summary>
         /// Fired when the client receives a WebSocket message from a room.
@@ -386,22 +386,18 @@ namespace i5.Toolkit.Core.RocketChatClient
                     break;
                 }
                 var messageString = Encoding.UTF8.GetString(message);
-                Debug.Log(messageString);
-                if (messageString.IndexOf("ping") != -1)
+                //Debug.Log(messageString);
+
+                WebSocketResponse messageObj = JsonSerializer.FromJson<WebSocketResponse>(messageString);
+
+                if (messageObj.msg == "ping")
                 {
                     string pongMessage = "{\"msg\": \"pong\"}";
                     await socket.SendAsync(new ArraySegment<byte>(Encoding.UTF8.GetBytes(pongMessage)), WebSocketMessageType.Binary, true, cancellationToken);
                 }
-                else
+                else if (messageObj.fields.args != null && messageObj.fields.args.Length > 0)
                 {
-                    string[] strs = messageString.Split('\"');
-                    if (strs[7] == "stream-room-messages")
-                    {
-                        if (OnMessageReceived != null)
-                        {
-                            OnMessageReceived(messageString);
-                        }
-                    }
+                    OnMessageReceived?.Invoke(messageObj.fields.args[0]);
                 }
             }
             Debug.Log("Subscription stream closed");

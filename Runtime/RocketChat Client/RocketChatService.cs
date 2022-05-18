@@ -15,7 +15,7 @@ namespace i5.Toolkit.Core.RocketChatClient
     /// <summary>
     /// A client for accessing the RocketChat API
     /// </summary>
-    public class RocketChatClient : IService
+    public class RocketChatService : IService
     {
 
         public enum RequestType
@@ -116,7 +116,7 @@ namespace i5.Toolkit.Core.RocketChatClient
         /// Creates a new RocketChat client instance
         /// </summary>
         /// <param name="hostAddress">The URL address where the RocketChat server is hosted</param>
-        public RocketChatClient(string hostAddress)
+        public RocketChatService(string hostAddress)
         {
             cancellationToken = subscribeCancellationTokenSource.Token;
             this.HostAddress = hostAddress;
@@ -168,7 +168,7 @@ namespace i5.Toolkit.Core.RocketChatClient
         /// </summary>
         /// <param name="targetID">rid of the room, channel name (#) or user name (@)</param>
         /// <returns>Returns true if the message was successfully sent</returns>
-        public async Task<WebResponse<MessageSentResponse>> PostMessageAsync(string targetID, string text = "", string alias = "", string emoji = "", string avatar = "", string attachement = "")
+        public async Task<WebResponse<MessageSentResponse>> PostMessageAsync(string targetID, string text = "")
         {
             WebResponse<string> response = await SendEncodedPostRequestAsync($"https://{HostAddress}/api/v1/chat.postMessage", $"{{ \"channel\": \"{targetID}\", \"text\": \"{text}\" }}", true);
             if (!response.Successful)

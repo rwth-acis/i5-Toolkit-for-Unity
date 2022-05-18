@@ -24,12 +24,10 @@ namespace i5.Toolkit.Core.RocketChatClient
 
         #region Fields and Properties
 
-        private string hostAddress = "";
         private CancellationTokenSource subscribeCancellationTokenSource = new CancellationTokenSource();
-        private string username = "";
-        private string password = "";
-        private string authToken = "";
-        private string userID = "";
+
+        private string username;
+        private string password;
 
         // WebSocket
         private ClientWebSocket socket = new ClientWebSocket();
@@ -40,8 +38,7 @@ namespace i5.Toolkit.Core.RocketChatClient
 
         public string HostAddress
         {
-            get => hostAddress;
-            private set => hostAddress = value;
+            get; set;
         }
 
         public delegate void ReceivedMessageHandler(MessageFieldsArguments messageArgs);
@@ -52,37 +49,21 @@ namespace i5.Toolkit.Core.RocketChatClient
         public event ReceivedMessageHandler OnMessageReceived;
 
         /// <summary>
-        /// The username of the user who accesses the RocketChat API
-        /// Will not be automatically set even if one logs in with a token because the password is encrypted.
-        /// </summary>
-        public string Username
-        {
-            get => username;
-        }
-
-        /// <summary>
-        /// The password in plain text.
-        /// Will not be automatically set even if one logs in with a token, because it is returned encrypted by the server.
-        /// </summary>
-        public string Password
-        {
-            get => password;
-        }
-
-        /// <summary>
-        /// AuthToken (X-Auth-Token) of the user. It can be automatically set if one login with username first.
+        /// AuthToken (X-Auth-Token) of the user.
+        /// It is automatically set during the login.
         /// </summary>
         public string AuthToken
         {
-            get => authToken;
+            get; private set;
         }
 
         /// <summary>
-        /// UserID (X-User-Id) of the user. It can be automatically set if one login with username first.
+        /// UserID (X-User-Id) of the user.
+        /// It is automatically set during the login.
         /// </summary>
         public string UserID
         {
-            get => userID;
+            get; private set;
         }
 
         public IJsonSerializer JsonSerializer { get; set; } = new JsonUtilityAdapter();
@@ -92,10 +73,8 @@ namespace i5.Toolkit.Core.RocketChatClient
         #region IService Implementation
         public void Initialize(IServiceManager owner)
         {
-            i5Debug.Log("RocketChatClient host address: " + hostAddress, this);
-            i5Debug.Log("RocketChatClient username: " + username, this);
-            i5Debug.Log("RocketChatClient authToken: " + authToken, this);
-            if (string.IsNullOrEmpty(hostAddress))
+            i5Debug.Log("RocketChatClient host address: " + HostAddress, this);
+            if (string.IsNullOrEmpty(HostAddress))
             {
                 i5Debug.LogError("Please use the contructor to create the RocketChatClient", this);
             }
@@ -112,68 +91,48 @@ namespace i5.Toolkit.Core.RocketChatClient
 
         #region Public Methods
 
-        /// <summary>
-        /// Creates a new instance of the RocketChat client
-        /// </summary>
-        /// <param name="hostAddress">The address where the RocketChat server is hosted</param>
-        /// <param name="username">The name of the user who should be logged in</param>
-        /// <param name="password">The password of the user who should be logged in</param>
-        public RocketChatClient(string hostAddress, string username, string password)
+        public RocketChatClient(string hostAddress)
         {
             cancellationToken = subscribeCancellationTokenSource.Token;
-            this.hostAddress = hostAddress;
-            this.username = username;
-            this.password = password;
+            this.HostAddress = hostAddress;
         }
 
         /// <summary>
-        /// Creates a new instance of the RocketChat client
-        /// </summary>
-        /// <param name="hostAddress">The address where the RocketChat server is hosted</param>
-        /// <param name="authToken">The auth token for accessing the API with this user</param>
-        public RocketChatClient(string hostAddress, string authToken)
-        {
-            cancellationToken = subscribeCancellationTokenSource.Token;
-            this.hostAddress = hostAddress;
-            this.authToken = authToken;
-        }
-
-        /// <summary>
-        /// Login to the server.
-        /// It prefers the AuthToken. If it is not given, it will use username and password, and set the AuthToken and UserID.
+        /// Log in to the server with a username and password.
+        /// It sets the AuthToken and UserID properties.
         /// See https://developer.rocket.chat/reference/api/rest-api/endpoints/other-important-endpoints/authentication-endpoints/login
         /// </summary>
+        /// <param name="username">The username of the user who wants to log in</param>
+        /// <param name="password">The password of the user who wants to log in</param>
         /// <returns>Returns true if the login was successful, otherwise false</returns>
-        public async Task<bool> LoginAsync()
+        public async Task<bool> LoginAsync(string username, string password)
         {
-            string payload;
-
-            // construct the payload by checking whether an authToken is given or whether credentials are given
-            if (string.IsNullOrEmpty(authToken))
+            string payload = $"{{ \"username\": \"{username}\", \"password\": \"{password}\" }}";
+            bool success = await LoginRequestAsync(payload);
+            if (success)
             {
-                payload = $"{{ \"username\": \"{username}\", \"password\": \"{password}\" }}";
+                this.username = username;
+                this.password = password;
             }
             else
             {
-                payload = $"{{\"resume\": \"{authToken}\"}}";
+                this.username = "";
+                this.password = "";
             }
+            return success;
+        }
 
-            WebResponse<string> response = await SendEncodedPostRequestAsync(
-                $"https://{hostAddress}/api/v1/login",
-                payload,
-                false);
-
-            if (!response.Successful)
-            {
-                i5Debug.LogError("Could not log in", this);
-                return false;
-            }
-
-            LoginResponse loginResponse = JsonSerializer.FromJson<LoginResponse>(response.Content);
-
-            userID = loginResponse.data.userId;
-            authToken = loginResponse.data.authToken;
-            return true;
+        /// <summary>
+        /// Log in to the server with an auth token.
+        /// It sets the AuthToken and UserID properties.
+        /// See https://developer.rocket.chat/reference/api/rest-api/endpoints/other-important-endpoints/authentication-endpoints/login
+        /// </summary>
+        /// <param name="authToken">The auth token that identifies and authorized the user who wants to log in</param>
+        /// <returns>Returns true if the login was successful, otherwise false</returns>
+        public async Task<bool> LoginAsync(string authToken)
+        {
+            string payload = $"{{\"resume\": \"{authToken}\"}}";
+            return await LoginRequestAsync(payload);
         }
 
         /// <summary>
@@ -253,8 +212,8 @@ namespace i5.Toolkit.Core.RocketChatClient
             {
                 using (UnityWebRequest request = UnityWebRequest.Get($"https://{HostAddress}{apiSuffix}"))
                 {
-                    request.SetRequestHeader("X-Auth-Token", authToken);
-                    request.SetRequestHeader("X-User-Id", userID);
+                    request.SetRequestHeader("X-Auth-Token", AuthToken);
+                    request.SetRequestHeader("X-User-Id", UserID);
                     request.SetRequestHeader("Content-type", "application/json");
                     await request.SendWebRequest();
                     if (!string.IsNullOrEmpty(request.error))
@@ -334,6 +293,30 @@ namespace i5.Toolkit.Core.RocketChatClient
         #endregion
 
         #region Private Methods
+
+        // combined login workflow where the payload is already set
+        private async Task<bool> LoginRequestAsync(string payload)
+        {
+            WebResponse<string> response = await SendEncodedPostRequestAsync(
+                $"https://{HostAddress}/api/v1/login",
+                payload,
+                false);
+
+            if (!response.Successful)
+            {
+                i5Debug.LogError("Could not log in", this);
+                UserID = "";
+                AuthToken = "";
+                return false;
+            }
+
+            LoginResponse loginResponse = JsonSerializer.FromJson<LoginResponse>(response.Content);
+
+            UserID = loginResponse.data.userId;
+            AuthToken = loginResponse.data.authToken;
+            return true;
+        }
+
         //Encrypt a string using SHA256
         private string SHA256Encrypt(string data)
         {
@@ -353,13 +336,13 @@ namespace i5.Toolkit.Core.RocketChatClient
                 request.uploadHandler.contentType = "application/json";
                 if (loggedIn)
                 {
-                    if (string.IsNullOrEmpty(userID) || string.IsNullOrEmpty(authToken))
+                    if (string.IsNullOrEmpty(UserID) || string.IsNullOrEmpty(AuthToken))
                     {
                         i5Debug.LogError("Cannot post a logged in request if the userID oder authToken are not set.", this);
                         return new WebResponse<string>("not logged in", -1);
                     }
-                    request.SetRequestHeader("X-User-Id", userID);
-                    request.SetRequestHeader("X-Auth-Token", authToken);
+                    request.SetRequestHeader("X-User-Id", UserID);
+                    request.SetRequestHeader("X-Auth-Token", AuthToken);
                 }
                 await request.SendWebRequest();
                 if (!string.IsNullOrEmpty(request.error))
@@ -408,7 +391,7 @@ namespace i5.Toolkit.Core.RocketChatClient
         {
             if (!isWebSocketConnected)
             {
-                Uri uri = new Uri($"wss://{hostAddress}/websocket");
+                Uri uri = new Uri($"wss://{HostAddress}/websocket");
                 await socket.ConnectAsync(uri, cancellationToken);
                 string connectMessage = "{\"msg\": \"connect\",\"version\": \"1\",\"support\": [\"1\"]}";
                 await socket.SendAsync(new ArraySegment<byte>(Encoding.UTF8.GetBytes(connectMessage)), WebSocketMessageType.Binary, true, cancellationToken);
@@ -429,9 +412,9 @@ namespace i5.Toolkit.Core.RocketChatClient
         {
             if (!isWebSocketLoggedIn)
             {
-                if (!string.IsNullOrEmpty(authToken))
+                if (!string.IsNullOrEmpty(AuthToken))
                 {
-                    string loginMessage = $"{{\"msg\": \"method\",\"method\": \"login\",\"id\":\"{uniqueID}\"," + $"\"params\":[{{\"resume\": \"{authToken}\"}}]}}";
+                    string loginMessage = $"{{\"msg\": \"method\",\"method\": \"login\",\"id\":\"{uniqueID}\"," + $"\"params\":[{{\"resume\": \"{AuthToken}\"}}]}}";
                     await socket.SendAsync(new ArraySegment<byte>(Encoding.UTF8.GetBytes(loginMessage)), WebSocketMessageType.Binary, true, cancellationToken);
                 }
                 else

@@ -162,6 +162,9 @@ Continuous integration using GitHub Actions has been set up to test and deploy n
 For Mixed Reality development, also check out the [i5 Toolkit for MR](https://github.com/rwth-acis/i5-Toolkit-for-Mixed-Reality).
 It is an extension package that builds upon the functionality of this package and is optimized for Mixed Reality.
 
+If you are working with non-player characters (NPCs), virtual agents or mixed reality agents, take a look at the [Virtual Agents Framework](https://github.com/rwth-acis/Virtual-Agents-Framework).
+It provides a foundation for building virtual humans and modeling their behavior in a configurable way.
+
 ## Disclaimer
 
 This repository is not sponsored by or affiliated with Unity Technologies or its affiliates.

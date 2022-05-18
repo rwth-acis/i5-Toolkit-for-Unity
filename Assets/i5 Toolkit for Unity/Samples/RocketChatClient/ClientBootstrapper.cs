@@ -107,7 +107,7 @@ public class ClientBootstrapper : BaseServiceBootstrapper
         string result = "";
         for (int i=0;i<joinedChannels.Length;i++)
         {
-            result += $"{joinedChannels[i].name} ({joinedChannels[i]._id}\n";
+            result += $"{joinedChannels[i].name} ({joinedChannels[i]._id})\n";
         }
         i5Debug.Log("Joined channels: \n" + result, this);
     }

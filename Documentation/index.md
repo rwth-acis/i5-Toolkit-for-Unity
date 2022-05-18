@@ -49,6 +49,10 @@ Minimum Unity version: 2019.4.
 
 There are different ways to add the package to a project.
 
+You can follow the step-by-step instructions below or watch the [video tutorial](https://youtu.be/VtJUG7-GWM0) with installation instructions.
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/VtJUG7-GWM0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ### Alternative 1: Unity Dependency File with OpenUPM (Recommended)
 
 The toolkit can be loaded using Unity's package manager.

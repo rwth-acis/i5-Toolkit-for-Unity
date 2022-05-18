@@ -16,6 +16,8 @@
   href: OpenID-Connect-Client.md
 - name: Procedural Geometry
   href: Procedural-Geometry.md
+- name: RocketChat Client
+  href: RocketChat-Client.md
 - name: Scene Documentation
   href: Scene-Documentation.md
 - name: Service Core

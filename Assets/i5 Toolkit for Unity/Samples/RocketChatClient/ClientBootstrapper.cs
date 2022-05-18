@@ -13,7 +13,7 @@ public class ClientBootstrapper : BaseServiceBootstrapper
     public string Username = "";
     public string Password = "";
     
-    private RocketChatClient client;
+    private RocketChatService client;
     private TMP_InputField hostAddress;
     private TMP_InputField username;
     private TMP_InputField password;
@@ -71,9 +71,9 @@ public class ClientBootstrapper : BaseServiceBootstrapper
 
     protected override void UnRegisterServices()
     {
-        if (ServiceManager.ServiceExists<RocketChatClient>())
+        if (ServiceManager.ServiceExists<RocketChatService>())
         {
-            ServiceManager.RemoveService<RocketChatClient>();
+            ServiceManager.RemoveService<RocketChatService>();
         }
     }
 
@@ -154,7 +154,7 @@ public class ClientBootstrapper : BaseServiceBootstrapper
 
     private void InstantiateClient()
     {
-        client = new RocketChatClient(hostAddress.text);
+        client = new RocketChatService(hostAddress.text);
         client.OnMessageReceived += messageArgs => i5Debug.Log($"Message Received by {messageArgs.Sender.name}: {messageArgs.MessageContent}", this);
         ServiceManager.RegisterService(client);
     }

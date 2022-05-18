@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ClientBootstrapper : MonoBehaviour
+public class ClientBootstrapper : BaseServiceBootstrapper
 {
 
     public GameObject DemoCanvas;
@@ -42,31 +42,34 @@ public class ClientBootstrapper : MonoBehaviour
         postMessage = DemoCanvas.transform.Find("PostMessage").GetComponent<Button>();
         subscribe = DemoCanvas.transform.Find("Subscribe").GetComponent<Button>();
         unsubscribe = DemoCanvas.transform.Find("Unsubscribe").GetComponent<Button>();
-    }
 
-    private void Start()
-    {
+
         login.onClick.AddListener(LoginAsync);
         getChannelList.onClick.AddListener(GetChannelListJoinedAsync);
         getGroupList.onClick.AddListener(GetGroupListAsync);
         postMessage.onClick.AddListener(PostMessageAsync);
         subscribe.onClick.AddListener(SubscribeAsync);
         unsubscribe.onClick.AddListener(UnsubscribeAsync);
-        if(HostAddress != "")
+        if (HostAddress != "")
         {
             hostAddress.text = HostAddress;
         }
-        if(Username != "")
+        if (Username != "")
         {
             username.text = Username;
         }
-        if(Password != "")
+        if (Password != "")
         {
             password.text = Password;
         }
     }
 
-    private void OnDestroy()
+    protected override void RegisterServices()
+    {
+        InstantiateClient();
+    }
+
+    protected override void UnRegisterServices()
     {
         if (ServiceManager.ServiceExists<RocketChatClient>())
         {
@@ -74,10 +77,14 @@ public class ClientBootstrapper : MonoBehaviour
         }
     }
 
+    //private void Start()
+    //{
+        
+    //}
+
     public async void LoginAsync()
     {
-        InstantiateClient();
-        bool success = await client.LoginAsync();
+        bool success = await client.LoginAsync(username.text, password.text);
         if (success)
         {
             i5Debug.Log("Login was successful", this);
@@ -147,7 +154,7 @@ public class ClientBootstrapper : MonoBehaviour
 
     private void InstantiateClient()
     {
-        client = new RocketChatClient(hostAddress.text, username.text, password.text);
+        client = new RocketChatClient(hostAddress.text);
         client.OnMessageReceived += messageArgs => i5Debug.Log($"Message Received by {messageArgs.Sender.name}: {messageArgs.MessageContent}", this);
         ServiceManager.RegisterService(client);
     }

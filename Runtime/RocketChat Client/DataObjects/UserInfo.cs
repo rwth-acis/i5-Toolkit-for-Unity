@@ -2,6 +2,9 @@
 
 namespace i5.Toolkit.Core.RocketChatClient
 {
+    /// <summary>
+    /// Additional information about the RocketChat user which is e.g. received when querying the logged in user
+    /// </summary>
     [Serializable]
     public class UserInfo : User
     {

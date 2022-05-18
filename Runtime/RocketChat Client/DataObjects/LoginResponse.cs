@@ -2,6 +2,9 @@
 
 namespace i5.Toolkit.Core.RocketChatClient
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [Serializable]
     public class LoginResponse
     {

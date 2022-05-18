@@ -2,6 +2,9 @@
 
 namespace i5.Toolkit.Core.RocketChatClient
 {
+    /// <summary>
+    /// A combined data object for representing channels and groups in the RocketChat API
+    /// </summary>
     [Serializable]
     public class ChannelGroup
     {

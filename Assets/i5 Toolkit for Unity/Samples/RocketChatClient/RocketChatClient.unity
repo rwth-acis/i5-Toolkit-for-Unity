@@ -3212,7 +3212,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: After the successful subscribtion, please send any message to the channel.
+  m_text: After the successful subscription, please, send any message to the channel.
     You can just send it using the Rocket.Chat app. Then you can also unsubscribe
     the message using UnsubscribeRoomMessageAsync().
   m_isRightToLeft: 0
@@ -3283,7 +3283,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 768388413}
-    characterCount: 201
+    characterCount: 202
     spriteCount: 0
     spaceCount: 28
     wordCount: 30
@@ -4199,7 +4199,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: After the unsubscribtion, you will not get any message from the channel
+  m_text: After the unsubscription, you will not get any message from the channel
     anymore.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

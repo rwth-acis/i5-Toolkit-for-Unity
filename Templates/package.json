@@ -56,6 +56,11 @@
             "path": "Samples~/OpenID Connect"
         },
         {
+            "displayName": "Rocket.Chat Client",
+            "description": "An example user interface which demonstrates how to send and receive messages from Rocket.Chat in Unity using the Rocket.Chat client module.",
+            "path": "Samples~/RocketChat Client"
+        },
+        {
             "displayName": "Scene Documentation",
             "description": "Example scene with scene documentation objects",
             "path": "Samples~/Scene Documentation"

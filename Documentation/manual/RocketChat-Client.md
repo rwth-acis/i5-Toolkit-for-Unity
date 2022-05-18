@@ -98,6 +98,9 @@ To fetch the properties of the logged-in account, call <xref:i5.Toolkit.Core.Roc
 To receive messages, the service needs to start listening for messages and your code needs to subscribe to the event to get notified about incoming messages.
 In the end, do not forget to un-subscribe from the server.
 
+Note that the module listens for all messages that arrive in the specified room.
+This means, that events are, e.g., also invoked for messages that are sent by the logged-in user using this module.
+
 #### Subscribe to a Room
 
 So, first call <xref:i5.Toolkit.Core.RocketChatClient.RocketChatService.SubscribeRoomMessageAsync*>.

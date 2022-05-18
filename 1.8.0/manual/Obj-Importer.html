@@ -1,0 +1,182 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Obj Importer | i5 Toolkit Documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Obj Importer | i5 Toolkit Documentation ">
+    <meta name="generator" content="docfx 2.56.2.0">
+    
+    <link rel="shortcut icon" href="../resources/Logos/Logo_whiteBg.svg">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../resources/Logos/Logo_whiteBg.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="obj-importer">Obj Importer</h1>
+
+<p><img src="../resources/Logos/ObjImporter.svg" alt="Obj Importer"></p>
+<p>The obj importer can fetch 3D models in the .obj file format from the Web or local storage at runtime.
+This way, content can dynamically be loaded from outside of the project.
+It allows developers to maintain a list of 3D models online which can be tweaked and exchanged without updates to the deployed applications.
+Moreover, users can upload 3D models to the Web and so, the application can load user-specified content.
+With the local loading, 3D models from the Web can first be downloaded and cached for quicker access.</p>
+<p>The obj importer also fetches any referenced material files in the .mtl format.
+Moreover, associated textures in materials are also loaded.</p>
+<h2 id="usage">Usage</h2>
+<h3 id="register-the-service">Register the Service</h3>
+<p>First, register the <a class="xref" href="../api/i5.Toolkit.Core.ModelImporters.ObjImporter.html">ObjImporter</a> as a service at the <a class="xref" href="../api/i5.Toolkit.Core.ServiceCore.ServiceManager.html">ServiceManager</a>;</p>
+<pre><code class="lang-[C#]">ObjImporter objImporter = new ObjImporter();
+ServiceManager.RegisterService(objImporter);
+</code></pre><p>When registering the service, it will automatically register an <a class="xref" href="../api/i5.Toolkit.Core.ModelImporters.MtlLibrary.html">MtlLibrary</a> service, too.
+This service is required for importing the material files and caching them so that they can be reused.</p>
+<h3 id="import-models">Import Models</h3>
+<p>Use the method <a class="xref" href="../api/i5.Toolkit.Core.ModelImporters.ObjImporter.html#i5_Toolkit_Core_ModelImporters_ObjImporter_ImportAsync_System_String_">ImportAsync(String)</a> to load a 3D object from the given URL or file path and import it as a new GameObject.
+The method runs asynchronously to request the file from disk or to load it from the Web.
+Moreover, the geometry construction happens in the background on a separate thread so that there should be no noticable impact on the performance.</p>
+<pre><code class="lang-[C#]">string url = &quot;https://raw.githubusercontent.com/rwth-acis/i5-Toolkit-for-Unity/master/Assets/i5%20Toolkit%20for%20Unity/Samples%7E/Importers/ObjImporter/Obj%20Models/Monkey_textured.obj&quot;
+GameObject obj = await ServiceManager.GetService&lt;ObjImporter&gt;().ImportAsync(url);
+</code></pre><p>The specified path should point directly to the .obj file.
+If it does not point to a file that ends with .obj, a warning is given but the import is still tried.</p>
+<h3 id="debugging">Debugging</h3>
+<p>The service provides a field <a class="xref" href="../api/i5.Toolkit.Core.ModelImporters.ObjImporter.html#i5_Toolkit_Core_ModelImporters_ObjImporter_ExtendedLogging">ExtendedLogging</a>.
+If it is set to <code>true</code>, the ObjImporter gives more detailed log outputs about the import process.</p>
+<pre><code class="lang-[C#]">ServiceManager.GetService&lt;ObjImporter&gt;().ExtendedLogging = true;
+</code></pre><h3 id="activate-caching">Activate Caching</h3>
+<p>To increase the loading speed of 3D objects that are loaded multiple times, one can activate <a href="File-Cache.html">caching</a>.
+When using the cache, objects are stored locally once they are downloaded so that another request of that resource can be answered directly from the local file system.
+To be able to use the File Cache and the ObjImporter together the following name spaces must be included.</p>
+<pre><code class="lang-[C#]">using i5.Toolkit.Core.Caching;
+using i5.Toolkit.Core.ModelImporters;
+using i5.Toolkit.Core.ServiceCore;
+</code></pre><p>Before we activate the cache of the <a class="xref" href="../api/i5.Toolkit.Core.ModelImporters.ObjImporter.html">ObjImporter</a> there must be a <a class="xref" href="../api/i5.Toolkit.Core.Caching.FileCacheService.html">FileCacheService</a> registered at the servie manager.
+After that, exchange the <a class="xref" href="../api/i5.Toolkit.Core.ModelImporters.ObjImporter.html#i5_Toolkit_Core_ModelImporters_ObjImporter_ContentLoader">ContentLoader</a> with the <a class="xref" href="../api/i5.Toolkit.Core.Caching.CacheAwareContentLoader.html">CacheAwareContentLoader</a>.</p>
+<pre><code class="lang-[C#]">void Start()
+{
+    //Register the file cache
+    FileCacheService objCache = new FileCacheService();
+    ServiceManager.RegisterService(objCache);
+
+    //Register the object importer; set its content loader to the cache aware loader
+    ObjImporter importer = new ObjImporter();
+    importer.ContentLoader = new CacheAwareContentLoader();
+    ServiceManager.RegisterService(importer);
+
+    //then use the normal ImportAsync(url) method to import objects
+}
+</code></pre><p>This code example above uses the default settings of the <a class="xref" href="../api/i5.Toolkit.Core.Caching.FileCacheService.html">FileCacheService</a>.
+To see how to specify the behaviour of the file cache, please, use the <a href="File-Cache.html">File Cache</a> documentation.</p>
+<h2 id="example-scene">Example Scene</h2>
+<p>The example scene shows how to load different .obj files.
+In the folder &quot;Obj Models&quot;, different 3D models which have been created in Blender, are stored.
+They can be loaded using the link to the raw object on GitHub.
+The 3D models vary in complexity, the number of objects, materials and textures.</p>
+<p>To find the url of an example 3D model, navigate to the <a href="https://github.com/rwth-acis/i5-Toolkit-for-Unity/tree/master/Assets/i5%20Toolkit%20for%20Unity/Samples%7E/Importers/ObjImporter/Obj%20Models">model folder of the repository</a>, select one of the .obj files  and click on &quot;View raw&quot;.
+After that, copy the url from your browser into the url field of the ServiceClient in the ObjImporter example scene.
+You can also enter absolute local paths.
+The example provides a series of 3D models that can be tried out.</p>
+<p>In PlayMode, press F5 to trigger the import.
+You can also change the url field of the ServiceManager during PlayMode and import different 3D models into one session by pressing F5 after changing the model url.</p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/rwth-acis/i5-Toolkit-for-Unity/blob/features/fileCache/Documentation/manual/Obj-Importer.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            i5 Toolkit Documentation
+            
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

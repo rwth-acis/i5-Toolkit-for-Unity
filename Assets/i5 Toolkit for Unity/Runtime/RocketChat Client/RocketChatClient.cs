@@ -12,7 +12,9 @@ using UnityEngine.Networking;
 
 namespace i5.Toolkit.Core.RocketChatClient
 {
-
+    /// <summary>
+    /// A client for accessing the RocketChat API
+    /// </summary>
     public class RocketChatClient : IService
     {
 
@@ -29,18 +31,25 @@ namespace i5.Toolkit.Core.RocketChatClient
         private string username;
         private string password;
 
-        // WebSocket
+        // WebSocket fields
         private ClientWebSocket socket = new ClientWebSocket();
         private CancellationToken cancellationToken;
         private bool isWebSocketConnected = false;
         private bool isWebSocketLoggedIn = false;
         private bool isWebSocketSubscribed = false;
 
+        /// <summary>
+        /// The address where the RocketChat server is hosted
+        /// </summary>
         public string HostAddress
         {
             get; set;
         }
 
+        /// <summary>
+        /// Event delegate for receiving messages
+        /// </summary>
+        /// <param name="messageArgs">The arguments of the received message, e.g. contains the message's text or the sender</param>
         public delegate void ReceivedMessageHandler(MessageFieldsArguments messageArgs);
 
         /// <summary>
@@ -66,11 +75,20 @@ namespace i5.Toolkit.Core.RocketChatClient
             get; private set;
         }
 
+        /// <summary>
+        /// Module for serializing and de-serializing JSON files
+        /// Initialized by default with the JsonUtilityAdapter
+        /// </summary>
         public IJsonSerializer JsonSerializer { get; set; } = new JsonUtilityAdapter();
 
         #endregion
 
         #region IService Implementation
+
+        /// <summary>
+        /// Initializes the service as it gets registerd with a ServiceManager
+        /// </summary>
+        /// <param name="owner">The service manager which now owns this service</param>
         public void Initialize(IServiceManager owner)
         {
             i5Debug.Log("RocketChatClient host address: " + HostAddress, this);
@@ -80,6 +98,9 @@ namespace i5.Toolkit.Core.RocketChatClient
             }
         }
 
+        /// <summary>
+        /// Cleans up the service as it is deregistered from the service manager
+        /// </summary>
         public void Cleanup()
         {
             isWebSocketConnected = false;
@@ -91,6 +112,10 @@ namespace i5.Toolkit.Core.RocketChatClient
 
         #region Public Methods
 
+        /// <summary>
+        /// Creates a new RocketChat client instance
+        /// </summary>
+        /// <param name="hostAddress">The URL address where the RocketChat server is hosted</param>
         public RocketChatClient(string hostAddress)
         {
             cancellationToken = subscribeCancellationTokenSource.Token;
@@ -109,6 +134,7 @@ namespace i5.Toolkit.Core.RocketChatClient
         {
             string payload = $"{{ \"username\": \"{username}\", \"password\": \"{password}\" }}";
             bool success = await LoginRequestAsync(payload);
+            // cahce the username and password for the web socket if the login was successful
             if (success)
             {
                 this.username = username;
@@ -136,7 +162,8 @@ namespace i5.Toolkit.Core.RocketChatClient
         }
 
         /// <summary>
-        /// Post a message to a given room (channel, team, direct message etc.) of the user. Requires Login first.
+        /// Post a message to a given room (channel, team, direct message etc.) of the user.
+        /// Requires login first.
         /// See https://developer.rocket.chat/reference/api/rest-api/endpoints/team-collaboration-endpoints/chat-endpoints/postmessage
         /// </summary>
         /// <param name="targetID">rid of the room, channel name (#) or user name (@)</param>
@@ -154,7 +181,8 @@ namespace i5.Toolkit.Core.RocketChatClient
         }
 
         /// <summary>
-        /// Get the user profile. Requires login first.
+        /// Get the profile information of the logged-in user.
+        /// Requires login first.
         /// See https://developer.rocket.chat/reference/api/rest-api/endpoints/other-important-endpoints/authentication-endpoints/me
         /// </summary>
         public async Task<WebResponse<UserInfo>> GetMeAsync()
@@ -174,6 +202,7 @@ namespace i5.Toolkit.Core.RocketChatClient
         /// Note that this only includes public channels. For private channels, get the user's groups.
         /// See https://developer.rocket.chat/reference/api/rest-api/endpoints/team-collaboration-endpoints/channels-endpoints/list
         /// </summary>
+        /// <returns>Retunrs a WebResponse with the server's answer and an array of the user's channels</returns>
         public async Task<WebResponse<ChannelGroup[]>> GetChannelListJoinedAsync()
         {
             WebResponse<string> response = await SendHttpRequestAsync(RequestType.GET, "/api/v1/channels.list.joined");
@@ -186,6 +215,12 @@ namespace i5.Toolkit.Core.RocketChatClient
             return new WebResponse<ChannelGroup[]>(channelsJoined.channels, response.ByteData, response.Code);
         }
 
+        /// <summary>
+        /// Gets the user's list of joined groups. Requires login first.
+        /// This does not only include groups but also private channels.
+        /// See https://developer.rocket.chat/reference/api/rest-api/endpoints/team-collaboration-endpoints/groups-endpoints/list
+        /// </summary>
+        /// <returns>Returns a WebResponse of the server and an array of the user's groups</returns>
         public async Task<WebResponse<ChannelGroup[]>> GetGroupListAsync()
         {
             WebResponse<string> response = await SendHttpRequestAsync(RequestType.GET, "/api/v1/groups.list");
@@ -205,7 +240,7 @@ namespace i5.Toolkit.Core.RocketChatClient
         /// <param name="type"> request type, supports GET and POST</param>
         /// <param name="apiSuffix">the api string behind the host, e.g. /api/v1/login </param>
         /// <param name="payload">Payload of a POST request, optional.</param>
-        /// <returns></returns>
+        /// <returns>WebResponse with the server's answer</returns>
         public async Task<WebResponse<string>> SendHttpRequestAsync(RequestType type, string apiSuffix, string payload = "")
         {
             if (type == RequestType.GET)
@@ -235,11 +270,12 @@ namespace i5.Toolkit.Core.RocketChatClient
         }
 
         /// <summary>
-        /// Stream the message of the given room.
+        /// Start listening for messages in a particular channel
+        /// Starts a web socket that keeps up a connection to the API.
         /// See https://developer.rocket.chat/reference/api/realtime-api/subscriptions/stream-room-messages
         /// </summary>
-        /// <param name="roomID">rid of the room</param>
-        /// <param name="uniqueID">a unique ID of this subscription</param>
+        /// <param name="roomID">rid of the room (must be the internal id, the human-readable name starting with the '#' does not work)</param>
+        /// <param name="uniqueID">a unique ID of this subscription (can be chosen arbitrarily)</param>
         public async Task SubscribeRoomMessageAsync(string roomID, string uniqueID)
         {
             await WebSocketConnectAsync();
@@ -254,9 +290,10 @@ namespace i5.Toolkit.Core.RocketChatClient
         }
 
         /// <summary>
-        /// Unsubscribe the messages of a room, given the ID of the former subscription.
+        /// Stop listening for messages in a room, given the ID of the former subscription.
+        /// Closes this particular Web socket connection to the API
         /// </summary>
-        /// <param name="uniqueID">The subscribtion ID</param>
+        /// <param name="uniqueID">The subscribtion ID that identifies the subscription</param>
         public async Task UnsubscribeRoomMessageAsync(string uniqueID)
         {
             if (isWebSocketSubscribed)
@@ -264,21 +301,21 @@ namespace i5.Toolkit.Core.RocketChatClient
                 string unSubMessage = $"{{\"msg\": \"unsub\",\"id\": \"{uniqueID}\"}}";
                 await socket.SendAsync(new ArraySegment<byte>(Encoding.UTF8.GetBytes(unSubMessage)), WebSocketMessageType.Binary, true, cancellationToken);
                 isWebSocketSubscribed = false;
-                Debug.Log("Unsubscribed stream with id: " + uniqueID);
+                i5Debug.Log("Unsubscribed stream with id: " + uniqueID, this);
             }
             else
             {
-                Debug.LogError("You have no subscribtion.");
+                i5Debug.LogWarning("You have no active subscription.", this);
             }
         }
 
         /// <summary>
-        /// Send a arbitrary WebSocket request to the host.
+        /// Send an arbitrary WebSocket request to the host.
         /// APIs See https://developer.rocket.chat/reference/api/realtime-api
         /// </summary>
         /// <param name="uniqueID">id of the request</param>
         /// <param name="message">message to send</param>
-        /// <returns></returns>
+        /// <returns>Returns the API's answer as a WebResponse object</returns>
         public async Task<WebResponse<string>> SendWebSocketRequestAsync(string uniqueID, string message)
         {
             await WebSocketConnectAsync();
@@ -317,7 +354,8 @@ namespace i5.Toolkit.Core.RocketChatClient
             return true;
         }
 
-        //Encrypt a string using SHA256
+        // Encrypt a string using SHA256
+        // Useful for encrypting the password
         private string SHA256Encrypt(string data)
         {
             byte[] SHA256 = Encoding.UTF8.GetBytes(data);
@@ -326,6 +364,7 @@ namespace i5.Toolkit.Core.RocketChatClient
             return BitConverter.ToString(hash).Replace("-", "").ToLower();
         }
 
+        // encodes the post requests so that they are accepted by RocketChat's API
         private async Task<WebResponse<string>> SendEncodedPostRequestAsync(string url, string bodyData, bool loggedIn)
         {
             using (UnityWebRequest request = UnityWebRequest.Put(url, bodyData))
@@ -369,8 +408,7 @@ namespace i5.Toolkit.Core.RocketChatClient
                     break;
                 }
                 var messageString = Encoding.UTF8.GetString(message);
-                //Debug.Log(messageString);
-
+                
                 WebSocketResponse messageObj = JsonSerializer.FromJson<WebSocketResponse>(messageString);
 
                 if (messageObj.msg == "ping")
@@ -383,7 +421,7 @@ namespace i5.Toolkit.Core.RocketChatClient
                     OnMessageReceived?.Invoke(messageObj.fields.args[0]);
                 }
             }
-            Debug.Log("Subscription stream closed");
+            i5Debug.Log("Subscription stream closed", this);
         }
 
         // Connect the socket to the host.

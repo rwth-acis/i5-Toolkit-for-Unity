@@ -13,7 +13,7 @@ using UnityEngine.Networking;
 namespace i5.Toolkit.Core.RocketChatClient
 {
     /// <summary>
-    /// A client for accessing the RocketChat API
+    /// A client for accessing the Rocket.Chat API
     /// </summary>
     public class RocketChatService : IService
     {
@@ -39,7 +39,7 @@ namespace i5.Toolkit.Core.RocketChatClient
         private bool isWebSocketSubscribed = false;
 
         /// <summary>
-        /// The address where the RocketChat server is hosted
+        /// The address where the Rocket.Chat server is hosted
         /// </summary>
         public string HostAddress
         {
@@ -91,10 +91,10 @@ namespace i5.Toolkit.Core.RocketChatClient
         /// <param name="owner">The service manager which now owns this service</param>
         public void Initialize(IServiceManager owner)
         {
-            i5Debug.Log("RocketChatClient host address: " + HostAddress, this);
+            i5Debug.Log("Host address: " + HostAddress, this);
             if (string.IsNullOrEmpty(HostAddress))
             {
-                i5Debug.LogError("Please use the contructor to create the RocketChatClient", this);
+                i5Debug.LogError("Please use the contructor to initialize the host address first", this);
             }
         }
 
@@ -113,9 +113,9 @@ namespace i5.Toolkit.Core.RocketChatClient
         #region Public Methods
 
         /// <summary>
-        /// Creates a new RocketChat client instance
+        /// Creates a new Rocket.Chat client instance
         /// </summary>
-        /// <param name="hostAddress">The URL address where the RocketChat server is hosted</param>
+        /// <param name="hostAddress">The URL address where the Rocket.Chat server is hosted</param>
         public RocketChatService(string hostAddress)
         {
             cancellationToken = subscribeCancellationTokenSource.Token;
@@ -364,7 +364,7 @@ namespace i5.Toolkit.Core.RocketChatClient
             return BitConverter.ToString(hash).Replace("-", "").ToLower();
         }
 
-        // encodes the post requests so that they are accepted by RocketChat's API
+        // encodes the post requests so that they are accepted by Rocket.Chat's API
         private async Task<WebResponse<string>> SendEncodedPostRequestAsync(string url, string bodyData, bool loggedIn)
         {
             using (UnityWebRequest request = UnityWebRequest.Put(url, bodyData))

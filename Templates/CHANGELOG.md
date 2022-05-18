@@ -2,9 +2,10 @@
 
 This document keeps track of the changes between versions of the toolkit.
 
-## Unreleased
+## 1.8.0 (2022-05-18)
 
 ### Added
+- Added Rocket.Chat client module to send and receive messages from Rocket.Chat
 - Added PlayerPref utilities for arrays, vectors and colors
 - Added Vector extensions for converting vectors to arrays and vice versa
 - Added Color extensions for converting colors to arrays and vice versa

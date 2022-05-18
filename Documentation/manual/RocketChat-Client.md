@@ -1,11 +1,11 @@
-# App Console
+# Rocket.Chat Client
 
-![RocketChat Client](../resources/Logos/RocketChatClient.svg)
+![Rocket.Chat Client](../resources/Logos/RocketChatClient.svg)
 
 ## Use Case
 
-The RocketChat client contains an integration with the chat program RocketChat.
-Using this module, the application can send or receive messages in RocketChat at runtime.
+The Rocket.Chat client contains an integration with the chat program [Rocket.Chat](https://rocket.chat).
+Using this module, the application can send or receive messages in Rocket.Chat at runtime.
 For instance, this allows the integration of chatbots into Unity, e.g., to drive dialogues by non-player characters.
 Moreover, this can be useful for sending notifications about actions that users perform in the application, thereby gaining awareness in the community.
 
@@ -15,10 +15,10 @@ Moreover, this can be useful for sending notifications about actions that users 
 
 First, the <xref:i5.Toolkit.Core.RocketChatClient.RocketChatService> has to be added to the <xref:i5.Toolkit.Core.ServiceCore.ServiceManager> so that the service is available.
 While creating the service, a host address needs to be provided.
-This is the host address of your RocketChat instance.
-You can find your RocketChat's address in the following way:
+This is the host address of your Rocket.Chat instance.
+You can find your Rocket.Chat's address in the following way:
 
-1. Open the RocketChat client and select your server on the very left.
+1. Open the Rocket.Chat client and select your server on the very left.
 2. Underneath the list of channels and direct messages on the bottom left, there is an icon that can be customized for your server.
    Right-click on this icon and select "Copy link address" from the context menu.
 3. Paste the resulting link somewhere and shorten it so that it ends with the country code.
@@ -35,7 +35,7 @@ You can create a personal access token in your account and use this to log in.
 This is recommended for additional security as you can create different tokens for separate applications and can also revoke tokens in case that a token was leaked.
 
 To set up a personal access token, follow these steps:
-1. Click on your profile image in the RocketChat client.
+1. Click on your profile image in the Rocket.Chat client.
 2. After that, select "My Account".
 3. There is a category "Personal Access Tokens".
    Click on it.
@@ -52,7 +52,7 @@ Continue by [handling the result of this call](#login-result).
 
 #### Option 2: User Credentials
 
-Instead of creating a personal access token in RocketChat's profile settings, it can be more intuitive for the user to log in using the username and password.
+Instead of creating a personal access token in Rocket.Chat's profile settings, it can be more intuitive for the user to log in using the username and password.
 This is also supported by the module.
 Construct text fields that let the user enter the credentials.
 After that, call <xref:i5.Toolkit.Core.RocketChatClient.RocketChatService.LoginAsync(System.String, System.String)> and pass the specified username and password to it.

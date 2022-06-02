@@ -130,10 +130,11 @@ namespace i5.Toolkit.Core.RocketChatClient
         /// <param name="username">The username of the user who wants to log in</param>
         /// <param name="password">The password of the user who wants to log in</param>
         /// <returns>Returns true if the login was successful, otherwise false</returns>
-        public async Task<bool> LoginAsync(string username, string password)
+        public async Task<WebResponse<bool>> LoginAsync(string username, string password)
         {
             string payload = $"{{ \"username\": \"{username}\", \"password\": \"{password}\" }}";
-            bool success = await LoginRequestAsync(payload);
+            WebResponse<bool> result = await LoginRequestAsync(payload);
+            bool success = result.Content;
             // cahce the username and password for the web socket if the login was successful
             if (success)
             {
@@ -145,7 +146,7 @@ namespace i5.Toolkit.Core.RocketChatClient
                 this.username = "";
                 this.password = "";
             }
-            return success;
+            return result;
         }
 
         /// <summary>
@@ -155,7 +156,7 @@ namespace i5.Toolkit.Core.RocketChatClient
         /// </summary>
         /// <param name="authToken">The auth token that identifies and authorized the user who wants to log in</param>
         /// <returns>Returns true if the login was successful, otherwise false</returns>
-        public async Task<bool> LoginAsync(string authToken)
+        public async Task<WebResponse<bool>> LoginAsync(string authToken)
         {
             string payload = $"{{\"resume\": \"{authToken}\"}}";
             return await LoginRequestAsync(payload);
@@ -174,7 +175,7 @@ namespace i5.Toolkit.Core.RocketChatClient
             if (!response.Successful)
             {
                 i5Debug.LogError("Could not send message", this);
-                return new WebResponse<MessageSentResponse>(response.Content, response.Code);
+                return new WebResponse<MessageSentResponse>(response.ErrorMessage, response.Code);
             }
             MessageSentResponse messageSentResponse = JsonSerializer.FromJson<MessageSentResponse>(response.Content);
             return new WebResponse<MessageSentResponse>(messageSentResponse, response.ByteData, response.Code);
@@ -209,7 +210,7 @@ namespace i5.Toolkit.Core.RocketChatClient
             if (!response.Successful)
             {
                 i5Debug.LogError("Could not retrieve channels", this);
-                return new WebResponse<ChannelGroup[]>(response.Content, response.Code);
+                return new WebResponse<ChannelGroup[]>(response.ErrorMessage, response.Code);
             }
             ChannelsJoinedResponse channelsJoined = JsonSerializer.FromJson<ChannelsJoinedResponse>(response.Content);
             return new WebResponse<ChannelGroup[]>(channelsJoined.channels, response.ByteData, response.Code);
@@ -227,7 +228,7 @@ namespace i5.Toolkit.Core.RocketChatClient
             if (!response.Successful)
             {
                 i5Debug.LogError("Could not retrieve groups", this);
-                return new WebResponse<ChannelGroup[]>(response.Content, response.Code);
+                return new WebResponse<ChannelGroup[]>(response.ErrorMessage, response.Code);
             }
             GroupsJoinedResponse groupsJoined = JsonSerializer.FromJson<GroupsJoinedResponse>(response.Content);
             return new WebResponse<ChannelGroup[]>(groupsJoined.groups, response.ByteData, response.Code);
@@ -332,7 +333,7 @@ namespace i5.Toolkit.Core.RocketChatClient
         #region Private Methods
 
         // combined login workflow where the payload is already set
-        private async Task<bool> LoginRequestAsync(string payload)
+        private async Task<WebResponse<bool>> LoginRequestAsync(string payload)
         {
             WebResponse<string> response = await SendEncodedPostRequestAsync(
                 $"https://{HostAddress}/api/v1/login",
@@ -344,14 +345,14 @@ namespace i5.Toolkit.Core.RocketChatClient
                 i5Debug.LogError("Could not log in", this);
                 UserID = "";
                 AuthToken = "";
-                return false;
+                return new WebResponse<bool>(response.ErrorMessage, response.Code);
             }
 
             LoginResponse loginResponse = JsonSerializer.FromJson<LoginResponse>(response.Content);
 
             UserID = loginResponse.data.userId;
             AuthToken = loginResponse.data.authToken;
-            return true;
+            return new WebResponse<bool>(true, response.ByteData, response.Code);
         }
 
         // Encrypt a string using SHA256

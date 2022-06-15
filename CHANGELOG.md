@@ -2,6 +2,15 @@
 
 This document keeps track of the changes between versions of the toolkit.
 
+## 1.8.1 (2022-06-15)
+
+### Changed
+- Updated URLs for Learning Layers login provider
+- Rocket.Chat login method now returns a WebResponse with the parsed response to help developers differentiate between network errors and login errors
+
+### Fixed
+- WebResponse objects of unsuccessful requests to the Rocket.Chat client now return the correct error messages instead of empty strings
+
 ## 1.8.0 (2022-05-18)
 
 ### Added

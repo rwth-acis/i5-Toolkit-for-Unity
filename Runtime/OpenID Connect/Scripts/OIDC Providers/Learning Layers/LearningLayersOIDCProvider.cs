@@ -8,22 +8,22 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
 {
     /// <summary>
     /// Implementation of the OpenID Connect Learning Layers Provider
-    /// More information can be found here: https://api.learning-layers.eu/auth/
+    /// More information can be found here: https://auth.las2peer.org/auth/
     /// </summary>
     public class LearningLayersOidcProvider : IOidcProvider
     {
         /// <summary>
         /// The endpoint for the log in
         /// </summary>
-        private const string authorizationEndpoint = "https://api.learning-layers.eu/auth/realms/main/protocol/openid-connect/auth";
+        private const string authorizationEndpoint = "https://auth.las2peer.org/auth/realms/main/protocol/openid-connect/auth";
         /// <summary>
         /// The end point where the access token can be requested
         /// </summary>
-        private const string tokenEndpoint = "https://api.learning-layers.eu/auth/realms/main/protocol/openid-connect/token";
+        private const string tokenEndpoint = "https://auth.las2peer.org/auth/realms/main/protocol/openid-connect/token";
         /// <summary>
         /// The end point where user information can be requested
         /// </summary>
-        private const string userInfoEndpoint = "https://api.learning-layers.eu/auth/realms/main/protocol/openid-connect/userinfo";
+        private const string userInfoEndpoint = "https://auth.las2peer.org/auth/realms/main/protocol/openid-connect/userinfo";
 
         /// <summary>
         /// Gets or sets the used authorization flow

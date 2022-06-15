@@ -84,14 +84,25 @@ public class ClientBootstrapper : BaseServiceBootstrapper
 
     public async void LoginAsync()
     {
-        bool success = await client.LoginAsync(username.text, password.text);
-        if (success)
+        WebResponse<LoginResponse> response = await client.LoginAsync(username.text, password.text);
+        if (response.Successful && response.Content.Successful)
         {
             i5Debug.Log("Login was successful", this);
         }
         else
         {
-            i5Debug.Log("Login failed", this);
+            if (!response.Successful)
+            {
+                i5Debug.Log("Login request failed: " + response.ErrorMessage, this);
+            }
+            else if (!response.Content.Successful)
+            {
+                i5Debug.Log("Login failed: " + response.Content.status, this);
+            }
+            else
+            {
+                i5Debug.Log("Login failed", this);
+            }
         }
     }
 

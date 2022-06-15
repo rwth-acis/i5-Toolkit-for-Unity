@@ -129,12 +129,12 @@ namespace i5.Toolkit.Core.RocketChatClient
         /// </summary>
         /// <param name="username">The username of the user who wants to log in</param>
         /// <param name="password">The password of the user who wants to log in</param>
-        /// <returns>Returns true if the login was successful, otherwise false</returns>
-        public async Task<WebResponse<bool>> LoginAsync(string username, string password)
+        /// <returns>Returns the parsed login response</returns>
+        public async Task<WebResponse<LoginResponse>> LoginAsync(string username, string password)
         {
             string payload = $"{{ \"username\": \"{username}\", \"password\": \"{password}\" }}";
-            WebResponse<bool> result = await LoginRequestAsync(payload);
-            bool success = result.Content;
+            WebResponse<LoginResponse> result = await LoginRequestAsync(payload);
+            bool success = result.Successful;
             // cahce the username and password for the web socket if the login was successful
             if (success)
             {
@@ -156,7 +156,7 @@ namespace i5.Toolkit.Core.RocketChatClient
         /// </summary>
         /// <param name="authToken">The auth token that identifies and authorized the user who wants to log in</param>
         /// <returns>Returns true if the login was successful, otherwise false</returns>
-        public async Task<WebResponse<bool>> LoginAsync(string authToken)
+        public async Task<WebResponse<LoginResponse>> LoginAsync(string authToken)
         {
             string payload = $"{{\"resume\": \"{authToken}\"}}";
             return await LoginRequestAsync(payload);
@@ -333,7 +333,7 @@ namespace i5.Toolkit.Core.RocketChatClient
         #region Private Methods
 
         // combined login workflow where the payload is already set
-        private async Task<WebResponse<bool>> LoginRequestAsync(string payload)
+        private async Task<WebResponse<LoginResponse>> LoginRequestAsync(string payload)
         {
             WebResponse<string> response = await SendEncodedPostRequestAsync(
                 $"https://{HostAddress}/api/v1/login",
@@ -345,14 +345,14 @@ namespace i5.Toolkit.Core.RocketChatClient
                 i5Debug.LogError("Could not log in", this);
                 UserID = "";
                 AuthToken = "";
-                return new WebResponse<bool>(response.ErrorMessage, response.Code);
+                return new WebResponse<LoginResponse>(response.ErrorMessage, response.Code);
             }
 
             LoginResponse loginResponse = JsonSerializer.FromJson<LoginResponse>(response.Content);
 
             UserID = loginResponse.data.userId;
             AuthToken = loginResponse.data.authToken;
-            return new WebResponse<bool>(true, response.ByteData, response.Code);
+            return new WebResponse<LoginResponse>(loginResponse, response.ByteData, response.Code);
         }
 
         // Encrypt a string using SHA256

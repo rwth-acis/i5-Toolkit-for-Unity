@@ -2,7 +2,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using SpeechLib;
 using ylib.Services;
-using HoloToolkit.Unity;
+using Microsoft.MixedReality.Toolkit.Audio;
 using System;
 
 namespace i5.Toolkit.Core.SpeechModule
@@ -70,7 +70,7 @@ namespace i5.Toolkit.Core.SpeechModule
 #if UNITY_EDITOR || UNITY_STANDALONE_WIN
             windowsSynthesizer.Speak(text, SpeechVoiceSpeakFlags.SVSFlagsAsync);
 #elif UNITY_WSA
-            //Only support output to stream and directly play it, not via SpeechProvider.
+            //Only support output to stream. But directly play it, not via SpeechProvider.
             synthesizer.StartSpeaking(text);
 #elif UNITY_ANDROID
             //Only support output to speaker.

@@ -1,10 +1,12 @@
 using System.Threading.Tasks;
 using UnityEngine;
+using System;
+
+#if I5_TOOLKIT_USE_NATIVE_SPEECH_SYNTHESIZER
 using SpeechLib;
 using ylib.Services;
 using Microsoft.MixedReality.Toolkit.Audio;
-using System;
-
+#endif
 namespace i5.Toolkit.Core.SpeechModule
 {
     /// <summary>
@@ -15,15 +17,14 @@ namespace i5.Toolkit.Core.SpeechModule
     /// </summary>
     public class NativeSpeechSynthesizer : MonoBehaviour, ISpeechSynthesizer
     {
+#if I5_TOOLKIT_USE_NATIVE_SPEECH_SYNTHESIZER
 
 #if UNITY_EDITOR || UNITY_STANDALONE_WIN
-        private SpVoiceClass windowsSynthesizer;
-
-        
+        private SpVoiceClass windowsSynthesizer;    
 #endif
-
 #if !UNITY_EDITOR && UNITY_WSA
         private TextToSpeechUWP synthesizer;
+#endif
 #endif
         /// <summary>
         /// The native synthesizer only supports English on both Windows and Android.
@@ -47,6 +48,7 @@ namespace i5.Toolkit.Core.SpeechModule
 
         // Start is called before the first frame update
         void Start() {
+#if I5_TOOLKIT_USE_NATIVE_SPEECH_SYNTHESIZER
 #if UNITY_EDITOR || UNITY_STANDALONE_WIN
             windowsSynthesizer = new SpVoiceClass();
 #elif UNITY_WSA
@@ -54,11 +56,16 @@ namespace i5.Toolkit.Core.SpeechModule
 #elif UNITY_ANDROID
             UnityTTS.Init();
 #endif
+#else
+            Debug.LogError("The required libraries for NativeSpeechRecognizer cannot be found, or you didn't define the I5_TOOLKIT_USE_NATIVE_SPEECH_SYNTHESIZER directive on your platform.");
+#endif
         }
 
         void OnDestroy() {
+#if I5_TOOLKIT_USE_NATIVE_SPEECH_SYNTHESIZER
 #if UNITY_EDITOR || UNITY_STANDALONE_WIN
             windowsSynthesizer = null;
+#endif
 #endif
         }
 
@@ -66,6 +73,7 @@ namespace i5.Toolkit.Core.SpeechModule
         /// Start TTS. Please subscribe the OnSynthesisResultReceived Event because the return value is meaningless.
         /// </summary>
         public Task<SynthesisResult> StartSynthesizingAndSpeakingAsync(string text) {
+#if I5_TOOLKIT_USE_NATIVE_SPEECH_SYNTHESIZER
             SynthesisResult result;
 #if UNITY_EDITOR || UNITY_STANDALONE_WIN
             windowsSynthesizer.Speak(text, SpeechVoiceSpeakFlags.SVSFlagsAsync);
@@ -79,8 +87,13 @@ namespace i5.Toolkit.Core.SpeechModule
             result = ParseNativeSynthesisResult(text);
             OnSynthesisResultReceived?.Invoke(result);
             return Task.FromResult(result);
+#else
+            Debug.LogError("The required libraries for NativeSpeechRecognizer cannot be found, or you didn't define the I5_TOOLKIT_USE_NATIVE_SPEECH_SYNTHESIZER directive on your platform.");
+            return Task.FromResult(SynthesisResult.RequiredModulesNotFoundResult);
+#endif
         }
 
+#if I5_TOOLKIT_USE_NATIVE_SPEECH_SYNTHESIZER
         private SynthesisResult ParseNativeSynthesisResult(string text) 
         {
             SynthesisResult result = new SynthesisResult();
@@ -93,6 +106,6 @@ namespace i5.Toolkit.Core.SpeechModule
             Debug.Log(result.Message);
             return result;
         }
-       
+#endif
     }
 }

@@ -1,10 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Microsoft.CognitiveServices.Speech;
 using System.Threading.Tasks;
-using Microsoft.CognitiveServices.Speech.Audio;
 using System;
+
+#if I5_TOOLKIT_USE_AZURE_SPEECH_RECOGNIZER
+using Microsoft.CognitiveServices.Speech;
+using Microsoft.CognitiveServices.Speech.Audio;
+#endif
 
 namespace i5.Toolkit.Core.SpeechModule
 {
@@ -21,11 +22,16 @@ namespace i5.Toolkit.Core.SpeechModule
         [Tooltip("The Single Shot mode receives a silence as a stop symbol and only supports audio up to 15 seconds. The Continuous mode requires a manually stop.")]
         [SerializeField] private AzureRecognitionMode mode;
 
+#if I5_TOOLKIT_USE_AZURE_SPEECH_RECOGNIZER
         private SpeechRecognizer speechRecognizer;
         private SpeechConfig speechConfig;
-
+#endif
         void Start() {
+#if I5_TOOLKIT_USE_AZURE_SPEECH_RECOGNIZER
             speechConfig = SpeechConfig.FromSubscription(subscriptionKey, serviceRegion);
+#else
+            Debug.LogError("The required Speech SDK for AzureSpeechRecognizer cannot be found, or the I5_TOOLKIT_USE_AZURE_SPEECH_RECOGNIZER directive is not defined on current platform.");
+#endif
         }
 
         /// <summary>
@@ -39,7 +45,7 @@ namespace i5.Toolkit.Core.SpeechModule
         /// </summary>
         public Language Language { get; set; }
 
-        /// Applicable if the component is enabled and there is an internet connection.
+        /// Applicable if the component is enabled and there is an internet connection. <summary>
         public bool IsApplicable => enabled && Application.internetReachability != NetworkReachability.NotReachable;
 
         /// <summary>
@@ -50,6 +56,7 @@ namespace i5.Toolkit.Core.SpeechModule
         /// </summary>
         /// <returns>The result of the recognition.</returns>
         public async Task<RecognitionResult> StartRecordingAsync() {
+#if I5_TOOLKIT_USE_AZURE_SPEECH_RECOGNIZER
             RecognitionResult result;
             SourceLanguageConfig sourceLanguageConfig;
             switch (Language) {
@@ -72,8 +79,26 @@ namespace i5.Toolkit.Core.SpeechModule
                 result = await StartContinuousRecordingAsync();
             }
             return result;
+#else
+            await Task.Run(() => Debug.LogError("The required Speech SDK for AzureSpeechRecognizer cannot be found, or the I5_TOOLKIT_USE_AZURE_SPEECH_RECOGNIZER directive is not defined on current platform."));
+            return RecognitionResult.RequiredModulesNotFoundResult;
+#endif
         }
 
+        /// <summary>
+        /// Stop recording. Only used for countinuous recognition.
+        /// </summary>
+        public async Task StopRecordingAsync() {
+#if I5_TOOLKIT_USE_AZURE_SPEECH_RECOGNIZER
+            if (mode == AzureRecognitionMode.Countinuous) {
+                await speechRecognizer.StopContinuousRecognitionAsync();
+            }
+#else
+            await Task.Run(() => Debug.LogError("The required Speech SDK for AzureSpeechRecognizer cannot be found, or the I5_TOOLKIT_USE_AZURE_SPEECH_RECOGNIZER directive is not defined on current platform."));
+#endif
+        }
+
+#if I5_TOOLKIT_USE_AZURE_SPEECH_RECOGNIZER
         private async Task<RecognitionResult> StartSingleShotRecordingAsync() {
             Debug.Log("Speak into your microphone.");
             var speechRecognitionResult = await speechRecognizer.RecognizeOnceAsync();
@@ -135,15 +160,7 @@ namespace i5.Toolkit.Core.SpeechModule
             Debug.Log(result.Message);
             return result;
         }
-
-        /// <summary>
-        /// Stop recording. Only used for countinuous recognition.
-        /// </summary>
-        public async Task StopRecordingAsync() {
-            if (mode == AzureRecognitionMode.Countinuous) {
-                await speechRecognizer.StopContinuousRecognitionAsync();
-            }
-        }
+#endif
 
         private enum AzureRecognitionMode
         {

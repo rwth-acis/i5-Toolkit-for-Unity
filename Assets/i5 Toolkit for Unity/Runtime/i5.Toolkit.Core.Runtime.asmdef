@@ -1,7 +1,9 @@
 {
     "name": "i5.Toolkit.Core.Runtime",
     "references": [
-        "Unity.TextMeshPro"
+        "Unity.TextMeshPro",
+        "i5.Toolkit.Core.SpeechModule.NativeRecognizer",
+        "i5.Toolkit.Core.Runtime.SpeechModule.NativeSynthesizer"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

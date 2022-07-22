@@ -1,9 +1,11 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
+
+#if I5_TOOLKIT_USE_NATIVE_SPEECH_RECOGNIZER
 using Vosk;
+#endif
 
 namespace i5.Toolkit.Core.SpeechModule
 {
@@ -18,9 +20,9 @@ namespace i5.Toolkit.Core.SpeechModule
         [SerializeField] private string voskModelPathEn_US = "vosk-model-small-en-us-0.15.zip";
         [Tooltip("The path of the German model. It should be just the name with extension of the zip file, which located under the Assets/StreamingAssets folder.")]
         [SerializeField] private string voskModelPathDe_DE = "vosk-model-small-de-0.15.zip";
-
+#if I5_TOOLKIT_USE_NATIVE_SPEECH_RECOGNIZER
         private VoskSpeechToText recognizer;
-
+#endif
         /// <summary>
         /// The supported Language, depends on the downloaded models. You can add any language and corresponding model on Vosk's website.
         /// </summary>
@@ -36,6 +38,7 @@ namespace i5.Toolkit.Core.SpeechModule
         // Start is called before the first frame update
         void Start()
         {
+#if I5_TOOLKIT_USE_NATIVE_SPEECH_RECOGNIZER
             VoiceProcessor voiceProcesser = gameObject.AddComponent<VoiceProcessor>();
             recognizer = gameObject.AddComponent<VoskSpeechToText>();
             recognizer.VoiceProcessor = voiceProcesser;
@@ -55,12 +58,16 @@ namespace i5.Toolkit.Core.SpeechModule
                     break;
             }
             recognizer.StartVoskStt();
+#else
+            Debug.LogError("The required Vosk models for NativeSpeechRecognizer cannot be found, or the I5_TOOLKIT_USE_NATIVE_SPEECH_RECOGNIZER directive is not defined on current platform.");
+#endif
         }
 
         /// <summary>
         /// Start recording. There is no return value and we must subscribe the OnTranscriptionResultEvent.
         /// </summary>
         public Task<RecognitionResult> StartRecordingAsync() {
+#if I5_TOOLKIT_USE_NATIVE_SPEECH_RECOGNIZER
             recognizer.StartRecording();
             RecognitionResult result = new RecognitionResult
             {
@@ -68,16 +75,25 @@ namespace i5.Toolkit.Core.SpeechModule
                 Text = "The native recognizer (Vosk) has no return value, please subscribe to the OnRecognitionResultReceived event"
             };
             return Task.FromResult(result);
+#else
+            Debug.LogError("The required Vosk models for NativeSpeechRecognizer cannot be found, or the I5_TOOLKIT_USE_NATIVE_SPEECH_RECOGNIZER directive is not defined on current platform.");
+            return Task.FromResult(RecognitionResult.RequiredModulesNotFoundResult);
+#endif
         }
 
         /// <summary>
         /// Stop recording and return a CompletedTask.
         /// </summary>
         public Task StopRecordingAsync() {
+#if I5_TOOLKIT_USE_NATIVE_SPEECH_RECOGNIZER
             recognizer.StopRecording();
+#else
+            Debug.LogError("The required Vosk models for NativeSpeechRecognizer cannot be found, or the I5_TOOLKIT_USE_NATIVE_SPEECH_RECOGNIZER directive is not defined on current platform.");
+#endif
             return Task.CompletedTask;
         }
 
+#if I5_TOOLKIT_USE_NATIVE_SPEECH_RECOGNIZER
         //Callback for the vosk recognizer.
         private void GetVoskRecognitionResult(string recognizedText) {
             RecognitionResult result = ParseVoskRecognitionResult(recognizedText);
@@ -97,7 +113,7 @@ namespace i5.Toolkit.Core.SpeechModule
             Debug.Log(result.Message);
             return result;
         }
-
+#endif
         //Json objects for parsing the recognition result.
         [Serializable]
         private class RecognizedTextJson

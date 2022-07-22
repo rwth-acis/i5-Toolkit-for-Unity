@@ -1,8 +1,9 @@
-using Microsoft.CognitiveServices.Speech;
-using System.Collections;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
+
+#if I5_TOOLKIT_USE_AZURE_SPEECH_SYNTHESIZER
+using Microsoft.CognitiveServices.Speech;
+#endif
 
 namespace i5.Toolkit.Core.SpeechModule
 {
@@ -18,9 +19,10 @@ namespace i5.Toolkit.Core.SpeechModule
         [SerializeField] private string serviceRegion;
         [Tooltip("Specify the output form of the speech.")]
         [SerializeField] private AudioDataOutputForm outputForm;
-
+#if I5_TOOLKIT_USE_AZURE_SPEECH_SYNTHESIZER
         private SpeechSynthesizer speechSynthesizer;
         private SpeechConfig speechConfig;
+#endif
 
         /// <summary>
         /// Fires when the synthesis is complete.
@@ -40,10 +42,15 @@ namespace i5.Toolkit.Core.SpeechModule
         public AudioDataOutputForm OutputForm { get => outputForm; set => outputForm = value; }
 
         void Start() {
+#if I5_TOOLKIT_USE_AZURE_SPEECH_SYNTHESIZER
             speechConfig = SpeechConfig.FromSubscription(subscriptionKey, serviceRegion);
+#else  
+            Debug.LogError("The required Speech SDK for AzureSpeechRecognizer cannot be found, or you didn't define the I5_TOOLKIT_USE_AZURE_SPEECH_SYNTHESIZER directive on your platform.");
+#endif
         }
 
         public async Task<SynthesisResult> StartSynthesizingAndSpeakingAsync(string text) {
+#if I5_TOOLKIT_USE_AZURE_SPEECH_SYNTHESIZER
             // The language of the voice that speaks.
             switch (Language) {
                 case Language.en_US:
@@ -68,10 +75,15 @@ namespace i5.Toolkit.Core.SpeechModule
             SynthesisResult result =  ParseAzureSynthesisResult(speechSynthesisResult, text);
             OnSynthesisResultReceived?.Invoke(result);
             return result;
+#else
+            await Task.Run(() => Debug.LogError("The required Speech SDK for AzureSpeechRecognizer cannot be found, or the I5_TOOLKIT_USE_AZURE_SPEECH_SYNTHESIZER directive is not defined on current platform."));
+            return SynthesisResult.RequiredModulesNotFoundResult;
+#endif
         }
-
+#if I5_TOOLKIT_USE_AZURE_SPEECH_SYNTHESIZER
         //Parse the SpeechSynthesisResult of Azure to our SynthesisResult.
         private SynthesisResult ParseAzureSynthesisResult(SpeechSynthesisResult speechSynthesisResult, string inputText) {
+
             SynthesisResult result = new SynthesisResult();
             switch (speechSynthesisResult.Reason) {
                 case ResultReason.SynthesizingAudioCompleted:
@@ -92,6 +104,8 @@ namespace i5.Toolkit.Core.SpeechModule
             }
             Debug.Log(result.Message);
             return result;
+
         }
+#endif
     }
 }

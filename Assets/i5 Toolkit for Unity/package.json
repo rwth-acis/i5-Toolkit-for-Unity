@@ -74,6 +74,11 @@
             "displayName": "Spawner",
             "description": "Example how to use the spawners",
             "path": "Samples~/Spawner"
+        },
+        {
+            "displayName": "Speech Module",
+            "description": "Example how the speech module works.",
+            "path": "Samples~/Speech Module"
         }
     ]
 }

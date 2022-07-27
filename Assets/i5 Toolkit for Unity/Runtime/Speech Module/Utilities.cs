@@ -259,6 +259,9 @@ namespace i5.Toolkit.Core.SpeechModule
                 else {
                     string path = Application.streamingAssetsPath + "/NativeRecognizer.unitypackage";
                     string progressBarMessage = "Downloading native recognizer scripts...";
+                    if (AssetDatabase.FindAssets($"StreamingAssets").Length == 0) {
+                        AssetDatabase.CreateFolder("Assets", "StreamingAssets");
+                    }
                     await DownloadResourceAsync(NativeRecognizerURL, path, progressBarMessage);
                     //Import the package
                     AssetDatabase.ImportPackage(path, false);
@@ -285,6 +288,9 @@ namespace i5.Toolkit.Core.SpeechModule
                 else {
                     string path = Application.streamingAssetsPath + "/NativeSynthesizer.unitypackage";
                     string progressBarMessage = "Downloading native synthesizer scripts...";
+                    if (AssetDatabase.FindAssets($"StreamingAssets").Length == 0) {
+                        AssetDatabase.CreateFolder("Assets", "StreamingAssets");
+                    }
                     await DownloadResourceAsync(NativeSynthesizerURL, path, progressBarMessage);
                     //Import the package
                     AssetDatabase.ImportPackage(path, false);

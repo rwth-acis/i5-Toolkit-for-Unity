@@ -15,15 +15,15 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         /// <summary>
         /// The endpoint for the log in
         /// </summary>
-        private abstract string authorizationEndpoint;
+        private string authorizationEndpoint;
         /// <summary>
         /// The end point where the access token can be requested
         /// </summary>
-        private abstract string tokenEndpoint;
+        private string tokenEndpoint;
         /// <summary>
         /// The end point where user information can be requested
         /// </summary>
-        private abstract string userInfoEndpoint;
+        private string userInfoEndpoint;
 
         /// <summary>
         /// Gets or sets the used authorization flow
@@ -53,7 +53,7 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         /// <summary>
         /// Creates a new instance of the client
         /// </summary>
-        public OidcProvider()
+        protected AbstractOidcProvider()
         {
             RestConnector = new UnityWebRequestRestConnector();
             JsonSerializer = new JsonUtilityAdapter();
@@ -66,7 +66,7 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         /// <param name="code">The authorization code</param>
         /// <param name="redirectUri">The redirect URI which was used during the login</param>
         /// <returns>Returns the access token if it could be retrieved; otherwise it returns an empty string</returns>
-        public async Task<string> GetAccessTokenFromCodeAsync(string code, string redirectUri)
+        public virtual async Task<string> GetAccessTokenFromCodeAsync(string code, string redirectUri)
         {
             if (ClientData == null)
             {
@@ -89,8 +89,8 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
             WebResponse<string> response = await RestConnector.PostAsync(tokenEndpoint, form.data, headers);
             if (response.Successful)
             {
-                LearningLayersAuthorizationFlowAnswer answer =
-                    JsonSerializer.FromJson<LearningLayersAuthorizationFlowAnswer>(response.Content);
+                AbstractAuthorizationFlowAnswer answer =
+                    JsonSerializer.FromJson<AbstractAuthorizationFlowAnswer>(response.Content);
                 if (answer == null)
                 {
                     i5Debug.LogError("Could not parse access token in code flow answer", this);
@@ -111,7 +111,7 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         /// <param name="redirectParameters">The parameters of the Web answer as a dictionary</param>
         /// <returns>Returns the access token if it exists in the parameters,
         /// otherwise an empty string is returned</returns>
-        public string GetAccessToken(Dictionary<string, string> redirectParameters)
+        public virtual string GetAccessToken(Dictionary<string, string> redirectParameters)
         {
             if (redirectParameters.ContainsKey("token"))
             {
@@ -125,11 +125,11 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         }
 
         /// <summary>
-        /// Gets information about the logged in user from the learning layers provider
+        /// Gets information about the logged in user from the provider
         /// </summary>
         /// <param name="accessToken">The access token to authenticate the user</param>
         /// <returns>Returns information about the logged in user if the request was successful, otherwise null</returns>
-        public async Task<IUserInfo> GetUserInfoAsync(string accessToken)
+        public virtual async Task<IUserInfo> GetUserInfoAsync(string accessToken)
         {
             Dictionary<string, string> headers = new Dictionary<string, string>()
             {
@@ -138,7 +138,7 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
             WebResponse<string> webResponse = await RestConnector.GetAsync(userInfoEndpoint, headers);
             if (webResponse.Successful)
             {
-                LearningLayersUserInfo userInfo = JsonSerializer.FromJson<LearningLayersUserInfo>(webResponse.Content);
+                AbstractUserInfo userInfo = JsonSerializer.FromJson<AbstractUserInfo>(webResponse.Content);
                 if (userInfo == null)
                 {
                     i5Debug.LogError("Could not parse user info", this);
@@ -153,22 +153,22 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         }
 
         /// <summary>
-        /// Checks if the access token is valid by checking it at the Learning Layers provider
+        /// Checks if the access token is valid by checking it at the provider
         /// </summary>
         /// <param name="accessToken">The access token that should be checked</param>
         /// <returns>True if the access token is valid, otherwise false</returns>
-        public async Task<bool> CheckAccessTokenAsync(string accessToken)
+        public virtual async Task<bool> CheckAccessTokenAsync(string accessToken)
         {
             IUserInfo userInfo = await GetUserInfoAsync(accessToken);
             return userInfo != null;
         }
 
         /// <summary>
-        /// Opens the Learning Layers login page in the system's default Web browser
+        /// Opens the login page in the system's default Web browser
         /// </summary>
         /// <param name="scopes">The OpenID Connect scopes that the user must agree to</param>
         /// <param name="redirectUri">The URI to which the browser should redirect after the successful login</param>
-        public void OpenLoginPage(string[] scopes, string redirectUri)
+        public virtual void OpenLoginPage(string[] scopes, string redirectUri)
         {
             if (ClientData == null)
             {
@@ -189,7 +189,7 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         /// </summary>
         /// <param name="redirectParameters">Parameters of a Web answer as a dictionary</param>
         /// <returns>The authorization code if it could be found, otherwise an empty string is returned</returns>
-        public string GetAuthorizationCode(Dictionary<string, string> redirectParameters)
+        public virtual string GetAuthorizationCode(Dictionary<string, string> redirectParameters)
         {
             if (redirectParameters.ContainsKey("code"))
             {
@@ -208,7 +208,7 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         /// <param name="parameters">The parameters of a Web answer as a dictionary</param>
         /// <param name="errorMessage">The error message that the provider included, empty if no error exists</param>
         /// <returns>Returns true if the parameters contain an error message, otherwise false</returns>
-        public bool ParametersContainError(Dictionary<string, string> parameters, out string errorMessage)
+        public virtual bool ParametersContainError(Dictionary<string, string> parameters, out string errorMessage)
         {
             if (parameters.ContainsKey("error"))
             {

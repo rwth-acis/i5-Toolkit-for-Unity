@@ -9,8 +9,8 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
     [Serializable]
     public class AbstractAuthorizationFlowAnswer
     {
-        public abstract string access_token;
-        public abstract string token_type;
-        public abstract string scope;
+        public string access_token;
+        public string token_type;
+        public string scope;
     }
 }

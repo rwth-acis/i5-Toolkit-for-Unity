@@ -39,7 +39,7 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         /// <param name="username">The user name of the user</param>
         /// <param name="email">The email address of the user</param>
         /// <param name="fullName">The full name of the user</param>
-        public UserInfo(string name, string email)
+        protected AbstractUserInfo(string name, string email)
         {
             this.name = name;
             this.email = email;

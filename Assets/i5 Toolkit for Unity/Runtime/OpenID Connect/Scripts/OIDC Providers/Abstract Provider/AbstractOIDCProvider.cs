@@ -13,17 +13,21 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
     public abstract class AbstractOidcProvider : IOidcProvider
     {
         /// <summary>
+        /// The OIDC server url - Used for accessing the endpoints published at its well-known URL
+        /// </summary>
+        protected string serverName;
+        /// <summary>
         /// The endpoint for the log in
         /// </summary>
-        private string authorizationEndpoint;
+        protected string authorizationEndpoint;
         /// <summary>
         /// The end point where the access token can be requested
         /// </summary>
-        private string tokenEndpoint;
+        protected string tokenEndpoint;
         /// <summary>
         /// The end point where user information can be requested
         /// </summary>
-        private string userInfoEndpoint;
+        protected string userInfoEndpoint;
 
         /// <summary>
         /// Gets or sets the used authorization flow
@@ -61,6 +65,38 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         }
 
         /// <summary>
+        /// Sets the required endpoints
+        /// </summary>
+        public virtual void SetEndpoints()
+        {
+            if (authorizationEndpoint == null || userInfoEndpoint == null || tokenEndpoint == null)
+            {
+                RequestWellKnownData();
+
+            }
+        }
+
+        /// <summary>
+        /// Extracts the required endpoints from the well-known definition of the server
+        /// </summary>
+        public async void RequestWellKnownData()
+        {
+            Debug.Log("Fetching Endpoints.");
+            WebResponse<string> response = await RestConnector.GetAsync(serverName + "/.well-known/openid-configuration");
+            if (response.Successful)
+            {
+                WellKnownMetaData endpoints = JsonSerializer.FromJson<WellKnownMetaData>(response.Content);
+                authorizationEndpoint = endpoints.authorization_endpoint;
+                tokenEndpoint = endpoints.token_endpoint;
+                userInfoEndpoint = endpoints.userinfo_endpoint;
+            }
+            else
+            {
+                i5Debug.LogError("Endpoints could not be fetched. Check whether the provided server.", this);
+            }
+        }
+
+        /// <summary>
         /// Gets the access token based on a previously retrieved authorization code
         /// </summary>
         /// <param name="code">The authorization code</param>
@@ -68,6 +104,7 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         /// <returns>Returns the access token if it could be retrieved; otherwise it returns an empty string</returns>
         public virtual async Task<string> GetAccessTokenFromCodeAsync(string code, string redirectUri)
         {
+            SetEndpoints();
             if (ClientData == null)
             {
                 i5Debug.LogError("No client data supplied for the OpenID Connect Client.\n" +
@@ -131,6 +168,7 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         /// <returns>Returns information about the logged in user if the request was successful, otherwise null</returns>
         public virtual async Task<IUserInfo> GetUserInfoAsync(string accessToken)
         {
+            SetEndpoints();
             Dictionary<string, string> headers = new Dictionary<string, string>()
             {
                 {"Authorization", $"Bearer {accessToken}" }
@@ -170,6 +208,7 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         /// <param name="redirectUri">The URI to which the browser should redirect after the successful login</param>
         public virtual void OpenLoginPage(string[] scopes, string redirectUri)
         {
+            SetEndpoints();
             if (ClientData == null)
             {
                 i5Debug.LogError("No client data supplied for the OpenID Connect Client.\n" +

@@ -12,18 +12,7 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
     /// </summary>
     public class LearningLayersOidcProvider : AbstractOidcProvider
     {
-        /// <summary>
-        /// The endpoint for the log in
-        /// </summary>
-        private const string authorizationEndpoint = "https://auth.las2peer.org/auth/realms/main/protocol/openid-connect/auth";
-        /// <summary>
-        /// The end point where the access token can be requested
-        /// </summary>
-        private const string tokenEndpoint = "https://auth.las2peer.org/auth/realms/main/protocol/openid-connect/token";
-        /// <summary>
-        /// The end point where user information can be requested
-        /// </summary>
-        private const string userInfoEndpoint = "https://auth.las2peer.org/auth/realms/main/protocol/openid-connect/userinfo";
+        protected const string serverName = "https://auth.las2peer.org/auth/realms/main";
 
         /// <summary>
         /// Creates a new instance of the Learning Layers client

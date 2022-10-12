@@ -17,21 +17,11 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         public GitHubOidcProvider() : base()
         {
             serverName = "https://github.com/";
-            SetEndpoints();
+            authorizationEndpoint = "https://github.com/login/oauth/authorize";
+            tokenEndpoint = "https://github.com/login/oauth/access_token";
+            userInfoEndpoint = "https://api.github.com/user";
         }
 
-        /// <summary>
-        /// Sets the required endpoints
-        /// </summary>
-        public override void SetEndpoints()
-        {
-            if (authorizationEndpoint == null || userInfoEndpoint == null || tokenEndpoint == null)
-            {
-                authorizationEndpoint = "https://github.com/login/oauth/authorize";
-                tokenEndpoint = "https://github.com/login/oauth/access_token";
-                userInfoEndpoint = "https://api.github.com/user";
-            }
-        }
 
         /// <summary>
         /// Gets the access token based on a previously retrieved authorization code
@@ -41,7 +31,6 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         /// <returns>Returns the access token if it could be retrieved; otherwise it returns an empty string</returns>
         public override async Task<string> GetAccessTokenFromCodeAsync(string code, string redirectUri)
         {
-            SetEndpoints();
             if (ClientData == null)
             {
                 i5Debug.LogError("No client data supplied for the OpenID Connect Client.\n" +
@@ -79,7 +68,6 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         /// <returns>Returns information about the logged in user if the request was successful, otherwise null</returns>
         public override async Task<IUserInfo> GetUserInfoAsync(string accessToken)
         {
-            SetEndpoints();
             Dictionary<string, string> headers = new Dictionary<string, string>();
             headers.Add("Authorization", $"token {accessToken}");
             WebResponse<string> webResponse = await RestConnector.GetAsync(userInfoEndpoint + "?access_token=" + accessToken, headers);
@@ -106,7 +94,6 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         /// <param name="redirectUri">The URI to which the browser should redirect after the successful login</param>
         public override void OpenLoginPage(string[] scopes, string redirectUri)
         {
-            SetEndpoints();
             if (ClientData == null)
             {
                 i5Debug.LogError("No client data supplied for the OpenID Connect Client.\n" +

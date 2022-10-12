@@ -15,5 +15,12 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         public string authorization_endpoint;
         public string token_endpoint;
         public string userinfo_endpoint;
+
+        public EndpointsData(string authEndpoint, string tokenEndpoint, string userIEndpoint)
+        {
+            authorization_endpoint = authEndpoint;
+            token_endpoint = tokenEndpoint;
+            userinfo_endpoint = userIEndpoint;
+        }
     }
 }

@@ -15,7 +15,6 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
             GitHubOidcProvider providerGH = new GitHubOidcProvider();
             Debug.Log(providerLL.ServerName());
             Debug.Log(providerGH.ServerName());
-            providerLL.RequestEndpointsData();
         }
     }
 }

@@ -72,31 +72,36 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         /// <summary>
         /// Sets the required endpoints
         /// </summary>
-        public virtual void SetEndpoints()
+        public async virtual Task<EndpointsData> SetEndpoints()
         {
             if (authorizationEndpoint == null || userInfoEndpoint == null || tokenEndpoint == null)
             {
-                RequestEndpointsData();
+                EndpointsData endpoints = await RequestEndpointsData();
+                authorizationEndpoint = endpoints.authorization_endpoint;
+                tokenEndpoint = endpoints.token_endpoint;
+                userInfoEndpoint = endpoints.userinfo_endpoint;
+                return endpoints;
+
             }
+            return null;
         }
 
         /// <summary>
         /// Extracts the required endpoints from the well-known definition of the server
         /// </summary>
-        public async void RequestEndpointsData()
+        public async Task<EndpointsData> RequestEndpointsData()
         {
             Debug.Log("Fetching Endpoints.");
             WebResponse<string> response = await RestConnector.GetAsync(serverName + "/.well-known/openid-configuration");
             if (response.Successful)
             {
                 EndpointsData endpoints = JsonSerializer.FromJson<EndpointsData>(response.Content);
-                authorizationEndpoint = endpoints.authorization_endpoint;
-                tokenEndpoint = endpoints.token_endpoint;
-                userInfoEndpoint = endpoints.userinfo_endpoint;
+                return endpoints;
             }
             else
             {
                 i5Debug.LogError("Endpoints could not be fetched. Check the provided server.", this);
+                return null;
             }
         }
 

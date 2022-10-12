@@ -12,11 +12,14 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
     /// </summary>
     public class LearningLayersOidcProvider : AbstractOidcProvider
     {
-        protected const string serverName = "https://auth.las2peer.org/auth/realms/main";
-
         /// <summary>
         /// Creates a new instance of the Learning Layers client
         /// </summary>
-        public LearningLayersOidcProvider() : base() { }
+        public LearningLayersOidcProvider() : base()
+        {
+            serverName = "https://auth.las2peer.org/auth/realms/main";
+            SetEndpoints();
+
+        }
     }
 }

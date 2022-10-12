@@ -11,12 +11,14 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
     /// </summary>
     public class GitHubOidcProvider : AbstractOidcProvider
     {
-        protected const string serverName = "https://github.com/";
-
         /// <summary>
         /// Creates a new instance of the GitHub client
         /// </summary>
-        public GitHubOidcProvider() : base() { }
+        public GitHubOidcProvider() : base()
+        {
+            serverName = "https://github.com/";
+            SetEndpoints();
+        }
 
         /// <summary>
         /// Sets the required endpoints
@@ -28,7 +30,7 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
                 authorizationEndpoint = "https://github.com/login/oauth/authorize";
                 tokenEndpoint = "https://github.com/login/oauth/access_token";
                 userInfoEndpoint = "https://api.github.com/user";
-    }
+            }
         }
 
         /// <summary>

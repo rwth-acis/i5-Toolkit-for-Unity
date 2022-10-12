@@ -10,7 +10,7 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
     /// </summary>
     /// 
     [Serializable]
-    public class WellKnownMetaData
+    public class EndpointsData
     {
         public string authorization_endpoint;
         public string token_endpoint;

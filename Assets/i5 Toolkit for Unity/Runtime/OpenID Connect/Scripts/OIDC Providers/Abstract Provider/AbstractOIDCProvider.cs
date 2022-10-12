@@ -15,7 +15,7 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         /// <summary>
         /// The OIDC server url - Used for accessing the endpoints published at its well-known URL
         /// </summary>
-        protected string serverName;
+        protected string serverName = "";
         /// <summary>
         /// The endpoint for the log in
         /// </summary>
@@ -64,6 +64,11 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
             Browser = new Browser();
         }
 
+        public string ServerName()
+        {
+            return serverName;
+        }
+
         /// <summary>
         /// Sets the required endpoints
         /// </summary>
@@ -71,28 +76,27 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         {
             if (authorizationEndpoint == null || userInfoEndpoint == null || tokenEndpoint == null)
             {
-                RequestWellKnownData();
-
+                RequestEndpointsData();
             }
         }
 
         /// <summary>
         /// Extracts the required endpoints from the well-known definition of the server
         /// </summary>
-        public async void RequestWellKnownData()
+        public async void RequestEndpointsData()
         {
             Debug.Log("Fetching Endpoints.");
             WebResponse<string> response = await RestConnector.GetAsync(serverName + "/.well-known/openid-configuration");
             if (response.Successful)
             {
-                WellKnownMetaData endpoints = JsonSerializer.FromJson<WellKnownMetaData>(response.Content);
+                EndpointsData endpoints = JsonSerializer.FromJson<EndpointsData>(response.Content);
                 authorizationEndpoint = endpoints.authorization_endpoint;
                 tokenEndpoint = endpoints.token_endpoint;
                 userInfoEndpoint = endpoints.userinfo_endpoint;
             }
             else
             {
-                i5Debug.LogError("Endpoints could not be fetched. Check whether the provided server.", this);
+                i5Debug.LogError("Endpoints could not be fetched. Check the provided server.", this);
             }
         }
 

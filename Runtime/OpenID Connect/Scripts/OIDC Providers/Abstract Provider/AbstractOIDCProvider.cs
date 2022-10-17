@@ -74,6 +74,7 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         /// </summary>
         public async virtual Task<EndpointsData> SetEndpoints()
         {
+
             if (authorizationEndpoint == null || userInfoEndpoint == null || tokenEndpoint == null)
             {
                 EndpointsData endpoints = await RequestEndpointsData();
@@ -81,9 +82,11 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
                 tokenEndpoint = endpoints.token_endpoint;
                 userInfoEndpoint = endpoints.userinfo_endpoint;
                 return endpoints;
-
             }
-            return null;
+            else
+            {
+                return new EndpointsData(authorizationEndpoint, tokenEndpoint, userInfoEndpoint);
+            }
         }
 
         /// <summary>
@@ -101,7 +104,7 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
             else
             {
                 i5Debug.LogError("Endpoints could not be fetched. Check the provided server.", this);
-                return null;
+                return new EndpointsData("","","");
             }
         }
 
@@ -217,7 +220,6 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         /// <param name="redirectUri">The URI to which the browser should redirect after the successful login</param>
         public virtual void OpenLoginPage(string[] scopes, string redirectUri)
         {
-            Task<EndpointsData> task = SetEndpoints();
             if (ClientData == null)
             {
                 i5Debug.LogError("No client data supplied for the OpenID Connect Client.\n" +
@@ -225,11 +227,23 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
                 return;
             }
 
+            Task<string> task = OpenLoginPageAsync(scopes, redirectUri);
+        }
+
+        /// <summary>
+        /// Opens the login page in the system's default Web browser, sets the required endpoints
+        /// </summary>
+        /// <param name="scopes">The OpenID Connect scopes that the user must agree to</param>
+        /// <param name="redirectUri">The URI to which the browser should redirect after the successful login</param>
+        public virtual async Task<string> OpenLoginPageAsync(string[] scopes, string redirectUri)
+        {
+            EndpointsData endpoints = await SetEndpoints();
             string responseType = AuthorizationFlow == AuthorizationFlow.AUTHORIZATION_CODE ? "code" : "token";
             string uriScopes = UriUtils.WordArrayToSpaceEscapedString(scopes);
             string uri = authorizationEndpoint + $"?response_type={responseType}&scope={uriScopes}" +
                 $"&client_id={ClientData.ClientId}&redirect_uri={redirectUri}";
             Browser.OpenURL(uri);
+            return uri;
         }
 
         /// <summary>

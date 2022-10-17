@@ -18,7 +18,6 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         public LearningLayersOidcProvider() : base()
         {
             serverName = "https://auth.las2peer.org/auth/realms/main";
-            Task<EndpointsData> task = SetEndpoints();
         }
     }
 }

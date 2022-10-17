@@ -15,7 +15,7 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         /// <summary>
         /// The OIDC server url - Used for accessing the endpoints published at its well-known URL
         /// </summary>
-        protected string serverName = "";
+        protected string serverName;
         /// <summary>
         /// The endpoint for the log in
         /// </summary>
@@ -113,7 +113,7 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         /// <returns>Returns the access token if it could be retrieved; otherwise it returns an empty string</returns>
         public virtual async Task<string> GetAccessTokenFromCodeAsync(string code, string redirectUri)
         {
-            SetEndpoints();
+            EndpointsData endpoints = await SetEndpoints();
             if (ClientData == null)
             {
                 i5Debug.LogError("No client data supplied for the OpenID Connect Client.\n" +
@@ -177,7 +177,7 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         /// <returns>Returns information about the logged in user if the request was successful, otherwise null</returns>
         public virtual async Task<IUserInfo> GetUserInfoAsync(string accessToken)
         {
-            SetEndpoints();
+            EndpointsData endpoints = await SetEndpoints();
             Dictionary<string, string> headers = new Dictionary<string, string>()
             {
                 {"Authorization", $"Bearer {accessToken}" }
@@ -217,7 +217,7 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         /// <param name="redirectUri">The URI to which the browser should redirect after the successful login</param>
         public virtual void OpenLoginPage(string[] scopes, string redirectUri)
         {
-            SetEndpoints();
+            Task<EndpointsData> task = SetEndpoints();
             if (ClientData == null)
             {
                 i5Debug.LogError("No client data supplied for the OpenID Connect Client.\n" +

@@ -23,15 +23,20 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         /// </summary>
         public GoogleOidcProvider() : base()
         {
-            serverName = "https://accounts.google.com/.well-known/openid-configuration";
+            serverName = "https://accounts.google.com";
         }
 
-        private void GenerateCSRFToken()
+        public void GenerateCSRFToken()
         {
-            // TODO
-            // the state must be generated as in the documentation
-            RandomNumberGenerator generator = RandomNumberGenerator.Create();
+            RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider();
+            byte[] randomNumber = new byte[30];
+            rng.GetBytes(randomNumber);
             string token = "";
+            for(int i=0;i<30;i++)
+            {
+                token += (randomNumber[i] % 10).ToString();
+            }
+            Debug.Log(token);
             state = token;
         }
 
@@ -107,6 +112,9 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
             } 
             else
             {
+                //Debug.Log(redirectParameters.ContainsKey("state"));
+                //Debug.Log(redirectParameters["state"]);
+                //Debug.Log(redirectParameters.);
                 i5Debug.LogError("Invalid state parameter", this);
                 return "";
             }
@@ -117,13 +125,13 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         /// </summary>
         /// <param name="accessToken">The access token to authenticate the user</param>
         /// <returns>Returns information about the logged in user if the request was successful, otherwise null</returns>
-        public override async Task<IUserInfo> GetUserInfoAsync(string accessToken)
+        /*public override async Task<IUserInfo>void GetUserInfoAsync(string accessToken)
         {
             //TODO
             // User Info wird nicht nochmal in einem Webrequest requested, sondern steht codiert in dem id_token
             // Vielleicht ist es aber auch besser, das id_token zu entfernen und stattdessen wie in der abstrakten Klasse einfach über
             // den UserInfoEndpoint die Info zu requesten (sollte spezifisch dann die GoogleUserInfo als Typ generieren)
-        }
+        }*/
 
         /// <summary>
         /// Opens the login page in the system's default Web browser, sets the required endpoints

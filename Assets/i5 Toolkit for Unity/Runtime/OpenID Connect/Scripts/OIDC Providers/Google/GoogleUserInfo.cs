@@ -15,7 +15,7 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         [SerializeField] private string sub;
         [SerializeField] private string given_name;
         [SerializeField] private string family_name;
-        [SerializeField] private bool email_verfied;
+        [SerializeField] private bool email_verified;
         [SerializeField] private string picture;
 
 
@@ -24,6 +24,12 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         /// This is a mapping based on the available user data of the OIDC provider
         /// </summary>
         public override string FullName { get => given_name + " " + family_name; }
+
+        /// <summary>
+        /// An identifier for the user, unique among all Google accounts and never reused.
+        /// This is a mapping based on the available user data of the OIDC provider
+        /// </summary>
+        public override string Username { get => sub; }
 
         /// <summary>
         /// Creates a new instance of the learning layers user info with the given parameters

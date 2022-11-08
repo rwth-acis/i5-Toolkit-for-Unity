@@ -51,6 +51,14 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         {
             // Hier hab ich die Reihenfolge der Argumente hoffentlich richtig angepasst und den Flow Typen angepasst, ich denke das könnte so stimmen
 
+            //string returnedState = redirectUri.Substring(redirectUri.LastIndexOf("state=") + "state=".Length + 1, 30);
+            Debug.Log(redirectUri);
+            //if (!returnedState.Equals(state))
+            //{
+                //i5Debug.LogError("The returned anti-forgery state token is incorrect.", this);
+                //return "";
+            //}
+
             EndpointsData endpoints = await SetEndpoints();
             if (ClientData == null)
             {
@@ -97,25 +105,15 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         public override string GetAuthorizationCode(Dictionary<string, string> redirectParameters)
         {
             // Hier habe ich den state check eingebaut, ich denke das reicht so
-
-            if (redirectParameters.ContainsKey("state") && redirectParameters["state"].Equals(state))
+            Debug.Log(redirectParameters["state"]);
+            Debug.Log("State received");
+            if (redirectParameters.ContainsKey("code"))
             {
-                if (redirectParameters.ContainsKey("code"))
-                {
-                    return redirectParameters["code"];
-                }
-                else
-                {
-                    i5Debug.LogError("Redirect parameters did not contain authorization code", this);
-                    return "";
-                }
-            } 
+                return redirectParameters["code"];
+            }
             else
             {
-                //Debug.Log(redirectParameters.ContainsKey("state"));
-                //Debug.Log(redirectParameters["state"]);
-                //Debug.Log(redirectParameters.);
-                i5Debug.LogError("Invalid state parameter", this);
+                i5Debug.LogError("Redirect parameters did not contain authorization code", this);
                 return "";
             }
         }
@@ -146,6 +144,7 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
             GenerateCSRFToken();
             string responseType = AuthorizationFlow == AuthorizationFlow.AUTHORIZATION_CODE ? "code" : "token";
             string uriScopes = UriUtils.WordArrayToSpaceEscapedString(scopes);
+            redirectUri += "code&";
             string uri = authorizationEndpoint + $"?response_type={responseType}" + $"&client_id={ClientData.ClientId}" + 
                     $"&scope={uriScopes}" + $"&redirect_uri={redirectUri}" + $"state={state}";
             Browser.OpenURL(uri);

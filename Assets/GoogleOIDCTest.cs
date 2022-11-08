@@ -20,8 +20,13 @@ public class GoogleOIDCTest : MonoBehaviour
 
         ServiceManager.GetService<GoogleOIDCService>().LoginCompleted += LoginCompleted;
         ServiceManager.GetService<GoogleOIDCService>().LogoutCompleted += LogoutCompleted;
-        //gop.GenerateCSRFToken();
-        ServiceManager.GetService<GoogleOIDCService>().OpenLoginPage();
+        GoogleOidcProvider gop = new GoogleOidcProvider();
+        string token = "ew0KICAiaXNzIjogImh0dHBzOi8vYWNjb3VudHMuZ29vZ2xlLmNvbSIsDQogICJhenAiOiAiMTIzNDk4NzgxOTIwMC5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsDQogICJhdWQiOiAiMTIzNDk4NzgxOTIwMC5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsDQogICJzdWIiOiAiMTA3NjkxNTAzNTAwMDYxNTA3MTUxMTMwODIzNjciLA0KICAiYXRfaGFzaCI6ICJISzZFX1A2RGg4WTkzbVJOdHNEQjFRIiwNCiAgImhkIjogImV4YW1wbGUuY29tIiwNCiAgImVtYWlsIjogImpzbWl0aEBleGFtcGxlLmNvbSIsDQogICJlbWFpbF92ZXJpZmllZCI6ICJ0cnVlIiwNCiAgImlhdCI6IDEzNTM2MDEwMjYsDQogICJleHAiOiAxMzUzNjA0OTI2LA0KICAibm9uY2UiOiAiMDM5NDg1Mi0zMTkwNDg1LTI0OTAzNTgiLA0KICAiZmFtaWx5X25hbWUiOiAiU3RhYWIiLA0KICAiZ2l2ZW5fbmFtZSI6ICJKdWxpYW4iDQp9";
+        GoogleUserInfo gui = gop.DecodeIDToken<GoogleUserInfo>(token);
+        Debug.Log(gui.Username);
+        Debug.Log(gui.Email);
+        Debug.Log(gui.FullName);
+        //ServiceManager.GetService<GoogleOIDCService>().OpenLoginPage();
     }
 
     /// <summary>

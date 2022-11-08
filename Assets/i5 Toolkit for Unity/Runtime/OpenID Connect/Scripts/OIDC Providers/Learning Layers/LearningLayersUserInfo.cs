@@ -17,7 +17,7 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         [SerializeField] private string given_name;
         [SerializeField] private string family_name;
         [SerializeField] private string updated_time;
-        [SerializeField] private bool email_verfied;
+        [SerializeField] private bool email_verified;
 
 
         /// <summary>

@@ -103,6 +103,7 @@ Follow these steps to integrate deep linking into your application:
 3. Add the <xref:i5.Toolkit.Core.DeepLinkAPI.DeepLinkAttribute> to a method that should react to a deep link.
    When specifying the attribute, set the path to which it should react, e.g. "myDeepLink" if it should react to deep links like "i5://myDeepLink".
    The path is case-insensitive.
+   The attribute is only found by the module if it is added to public methods.
 
    ```[C#]
    [DeepLink("myPath")]

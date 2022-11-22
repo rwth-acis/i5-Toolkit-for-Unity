@@ -26,7 +26,7 @@ public class GoogleOIDCTest : MonoBehaviour
         Debug.Log(gui.Username);
         Debug.Log(gui.Email);
         Debug.Log(gui.FullName);
-        //ServiceManager.GetService<GoogleOIDCService>().OpenLoginPage();
+        ServiceManager.GetService<GoogleOIDCService>().OpenLoginPage();
     }
 
     /// <summary>

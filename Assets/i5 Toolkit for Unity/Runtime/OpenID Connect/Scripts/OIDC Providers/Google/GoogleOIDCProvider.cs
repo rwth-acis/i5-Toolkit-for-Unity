@@ -26,6 +26,9 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
             serverName = "https://accounts.google.com";
         }
 
+        /// <summary>
+        /// Creates a sequence of 30 random numbers which is used as the session token
+        /// </summary>
         public void GenerateCSRFToken()
         {
             RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider();

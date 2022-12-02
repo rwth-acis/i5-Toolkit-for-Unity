@@ -36,10 +36,8 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
             {
                 token += (randomNumber[i] % 10).ToString();
             }
-            Debug.Log(token);
             state = token;
         }
-
 
         /// <summary>
         /// Gets the access token based on a previously retrieved authorization code
@@ -49,15 +47,7 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         /// <returns>Returns the access token if it could be retrieved; otherwise it returns an empty string</returns>
         public override async Task<string> GetAccessTokenFromCodeAsync(string code, string redirectUri)
         {
-            // Hier hab ich die Reihenfolge der Argumente hoffentlich richtig angepasst und den Flow Typen angepasst, ich denke das könnte so stimmen
-
-            //string returnedState = redirectUri.Substring(redirectUri.LastIndexOf("state=") + "state=".Length + 1, 30);
-            Debug.Log(redirectUri);
-            //if (!returnedState.Equals(state))
-            //{
-                //i5Debug.LogError("The returned anti-forgery state token is incorrect.", this);
-                //return "";
-            //}
+            redirectUri += "code?";
 
             EndpointsData endpoints = await SetEndpoints();
             if (ClientData == null)
@@ -92,7 +82,7 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
             }
             else
             {
-                Debug.LogError(response.ErrorMessage + ": " + response.Content);
+                i5Debug.LogError(response.ErrorMessage + ": " + response.Content, this);
                 return "";
             }
         }
@@ -104,32 +94,24 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         /// <returns>The authorization code if it could be found, otherwise an empty string is returned</returns>
         public override string GetAuthorizationCode(Dictionary<string, string> redirectParameters)
         {
-            // Hier habe ich den state check eingebaut, ich denke das reicht so
-            Debug.Log(redirectParameters["state"]);
-            Debug.Log("State received");
-            if (redirectParameters.ContainsKey("code"))
+            if (redirectParameters.ContainsKey("state") && redirectParameters["state"].Equals(state))
             {
-                return redirectParameters["code"];
+                if (redirectParameters.ContainsKey("code"))
+                {
+                    return redirectParameters["code"];
+                }
+                else
+                {
+                    i5Debug.LogError("Redirect parameters did not contain authorization code", this);
+                    return "";
+                }
             }
             else
             {
-                i5Debug.LogError("Redirect parameters did not contain authorization code", this);
+                i5Debug.LogError("Invalid state parameter", this);
                 return "";
             }
         }
-
-        /// <summary>
-        /// Gets information about the logged in user from the provider
-        /// </summary>
-        /// <param name="accessToken">The access token to authenticate the user</param>
-        /// <returns>Returns information about the logged in user if the request was successful, otherwise null</returns>
-        /*public override async Task<IUserInfo>void GetUserInfoAsync(string accessToken)
-        {
-            //TODO
-            // User Info wird nicht nochmal in einem Webrequest requested, sondern steht codiert in dem id_token
-            // Vielleicht ist es aber auch besser, das id_token zu entfernen und stattdessen wie in der abstrakten Klasse einfach über
-            // den UserInfoEndpoint die Info zu requesten (sollte spezifisch dann die GoogleUserInfo als Typ generieren)
-        }*/
 
         /// <summary>
         /// Opens the login page in the system's default Web browser, sets the required endpoints
@@ -138,15 +120,13 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         /// <param name="redirectUri">The URI to which the browser should redirect after the successful login</param>
         public override async Task<string> OpenLoginPageAsync(string[] scopes, string redirectUri)
         {
-            // Hier habe ich schon die Reihenfolge der Argumente in der URI angepasst (ich hoffe auch richtig) und die state generation hinzugefügt
-
             EndpointsData endpoints = await SetEndpoints();
             GenerateCSRFToken();
             string responseType = AuthorizationFlow == AuthorizationFlow.AUTHORIZATION_CODE ? "code" : "token";
             string uriScopes = UriUtils.WordArrayToSpaceEscapedString(scopes);
-            redirectUri += "code&";
-            string uri = authorizationEndpoint + $"?response_type={responseType}" + $"&client_id={ClientData.ClientId}" + 
-                    $"&scope={uriScopes}" + $"&redirect_uri={redirectUri}" + $"state={state}";
+            redirectUri += "code?";
+            string uri = authorizationEndpoint + $"?client_id={ClientData.ClientId}" + $"&response_type={responseType}" +
+                    $"&redirect_uri={redirectUri}" + $"&scope={uriScopes}" + $"&state={state}";
             Browser.OpenURL(uri);
             return uri;
         }

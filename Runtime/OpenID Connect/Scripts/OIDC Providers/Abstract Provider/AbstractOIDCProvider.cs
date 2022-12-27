@@ -69,15 +69,58 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
             return serverName;
         }
 
+        protected virtual bool CheckEndpoints(bool printError = true)
+        {
+            if (string.IsNullOrEmpty(authorizationEndpoint)
+                && string.IsNullOrEmpty(userInfoEndpoint)
+                && string.IsNullOrEmpty(tokenEndpoint))
+            {
+                if (printError)
+                {
+                    i5Debug.LogError("Endpoints are not set up. Call FetchEndpointsAsync first or set them up manually.", this);
+                }
+                return false;
+            }
+            else
+            {
+                bool allCorrect = true;
+                if (string.IsNullOrEmpty(authorizationEndpoint))
+                {
+                    if (printError)
+                    {
+                        i5Debug.LogError("Authorization endpoint is not set. Call FetchEndpointsAsync first or set it manually.", this);
+                    }
+                    allCorrect = false;
+                }
+                if (string.IsNullOrEmpty(userInfoEndpoint))
+                {
+                    if (printError)
+                    {
+                        i5Debug.LogError("User info endpoint is not set. Call FetchEndpointsAsync first or set it manually.", this);
+                    }
+                    allCorrect = false;
+                }
+                if (string.IsNullOrEmpty(tokenEndpoint))
+                {
+                    if (printError)
+                    {
+                        i5Debug.LogError("Token endpoint is not set. Call FetchEndpointsAsync first or set it manually.", this);
+                    }
+                    allCorrect = false;
+                }
+                return allCorrect;
+            }
+        }
+
         /// <summary>
         /// Sets the required endpoints
         /// </summary>
-        public async virtual Task<EndpointsData> SetEndpoints()
+        public async virtual Task<EndpointsData> FetchEndpointsAsync()
         {
 
-            if (authorizationEndpoint == null || userInfoEndpoint == null || tokenEndpoint == null)
+            if (!CheckEndpoints(false))
             {
-                EndpointsData endpoints = await RequestEndpointsData();
+                EndpointsData endpoints = await RequestEndpointsDataAsync();
                 authorizationEndpoint = endpoints.authorization_endpoint;
                 tokenEndpoint = endpoints.token_endpoint;
                 userInfoEndpoint = endpoints.userinfo_endpoint;
@@ -92,9 +135,9 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         /// <summary>
         /// Extracts the required endpoints from the well-known definition of the server
         /// </summary>
-        public async Task<EndpointsData> RequestEndpointsData()
+        protected async Task<EndpointsData> RequestEndpointsDataAsync()
         {
-            Debug.Log("Fetching Endpoints.");
+            Debug.Log("Fetching endpoints.");
             WebResponse<string> response = await RestConnector.GetAsync(serverName + "/.well-known/openid-configuration");
             if (response.Successful)
             {
@@ -104,7 +147,7 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
             else
             {
                 i5Debug.LogError("Endpoints could not be fetched. Check the provided server.", this);
-                return new EndpointsData("","","");
+                return new EndpointsData("", "", "");
             }
         }
 
@@ -116,13 +159,14 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         /// <returns>Returns the access token if it could be retrieved; otherwise it returns an empty string</returns>
         public virtual async Task<string> GetAccessTokenFromCodeAsync(string code, string redirectUri)
         {
-            EndpointsData endpoints = await SetEndpoints();
             if (ClientData == null)
             {
                 i5Debug.LogError("No client data supplied for the OpenID Connect Client.\n" +
                     "Initialize this provider with an OpenID Connect Data file.", this);
                 return "";
             }
+
+            EndpointsData endpoints = await FetchEndpointsAsync();
 
             WWWForm form = new WWWForm();
             form.AddField("client_id", ClientData.ClientId);
@@ -180,7 +224,7 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         /// <returns>Returns information about the logged in user if the request was successful, otherwise null</returns>
         public virtual async Task<IUserInfo> GetUserInfoAsync(string accessToken)
         {
-            EndpointsData endpoints = await SetEndpoints();
+            EndpointsData endpoints = await FetchEndpointsAsync();
             Dictionary<string, string> headers = new Dictionary<string, string>()
             {
                 {"Authorization", $"Bearer {accessToken}" }
@@ -227,23 +271,30 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
                 return;
             }
 
-            Task<string> task = OpenLoginPageAsync(scopes, redirectUri);
-        }
+            if (!CheckEndpoints())
+            {
+                i5Debug.LogError("Aborted opening login page since the endpoints are not set up.", this);
+                return;
+            }
 
-        /// <summary>
-        /// Opens the login page in the system's default Web browser, sets the required endpoints
-        /// </summary>
-        /// <param name="scopes">The OpenID Connect scopes that the user must agree to</param>
-        /// <param name="redirectUri">The URI to which the browser should redirect after the successful login</param>
-        public virtual async Task<string> OpenLoginPageAsync(string[] scopes, string redirectUri)
-        {
-            EndpointsData endpoints = await SetEndpoints();
             string responseType = AuthorizationFlow == AuthorizationFlow.AUTHORIZATION_CODE ? "code" : "token";
             string uriScopes = UriUtils.WordArrayToSpaceEscapedString(scopes);
             string uri = authorizationEndpoint + $"?response_type={responseType}&scope={uriScopes}" +
                 $"&client_id={ClientData.ClientId}&redirect_uri={redirectUri}";
             Browser.OpenURL(uri);
-            return uri;
+        }
+
+        /// <summary>
+        /// Opens the login page in the system's default Web browser
+        /// Difference to the synchronous call: this call fetches the provider's endpoints first
+        /// </summary>
+        /// <param name="scopes">The OpenID Connect scopes that the user must agree to</param>
+        /// <param name="redirectUri">The URI to which the browser should redirect after the successful login</param>
+        public virtual async Task OpenLoginPageAsync(string[] scopes, string redirectUri)
+        {
+            await FetchEndpointsAsync();
+
+            OpenLoginPage(scopes, redirectUri);
         }
 
         /// <summary>

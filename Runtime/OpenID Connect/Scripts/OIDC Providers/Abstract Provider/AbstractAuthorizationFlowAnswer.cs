@@ -7,8 +7,10 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
     /// authorization flow
     /// </summary>
     [Serializable]
-    public class GitHubAuthorizationFlowAnswer: AbstractAuthorizationFlowAnswer
+    public class AbstractAuthorizationFlowAnswer
     {
-
+        public string access_token;
+        public string token_type;
+        public string scope;
     }
 }

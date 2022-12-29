@@ -147,8 +147,6 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
                 return;
             }
 
-            ServerListener.ListeningUri = "http://127.0.0.1:52229/";
-
             if (ServerListener.ServerActive)
             {
                 OidcProvider.OpenLoginPage(Scopes, ServerListener.ListeningUri);

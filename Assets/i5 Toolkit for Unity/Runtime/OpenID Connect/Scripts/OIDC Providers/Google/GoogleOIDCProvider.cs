@@ -31,7 +31,8 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         /// </summary>
         public void GenerateCSRFToken()
         {
-            RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider();
+#if (UNITY_STANDALONE_WIN || UNITY_EDITOR)
+            RandomNumberGenerator rng = RandomNumberGenerator.Create();
             byte[] randomNumber = new byte[30];
             rng.GetBytes(randomNumber);
             string token = "";
@@ -40,6 +41,15 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
                 token += (randomNumber[i] % 10).ToString();
             }
             state = token;
+
+#else
+            string token = "";
+            for(int i=0;i<30;i++)
+            {
+                token += (UnityEngine.Random.Range(0f, 9f)).ToString();
+            }
+            state = token;
+#endif
         }
 
         /// <summary>

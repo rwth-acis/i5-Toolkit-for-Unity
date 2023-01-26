@@ -7,9 +7,16 @@ namespace i5.Toolkit.Core.VerboseLogging
 {
 	public static class AppLog
 	{
-		public static LogLevel LogLevel { get; set; } = LogLevel.TRACE;
+		public static LogLevel MinimumLogLevel { get; set; } = LogLevel.TRACE;
 
 		public static bool UseColors { get; set; } = true;
+
+		public static Color CriticalColor { get; set; } = Color.magenta;
+		public static Color ErrorColor { get; set; } = Color.red;
+		public static Color WarningColor { get; set; } = new Color(0.97f, 0.74f, 0.23f);
+		public static Color InfoColor { get; set; } = Color.white;
+		public static Color DebugColor { get; set; } = new Color(0.6f, 0.97f, 0.23f);
+		public static Color TraceColor { get; set; } = new Color(0.23f, 0.6f, 0.97f);
 
 		public static void LogCritical(string message, Object context = null)
 		{
@@ -21,9 +28,14 @@ namespace i5.Toolkit.Core.VerboseLogging
 			Log(message, LogLevel.ERROR, context);
 		}
 
-		public static void LogException(System.Exception e, Object context = null)
+		public static void LogException(System.Exception e, bool isCritical= false, Object context = null)
 		{
-			Log(e.ToString(), LogLevel.ERROR, context);
+			LogLevel level = LogLevel.ERROR;
+			if (isCritical)
+			{
+				level = LogLevel.CRITICAL;
+			}
+			Log(e.ToString(), level, context);
 		}
 
 		public static void LogWarning(string message, Object context = null)
@@ -48,9 +60,9 @@ namespace i5.Toolkit.Core.VerboseLogging
 
 		public static void Log(string message, LogLevel level, Object context = null)
 		{
-			if (level <= LogLevel)
+			if (level <= MinimumLogLevel)
 			{
-				string output = $"[{level.ToString()}] {message}";
+				string output = $"[{level}] {message}";
 
 #if UNITY_EDITOR
 				if (UseColors)
@@ -59,25 +71,25 @@ namespace i5.Toolkit.Core.VerboseLogging
 					switch (level)
 					{
 						case LogLevel.CRITICAL:
-							color = "#ff00ff";
+							color = $"#{ColorUtility.ToHtmlStringRGB(CriticalColor)}";
 							break;
 						case LogLevel.ERROR:
-							color = "red";
+							color = $"#{ColorUtility.ToHtmlStringRGB(ErrorColor)}";
 							break;
 						case LogLevel.WARNING:
-							color = "#f7bc3b";
-							break;
+							color = $"#{ColorUtility.ToHtmlStringRGB(WarningColor)}";
+                            break;
 						case LogLevel.INFO:
-							color = "white";
-							break;
+							color = $"#{ColorUtility.ToHtmlStringRGB(InfoColor)}";
+                            break;
 						case LogLevel.DEBUG:
-							color = "#99f73b";
-							break;
+							color = $"#{ColorUtility.ToHtmlStringRGB(DebugColor)}";
+                            break;
 						case LogLevel.TRACE:
-							color = "#3b99f7";
+							color = $"#{ColorUtility.ToHtmlStringRGB(TraceColor)}";
 							break;
 					}
-					output = $"<color={color}>{output}</color>";
+                    output = $"<color={color}>[{level}]</color> {message}";
 				}
 #endif
 

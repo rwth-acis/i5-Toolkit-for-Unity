@@ -1,5 +1,6 @@
 ﻿using i5.Toolkit.Core.Utilities.Async;
 using System.Collections.Generic;
+using System.Text;
 using System.Threading.Tasks;
 using UnityEngine.Networking;
 
@@ -12,6 +13,7 @@ namespace i5.Toolkit.Core.Utilities
             using (UnityWebRequest req = UnityWebRequest.Delete(uri))
             {
                 AddHeaders(req, headers);
+                req.downloadHandler = new DownloadHandlerBuffer();
                 await req.SendWebRequest();
 
                 if (req.isHttpError || req.isNetworkError)
@@ -45,8 +47,14 @@ namespace i5.Toolkit.Core.Utilities
 
         public async Task<WebResponse<string>> PostAsync(string uri, string postData, Dictionary<string, string> headers = null)
         {
-            using (UnityWebRequest req = UnityWebRequest.Post(uri, postData))
+            using (UnityWebRequest req = UnityWebRequest.Post(uri, "POST"))
             {
+                byte[] data = new UTF8Encoding().GetBytes(postData);
+                req.uploadHandler = new UploadHandlerRaw(data);
+                req.downloadHandler = new DownloadHandlerBuffer();
+                req.SetRequestHeader("Content-Type", "application/json");
+                req.SetRequestHeader("Accept", "application/json");
+
                 AddHeaders(req, headers);
                 await req.SendWebRequest();
 
@@ -67,6 +75,7 @@ namespace i5.Toolkit.Core.Utilities
             {
                 req.uploadHandler = new UploadHandlerRaw(postData);
                 req.downloadHandler = new DownloadHandlerBuffer();
+                req.SetRequestHeader("Content-Type", "application/octet-stream");
 
                 AddHeaders(req, headers);
 
@@ -87,6 +96,7 @@ namespace i5.Toolkit.Core.Utilities
         {
             using (UnityWebRequest req = UnityWebRequest.Put(uri, postData))
             {
+                req.SetRequestHeader("Content-Type", "application/json");
                 AddHeaders(req, headers);
                 await req.SendWebRequest();
 

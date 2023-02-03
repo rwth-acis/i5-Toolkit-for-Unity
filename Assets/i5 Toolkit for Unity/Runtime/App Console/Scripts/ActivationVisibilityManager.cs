@@ -1,4 +1,6 @@
-﻿namespace i5.Toolkit.Core.AppConsole
+﻿using i5.Toolkit.Core.VerboseLogging;
+
+namespace i5.Toolkit.Core.AppConsole
 {
     /// <summary>
     /// Visibility manager which changes the visibility by activating/deactivating the gameobject
@@ -16,6 +18,7 @@
             }
             set
             {
+                AppLog.LogTrace($"Visibility changed to {value}", this);
                 gameObject.SetActive(value);
             }
         }

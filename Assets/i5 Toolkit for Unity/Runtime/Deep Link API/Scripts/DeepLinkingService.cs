@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using UnityEngine;
+using i5.Toolkit.Core.VerboseLogging;
 
 namespace i5.Toolkit.Core.DeepLinkAPI
 {
@@ -37,9 +38,11 @@ namespace i5.Toolkit.Core.DeepLinkAPI
         /// <param name="owner">The service manager that owns this service</param>
         public void Initialize(IServiceManager owner)
         {
+            AppLog.LogInfo("Initializing DeepLinkingService...");
             ApplicationAPI.DeepLinkActivated += OnDeepLinkActivated;
             if (!string.IsNullOrEmpty(ApplicationAPI.AbsoluteURL))
             {
+                AppLog.LogTrace($"Application has been activated by a deep link with URL {ApplicationAPI.AbsoluteURL}");
                 OnDeepLinkActivated(null, ApplicationAPI.AbsoluteURL);
             }
         }
@@ -107,12 +110,13 @@ namespace i5.Toolkit.Core.DeepLinkAPI
         {
             ApplicationAPI.DeepLinkActivated -= OnDeepLinkActivated;
             registeredListeners.Clear();
+            AppLog.LogInfo("DeepLinkingService shut down.");
         }
 
         // Called if a deep link was found
         private void OnDeepLinkActivated(object sender, string deepLink)
         {
-            Debug.Log("Got deep link for " + deepLink);
+            AppLog.LogInfo("Got deep link for " + deepLink);
 
             // go over every registered listener instance and check if it contains a target method
             // clean up garbage collected references along the way
@@ -124,6 +128,7 @@ namespace i5.Toolkit.Core.DeepLinkAPI
                 }
                 else
                 {
+                    AppLog.LogTrace("Garbage collected listener " + registeredListeners[i]);
                     registeredListeners.RemoveAt(i);
                 }
             }

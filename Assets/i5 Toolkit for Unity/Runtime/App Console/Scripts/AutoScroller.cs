@@ -1,4 +1,5 @@
 ﻿using i5.Toolkit.Core.Experimental.UnityAdapters;
+using i5.Toolkit.Core.VerboseLogging;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -27,6 +28,7 @@ namespace i5.Toolkit.Core.AppConsole
             get => scrollerActive;
             set
             {
+                AppLog.LogTrace($"AutoScroller has been {(value ? "activated" : "deactivated")}");
                 scrollerActive = value;
                 elementToStartScroller.ActiveSelf = !scrollerActive;
                 if (scrollerActive)

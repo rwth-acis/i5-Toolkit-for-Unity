@@ -24,6 +24,8 @@
   href: Service-Core.md
 - name: Spawner
   href: Spawner.md
+- name: Verbose Logging
+  href: Verbose-Logging.md
 - name: Version Tool
   href: Version-Tool.md
 - name: Test Helpers

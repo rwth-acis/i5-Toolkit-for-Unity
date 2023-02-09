@@ -38,8 +38,8 @@ The i5 Toolkit provides a series of modules and features that can be used in pro
     </tr>
     <tr>
         <td><a href="${docPath}manual/Spawner.${docExtension}"><img src="${docImgPath}resources/Logos/Spawner.svg" alt="Spawner" style="width:200px"/><br/>Spawner</a></td>
+        <td><a href="${docPath}manual/Verbose-Logging.${docExtension}"><img src="${docImgPath}resources/Logos/Verbose-Logging.svg" alt="Verbose Logging" style="width:200px"/><br/>Verbose Logging</a></td>
         <td><a href="${docPath}manual/Version-Tool.${docExtension}"><img src="${docImgPath}resources/Logos/Version-Tool.svg" alt="Version Tool" style="width:200px"/><br/>Version Tool</a></td>
-        <td></td>
     </tr>
 </table>
 

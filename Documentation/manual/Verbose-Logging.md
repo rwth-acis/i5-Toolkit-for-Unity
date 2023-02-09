@@ -1,6 +1,6 @@
 # Verbose Logging System
 
-![Verbose Logging](../resources/Logos/AppConsole.svg)
+![Verbose Logging](../resources/Logos/Verbose-Logging.svg)
 
 ## Use Case
 
@@ -32,18 +32,18 @@ The following guide can be considered when deciding which category to assign to 
 
 | Category | Description | Method |
 | --- | --- | --- |
-| Critical | A log message about a failure or error that is critical to the further execution of the program. For instance, a module is in an unforeseen state and going forward, it is not clear whether the application still functions correctly. | <xref:i5.Toolkit.Core.VerboseLogging.LogCritical*> |
-| Error | A log message about an error which does not endanger the further execution of the program. For instance, the application tried loading a save file but could not parse it, so the loading operation was aborted. | <xref:i5.Toolkit.Core.VerboseLogging.LogError*> |
-| Warning | A log message about a check which resulted in an unexpected value. This is not really an error yet but should be addressed. For instance, the application noticed that the player left the designated play aera and was reset. | <xref:i5.Toolkit.Core.VerboseLogging.LogWarning*> |
-| Info | A log message that informs about what the application is roughly doing. However, the log messages only inform about major events.  For instance, the application logs that the user changed the graphics quality in the settings menu. | <xref:i5.Toolkit.Core.VerboseLogging.LogInfo*> |
-| Debug | A log message which can be used for debugging the application and giving the developer additional hints about what is going on. It can, e.g., provides key values during calculations. For instance, a player buys an item and the log messages output the number of resources that the player has in the inventory before and after the transaction. | <xref:i5.Toolkit.Core.VerboseLogging.LogDebug*> |
-| Trace | A log message which helps track exactly which code execution paths the application takes. It logs methods which are entered, which branch of an if-else condition was selected, etc. For instance, the application logs that it is trying to cast a raycast in the scene and whether it found anything. | <xref:i5.Toolkit.Core.VerboseLogging.LogTrace*> |
+| Critical | A log message about a failure or error that is critical to the further execution of the program. For instance, a module is in an unforeseen state and going forward, it is not clear whether the application still functions correctly. | <xref:i5.Toolkit.Core.VerboseLogging.AppLog.LogCritical*> |
+| Error | A log message about an error which does not endanger the further execution of the program. For instance, the application tried loading a save file but could not parse it, so the loading operation was aborted. | <xref:i5.Toolkit.Core.VerboseLogging.AppLog.LogError*> |
+| Warning | A log message about a check which resulted in an unexpected value. This is not really an error yet but should be addressed. For instance, the application noticed that the player left the designated play aera and was reset. | <xref:i5.Toolkit.Core.VerboseLogging.AppLog.LogWarning*> |
+| Info | A log message that informs about what the application is roughly doing. However, the log messages only inform about major events.  For instance, the application logs that the user changed the graphics quality in the settings menu. | <xref:i5.Toolkit.Core.VerboseLogging.AppLog.LogInfo*> |
+| Debug | A log message which can be used for debugging the application and giving the developer additional hints about what is going on. It can, e.g., provides key values during calculations. For instance, a player buys an item and the log messages output the number of resources that the player has in the inventory before and after the transaction. | <xref:i5.Toolkit.Core.VerboseLogging.AppLog.LogDebug*> |
+| Trace | A log message which helps track exactly which code execution paths the application takes. It logs methods which are entered, which branch of an if-else condition was selected, etc. For instance, the application logs that it is trying to cast a raycast in the scene and whether it found anything. | <xref:i5.Toolkit.Core.VerboseLogging.AppLog.LogTrace*> |
 
-Exceptions can additionally be logged using the method <xref:i5.Toolkit.Core.VerboseLogging.LogException*>.
+Exceptions can additionally be logged using the method <xref:i5.Toolkit.Core.VerboseLogging.AppLog.LogException*>.
 Exceptions are either logged using the `Cricial` or `Error` categories, depending on the value provided to the `isCritical` parameter.
 
 The `AppLog.Log<Level>` methods are convenient shortcuts.
-It is also possible to call the method <xref:i5.Toolkit.Core.VerboseLogging.Log*> and provide to it the log level.
+It is also possible to call the method <xref:i5.Toolkit.Core.VerboseLogging.AppLog.Log*> and provide to it the log level.
 
 Just like `Debug.Log*`, objects can be passed to `AppLog.Log*` to define the context of the statement.
 Clicking a log message with a provided context in the Unity console will highlight the GameObject on which it occurred in the hierarchy.
@@ -51,7 +51,7 @@ Moreover, the statement will print additional information about the context obje
 
 ### Setting the Level of Verbosity
 
-The level of verbosity can be set centrally by altering the property <xref:i5.Toolkit.Core.VerboseLogging.MinimumLogLevel>.
+The level of verbosity can be set centrally by altering the property <xref:i5.Toolkit.Core.VerboseLogging.AppLog.MinimumLogLevel>.
 All messages which are on the given level or on a higher level are logged, while all other messages are suppressed.
 For instance, if the minimum log level is set to `Warning`, the system will log messages that are on the levels `Critical`, `Error` and `Warning`.
 If the minimum log level is set to `Trace`, every message of any category will be logged.
@@ -65,13 +65,13 @@ Note that messages cannot be retrieved retroactively.
 Messages below the minimum log level are never produced and so they cannot be restored later.
 Changing the minimum log level during runtime applies to future log statements but not past ones.
 
-The otehr way around, you can first generate more messages than needed and later filter a log file with a text program to include less messages by searching for the log level.
+The other way around, you can first generate more messages than needed and later filter a log file with a text program to include less messages by searching for the log level.
 Since every message starts with its log level, all messages of a particular level can quickly be found both in the Unity editor and in log files.
 
 ### In-Editor Functionality
 
 In the editor, the log messages can be colored according to the level.
-By default, this feature is activated but it can be deactivated using the property <xref:i5.Toolkit.Core.VerboseLogging.UseColors>.
+By default, this feature is activated but it can be deactivated using the property <xref:i5.Toolkit.Core.VerboseLogging.AppLog.UseColors>.
 Moreover, the colors can be adjusted for each level individually which might be necessary depending on the Unity version and the chosen color scheme.
 
 The coloring of messages is only applied in the Unity editor and neither the coloring nor the markup which produces the color are added to log files outside of the Unity editor.
@@ -94,7 +94,7 @@ Messages to `Debug.Log*` will always be logged, independent of the set verbosity
 However, it is recommended to not mix the two to keep the code consistent.
 
 Any errors which are logged directly by Unity as soon as they appear, will still be logged.
-This is an intented behavior as these kinds of errors and exceptions are regarded as critical.
+This is an intended behavior as these kinds of errors and exceptions are regarded as critical.
 
 ## Example Scene
 

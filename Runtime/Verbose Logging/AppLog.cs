@@ -5,29 +5,73 @@ using UnityEngine;
 
 namespace i5.Toolkit.Core.VerboseLogging
 {
+	/// <summary>
+	/// Logging class which applies a verbosity filter to all logs which are produced with it
+	/// </summary>
 	public static class AppLog
 	{
+		/// <summary>
+		/// The minimum importance level of logs which will be ouput.
+		/// All logs with a lower importance level are ignored.
+		/// </summary>
 		public static LogLevel MinimumLogLevel { get; set; } = LogLevel.TRACE;
 
+		/// <summary>
+		/// If true, the module will style messages in the editor with colors
+		/// </summary>
 		public static bool UseColors { get; set; } = true;
 
+		/// <summary>
+		/// The color which should be applied to critical log messags if UseColors is true
+		/// </summary>
 		public static Color CriticalColor { get; set; } = Color.magenta;
-		public static Color ErrorColor { get; set; } = Color.red;
-		public static Color WarningColor { get; set; } = new Color(0.97f, 0.74f, 0.23f);
-		public static Color InfoColor { get; set; } = Color.white;
-		public static Color DebugColor { get; set; } = new Color(0.6f, 0.97f, 0.23f);
-		public static Color TraceColor { get; set; } = new Color(0.23f, 0.6f, 0.97f);
+        /// <summary>
+        /// The color which should be applied to error log messags if UseColors is true
+        /// </summary>
+        public static Color ErrorColor { get; set; } = Color.red;
+        /// <summary>
+        /// The color which should be applied to warning log messags if UseColors is true
+        /// </summary>
+        public static Color WarningColor { get; set; } = new Color(0.97f, 0.74f, 0.23f);
+        /// <summary>
+        /// The color which should be applied to info log messags if UseColors is true
+        /// </summary>
+        public static Color InfoColor { get; set; } = Color.white;
+        /// <summary>
+        /// The color which should be applied to debug log messags if UseColors is true
+        /// </summary>
+        public static Color DebugColor { get; set; } = new Color(0.6f, 0.97f, 0.23f);
+        /// <summary>
+        /// The color which should be applied to trace log messags if UseColors is true
+        /// </summary>
+        public static Color TraceColor { get; set; } = new Color(0.23f, 0.6f, 0.97f);
 
+		/// <summary>
+		/// Logs a critical error message
+		/// </summary>
+		/// <param name="message">The message to log</param>
+		/// <param name="context">The context of the message</param>
 		public static void LogCritical(string message, Object context = null)
 		{
 			Log(message, LogLevel.CRITICAL, context);
 		}
 
-		public static void LogError(string message, Object context = null)
+        /// <summary>
+        /// Logs an error message
+        /// </summary>
+        /// <param name="message">The message to log</param>
+        /// <param name="context">The context of the message</param>
+        public static void LogError(string message, Object context = null)
 		{
 			Log(message, LogLevel.ERROR, context);
 		}
 
+		/// <summary>
+		/// Logs an exception either as an error message or a critical error message
+		/// </summary>
+		/// <param name="e">The exception which should be logged</param>
+		/// <param name="isCritical">If set to true, the message will be logged as a critical error</param>
+		/// <param name="context">The context of the message</param>
 		public static void LogException(System.Exception e, bool isCritical= false, Object context = null)
 		{
 			LogLevel level = LogLevel.ERROR;
@@ -38,26 +82,52 @@ namespace i5.Toolkit.Core.VerboseLogging
 			Log(e.ToString(), level, context);
 		}
 
-		public static void LogWarning(string message, Object context = null)
+        /// <summary>
+        /// Logs a warning message
+        /// </summary>
+        /// <param name="message">The message to log</param>
+        /// <param name="context">The context of the message</param>
+        public static void LogWarning(string message, Object context = null)
 		{
 			Log(message, LogLevel.WARNING, context);
 		}
 
-		public static void LogInfo(string message, Object context = null)
+        /// <summary>
+        /// Logs an info message
+        /// </summary>
+        /// <param name="message">The message to log</param>
+        /// <param name="context">The context of the message</param>
+        public static void LogInfo(string message, Object context = null)
 		{
 			Log(message, LogLevel.INFO, context);
 		}
 
-		public static void LogDebug(string message, Object context = null)
+        /// <summary>
+        /// Logs a message for debugging the code
+        /// </summary>
+        /// <param name="message">The message to log</param>
+        /// <param name="context">The context of the message</param>
+        public static void LogDebug(string message, Object context = null)
 		{
 			Log(message, LogLevel.DEBUG, context);
 		}
 
-		public static void LogTrace(string message, Object context = null)
+        /// <summary>
+        /// Logs a message which can be used to trace the code execution path
+        /// </summary>
+        /// <param name="message">The message to log</param>
+        /// <param name="context">The context of the message</param>
+        public static void LogTrace(string message, Object context = null)
 		{
 			Log(message, LogLevel.TRACE, context);
 		}
 
+		/// <summary>
+		/// Logs a message with a given lelve
+		/// </summary>
+		/// <param name="message">The message to log</param>
+		/// <param name="level">The importance level of the message</param>
+		/// <param name="context">The context of the message</param>
 		public static void Log(string message, LogLevel level, Object context = null)
 		{
 			if (level <= MinimumLogLevel)

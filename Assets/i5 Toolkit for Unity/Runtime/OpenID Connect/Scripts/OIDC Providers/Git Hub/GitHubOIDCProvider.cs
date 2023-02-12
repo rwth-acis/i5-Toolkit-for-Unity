@@ -44,7 +44,7 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
 
             if (response.Successful)
             {
-                string response_content = WrapAsJson(response.Content);
+                string response_content = response.Content;
                 GitHubAuthorizationFlowAnswer answer =
                     JsonSerializer.FromJson<GitHubAuthorizationFlowAnswer>(response_content);
                 if (answer == null)
@@ -56,7 +56,7 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
             }
             else
             {
-                Debug.LogError(response.ErrorMessage + ": " + response.Content);
+                i5Debug.LogError(response.ErrorMessage + ": " + response.Content, this);
                 return "";
             }
         }
@@ -105,26 +105,6 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
             string uriScopes = UriUtils.WordArrayToSpaceEscapedString(scopes);
             string uri = authorizationEndpoint + $"?client_id={ClientData.ClientId}&redirect_uri={redirectUri}" + $"response_type={responseType}&scope={uriScopes}";
             Browser.OpenURL(uri);
-        }
-
-        private string WrapAsJson(string token)
-        {
-            string[] parameters = token.Split('&', '=');
-            string wrappedToken = "{";
-            for(int i=0; i<parameters.Length-1; i++)
-            {
-                if (i%2==0)
-                {
-                    wrappedToken = wrappedToken + (char)34 + parameters[i] + (char)34 + ":";
-                }
-                else
-                {
-                    wrappedToken = wrappedToken + (char)34 + parameters[i] + (char)34 + ",";
-                }
-            }
-
-            wrappedToken = wrappedToken + (char)34 + parameters[parameters.Length-1] + (char)34 + "}";
-            return wrappedToken;
         }
     } 
 }

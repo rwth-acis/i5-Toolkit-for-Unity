@@ -1,7 +1,9 @@
 ﻿using FakeItEasy;
 using i5.Toolkit.Core.Editor.TestHelpers;
 using i5.Toolkit.Core.OpenIDConnectClient;
+using i5.Toolkit.Core.TestHelpers;
 using NUnit.Framework;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -89,8 +91,8 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
             Assert.AreEqual(1, eventCalls);
         }
 
-        [Test]
-        public void OpenLoginPage_OpensLoginPageWithHttpRedirect()
+        [UnityTest]
+        public IEnumerator OpenLoginPageAsync_OpensLoginPageWithHttpRedirect()
         {
             OpenIDConnectService oidc = new OpenIDConnectService();
             IOidcProvider provider = A.Fake<IOidcProvider>();
@@ -101,13 +103,16 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
             server.ListeningUri = "http://127.0.0.1:1234";
             oidc.ServerListener = server;
 
-            oidc.OpenLoginPage();
+            Task task = oidc.OpenLoginPageAsync();
+
+            yield return AsyncTest.WaitForTask(task);
+
             A.CallTo(() => provider.OpenLoginPage(A<string[]>.Ignored, A<string>.That.IsEqualTo("http://127.0.0.1:1234")))
                 .MustHaveHappened();
         }
 
-        [Test]
-        public void OpenLoginPage_NoRedirectUriGiven_UsesDefaultPage()
+        [UnityTest]
+        public IEnumerator OpenLoginPageAsync_NoRedirectUriGiven_UsesDefaultPage()
         {
             OpenIDConnectService oidc = new OpenIDConnectService();
             IOidcProvider provider = A.Fake<IOidcProvider>();
@@ -115,13 +120,15 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
             IRedirectServerListener server = A.Fake<IRedirectServerListener>();
             oidc.ServerListener = server;
 
-            oidc.OpenLoginPage();
+            Task task = oidc.OpenLoginPageAsync();
+
+            yield return AsyncTest.WaitForTask(task);
 
             Assert.IsFalse(server.ResponseString.Contains("<meta http-equiv=\"Refresh\""));
         }
 
-        [Test]
-        public void OpenLoginpage_RedirectUriGiven_RedirectUriInResponseString()
+        [UnityTest]
+        public IEnumerator OpenLoginpageAsync_RedirectUriGiven_RedirectUriInResponseString()
         {
             OpenIDConnectService oidc = new OpenIDConnectService();
             IOidcProvider provider = A.Fake<IOidcProvider>();
@@ -130,14 +137,16 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
             IRedirectServerListener server = A.Fake<IRedirectServerListener>();
             oidc.ServerListener = server;
 
-            oidc.OpenLoginPage();
+            Task task = oidc.OpenLoginPageAsync();
+
+            yield return AsyncTest.WaitForTask(task);
 
             Debug.Log("Resp: " + server.ResponseString);
             Assert.IsTrue(server.ResponseString.Contains("<meta http-equiv=\"Refresh\" content=\"0; url = http://test.com\" />"));
         }
 
-        [Test]
-        public void OpenLoginPage_Called_ServerStarted()
+        [UnityTest]
+        public IEnumerator OpenLoginPageAsync_Called_ServerStarted()
         {
             OpenIDConnectService oidc = new OpenIDConnectService();
             IOidcProvider provider = A.Fake<IOidcProvider>();
@@ -145,23 +154,28 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
             IRedirectServerListener server = A.Fake<IRedirectServerListener>();
             oidc.ServerListener = server;
 
-            oidc.OpenLoginPage();
+            Task task = oidc.OpenLoginPageAsync();
+
+            yield return AsyncTest.WaitForTask(task);
+
             A.CallTo(() => server.StartServer()).MustHaveHappened();
         }
 
-        [Test]
-        public void OpenLoginPage_OidcProviderNull_LogsError()
+        [UnityTest]
+        public IEnumerator OpenLoginPageAsync_OidcProviderNull_LogsError()
         {
             OpenIDConnectService oidc = new OpenIDConnectService();
             oidc.OidcProvider = null;
 
             LogAssert.Expect(LogType.Error, new Regex(@"\w*OIDC provider is not set\w*"));
 
-            oidc.OpenLoginPage();
+            Task task = oidc.OpenLoginPageAsync();
+
+            yield return AsyncTest.WaitForTask(task);
         }
 
-        [Test]
-        public void OpenLoginPage_ServerListenerNull_LogsError()
+        [UnityTest]
+        public IEnumerator OpenLoginPageAsync_ServerListenerNull_LogsError()
         {
             OpenIDConnectService oidc = new OpenIDConnectService();
             oidc.OidcProvider = A.Fake<IOidcProvider>();
@@ -169,11 +183,13 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
 
             LogAssert.Expect(LogType.Error, new Regex(@"\w*Redirect server listener is not set\w*"));
 
-            oidc.OpenLoginPage();
+            Task task = oidc.OpenLoginPageAsync();
+
+            yield return AsyncTest.WaitForTask(task);
         }
 
-        [Test]
-        public void OnRedirect_AuthFlow_ExtractsCode()
+        [UnityTest]
+        public IEnumerator OnRedirect_AuthFlow_ExtractsCode()
         {
             OpenIDConnectService oidc = new OpenIDConnectService();
             IOidcProvider oidcProvider = A.Fake<IOidcProvider>();
@@ -184,7 +200,9 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
             IRedirectServerListener serverListener = A.Fake<IRedirectServerListener>();
             oidc.ServerListener = serverListener;
 
-            oidc.OpenLoginPage();
+            Task task = oidc.OpenLoginPageAsync();
+
+            yield return AsyncTest.WaitForTask(task);
 
             RedirectReceivedEventArgs redirectReceivedEventArgs = A.Fake<RedirectReceivedEventArgs>();
             serverListener.RedirectReceived += Raise.With(redirectReceivedEventArgs);
@@ -194,8 +212,8 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
             A.CallTo(() => oidcProvider.GetAuthorizationCode(A<Dictionary<string, string>>.Ignored)).MustHaveHappenedOnceExactly();
         }
 
-        [Test]
-        public void OnRedirect_AuthFlow_RetrievesAccessToken()
+        [UnityTest]
+        public IEnumerator OnRedirect_AuthFlow_RetrievesAccessToken()
         {
             OpenIDConnectService oidc = new OpenIDConnectService();
             IOidcProvider oidcProvider = A.Fake<IOidcProvider>();
@@ -207,7 +225,9 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
             IRedirectServerListener serverListener = A.Fake<IRedirectServerListener>();
             oidc.ServerListener = serverListener;
 
-            oidc.OpenLoginPage();
+            Task task = oidc.OpenLoginPageAsync();
+
+            yield return AsyncTest.WaitForTask(task);
 
             RedirectReceivedEventArgs redirectReceivedEventArgs = A.Fake<RedirectReceivedEventArgs>();
             serverListener.RedirectReceived += Raise.With(redirectReceivedEventArgs);
@@ -218,8 +238,8 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
             Assert.AreEqual("myAccessToken", oidc.AccessToken);
         }
 
-        [Test]
-        public void OnRedirect_ImplicitFlow_AccessTokenRetrieved()
+        [UnityTest]
+        public IEnumerator OnRedirect_ImplicitFlow_AccessTokenRetrieved()
         {
             OpenIDConnectService oidc = new OpenIDConnectService();
             IOidcProvider oidcProvider = A.Fake<IOidcProvider>();
@@ -229,7 +249,9 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
             IRedirectServerListener serverListener = A.Fake<IRedirectServerListener>();
             oidc.ServerListener = serverListener;
 
-            oidc.OpenLoginPage();
+            Task task = oidc.OpenLoginPageAsync();
+
+            yield return AsyncTest.WaitForTask(task);
 
             RedirectReceivedEventArgs redirectReceivedEventArgs = A.Fake<RedirectReceivedEventArgs>();
             serverListener.RedirectReceived += Raise.With(redirectReceivedEventArgs);
@@ -239,8 +261,8 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
             Assert.AreEqual("myAccessToken", oidc.AccessToken);
         }
 
-        [Test]
-        public void OnRedirect_RedirectContainsError_ErrorLogged()
+        [UnityTest]
+        public IEnumerator OnRedirect_RedirectContainsError_ErrorLogged()
         {
             OpenIDConnectService oidc = new OpenIDConnectService();
             IOidcProvider oidcProvider = A.Fake<IOidcProvider>();
@@ -255,7 +277,8 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
 
             LogAssert.Expect(LogType.Error, new Regex(@"\w*This is a simulated fail\w*"));
 
-            oidc.OpenLoginPage();
+            Task task = oidc.OpenLoginPageAsync();
+            yield return AsyncTest.WaitForTask(task);
 
             serverListener.RedirectReceived += Raise.With(redirectReceivedEventArgs);
 
@@ -266,8 +289,8 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
             Assert.IsTrue(string.IsNullOrEmpty(oidc.AccessToken));
         }
 
-        [Test]
-        public void OnRedirect_Success_EventRaised()
+        [UnityTest]
+        public IEnumerator OnRedirect_Success_EventRaised()
         {
             OpenIDConnectService oidc = new OpenIDConnectService();
             IOidcProvider oidcProvider = A.Fake<IOidcProvider>();
@@ -284,7 +307,8 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
             {
                 eventCalls++;
             };
-            oidc.OpenLoginPage();
+            Task task = oidc.OpenLoginPageAsync();
+            yield return AsyncTest.WaitForTask(task);
 
             serverListener.RedirectReceived += Raise.With(redirectReceivedEventArgs);
             oidc.Update();
@@ -323,8 +347,8 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
             Assert.IsFalse(oidc.IsLoggedIn);
         }
 
-        [Test]
-        public void IsLoggedIn_SuccessfulLogin_ReturnsTrue()
+        [UnityTest]
+        public IEnumerator IsLoggedIn_SuccessfulLogin_ReturnsTrue()
         {
             OpenIDConnectService oidc = new OpenIDConnectService();
             IOidcProvider oidcProvider = A.Fake<IOidcProvider>();
@@ -334,7 +358,8 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
             IRedirectServerListener serverListener = A.Fake<IRedirectServerListener>();
             oidc.ServerListener = serverListener;
 
-            oidc.OpenLoginPage();
+            Task task = oidc.OpenLoginPageAsync();
+            yield return AsyncTest.WaitForTask(task);
 
             RedirectReceivedEventArgs redirectReceivedEventArgs = A.Fake<RedirectReceivedEventArgs>();
             serverListener.RedirectReceived += Raise.With(redirectReceivedEventArgs);
@@ -344,8 +369,8 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
             Assert.IsTrue(oidc.IsLoggedIn);
         }
 
-        [Test]
-        public void IsLoggedIn_SuccessfulLogout_ReturnsFalse()
+        [UnityTest]
+        public IEnumerator IsLoggedIn_SuccessfulLogout_ReturnsFalse()
         {
             OpenIDConnectService oidc = new OpenIDConnectService();
             IOidcProvider oidcProvider = A.Fake<IOidcProvider>();
@@ -355,7 +380,8 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
             IRedirectServerListener serverListener = A.Fake<IRedirectServerListener>();
             oidc.ServerListener = serverListener;
 
-            oidc.OpenLoginPage();
+            Task task = oidc.OpenLoginPageAsync();
+            yield return AsyncTest.WaitForTask(task);
 
             RedirectReceivedEventArgs redirectReceivedEventArgs = A.Fake<RedirectReceivedEventArgs>();
             serverListener.RedirectReceived += Raise.With(redirectReceivedEventArgs);

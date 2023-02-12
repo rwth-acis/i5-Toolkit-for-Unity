@@ -130,13 +130,15 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         /// Opens a login page in the system's default browser so that the user can log in
         /// Requires a configured OpenID Connect provider
         /// </summary>
-        public void OpenLoginPage()
+        public async Task OpenLoginPageAsync()
         {
             if (OidcProvider == null)
             {
                 i5Debug.LogError("OIDC provider is not set. Please set the OIDC provider before accessing the OIDC workflow.", this);
                 return;
             }
+
+            await OidcProvider.InitializeEndpointsAsync();
 
             // for all non-native apps: create a listener server
 #if UNITY_EDITOR || UNITY_STANDALONE
@@ -236,6 +238,7 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
                 i5Debug.LogError("OIDC provider is not set. Please set the OIDC provider before accessing the OIDC workflow.", this);
                 return null;
             }
+            await OidcProvider.InitializeEndpointsAsync();
             return await OidcProvider.GetUserInfoAsync(AccessToken);
         }
 

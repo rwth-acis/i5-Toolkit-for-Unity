@@ -12,7 +12,7 @@ namespace i5.Toolkit.Core.Examples.OpenIDConnectClient
         private bool isSubscribedToLearningLayers;
         private bool isSubscribedToGitHub;
 
-        private async Task Update()
+        private async void Update()
         {
             if (Input.GetKeyDown(KeyCode.F1))
             {
@@ -23,7 +23,7 @@ namespace i5.Toolkit.Core.Examples.OpenIDConnectClient
                     ServiceManager.GetService<LearningLayersOidcService>().LoginCompleted += MultiProviderTester_LearningLayersLoginCompleted;
                     isSubscribedToLearningLayers = true;
                 }
-                ServiceManager.GetService<LearningLayersOidcService>().OpenLoginPage();
+                await ServiceManager.GetService<LearningLayersOidcService>().OpenLoginPageAsync();
             }
             else if (Input.GetKeyDown(KeyCode.F2))
             {
@@ -46,7 +46,7 @@ namespace i5.Toolkit.Core.Examples.OpenIDConnectClient
                     ServiceManager.GetService<GitHubOidcService>().LoginCompleted += MultiProviderTester_GitHubLoginCompleted;
                     isSubscribedToGitHub = true;
                 }
-                ServiceManager.GetService<GitHubOidcService>().OpenLoginPage();
+                await ServiceManager.GetService<GitHubOidcService>().OpenLoginPageAsync();
             }
             else if (Input.GetKeyDown(KeyCode.F4))
             {

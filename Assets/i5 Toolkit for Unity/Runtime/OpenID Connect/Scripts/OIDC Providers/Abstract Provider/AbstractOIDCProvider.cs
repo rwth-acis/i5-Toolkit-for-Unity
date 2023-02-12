@@ -114,7 +114,7 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         /// <summary>
         /// Sets the required endpoints
         /// </summary>
-        public async virtual Task<EndpointsData> FetchEndpointsAsync()
+        public async virtual Task<EndpointsData> InitializeEndpointsAsync()
         {
 
             if (!CheckEndpoints(false))
@@ -164,8 +164,6 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
                     "Initialize this provider with an OpenID Connect Data file.", this);
                 return "";
             }
-
-            EndpointsData endpoints = await FetchEndpointsAsync();
 
             WWWForm form = new WWWForm();
             form.AddField("client_id", ClientData.ClientId);
@@ -223,7 +221,6 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         /// <returns>Returns information about the logged in user if the request was successful, otherwise null</returns>
         public virtual async Task<IUserInfo> GetUserInfoAsync(string accessToken)
         {
-            EndpointsData endpoints = await FetchEndpointsAsync();
             Dictionary<string, string> headers = new Dictionary<string, string>()
             {
                 {"Authorization", $"Bearer {accessToken}" }
@@ -296,19 +293,6 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
             string uri = authorizationEndpoint + $"?response_type={responseType}&scope={uriScopes}" +
                 $"&client_id={ClientData.ClientId}&redirect_uri={redirectUri}";
             Browser.OpenURL(uri);
-        }
-
-        /// <summary>
-        /// Opens the login page in the system's default Web browser
-        /// Difference to the synchronous call: this call fetches the provider's endpoints first
-        /// </summary>
-        /// <param name="scopes">The OpenID Connect scopes that the user must agree to</param>
-        /// <param name="redirectUri">The URI to which the browser should redirect after the successful login</param>
-        public virtual async Task OpenLoginPageAsync(string[] scopes, string redirectUri)
-        {
-            await FetchEndpointsAsync();
-
-            OpenLoginPage(scopes, redirectUri);
         }
 
         /// <summary>

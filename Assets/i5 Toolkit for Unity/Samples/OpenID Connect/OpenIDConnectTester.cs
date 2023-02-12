@@ -1,5 +1,6 @@
 ﻿using i5.Toolkit.Core.ServiceCore;
 using i5.Toolkit.Core.Utilities;
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace i5.Toolkit.Core.OpenIDConnectClient
@@ -9,7 +10,7 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         private bool isSubscribedToOidc = false;
 
         // Update is called once per frame
-        private void Update()
+        private async Task Update()
         {
             if (Input.GetKeyDown(KeyCode.F5))
             {
@@ -19,7 +20,7 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
                     ServiceManager.GetService<OpenIDConnectService>().LoginCompleted += OpenIDConnectTester_LoginCompleted;
                     isSubscribedToOidc = true;
                 }
-                ServiceManager.GetService<OpenIDConnectService>().OpenLoginPage();
+                await ServiceManager.GetService<OpenIDConnectService>().OpenLoginPageAsync();
             }
         }
 

@@ -686,8 +686,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0efee18886fd7d248a54857c2ee379c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deepLinkClient: {fileID: 11400000, guid: 2328be65f7799694a9c366f4e2b96c3f, type: 2}
-  serverClient: {fileID: 11400000, guid: 2328be65f7799694a9c366f4e2b96c3f, type: 2}
+  deepLinkClient: {fileID: 0}
+  serverClient: {fileID: 11400000, guid: 68ffa7bfe81f30040b3651e00e4661f3, type: 2}
 --- !u!4 &1780600243
 Transform:
   m_ObjectHideFlags: 0

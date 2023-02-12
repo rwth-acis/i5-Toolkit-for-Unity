@@ -8,7 +8,6 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
 {
     /// <summary>
     /// Implementation of the Abstract OpenID Connect Provider
-    /// More information can be found here: https://auth.las2peer.org/auth/
     /// </summary>
     public abstract class AbstractOidcProvider : IOidcProvider
     {

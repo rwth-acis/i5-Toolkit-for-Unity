@@ -247,6 +247,21 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         }
 
         /// <summary>
+        /// Gets information about the logged in user from the idtoken
+        /// </summary>
+        /// <param name="idToken">The id token to received from authentication</param>
+        /// <returns>Returns information about the logged in user</returns>
+        public virtual IUserInfo GetUserInfo<T>(string idToken) where T : AbstractUserInfo
+        {
+            T userInfo = DecodeIDToken<T>(idToken);
+            if (userInfo == null)
+            {
+                i5Debug.LogError("Could not parse user info", this);
+            }
+            return userInfo;
+        }
+
+        /// <summary>
         /// Checks if the access token is valid by checking it at the provider
         /// </summary>
         /// <param name="accessToken">The access token that should be checked</param>
@@ -330,6 +345,19 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
             }
             errorMessage = "";
             return false;
+        }
+
+        /// <summary>
+        /// Decodes a JWT using Base64 to get user info
+        /// </summary>
+        /// <param name="idtoken">The id token returned in the AuthorizationFlowAnswer</param>
+        /// <returns>The user info from the id token</returns>
+        public virtual T DecodeIDToken<T>(string idtoken) where T : AbstractUserInfo
+        {
+            byte[] data = Convert.FromBase64String(idtoken);
+            string decodedToken = System.Text.Encoding.UTF8.GetString(data);
+            T userInfo = JsonSerializer.FromJson<T>(decodedToken);
+            return userInfo;
         }
     }
 }

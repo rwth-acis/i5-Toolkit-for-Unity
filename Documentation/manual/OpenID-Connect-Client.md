@@ -76,9 +76,12 @@ Currently, the toolkit has built-in support for the following OpenID Connect pro
 | --- | --- |
 [Learning Layers](https://api.learning-layers.eu/o/oauth2/) | <xref:i5.Toolkit.Core.OpenIDConnectClient.LearningLayersOidcProvider> |
 [GitHub](https://docs.github.com/en/github/authenticating-to-github/connecting-with-third-party-applications) | <xref:i5.Toolkit.Core.OpenIDConnectClient.GitHubOidcProvider> |
+[Google](https://developers.google.com/identity/openid-connect/openid-connect?hl=de) | <xref:i5.Toolkit.Core.OpenIDConnectClient.GoogleOidcProvider> |
 
-You can add support for further OpenID Connect providers by creating a class that implements the <xref:i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.OidcProvider> interface.
-The class has to define how to access the different API endpoints of the provider to retrieve information such as the access token.
+You can add support for further OpenID Connect providers by creating a class that inherits from the <xref:i5.Toolkit.Core.OpenIDConnectClient.AbstractOidcProvider>.
+This abstract class implements the basic required functions to allow for an Oidc login process.
+The class has to define a constructor in which the property "serverName" has to be set to the base URL to which the endpoint paths are appended.
+The endpoints are then automatically extracted from the corresponding Oidc discovery document. If necessary, the implementation allows all functions to be overwritten by your own custom implementation.
 
 In the example in the previous section, we assigned the <xref:i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.OidcProvider> during the initialization phase.
 However, it is also possible to set this property just before calling the login function, e.g. to give the user a choice between different providers that are switched on the fly.
@@ -306,6 +309,16 @@ To use the local server, e.g. for in-editor testing, enter `http://127.0.0.1`.
 > To solve this, create different apps for each redirect URI.
 > After that, initialize the <xref:i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.OidcProvider>'s <xref:i5.Toolkit.Core.OpenIDConnectClient.IOidcProvider.ClientData> with the data of the app with the corresponding redirect URI.
 
+### Creating a Google client
+To register a Google client, follow the steps in the [official documentation](https://developers.google.com/identity/openid-connect/openid-connect) to create a new project at the [Google Cloud Console](https://console.cloud.google.com/) for their application from where they can generate their OAuth 2.0 User Credentials (ClientID and Secret). 
+The important part is to add an "Authorization callback URL" which is the redirect URI.
+To use deep linking, enter the protocol to which your app is registered, e.g. `i5://`.
+To use the local server, e.g. for in-editor testing, enter `http://127.0.0.1:52229/code?`.
+
+> Note, that Google requires the user to pre-register their redirect URI in their Google Cloud Console project. 
+> For this one has to manually set the listening url to a fixed port. An example for such a url with fixed port number would be `http://127.0.0.1:52229/` as can be seen in the example scene explained below. 
+> In this case, the redirect URI that has to be registered at the Google Cloud Console project would be `http://127.0.0.1:52229/code?`.
+
 ## Example Scenes
 
 The OpenID Connect example contains multiple subfolders and scenes for different examples.
@@ -331,6 +344,24 @@ The GitHub folder contains an example scene for trying out the login at GitHub.
 First, [register an OAuth Client at GitHub](https://github.com/settings/applications/new).
 To do so, follow the instructions in the section [Creating a GitHub client](#creating-a-github-client).
 If you only want to test the demo in the editor, it suffices to create the client with the "Authorization callback URL" `http://127.0.0.1`.
+Create the second OAuth client with your deep link protocol if you want to deploy the example scene to an app.
+
+Once the client credentials are created, right click in Unity's Asset browser and choose "Create > i5 Toolkit > OpenID Connect Client Data".
+After that, enter the client credentials that you just created.
+If you created two clients, you need two OpenID Connect Client data files.
+
+After that, select the "Service Bootstrapper" object in the example scene and assign the client data files in its bootstrapper component.
+This can be done by dragging and dropping the client data file from the Asset browser into the component's field in the inspector.
+
+With this setup, you can start the scene or build the application.
+Press F5 to trigger the login procedure.
+
+### Google Example
+
+The Google folder contains an example scene for trying out the login at Google.
+First, [register a project at Google](https://console.cloud.google.com/).
+To do so, follow the instructions in the section [Creating a Google client](#creating-a-google-client).
+If you only want to test the demo in the editor, it suffices to create the client with the "Authorization callback URL" `http://127.0.0.1:52229/code?`.
 Create the second OAuth client with your deep link protocol if you want to deploy the example scene to an app.
 
 Once the client credentials are created, right click in Unity's Asset browser and choose "Create > i5 Toolkit > OpenID Connect Client Data".

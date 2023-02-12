@@ -4,7 +4,7 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
 {
     /// <summary>
     /// Data description of the answer that is received after the access token was requested in the
-    /// authorization flow
+    /// authorization flow of LearningLayers
     /// </summary>
     [Serializable]
     public class LearningLayersAuthorizationFlowAnswer: AbstractAuthorizationFlowAnswer

@@ -76,5 +76,11 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         /// <param name="accessToken">The access token to authenticate the user</param>
         /// <returns>Returns information about the logged in user if the request was successful, otherwise null</returns>
         Task<IUserInfo> GetUserInfoAsync(string accessToken);
+
+        /// <summary>
+        /// Sets the required endpoints
+        /// </summary>
+        /// <returns>Returns the fetched endpoints response</returns>
+        Task<EndpointsData> InitializeEndpointsAsync();
     }
 }

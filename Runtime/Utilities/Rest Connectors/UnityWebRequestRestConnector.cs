@@ -34,7 +34,7 @@ namespace i5.Toolkit.Core.Utilities
                 AddHeaders(req, headers);
                 await req.SendWebRequest();
 
-                if(req.isHttpError || req.isNetworkError)
+                if (req.isHttpError || req.isNetworkError)
                 {
                     return new WebResponse<string>(false, req.downloadHandler.text, req.downloadHandler.data, req.responseCode, req.error);
                 }
@@ -47,10 +47,8 @@ namespace i5.Toolkit.Core.Utilities
 
         public async Task<WebResponse<string>> PostAsync(string uri, string postData, Dictionary<string, string> headers = null)
         {
-            using (UnityWebRequest req = UnityWebRequest.Post(uri, "POST"))
+            using (UnityWebRequest req = UnityWebRequest.Post(uri, postData))
             {
-                byte[] data = new UTF8Encoding().GetBytes(postData);
-                req.uploadHandler = new UploadHandlerRaw(data);
                 req.downloadHandler = new DownloadHandlerBuffer();
                 req.SetRequestHeader("Content-Type", "application/json");
                 req.SetRequestHeader("Accept", "application/json");
@@ -111,13 +109,13 @@ namespace i5.Toolkit.Core.Utilities
             }
         }
 
-        private void AddHeaders(UnityWebRequest req, Dictionary<string,string> headers)
+        private void AddHeaders(UnityWebRequest req, Dictionary<string, string> headers)
         {
             if (headers == null)
             {
                 return;
             }
-            foreach(KeyValuePair<string,string> header in headers)
+            foreach (KeyValuePair<string, string> header in headers)
             {
                 req.SetRequestHeader(header.Key, header.Value);
             }

@@ -62,7 +62,7 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         {
             redirectUri += "code?";
 
-            EndpointsData endpoints = await FetchEndpointsAsync();
+            EndpointsData endpoints = await InitializeEndpointsAsync();
             if (ClientData == null)
             {
                 i5Debug.LogError("No client data supplied for the OpenID Connect Client.\n" +
@@ -131,9 +131,8 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         /// </summary>
         /// <param name="scopes">The OpenID Connect scopes that the user must agree to</param>
         /// <param name="redirectUri">The URI to which the browser should redirect after the successful login</param>
-        public override async Task OpenLoginPageAsync(string[] scopes, string redirectUri)
+        public override void OpenLoginPage(string[] scopes, string redirectUri)
         {
-            EndpointsData endpoints = await FetchEndpointsAsync();
             GenerateCSRFToken();
             string responseType = AuthorizationFlow == AuthorizationFlow.AUTHORIZATION_CODE ? "code" : "token";
             string uriScopes = UriUtils.WordArrayToSpaceEscapedString(scopes);

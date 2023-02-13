@@ -79,9 +79,9 @@ Currently, the toolkit has built-in support for the following OpenID Connect pro
 [Google](https://developers.google.com/identity/openid-connect/openid-connect?hl=de) | <xref:i5.Toolkit.Core.OpenIDConnectClient.GoogleOidcProvider> |
 
 You can add support for further OpenID Connect providers by creating a class that inherits from the <xref:i5.Toolkit.Core.OpenIDConnectClient.AbstractOidcProvider>.
-This abstract class implements the basic required functions to allow for an Oidc login process.
+This abstract class implements the basic required functions to allow for an OpenID Connect login process.
 The class has to define a constructor in which the property "serverName" has to be set to the base URL to which the endpoint paths are appended.
-The endpoints are then automatically extracted from the corresponding Oidc discovery document. If necessary, the implementation allows all functions to be overwritten by your own custom implementation.
+The endpoints are then automatically extracted from the corresponding OpenID Connect discovery document. If necessary, the implementation allows all functions to be overwritten by your own custom implementation.
 
 In the example in the previous section, we assigned the <xref:i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.OidcProvider> during the initialization phase.
 However, it is also possible to set this property just before calling the login function, e.g. to give the user a choice between different providers that are switched on the fly.

@@ -2,6 +2,31 @@
 
 This document keeps track of the changes between versions of the toolkit.
 
+## 1.9.0 (2023-02-13)
+
+### Added
+- Added Google as an OpenID Connect login provider.
+- Added a VerboseLogging system:
+  Generating log messages through this system means that they can be filtered based on importance.
+  The verbosity level, so the strictness of the filtering, can be changed at runtime.
+
+### Changed
+- Refactored the implementation of OpenID Connect providers:
+  All providers now share a base implementation so that new providers can be added quicker and without needing to duplicate code.
+- OpenID Connect providers can now fetch the endpoints for the login functionality automatically based on the server's discovery document.
+  New providers have to specify the base URL of the server and all other endpoints are fetched.
+- The i5 Toolkit's WebRequest implementation is now setting a Content-Type header in the Put and Post requests.
+- The i5 Toolkit's WebRequest implementation for Delete requests now creates a download handler so that the server's response can be read.
+
+### Update Guide
+- We have refactored the OpenID Connect implementation, so the following measures are necessary:
+  - If you have implemented custom providers, make sure that they are now derived from the `AbstractOIDCProvider` base class.
+    This also means that it is usually not necessary anymore to re-implement the methods.
+    For most OpenID Connect providers, it suffices to provide the base URL of the server in the constructor for the new provider and the implementation will automatically find the endpoints using the OpenID Connect server's discovery document.
+  - Similarly, the provider-specific user info and authorization info response formats need to be derived from `AbstractUserInfo` and `AbstractAuthorizationFlowAnswer`.
+  - Replace all calls to the `OpenIDConnectService`'s method `OpenLoginPage()` with `OpenLoginPageAsync()`.
+    You can use the async-await module from the `i5.Toolkit.Core.Utilities` namespace to await the call.
+
 ## 1.8.1 (2022-06-15)
 
 ### Changed

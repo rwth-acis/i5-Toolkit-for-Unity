@@ -74,12 +74,6 @@ reference
 /Assets/i5 Toolkit for Unity/Editor/OpenIDConnectClient/PostBuildScripts/obj.meta
 
 /Assets/Automation/obj.meta
-/Assets/i5 Toolkit for Unity/Samples/OpenID Connect/Client Credentials
-/Assets/i5 Toolkit for Unity/Samples/OpenID Connect/Client Credentials.meta
-/Assets/i5 Toolkit for Unity/Samples~/OpenID Connect/Client Credentials
-/Assets/i5 Toolkit for Unity/Samples~/OpenID Connect/Client Credentials.meta
+/Assets/i5 Toolkit for Unity/Samples/**/*Credentials*.*
+/Assets/i5 Toolkit for Unity/Samples~/**/*Credentials*.*
 /CodeCoverage
-/Assets/i5 Toolkit for Unity/Samples/Experience API/i5 Toolkit Client.asset.meta
-/Assets/i5 Toolkit for Unity/Samples/Experience API/i5 Toolkit Client.asset
-/Assets/i5 Toolkit for Unity/Samples~/Experience API/i5 Toolkit Client.asset.meta
-/Assets/i5 Toolkit for Unity/Samples~/Experience API/i5 Toolkit Client.asset

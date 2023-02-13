@@ -60,9 +60,13 @@ namespace InternalTools
             foreach (string guid in AssetDatabase.FindAssets("", searchFolders))
             {
                 string path = AssetDatabase.GUIDToAssetPath(guid);
-                if (!path.EndsWith("OpenID Connect Client Data.asset"))
+                if (!path.EndsWith("Credentials.asset"))
                 {
                     exportFiles.Add(path);
+                }
+                else
+                {
+                    Debug.Log($"Excluded {path}");
                 }
             }
             AssetDatabase.ExportPackage(exportFiles.ToArray(),

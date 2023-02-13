@@ -160,7 +160,7 @@ Once the button is clicked, first create an instance of the <xref:i5.Toolkit.Cor
 After that, assign the instance to the xref:i5.Toolkit.Core.OpenIDConnectClient.IOidcProvider> property of the service.
 
 Before starting the login process, subscribe to the <xref:i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.LoginCompleted> event to get notified once the login procedure is completed.
-To start the login process, call the <xref:i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.OpenLoginPage> method of the <xref:i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService>.
+To start the login process, call the <xref:i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.OpenLoginPageAsync> method of the <xref:i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService>.
 This will show the login page of the provider to the user in the system's default browser.
 Once the user is logged in, all the necessary redirects and requests to get the access token are made automatically.
 After the login process has finished successfully, the <xref:i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.LoginCompleted> event is raised.

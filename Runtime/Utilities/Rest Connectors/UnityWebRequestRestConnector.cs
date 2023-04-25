@@ -49,6 +49,8 @@ namespace i5.Toolkit.Core.Utilities
         {
             using (UnityWebRequest req = UnityWebRequest.Post(uri, postData))
             {
+                byte[] data = new UTF8Encoding().GetBytes(postData);
+                req.uploadHandler = new UploadHandlerRaw(data);
                 req.downloadHandler = new DownloadHandlerBuffer();
                 req.SetRequestHeader("Content-Type", "application/json");
                 req.SetRequestHeader("Accept", "application/json");

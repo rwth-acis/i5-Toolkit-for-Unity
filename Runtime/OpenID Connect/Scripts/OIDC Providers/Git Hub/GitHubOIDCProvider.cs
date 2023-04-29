@@ -40,7 +40,8 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
 
             string uri = tokenEndpoint + $"?client_id={ClientData.ClientId}" +
                 $"&redirect_uri={redirectUri}" + $"&client_secret={ClientData.ClientSecret}&code={code}&grant_type=authorization_code";
-            WebResponse<string> response = await RestConnector.PostAsyncU(uri, "");
+            GitHubWebRequestRestConnector rc = new GitHubWebRequestRestConnector();
+            WebResponse<string> response = await rc.PostAsync(uri, "");
 
             if (response.Successful)
             {

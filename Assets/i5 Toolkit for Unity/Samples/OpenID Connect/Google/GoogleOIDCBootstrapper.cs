@@ -17,7 +17,7 @@ namespace i5.Toolkit.Core.Examples.OpenIDConnectClient
             googleOidc.OidcProvider = new GoogleOidcProvider();
             // this example shows how the service can be used on an app for multiple platforms
 #if !UNITY_EDITOR
-            googleOidc.RedirectURI = "i5:/";
+            googleOidc.RedirectURI = "com.i5.i5-toolkit-for-unity:/";
 #else
             googleOidc.RedirectURI = "https://www.google.com";
 #endif

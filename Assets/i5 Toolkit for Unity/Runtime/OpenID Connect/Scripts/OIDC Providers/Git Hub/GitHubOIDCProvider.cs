@@ -20,6 +20,7 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
             authorizationEndpoint = "https://github.com/login/oauth/authorize";
             tokenEndpoint = "https://github.com/login/oauth/access_token";
             userInfoEndpoint = "https://api.github.com/user";
+            RestConnector = new JsonEncodeUnityWebRequestRestConnector();
         }
 
 
@@ -39,7 +40,7 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
             }
 
             string uri = tokenEndpoint + $"?client_id={ClientData.ClientId}" +
-                $"&redirect_uri={redirectUri}&client_secret={ClientData.ClientSecret}&code={code}&grant_type=authorization_code";
+                $"&redirect_uri={redirectUri}" + $"&client_secret={ClientData.ClientSecret}&code={code}&grant_type=authorization_code";
             WebResponse<string> response = await RestConnector.PostAsync(uri, "");
 
             if (response.Successful)

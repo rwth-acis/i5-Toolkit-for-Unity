@@ -38,10 +38,10 @@ namespace i5.Toolkit.Core.AppConsole
             AutoScroller.OnEnable();
         }
 
-        /// <summary>
-        /// Called if the scroll value changes and notifies the auto scroller
-        /// </summary>
-        public void OnScrollValueChanged()
+		/// <summary>
+		/// Called if the scroll value changes and notifies the auto scroller
+		/// </summary>
+		public void OnScrollValueChanged()
         {
             AutoScroller.NotifyScrollValueChanged();
         }

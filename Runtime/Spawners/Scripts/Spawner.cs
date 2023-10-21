@@ -67,6 +67,8 @@ namespace i5.Toolkit.Core.Spawners
         /// </summary>
         protected virtual void Setup(GameObject instance)
         {
+            instance.transform.position = transform.position;
+            instance.transform.rotation = transform.rotation;
         }
 
         /// <summary>

@@ -8,7 +8,6 @@ on:
 jobs:
   pushUpm:
     name: Publish UPM
-    needs: testAllModes
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2

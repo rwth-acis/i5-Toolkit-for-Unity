@@ -2,6 +2,17 @@
 
 This document keeps track of the changes between versions of the toolkit.
 
+## 1.9.1 (2023-10-22)
+
+### Added
+- Added a RestConnector which encodes JSON payloads as byte arrays.
+
+### Changed
+- Spawner will now place the instantiated object at the spawner's position.
+
+### Fixed
+- GitHub login now uses the new RestConnector to encode JSON payloads in the expected format
+
 ## 1.9.0 (2023-02-13)
 
 ### Added

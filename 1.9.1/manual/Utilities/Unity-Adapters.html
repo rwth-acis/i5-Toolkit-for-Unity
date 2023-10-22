@@ -1,0 +1,197 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Unity Adapters | i5 Toolkit Documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Unity Adapters | i5 Toolkit Documentation ">
+    <meta name="generator" content="docfx 2.59.2.0">
+    
+    <link rel="shortcut icon" href="../../resources/Logos/Logo_whiteBg.svg">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    <meta property="docfx:rel" content="../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../resources/Logos/Logo_whiteBg.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="unity-adapters">Unity Adapters</h1>
+
+<p>Unity adapters are a growing collection of interfaces and adapter classes to hide the Unity API and provide an abstraction layer on which the application logic can be implemented.
+Each of the interfaces defines a contract, e.g. for a text display, which defines what an object can do.
+This way, application scripts can work with the interfaces and do not need to worry about the underlying functionality.
+The Unity API is wrapped into adapter objects which implement the required interfaces.</p>
+<h2 id="use-case">Use Case</h2>
+<p>Unity adapters can be used to decouple application logic from the presentation in the scene.
+For instance, this allows a script to display text on an &lt;xref:i5.Toolkit.Core.Utilities.UnityAdapters.ITextDisplay&gt;.
+This interface allows the script to set text but it does not need to know about the implementation of the text display.
+By initializing the &lt;xref:i5.Toolkit.Core.Utilities.UnityAdapters.ITextDisplay&gt; object with an adapter, the same application logic can work with different UI implementations, e.g. TextMesh or TextMeshPro.</p>
+<h2 id="interfaces">Interfaces</h2>
+<p>The toolkit provides the following interfaces:</p>
+<table>
+<thead>
+<tr>
+<th>Interface</th>
+<th>Provided funtionality</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&lt;xref:i5.Toolkit.Core.Utilities.UnityAdapters.IActivateable&gt;</td>
+<td>Activate and deactivate an object</td>
+</tr>
+<tr>
+<td>&lt;xref:i5.Toolkit.Core.Utilities.UnityAdapters.IRectangle&gt;</td>
+<td>Rectangular 2D (UI) element</td>
+</tr>
+<tr>
+<td>&lt;xref:i5.Toolkit.Core.Utilities.UnityAdapters.IScrollView&gt;</td>
+<td>Scrollable view</td>
+</tr>
+<tr>
+<td>&lt;xref:i5.Toolkit.Core.Utilities.UnityAdapters.ITextDisplay&gt;</td>
+<td>UI display to show text to show text</td>
+</tr>
+</tbody>
+</table>
+<h2 id="adapters">Adapters</h2>
+<p>The toolkit provides adapters for the following Unity objects:</p>
+<table>
+<thead>
+<tr>
+<th>Unity Class</th>
+<th>Adapter Class</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a class="xref" href="https://docs.unity3d.com/ScriptReference/GameObject.html">GameObject</a></td>
+<td>&lt;xref:i5.Toolkit.Core.Utilities.UnityAdapters.GameObjectAdapter&gt;</td>
+</tr>
+<tr>
+<td><a class="xref" href="https://docs.unity3d.com/ScriptReference/RectTransform.html">RectTransform</a></td>
+<td>&lt;xref:i5.Toolkit.Core.Utilities.UnityAdapters.RectTransformAdapter&gt;</td>
+</tr>
+<tr>
+<td>ScrollRect</td>
+<td>&lt;xref:i5.Toolkit.Core.Utilities.UnityAdapters.ScrollRectAdapter&gt;</td>
+</tr>
+<tr>
+<td><a class="xref" href="https://docs.unity3d.com/ScriptReference/TextMesh.html">TextMesh</a></td>
+<td>&lt;xref:i5.Toolkit.Core.Utilities.UnityAdapters.TextMeshTextAdapter&gt;</td>
+</tr>
+<tr>
+<td>TextMeshPro</td>
+<td>&lt;xref:i5.Toolkit.Core.Utilities.UnityAdapters.TextMeshProTextAdapter&gt;</td>
+</tr>
+<tr>
+<td>TextMeshProUGUI</td>
+<td>&lt;xref:i5.Toolkit.Core.Utilities.UnityAdapters.TextMeshProUGUITextAdapter&gt;</td>
+</tr>
+</tbody>
+</table>
+<h2 id="example">Example</h2>
+<p>An example can be found in the source code of the <a href="../App-Console.html">App Console&#39;s</a> UI.
+It works with a general text display interface which allows the realizaion of consoles with TextMeshes or TextMeshPro.</p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/rwth-acis/i5-Toolkit-for-Unity/blob/master/Documentation/manual/Utilities/Unity-Adapters.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            i5 Toolkit Documentation
+            
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

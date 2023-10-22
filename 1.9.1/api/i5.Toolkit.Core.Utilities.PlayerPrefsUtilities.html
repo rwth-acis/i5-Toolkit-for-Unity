@@ -1,0 +1,878 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class PlayerPrefsUtilities
+   | i5 Toolkit Documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class PlayerPrefsUtilities
+   | i5 Toolkit Documentation ">
+    <meta name="generator" content="docfx 2.59.2.0">
+    
+    <link rel="shortcut icon" href="../resources/Logos/Logo_whiteBg.svg">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../resources/Logos/Logo_whiteBg.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="i5.Toolkit.Core.Utilities.PlayerPrefsUtilities">
+  
+  
+  <h1 id="i5_Toolkit_Core_Utilities_PlayerPrefsUtilities" data-uid="i5.Toolkit.Core.Utilities.PlayerPrefsUtilities" class="text-break">Class PlayerPrefsUtilities
+  </h1>
+  <div class="markdown level0 summary"><p>Utilities for working with PlayerPrefs
+Contains e.g. support for more types</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">Object</a></div>
+    <div class="level1"><span class="xref">PlayerPrefsUtilities</span></div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="i5.Toolkit.Core.Utilities.html">i5.Toolkit.Core.Utilities</a></h6>
+  <h6><strong>Assembly</strong>: cs.temp.dll.dll</h6>
+  <h5 id="i5_Toolkit_Core_Utilities_PlayerPrefsUtilities_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static class PlayerPrefsUtilities</code></pre>
+  </div>
+  <h3 id="methods">Methods
+  </h3>
+  
+  
+  <a id="i5_Toolkit_Core_Utilities_PlayerPrefsUtilities_GetArrayLength_" data-uid="i5.Toolkit.Core.Utilities.PlayerPrefsUtilities.GetArrayLength*"></a>
+  <h4 id="i5_Toolkit_Core_Utilities_PlayerPrefsUtilities_GetArrayLength_System_String_" data-uid="i5.Toolkit.Core.Utilities.PlayerPrefsUtilities.GetArrayLength(System.String)">GetArrayLength(String)</h4>
+  <div class="markdown level1 summary"><p>Gets the array of a stored array</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int GetArrayLength(string key)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>The key of the array</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><p>Returns the intended length of the array. If no length was stored, it returns 0.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="i5_Toolkit_Core_Utilities_PlayerPrefsUtilities_GetColor_" data-uid="i5.Toolkit.Core.Utilities.PlayerPrefsUtilities.GetColor*"></a>
+  <h4 id="i5_Toolkit_Core_Utilities_PlayerPrefsUtilities_GetColor_System_String_" data-uid="i5.Toolkit.Core.Utilities.PlayerPrefsUtilities.GetColor(System.String)">GetColor(String)</h4>
+  <div class="markdown level1 summary"><p>Gets a color under the given key from the PlayerPrefs</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Color GetColor(string key)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>The key under which the color is stored</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Color</span></td>
+        <td><p>Returns the color if it exists, otherwise it returns white</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="i5_Toolkit_Core_Utilities_PlayerPrefsUtilities_GetColor_" data-uid="i5.Toolkit.Core.Utilities.PlayerPrefsUtilities.GetColor*"></a>
+  <h4 id="i5_Toolkit_Core_Utilities_PlayerPrefsUtilities_GetColor_System_String_Color_" data-uid="i5.Toolkit.Core.Utilities.PlayerPrefsUtilities.GetColor(System.String,Color)">GetColor(String, Color)</h4>
+  <div class="markdown level1 summary"><p>Gets a color under the given key from the PlayerPrefs</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Color GetColor(string key, Color defaultValue)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>The key under which the color is stored</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Color</span></td>
+        <td><span class="parametername">defaultValue</span></td>
+        <td><p>The default parameter which is returned in case no color is stored under this key</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Color</span></td>
+        <td><p>Returns the color if it exists, otherwise it returns the defaultValue</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="i5_Toolkit_Core_Utilities_PlayerPrefsUtilities_GetFloatArray_" data-uid="i5.Toolkit.Core.Utilities.PlayerPrefsUtilities.GetFloatArray*"></a>
+  <h4 id="i5_Toolkit_Core_Utilities_PlayerPrefsUtilities_GetFloatArray_System_String_" data-uid="i5.Toolkit.Core.Utilities.PlayerPrefsUtilities.GetFloatArray(System.String)">GetFloatArray(String)</h4>
+  <div class="markdown level1 summary"><p>Gets a float array from the given key in the PlayerPrefs</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static float[] GetFloatArray(string key)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>The key of the array</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">Single</a>[]</td>
+        <td><p>Returns the float array from the PlayerPrefs</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="i5_Toolkit_Core_Utilities_PlayerPrefsUtilities_GetVector2_" data-uid="i5.Toolkit.Core.Utilities.PlayerPrefsUtilities.GetVector2*"></a>
+  <h4 id="i5_Toolkit_Core_Utilities_PlayerPrefsUtilities_GetVector2_System_String_" data-uid="i5.Toolkit.Core.Utilities.PlayerPrefsUtilities.GetVector2(System.String)">GetVector2(String)</h4>
+  <div class="markdown level1 summary"><p>Gets a Vector2 from the PlayerPrefs</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Vector2 GetVector2(string key)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>The key under which to the vector is stored</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Vector2</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="i5_Toolkit_Core_Utilities_PlayerPrefsUtilities_GetVector2_" data-uid="i5.Toolkit.Core.Utilities.PlayerPrefsUtilities.GetVector2*"></a>
+  <h4 id="i5_Toolkit_Core_Utilities_PlayerPrefsUtilities_GetVector2_System_String_Vector2_" data-uid="i5.Toolkit.Core.Utilities.PlayerPrefsUtilities.GetVector2(System.String,Vector2)">GetVector2(String, Vector2)</h4>
+  <div class="markdown level1 summary"><p>Gets a Vector2 from the PlayerPrefs</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Vector2 GetVector2(string key, Vector2 defaultValue)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>The key under which to the vector is stored</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Vector2</span></td>
+        <td><span class="parametername">defaultValue</span></td>
+        <td><p>The default value which is taken if the vector does not exist in the PlayerPrefs</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Vector2</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="i5_Toolkit_Core_Utilities_PlayerPrefsUtilities_GetVector3_" data-uid="i5.Toolkit.Core.Utilities.PlayerPrefsUtilities.GetVector3*"></a>
+  <h4 id="i5_Toolkit_Core_Utilities_PlayerPrefsUtilities_GetVector3_System_String_" data-uid="i5.Toolkit.Core.Utilities.PlayerPrefsUtilities.GetVector3(System.String)">GetVector3(String)</h4>
+  <div class="markdown level1 summary"><p>Gets a Vector3 from the PlayerPrefs</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Vector3 GetVector3(string key)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>The key under which to the vector is stored</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Vector3</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="i5_Toolkit_Core_Utilities_PlayerPrefsUtilities_GetVector3_" data-uid="i5.Toolkit.Core.Utilities.PlayerPrefsUtilities.GetVector3*"></a>
+  <h4 id="i5_Toolkit_Core_Utilities_PlayerPrefsUtilities_GetVector3_System_String_Vector3_" data-uid="i5.Toolkit.Core.Utilities.PlayerPrefsUtilities.GetVector3(System.String,Vector3)">GetVector3(String, Vector3)</h4>
+  <div class="markdown level1 summary"><p>Gets a Vector3 from the PlayerPrefs</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Vector3 GetVector3(string key, Vector3 defaultValue)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>The key under which to the vector is stored</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Vector3</span></td>
+        <td><span class="parametername">defaultValue</span></td>
+        <td><p>The default value which is taken if the vector does not exist in the PlayerPrefs</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Vector3</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="i5_Toolkit_Core_Utilities_PlayerPrefsUtilities_GetVector4_" data-uid="i5.Toolkit.Core.Utilities.PlayerPrefsUtilities.GetVector4*"></a>
+  <h4 id="i5_Toolkit_Core_Utilities_PlayerPrefsUtilities_GetVector4_System_String_" data-uid="i5.Toolkit.Core.Utilities.PlayerPrefsUtilities.GetVector4(System.String)">GetVector4(String)</h4>
+  <div class="markdown level1 summary"><p>Gets a Vector4 from the PlayerPrefs</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Vector4 GetVector4(string key)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>The key under which to the vector is stored</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Vector4</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="i5_Toolkit_Core_Utilities_PlayerPrefsUtilities_GetVector4_" data-uid="i5.Toolkit.Core.Utilities.PlayerPrefsUtilities.GetVector4*"></a>
+  <h4 id="i5_Toolkit_Core_Utilities_PlayerPrefsUtilities_GetVector4_System_String_Vector4_" data-uid="i5.Toolkit.Core.Utilities.PlayerPrefsUtilities.GetVector4(System.String,Vector4)">GetVector4(String, Vector4)</h4>
+  <div class="markdown level1 summary"><p>Gets a Vector4 from the PlayerPrefs</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Vector4 GetVector4(string key, Vector4 defaultValue)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>The key under which to the vector is stored</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Vector4</span></td>
+        <td><span class="parametername">defaultValue</span></td>
+        <td><p>The default value which is taken if the vector does not exist in the PlayerPrefs</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Vector4</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="i5_Toolkit_Core_Utilities_PlayerPrefsUtilities_HasColorKey_" data-uid="i5.Toolkit.Core.Utilities.PlayerPrefsUtilities.HasColorKey*"></a>
+  <h4 id="i5_Toolkit_Core_Utilities_PlayerPrefsUtilities_HasColorKey_System_String_" data-uid="i5.Toolkit.Core.Utilities.PlayerPrefsUtilities.HasColorKey(System.String)">HasColorKey(String)</h4>
+  <div class="markdown level1 summary"><p>Checks if a color is stored under the given key</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool HasColorKey(string key)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>The key under which the color is stored</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p>Returns true if a color is stored under this key</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="i5_Toolkit_Core_Utilities_PlayerPrefsUtilities_HasVectorKey_" data-uid="i5.Toolkit.Core.Utilities.PlayerPrefsUtilities.HasVectorKey*"></a>
+  <h4 id="i5_Toolkit_Core_Utilities_PlayerPrefsUtilities_HasVectorKey_System_String_" data-uid="i5.Toolkit.Core.Utilities.PlayerPrefsUtilities.HasVectorKey(System.String)">HasVectorKey(String)</h4>
+  <div class="markdown level1 summary"><p>Checks whether a vector was stored under the given key</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool HasVectorKey(string key)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>The key of the vector</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p>Returns true if a vector with the key is stored in the PlayerPrefs, otherwise false</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="i5_Toolkit_Core_Utilities_PlayerPrefsUtilities_SetColor_" data-uid="i5.Toolkit.Core.Utilities.PlayerPrefsUtilities.SetColor*"></a>
+  <h4 id="i5_Toolkit_Core_Utilities_PlayerPrefsUtilities_SetColor_System_String_Color_System_Boolean_" data-uid="i5.Toolkit.Core.Utilities.PlayerPrefsUtilities.SetColor(System.String,Color,System.Boolean)">SetColor(String, Color, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Stores a color in the PlayerPrefs</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void SetColor(string key, Color color, bool saveAlpha = true)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>The key under which the color should be stored</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Color</span></td>
+        <td><span class="parametername">color</span></td>
+        <td><p>The color to store</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><span class="parametername">saveAlpha</span></td>
+        <td><p>If set to false, the alpha value is not stored</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="i5_Toolkit_Core_Utilities_PlayerPrefsUtilities_SetFloatArray_" data-uid="i5.Toolkit.Core.Utilities.PlayerPrefsUtilities.SetFloatArray*"></a>
+  <h4 id="i5_Toolkit_Core_Utilities_PlayerPrefsUtilities_SetFloatArray_System_String_System_Single___" data-uid="i5.Toolkit.Core.Utilities.PlayerPrefsUtilities.SetFloatArray(System.String,System.Single[])">SetFloatArray(String, Single[])</h4>
+  <div class="markdown level1 summary"><p>Stores a float array in the PlayerPrefs</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void SetFloatArray(string key, float[] array)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>The key of the array</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">Single</a>[]</td>
+        <td><span class="parametername">array</span></td>
+        <td><p>The array to store in the PlayerPrefs</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="i5_Toolkit_Core_Utilities_PlayerPrefsUtilities_SetVector2_" data-uid="i5.Toolkit.Core.Utilities.PlayerPrefsUtilities.SetVector2*"></a>
+  <h4 id="i5_Toolkit_Core_Utilities_PlayerPrefsUtilities_SetVector2_System_String_Vector2_" data-uid="i5.Toolkit.Core.Utilities.PlayerPrefsUtilities.SetVector2(System.String,Vector2)">SetVector2(String, Vector2)</h4>
+  <div class="markdown level1 summary"><p>Stores a Vector2 in the PlayerPrefs</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void SetVector2(string key, Vector2 vector)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>The key under which to store the vector</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Vector2</span></td>
+        <td><span class="parametername">vector</span></td>
+        <td><p>The value of the vector</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="i5_Toolkit_Core_Utilities_PlayerPrefsUtilities_SetVector3_" data-uid="i5.Toolkit.Core.Utilities.PlayerPrefsUtilities.SetVector3*"></a>
+  <h4 id="i5_Toolkit_Core_Utilities_PlayerPrefsUtilities_SetVector3_System_String_Vector3_" data-uid="i5.Toolkit.Core.Utilities.PlayerPrefsUtilities.SetVector3(System.String,Vector3)">SetVector3(String, Vector3)</h4>
+  <div class="markdown level1 summary"><p>Stores a Vector3 in the PlayerPrefs</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void SetVector3(string key, Vector3 vector)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>The key under which to store the vector</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Vector3</span></td>
+        <td><span class="parametername">vector</span></td>
+        <td><p>The value of the vector</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="i5_Toolkit_Core_Utilities_PlayerPrefsUtilities_SetVector4_" data-uid="i5.Toolkit.Core.Utilities.PlayerPrefsUtilities.SetVector4*"></a>
+  <h4 id="i5_Toolkit_Core_Utilities_PlayerPrefsUtilities_SetVector4_System_String_Vector4_" data-uid="i5.Toolkit.Core.Utilities.PlayerPrefsUtilities.SetVector4(System.String,Vector4)">SetVector4(String, Vector4)</h4>
+  <div class="markdown level1 summary"><p>Stores a Vector4 in the PlayerPrefs</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void SetVector4(string key, Vector4 vector)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>The key under which to store the vector</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Vector4</span></td>
+        <td><span class="parametername">vector</span></td>
+        <td><p>The value of the vector</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            i5 Toolkit Documentation
+            
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

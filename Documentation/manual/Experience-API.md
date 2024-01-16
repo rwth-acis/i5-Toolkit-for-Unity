@@ -26,11 +26,11 @@ This is sufficient for statements like "Person X viewed Object Y".
 
 #### Advanced Mode
 
-In order to enable advanced features such as adding contexts, results etc. to the statement, you need to install a Newtonsoft JSON library.
-It is recommended to use the [Unity package by jilleJr](https://github.com/jilleJr/Newtonsoft.Json-for-Unity).
+In order to enable advanced features such as adding contexts, results etc. to the statement, you need to install the Newtonsoft JSON library.
+It is recommended to use the [internal package by Unity](https://docs.unity3d.com/Packages/com.unity.nuget.newtonsoft-json@2.0/manual/index.html).
 If you import exactly this package, the module will automatically switch to advanced mode and use the library for JSON serialization.
-In case you want to use another Newtonsoft JSON library, e.g. the [internal package by Unity](https://docs.unity3d.com/Packages/com.unity.nuget.newtonsoft-json@2.0/manual/index.html), you need to manually add the Scripting Define Symbol `NEWTONSOFT_JSON` in the Player Settings.
-However, currently we recommend using the [Unity package by jilleJr](https://github.com/jilleJr/Newtonsoft.Json-for-Unity) for the advanced mode.
+In case you want to use another Newtonsoft JSON library, you need to manually add the Scripting Define Symbol `NEWTONSOFT_JSON` in the Player Settings.
+However, currently we recommend using the [Newtonsoft Json Unity Package](https://docs.unity3d.com/Packages/com.unity.nuget.newtonsoft-json@2.0/manual/index.html) version 3.0.2 or higher for the advanced mode.
 
 ### Client Setup
 
@@ -124,7 +124,7 @@ It has several fields:
 + **<xref:i5.Toolkit.Core.ExperienceAPI.XApiObject.descriptionDisplay>** - Dictionary that implements the _description_ language map from the standard.
   Holds <k,v> pairs where the key is the language code and the value is the description of the Object in that language.
   Optional, the dictionary may be empty.
-+ **<xref:i5.Toolkit.Core.ExperienceAPI.XApiObject.type>** - The type of the Activity. Optional.
++ **<xref:i5.Toolkit.Core.ExperienceAPI.XApiObject.type>** - The type of the Activity. Optional. Currently, this field only works in advanced mode.
 
 Additional steps when converting to a JObject (using the `ToJObject()` method):
 + The **objectType** is set to _"Activity"_

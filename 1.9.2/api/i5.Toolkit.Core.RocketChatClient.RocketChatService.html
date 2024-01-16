@@ -1,0 +1,790 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class RocketChatService
+   | i5 Toolkit Documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class RocketChatService
+   | i5 Toolkit Documentation ">
+    <meta name="generator" content="docfx 2.59.2.0">
+    
+    <link rel="shortcut icon" href="../resources/Logos/Logo_whiteBg.svg">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../resources/Logos/Logo_whiteBg.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="i5.Toolkit.Core.RocketChatClient.RocketChatService">
+  
+  
+  <h1 id="i5_Toolkit_Core_RocketChatClient_RocketChatService" data-uid="i5.Toolkit.Core.RocketChatClient.RocketChatService" class="text-break">Class RocketChatService
+  </h1>
+  <div class="markdown level0 summary"><p>A client for accessing the Rocket.Chat API</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">Object</a></div>
+    <div class="level1"><span class="xref">RocketChatService</span></div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="i5.Toolkit.Core.RocketChatClient.html">i5.Toolkit.Core.RocketChatClient</a></h6>
+  <h6><strong>Assembly</strong>: cs.temp.dll.dll</h6>
+  <h5 id="i5_Toolkit_Core_RocketChatClient_RocketChatService_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class RocketChatService : IService</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  
+  
+  <a id="i5_Toolkit_Core_RocketChatClient_RocketChatService__ctor_" data-uid="i5.Toolkit.Core.RocketChatClient.RocketChatService.#ctor*"></a>
+  <h4 id="i5_Toolkit_Core_RocketChatClient_RocketChatService__ctor_System_String_" data-uid="i5.Toolkit.Core.RocketChatClient.RocketChatService.#ctor(System.String)">RocketChatService(String)</h4>
+  <div class="markdown level1 summary"><p>Creates a new Rocket.Chat client instance</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public RocketChatService(string hostAddress)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">hostAddress</span></td>
+        <td><p>The URL address where the Rocket.Chat server is hosted</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  
+  
+  <a id="i5_Toolkit_Core_RocketChatClient_RocketChatService_AuthToken_" data-uid="i5.Toolkit.Core.RocketChatClient.RocketChatService.AuthToken*"></a>
+  <h4 id="i5_Toolkit_Core_RocketChatClient_RocketChatService_AuthToken" data-uid="i5.Toolkit.Core.RocketChatClient.RocketChatService.AuthToken">AuthToken</h4>
+  <div class="markdown level1 summary"><p>AuthToken (X-Auth-Token) of the user.
+It is automatically set during the login.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string AuthToken { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="i5_Toolkit_Core_RocketChatClient_RocketChatService_HostAddress_" data-uid="i5.Toolkit.Core.RocketChatClient.RocketChatService.HostAddress*"></a>
+  <h4 id="i5_Toolkit_Core_RocketChatClient_RocketChatService_HostAddress" data-uid="i5.Toolkit.Core.RocketChatClient.RocketChatService.HostAddress">HostAddress</h4>
+  <div class="markdown level1 summary"><p>The address where the Rocket.Chat server is hosted</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string HostAddress { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="i5_Toolkit_Core_RocketChatClient_RocketChatService_JsonSerializer_" data-uid="i5.Toolkit.Core.RocketChatClient.RocketChatService.JsonSerializer*"></a>
+  <h4 id="i5_Toolkit_Core_RocketChatClient_RocketChatService_JsonSerializer" data-uid="i5.Toolkit.Core.RocketChatClient.RocketChatService.JsonSerializer">JsonSerializer</h4>
+  <div class="markdown level1 summary"><p>Module for serializing and de-serializing JSON files
+Initialized by default with the JsonUtilityAdapter</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IJsonSerializer JsonSerializer { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IJsonSerializer</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="i5_Toolkit_Core_RocketChatClient_RocketChatService_UserID_" data-uid="i5.Toolkit.Core.RocketChatClient.RocketChatService.UserID*"></a>
+  <h4 id="i5_Toolkit_Core_RocketChatClient_RocketChatService_UserID" data-uid="i5.Toolkit.Core.RocketChatClient.RocketChatService.UserID">UserID</h4>
+  <div class="markdown level1 summary"><p>UserID (X-User-Id) of the user.
+It is automatically set during the login.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string UserID { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  
+  
+  <a id="i5_Toolkit_Core_RocketChatClient_RocketChatService_Cleanup_" data-uid="i5.Toolkit.Core.RocketChatClient.RocketChatService.Cleanup*"></a>
+  <h4 id="i5_Toolkit_Core_RocketChatClient_RocketChatService_Cleanup" data-uid="i5.Toolkit.Core.RocketChatClient.RocketChatService.Cleanup">Cleanup()</h4>
+  <div class="markdown level1 summary"><p>Cleans up the service as it is deregistered from the service manager</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Cleanup()</code></pre>
+  </div>
+  
+  
+  <a id="i5_Toolkit_Core_RocketChatClient_RocketChatService_GetChannelListJoinedAsync_" data-uid="i5.Toolkit.Core.RocketChatClient.RocketChatService.GetChannelListJoinedAsync*"></a>
+  <h4 id="i5_Toolkit_Core_RocketChatClient_RocketChatService_GetChannelListJoinedAsync" data-uid="i5.Toolkit.Core.RocketChatClient.RocketChatService.GetChannelListJoinedAsync">GetChannelListJoinedAsync()</h4>
+  <div class="markdown level1 summary"><p>Get the user&apos;s channel list of joined channels. Requires login first.
+Note that this only includes public channels. For private channels, get the user&apos;s groups.
+See <a href="https://developer.rocket.chat/reference/api/rest-api/endpoints/team-collaboration-endpoints/channels-endpoints/list">https://developer.rocket.chat/reference/api/rest-api/endpoints/team-collaboration-endpoints/channels-endpoints/list</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public async Task&lt;WebResponse&lt;ChannelGroup[]&gt;&gt; GetChannelListJoinedAsync()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span>&lt;<span class="xref">WebResponse</span>&lt;<a class="xref" href="i5.Toolkit.Core.RocketChatClient.ChannelGroup.html">ChannelGroup</a>[]&gt;&gt;</td>
+        <td><p>Retunrs a WebResponse with the server&apos;s answer and an array of the user&apos;s channels</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="i5_Toolkit_Core_RocketChatClient_RocketChatService_GetGroupListAsync_" data-uid="i5.Toolkit.Core.RocketChatClient.RocketChatService.GetGroupListAsync*"></a>
+  <h4 id="i5_Toolkit_Core_RocketChatClient_RocketChatService_GetGroupListAsync" data-uid="i5.Toolkit.Core.RocketChatClient.RocketChatService.GetGroupListAsync">GetGroupListAsync()</h4>
+  <div class="markdown level1 summary"><p>Gets the user&apos;s list of joined groups. Requires login first.
+This does not only include groups but also private channels.
+See <a href="https://developer.rocket.chat/reference/api/rest-api/endpoints/team-collaboration-endpoints/groups-endpoints/list">https://developer.rocket.chat/reference/api/rest-api/endpoints/team-collaboration-endpoints/groups-endpoints/list</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public async Task&lt;WebResponse&lt;ChannelGroup[]&gt;&gt; GetGroupListAsync()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span>&lt;<span class="xref">WebResponse</span>&lt;<a class="xref" href="i5.Toolkit.Core.RocketChatClient.ChannelGroup.html">ChannelGroup</a>[]&gt;&gt;</td>
+        <td><p>Returns a WebResponse of the server and an array of the user&apos;s groups</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="i5_Toolkit_Core_RocketChatClient_RocketChatService_GetMeAsync_" data-uid="i5.Toolkit.Core.RocketChatClient.RocketChatService.GetMeAsync*"></a>
+  <h4 id="i5_Toolkit_Core_RocketChatClient_RocketChatService_GetMeAsync" data-uid="i5.Toolkit.Core.RocketChatClient.RocketChatService.GetMeAsync">GetMeAsync()</h4>
+  <div class="markdown level1 summary"><p>Get the profile information of the logged-in user.
+Requires login first.
+See <a href="https://developer.rocket.chat/reference/api/rest-api/endpoints/other-important-endpoints/authentication-endpoints/me">https://developer.rocket.chat/reference/api/rest-api/endpoints/other-important-endpoints/authentication-endpoints/me</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public async Task&lt;WebResponse&lt;UserInfo&gt;&gt; GetMeAsync()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span>&lt;<span class="xref">WebResponse</span>&lt;<a class="xref" href="i5.Toolkit.Core.RocketChatClient.UserInfo.html">UserInfo</a>&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="i5_Toolkit_Core_RocketChatClient_RocketChatService_Initialize_" data-uid="i5.Toolkit.Core.RocketChatClient.RocketChatService.Initialize*"></a>
+  <h4 id="i5_Toolkit_Core_RocketChatClient_RocketChatService_Initialize_IServiceManager_" data-uid="i5.Toolkit.Core.RocketChatClient.RocketChatService.Initialize(IServiceManager)">Initialize(IServiceManager)</h4>
+  <div class="markdown level1 summary"><p>Initializes the service as it gets registerd with a ServiceManager</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Initialize(IServiceManager owner)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IServiceManager</span></td>
+        <td><span class="parametername">owner</span></td>
+        <td><p>The service manager which now owns this service</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="i5_Toolkit_Core_RocketChatClient_RocketChatService_LoginAsync_" data-uid="i5.Toolkit.Core.RocketChatClient.RocketChatService.LoginAsync*"></a>
+  <h4 id="i5_Toolkit_Core_RocketChatClient_RocketChatService_LoginAsync_System_String_" data-uid="i5.Toolkit.Core.RocketChatClient.RocketChatService.LoginAsync(System.String)">LoginAsync(String)</h4>
+  <div class="markdown level1 summary"><p>Log in to the server with an auth token.
+It sets the AuthToken and UserID properties.
+See <a href="https://developer.rocket.chat/reference/api/rest-api/endpoints/other-important-endpoints/authentication-endpoints/login">https://developer.rocket.chat/reference/api/rest-api/endpoints/other-important-endpoints/authentication-endpoints/login</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public async Task&lt;WebResponse&lt;LoginResponse&gt;&gt; LoginAsync(string authToken)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">authToken</span></td>
+        <td><p>The auth token that identifies and authorized the user who wants to log in</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span>&lt;<span class="xref">WebResponse</span>&lt;<a class="xref" href="i5.Toolkit.Core.RocketChatClient.LoginResponse.html">LoginResponse</a>&gt;&gt;</td>
+        <td><p>Returns true if the login was successful, otherwise false</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="i5_Toolkit_Core_RocketChatClient_RocketChatService_LoginAsync_" data-uid="i5.Toolkit.Core.RocketChatClient.RocketChatService.LoginAsync*"></a>
+  <h4 id="i5_Toolkit_Core_RocketChatClient_RocketChatService_LoginAsync_System_String_System_String_" data-uid="i5.Toolkit.Core.RocketChatClient.RocketChatService.LoginAsync(System.String,System.String)">LoginAsync(String, String)</h4>
+  <div class="markdown level1 summary"><p>Log in to the server with a username and password.
+It sets the AuthToken and UserID properties.
+See <a href="https://developer.rocket.chat/reference/api/rest-api/endpoints/other-important-endpoints/authentication-endpoints/login">https://developer.rocket.chat/reference/api/rest-api/endpoints/other-important-endpoints/authentication-endpoints/login</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public async Task&lt;WebResponse&lt;LoginResponse&gt;&gt; LoginAsync(string username, string password)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">username</span></td>
+        <td><p>The username of the user who wants to log in</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">password</span></td>
+        <td><p>The password of the user who wants to log in</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span>&lt;<span class="xref">WebResponse</span>&lt;<a class="xref" href="i5.Toolkit.Core.RocketChatClient.LoginResponse.html">LoginResponse</a>&gt;&gt;</td>
+        <td><p>Returns the parsed login response</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="i5_Toolkit_Core_RocketChatClient_RocketChatService_PostMessageAsync_" data-uid="i5.Toolkit.Core.RocketChatClient.RocketChatService.PostMessageAsync*"></a>
+  <h4 id="i5_Toolkit_Core_RocketChatClient_RocketChatService_PostMessageAsync_System_String_System_String_" data-uid="i5.Toolkit.Core.RocketChatClient.RocketChatService.PostMessageAsync(System.String,System.String)">PostMessageAsync(String, String)</h4>
+  <div class="markdown level1 summary"><p>Post a message to a given room (channel, team, direct message etc.) of the user.
+Requires login first.
+See <a href="https://developer.rocket.chat/reference/api/rest-api/endpoints/team-collaboration-endpoints/chat-endpoints/postmessage">https://developer.rocket.chat/reference/api/rest-api/endpoints/team-collaboration-endpoints/chat-endpoints/postmessage</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public async Task&lt;WebResponse&lt;MessageSentResponse&gt;&gt; PostMessageAsync(string targetID, string text = &quot;&quot;)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">targetID</span></td>
+        <td><p>rid of the room, channel name (#) or user name (@)</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">text</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span>&lt;<span class="xref">WebResponse</span>&lt;<a class="xref" href="i5.Toolkit.Core.RocketChatClient.MessageSentResponse.html">MessageSentResponse</a>&gt;&gt;</td>
+        <td><p>Returns true if the message was successfully sent</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="i5_Toolkit_Core_RocketChatClient_RocketChatService_SendHttpRequestAsync_" data-uid="i5.Toolkit.Core.RocketChatClient.RocketChatService.SendHttpRequestAsync*"></a>
+  <h4 id="i5_Toolkit_Core_RocketChatClient_RocketChatService_SendHttpRequestAsync_i5_Toolkit_Core_RocketChatClient_RocketChatService_RequestType_System_String_System_String_" data-uid="i5.Toolkit.Core.RocketChatClient.RocketChatService.SendHttpRequestAsync(i5.Toolkit.Core.RocketChatClient.RocketChatService.RequestType,System.String,System.String)">SendHttpRequestAsync(RocketChatService.RequestType, String, String)</h4>
+  <div class="markdown level1 summary"><p>Send an arbitrary HTTP request to the host. Supports only GET and POST with application/json header.
+APIs See <a href="https://developer.rocket.chat/reference/api/rest-api">https://developer.rocket.chat/reference/api/rest-api</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public async Task&lt;WebResponse&lt;string&gt;&gt; SendHttpRequestAsync(RocketChatService.RequestType type, string apiSuffix, string payload = &quot;&quot;)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="i5.Toolkit.Core.RocketChatClient.RocketChatService.RequestType.html">RocketChatService.RequestType</a></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>request type, supports GET and POST</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">apiSuffix</span></td>
+        <td><p>the api string behind the host, e.g. /api/v1/login </p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">payload</span></td>
+        <td><p>Payload of a POST request, optional.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span>&lt;<span class="xref">WebResponse</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a>&gt;&gt;</td>
+        <td><p>WebResponse with the server&apos;s answer</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="i5_Toolkit_Core_RocketChatClient_RocketChatService_SendWebSocketRequestAsync_" data-uid="i5.Toolkit.Core.RocketChatClient.RocketChatService.SendWebSocketRequestAsync*"></a>
+  <h4 id="i5_Toolkit_Core_RocketChatClient_RocketChatService_SendWebSocketRequestAsync_System_String_System_String_" data-uid="i5.Toolkit.Core.RocketChatClient.RocketChatService.SendWebSocketRequestAsync(System.String,System.String)">SendWebSocketRequestAsync(String, String)</h4>
+  <div class="markdown level1 summary"><p>Send an arbitrary WebSocket request to the host.
+APIs See <a href="https://developer.rocket.chat/reference/api/realtime-api">https://developer.rocket.chat/reference/api/realtime-api</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public async Task&lt;WebResponse&lt;string&gt;&gt; SendWebSocketRequestAsync(string uniqueID, string message)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">uniqueID</span></td>
+        <td><p>id of the request</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">message</span></td>
+        <td><p>message to send</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span>&lt;<span class="xref">WebResponse</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a>&gt;&gt;</td>
+        <td><p>Returns the API&apos;s answer as a WebResponse object</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="i5_Toolkit_Core_RocketChatClient_RocketChatService_SubscribeRoomMessageAsync_" data-uid="i5.Toolkit.Core.RocketChatClient.RocketChatService.SubscribeRoomMessageAsync*"></a>
+  <h4 id="i5_Toolkit_Core_RocketChatClient_RocketChatService_SubscribeRoomMessageAsync_System_String_System_String_" data-uid="i5.Toolkit.Core.RocketChatClient.RocketChatService.SubscribeRoomMessageAsync(System.String,System.String)">SubscribeRoomMessageAsync(String, String)</h4>
+  <div class="markdown level1 summary"><p>Start listening for messages in a particular channel
+Starts a web socket that keeps up a connection to the API.
+See <a href="https://developer.rocket.chat/reference/api/realtime-api/subscriptions/stream-room-messages">https://developer.rocket.chat/reference/api/realtime-api/subscriptions/stream-room-messages</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public async Task SubscribeRoomMessageAsync(string roomID, string uniqueID)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">roomID</span></td>
+        <td><p>rid of the room (must be the internal id, the human-readable name starting with the &apos;#&apos; does not work)</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">uniqueID</span></td>
+        <td><p>a unique ID of this subscription (can be chosen arbitrarily)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="i5_Toolkit_Core_RocketChatClient_RocketChatService_UnsubscribeRoomMessageAsync_" data-uid="i5.Toolkit.Core.RocketChatClient.RocketChatService.UnsubscribeRoomMessageAsync*"></a>
+  <h4 id="i5_Toolkit_Core_RocketChatClient_RocketChatService_UnsubscribeRoomMessageAsync_System_String_" data-uid="i5.Toolkit.Core.RocketChatClient.RocketChatService.UnsubscribeRoomMessageAsync(System.String)">UnsubscribeRoomMessageAsync(String)</h4>
+  <div class="markdown level1 summary"><p>Stop listening for messages in a room, given the ID of the former subscription.
+Closes this particular Web socket connection to the API</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public async Task UnsubscribeRoomMessageAsync(string uniqueID)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">uniqueID</span></td>
+        <td><p>The subscribtion ID that identifies the subscription</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="events">Events
+  </h3>
+  
+  
+  <h4 id="i5_Toolkit_Core_RocketChatClient_RocketChatService_OnMessageReceived" data-uid="i5.Toolkit.Core.RocketChatClient.RocketChatService.OnMessageReceived">OnMessageReceived</h4>
+  <div class="markdown level1 summary"><p>Fired when the client receives a WebSocket message from a room.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event RocketChatService.ReceivedMessageHandler OnMessageReceived</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="i5.Toolkit.Core.RocketChatClient.RocketChatService.ReceivedMessageHandler.html">RocketChatService.ReceivedMessageHandler</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            i5 Toolkit Documentation
+            
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

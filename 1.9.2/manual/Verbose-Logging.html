@@ -1,0 +1,223 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Verbose Logging System | i5 Toolkit Documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Verbose Logging System | i5 Toolkit Documentation ">
+    <meta name="generator" content="docfx 2.59.2.0">
+    
+    <link rel="shortcut icon" href="../resources/Logos/Logo_whiteBg.svg">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../resources/Logos/Logo_whiteBg.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="verbose-logging-system">Verbose Logging System</h1>
+
+<p><img src="../resources/Logos/Verbose-Logging.svg" alt="Verbose Logging"></p>
+<h2 id="use-case">Use Case</h2>
+<p>Unity provides a <code>Debug.Log</code> output class, as well as <code>Debug.LogWarning</code> and <code>Debug.LogError</code>.
+Developers can use these statements to create messages for the console in the Unity editor.
+Moreover, on deployed Unity applications, the statements are collected in a log file.
+So, if an error occurs, the log file can be sent to the developer to investigate what caused the error.
+However, the log statements cause a performance loss as the application immediately writes them to the log file.
+Moreover, depending on the use case, adding many debug logs might be more confusing than just posting the minimum necessary.</p>
+<p>Hence, the i5 Toolkit provides its own logging system where the verbosity level can be configured.
+This allows applications to log statements only if the level of detail is required.
+Production-ready applications and development prototypes can have different verbosity levels configured.
+Moreover, it is possible to change the verbosity level at runtime.
+This means that the application can, e.g., provide a debug mode which the user can activate to increase the level of detail on the logging.
+The log statements print their verbosity level so that generated log files can also be filtered.</p>
+<h2 id="usage">Usage</h2>
+<p>Applying the logging module consists of two parts:
+First, the concept for generating messages and assigning them to a verbosity level is discussed and after that, filtering of messages is shown.</p>
+<h3 id="message-logging">Message Logging</h3>
+<p>There are five levels of verbosity.
+Developers can state for each log message into which category the message belongs.</p>
+<p>The following guide can be considered when deciding which category to assign to each method:</p>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Description</th>
+<th>Method</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Critical</td>
+<td>A log message about a failure or error that is critical to the further execution of the program. For instance, a module is in an unforeseen state and going forward, it is not clear whether the application still functions correctly.</td>
+<td><a class="xref" href="../api/i5.Toolkit.Core.VerboseLogging.AppLog.html#i5_Toolkit_Core_VerboseLogging_AppLog_LogCritical_">LogCritical</a></td>
+</tr>
+<tr>
+<td>Error</td>
+<td>A log message about an error which does not endanger the further execution of the program. For instance, the application tried loading a save file but could not parse it, so the loading operation was aborted.</td>
+<td><a class="xref" href="../api/i5.Toolkit.Core.VerboseLogging.AppLog.html#i5_Toolkit_Core_VerboseLogging_AppLog_LogError_">LogError</a></td>
+</tr>
+<tr>
+<td>Warning</td>
+<td>A log message about a check which resulted in an unexpected value. This is not really an error yet but should be addressed. For instance, the application noticed that the player left the designated play aera and was reset.</td>
+<td><a class="xref" href="../api/i5.Toolkit.Core.VerboseLogging.AppLog.html#i5_Toolkit_Core_VerboseLogging_AppLog_LogWarning_">LogWarning</a></td>
+</tr>
+<tr>
+<td>Info</td>
+<td>A log message that informs about what the application is roughly doing. However, the log messages only inform about major events.  For instance, the application logs that the user changed the graphics quality in the settings menu.</td>
+<td><a class="xref" href="../api/i5.Toolkit.Core.VerboseLogging.AppLog.html#i5_Toolkit_Core_VerboseLogging_AppLog_LogInfo_">LogInfo</a></td>
+</tr>
+<tr>
+<td>Debug</td>
+<td>A log message which can be used for debugging the application and giving the developer additional hints about what is going on. It can, e.g., provides key values during calculations. For instance, a player buys an item and the log messages output the number of resources that the player has in the inventory before and after the transaction.</td>
+<td><a class="xref" href="../api/i5.Toolkit.Core.VerboseLogging.AppLog.html#i5_Toolkit_Core_VerboseLogging_AppLog_LogDebug_">LogDebug</a></td>
+</tr>
+<tr>
+<td>Trace</td>
+<td>A log message which helps track exactly which code execution paths the application takes. It logs methods which are entered, which branch of an if-else condition was selected, etc. For instance, the application logs that it is trying to cast a raycast in the scene and whether it found anything.</td>
+<td><a class="xref" href="../api/i5.Toolkit.Core.VerboseLogging.AppLog.html#i5_Toolkit_Core_VerboseLogging_AppLog_LogTrace_">LogTrace</a></td>
+</tr>
+</tbody>
+</table>
+<p>Exceptions can additionally be logged using the method <a class="xref" href="../api/i5.Toolkit.Core.VerboseLogging.AppLog.html#i5_Toolkit_Core_VerboseLogging_AppLog_LogException_">LogException</a>.
+Exceptions are either logged using the <code>Cricial</code> or <code>Error</code> categories, depending on the value provided to the <code>isCritical</code> parameter.</p>
+<p>The <code>AppLog.Log&lt;Level&gt;</code> methods are convenient shortcuts.
+It is also possible to call the method <a class="xref" href="../api/i5.Toolkit.Core.VerboseLogging.AppLog.html#i5_Toolkit_Core_VerboseLogging_AppLog_Log_">Log</a> and provide to it the log level.</p>
+<p>Just like <code>Debug.Log*</code>, objects can be passed to <code>AppLog.Log*</code> to define the context of the statement.
+Clicking a log message with a provided context in the Unity console will highlight the GameObject on which it occurred in the hierarchy.
+Moreover, the statement will print additional information about the context object.</p>
+<h3 id="setting-the-level-of-verbosity">Setting the Level of Verbosity</h3>
+<p>The level of verbosity can be set centrally by altering the property <a class="xref" href="../api/i5.Toolkit.Core.VerboseLogging.AppLog.html#i5_Toolkit_Core_VerboseLogging_AppLog_MinimumLogLevel">MinimumLogLevel</a>.
+All messages which are on the given level or on a higher level are logged, while all other messages are suppressed.
+For instance, if the minimum log level is set to <code>Warning</code>, the system will log messages that are on the levels <code>Critical</code>, <code>Error</code> and <code>Warning</code>.
+If the minimum log level is set to <code>Trace</code>, every message of any category will be logged.</p>
+<p>One way of using the level of verbosity is to set it once a startup script, e.g., depending on the version number, whether it is a development build or other factors.</p>
+<p>The level of verbosity can also be dynamically changed during runtime.
+So, an application can, e.g., start with a minimum log level of <code>Critical</code> and later change it to <code>Info</code> to get more detailed outputs for a specific section of the program.</p>
+<p>Note that messages cannot be retrieved retroactively.
+Messages below the minimum log level are never produced and so they cannot be restored later.
+Changing the minimum log level during runtime applies to future log statements but not past ones.</p>
+<p>The other way around, you can first generate more messages than needed and later filter a log file with a text program to include less messages by searching for the log level.
+Since every message starts with its log level, all messages of a particular level can quickly be found both in the Unity editor and in log files.</p>
+<h3 id="in-editor-functionality">In-Editor Functionality</h3>
+<p>In the editor, the log messages can be colored according to the level.
+By default, this feature is activated but it can be deactivated using the property <a class="xref" href="../api/i5.Toolkit.Core.VerboseLogging.AppLog.html#i5_Toolkit_Core_VerboseLogging_AppLog_UseColors">UseColors</a>.
+Moreover, the colors can be adjusted for each level individually which might be necessary depending on the Unity version and the chosen color scheme.</p>
+<p>The coloring of messages is only applied in the Unity editor and neither the coloring nor the markup which produces the color are added to log files outside of the Unity editor.</p>
+<h2 id="adjusting-an-existing-application-to-use-verbose-logging">Adjusting an Existing Application to Use Verbose Logging</h2>
+<p>In order to use the verbose logging feature, all existing calls to <code>Debug.Log</code>, <code>Debug.LogWarning</code>, <code>Debug.LogError</code> and <code>Debug.LogException</code> have to be replaced.</p>
+<p>Replace <code>Debug.Log</code> with either <code>AppLog.LogInfo</code>, <code>AppLog.LogDebug</code> or <code>AppLog.LogTrace</code> depending on the level of detail that the given log statement represents.</p>
+<p>Replace <code>Debug.LogWarning</code> with <code>AppLog.LogWarning</code>.</p>
+<p>Replace <code>Debug.LogError</code> with <code>AppLog.LogError</code> or <code>AppLog.LogCritical</code> depending on how critical the error is.</p>
+<p>Finally, replace all calls to <code>Debug.LogException</code> with <code>AppLog.LogException</code>.
+Fill the Boolean parameter <code>isCritical</code> with true or false, depending on whether you perceive the exception as of critical importance.</p>
+<p>There is also no problem with using <code>Debug.Log*</code> calls in parallel to the <code>AppLog.Log*</code> calls.
+Messages to <code>Debug.Log*</code> will always be logged, independent of the set verbosity level.
+However, it is recommended to not mix the two to keep the code consistent.</p>
+<p>Any errors which are logged directly by Unity as soon as they appear, will still be logged.
+This is an intended behavior as these kinds of errors and exceptions are regarded as critical.</p>
+<h2 id="example-scene">Example Scene</h2>
+<p>The example scene generates messages of different verbosity levels.
+In the script, the minimum log level can be adjusted to see how the set value affects which messages are logged and which ones are suppressed.</p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/rwth-acis/i5-Toolkit-for-Unity/blob/features/verbose-logging/Documentation/manual/Verbose-Logging.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            i5 Toolkit Documentation
+            
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,332 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class ConversionUtils
+   | i5 Toolkit Documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class ConversionUtils
+   | i5 Toolkit Documentation ">
+    <meta name="generator" content="docfx 2.59.2.0">
+    
+    <link rel="shortcut icon" href="../resources/Logos/Logo_whiteBg.svg">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../resources/Logos/Logo_whiteBg.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="i5.Toolkit.Core.Utilities.ConversionUtils">
+  
+  
+  <h1 id="i5_Toolkit_Core_Utilities_ConversionUtils" data-uid="i5.Toolkit.Core.Utilities.ConversionUtils" class="text-break">Class ConversionUtils
+  </h1>
+  <div class="markdown level0 summary"><p>Extensions for converting data formats to each other</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">Object</a></div>
+    <div class="level1"><span class="xref">ConversionUtils</span></div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="i5.Toolkit.Core.Utilities.html">i5.Toolkit.Core.Utilities</a></h6>
+  <h6><strong>Assembly</strong>: cs.temp.dll.dll</h6>
+  <h5 id="i5_Toolkit_Core_Utilities_ConversionUtils_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static class ConversionUtils</code></pre>
+  </div>
+  <h3 id="methods">Methods
+  </h3>
+  
+  
+  <a id="i5_Toolkit_Core_Utilities_ConversionUtils_ToColor_" data-uid="i5.Toolkit.Core.Utilities.ConversionUtils.ToColor*"></a>
+  <h4 id="i5_Toolkit_Core_Utilities_ConversionUtils_ToColor_Vector3_" data-uid="i5.Toolkit.Core.Utilities.ConversionUtils.ToColor(Vector3)">ToColor(Vector3)</h4>
+  <div class="markdown level1 summary"><p>Converts a Vector3 to a Color
+Maps the x-value to the red channel,
+the y-value to the green channel
+and the z-value to the blue channel</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Color ToColor(this Vector3 vector)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Vector3</span></td>
+        <td><span class="parametername">vector</span></td>
+        <td><p>The Vector3 which should be converted</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Color</span></td>
+        <td><p>Returns a color which has the same rgb values as the vector has xyz values</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="i5_Toolkit_Core_Utilities_ConversionUtils_ToColor_" data-uid="i5.Toolkit.Core.Utilities.ConversionUtils.ToColor*"></a>
+  <h4 id="i5_Toolkit_Core_Utilities_ConversionUtils_ToColor_Vector4_" data-uid="i5.Toolkit.Core.Utilities.ConversionUtils.ToColor(Vector4)">ToColor(Vector4)</h4>
+  <div class="markdown level1 summary"><p>Converts a Vector4 to a Color
+Maps the x-value to the red channel, 
+the y-value to the green channel,
+the z-value to the blue channel
+and the w-value to the alpha channel</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Color ToColor(this Vector4 vector)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Vector4</span></td>
+        <td><span class="parametername">vector</span></td>
+        <td><p>The Vector4 which should be converted</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Color</span></td>
+        <td><p>Returns a color which has the same rgba values as the vector has xyzw values</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="i5_Toolkit_Core_Utilities_ConversionUtils_ToVector3_" data-uid="i5.Toolkit.Core.Utilities.ConversionUtils.ToVector3*"></a>
+  <h4 id="i5_Toolkit_Core_Utilities_ConversionUtils_ToVector3_Color_" data-uid="i5.Toolkit.Core.Utilities.ConversionUtils.ToVector3(Color)">ToVector3(Color)</h4>
+  <div class="markdown level1 summary"><p>Converts a Color to a Vector3
+Maps the red channel to the x value,
+the green channel to the y value
+and the blue channel to the z value</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Vector3 ToVector3(this Color color)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Color</span></td>
+        <td><span class="parametername">color</span></td>
+        <td><p>The color to convert</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Vector3</span></td>
+        <td><p>Returns a Vector3 which has the same xyz values as the color has rgb values</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="i5_Toolkit_Core_Utilities_ConversionUtils_ToVector4_" data-uid="i5.Toolkit.Core.Utilities.ConversionUtils.ToVector4*"></a>
+  <h4 id="i5_Toolkit_Core_Utilities_ConversionUtils_ToVector4_Color_" data-uid="i5.Toolkit.Core.Utilities.ConversionUtils.ToVector4(Color)">ToVector4(Color)</h4>
+  <div class="markdown level1 summary"><p>Converts a Color to a Vector4
+Maps the red channel to the x value,
+the green channel to the y value,
+the blue channel to the z value
+and the alpha channel to the w value</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Vector4 ToVector4(this Color color)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Color</span></td>
+        <td><span class="parametername">color</span></td>
+        <td><p>The color to convert</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Vector4</span></td>
+        <td><p>Returns a Vector4 which has the same xyzw values as the color has rgba values</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            i5 Toolkit Documentation
+            
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

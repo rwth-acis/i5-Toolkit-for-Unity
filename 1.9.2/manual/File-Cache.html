@@ -1,0 +1,187 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>File Cache | i5 Toolkit Documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="File Cache | i5 Toolkit Documentation ">
+    <meta name="generator" content="docfx 2.59.2.0">
+    
+    <link rel="shortcut icon" href="../resources/Logos/Logo_whiteBg.svg">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../resources/Logos/Logo_whiteBg.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="file-cache">File Cache</h1>
+
+<p><img src="../resources/Logos/FileCache.svg" alt="File Cache"></p>
+<h2 id="use-case">Use Case</h2>
+<p>Importing 3D assets and other resources from the web at runtime is a great way to keep the content of an application up to date without the need to update the client itself.
+However, loading files from the web can take some time especially with bad internet connection.
+This service allows it store downloaded files in a cache.
+Thereby, files are loaded from the local file system instead of the Web after they are loaded once.
+This increases the loading speed for files that are loaded multiple times.</p>
+<p>A common use case for this is the download of 3D models from the Web.</p>
+<h2 id="usage">Usage</h2>
+<p>The file cache itself is a service that can be registered at the <a class="xref" href="../api/i5.Toolkit.Core.ServiceCore.ServiceManager.html">ServiceManager</a>.
+This service can handle the caching of files.
+To further improve the usability of the service, there exist an <a class="xref" href="../api/i5.Toolkit.Core.Utilities.ContentLoaders.IContentLoader-1.html">IContentLoader&lt;T&gt;</a> called <a class="xref" href="../api/i5.Toolkit.Core.Caching.CacheAwareContentLoader.html">CacheAwareContentLoader</a> that provides an interface to interact with the file cache service.
+This content loader can be set on any other module which needs to load content from the Web, e.g. on the <a href="Obj-Importer.html">Obj Importer</a>.</p>
+<h3 id="notes">Notes</h3>
+<p>The file cache is located in the namespace <code>i5.Toolkit.Core.Caching</code>.</p>
+<h3 id="settings">Settings</h3>
+<p>There are four settings that can be configured when initializing a <a class="xref" href="../api/i5.Toolkit.Core.Caching.FileCacheService.html">FileCacheService</a>.</p>
+<ul>
+<li>If the parameter <code>sessionPersistence</code> is set to <code>true</code> the Cache will reload the cache state of the last session.
+The default value is <code>false</code>.</li>
+<li>The parameter <code>useSafeMode</code> activates the check of a MD5 checksum before loading a file from cache.
+It ensures that cached files cannot be swapped out as their checksum will change.
+The default value is <code>true</code>.</li>
+<li>With the parameter <code>cacheLocationOverride</code> one can set a different location to store the cache data in.
+The default value is <code>null</code>.</li>
+<li>The parameter <code>daysValid</code> sets the threshold for how old a file is alowed to be until it should not be used any more by the cache.
+The default is 365 days.</li>
+<li>The parameter <code>directoryAccessor</code> can be used to configure how the file directories are accessed.
+In a productive environment, it is advised to leave this option untouched but it can e.g. be used in tests to fake a directory system.</li>
+</ul>
+<p>All those parameters can be set when initializing the file cache:</p>
+<pre><code class="lang-[C#]">FileCacheService fc = new FileCacheService(sessionPersistence: false, useSafeMode: true, cacheLocationOverride: null, daysValid: 365);
+</code></pre><h3 id="example">Example</h3>
+<p>This explanation will walk you through the process of using the CacheAwareContentLoader to download files and use the file cache.</p>
+<p>First of all, we need to use the namespace for the cache and the general service core.</p>
+<pre><code class="lang-[C#]">using i5.Toolkit.Core.Caching;
+using i5.Toolkit.Core.ServiceCore;
+</code></pre><p>Before we are able to use the file cache, we first of all need to instantiate this service and add it the service manager.
+Since we only need to do this once, one will most likely do this in the <code>Start</code> method of a Unity MonoBehaviour class.
+Once the <a class="xref" href="../api/i5.Toolkit.Core.Caching.FileCacheService.html">FileCacheService</a> is registered, we can instantiate the <a class="xref" href="../api/i5.Toolkit.Core.Caching.CacheAwareContentLoader.html">CacheAwareContentLoader</a>.</p>
+<pre><code class="lang-[C#]">
+CacheAwareContentLoader contentLoader;
+
+void Start()
+{
+    //Register the File Cache
+    FileCacheService fileCache = new FileCacheService();
+    ServiceManager.RegisterService(fileCache);
+
+    contentLoader = new CacheAwareContentLoader();
+}
+</code></pre><p>This is all the setup that is required.
+Afterwards one can use the contentLoader normally.
+For example, we will write an update method that loads a file from a web address.
+Here, it is stored in the variable path if the user hits F5.</p>
+<pre><code class="lang-[C#]">private async void Update()
+{
+    if (Input.GetKeyDown(KeyCode.F5))
+    {
+        WebResponse&lt;string&gt; resp = await contentLoader.LoadAsync(path);
+
+        // retrieve the dowloaded or cached file in the WebResponse
+    }
+}
+</code></pre><p>When hitting F5 the second time, the <a class="xref" href="../api/i5.Toolkit.Core.Caching.CacheAwareContentLoader.html">CacheAwareContentLoader</a> will use the cached file and therefore load it faster.</p>
+<p>Another usage example can be found in the documentation of the <a href="Obj-Importer.html">Obj Importer</a> and in the example scene of the Obj Importer.</p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/rwth-acis/i5-Toolkit-for-Unity/blob/master/Documentation/manual/File-Cache.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            i5 Toolkit Documentation
+            
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

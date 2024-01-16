@@ -1,0 +1,568 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class ServiceManager
+   | i5 Toolkit Documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class ServiceManager
+   | i5 Toolkit Documentation ">
+    <meta name="generator" content="docfx 2.59.2.0">
+    
+    <link rel="shortcut icon" href="../resources/Logos/Logo_whiteBg.svg">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../resources/Logos/Logo_whiteBg.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="i5.Toolkit.Core.ServiceCore.ServiceManager">
+  
+  
+  <h1 id="i5_Toolkit_Core_ServiceCore_ServiceManager" data-uid="i5.Toolkit.Core.ServiceCore.ServiceManager" class="text-break">Class ServiceManager
+  </h1>
+  <div class="markdown level0 summary"><p>Manager which administers registered services
+These services need to implement the IService interface and do not need to inherit from MonoBehaviour</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">Object</a></div>
+    <div class="level1"><span class="xref">ServiceManager</span></div>
+  </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="i5.Toolkit.Core.ServiceCore.IServiceManager.html">IServiceManager</a></div>
+    <div><a class="xref" href="i5.Toolkit.Core.ServiceCore.IRunnerReceiver.html">IRunnerReceiver</a></div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="i5.Toolkit.Core.ServiceCore.html">i5.Toolkit.Core.ServiceCore</a></h6>
+  <h6><strong>Assembly</strong>: cs.temp.dll.dll</h6>
+  <h5 id="i5_Toolkit_Core_ServiceCore_ServiceManager_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class ServiceManager : IServiceManager, IRunnerReceiver</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  
+  
+  <a id="i5_Toolkit_Core_ServiceCore_ServiceManager__ctor_" data-uid="i5.Toolkit.Core.ServiceCore.ServiceManager.#ctor*"></a>
+  <h4 id="i5_Toolkit_Core_ServiceCore_ServiceManager__ctor" data-uid="i5.Toolkit.Core.ServiceCore.ServiceManager.#ctor">ServiceManager()</h4>
+  <div class="markdown level1 summary"><p>Creates a new instance of a ServiceManager</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ServiceManager()</code></pre>
+  </div>
+  <h3 id="properties">Properties
+  </h3>
+  
+  
+  <a id="i5_Toolkit_Core_ServiceCore_ServiceManager_Instance_" data-uid="i5.Toolkit.Core.ServiceCore.ServiceManager.Instance*"></a>
+  <h4 id="i5_Toolkit_Core_ServiceCore_ServiceManager_Instance" data-uid="i5.Toolkit.Core.ServiceCore.ServiceManager.Instance">Instance</h4>
+  <div class="markdown level1 summary"><p>The instance of the service manager</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ServiceManager Instance { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="i5.Toolkit.Core.ServiceCore.ServiceManager.html">ServiceManager</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="i5_Toolkit_Core_ServiceCore_ServiceManager_Runner_" data-uid="i5.Toolkit.Core.ServiceCore.ServiceManager.Runner*"></a>
+  <h4 id="i5_Toolkit_Core_ServiceCore_ServiceManager_Runner" data-uid="i5.Toolkit.Core.ServiceCore.ServiceManager.Runner">Runner</h4>
+  <div class="markdown level1 summary"><p>The runner in the scene
+This runner object provides MonoBehaviour events to the service manager
+It can be accessed by servies to run MonoBehaviour functionality, e.g. co-routines</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ServiceManagerRunner Runner { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="i5.Toolkit.Core.ServiceCore.ServiceManagerRunner.html">ServiceManagerRunner</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  
+  
+  <a id="i5_Toolkit_Core_ServiceCore_ServiceManager_GetService_" data-uid="i5.Toolkit.Core.ServiceCore.ServiceManager.GetService*"></a>
+  <h4 id="i5_Toolkit_Core_ServiceCore_ServiceManager_GetService__1" data-uid="i5.Toolkit.Core.ServiceCore.ServiceManager.GetService``1">GetService&lt;T&gt;()</h4>
+  <div class="markdown level1 summary"><p>Gets the service instance with the given type</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static T GetService&lt;T&gt;()
+    where T : IService</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><p>Returns the registered service instance</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The type of service</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="i5_Toolkit_Core_ServiceCore_ServiceManager_InstGetService_" data-uid="i5.Toolkit.Core.ServiceCore.ServiceManager.InstGetService*"></a>
+  <h4 id="i5_Toolkit_Core_ServiceCore_ServiceManager_InstGetService__1" data-uid="i5.Toolkit.Core.ServiceCore.ServiceManager.InstGetService``1">InstGetService&lt;T&gt;()</h4>
+  <div class="markdown level1 summary"><p>Gets the service instance with the given type that is registered at this instance</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public T InstGetService&lt;T&gt;()
+    where T : IService</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><p>Returns the registered service instance</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The type of service</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="i5_Toolkit_Core_ServiceCore_ServiceManager_InstRegisterService_" data-uid="i5.Toolkit.Core.ServiceCore.ServiceManager.InstRegisterService*"></a>
+  <h4 id="i5_Toolkit_Core_ServiceCore_ServiceManager_InstRegisterService__1___0_" data-uid="i5.Toolkit.Core.ServiceCore.ServiceManager.InstRegisterService``1(``0)">InstRegisterService&lt;T&gt;(T)</h4>
+  <div class="markdown level1 summary"><p>Instance method for registering a new service</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void InstRegisterService&lt;T&gt;(T service)
+    where T : IService</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">service</span></td>
+        <td><p>The service instance which should be registered</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The type of service</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="i5_Toolkit_Core_ServiceCore_ServiceManager_InstRemoveService_" data-uid="i5.Toolkit.Core.ServiceCore.ServiceManager.InstRemoveService*"></a>
+  <h4 id="i5_Toolkit_Core_ServiceCore_ServiceManager_InstRemoveService__1" data-uid="i5.Toolkit.Core.ServiceCore.ServiceManager.InstRemoveService``1">InstRemoveService&lt;T&gt;()</h4>
+  <div class="markdown level1 summary"><p>Removes a service with the given type from this ServiceManager instance</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void InstRemoveService&lt;T&gt;()
+    where T : IService</code></pre>
+  </div>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The type of service</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="i5_Toolkit_Core_ServiceCore_ServiceManager_InstServiceExists_" data-uid="i5.Toolkit.Core.ServiceCore.ServiceManager.InstServiceExists*"></a>
+  <h4 id="i5_Toolkit_Core_ServiceCore_ServiceManager_InstServiceExists__1" data-uid="i5.Toolkit.Core.ServiceCore.ServiceManager.InstServiceExists``1">InstServiceExists&lt;T&gt;()</h4>
+  <div class="markdown level1 summary"><p>Checks if a service with the given type exists at this instance</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool InstServiceExists&lt;T&gt;()
+    where T : IService</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p>Returns true if a service of the given type was registered at this instance</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The type of service</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="i5_Toolkit_Core_ServiceCore_ServiceManager_OnRunnerDestroyed_" data-uid="i5.Toolkit.Core.ServiceCore.ServiceManager.OnRunnerDestroyed*"></a>
+  <h4 id="i5_Toolkit_Core_ServiceCore_ServiceManager_OnRunnerDestroyed" data-uid="i5.Toolkit.Core.ServiceCore.ServiceManager.OnRunnerDestroyed">OnRunnerDestroyed()</h4>
+  <div class="markdown level1 summary"><p>Called if the runner object is destroyed
+Makes sure that the runner persists if it was destroyed by some other script</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void OnRunnerDestroyed()</code></pre>
+  </div>
+  
+  
+  <a id="i5_Toolkit_Core_ServiceCore_ServiceManager_RegisterService_" data-uid="i5.Toolkit.Core.ServiceCore.ServiceManager.RegisterService*"></a>
+  <h4 id="i5_Toolkit_Core_ServiceCore_ServiceManager_RegisterService__1___0_" data-uid="i5.Toolkit.Core.ServiceCore.ServiceManager.RegisterService``1(``0)">RegisterService&lt;T&gt;(T)</h4>
+  <div class="markdown level1 summary"><p>Registers a new service at the service manager</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void RegisterService&lt;T&gt;(T service)
+    where T : IService</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">service</span></td>
+        <td><p>The service instance which should be registered at the ServiceManager</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The type of service</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="i5_Toolkit_Core_ServiceCore_ServiceManager_RemoveService_" data-uid="i5.Toolkit.Core.ServiceCore.ServiceManager.RemoveService*"></a>
+  <h4 id="i5_Toolkit_Core_ServiceCore_ServiceManager_RemoveService__1" data-uid="i5.Toolkit.Core.ServiceCore.ServiceManager.RemoveService``1">RemoveService&lt;T&gt;()</h4>
+  <div class="markdown level1 summary"><p>Removes a provider with the given type from the ServiceManager</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void RemoveService&lt;T&gt;()
+    where T : IService</code></pre>
+  </div>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The type of service</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="i5_Toolkit_Core_ServiceCore_ServiceManager_ServiceExists_" data-uid="i5.Toolkit.Core.ServiceCore.ServiceManager.ServiceExists*"></a>
+  <h4 id="i5_Toolkit_Core_ServiceCore_ServiceManager_ServiceExists__1" data-uid="i5.Toolkit.Core.ServiceCore.ServiceManager.ServiceExists``1">ServiceExists&lt;T&gt;()</h4>
+  <div class="markdown level1 summary"><p>Checks if a service with the given type exists at the ServiceManager</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool ServiceExists&lt;T&gt;()
+    where T : IService</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p>Returns true if a service of the given type was registered</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The type of service</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="i5_Toolkit_Core_ServiceCore_ServiceManager_Update_" data-uid="i5.Toolkit.Core.ServiceCore.ServiceManager.Update*"></a>
+  <h4 id="i5_Toolkit_Core_ServiceCore_ServiceManager_Update" data-uid="i5.Toolkit.Core.ServiceCore.ServiceManager.Update">Update()</h4>
+  <div class="markdown level1 summary"><p>Called by the update runner
+Updates the updateable services</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Update()</code></pre>
+  </div>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="i5.Toolkit.Core.ServiceCore.IServiceManager.html">IServiceManager</a>
+  </div>
+  <div>
+      <a class="xref" href="i5.Toolkit.Core.ServiceCore.IRunnerReceiver.html">IRunnerReceiver</a>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            i5 Toolkit Documentation
+            
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

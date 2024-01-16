@@ -1,5 +1,6 @@
 {
     "name": "i5.Toolkit.Core.Runtime",
+    "rootNamespace": "",
     "references": [
         "Unity.TextMeshPro"
     ],
@@ -12,8 +13,8 @@
     "defineConstraints": [],
     "versionDefines": [
         {
-            "name": "jillejr.newtonsoft.json-for-unity",
-            "expression": "12.0",
+            "name": "com.unity.nuget.newtonsoft-json",
+            "expression": "2",
             "define": "NEWTONSOFT_JSON"
         }
     ],

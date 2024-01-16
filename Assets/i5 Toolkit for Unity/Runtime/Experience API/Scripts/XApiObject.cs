@@ -25,6 +25,7 @@ namespace i5.Toolkit.Core.ExperienceAPI
         /// </summary>
         public Dictionary<string, string> nameDisplay;
 
+        [NonSerialized]
         /// <summary>
         /// The defined type of an activity. MUST be an IRI. Optional.
         /// </summary>

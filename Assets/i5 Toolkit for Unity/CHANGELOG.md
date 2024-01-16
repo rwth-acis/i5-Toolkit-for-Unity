@@ -11,7 +11,7 @@ This document keeps track of the changes between versions of the toolkit.
 - Spawner will now place the instantiated object at the spawner's position.
 
 ### Fixed
-- GitHub login now uses the new RestConnector to encode JSON payloads in the expected format
+- GitHub login now uses the new RestConnector to encode JSON payloads in the expected format.
 
 ## 1.9.0 (2023-02-13)
 

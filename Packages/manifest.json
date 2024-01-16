@@ -1,13 +1,5 @@
 {
-  "scopedRegistries": [
-    {
-      "name": "Packages from jillejr",
-      "url": "https://npm.cloudsmith.io/jillejr/newtonsoft-json-for-unity/",
-      "scopes": [
-        "jillejr"
-      ]
-    }
-  ],
+  "scopedRegistries": [],
   "dependencies": {
     "com.github-glitchenzo.nugetforunity": "https://github.com/GlitchEnzo/NuGetForUnity.git?path=/src/NuGetForUnity#v3.1.3",
     "com.unity.2d.sprite": "1.0.0",
@@ -18,7 +10,7 @@
     "com.unity.ide.rider": "3.0.24",
     "com.unity.ide.visualstudio": "2.0.20",
     "com.unity.ide.vscode": "1.2.5",
-    "com.unity.purchasing": "4.3.0",
+    "com.unity.nuget.newtonsoft-json": "3.2.1",
     "com.unity.test-framework": "1.3.8",
     "com.unity.testtools.codecoverage": "1.0.1",
     "com.unity.textmeshpro": "3.0.6",

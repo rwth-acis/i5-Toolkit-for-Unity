@@ -2,6 +2,14 @@
 
 This document keeps track of the changes between versions of the toolkit.
 
+## 1.9.2 (2024-01-16)
+
+### Changed
+- Updated the soft dependency of the xAPI module to com.unity.nuget.newtonsoft-json instead of the jilleJr package. Advanced mode of the xAPI module will now be activated if com.unity.nuget.newtonsoft-json is installed.
+
+### Fixed
+- Fixed an error in simple mode of the xAPI module where sent statements were rejected due to an incorrect serialization of the type field.
+
 ## 1.9.1 (2023-10-22)
 
 ### Added
@@ -11,7 +19,7 @@ This document keeps track of the changes between versions of the toolkit.
 - Spawner will now place the instantiated object at the spawner's position.
 
 ### Fixed
-- GitHub login now uses the new RestConnector to encode JSON payloads in the expected format.
+- GitHub login now uses the new RestConnector to encode JSON payloads in the expected format
 
 ## 1.9.0 (2023-02-13)
 

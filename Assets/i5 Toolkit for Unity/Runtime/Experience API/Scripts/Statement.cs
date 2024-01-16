@@ -122,10 +122,10 @@ namespace i5.Toolkit.Core.ExperienceAPI
             i5Debug.LogWarning("Running in standard mode since the project does not contain " +
                 "the required Newtonsoft JSON library for advanced features.\n" +
                 "In standard mode you can only send straightforward Actor-Verb-Object statements.\n" +
-                "To use advanced features, install the Newtonsoft JSON library from https://github.com/jilleJr/Newtonsoft.Json-for-Unity. \n",
+                "To use advanced features, install the Newtonsoft JSON library \"com.unity.nuget.newtonsoft-json\" https://docs.unity3d.com/Packages/com.unity.nuget.newtonsoft-json@2.0/manual/index.html.",
                 this);
             return JsonUtility.ToJson(this);
 #endif
-        }
-    }
+		}
+	}
 }

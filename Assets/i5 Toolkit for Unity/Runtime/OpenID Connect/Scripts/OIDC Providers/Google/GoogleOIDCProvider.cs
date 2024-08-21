@@ -174,7 +174,6 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
             GenerateCSRFToken();
             string responseType = AuthorizationFlow == AuthorizationFlow.AUTHORIZATION_CODE ? "code" : "token";
             string uriScopes = UriUtils.WordArrayToSpaceEscapedString(scopes);
-            redirectUri += "code?";
             string uri = authorizationEndpoint + $"?client_id={ClientData.ClientId}" + $"&response_type={responseType}" +
                     $"&redirect_uri={redirectUri}" + $"&scope={uriScopes}" + $"&state={state}";
             Browser.OpenURL(uri);

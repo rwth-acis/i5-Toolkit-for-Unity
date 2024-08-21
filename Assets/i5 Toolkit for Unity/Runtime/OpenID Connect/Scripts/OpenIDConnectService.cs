@@ -248,7 +248,7 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         /// Called each frame by the service manager
         /// Handles the redirect processing on the main thread
         /// </summary>
-        public virtual async void Update()
+        public async void Update()
         {
             // if we did not cache a redirect event argument: nothing to do
             if (eventArgs == null)

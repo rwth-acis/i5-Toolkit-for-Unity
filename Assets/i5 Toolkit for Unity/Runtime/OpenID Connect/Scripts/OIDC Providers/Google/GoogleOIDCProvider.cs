@@ -60,9 +60,7 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         /// <returns>Returns the access token if it could be retrieved; otherwise it returns an empty string</returns>
         public override async Task<string> GetAccessTokenFromCodeAsync(string code, string redirectUri)
         {
-            redirectUri += "code?";
-
-            EndpointsData endpoints = await InitializeEndpointsAsync();
+            await InitializeEndpointsAsync();
             if (ClientData == null)
             {
                 i5Debug.LogError("No client data supplied for the OpenID Connect Client.\n" +
@@ -97,6 +95,46 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
             {
                 i5Debug.LogError(response.ErrorMessage + ": " + response.Content, this);
                 return "";
+            }
+        }
+
+        public override async Task<AbstractAuthorizationFlowAnswer> GetAuthorizationAnswerAsync(string code, string redirectUri)
+        {
+            await InitializeEndpointsAsync();
+            if (ClientData == null)
+            {
+                i5Debug.LogError("No client data supplied for the OpenID Connect Client.\n" +
+                                 "Initialize this provider with an OpenID Connect Data file.", this);
+                return null;
+            }
+
+            WWWForm form = new WWWForm();
+            form.AddField("code", code);
+            form.AddField("client_id", ClientData.ClientId);
+            form.AddField("client_secret", ClientData.ClientSecret);
+            form.AddField("redirect_uri", redirectUri);
+            form.AddField("grant_type", "authorization_code");
+
+            Dictionary<string, string> headers = new Dictionary<string, string>()
+            {
+                { "Content-Type", "application/x-www-form-urlencoded" }
+            };
+            WebResponse<string> response = await RestConnector.PostAsync(tokenEndpoint, form.data, headers);
+            if (response.Successful)
+            {
+                GoogleAuthorizationFlowAnswer answer =
+                    JsonSerializer.FromJson<GoogleAuthorizationFlowAnswer>(response.Content);
+                if (answer == null)
+                {
+                    i5Debug.LogError("Could not parse access token in code flow answer", this);
+                    return null;
+                }
+                return answer;
+            }
+            else
+            {
+                i5Debug.LogError(response.ErrorMessage + ": " + response.Content, this);
+                return null;
             }
         }
 

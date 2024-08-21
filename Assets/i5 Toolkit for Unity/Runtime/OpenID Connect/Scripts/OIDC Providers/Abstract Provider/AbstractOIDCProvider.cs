@@ -195,6 +195,45 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
             }
         }
 
+        public virtual async Task<AbstractAuthorizationFlowAnswer> GetAuthorizationAnswerAsync(string code, string redirectUri)
+        {
+            if (ClientData == null)
+            {
+                i5Debug.LogError("No client data supplied for the OpenID Connect Client.\n" +
+                                 "Initialize this provider with an OpenID Connect Data file.", this);
+                return null;
+            }
+
+            WWWForm form = new WWWForm();
+            form.AddField("client_id", ClientData.ClientId);
+            form.AddField("client_secret", ClientData.ClientSecret);
+            form.AddField("grant_type", "authorization_code");
+            form.AddField("redirect_uri", redirectUri);
+            form.AddField("code", code);
+
+            Dictionary<string, string> headers = new Dictionary<string, string>()
+            {
+                { "Content-Type", "application/x-www-form-urlencoded" }
+            };
+            WebResponse<string> response = await RestConnector.PostAsync(tokenEndpoint, form.data, headers);
+            if (response.Successful)
+            {
+                AbstractAuthorizationFlowAnswer answer =
+                    JsonSerializer.FromJson<AbstractAuthorizationFlowAnswer>(response.Content);
+                if (answer == null)
+                {
+                    i5Debug.LogError("Could not parse access token in code flow answer", this);
+                    return null;
+                }
+                return answer;
+            }
+            else
+            {
+                Debug.LogError(response.ErrorMessage + ": " + response.Content);
+                return null;
+            }
+        }
+
         /// <summary>
         /// Gets the access token from a list of parameters in a Web answer
         /// </summary>

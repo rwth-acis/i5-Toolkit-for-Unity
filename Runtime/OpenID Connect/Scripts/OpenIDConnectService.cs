@@ -28,7 +28,7 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         /// The access token of the logged in user
         /// Use this token to access data about the user or to access protected Web resources
         /// </summary>
-        public string AccessToken { get; set; }
+        public string AccessToken { get; private set; }
 
         /// <summary>
         /// Is true if the user of the application is currently logged in
@@ -283,5 +283,24 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
                 i5Debug.LogError("An error occurred during the login process. The access token is empty.", this);
             }
         }
+
+        /// <summary>
+        /// Directly sets the access token and triggers the login event
+        /// Can be used to log in a user again with the same access token after initially logging out
+        /// </summary>
+        /// <param name="accessToken"></param>
+        /// <returns></returns>
+        public void LoginWithAccessToken(string accessToken)
+        {
+            AccessToken = accessToken;
+            if (!string.IsNullOrEmpty(AccessToken))
+            {
+                LoginCompleted?.Invoke(this, EventArgs.Empty);
+            }
+			else
+			{
+				i5Debug.LogError("An empty access token was passed to the service.", this);
+			}
+		}
     }
 }

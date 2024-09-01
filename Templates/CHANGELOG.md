@@ -2,6 +2,14 @@
 
 This document keeps track of the changes between versions of the toolkit.
 
+## 1.9.3 (2024-09-01)
+
+### Added
+- Added an option to directly set the access token in the Open ID Connect service
+
+### Changed
+- Fixed a link in the GitHub OpenID Connect implementation
+
 ## 1.9.2 (2024-01-16)
 
 ### Changed

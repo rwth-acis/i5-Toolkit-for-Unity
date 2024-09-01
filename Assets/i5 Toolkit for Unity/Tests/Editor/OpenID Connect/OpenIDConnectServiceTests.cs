@@ -390,5 +390,28 @@ namespace i5.Toolkit.Core.Tests.OpenIDConnectClient
 
             Assert.IsFalse(oidc.IsLoggedIn);
         }
-    }
+
+		[Test]
+		public void LoginWithAccessToken_LoginCompletedEventRaised()
+		{
+			OpenIDConnectService oidc = new OpenIDConnectService();
+			int events = 0;
+			oidc.LoginCompleted += delegate
+			{
+				events++;
+			};
+
+			oidc.LoginWithAccessToken("myAccessToken");
+			Assert.AreEqual(1, events);
+		}
+
+        [Test]
+        public void LoginWithAccessToken_AccessTokenSet()
+        {
+			OpenIDConnectService oidc = new OpenIDConnectService();
+            string accessToken = "myAccessToken";
+			oidc.LoginWithAccessToken(accessToken);
+			Assert.AreEqual(accessToken, oidc.AccessToken);
+		}
+	}
 }

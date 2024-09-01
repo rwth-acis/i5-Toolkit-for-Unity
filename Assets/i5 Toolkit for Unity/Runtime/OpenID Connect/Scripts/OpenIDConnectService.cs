@@ -28,7 +28,7 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         /// The access token of the logged in user
         /// Use this token to access data about the user or to access protected Web resources
         /// </summary>
-        public string AccessToken { get; private set; }
+        public string AccessToken { get; set; }
 
         /// <summary>
         /// Is true if the user of the application is currently logged in

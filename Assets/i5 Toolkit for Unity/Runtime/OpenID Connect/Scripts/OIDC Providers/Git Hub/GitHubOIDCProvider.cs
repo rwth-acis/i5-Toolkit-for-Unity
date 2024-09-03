@@ -62,6 +62,38 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
             }
         }
 
+        public override async Task<AbstractAuthorizationFlowAnswer> GetAuthorizationAnswerAsync(string code, string redirectUri)
+        {
+            if (ClientData == null)
+            {
+                i5Debug.LogError("No client data supplied for the OpenID Connect Client.\n" +
+                                 "Initialize this provider with an OpenID Connect Data file.", this);
+                return null;
+            }
+
+            string uri = tokenEndpoint + $"?client_id={ClientData.ClientId}" +
+                         $"&redirect_uri={redirectUri}" + $"&client_secret={ClientData.ClientSecret}&code={code}&grant_type=authorization_code";
+            WebResponse<string> response = await RestConnector.PostAsync(uri, "");
+
+            if (response.Successful)
+            {
+                string response_content = response.Content;
+                GitHubAuthorizationFlowAnswer answer =
+                    JsonSerializer.FromJson<GitHubAuthorizationFlowAnswer>(response_content);
+                if (answer == null)
+                {
+                    i5Debug.LogError("Could not parse access token in code flow answer", this);
+                    return null;
+                }
+                return answer;
+            }
+            else
+            {
+                i5Debug.LogError(response.ErrorMessage + ": " + response.Content, this);
+                return null;
+            }
+        }
+
         /// <summary>
         /// Gets information about the logged in user from the GitHub provider
         /// </summary>

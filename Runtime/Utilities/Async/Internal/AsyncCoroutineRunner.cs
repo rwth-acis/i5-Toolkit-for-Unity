@@ -22,116 +22,156 @@
 
 using System;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 
-[assembly: InternalsVisibleTo("Microsoft.MixedReality.Toolkit.Tests.PlayModeTests")]
 namespace i5.Toolkit.Core.Utilities.Async
 {
-    /// <summary>
-    /// This Async Coroutine Runner is just an object to
-    /// ensure that coroutines run properly with async/await.
-    /// </summary>
-    /// <remarks>
-    /// The object that this MonoBehavior is attached to must be a root object in the
-    /// scene, as it will be marked as DontDestroyOnLoad (so that when scenes are changed,
-    /// it will persist instead of being destroyed). The runner will force itself to
-    /// the root of the scene if it's rooted elsewhere.
-    /// </remarks>
-    [AddComponentMenu("Scripts/MRTK/Core/AsyncCoroutineRunner")]
-    internal sealed class AsyncCoroutineRunner : MonoBehaviour
-    {
-        private static AsyncCoroutineRunner instance;
+	/// <summary>
+	/// This Async Coroutine Runner is just an object to
+	/// ensure that coroutines run properly with async/await.
+	/// </summary>
+	/// <remarks>
+	/// <para>The object that this MonoBehavior is attached to must be a root object in the
+	/// scene, as it will be marked as DontDestroyOnLoad (so that when scenes are changed,
+	/// it will persist instead of being destroyed). The runner will force itself to
+	/// the root of the scene if it's rooted elsewhere.</para>
+	/// </remarks>
+	[AddComponentMenu("Scripts/i5/Core/AsyncCoroutineRunner")]
+	internal sealed class AsyncCoroutineRunner : MonoBehaviour
+	{
+		private static AsyncCoroutineRunner instance;
 
-        private static readonly Queue<Action> Actions = new Queue<Action>();
+		private static bool isInstanceRunning = false;
 
-        internal static AsyncCoroutineRunner Instance
-        {
-            get
-            {
-                if (instance == null)
-                {
-                    instance = FindObjectOfType<AsyncCoroutineRunner>();
-                }
+		private static readonly Queue<Action> Actions = new Queue<Action>();
 
-                if (instance == null)
-                {
-                    var instanceGameObject = GameObject.Find("AsyncCoroutineRunner");
+		internal static AsyncCoroutineRunner Instance
+		{
+			get
+			{
+				if (instance == null)
+				{
+#if UNITY_2021_3_OR_NEWER
+                    instance = UnityEngine.Object.FindFirstObjectByType<AsyncCoroutineRunner>();
+#else
+					instance = GameObject.FindObjectOfType<AsyncCoroutineRunner>();
+#endif
+				}
 
-                    if (instanceGameObject != null)
-                    {
-                        instance = instanceGameObject.GetComponent<AsyncCoroutineRunner>();
+				// FindObjectOfType() only search for objects attached to active GameObjects. The FindObjectOfType(bool includeInactive) variant is not available to Unity 2019.4 and earlier so cannot be used.
+				// We instead search for GameObject called AsyncCoroutineRunner and see if it has the component attached.
+				if (instance == null)
+				{
+					var instanceGameObject = GameObject.Find("AsyncCoroutineRunner");
 
-                        if (instance == null)
-                        {
-                            Debug.Log("[AsyncCoroutineRunner] Found GameObject but didn't have component");
+					if (instanceGameObject != null)
+					{
+						instance = instanceGameObject.GetComponent<AsyncCoroutineRunner>();
 
-                            if (Application.isPlaying)
-                            {
-                                Destroy(instanceGameObject);
-                            }
-                            else
-                            {
-                                DestroyImmediate(instanceGameObject);
-                            }
-                        }
-                    }
-                }
+						if (instance == null)
+						{
+							Debug.Log("[AsyncCoroutineRunner] Found a \"AsyncCoroutineRunner\" GameObject but didn't have the AsyncCoroutineRunner component attached. Attaching the script.");
+							instance = instanceGameObject.AddComponent<AsyncCoroutineRunner>();
+						}
+					}
+				}
 
-                if (instance == null)
-                {
-                    instance = new GameObject("AsyncCoroutineRunner").AddComponent<AsyncCoroutineRunner>();
-                }
+				if (instance == null)
+				{
+					Debug.Log("[AsyncCoroutineRunner] There is no AsyncCoroutineRunner in the scene. Adding a GameObject with AsyncCoroutineRunner attached at the root of the scene.");
+					instance = new GameObject("AsyncCoroutineRunner").AddComponent<AsyncCoroutineRunner>();
+				}
+				else if (!instance.isActiveAndEnabled)
+				{
+					if (!instance.enabled)
+					{
+						Debug.LogWarning("[AsyncCoroutineRunner] Found a disabled AsyncCoroutineRunner component. Enabling the component.");
+						instance.enabled = true;
+					}
+					if (!instance.gameObject.activeSelf)
+					{
+						Debug.LogWarning("[AsyncCoroutineRunner] Found an AsyncCoroutineRunner attached to an inactive GameObject. Setting the GameObject active.");
+						instance.gameObject.SetActive(true);
+					}
+				}
 
-                instance.gameObject.hideFlags = HideFlags.None;
+				instance.gameObject.hideFlags = HideFlags.None;
 
-                // AsyncCoroutineRunner must be at the root so that we can call DontDestroyOnLoad on it.
-                // This is ultimately to ensure that it persists across scene loads/unloads.
-                if (instance.transform.parent != null)
-                {
-                    Debug.LogWarning($"AsyncCoroutineRunner was found as a child of another GameObject {instance.transform.parent}, " +
-                        "it must be a root object in the scene. Moving the AsyncCoroutineRunner to the root.");
-                    instance.transform.parent = null;
-                }
+				// AsyncCoroutineRunner must be at the root so that we can call DontDestroyOnLoad on it.
+				// This is ultimately to ensure that it persists across scene loads/unloads.
+				if (instance.transform.parent != null)
+				{
+					Debug.LogWarning($"[AsyncCoroutineRunner] AsyncCoroutineRunner was found as a child of another GameObject {instance.transform.parent}, " +
+						"it must be a root object in the scene. Moving the AsyncCoroutineRunner to the root.");
+					instance.transform.parent = null;
+				}
 
 #if !UNITY_EDITOR
                 DontDestroyOnLoad(instance);
 #endif
+				return instance;
+			}
+		}
 
-                return instance;
-            }
-        }
+		internal static void Post(Action task)
+		{
+			lock (Actions)
+			{
+				Actions.Enqueue(task);
+			}
+		}
 
-        internal static void Post(Action task)
-        {
-            lock (Actions)
-            {
-                Actions.Enqueue(task);
-            }
-        }
+		internal static bool IsInstanceRunning => isInstanceRunning;
 
-        private void Update()
-        {
-            Debug.Assert(Instance != null);
+		private void Update()
+		{
+			if (Instance != this)
+			{
+				Debug.Log("[AsyncCoroutineRunner] Multiple active AsyncCoroutineRunners is present in the scene. Disabling duplicate ones.");
+				enabled = false;
+				return;
+			}
+			isInstanceRunning = true;
 
-            int actionCount;
+			int actionCount;
 
-            lock (Actions)
-            {
-                actionCount = Actions.Count;
-            }
+			lock (Actions)
+			{
+				actionCount = Actions.Count;
+			}
 
-            for (int i = 0; i < actionCount; i++)
-            {
-                Action next;
+			for (int i = 0; i < actionCount; i++)
+			{
+				Action next;
 
-                lock (Actions)
-                {
-                    next = Actions.Dequeue();
-                }
+				lock (Actions)
+				{
+					next = Actions.Dequeue();
+				}
 
-                next();
-            }
-        }
-    }
+				next();
+			}
+		}
+
+		private void OnDisable()
+		{
+			if (instance == this)
+			{
+				isInstanceRunning = false;
+			}
+		}
+
+		private void OnEnable()
+		{
+			if (Instance != this)
+			{
+				Debug.Log("[AsyncCoroutineRunner] Multiple active AsyncCoroutineRunners is present in the scene. Disabling duplicate ones.");
+				enabled = false;
+			}
+			else
+			{
+				isInstanceRunning = true;
+			}
+		}
+	}
 }

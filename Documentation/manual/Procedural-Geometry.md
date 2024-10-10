@@ -60,7 +60,7 @@ In the following code examples `v0, v1, v2...` are integer indices of previously
 
 ![Triangle](../resources/ProceduralGeometry/Triangle.svg)
 
-To add triangles, call the method <xref:i5.Toolkit.Core.ProceduralGeometry.GeometryConstructor.AddTriangle(System.Int32, System.Int32, System.Int32, System.Boolean)>
+To add triangles, call the method <xref:i5.Toolkit.Core.ProceduralGeometry.GeometryConstructor.AddTriangle(System.Int32,System.Int32,System.Int32,System.Boolean)>
 ```[C#]
 geometryConstructor.AddTriangle(v0, v1, v2);
 ```
@@ -69,7 +69,7 @@ geometryConstructor.AddTriangle(v0, v1, v2);
 
 ![Quad](../resources/ProceduralGeometry/Quad.svg)
 
-To add quads, call the method <xref:i5.Toolkit.Core.ProceduralGeometry.GeometryConstructor(System.Int32, System.Int32, System.Int32, System.Int32, System.Boolean)>
+To add quads, call the method <xref:i5.Toolkit.Core.ProceduralGeometry.GeometryConstructor.AddQuad(System.Int32,System.Int32,System.Int32,System.Int32,System.Boolean)>
 ```[C#]
 geometryConstructor.AddQuad(v0, v1, v2, v3);
 ```
@@ -79,7 +79,7 @@ The quad is automatically converted to two triangles as shown in the figure.
 
 ![Triangle Fan](../resources/ProceduralGeometry/TriangleFan.svg)
 
-You can add a triangle fan using the method <xref:i5.Toolkit.Core.ProceduralGeometry.GeometryConstructor.AddTriangleFan(System.Int32, System.Int32[], System.Boolean)>
+You can add a triangle fan using the method <xref:i5.Toolkit.Core.ProceduralGeometry.GeometryConstructor.AddTriangleFan(System.Int32,System.Int32[],System.Boolean)>
 Specify the pole (the vertex which is part of all triangles) first and after that, list the vertices clockwise.
 
 ```[C#]

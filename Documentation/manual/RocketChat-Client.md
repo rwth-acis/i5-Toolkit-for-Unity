@@ -55,7 +55,7 @@ Continue by [handling the result of this call](#login-result).
 Instead of creating a personal access token in Rocket.Chat's profile settings, it can be more intuitive for the user to log in using the username and password.
 This is also supported by the module.
 Construct text fields that let the user enter the credentials.
-After that, call <xref:i5.Toolkit.Core.RocketChatClient.RocketChatService.LoginAsync(System.String, System.String)> and pass the specified username and password to it.
+After that, call <xref:i5.Toolkit.Core.RocketChatClient.RocketChatService.LoginAsync(System.String,System.String)> and pass the specified username and password to it.
 Continue in section [login result](#login-result) to check if the login was successful.
 
 #### Login Result

@@ -47,7 +47,7 @@ namespace i5.Toolkit.Core.Utilities
 
         public virtual async Task<WebResponse<string>> PostAsync(string uri, string putJson, Dictionary<string, string> headers = null)
         {
-            using (UnityWebRequest req = UnityWebRequest.Post(uri, putJson))
+            using (UnityWebRequest req = UnityWebRequest.PostWwwForm(uri, putJson))
             {
                 req.downloadHandler = new DownloadHandlerBuffer();
                 req.SetRequestHeader("Content-Type", "application/json");

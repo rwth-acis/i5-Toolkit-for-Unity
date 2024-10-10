@@ -21,7 +21,8 @@ namespace i5.Toolkit.Core.Utilities.ContentLoaders
             {
                 await req.SendWebRequest();
 
-                if (req.isNetworkError || req.isHttpError)
+                if (req.result == UnityWebRequest.Result.ConnectionError ||
+                    req.result == UnityWebRequest.Result.ProtocolError)
                 {
                     i5Debug.LogError("Get request to: " + uri + " returned with error " + req.error, this);
                     return new WebResponse<string>(false, req.downloadHandler.text, req.downloadHandler.data, req.responseCode, req.error);

@@ -1,0 +1,295 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Class GitVersionCalculator
+ | i5 Toolkit Documentation </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Class GitVersionCalculator
+ | i5 Toolkit Documentation ">
+    
+      <link rel="shortcut icon" href="../resources/Logos/Logo_whiteBg.svg">
+      <link rel="stylesheet" href="../styles/docfx.vendor.css">
+      <link rel="stylesheet" href="../styles/docfx.css">
+      <link rel="stylesheet" href="../styles/main.css">
+      <meta property="docfx:navrel" content="../toc.html">
+      <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../resources/Logos/Logo_whiteBg.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="i5.Toolkit.Core.VersionTool.GitVersionCalculator">
+
+
+  <h1 id="i5_Toolkit_Core_VersionTool_GitVersionCalculator" data-uid="i5.Toolkit.Core.VersionTool.GitVersionCalculator" class="text-break">Class GitVersionCalculator
+</h1>
+  <div class="markdown level0 summary"><p>Uses Git to calculate the version of the application</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">object</span></div>
+    <div class="level1"><span class="xref">GitVersionCalculator</span></div>
+  </div>
+  <div class="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="i5.Toolkit.Core.VersionTool.IGitVersionCalculator.html">IGitVersionCalculator</a></div>
+  </div>
+  <h6><strong>Namespace</strong>: <span class="xref">i5</span>.<span class="xref">Toolkit</span>.<span class="xref">Core</span>.<a class="xref" href="i5.Toolkit.Core.VersionTool.html">VersionTool</a></h6>
+  <h6><strong>Assembly</strong>: cs.temp.dll.dll</h6>
+  <h5 id="i5_Toolkit_Core_VersionTool_GitVersionCalculator_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class GitVersionCalculator : IGitVersionCalculator</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+</h3>
+
+
+  <a id="i5_Toolkit_Core_VersionTool_GitVersionCalculator__ctor_" data-uid="i5.Toolkit.Core.VersionTool.GitVersionCalculator.#ctor*"></a>
+  <h4 id="i5_Toolkit_Core_VersionTool_GitVersionCalculator__ctor" data-uid="i5.Toolkit.Core.VersionTool.GitVersionCalculator.#ctor">GitVersionCalculator()</h4>
+  <div class="markdown level1 summary"><p>Creates a new instance of the version calculator</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GitVersionCalculator()</code></pre>
+  </div>
+  <h3 id="methods">Methods
+</h3>
+
+
+  <a id="i5_Toolkit_Core_VersionTool_GitVersionCalculator_TryGetBranch_" data-uid="i5.Toolkit.Core.VersionTool.GitVersionCalculator.TryGetBranch*"></a>
+  <h4 id="i5_Toolkit_Core_VersionTool_GitVersionCalculator_TryGetBranch_System_String__" data-uid="i5.Toolkit.Core.VersionTool.GitVersionCalculator.TryGetBranch(System.String@)">TryGetBranch(out string)</h4>
+  <div class="markdown level1 summary"><p>Tries to get the name of the currently checked out branch in git</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool TryGetBranch(out string branchName)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">branchName</span></td>
+        <td><p>If the branch name could be fetched, it is passed to this out parameter</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>Returns true if the branch name could be fetched, otherwise false</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="i5_Toolkit_Core_VersionTool_GitVersionCalculator_TryGetTotalCommitsOnBranch_" data-uid="i5.Toolkit.Core.VersionTool.GitVersionCalculator.TryGetTotalCommitsOnBranch*"></a>
+  <h4 id="i5_Toolkit_Core_VersionTool_GitVersionCalculator_TryGetTotalCommitsOnBranch_System_Int32__" data-uid="i5.Toolkit.Core.VersionTool.GitVersionCalculator.TryGetTotalCommitsOnBranch(System.Int32@)">TryGetTotalCommitsOnBranch(out int)</h4>
+  <div class="markdown level1 summary"><p>Tries to count the number of commits on the currently checked out branch</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool TryGetTotalCommitsOnBranch(out int commitCount)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">commitCount</span></td>
+        <td><p>If the number of commits could be fetched, it is passed to this out parameter</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>Returns true if the number of commits could be calculated, false otherwise</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="i5_Toolkit_Core_VersionTool_GitVersionCalculator_TryGetVersion_" data-uid="i5.Toolkit.Core.VersionTool.GitVersionCalculator.TryGetVersion*"></a>
+  <h4 id="i5_Toolkit_Core_VersionTool_GitVersionCalculator_TryGetVersion_System_String__" data-uid="i5.Toolkit.Core.VersionTool.GitVersionCalculator.TryGetVersion(System.String@)">TryGetVersion(out string)</h4>
+  <div class="markdown level1 summary"><p>Tries to get the version string based on git tags
+Assign a tag of the form &quot;v1.2&quot; in git
+The method will output a version of the form &quot;1.2.n&quot; where n is the number of commits since this tag</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool TryGetVersion(out string version)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">version</span></td>
+        <td><p>If a version could be retrieved, it will be passed to this out parameter</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>Returns true if the version could be read, otherwise false (e.g. when no tag exists or if git is not installed)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="i5.Toolkit.Core.VersionTool.IGitVersionCalculator.html">IGitVersionCalculator</a>
+  </div>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      i5 Toolkit Documentation
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

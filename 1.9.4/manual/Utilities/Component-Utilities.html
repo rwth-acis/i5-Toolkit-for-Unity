@@ -1,0 +1,178 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Component Utilities | i5 Toolkit Documentation </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Component Utilities | i5 Toolkit Documentation ">
+    
+      <link rel="shortcut icon" href="../../resources/Logos/Logo_whiteBg.svg">
+      <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+      <link rel="stylesheet" href="../../styles/docfx.css">
+      <link rel="stylesheet" href="../../styles/main.css">
+      <meta property="docfx:navrel" content="../../toc.html">
+      <meta property="docfx:tocrel" content="../toc.html">
+    
+    <meta property="docfx:rel" content="../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../resources/Logos/Logo_whiteBg.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="component-utilities">Component Utilities</h1>
+
+<h2 id="use-case">Use Case</h2>
+<p>Scripts can fetch references using the method <code>GetComponent</code>.
+However, this method should be used only if necessary.
+Therefore, scripts should cache the references once they are fetched.
+The method <a class="xref" href="../../api/i5.Toolkit.Core.Utilities.ComponentUtilities.html#i5_Toolkit_Core_Utilities_ComponentUtilities_EnsureComponentReference_">EnsureComponentReference</a> guarantees that a given component reference is set.</p>
+<p>Moreover, there are also cases where a script needs to access a component which is not yet attached to the GameObject.
+Components can be added using <code>AddComponent</code>.
+However, before adding a component to a GameObject, one should check if it already exists to avoid duplicates.
+The method <a class="xref" href="../../api/i5.Toolkit.Core.Utilities.ComponentUtilities.html#i5_Toolkit_Core_Utilities_ComponentUtilities_GetOrAddComponent_">GetOrAddComponent</a> provides a shortcut to do these steps.</p>
+<h2 id="usage">Usage</h2>
+<h3 id="ensure-component-reference">Ensure Component Reference</h3>
+<p>In order to cache a reference to another component in a script, create a variable for the component.
+There is no need to initialize the reference in <code>Awake</code> or <code>Start</code>.
+Whenever you access the variable with the reference, call <a class="xref" href="../../api/i5.Toolkit.Core.Utilities.ComponentUtilities.html#i5_Toolkit_Core_Utilities_ComponentUtilities_EnsureComponentReference_">EnsureComponentReference</a> just before it.
+After calling this method, the variable is ensured to be initialized with the reference.</p>
+<pre><code class="lang-[C#]">private OtherComponent referenceToOther;
+...
+private void Foo()
+{
+    ComponentUtilities.EnsureComponentReference(gameObject, ref referenceToOther, true);
+    referenceToOther.DoSomething();
+}
+</code></pre>
+<ul>
+<li>The first argument of the function is the GameObject on which the component should be searched.</li>
+<li>The second argument is the reference variable.
+<em>Important:</em> Provide the variable as a <a href="https://docs.microsoft.com/de-de/dotnet/csharp/language-reference/keywords/ref"><code>ref</code></a>.
+This way, the variable can be set by the <a class="xref" href="../../api/i5.Toolkit.Core.Utilities.ComponentUtilities.html#i5_Toolkit_Core_Utilities_ComponentUtilities_EnsureComponentReference_">EnsureComponentReference</a>.</li>
+<li>If the third argument is set to true, a new component will automatically be added in case it is not found.
+This also means that <a class="xref" href="../../api/i5.Toolkit.Core.Utilities.ComponentUtilities.html#i5_Toolkit_Core_Utilities_ComponentUtilities_EnsureComponentReference_">EnsureComponentReference</a> will definitely initialize the reference variable.
+If it is set to false and the component cannot be found, the reference variable remains <code>null</code>.</li>
+</ul>
+<p><em>Hint:</em></p>
+<p>Encapsulate the reference variable in a property with a getter and call <a class="xref" href="../../api/i5.Toolkit.Core.Utilities.ComponentUtilities.html#i5_Toolkit_Core_Utilities_ComponentUtilities_EnsureComponentReference_">EnsureComponentReference</a> before returning the reference.
+After that, only use the property in the script to access the reference.
+This way, you do not need to make sure that the reference is set every time it is used.</p>
+<pre><code class="lang-[C#]">private OtherComponent ReferenceToOther
+{
+    private OtherComponent referenceToOther;
+    get
+    {
+        ComponentUtilities.EnsureComponentReference(gameObject, ref referenceToOther, true);
+        return referenceToOther;
+    }
+    ...
+    private void Foo()
+    {
+        ReferenceToOther.DoSomething();
+    }
+}
+</code></pre>
+<h3 id="get-or-add-component">Get or Add Component</h3>
+<p><a class="xref" href="../../api/i5.Toolkit.Core.Utilities.ComponentUtilities.html#i5_Toolkit_Core_Utilities_ComponentUtilities_GetOrAddComponent_">GetOrAddComponent</a> combines <code>GetComponent</code> and <code>AddComponent</code>.
+First it tries to get the component using <code>GetComponent</code>.
+If the component cannot be found, it adds the component to the GameObject and returns the added instance.
+Therefore, it will always return a component instance and cannot return <code>null</code></p>
+<pre><code class="lang-[C#]">OtherComponent referenceToOther = ComponentUtilities.GetOrAddComponent&lt;OtherComponent&gt;(gameObject);
+</code></pre>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/rwth-acis/i5-Toolkit-for-Unity/blob/develop/Documentation/manual/Utilities/Component-Utilities.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      i5 Toolkit Documentation
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

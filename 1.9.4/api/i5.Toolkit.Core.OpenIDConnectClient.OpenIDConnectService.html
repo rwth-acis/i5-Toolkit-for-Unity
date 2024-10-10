@@ -1,0 +1,630 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Class OpenIDConnectService
+ | i5 Toolkit Documentation </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Class OpenIDConnectService
+ | i5 Toolkit Documentation ">
+    
+      <link rel="shortcut icon" href="../resources/Logos/Logo_whiteBg.svg">
+      <link rel="stylesheet" href="../styles/docfx.vendor.css">
+      <link rel="stylesheet" href="../styles/docfx.css">
+      <link rel="stylesheet" href="../styles/main.css">
+      <meta property="docfx:navrel" content="../toc.html">
+      <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../resources/Logos/Logo_whiteBg.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService">
+
+
+  <h1 id="i5_Toolkit_Core_OpenIDConnectClient_OpenIDConnectService" data-uid="i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService" class="text-break">Class OpenIDConnectService
+</h1>
+  <div class="markdown level0 summary"><p>Service that implements the OpenID Connect authentification</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">object</span></div>
+    <div class="level1"><span class="xref">OpenIDConnectService</span></div>
+  </div>
+  <h6><strong>Namespace</strong>: <span class="xref">i5</span>.<span class="xref">Toolkit</span>.<span class="xref">Core</span>.<a class="xref" href="i5.Toolkit.Core.OpenIDConnectClient.html">OpenIDConnectClient</a></h6>
+  <h6><strong>Assembly</strong>: cs.temp.dll.dll</h6>
+  <h5 id="i5_Toolkit_Core_OpenIDConnectClient_OpenIDConnectService_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class OpenIDConnectService : IUpdateableService</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+</h3>
+
+
+  <a id="i5_Toolkit_Core_OpenIDConnectClient_OpenIDConnectService__ctor_" data-uid="i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.#ctor*"></a>
+  <h4 id="i5_Toolkit_Core_OpenIDConnectClient_OpenIDConnectService__ctor" data-uid="i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.#ctor">OpenIDConnectService()</h4>
+  <div class="markdown level1 summary"><p>Creates a new instance of the OpenID Connect service</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public OpenIDConnectService()</code></pre>
+  </div>
+  <h3 id="properties">Properties
+</h3>
+
+
+  <a id="i5_Toolkit_Core_OpenIDConnectClient_OpenIDConnectService_AccessToken_" data-uid="i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.AccessToken*"></a>
+  <h4 id="i5_Toolkit_Core_OpenIDConnectClient_OpenIDConnectService_AccessToken" data-uid="i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.AccessToken">AccessToken</h4>
+  <div class="markdown level1 summary"><p>The access token of the logged in user
+Use this token to access data about the user or to access protected Web resources</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string AccessToken { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="i5_Toolkit_Core_OpenIDConnectClient_OpenIDConnectService_Enabled_" data-uid="i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.Enabled*"></a>
+  <h4 id="i5_Toolkit_Core_OpenIDConnectClient_OpenIDConnectService_Enabled" data-uid="i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.Enabled">Enabled</h4>
+  <div class="markdown level1 summary"><p>If set to true, the Update method will be executed every frame</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Enabled { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="i5_Toolkit_Core_OpenIDConnectClient_OpenIDConnectService_IsLoggedIn_" data-uid="i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.IsLoggedIn*"></a>
+  <h4 id="i5_Toolkit_Core_OpenIDConnectClient_OpenIDConnectService_IsLoggedIn" data-uid="i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.IsLoggedIn">IsLoggedIn</h4>
+  <div class="markdown level1 summary"><p>Is true if the user of the application is currently logged in</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsLoggedIn { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="i5_Toolkit_Core_OpenIDConnectClient_OpenIDConnectService_OidcProvider_" data-uid="i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.OidcProvider*"></a>
+  <h4 id="i5_Toolkit_Core_OpenIDConnectClient_OpenIDConnectService_OidcProvider" data-uid="i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.OidcProvider">OidcProvider</h4>
+  <div class="markdown level1 summary"><p>The provider that should be used for the OpenID Connect procedure</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IOidcProvider OidcProvider { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="i5.Toolkit.Core.OpenIDConnectClient.IOidcProvider.html">IOidcProvider</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="i5_Toolkit_Core_OpenIDConnectClient_OpenIDConnectService_RedirectURI_" data-uid="i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.RedirectURI*"></a>
+  <h4 id="i5_Toolkit_Core_OpenIDConnectClient_OpenIDConnectService_RedirectURI" data-uid="i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.RedirectURI">RedirectURI</h4>
+  <div class="markdown level1 summary"><p>The URI which should be shown to the user after the login
+For UWP and Android apps, change the Uri schema to something unique
+and also change it in the project settings
+This way, the app will be opened again on the redirect.
+If this URI is not set, a standard page is shown.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string RedirectURI { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="i5_Toolkit_Core_OpenIDConnectClient_OpenIDConnectService_Scopes_" data-uid="i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.Scopes*"></a>
+  <h4 id="i5_Toolkit_Core_OpenIDConnectClient_OpenIDConnectService_Scopes" data-uid="i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.Scopes">Scopes</h4>
+  <div class="markdown level1 summary"><p>List of scopes that the user must agree to and which give the client access to specific data</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string[] Scopes { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span>[]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="i5_Toolkit_Core_OpenIDConnectClient_OpenIDConnectService_ServerListener_" data-uid="i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.ServerListener*"></a>
+  <h4 id="i5_Toolkit_Core_OpenIDConnectClient_OpenIDConnectService_ServerListener" data-uid="i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.ServerListener">ServerListener</h4>
+  <div class="markdown level1 summary"><p>A server listener implementation that listens for the redirect</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IRedirectServerListener ServerListener { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="i5.Toolkit.Core.OpenIDConnectClient.IRedirectServerListener.html">IRedirectServerListener</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+</h3>
+
+
+  <a id="i5_Toolkit_Core_OpenIDConnectClient_OpenIDConnectService_CheckAccessToken_" data-uid="i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.CheckAccessToken*"></a>
+  <h4 id="i5_Toolkit_Core_OpenIDConnectClient_OpenIDConnectService_CheckAccessToken" data-uid="i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.CheckAccessToken">CheckAccessToken()</h4>
+  <div class="markdown level1 summary"><p>Checks if the access token is valid</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;bool&gt; CheckAccessToken()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task&lt;&gt;</span>&lt;<span class="xref">bool</span>&gt;</td>
+        <td><p>Returns true if the access token could be verified at the provider</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="i5_Toolkit_Core_OpenIDConnectClient_OpenIDConnectService_Cleanup_" data-uid="i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.Cleanup*"></a>
+  <h4 id="i5_Toolkit_Core_OpenIDConnectClient_OpenIDConnectService_Cleanup" data-uid="i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.Cleanup">Cleanup()</h4>
+  <div class="markdown level1 summary"><p>Called by the service manager once the service is unregistered
+Stops the server if it is running and logs the user out</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Cleanup()</code></pre>
+  </div>
+
+
+  <a id="i5_Toolkit_Core_OpenIDConnectClient_OpenIDConnectService_GetUserDataAsync_" data-uid="i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.GetUserDataAsync*"></a>
+  <h4 id="i5_Toolkit_Core_OpenIDConnectClient_OpenIDConnectService_GetUserDataAsync" data-uid="i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.GetUserDataAsync">GetUserDataAsync()</h4>
+  <div class="markdown level1 summary"><p>Gets the user's information</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;IUserInfo&gt; GetUserDataAsync()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task&lt;&gt;</span>&lt;<a class="xref" href="i5.Toolkit.Core.OpenIDConnectClient.IUserInfo.html">IUserInfo</a>&gt;</td>
+        <td><p>Returns user data from the OIDC provider</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="i5_Toolkit_Core_OpenIDConnectClient_OpenIDConnectService_HandleActivation_" data-uid="i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.HandleActivation*"></a>
+  <h4 id="i5_Toolkit_Core_OpenIDConnectClient_OpenIDConnectService_HandleActivation_DeepLinkArgs_" data-uid="i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.HandleActivation(DeepLinkArgs)">HandleActivation(DeepLinkArgs)</h4>
+  <div class="markdown level1 summary"><p>Handles the activation by deep links
+Allows both the login path, e.g. i5:/login or i5:/ for backwards compatibility.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void HandleActivation(DeepLinkArgs deepLinkArgs)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">DeepLinkArgs</span></td>
+        <td><span class="parametername">deepLinkArgs</span></td>
+        <td><p>The parameters of the deep link activation</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="i5_Toolkit_Core_OpenIDConnectClient_OpenIDConnectService_Initialize_" data-uid="i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.Initialize*"></a>
+  <h4 id="i5_Toolkit_Core_OpenIDConnectClient_OpenIDConnectService_Initialize_IServiceManager_" data-uid="i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.Initialize(IServiceManager)">Initialize(IServiceManager)</h4>
+  <div class="markdown level1 summary"><p>Initialization which is called by the server manager once the service is registered</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Initialize(IServiceManager owner)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IServiceManager</span></td>
+        <td><span class="parametername">owner</span></td>
+        <td><p>The service manager that owns this service</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="i5_Toolkit_Core_OpenIDConnectClient_OpenIDConnectService_LoginWithAccessToken_" data-uid="i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.LoginWithAccessToken*"></a>
+  <h4 id="i5_Toolkit_Core_OpenIDConnectClient_OpenIDConnectService_LoginWithAccessToken_System_String_" data-uid="i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.LoginWithAccessToken(System.String)">LoginWithAccessToken(string)</h4>
+  <div class="markdown level1 summary"><p>Directly sets the access token and triggers the login event
+Can be used to log in a user again with the same access token after initially logging out</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void LoginWithAccessToken(string accessToken)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">accessToken</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="i5_Toolkit_Core_OpenIDConnectClient_OpenIDConnectService_Logout_" data-uid="i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.Logout*"></a>
+  <h4 id="i5_Toolkit_Core_OpenIDConnectClient_OpenIDConnectService_Logout" data-uid="i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.Logout">Logout()</h4>
+  <div class="markdown level1 summary"><p>Logs the user out</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Logout()</code></pre>
+  </div>
+
+
+  <a id="i5_Toolkit_Core_OpenIDConnectClient_OpenIDConnectService_OpenLoginPageAsync_" data-uid="i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.OpenLoginPageAsync*"></a>
+  <h4 id="i5_Toolkit_Core_OpenIDConnectClient_OpenIDConnectService_OpenLoginPageAsync" data-uid="i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.OpenLoginPageAsync">OpenLoginPageAsync()</h4>
+  <div class="markdown level1 summary"><p>Opens a login page in the system's default browser so that the user can log in
+Requires a configured OpenID Connect provider</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task OpenLoginPageAsync()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="i5_Toolkit_Core_OpenIDConnectClient_OpenIDConnectService_ServerListener_RedirectReceived_" data-uid="i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.ServerListener_RedirectReceived*"></a>
+  <h4 id="i5_Toolkit_Core_OpenIDConnectClient_OpenIDConnectService_ServerListener_RedirectReceived_System_Object_i5_Toolkit_Core_OpenIDConnectClient_RedirectReceivedEventArgs_" data-uid="i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.ServerListener_RedirectReceived(System.Object,i5.Toolkit.Core.OpenIDConnectClient.RedirectReceivedEventArgs)">ServerListener_RedirectReceived(object, RedirectReceivedEventArgs)</h4>
+  <div class="markdown level1 summary"><p>Called by the server listener once a redirect was received</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ServerListener_RedirectReceived(object sender, RedirectReceivedEventArgs e)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">object</span></td>
+        <td><span class="parametername">sender</span></td>
+        <td><p>The sender of the event</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="i5.Toolkit.Core.OpenIDConnectClient.RedirectReceivedEventArgs.html">RedirectReceivedEventArgs</a></td>
+        <td><span class="parametername">e</span></td>
+        <td><p>The arguments of the redirect event</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="i5_Toolkit_Core_OpenIDConnectClient_OpenIDConnectService_Update_" data-uid="i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.Update*"></a>
+  <h4 id="i5_Toolkit_Core_OpenIDConnectClient_OpenIDConnectService_Update" data-uid="i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.Update">Update()</h4>
+  <div class="markdown level1 summary"><p>Called each frame by the service manager
+Handles the redirect processing on the main thread</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Update()</code></pre>
+  </div>
+  <h3 id="events">Events
+</h3>
+
+
+  <h4 id="i5_Toolkit_Core_OpenIDConnectClient_OpenIDConnectService_LoginCompleted" data-uid="i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.LoginCompleted">LoginCompleted</h4>
+  <div class="markdown level1 summary"><p>Event which is raised once the login was successfully completed</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler LoginCompleted</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">EventHandler</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h4 id="i5_Toolkit_Core_OpenIDConnectClient_OpenIDConnectService_LogoutCompleted" data-uid="i5.Toolkit.Core.OpenIDConnectClient.OpenIDConnectService.LogoutCompleted">LogoutCompleted</h4>
+  <div class="markdown level1 summary"><p>Event which is reaised once the logout was completed</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler LogoutCompleted</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">EventHandler</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      i5 Toolkit Documentation
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

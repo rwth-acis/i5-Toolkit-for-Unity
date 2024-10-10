@@ -1,0 +1,165 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Scene Documentation Tools | i5 Toolkit Documentation </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Scene Documentation Tools | i5 Toolkit Documentation ">
+    
+      <link rel="shortcut icon" href="../resources/Logos/Logo_whiteBg.svg">
+      <link rel="stylesheet" href="../styles/docfx.vendor.css">
+      <link rel="stylesheet" href="../styles/docfx.css">
+      <link rel="stylesheet" href="../styles/main.css">
+      <meta property="docfx:navrel" content="../toc.html">
+      <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../resources/Logos/Logo_whiteBg.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="scene-documentation-tools">Scene Documentation Tools</h1>
+
+<p><img src="../resources/Logos/SceneDocumentation.svg" alt="Scene Documentation"></p>
+<p>The scene documentation tools provides the means to document and label your scenes.</p>
+<h2 id="usage">Usage</h2>
+<p>Create an empty GameObject and add the component <em>Documentation Object</em> to it.
+The GameObject in the scene will show an &quot;i&quot; icon.
+This icon is only visible in Unity's editor but not in playmode nor the final application.
+You can move the GameObject in the scene to move the icon around and mark different parts of the scene.</p>
+<p>On the documentation object, you can specify a title and a description that is stored on the component.
+Moreover, you can specify a URL that points to a Web document that contains more information.
+If you have specified a URL, you can click the <em>Open Documentation URL</em> button in the inspector to open the URL.</p>
+<p>The documentation object's type can be changed.
+There are a couple of different types that change the icon which is shown on the GameObject.</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Icon</th>
+<th>Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>INFO</td>
+<td><img src="https://raw.githubusercontent.com/rwth-acis/i5-Toolkit-for-Unity/develop/Assets/i5%20Toolkit/Editor/Scene%20Documentation/Textures/Info.png" alt="Info Icon"></td>
+<td>Refer to documentation, describe what a GameObject does or leave a note in the scene.</td>
+</tr>
+<tr>
+<td>TODO</td>
+<td><img src="https://raw.githubusercontent.com/rwth-acis/i5-Toolkit-for-Unity/develop/Assets/i5%20Toolkit/Editor/Scene%20Documentation/Textures/Todo.png" alt="Todo Icon"></td>
+<td>Mark a GameObject, component configuration or part of the scene as unfinished so that you or another developer can work on this aspect later.</td>
+</tr>
+<tr>
+<td>BUG</td>
+<td><img src="https://raw.githubusercontent.com/rwth-acis/i5-Toolkit-for-Unity/develop/Assets/i5%20Toolkit/Editor/Scene%20Documentation/Textures/Bug.png" alt="Bug Icon"></td>
+<td>Mark a part of the scene as a bug, e.g. missing collision geometry or intersecting 3D objects.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="example-scene">Example Scene</h2>
+<p>The package's examples contain a scene where all available documentation objects are demonstrated.</p>
+<h2 id="remarks">Remarks</h2>
+<p>The icons on the GameObject are realized as Gizmos.
+Gizmos only work if they are placed in a folder <em>Assets/Gizmos</em> which needs to be at the root of the <em>Assets</em> folder.
+When creating the package, it copies the icons from its resources into your project's Assets folder.
+Do not delete them - they will re-appear again the next time you start Unity.</p>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/rwth-acis/i5-Toolkit-for-Unity/blob/develop/Documentation/manual/Scene-Documentation.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      i5 Toolkit Documentation
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

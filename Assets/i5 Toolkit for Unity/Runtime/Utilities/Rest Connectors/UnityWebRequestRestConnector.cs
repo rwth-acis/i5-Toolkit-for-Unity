@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 using UnityEngine.Networking;
 
 namespace i5.Toolkit.Core.Utilities
@@ -16,14 +17,14 @@ namespace i5.Toolkit.Core.Utilities
                 req.downloadHandler = new DownloadHandlerBuffer();
                 await req.SendWebRequest();
 
-                if (req.isHttpError || req.isNetworkError)
+                if (req.result == UnityWebRequest.Result.Success)
                 {
-                    return new WebResponse<string>(false, req.downloadHandler.text, req.downloadHandler.data, req.responseCode, req.error);
-                }
+					return new WebResponse<string>(req.downloadHandler.text, req.downloadHandler.data, req.responseCode);
+				}
                 else
                 {
-                    return new WebResponse<string>(req.downloadHandler.text, req.downloadHandler.data, req.responseCode);
-                }
+					return new WebResponse<string>(false, req.downloadHandler.text, req.downloadHandler.data, req.responseCode, req.error);
+				}
             }
         }
 
@@ -34,14 +35,14 @@ namespace i5.Toolkit.Core.Utilities
                 AddHeaders(req, headers);
                 await req.SendWebRequest();
 
-                if (req.isHttpError || req.isNetworkError)
+                if (req.result == UnityWebRequest.Result.Success)
                 {
-                    return new WebResponse<string>(false, req.downloadHandler.text, req.downloadHandler.data, req.responseCode, req.error);
-                }
+					return new WebResponse<string>(req.downloadHandler.text, req.downloadHandler.data, req.responseCode);
+				}
                 else
                 {
-                    return new WebResponse<string>(req.downloadHandler.text, req.downloadHandler.data, req.responseCode);
-                }
+					return new WebResponse<string>(false, req.downloadHandler.text, req.downloadHandler.data, req.responseCode, req.error);
+				}
             }
         }
 
@@ -56,14 +57,14 @@ namespace i5.Toolkit.Core.Utilities
                 AddHeaders(req, headers);
                 await req.SendWebRequest();
 
-                if (req.isHttpError || req.isNetworkError)
+                if (req.result == UnityWebRequest.Result.Success)
                 {
-                    return new WebResponse<string>(false, req.downloadHandler.text, req.downloadHandler.data, req.responseCode, req.error);
+					return new WebResponse<string>(req.downloadHandler.text, req.downloadHandler.data, req.responseCode);
                 }
                 else
                 {
-                    return new WebResponse<string>(req.downloadHandler.text, req.downloadHandler.data, req.responseCode);
-                }
+					return new WebResponse<string>(false, req.downloadHandler.text, req.downloadHandler.data, req.responseCode, req.error);
+				}
             }
         }
 
@@ -80,14 +81,14 @@ namespace i5.Toolkit.Core.Utilities
                 AddHeaders(req, headers);
                 await req.SendWebRequest();
 
-                if (req.isHttpError || req.isNetworkError)
+                if (req.result == UnityWebRequest.Result.Success)
                 {
-                    return new WebResponse<string>(false, req.downloadHandler.text, req.downloadHandler.data, req.responseCode, req.error);
+					return new WebResponse<string>(req.downloadHandler.text, req.downloadHandler.data, req.responseCode);
                 }
                 else
                 {
-                    return new WebResponse<string>(req.downloadHandler.text, req.downloadHandler.data, req.responseCode);
-                }
+					return new WebResponse<string>(false, req.downloadHandler.text, req.downloadHandler.data, req.responseCode, req.error);
+				}
             }
         }
 
@@ -108,13 +109,13 @@ namespace i5.Toolkit.Core.Utilities
 
 				await req.SendWebRequest();
 
-				if (req.isHttpError || req.isNetworkError)
+				if (req.result == UnityWebRequest.Result.Success)
 				{
-					return new WebResponse<string>(false, req.downloadHandler.text, req.downloadHandler.data, req.responseCode, req.error);
+					return new WebResponse<string>(req.downloadHandler.text, req.downloadHandler.data, req.responseCode);
 				}
 				else
 				{
-					return new WebResponse<string>(req.downloadHandler.text, req.downloadHandler.data, req.responseCode);
+					return new WebResponse<string>(false, req.downloadHandler.text, req.downloadHandler.data, req.responseCode, req.error);
 				}
 			}
 		}

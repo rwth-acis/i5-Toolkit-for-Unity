@@ -21,16 +21,15 @@ namespace i5.Toolkit.Core.Utilities.ContentLoaders
             {
                 await req.SendWebRequest();
 
-                if (req.result == UnityWebRequest.Result.ConnectionError ||
-                    req.result == UnityWebRequest.Result.ProtocolError)
+                if (req.result == UnityWebRequest.Result.Success)
                 {
-                    i5Debug.LogError("Get request to: " + uri + " returned with error " + req.error, this);
-                    return new WebResponse<string>(false, req.downloadHandler.text, req.downloadHandler.data, req.responseCode, req.error);
+					return new WebResponse<string>(req.downloadHandler.text, req.downloadHandler.data, req.responseCode);
                 }
                 else
                 {
-                    return new WebResponse<string>(req.downloadHandler.text, req.downloadHandler.data, req.responseCode);
-                }
+					i5Debug.LogError("Get request to: " + uri + " returned with error " + req.error, this);
+					return new WebResponse<string>(false, req.downloadHandler.text, req.downloadHandler.data, req.responseCode, req.error);
+				}
             }
         }
     }

@@ -2,6 +2,11 @@
 
 This document keeps track of the changes between versions of the toolkit.
 
+## 1.9.4 (2024-10-10)
+
+### Fixed
+- Prepared the toolkit for Unity 6 and fixed a compilation error in the async/await implementation due to the new async/await added by Unity
+
 ## 1.9.3 (2024-09-01)
 
 ### Added

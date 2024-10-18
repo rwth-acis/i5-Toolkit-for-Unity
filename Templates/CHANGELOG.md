@@ -2,6 +2,11 @@
 
 This document keeps track of the changes between versions of the toolkit.
 
+## 1.9.5 (2024-10-19)
+
+### Added
+- Added VisionOS support for the OpenID Connect module
+
 ## 1.9.4 (2024-10-10)
 
 ### Fixed

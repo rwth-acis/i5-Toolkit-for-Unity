@@ -175,7 +175,7 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
             }
 
             // for native apps use deep linking
-#elif UNITY_IOS || UNITY_ANDROID || UNITY_WSA
+#elif UNITY_IOS || UNITY_ANDROID || UNITY_WSA || UNITY_VISIONOS
             OidcProvider.OpenLoginPage(Scopes, RedirectURI);
 
             // unsupported platforms get an error message

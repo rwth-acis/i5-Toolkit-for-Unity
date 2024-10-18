@@ -1,0 +1,217 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Rocket.Chat Client | i5 Toolkit Documentation </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Rocket.Chat Client | i5 Toolkit Documentation ">
+    
+      <link rel="shortcut icon" href="../resources/Logos/Logo_whiteBg.svg">
+      <link rel="stylesheet" href="../styles/docfx.vendor.css">
+      <link rel="stylesheet" href="../styles/docfx.css">
+      <link rel="stylesheet" href="../styles/main.css">
+      <meta property="docfx:navrel" content="../toc.html">
+      <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../resources/Logos/Logo_whiteBg.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="rocketchat-client">Rocket.Chat Client</h1>
+
+<p><img src="../resources/Logos/RocketChatClient.svg" alt="Rocket.Chat Client"></p>
+<h2 id="use-case">Use Case</h2>
+<p>The Rocket.Chat client contains an integration with the chat program <a href="https://rocket.chat">Rocket.Chat</a>.
+Using this module, the application can send or receive messages in Rocket.Chat at runtime.
+For instance, this allows the integration of chatbots into Unity, e.g., to drive dialogues by non-player characters.
+Moreover, this can be useful for sending notifications about actions that users perform in the application, thereby gaining awareness in the community.</p>
+<h2 id="usage">Usage</h2>
+<h3 id="service-initialization">Service Initialization</h3>
+<p>First, the <a class="xref" href="../api/i5.Toolkit.Core.RocketChatClient.RocketChatService.html">RocketChatService</a> has to be added to the <a class="xref" href="../api/i5.Toolkit.Core.ServiceCore.ServiceManager.html">ServiceManager</a> so that the service is available.
+While creating the service, a host address needs to be provided.
+This is the host address of your Rocket.Chat instance.
+You can find your Rocket.Chat's address in the following way:</p>
+<ol>
+<li>Open the Rocket.Chat client and select your server on the very left.</li>
+<li>Underneath the list of channels and direct messages on the bottom left, there is an icon that can be customized for your server.
+Right-click on this icon and select &quot;Copy link address&quot; from the context menu.</li>
+<li>Paste the resulting link somewhere and shorten it so that it ends with the country code.
+It should, e.g., not contain the <code>/home</code> part anymore.
+Moreover, remove the <code>https://</code> at the beginning.
+So, if your link read <code>https://my-chat.mydomain.com/home</code>, shorten it to <code>my-chat.mydomain.com</code>.</li>
+<li>Pass the resulting link to the constructor for <a class="xref" href="../api/i5.Toolkit.Core.RocketChatClient.RocketChatService.html">RocketChatService</a> in your source code.</li>
+</ol>
+<h3 id="login">Login</h3>
+<h4 id="option-1-personal-access-token--authtoken">Option 1: Personal Access Token / AuthToken</h4>
+<p>You can create a personal access token in your account and use this to log in.
+This is recommended for additional security as you can create different tokens for separate applications and can also revoke tokens in case that a token was leaked.</p>
+<p>To set up a personal access token, follow these steps:</p>
+<ol>
+<li>Click on your profile image in the Rocket.Chat client.</li>
+<li>After that, select &quot;My Account&quot;.</li>
+<li>There is a category &quot;Personal Access Tokens&quot;.
+Click on it.</li>
+<li>Enter any name in the text field.
+The content that you enter here is just a human-readable identifier so that you can differentiate your tokens.
+For instance, you can enter the name of the application which will use this token.</li>
+<li>Click the &quot;Add&quot; button to generate the token.</li>
+<li>A pop-up appears with the string of the token.
+We will need this token string in the login process.
+It also states your username's identifier but this is not required for the login as it is already encoded in the token.</li>
+</ol>
+<p>With the generated token, call <a class="xref" href="../api/i5.Toolkit.Core.RocketChatClient.RocketChatService.html#i5_Toolkit_Core_RocketChatClient_RocketChatService_LoginAsync_System_String_">LoginAsync(string)</a> and pass this token to the login.
+Continue by <a href="#login-result">handling the result of this call</a>.</p>
+<h4 id="option-2-user-credentials">Option 2: User Credentials</h4>
+<p>Instead of creating a personal access token in Rocket.Chat's profile settings, it can be more intuitive for the user to log in using the username and password.
+This is also supported by the module.
+Construct text fields that let the user enter the credentials.
+After that, call <a class="xref" href="../api/i5.Toolkit.Core.RocketChatClient.RocketChatService.html#i5_Toolkit_Core_RocketChatClient_RocketChatService_LoginAsync_System_String_System_String_">LoginAsync(string, string)</a> and pass the specified username and password to it.
+Continue in section <a href="#login-result">login result</a> to check if the login was successful.</p>
+<h4 id="login-result">Login Result</h4>
+<p>Await the result of the query to <code>LoginAsync</code> using <code>bool success = await LoginAsync(...)</code>.
+This requires adding the using statement <code>using i5.Toolkit.Core.Utilities.Async</code> to the class.
+After that, success will be set to <code>true</code> if the server was able to successfully log the user in.</p>
+<h3 id="sendpost-a-message">Send/Post a Message</h3>
+<p>To send a message, you first need to <a href="#login">log in</a>.
+After that, call the function <a class="xref" href="../api/i5.Toolkit.Core.RocketChatClient.RocketChatService.html#i5_Toolkit_Core_RocketChatClient_RocketChatService_PostMessageAsync_">PostMessageAsync</a>
+Specify a target channel, group or person.
+For this particular method, you can use the human-readable names of the channels or usernames.
+For channels, start the id with a <code>#</code>, followed by the name of the channel, e.g., <code>#general</code>.
+To address users in direct messages, start the id with an <code>@</code>, followed by the username of the receiver, e.g., <code>@myreceiver</code>.
+Alternatively, you can also directly use the internal id strings of channels or users.
+In this case, the prefix is not required anymore since the internal id already specified whether the target is a channel or a user.</p>
+<p>Then, pass the message content to the method.
+Await the result of the call.
+It will give you feedback whether the sending operation was successful.</p>
+<h3 id="list-public-channels-of-the-logged-in-user">List Public Channels of the Logged-In User</h3>
+<p>You can get all public channels that a user is part of by calling <a class="xref" href="../api/i5.Toolkit.Core.RocketChatClient.RocketChatService.html#i5_Toolkit_Core_RocketChatClient_RocketChatService_GetChannelListJoinedAsync">GetChannelListJoinedAsync()</a>.
+This function is, e.g., helpful for getting the internal id of a particular channel.</p>
+<h3 id="list-private-channels-groups-teams-of-the-logged-in-user">List Private Channels, Groups, Teams of the Logged-In User</h3>
+<p>You can get all private channels, groups or teams that a user is part of by calling <a class="xref" href="../api/i5.Toolkit.Core.RocketChatClient.RocketChatService.html#i5_Toolkit_Core_RocketChatClient_RocketChatService_GetGroupListAsync">GetGroupListAsync()</a>.
+This function is, e.g., helpful for getting the internal id of a particular channel.</p>
+<h3 id="get-information-about-the-logged-in-user">Get Information about the Logged-In User</h3>
+<p>To fetch the properties of the logged-in account, call <a class="xref" href="../api/i5.Toolkit.Core.RocketChatClient.RocketChatService.html#i5_Toolkit_Core_RocketChatClient_RocketChatService_GetMeAsync">GetMeAsync()</a>.</p>
+<h3 id="receive-messages">Receive Messages</h3>
+<p>To receive messages, the service needs to start listening for messages and your code needs to subscribe to the event to get notified about incoming messages.
+In the end, do not forget to un-subscribe from the server.</p>
+<p>Note that the module listens for all messages that arrive in the specified room.
+This means, that events are, e.g., also invoked for messages that are sent by the logged-in user using this module.</p>
+<h4 id="subscribe-to-a-room">Subscribe to a Room</h4>
+<p>So, first call <a class="xref" href="../api/i5.Toolkit.Core.RocketChatClient.RocketChatService.html#i5_Toolkit_Core_RocketChatClient_RocketChatService_SubscribeRoomMessageAsync_">SubscribeRoomMessageAsync</a>.
+This method requires the id of the room (channel, direct messages, etc.) that you want to listen to.
+This id has to be the internal id that you can find by listing the <a href="#list-public-channels-of-the-logged-in-user">public channels</a> or <a href="#list-private-channels-groups-teams-of-the-logged-in-user">private groups</a> of the user.
+The human-readable name with the <code>#</code> or <code>@</code> at the beginning does not work.</p>
+<p>For the other unique id that the method requires, you can specify any string.
+It is used to distinguish different subscriptions.</p>
+<h4 id="subscribe-to-service-events">Subscribe to Service Events</h4>
+<p>After that, subscribe your code to the event <a class="xref" href="../api/i5.Toolkit.Core.RocketChatClient.RocketChatService.html#i5_Toolkit_Core_RocketChatClient_RocketChatService_OnMessageReceived">OnMessageReceived</a>.
+Every time that a new message appears in the monitored room, the event is invoked and you can extract information about the message from the given arguments.</p>
+<h4 id="un-subscribe">Un-Subscribe</h4>
+<p>When starting the subscription to the server, the service builds up a stream that is kept open.
+Once the application does not need to listen for incoming messages anymore, close this subscription.
+Do this by calling <a class="xref" href="../api/i5.Toolkit.Core.RocketChatClient.RocketChatService.html#i5_Toolkit_Core_RocketChatClient_RocketChatService_UnsubscribeRoomMessageAsync_">UnsubscribeRoomMessageAsync</a>.
+Provide the same unique id that identifies the subscription to indicate which active subscription should be closed.</p>
+<p>To clean everything up, also un-subscribe your code from the event <a class="xref" href="../api/i5.Toolkit.Core.RocketChatClient.RocketChatService.html#i5_Toolkit_Core_RocketChatClient_RocketChatService_OnMessageReceived">OnMessageReceived</a></p>
+<h2 id="example-scene">Example Scene</h2>
+<p>The examples contain a scene where the functionalities of the module can be tried out.
+It displays a canvas where you can log in, list public and private channels, send messages or receive messages.
+The results of the calls can be seen in Unity's log output console.</p>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/rwth-acis/i5-Toolkit-for-Unity/blob/develop/Documentation/manual/RocketChat-Client.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      i5 Toolkit Documentation
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

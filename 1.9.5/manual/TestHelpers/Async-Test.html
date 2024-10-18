@@ -1,0 +1,172 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Async Test | i5 Toolkit Documentation </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Async Test | i5 Toolkit Documentation ">
+    
+      <link rel="shortcut icon" href="../../resources/Logos/Logo_whiteBg.svg">
+      <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+      <link rel="stylesheet" href="../../styles/docfx.css">
+      <link rel="stylesheet" href="../../styles/main.css">
+      <meta property="docfx:navrel" content="../../toc.html">
+      <meta property="docfx:tocrel" content="../toc.html">
+    
+    <meta property="docfx:rel" content="../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../resources/Logos/Logo_whiteBg.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="async-test">Async Test</h1>
+
+<h2 id="use-case">Use Case</h2>
+<p>When writing unit tests, you will encounter tests where <a href="https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/async/">asynchronous methods</a> need to be awaited.
+With the NUnit version that is used in Unity, you can only create test methods that are either <code>async void</code> or <code>IEnumerator</code> coroutines for asynchronous processes.
+The usual way of awaiting a method call in an <code>async Task</code> method is not possible.
+You should not use <code>async void</code> methods as it can lead to unexpected behavior, especially if an exception is thrown (for a detailed explanation on why you should avoid <code>async void</code>, click <a href="https://docs.microsoft.com/en-us/archive/msdn-magazine/2013/march/async-await-best-practices-in-asynchronous-programming#avoid-async-void">here</a>).
+Therefore, the i5 Toolkit provides an <a class="xref" href="../../api/i5.Toolkit.Core.TestHelpers.AsyncTest.html">AsyncTest</a> class.
+With the help of this class, the async methods are awaited inside of coroutines.</p>
+<h2 id="usage">Usage</h2>
+<h3 id="async-methods-without-return-value">Async Methods Without Return Value</h3>
+<p>In this example, a test must await the async method <code>FooAsync()</code>.
+Create a <code>[UnityTest]</code> unit test which can run over multiple frames.
+This means that the return type of this test method needs to be <code>IEnumerator</code>.
+After that write the test.
+Instead of adding <code>await FooAsync()</code>, first create a <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a> object from the method call.
+After that, use <a class="xref" href="../../api/i5.Toolkit.Core.TestHelpers.AsyncTest.html#i5_Toolkit_Core_TestHelpers_AsyncTest_WaitForTask_">WaitForTask</a> to execute the task:</p>
+<pre><code class="lang-[C#]">[UnityTest]
+public IEnumerator MyAsyncUnitTest()
+{
+    ...
+    // first create a task object
+    // note that this does not execute the method directly
+    Task task = FooAsync();
+    // execute the task inside of the WaitForTask coroutine
+    yield return AsyncTest.WaitForTask(task);
+
+    Debug.Log(&quot;This log is only printed once the async task has finished&quot;);
+}
+</code></pre>
+<h3 id="async-methods-with-return-value">Async Methods With Return Value</h3>
+<p>Write the test in the same way as in the example without a return value.
+Instead of using <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a>, use the variant <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task&lt;TResult&gt;</a>.
+This class takes a generic type which defines the result's type.
+After the completion of a task, the task object contains the result in its <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task-1.result#System_Threading_Tasks_Task_1_Result">Result</a> property.</p>
+<pre><code class="lang-[C#]">[UnityTest]
+public IEnumerator MyAsyncUnitTest()
+{
+    ...
+    // first create a task object
+    // note that this does not execute the method directly
+    Task&lt;int&gt; task = FooReturnValueAsync();
+    // execute the task inside of the WaitForTask coroutine
+    yield return AsyncTest.WaitForTask(task);
+
+    Debug.Log(&quot;The result is: &quot; + task.Result);
+}
+</code></pre>
+<h2 id="functionality">Functionality</h2>
+<p><a class="xref" href="../../api/i5.Toolkit.Core.TestHelpers.AsyncTest.html#i5_Toolkit_Core_TestHelpers_AsyncTest_WaitForTask_">WaitForTask</a> executes the given task in a coroutine and waits for it to complete.
+After that, the result is available in the task object.
+The coroutine of the test function waits for the <a class="xref" href="../../api/i5.Toolkit.Core.TestHelpers.AsyncTest.html#i5_Toolkit_Core_TestHelpers_AsyncTest_WaitForTask_">WaitForTask</a> method to finish.
+If an exception is thrown during the execution of the async method, <a class="xref" href="../../api/i5.Toolkit.Core.TestHelpers.AsyncTest.html#i5_Toolkit_Core_TestHelpers_AsyncTest_WaitForTask_">WaitForTask</a> will re-throw this exception.
+This cirumvents the problem that exceptions in coroutines occur silently.</p>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/rwth-acis/i5-Toolkit-for-Unity/blob/develop/Documentation/manual/TestHelpers/Async-Test.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      i5 Toolkit Documentation
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,932 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Class AppLog
+ | i5 Toolkit Documentation </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Class AppLog
+ | i5 Toolkit Documentation ">
+    
+      <link rel="shortcut icon" href="../resources/Logos/Logo_whiteBg.svg">
+      <link rel="stylesheet" href="../styles/docfx.vendor.css">
+      <link rel="stylesheet" href="../styles/docfx.css">
+      <link rel="stylesheet" href="../styles/main.css">
+      <meta property="docfx:navrel" content="../toc.html">
+      <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../resources/Logos/Logo_whiteBg.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="i5.Toolkit.Core.VerboseLogging.AppLog">
+
+
+  <h1 id="i5_Toolkit_Core_VerboseLogging_AppLog" data-uid="i5.Toolkit.Core.VerboseLogging.AppLog" class="text-break">Class AppLog
+</h1>
+  <div class="markdown level0 summary"><p>Logging class which applies a verbosity filter to all logs which are produced with it</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">object</span></div>
+    <div class="level1"><span class="xref">AppLog</span></div>
+  </div>
+  <h6><strong>Namespace</strong>: <span class="xref">i5</span>.<span class="xref">Toolkit</span>.<span class="xref">Core</span>.<a class="xref" href="i5.Toolkit.Core.VerboseLogging.html">VerboseLogging</a></h6>
+  <h6><strong>Assembly</strong>: cs.temp.dll.dll</h6>
+  <h5 id="i5_Toolkit_Core_VerboseLogging_AppLog_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static class AppLog</code></pre>
+  </div>
+  <h3 id="properties">Properties
+</h3>
+
+
+  <a id="i5_Toolkit_Core_VerboseLogging_AppLog_CriticalColor_" data-uid="i5.Toolkit.Core.VerboseLogging.AppLog.CriticalColor*"></a>
+  <h4 id="i5_Toolkit_Core_VerboseLogging_AppLog_CriticalColor" data-uid="i5.Toolkit.Core.VerboseLogging.AppLog.CriticalColor">CriticalColor</h4>
+  <div class="markdown level1 summary"><p>The color which should be applied to critical log messags if UseColors is true</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Color CriticalColor { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Color</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="i5_Toolkit_Core_VerboseLogging_AppLog_DebugColor_" data-uid="i5.Toolkit.Core.VerboseLogging.AppLog.DebugColor*"></a>
+  <h4 id="i5_Toolkit_Core_VerboseLogging_AppLog_DebugColor" data-uid="i5.Toolkit.Core.VerboseLogging.AppLog.DebugColor">DebugColor</h4>
+  <div class="markdown level1 summary"><p>The color which should be applied to debug log messags if UseColors is true</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Color DebugColor { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Color</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="i5_Toolkit_Core_VerboseLogging_AppLog_ErrorColor_" data-uid="i5.Toolkit.Core.VerboseLogging.AppLog.ErrorColor*"></a>
+  <h4 id="i5_Toolkit_Core_VerboseLogging_AppLog_ErrorColor" data-uid="i5.Toolkit.Core.VerboseLogging.AppLog.ErrorColor">ErrorColor</h4>
+  <div class="markdown level1 summary"><p>The color which should be applied to error log messags if UseColors is true</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Color ErrorColor { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Color</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="i5_Toolkit_Core_VerboseLogging_AppLog_InfoColor_" data-uid="i5.Toolkit.Core.VerboseLogging.AppLog.InfoColor*"></a>
+  <h4 id="i5_Toolkit_Core_VerboseLogging_AppLog_InfoColor" data-uid="i5.Toolkit.Core.VerboseLogging.AppLog.InfoColor">InfoColor</h4>
+  <div class="markdown level1 summary"><p>The color which should be applied to info log messags if UseColors is true</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Color InfoColor { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Color</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="i5_Toolkit_Core_VerboseLogging_AppLog_MinimumLogLevel_" data-uid="i5.Toolkit.Core.VerboseLogging.AppLog.MinimumLogLevel*"></a>
+  <h4 id="i5_Toolkit_Core_VerboseLogging_AppLog_MinimumLogLevel" data-uid="i5.Toolkit.Core.VerboseLogging.AppLog.MinimumLogLevel">MinimumLogLevel</h4>
+  <div class="markdown level1 summary"><p>The minimum importance level of logs which will be ouput.
+All logs with a lower importance level are ignored.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static LogLevel MinimumLogLevel { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">LogLevel</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="i5_Toolkit_Core_VerboseLogging_AppLog_TraceColor_" data-uid="i5.Toolkit.Core.VerboseLogging.AppLog.TraceColor*"></a>
+  <h4 id="i5_Toolkit_Core_VerboseLogging_AppLog_TraceColor" data-uid="i5.Toolkit.Core.VerboseLogging.AppLog.TraceColor">TraceColor</h4>
+  <div class="markdown level1 summary"><p>The color which should be applied to trace log messags if UseColors is true</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Color TraceColor { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Color</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="i5_Toolkit_Core_VerboseLogging_AppLog_UseColors_" data-uid="i5.Toolkit.Core.VerboseLogging.AppLog.UseColors*"></a>
+  <h4 id="i5_Toolkit_Core_VerboseLogging_AppLog_UseColors" data-uid="i5.Toolkit.Core.VerboseLogging.AppLog.UseColors">UseColors</h4>
+  <div class="markdown level1 summary"><p>If true, the module will style messages in the editor with colors</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool UseColors { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="i5_Toolkit_Core_VerboseLogging_AppLog_WarningColor_" data-uid="i5.Toolkit.Core.VerboseLogging.AppLog.WarningColor*"></a>
+  <h4 id="i5_Toolkit_Core_VerboseLogging_AppLog_WarningColor" data-uid="i5.Toolkit.Core.VerboseLogging.AppLog.WarningColor">WarningColor</h4>
+  <div class="markdown level1 summary"><p>The color which should be applied to warning log messags if UseColors is true</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Color WarningColor { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Color</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+</h3>
+
+
+  <a id="i5_Toolkit_Core_VerboseLogging_AppLog_Log_" data-uid="i5.Toolkit.Core.VerboseLogging.AppLog.Log*"></a>
+  <h4 id="i5_Toolkit_Core_VerboseLogging_AppLog_Log_System_String_LogLevel_Object_" data-uid="i5.Toolkit.Core.VerboseLogging.AppLog.Log(System.String,LogLevel,Object)">Log(string, LogLevel, Object)</h4>
+  <div class="markdown level1 summary"><p>Logs a message with a given level</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void Log(string message, LogLevel level, Object context = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">message</span></td>
+        <td><p>The message to log</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">LogLevel</span></td>
+        <td><span class="parametername">level</span></td>
+        <td><p>The importance level of the message</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Object</span></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The Unity Object context which sends the message</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="i5_Toolkit_Core_VerboseLogging_AppLog_Log_" data-uid="i5.Toolkit.Core.VerboseLogging.AppLog.Log*"></a>
+  <h4 id="i5_Toolkit_Core_VerboseLogging_AppLog_Log_System_String_LogLevel_System_Object_" data-uid="i5.Toolkit.Core.VerboseLogging.AppLog.Log(System.String,LogLevel,System.Object)">Log(string, LogLevel, object)</h4>
+  <div class="markdown level1 summary"><p>Logs a message with a given level</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void Log(string message, LogLevel level, object context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">message</span></td>
+        <td><p>The message to log</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">LogLevel</span></td>
+        <td><span class="parametername">level</span></td>
+        <td><p>The importance level of the message</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">object</span></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The object context which sends the message</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="i5_Toolkit_Core_VerboseLogging_AppLog_LogCritical_" data-uid="i5.Toolkit.Core.VerboseLogging.AppLog.LogCritical*"></a>
+  <h4 id="i5_Toolkit_Core_VerboseLogging_AppLog_LogCritical_System_String_Object_" data-uid="i5.Toolkit.Core.VerboseLogging.AppLog.LogCritical(System.String,Object)">LogCritical(string, Object)</h4>
+  <div class="markdown level1 summary"><p>Logs a critical error message</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void LogCritical(string message, Object context = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">message</span></td>
+        <td><p>The message to log</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Object</span></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The context of the message</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="i5_Toolkit_Core_VerboseLogging_AppLog_LogCritical_" data-uid="i5.Toolkit.Core.VerboseLogging.AppLog.LogCritical*"></a>
+  <h4 id="i5_Toolkit_Core_VerboseLogging_AppLog_LogCritical_System_String_System_Object_" data-uid="i5.Toolkit.Core.VerboseLogging.AppLog.LogCritical(System.String,System.Object)">LogCritical(string, object)</h4>
+  <div class="markdown level1 summary"><p>Logs a critical error message</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void LogCritical(string message, object context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">message</span></td>
+        <td><p>The message to log</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">object</span></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The context of the message</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="i5_Toolkit_Core_VerboseLogging_AppLog_LogDebug_" data-uid="i5.Toolkit.Core.VerboseLogging.AppLog.LogDebug*"></a>
+  <h4 id="i5_Toolkit_Core_VerboseLogging_AppLog_LogDebug_System_String_Object_" data-uid="i5.Toolkit.Core.VerboseLogging.AppLog.LogDebug(System.String,Object)">LogDebug(string, Object)</h4>
+  <div class="markdown level1 summary"><p>Logs a message for debugging the code</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void LogDebug(string message, Object context = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">message</span></td>
+        <td><p>The message to log</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Object</span></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The context of the message</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="i5_Toolkit_Core_VerboseLogging_AppLog_LogDebug_" data-uid="i5.Toolkit.Core.VerboseLogging.AppLog.LogDebug*"></a>
+  <h4 id="i5_Toolkit_Core_VerboseLogging_AppLog_LogDebug_System_String_System_Object_" data-uid="i5.Toolkit.Core.VerboseLogging.AppLog.LogDebug(System.String,System.Object)">LogDebug(string, object)</h4>
+  <div class="markdown level1 summary"><p>Logs a message for debugging the code</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void LogDebug(string message, object context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">message</span></td>
+        <td><p>The message to log</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">object</span></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The context of the message</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="i5_Toolkit_Core_VerboseLogging_AppLog_LogError_" data-uid="i5.Toolkit.Core.VerboseLogging.AppLog.LogError*"></a>
+  <h4 id="i5_Toolkit_Core_VerboseLogging_AppLog_LogError_System_String_Object_" data-uid="i5.Toolkit.Core.VerboseLogging.AppLog.LogError(System.String,Object)">LogError(string, Object)</h4>
+  <div class="markdown level1 summary"><p>Logs an error message</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void LogError(string message, Object context = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">message</span></td>
+        <td><p>The message to log</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Object</span></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The context of the message</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="i5_Toolkit_Core_VerboseLogging_AppLog_LogError_" data-uid="i5.Toolkit.Core.VerboseLogging.AppLog.LogError*"></a>
+  <h4 id="i5_Toolkit_Core_VerboseLogging_AppLog_LogError_System_String_System_Object_" data-uid="i5.Toolkit.Core.VerboseLogging.AppLog.LogError(System.String,System.Object)">LogError(string, object)</h4>
+  <div class="markdown level1 summary"><p>Logs an error message</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void LogError(string message, object context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">message</span></td>
+        <td><p>The message to log</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">object</span></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The context of the message</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="i5_Toolkit_Core_VerboseLogging_AppLog_LogException_" data-uid="i5.Toolkit.Core.VerboseLogging.AppLog.LogException*"></a>
+  <h4 id="i5_Toolkit_Core_VerboseLogging_AppLog_LogException_System_Exception_System_Boolean_Object_" data-uid="i5.Toolkit.Core.VerboseLogging.AppLog.LogException(System.Exception,System.Boolean,Object)">LogException(Exception, bool, Object)</h4>
+  <div class="markdown level1 summary"><p>Logs an exception either as an error message or a critical error message</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void LogException(Exception e, bool isCritical = false, Object context = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Exception</span></td>
+        <td><span class="parametername">e</span></td>
+        <td><p>The exception which should be logged</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">isCritical</span></td>
+        <td><p>If set to true, the message will be logged as a critical error</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Object</span></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The context of the message</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="i5_Toolkit_Core_VerboseLogging_AppLog_LogException_" data-uid="i5.Toolkit.Core.VerboseLogging.AppLog.LogException*"></a>
+  <h4 id="i5_Toolkit_Core_VerboseLogging_AppLog_LogException_System_Exception_System_Boolean_System_Object_" data-uid="i5.Toolkit.Core.VerboseLogging.AppLog.LogException(System.Exception,System.Boolean,System.Object)">LogException(Exception, bool, object)</h4>
+  <div class="markdown level1 summary"><p>Logs an exception either as an error message or a critical error message</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void LogException(Exception e, bool isCritical, object context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Exception</span></td>
+        <td><span class="parametername">e</span></td>
+        <td><p>The exception which should be logged</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">isCritical</span></td>
+        <td><p>If set to true, the message will be logged as a critical error</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">object</span></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The context of the message</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="i5_Toolkit_Core_VerboseLogging_AppLog_LogInfo_" data-uid="i5.Toolkit.Core.VerboseLogging.AppLog.LogInfo*"></a>
+  <h4 id="i5_Toolkit_Core_VerboseLogging_AppLog_LogInfo_System_String_Object_" data-uid="i5.Toolkit.Core.VerboseLogging.AppLog.LogInfo(System.String,Object)">LogInfo(string, Object)</h4>
+  <div class="markdown level1 summary"><p>Logs an info message</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void LogInfo(string message, Object context = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">message</span></td>
+        <td><p>The message to log</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Object</span></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The context of the message</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="i5_Toolkit_Core_VerboseLogging_AppLog_LogInfo_" data-uid="i5.Toolkit.Core.VerboseLogging.AppLog.LogInfo*"></a>
+  <h4 id="i5_Toolkit_Core_VerboseLogging_AppLog_LogInfo_System_String_System_Object_" data-uid="i5.Toolkit.Core.VerboseLogging.AppLog.LogInfo(System.String,System.Object)">LogInfo(string, object)</h4>
+  <div class="markdown level1 summary"><p>Logs an info message</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void LogInfo(string message, object context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">message</span></td>
+        <td><p>The message to log</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">object</span></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The context of the message</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="i5_Toolkit_Core_VerboseLogging_AppLog_LogTrace_" data-uid="i5.Toolkit.Core.VerboseLogging.AppLog.LogTrace*"></a>
+  <h4 id="i5_Toolkit_Core_VerboseLogging_AppLog_LogTrace_System_String_Object_" data-uid="i5.Toolkit.Core.VerboseLogging.AppLog.LogTrace(System.String,Object)">LogTrace(string, Object)</h4>
+  <div class="markdown level1 summary"><p>Logs a message which can be used to trace the code execution path</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void LogTrace(string message, Object context = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">message</span></td>
+        <td><p>The message to log</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Object</span></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The context of the message</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="i5_Toolkit_Core_VerboseLogging_AppLog_LogTrace_" data-uid="i5.Toolkit.Core.VerboseLogging.AppLog.LogTrace*"></a>
+  <h4 id="i5_Toolkit_Core_VerboseLogging_AppLog_LogTrace_System_String_System_Object_" data-uid="i5.Toolkit.Core.VerboseLogging.AppLog.LogTrace(System.String,System.Object)">LogTrace(string, object)</h4>
+  <div class="markdown level1 summary"><p>Logs a message which can be used to trace the code execution path</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void LogTrace(string message, object context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">message</span></td>
+        <td><p>The message to log</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">object</span></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The context of the message</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="i5_Toolkit_Core_VerboseLogging_AppLog_LogWarning_" data-uid="i5.Toolkit.Core.VerboseLogging.AppLog.LogWarning*"></a>
+  <h4 id="i5_Toolkit_Core_VerboseLogging_AppLog_LogWarning_System_String_Object_" data-uid="i5.Toolkit.Core.VerboseLogging.AppLog.LogWarning(System.String,Object)">LogWarning(string, Object)</h4>
+  <div class="markdown level1 summary"><p>Logs a warning message</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void LogWarning(string message, Object context = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">message</span></td>
+        <td><p>The message to log</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Object</span></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The context of the message</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="i5_Toolkit_Core_VerboseLogging_AppLog_LogWarning_" data-uid="i5.Toolkit.Core.VerboseLogging.AppLog.LogWarning*"></a>
+  <h4 id="i5_Toolkit_Core_VerboseLogging_AppLog_LogWarning_System_String_System_Object_" data-uid="i5.Toolkit.Core.VerboseLogging.AppLog.LogWarning(System.String,System.Object)">LogWarning(string, object)</h4>
+  <div class="markdown level1 summary"><p>Logs a warning message</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void LogWarning(string message, object context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">message</span></td>
+        <td><p>The message to log</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">object</span></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The context of the message</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      i5 Toolkit Documentation
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

@@ -19,7 +19,8 @@ namespace i5.Toolkit.Core.Examples.OpenIDConnectClient
             oidc.OidcProvider.ClientData = learningLayersClientData.clientData;
             // this example shows how the service can be used on an app for multiple platforms
 #if !UNITY_EDITOR
-            oidc.RedirectURI = "i5:/";
+            // always use login as the path as this is what the OIDC client is listening for, e.g., mySchema://login
+            oidc.RedirectURI = "i5://login";
 #else
             oidc.RedirectURI = "https://www.google.com";
 #endif

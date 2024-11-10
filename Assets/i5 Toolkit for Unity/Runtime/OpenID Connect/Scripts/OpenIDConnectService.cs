@@ -30,6 +30,8 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         /// </summary>
         public string AccessToken { get; private set; }
 
+        private AbstractAuthorizationFlowAnswer _authorizationAnswer;
+
         /// <summary>
         /// Is true if the user of the application is currently logged in
         /// </summary>
@@ -62,7 +64,7 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         /// <summary>
         /// Event which is raised once the login was successfully completed
         /// </summary>
-        public event EventHandler LoginCompleted;
+        public event EventHandler<AbstractAuthorizationFlowAnswer> LoginCompleted;
         /// <summary>
         /// Event which is reaised once the logout was completed
         /// </summary>
@@ -267,16 +269,18 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
             if (OidcProvider.AuthorizationFlow == AuthorizationFlow.AUTHORIZATION_CODE)
             {
                 string authorizationCode = OidcProvider.GetAuthorizationCode(eventArgs.RedirectParameters);
-                AccessToken = await OidcProvider.GetAccessTokenFromCodeAsync(authorizationCode, eventArgs.RedirectUri);
+                _authorizationAnswer = await OidcProvider.GetAuthorizationAnswerAsync(authorizationCode, eventArgs.RedirectUri);
+                AccessToken = _authorizationAnswer.access_token;
             }
             else
             {
                 AccessToken = OidcProvider.GetAccessToken(eventArgs.RedirectParameters);
+                _authorizationAnswer = new AbstractAuthorizationFlowAnswer() { access_token = AccessToken};
             }
             eventArgs = null;
-            if (!string.IsNullOrEmpty(AccessToken))
+            if (_authorizationAnswer != null)
             {
-                LoginCompleted?.Invoke(this, EventArgs.Empty);
+                LoginCompleted?.Invoke(this, _authorizationAnswer);
             }
             else
             {

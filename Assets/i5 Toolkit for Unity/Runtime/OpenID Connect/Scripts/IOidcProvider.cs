@@ -56,6 +56,14 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         Task<string> GetAccessTokenFromCodeAsync(string code, string redirectUri);
 
         /// <summary>
+        /// Gets the complete authorization answer from the selected provider
+        /// </summary>
+        /// <param name="code">The authorization code</param>
+        /// <param name="redirectUri">The redirect URI which was used during the login</param>
+        /// <returns>Returns the complete authorization answer</returns>
+        Task<AbstractAuthorizationFlowAnswer> GetAuthorizationAnswerAsync(string code, string redirectUri);
+
+        /// <summary>
         /// Gets the access token from a list of parameters in a Web answer
         /// </summary>
         /// <param name="redirectParameters">The parameters of the Web answer as a dictionary</param>

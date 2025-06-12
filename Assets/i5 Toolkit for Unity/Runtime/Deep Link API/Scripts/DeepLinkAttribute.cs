@@ -6,6 +6,11 @@ namespace i5.Toolkit.Core.DeepLinkAPI
     /// Attribute which marks a method as a target for deep links
     /// Requires a set up <see cref="DeepLinkingService"/>.
     /// Moreover, the class which contains a method with this attribute needs to be registered using <see cref="DeepLinkingService.AddDeepLinkListener(object)"/>
+    /// 
+    /// ⚠️ Important: If the method marked with this attribute is not directly referenced in code
+    /// (e.g., it is invoked only via reflection), it may be stripped by the Unity linker or IL2CPP
+    /// during the build process. To prevent this, add the <c>[UnityEngine.Scripting.Preserve]</c> attribute
+    /// to the method to ensure it is retained.
     /// </summary>
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = true, Inherited = true)]
     public class DeepLinkAttribute : Attribute

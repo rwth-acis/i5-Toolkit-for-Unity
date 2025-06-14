@@ -5,6 +5,7 @@ namespace i5.Toolkit.Core.Examples.DeepLinkAPI
 {
     public class DeepLinkReceiver
     {
+        [Preserve]
         [DeepLink("helloWorld")]
         public void HelloWorld()
         {

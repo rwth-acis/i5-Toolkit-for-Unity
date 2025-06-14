@@ -72,8 +72,10 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         // Cached event arguments of the last received redirect
         private RedirectReceivedEventArgs eventArgs;
 
-        // this service has its own private instance of a deep linking service
-        private IDeepLinkingService deepLinker = new DeepLinkingService();
+        /// <summary>
+        /// This service has its own private instance of a deep linking service
+        /// </summary>
+        public IDeepLinkingService DeepLinker { get; set; } = new OpenIDConnectDeepLinker();
 
         /// <summary>
         /// Handles the activation by deep links
@@ -104,8 +106,8 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         /// <param name="owner">The service manager that owns this service</param>
         public void Initialize(IServiceManager owner)
         {
-            deepLinker.Initialize(owner);
-            deepLinker.AddDeepLinkListener(this);
+            DeepLinker.Initialize(owner);
+            DeepLinker.AddDeepLinkListener(this);
         }
 
         /// <summary>
@@ -124,8 +126,8 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
                 Logout();
             }
 
-            deepLinker.RemoveDeepLinkListener(this);
-            deepLinker.Cleanup();
+            DeepLinker.RemoveDeepLinkListener(this);
+            DeepLinker.Cleanup();
         }
 
         /// <summary>

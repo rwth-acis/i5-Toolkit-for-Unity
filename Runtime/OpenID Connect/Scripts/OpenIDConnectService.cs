@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Scripting;
 
 #if ENABLE_WINMD_SUPPORT && UNITY_WSA
 using Windows.ApplicationModel.Activation;
@@ -81,6 +82,7 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         /// <param name="deepLinkArgs">The parameters of the deep link activation</param>
         [DeepLink("login")]
         [DeepLink("")]
+        [Preserve]
         public void HandleActivation(DeepLinkArgs deepLinkArgs)
         {
             ServerListener_RedirectReceived(

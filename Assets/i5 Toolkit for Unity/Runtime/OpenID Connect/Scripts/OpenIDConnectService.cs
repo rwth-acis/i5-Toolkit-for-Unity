@@ -80,7 +80,6 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
         /// Allows both the login path, e.g. i5:/login or i5:/ for backwards compatibility.
         /// </summary>
         /// <param name="deepLinkArgs">The parameters of the deep link activation</param>
-        [Preserve]
         [DeepLink("login")]
         [DeepLink("")]
         [Preserve]

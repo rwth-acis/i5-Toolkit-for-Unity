@@ -4,6 +4,7 @@ using i5.Toolkit.Core.Utilities;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Scripting;
 
 namespace i5.Toolkit.Core.Examples.DeepLinkAPI
 {

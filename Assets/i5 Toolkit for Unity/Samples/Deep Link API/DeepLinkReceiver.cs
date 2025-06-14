@@ -1,5 +1,6 @@
 ﻿using i5.Toolkit.Core.DeepLinkAPI;
 using UnityEngine;
+using UnityEngine.Scripting;
 
 namespace i5.Toolkit.Core.Examples.DeepLinkAPI
 {

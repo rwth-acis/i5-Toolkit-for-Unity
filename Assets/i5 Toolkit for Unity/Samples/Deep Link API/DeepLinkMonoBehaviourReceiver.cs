@@ -29,6 +29,7 @@ namespace i5.Toolkit.Core.Examples.DeepLinkAPI
             }
         }
 
+        [Preserve]
         [DeepLink("changeColor")]
         public void ChangeColor(DeepLinkArgs args)
         {

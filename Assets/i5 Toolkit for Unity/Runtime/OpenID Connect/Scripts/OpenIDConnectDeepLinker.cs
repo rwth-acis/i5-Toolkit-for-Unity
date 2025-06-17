@@ -7,6 +7,10 @@ using System.Collections.Generic;
 
 namespace i5.Toolkit.Core.OpenIDConnectClient
 {
+	/// <summary>
+	/// Specialized deep link service which is tailored to the OpenIDConnectService
+	/// Avoids using reflection compared to the default DeepLinkingService implementation
+	/// </summary>
 	public class OpenIDConnectDeepLinker : IDeepLinkingService
 	{
 		/// <summary>
@@ -15,8 +19,14 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
 		/// </summary>
 		public IApplication ApplicationAPI { get; set; } = new ApplicationAdapter();
 
+		// multiple OIDC services can register themselves with this service
 		private List<OpenIDConnectService> openIDConnectServices = new List<OpenIDConnectService>();
 
+		/// <summary>
+		/// Initializes the service
+		/// Registers to receive deep links
+		/// </summary>
+		/// <param name="owner">The service manager at which the service is registered</param>
 		public void Initialize(IServiceManager owner)
 		{
 			ApplicationAPI.DeepLinkActivated += OnDeepLinkActivated;
@@ -26,12 +36,21 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
 			}
 		}
 
+		/// <summary>
+		/// Cleans up the service
+		/// Unregisters from deep links
+		/// </summary>
 		public void Cleanup()
 		{
 			ApplicationAPI.DeepLinkActivated -= OnDeepLinkActivated;
 			openIDConnectServices.Clear();
 		}
 
+		/// <summary>
+		/// Registers a new listener for deep links
+		/// In this implementation, only OpenIDConnectServices can register themselves.
+		/// </summary>
+		/// <param name="listener">The listener for deep links to register - must be an OpenIDConnectService</param>
 		public void AddDeepLinkListener(object listener)
 		{
 			if (listener is not OpenIDConnectService openIDConnectService)
@@ -43,6 +62,11 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
 			openIDConnectServices.Add(openIDConnectService);
 		}
 
+		/// <summary>
+		/// Removes an object as a deep link receiver
+		/// In this implementation, only OpenIDConnectServices are handled.
+		/// </summary>
+		/// <param name="listener">The listener for the deep link which should be unregistered - must be an OpenIDConnectService</param>
 		public void RemoveDeepLinkListener(object listener)
 		{
 			if (listener is not OpenIDConnectService openIDConnectService)

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 3072 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
+    <g transform="matrix(1,0,0,1,1029.86,-23.4206)">
+        <rect x="164.595" y="193.87" width="683.1" height="683.1" style="fill:rgb(31,144,244);stroke:rgb(0,84,159);stroke-width:6px;"/>
+    </g>
+    <g transform="matrix(1.32372,0,0,1.32372,572.631,-943.462)">
+        <circle cx="469.75" cy="841.499" r="17.891" style="fill:rgb(0,84,159);"/>
+    </g>
+    <g transform="matrix(1.32372,0,0,1.32372,572.631,-260.362)">
+        <circle cx="469.75" cy="841.499" r="17.891" style="fill:rgb(0,84,159);"/>
+    </g>
+    <g transform="matrix(1.32372,0,0,1.32372,1255.73,-943.462)">
+        <circle cx="469.75" cy="841.499" r="17.891" style="fill:rgb(0,84,159);"/>
+    </g>
+    <g transform="matrix(1.32372,0,0,1.32372,1255.73,-260.362)">
+        <circle cx="469.75" cy="841.499" r="17.891" style="fill:rgb(0,84,159);"/>
+    </g>
+    <g transform="matrix(1,0,0,1,-382.129,74.7272)">
+        <text x="1475.49px" y="867.455px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:72px;fill:rgb(0,84,159);">v0</text>
+    </g>
+    <g transform="matrix(1,0,0,1,-382.129,-734.063)">
+        <text x="1475.49px" y="867.455px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:72px;fill:rgb(0,84,159);">v1</text>
+    </g>
+    <g transform="matrix(1,0,0,1,427.105,-734.063)">
+        <text x="1475.49px" y="867.455px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:72px;fill:rgb(0,84,159);">v2</text>
+    </g>
+    <g transform="matrix(1,0,0,1,427.105,74.7272)">
+        <text x="1475.49px" y="867.455px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:72px;fill:rgb(0,84,159);">v3</text>
+    </g>
+    <g transform="matrix(1,0,0,1,1024,0)">
+        <path d="M853.55,170.45L170.45,853.55" style="fill:none;stroke:rgb(0,84,159);stroke-width:6px;"/>
+    </g>
+</svg>

@@ -2,6 +2,7 @@ using i5.Toolkit.Core.DeepLinkAPI;
 using i5.Toolkit.Core.Experimental.UnityAdapters;
 using i5.Toolkit.Core.ServiceCore;
 using i5.Toolkit.Core.Utilities;
+using i5.Toolkit.Core.VerboseLogging;
 using System;
 using System.Collections.Generic;
 
@@ -21,6 +22,8 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
 
 		// multiple OIDC services can register themselves with this service
 		private List<IOpenIDConnectService> openIDConnectServices = new List<IOpenIDConnectService>();
+
+		public int RegisteredOpenIDConnectServices { get => openIDConnectServices.Count; }
 
 		/// <summary>
 		/// Initializes the service
@@ -55,11 +58,14 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
 		{
 			if (listener is not IOpenIDConnectService openIDConnectService)
 			{
-				i5Debug.LogWarning("The OpenIDConnect Deep Linker can only handle objects which implement IOpenIDConnectService.", this);
+				i5Debug.LogError("The OpenIDConnect Deep Linker can only handle objects which implement IOpenIDConnectService.", this);
 				return;
 			}
 
-			openIDConnectServices.Add(openIDConnectService);
+			if (!openIDConnectServices.Contains(openIDConnectService))
+			{
+				openIDConnectServices.Add(openIDConnectService);
+			}
 		}
 
 		/// <summary>
@@ -71,7 +77,7 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
 		{
 			if (listener is not IOpenIDConnectService openIDConnectService)
 			{
-				i5Debug.LogWarning("The OpenIDConnect Deep Linker can only receive objects implementing IOpenIDConnectService.", this);
+				i5Debug.LogError("The OpenIDConnect Deep Linker can only receive objects implementing IOpenIDConnectService.", this);
 				return;
 			}
 
@@ -81,15 +87,24 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
 		// Called if a deep link was found
 		private void OnDeepLinkActivated(object sender, string deepLink)
 		{
-			i5Debug.Log("Got deep link for " + deepLink, this);
+			AppLog.LogTrace("Got deep link for " + deepLink, this);
 
 			Uri uri = new Uri(deepLink);
-			Dictionary<string, string> fragments = UriUtils.GetUriParameters(uri);
-			DeepLinkArgs args = new DeepLinkArgs(fragments, uri);
 
-			foreach (IOpenIDConnectService registeredService in openIDConnectServices)
+			if (uri.Authority.ToLower() == "login" || string.IsNullOrEmpty(uri.Authority))
 			{
-				registeredService.HandleActivation(args);
+				AppLog.LogDebug("Processing deep link to handle login: " + deepLink, this);
+				Dictionary<string, string> fragments = UriUtils.GetUriParameters(uri);
+				DeepLinkArgs args = new DeepLinkArgs(fragments, uri);
+
+				foreach (IOpenIDConnectService registeredService in openIDConnectServices)
+				{
+					registeredService.HandleActivation(args);
+				}
+			}
+			else
+			{
+				AppLog.LogTrace("Ignoring deep link since it is not for the login.", this);
 			}
 		}
 	}

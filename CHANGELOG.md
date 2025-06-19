@@ -2,6 +2,14 @@
 
 This document keeps track of the changes between versions of the toolkit.
 
+## 1.9.6 (2025-06-19)
+
+### Added
+- Added a specialized deep link service for the OpenID Connect service to avoid the use of reflection
+
+### Changed
+- Updated deep link targets to use the [Preseve] attribute to avoid target methods getting stripped in build optimizations
+
 ## 1.9.5 (2024-10-19)
 
 ### Added

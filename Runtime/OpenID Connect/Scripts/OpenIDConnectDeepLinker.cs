@@ -20,7 +20,7 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
 		public IApplication ApplicationAPI { get; set; } = new ApplicationAdapter();
 
 		// multiple OIDC services can register themselves with this service
-		private List<OpenIDConnectService> openIDConnectServices = new List<OpenIDConnectService>();
+		private List<IOpenIDConnectService> openIDConnectServices = new List<IOpenIDConnectService>();
 
 		/// <summary>
 		/// Initializes the service
@@ -48,14 +48,14 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
 
 		/// <summary>
 		/// Registers a new listener for deep links
-		/// In this implementation, only OpenIDConnectServices can register themselves.
+		/// In this implementation, only IOpenIDConnectServices can register themselves.
 		/// </summary>
-		/// <param name="listener">The listener for deep links to register - must be an OpenIDConnectService</param>
+		/// <param name="listener">The listener for deep links to register - must be an IOpenIDConnectService</param>
 		public void AddDeepLinkListener(object listener)
 		{
-			if (listener is not OpenIDConnectService openIDConnectService)
+			if (listener is not IOpenIDConnectService openIDConnectService)
 			{
-				i5Debug.LogWarning("The OpenIDConnect Deep Linker can only receive OpenIDConnectServices.", this);
+				i5Debug.LogWarning("The OpenIDConnect Deep Linker can only handle objects which implement IOpenIDConnectService.", this);
 				return;
 			}
 
@@ -64,14 +64,14 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
 
 		/// <summary>
 		/// Removes an object as a deep link receiver
-		/// In this implementation, only OpenIDConnectServices are handled.
+		/// In this implementation, only objects implementing IOpenIDConnectService are handled.
 		/// </summary>
 		/// <param name="listener">The listener for the deep link which should be unregistered - must be an OpenIDConnectService</param>
 		public void RemoveDeepLinkListener(object listener)
 		{
-			if (listener is not OpenIDConnectService openIDConnectService)
+			if (listener is not IOpenIDConnectService openIDConnectService)
 			{
-				i5Debug.LogWarning("The OpenIDConnect Deep Linker can only receive OpenIDConnectServices.", this);
+				i5Debug.LogWarning("The OpenIDConnect Deep Linker can only receive objects implementing IOpenIDConnectService.", this);
 				return;
 			}
 
@@ -87,7 +87,7 @@ namespace i5.Toolkit.Core.OpenIDConnectClient
 			Dictionary<string, string> fragments = UriUtils.GetUriParameters(uri);
 			DeepLinkArgs args = new DeepLinkArgs(fragments, uri);
 
-			foreach (OpenIDConnectService registeredService in openIDConnectServices)
+			foreach (IOpenIDConnectService registeredService in openIDConnectServices)
 			{
 				registeredService.HandleActivation(args);
 			}

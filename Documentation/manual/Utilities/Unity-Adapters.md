@@ -8,9 +8,9 @@ The Unity API is wrapped into adapter objects which implement the required inter
 ## Use Case
 
 Unity adapters can be used to decouple application logic from the presentation in the scene.
-For instance, this allows a script to display text on an <xref:i5.Toolkit.Core.Utilities.UnityAdapters.ITextDisplay>.
+For instance, this allows a script to display text on an <xref:i5.Toolkit.Core.Experimental.UnityAdapters.ITextDisplay>.
 This interface allows the script to set text but it does not need to know about the implementation of the text display.
-By initializing the <xref:i5.Toolkit.Core.Utilities.UnityAdapters.ITextDisplay> object with an adapter, the same application logic can work with different UI implementations, e.g. TextMesh or TextMeshPro.
+By initializing the <xref:i5.Toolkit.Core.Experimental.UnityAdapters.ITextDisplay> object with an adapter, the same application logic can work with different UI implementations, e.g. TextMesh or TextMeshPro.
 
 ## Interfaces
 
@@ -18,10 +18,10 @@ The toolkit provides the following interfaces:
 
 | Interface | Provided funtionality |
 | --- | --- |
-| <xref:i5.Toolkit.Core.Utilities.UnityAdapters.IActivateable> | Activate and deactivate an object |
-| <xref:i5.Toolkit.Core.Utilities.UnityAdapters.IRectangle> | Rectangular 2D (UI) element |
-| <xref:i5.Toolkit.Core.Utilities.UnityAdapters.IScrollView> | Scrollable view |
-| <xref:i5.Toolkit.Core.Utilities.UnityAdapters.ITextDisplay> | UI display to show text to show text | to the user
+| <xref:i5.Toolkit.Core.Experimental.UnityAdapters.IActivateable> | Activate and deactivate an object |
+| <xref:i5.Toolkit.Core.Experimental.UnityAdapters.IRectangle> | Rectangular 2D (UI) element |
+| <xref:i5.Toolkit.Core.Experimental.UnityAdapters.IScrollView> | Scrollable view |
+| <xref:i5.Toolkit.Core.Experimental.UnityAdapters.ITextDisplay> | UI display to show text to show text | to the user
 
 ## Adapters
 
@@ -29,12 +29,12 @@ The toolkit provides adapters for the following Unity objects:
 
 | Unity Class | Adapter Class |
 | --- | --- |
-| <xref:UnityEngine.GameObject> | <xref:i5.Toolkit.Core.Utilities.UnityAdapters.GameObjectAdapter> |
-| <xref:UnityEngine.RectTransform> | <xref:i5.Toolkit.Core.Utilities.UnityAdapters.RectTransformAdapter> |
-| ScrollRect | <xref:i5.Toolkit.Core.Utilities.UnityAdapters.ScrollRectAdapter> |
-| <xref:UnityEngine.TextMesh> | <xref:i5.Toolkit.Core.Utilities.UnityAdapters.TextMeshTextAdapter> |
-| TextMeshPro | <xref:i5.Toolkit.Core.Utilities.UnityAdapters.TextMeshProTextAdapter> |
-| TextMeshProUGUI | <xref:i5.Toolkit.Core.Utilities.UnityAdapters.TextMeshProUGUITextAdapter> |
+| <xref:UnityEngine.GameObject> | <xref:i5.Toolkit.Core.Experimental.UnityAdapters.GameObjectAdapter> |
+| <xref:UnityEngine.RectTransform> | <xref:i5.Toolkit.Core.Experimental.UnityAdapters.RectTransformAdapter> |
+| ScrollRect | <xref:i5.Toolkit.Core.Experimental.UnityAdapters.ScrollRectAdapter> |
+| <xref:UnityEngine.TextMesh> | <xref:i5.Toolkit.Core.Experimental.UnityAdapters.TextMeshTextAdapter> |
+| TextMeshPro | <xref:i5.Toolkit.Core.Experimental.UnityAdapters.TextMeshProTextAdapter> |
+| TextMeshProUGUI | <xref:i5.Toolkit.Core.Experimental.UnityAdapters.TextMeshProUGUITextAdapter> |
 
 ## Example
 

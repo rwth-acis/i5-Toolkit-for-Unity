@@ -54,14 +54,14 @@ protected override void Awake()
 ```
 
 To initialize the console UI member, you need to provide a text display.
-This is an adapter object that implements the <xref:i5.Toolkit.Core.Utilities.UnityAdapters.ITextDisplay> interface.
+This is an adapter object that implements the <xref:i5.Toolkit.Core.Experimental.UnityAdapters.ITextDisplay> interface.
 The toolkit already provides adapter objects for the following text display components which can be used:
 
-- TextMesh: <xref:i5.Toolkit.Core.Utilities.UnityAdapters.TextMeshTextAdapter>
-- TextMeshPro: <xref:i5.Toolkit.Core.Utilities.UnityAdapters.TextMeshProTextAdapter>
-- TextMeshProUGUI: <xref:i5.Toolkit.Core.Utilities.UnityAdapters.TextMeshProUGUITextAdapter>
+- TextMesh: <xref:i5.Toolkit.Core.Experimental.UnityAdapters.TextMeshTextAdapter>
+- TextMeshPro: <xref:i5.Toolkit.Core.Experimental.UnityAdapters.TextMeshProTextAdapter>
+- TextMeshProUGUI: <xref:i5.Toolkit.Core.Experimental.UnityAdapters.TextMeshProUGUITextAdapter>
 
-For other kinds of text displays, implement an own <xref:i5.Toolkit.Core.Utilities.UnityAdapters.ITextDisplay> adapter.
+For other kinds of text displays, implement an own <xref:i5.Toolkit.Core.Experimental.UnityAdapters.ITextDisplay> adapter.
 
 The <xref:i5.Toolkit.Core.AppConsole.ConsoleUIBehaviour.consoleUI> can also be initialized with a log formatter configuration object.
 

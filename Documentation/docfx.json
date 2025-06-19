@@ -53,8 +53,10 @@
         }
       }
     },
-    "xref": [ "https://normanderwan.github.io/UnityXrefMaps/2018.4/xrefmap.yml" ],
-    "xrefService": [ "https://xref.docs.microsoft.com/query?uid={uid}" ],
+    "xref": [
+      "https://normanderwan.github.io/UnityXrefMaps/xrefmap.yml",
+      "https://learn.microsoft.com/en-us/dotnet/.xrefmap.json"
+    ],
     "dest": "../_site"
   }
 }

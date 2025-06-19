@@ -86,7 +86,7 @@ In this list, you can enter all schemes that should be associated with the app, 
 
 ### Further Information
 
-More information can be found in [Unity's documentation](https://docs.unity3d.com/Manual/enabling-deep-linking.html).
+More information can be found in [Unity's documentation](https://docs.unity3d.com/Manual/deep-linking.html).
    You only need to follow the the instructions for your specific platform - the code examples are already handled by the given deep linking service.
 
 ## Usage
@@ -104,8 +104,10 @@ Follow these steps to integrate deep linking into your application:
    When specifying the attribute, set the path to which it should react, e.g. "myDeepLink" if it should react to deep links like "i5://myDeepLink".
    The path is case-insensitive.
    The attribute is only found by the module if it is added to public methods.
+   *Important:* Also add the <xref:UnityEngine.Scripting.PreserveAttribute> to the method to avoid that Unity strips it away during the build.
 
    ```[C#]
+   [Preserve]
    [DeepLink("myPath")]
    public void Foo()
    { ... }

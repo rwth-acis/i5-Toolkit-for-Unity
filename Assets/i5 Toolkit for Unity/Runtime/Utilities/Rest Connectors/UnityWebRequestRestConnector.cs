@@ -46,26 +46,29 @@ namespace i5.Toolkit.Core.Utilities
             }
         }
 
-        public virtual async Task<WebResponse<string>> PostAsync(string uri, string putJson, Dictionary<string, string> headers = null)
+        public virtual async Task<WebResponse<string>> PostAsync(string uri, string postJson, Dictionary<string, string> headers = null)
         {
-            using (UnityWebRequest req = UnityWebRequest.PostWwwForm(uri, putJson))
-            {
-                req.downloadHandler = new DownloadHandlerBuffer();
-                req.SetRequestHeader("Content-Type", "application/json");
-                req.SetRequestHeader("Accept", "application/json");
+            byte[] bodyRaw = Encoding.UTF8.GetBytes(postJson);
+            return await PostPutDataAsync(uri, "POST", bodyRaw, "application/json", headers);
 
-                AddHeaders(req, headers);
-                await req.SendWebRequest();
+    //        using (UnityWebRequest req = UnityWebRequest.PostWwwForm(uri, postJson))
+    //        {
+    //            req.downloadHandler = new DownloadHandlerBuffer();
+    //            req.SetRequestHeader("Content-Type", "application/json");
+    //            req.SetRequestHeader("Accept", "application/json");
 
-                if (req.result == UnityWebRequest.Result.Success)
-                {
-					return new WebResponse<string>(req.downloadHandler.text, req.downloadHandler.data, req.responseCode);
-                }
-                else
-                {
-					return new WebResponse<string>(false, req.downloadHandler.text, req.downloadHandler.data, req.responseCode, req.error);
-				}
-            }
+    //            AddHeaders(req, headers);
+    //            await req.SendWebRequest();
+
+    //            if (req.result == UnityWebRequest.Result.Success)
+    //            {
+				//	return new WebResponse<string>(req.downloadHandler.text, req.downloadHandler.data, req.responseCode);
+    //            }
+    //            else
+    //            {
+				//	return new WebResponse<string>(false, req.downloadHandler.text, req.downloadHandler.data, req.responseCode, req.error);
+				//}
+    //        }
         }
 
         public virtual async Task<WebResponse<string>> PostAsync(string uri, byte[] postData, Dictionary<string, string> headers = null)

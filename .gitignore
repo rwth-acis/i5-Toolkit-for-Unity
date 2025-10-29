@@ -92,3 +92,6 @@ reference
 /CodeCoverage
 /Assets/Resources/BillingMode.json
 /Assets/Resources/BillingMode.json.meta
+
+# Secret key
+Assets/Resources/openAI.txt
